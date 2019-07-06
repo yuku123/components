@@ -1,7 +1,7 @@
-package com.zifang.demo.temp.tool.utils;
+package com.zifang.util.core.demo.temp.tool.utils;
 
 /**
- * Class工具类
+ * Class锟斤拷锟斤拷锟斤拷
  * 
  * @author jijs
  * @version 1.0
@@ -9,7 +9,7 @@ package com.zifang.demo.temp.tool.utils;
 public class ClassUtils {
 
     /**
-     * 获取调用的类名
+     * 锟斤拷取锟斤拷锟矫碉拷锟斤拷锟斤拷
      * 
      * @return String
      */
@@ -21,7 +21,7 @@ public class ClassUtils {
     }
 
     /**
-     * 获取调用的方法名
+     * 锟斤拷取锟斤拷锟矫的凤拷锟斤拷锟斤拷
      * 
      * @return String
      */

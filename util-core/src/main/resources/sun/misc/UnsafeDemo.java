@@ -1,4 +1,4 @@
-package com.zifang.demo.temp.sun.misc;
+package com.zifang.util.core.demo.temp.sun.misc;
 
 import java.lang.reflect.Field;
 
@@ -19,20 +19,20 @@ public class UnsafeDemo {
 	public static void main(String[] args) {
 		UnsafeDemo t = new UnsafeDemo();
 		/**
-		 * compareAndSetÕâ¸ö·½·¨Ö÷Òªµ÷ÓÃunsafe.compareAndSwapIntÕâ¸ö·½·¨£¬
-		 * Õâ¸ö·½·¨ÓÐËÄ¸ö²ÎÊý
-		 * 	µÚÒ»¸ö²ÎÊýÎªÐèÒª¸Ä±äµÄ¶ÔÏó£¬
-		 * 	µÚ¶þ¸öÎªÆ«ÒÆÁ¿(¼´Ö®Ç°Çó³öÀ´µÄvalueOffsetµÄÖµ)£¬
-		 * 	µÚÈý¸ö²ÎÊýÎªÆÚ´ýµÄÖµ£¬
-		 * 	µÚËÄ¸öÎª¸üÐÂºóµÄÖµ¡£
-		 * Õû¸ö·½·¨µÄ×÷ÓÃ¼´ÎªÈôµ÷ÓÃ¸Ã·½·¨Ê±£¬valueµÄÖµÓëexpectÕâ¸öÖµÏàµÈ£¬ÄÇÃ´Ôò½«valueÐÞ¸ÄÎªupdateÕâ¸öÖµ£¬
-		 * ²¢·µ»ØÒ»¸ötrue£¬Èç¹ûµ÷ÓÃ¸Ã·½·¨Ê±£¬valueµÄÖµÓëexpectÕâ¸öÖµ²»ÏàµÈ£¬ÄÇÃ´²»×öÈÎºÎ²Ù×÷£¬²¢·¶Î§Ò»¸öfalse¡£
+		 * compareAndSetï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½unsafe.compareAndSwapIntï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½
+		 * 	ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Òªï¿½Ä±ï¿½Ä¶ï¿½ï¿½ï¿½
+		 * 	ï¿½Ú¶ï¿½ï¿½ï¿½ÎªÆ«ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½valueOffsetï¿½ï¿½Öµ)ï¿½ï¿½
+		 * 	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ú´ï¿½ï¿½ï¿½Öµï¿½ï¿½
+		 * 	ï¿½ï¿½ï¿½Ä¸ï¿½Îªï¿½ï¿½ï¿½Âºï¿½ï¿½Öµï¿½ï¿½
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Ã¸Ã·ï¿½ï¿½ï¿½Ê±ï¿½ï¿½valueï¿½ï¿½Öµï¿½ï¿½expectï¿½ï¿½ï¿½Öµï¿½ï¿½È£ï¿½ï¿½ï¿½Ã´ï¿½ï¿½valueï¿½Þ¸ï¿½Îªupdateï¿½ï¿½ï¿½Öµï¿½ï¿½
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½trueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¸Ã·ï¿½ï¿½ï¿½Ê±ï¿½ï¿½valueï¿½ï¿½Öµï¿½ï¿½expectï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ÎºÎ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§Ò»ï¿½ï¿½falseï¿½ï¿½
 		 * 
-		 * Òò´ËÖ®ËùÒÔÔÚgetAndSet·½·¨ÖÐµ÷ÓÃÒ»¸öforÑ­»·£¬¼´±£Ö¤Èç¹ûµ÷ÓÃcompareAndSetÕâ¸ö·½·¨·µ»ØÎªfalseÊ±£¬
-		 * ÄÜÔÙ´Î³¢ÊÔ½øÐÐÐÞ¸ÄvalueµÄÖµ£¬Ö±µ½ÐÞ¸Ä³É¹¦£¬²¢·µ»ØÐÞ¸ÄÇ°valueµÄÖµ¡£
+		 * ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½getAndSetï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Ò»ï¿½ï¿½forÑ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½compareAndSetï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªfalseÊ±ï¿½ï¿½
+		 * ï¿½ï¿½ï¿½Ù´Î³ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½valueï¿½ï¿½Öµï¿½ï¿½Ö±ï¿½ï¿½ï¿½Þ¸Ä³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ç°valueï¿½ï¿½Öµï¿½ï¿½
 		 * 
-		 * Õû¸ö´úÂëÄÜ±£Ö¤ÔÚ¶àÏß³ÌÊ±¾ßÓÐÏß³Ì°²È«ÐÔ£¬²¢ÇÒÃ»ÓÐÊ¹ÓÃjavaÖÐÈÎºÎËøµÄ»úÖÆ£¬ËùÒÀ¿¿µÄ±ãÊÇUnsafeÕâ¸öÀàÖÐµ÷ÓÃµÄ¸Ã·½·¨¾ßÓÐÔ­×ÓÐÔ£¬
-		 * Õâ¸öÔ­×ÓÐÔµÄ±£Ö¤²¢²»ÊÇ¿¿java±¾Éí±£Ö¤£¬¶øÊÇ¿¿Ò»¸ö¸üµ×²ãµÄÓë²Ù×÷ÏµÍ³Ïà¹ØµÄÌØÐÔÊµÏÖ¡£
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü±ï¿½Ö¤ï¿½Ú¶ï¿½ï¿½ß³ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì°ï¿½È«ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ê¹ï¿½ï¿½javaï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½Unsafeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ÃµÄ¸Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½Ô£ï¿½
+		 * ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ÔµÄ±ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½javaï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½Ö¡ï¿½
 		 */
 		boolean f = unsafe.compareAndSwapInt(t, stateOffset, 2, 3);
 		System.out.println(f);
@@ -40,15 +40,15 @@ public class UnsafeDemo {
 	}
 
 	/**
-	 * Ê×ÏÈ¿ÉÒÔ¿´µ½AtomicIntegerÀàÔÚÓòÖÐÉùÃ÷ÁËÕâÁ½¸öË½ÓÐ±äÁ¿unsafeºÍvalueOffset¡£
-	 * ÆäÖÐunsafeÊµÀý²ÉÓÃUnsafeÀàÖÐ¾²Ì¬·½·¨getUnsafe()µÃµ½£¬µ«ÊÇÕâ¸ö·½·¨Èç¹ûÎÒÃÇÐ´µÄÊ±ºòµ÷ÓÃ»á±¨´í£¬
-	 * ÒòÎªÕâ¸ö·½·¨ÔÚµ÷ÓÃÊ±»áÅÐ¶ÏÀà¼ÓÔØÆ÷£¬ÎÒÃÇµÄ´úÂëÊÇÃ»ÓÐ¡°ÊÜÐÅÈÎ¡±µÄ£¬¶øÔÚjdkÔ´ÂëÖÐµ÷ÓÃÊÇÃ»ÓÐÈÎºÎÎÊÌâµÄ£»
-	 * valueOffsetÕâ¸öÊÇÖ¸ÀàÖÐÏàÓ¦×Ö¶ÎÔÚ¸ÃÀàµÄÆ«ÒÆÁ¿£¬ÔÚÕâÀï¾ßÌå¼´ÊÇÖ¸valueÕâ¸ö×Ö¶ÎÔÚAtomicIntegerÀàµÄÄÚ´æÖÐÏà¶ÔÓÚ¸ÃÀàÊ×µØÖ·µÄÆ«ÒÆÁ¿¡£
-	 * È»ºó¿ÉÒÔ¿´Ò»¸öÓÐÒ»¸ö¾²Ì¬³õÊ¼»¯¿é£¬Õâ¸ö¿éµÄ×÷ÓÃ¼´ÊÇÇó³övalueÕâ¸ö×Ö¶ÎµÄÆ«ÒÆÁ¿¡£¾ßÌåµÄ·½·¨Ê¹ÓÃµÄ·´ÉäµÄ»úÖÆµÃµ½valueµÄField¶ÔÏó£¬
-	 * ÔÙ¸ù¾ÝobjectFieldOffsetÕâ¸ö·½·¨Çó³övalueÕâ¸ö±äÁ¿ÄÚ´æÖÐÔÚ¸Ã¶ÔÏóÖÐµÄÆ«ÒÆÁ¿¡£
-	 * volatile¹Ø¼ü×Ö±£Ö¤ÁËÔÚ¶àÏß³ÌÖÐvalueµÄÖµÊÇ¿É¼ûµÄ£¬ÈÎºÎÒ»¸öÏß³ÌÐÞ¸ÄÁËvalueÖµ£¬»á½«ÆäÁ¢¼´Ð´»ØÄÚ´æµ±ÖÐ
+	 * ï¿½ï¿½ï¿½È¿ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½AtomicIntegerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë½ï¿½Ð±ï¿½ï¿½ï¿½unsafeï¿½ï¿½valueOffsetï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½unsafeÊµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Unsafeï¿½ï¿½ï¿½Ð¾ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½getUnsafe()ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ã»á±¨ï¿½ï¿½
+	 * ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÇµÄ´ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¡ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½jdkÔ´ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½
+	 * valueOffsetï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ö¶ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¼´ï¿½ï¿½Ö¸valueï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½AtomicIntegerï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½×µï¿½Ö·ï¿½ï¿½Æ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * È»ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ì¬ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½é£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½valueï¿½ï¿½ï¿½ï¿½Ö¶Îµï¿½Æ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½Ê¹ï¿½ÃµÄ·ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ÆµÃµï¿½valueï¿½ï¿½Fieldï¿½ï¿½ï¿½ï¿½
+	 * ï¿½Ù¸ï¿½ï¿½ï¿½objectFieldOffsetï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½valueï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ú¸Ã¶ï¿½ï¿½ï¿½ï¿½Ðµï¿½Æ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * volatileï¿½Ø¼ï¿½ï¿½Ö±ï¿½Ö¤ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ß³ï¿½ï¿½ï¿½valueï¿½ï¿½Öµï¿½Ç¿É¼ï¿½ï¿½Ä£ï¿½ï¿½Îºï¿½Ò»ï¿½ï¿½ï¿½ß³ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½valueÖµï¿½ï¿½ï¿½á½«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½Ú´æµ±ï¿½ï¿½
 	 */
-	//Í¨¹ý·´Éä»ñÈ¡Unsafe¶ÔÏó£¬²»ÄÜÖ±½Ó»ñ
+	//Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Unsafeï¿½ï¿½ï¿½ó£¬²ï¿½ï¿½ï¿½Ö±ï¿½Ó»ï¿½
 	private static Unsafe getUnsafe(){
 		try{
 			Class<?> unsafeClass = Unsafe.class;

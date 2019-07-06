@@ -1,8 +1,8 @@
-package com.zifang.demo.temp.tool;
+package com.zifang.util.core.demo.temp.tool;
 
 /**
- * <p>Title: Ê±¼äºÍÈÕÆÚµÄ¹¤¾ßÀà</p>
- * <p>Description: DateUtilÀà°üº¬ÁË±ê×¼µÄÊ±¼äºÍÈÕÆÚ¸ñÊ½£¬ÒÔ¼°ÕâÐ©¸ñÊ½ÔÚ×Ö·û´®¼°ÈÕÆÚÖ®¼ä×ª»»µÄ·½·¨</p>
+ * <p>Title: Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÚµÄ¹ï¿½ï¿½ï¿½ï¿½ï¿½</p>
+ * <p>Description: DateUtilï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë±ï¿½×¼ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Ð©ï¿½ï¿½Ê½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½×ªï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½</p>
  * <p>Copyright: Copyright (c) 2007 advance,Inc. All Rights Reserved</p>
  * <p>Company: advance,Inc.</p>
  * @author advance
@@ -205,7 +205,7 @@ public class DateUtil {
 		return aDate;
 	}
 
-	//ÈÕÆÚ¸ñÊ½×ª»»³ÉÊ±¼ä´Á
+	//ï¿½ï¿½ï¿½Ú¸ï¿½Ê½×ªï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½
 	public static long getTimeStamp(String pattern, String strDate) {
 		long returnTimeStamp = 0;
 		Date aDate = null;
@@ -222,7 +222,7 @@ public class DateUtil {
 		return returnTimeStamp;
 	}
 
-	//»ñÈ¡µ±Ç°ÈÕÆÚµÄÓÊ´Á
+	//ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Úµï¿½ï¿½Ê´ï¿½
 	public static long getNowTimeStamp() {
 		long returnTimeStamp = 0;
 		Date aDate = null;
@@ -240,9 +240,9 @@ public class DateUtil {
 	}
 
 	/**
-	 *µÃµ½¸ñÊ½»¯ºóµÄÏµÍ³µ±Ç°ÈÕÆÚ
-	 *@param strScheme ¸ñÊ½Ä£Ê½×Ö·û´®
-	 *@return ¸ñÊ½»¯ºóµÄÏµÍ³µ±Ç°Ê±¼ä£¬Èç¹ûÓÐÒì³£²úÉú£¬·µ»Ø¿Õ´®""
+	 *ï¿½Ãµï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
+	 *@param strScheme ï¿½ï¿½Ê½Ä£Ê½ï¿½Ö·ï¿½ï¿½ï¿½
+	 *@return ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½Ç°Ê±ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿Õ´ï¿½""
 	 *@see java.util.SimpleDateFormat
 	 */
 	public static final String getNowDateTime(String strScheme) {
@@ -270,14 +270,14 @@ public class DateUtil {
 	}
 
 	/**
-	 *×ª»¯ÈÕÆÚ¸ñÊ½"MM/dd/YY¡¢MM.dd.YY¡¢MM-dd-YY¡¢MM/dd/YY"£¬²¢Êä³öÎªÕý³£µÄ¸ñÊ½yyyy-MM-dd
-	 *@param strDate ´ý×ª»»µÄÈÕÆÚ¸ñÊ½
-	 *@return ¸ñÊ½»¯ºóµÄÈÕÆÚ£¬Èç¹ûÓÐÒì³£²úÉú£¬·µ»Ø¿Õ´®""
+	 *×ªï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½"MM/dd/YYï¿½ï¿½MM.dd.YYï¿½ï¿½MM-dd-YYï¿½ï¿½MM/dd/YY"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½Ê½yyyy-MM-dd
+	 *@param strDate ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½
+	 *@return ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿Õ´ï¿½""
 	 *@see java.util.SimpleDateFormat
 	 */
 	public static final String convertNormalDate(String strDate) {
 		String strReturn = null;
-		//ÏÈ°Ñ´«Èë²ÎÊý·Ö¸ñ·û×ª»»³ÉjavaÈÏÊ¶µÄ·Ö¸ñ·û
+		//ï¿½È°Ñ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½javaï¿½ï¿½Ê¶ï¿½Ä·Ö¸ï¿½ï¿½
 		String[] date_arr = strDate.split("\\.|\\/|\\-");
 		try {
 			if (date_arr.length == 3) {
@@ -296,10 +296,10 @@ public class DateUtil {
 	}
 
 	/**
-	 * ½«×Ö·û´®Êý×éÊ¹ÓÃÖ¸¶¨µÄ·Ö¸ô·ûºÏ²¢³ÉÒ»¸ö×Ö·û´®¡£
-	 * @param array ×Ö·û´®Êý×é
-	 * @param delim ·Ö¸ô·û£¬ÎªnullµÄÊ±ºòÊ¹ÓÃ""×÷Îª·Ö¸ô·û£¨¼´Ã»ÓÐ·Ö¸ô·û£©
-	 * @return ºÏ²¢ºóµÄ×Ö·û´®
+	 * ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ä·Ö¸ï¿½ï¿½ï¿½ï¿½Ï²ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param array ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param delim ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Îªnullï¿½ï¿½Ê±ï¿½ï¿½Ê¹ï¿½ï¿½""ï¿½ï¿½Îªï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð·Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½Ï²ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @since  0.4
 	 */
 	public static final String combineStringArray(String[] array, String delim) {
@@ -339,7 +339,7 @@ public class DateUtil {
 		return returnValue;
 	}
 	/**
-	 * »ñÈ¡ÈÕÆÚ×Ö·û´®ÖÐµÄÖÐÎÄÊ±¼ä±íÊ¾×Ö·û´®
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ê¾ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @param strDate
 	 * @return
 	 */
@@ -357,7 +357,7 @@ public class DateUtil {
 		return strReturn;
 	}
 	/**
-	 * »ñÈ¡ÈÕÆÚ×Ö·û´®ÖÐµÄÖÐÎÄÈÕÆÚ±íÊ¾×Ö·û´®
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú±ï¿½Ê¾ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @param strDate
 	 * @return
 	 */
@@ -378,7 +378,7 @@ public class DateUtil {
 		return strReturn;
 	}
 	/**
-	 * »ñÈ¡ÈÕÆÚ×Ö·û´®µÄÖÐÎÄÈÕÆÚÊ±¼ä±íÊ¾
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ê¾
 	 * @param strDate
 	 * @return
 	 */
@@ -400,10 +400,10 @@ public class DateUtil {
 	}
 
 	/**
-	 *µÃµ½¸ñÊ½»¯ºóµÄÖ¸¶¨ÈÕÆÚ
-	 *@param strScheme ¸ñÊ½Ä£Ê½×Ö·û´®
-	 *@param date Ö¸¶¨µÄÈÕÆÚÖµ
-	 *@return ¸ñÊ½»¯ºóµÄÖ¸¶¨ÈÕÆÚ£¬Èç¹ûÓÐÒì³£²úÉú£¬·µ»Ø¿Õ´®""
+	 *ï¿½Ãµï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 *@param strScheme ï¿½ï¿½Ê½Ä£Ê½ï¿½Ö·ï¿½ï¿½ï¿½
+	 *@param date Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+	 *@return ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿Õ´ï¿½""
 	 *@see java.util.SimpleDateFormat
 	 */
 	public static final String getDateTime(Date date, String strScheme) {
@@ -418,10 +418,10 @@ public class DateUtil {
 		return strReturn;
 	}
 	/**
-	 * »ñÈ¡ÈÕÆÚ
-	 * @param timeType Ê±¼äÀàÐÍ£¬Æ©Èç£ºCalendar.DAY_OF_YEAR
-	 * @param timenum  Ê±¼äÊý×Ö£¬Æ©Èç£º-1 ×òÌì£¬0 ½ñÌì£¬1 Ã÷Ìì
-	 * @return ÈÕÆÚ
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	 * @param timeType Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Æ©ï¿½ç£ºCalendar.DAY_OF_YEAR
+	 * @param timenum  Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½Æ©ï¿½ç£º-1 ï¿½ï¿½ï¿½ì£¬0 ï¿½ï¿½ï¿½ì£¬1 ï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½ï¿½ï¿½ï¿½
 	 */
 	public static final Date getDateFromNow(int timeType, int timenum){
 		Calendar cld = Calendar.getInstance();
@@ -429,11 +429,11 @@ public class DateUtil {
 		return cld.getTime();
 	}
 	/**
-	 * »ñÈ¡ÈÕÆÚ
-	 * @param timeType Ê±¼äÀàÐÍ£¬Æ©Èç£ºCalendar.DAY_OF_YEAR
-	 * @param timenum  Ê±¼äÊý×Ö£¬Æ©Èç£º-1 ×òÌì£¬0 ½ñÌì£¬1 Ã÷Ìì
-	 * @param format_string Ê±¼ä¸ñÊ½£¬Æ©Èç£º"yyyy-MM-dd HH:mm:ss"
-	 * @return ×Ö·û´®
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+	 * @param timeType Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½Æ©ï¿½ç£ºCalendar.DAY_OF_YEAR
+	 * @param timenum  Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½Æ©ï¿½ç£º-1 ï¿½ï¿½ï¿½ì£¬0 ï¿½ï¿½ï¿½ì£¬1 ï¿½ï¿½ï¿½ï¿½
+	 * @param format_string Ê±ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Æ©ï¿½ç£º"yyyy-MM-dd HH:mm:ss"
+	 * @return ï¿½Ö·ï¿½ï¿½ï¿½
 	 */
 	public static final String getDateFromNow(int timeType, int timenum, String format_string){
 		if ((format_string == null)||(format_string.equals("")))
@@ -446,9 +446,9 @@ public class DateUtil {
 	    return df.format(date);
 	}
 	/**
-	 * »ñÈ¡µ±Ç°ÈÕÆÚµÄ×Ö·û´®
-	 * @param format_string Ê±¼ä¸ñÊ½£¬Æ©Èç£º"yyyy-MM-dd HH:mm:ss"
-	 * @return ×Ö·û´®
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Úµï¿½ï¿½Ö·ï¿½ï¿½ï¿½
+	 * @param format_string Ê±ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Æ©ï¿½ç£º"yyyy-MM-dd HH:mm:ss"
+	 * @return ï¿½Ö·ï¿½ï¿½ï¿½
 	 */
 	public static final String getDateNow(String format_string){
 		if ((format_string == null)||(format_string.equals("")))

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.zifang.demo.temp.tool;
+package com.zifang.util.core.demo.temp.tool;
 
 import java.io.File;
 import java.io.FileFilter;

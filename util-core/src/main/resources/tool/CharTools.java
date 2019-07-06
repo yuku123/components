@@ -1,8 +1,8 @@
-package com.zifang.demo.temp.tool;
+package com.zifang.util.core.demo.temp.tool;
 import java.io.UnsupportedEncodingException;
 
 /**
-* <p>Title:×Ö·û±àÂë¹¤¾ßÀà </p>
+* <p>Title:ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ë¹¤ï¿½ï¿½ï¿½ï¿½ </p>
 * <p>Description:  </p>
 * <p>Copyright:  Copyright (c) 2007</p>
 * <p>Company:  </p>
@@ -12,7 +12,7 @@ import java.io.UnsupportedEncodingException;
 public class CharTools {
 
   /**
-   * ×ª»»±àÂë ISO-8859-1µ½GB2312
+   * ×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ISO-8859-1ï¿½ï¿½GB2312
    * @param text
    * @return
    */
@@ -28,7 +28,7 @@ public class CharTools {
   }
 
   /**
-   * ×ª»»±àÂë GB2312µ½ISO-8859-1
+   * ×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ GB2312ï¿½ï¿½ISO-8859-1
    * @param text
    * @return
    */
@@ -43,7 +43,7 @@ public class CharTools {
     return result;
   }
   /**
-   * Utf8URL±àÂë
+   * Utf8URLï¿½ï¿½ï¿½ï¿½
    * @param s
    * @return
    */
@@ -76,7 +76,7 @@ public class CharTools {
   }
 
   /**
-   * Utf8URL½âÂë
+   * Utf8URLï¿½ï¿½ï¿½ï¿½
    * @param text
    * @return
    */
@@ -105,7 +105,7 @@ public class CharTools {
   }
 
   /**
-   * utf8URL±àÂë×ª×Ö·û
+   * utf8URLï¿½ï¿½ï¿½ï¿½×ªï¿½Ö·ï¿½
    * @param text
    * @return
    */
@@ -131,7 +131,7 @@ public class CharTools {
   }
 
   /**
-   * ±àÂëÊÇ·ñÓÐÐ§
+   * ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ð§
    * @param text
    * @return
    */
@@ -148,7 +148,7 @@ public class CharTools {
   }
 
   /**
-   * ÅÐ¶ÏÊÇ·ñUtf8Url±àÂë
+   * ï¿½Ð¶ï¿½ï¿½Ç·ï¿½Utf8Urlï¿½ï¿½ï¿½ï¿½
    * @param text
    * @return
    */
@@ -162,7 +162,7 @@ public class CharTools {
   }
 
   /**
-   * ²âÊÔ
+   * ï¿½ï¿½ï¿½ï¿½
    * @param args
    */
   public static void main(String[] args) {

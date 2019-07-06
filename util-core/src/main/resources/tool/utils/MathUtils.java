@@ -1,7 +1,7 @@
-package com.zifang.demo.temp.tool.utils;
+package com.zifang.util.core.demo.temp.tool.utils;
 
 /**
- * ÊýÑ§¹¤¾ßÀà
+ * ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @version 1.0
  */
@@ -9,7 +9,7 @@ public class MathUtils {
 
 
     /**
-     * »ñÈ¡[n, m]Çø¼äÄÚµÄËæ»úÊý
+     * ï¿½ï¿½È¡[n, m]ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      * 
      * @param n
      * @param m
@@ -25,14 +25,14 @@ public class MathUtils {
     }
 
     /**
-     * ÇóÁ½¸öÊý×î´ó¹«Ô¼Êý
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½
      * 
      * @param n
      * @param m
      * @return long
      */
     public static long commonDivisor(long n, long m) {
-        // Õ·×ªÏà³ýÊÇÓÃ´óµÄ³ýÒÔÐ¡µÄ¡£Èç¹ûn<m£¬µÚÒ»´ÎÏàµ±nÓëmÖµ½»»»
+        // Õ·×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã´ï¿½Ä³ï¿½ï¿½ï¿½Ð¡ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½n<mï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½àµ±nï¿½ï¿½mÖµï¿½ï¿½ï¿½ï¿½
         while (n % m != 0) {
             long temp = n % m;
             n = m;
@@ -42,7 +42,7 @@ public class MathUtils {
     }
 
     /**
-     * ÇóÁ½¸öÊý×îÐ¡¹«±¶Êý
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      * 
      * @param n
      * @param m
@@ -53,7 +53,7 @@ public class MathUtils {
     }
 
     /**
-     * Çó¶à¸öÊý×îÐ¡¹«±¶Êý
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      * 
      * @param n
      * @return long

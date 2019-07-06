@@ -1,12 +1,12 @@
-package com.zifang.demo.temp.tool;
+package com.zifang.util.core.demo.temp.tool;
 
 import java.util.*;
 import java.io.*;
 
 public class PropsUtil {
 
-    //ÊôĞÔÎÄ¼şÒ»°ã·Åµ½
-    ////°Ñdb.properties·ÅÔÚÏµÍ³ÊôĞÔjava.homeÏÂ£¬Ò»°ãÊÇjdkÄ¿Â¼ÏÂµÄ jreÄ¿Â¼Àï¡£
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ò»ï¿½ï¿½Åµï¿½
+    ////ï¿½ï¿½db.propertiesï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½java.homeï¿½Â£ï¿½Ò»ï¿½ï¿½ï¿½ï¿½jdkÄ¿Â¼ï¿½Âµï¿½ jreÄ¿Â¼ï¿½ï¡£
 
     //private static final String javaHome = System.getProperty("java.home");
     //private static final String FS = System.getProperty("file.separator");
@@ -14,8 +14,8 @@ public class PropsUtil {
     //private static final String propsFileName = javaHome + FS + "destinations.properties";
 
     /**
-      * ¹¹Ôìº¯Êı
-      * ÕÒµ½Êı¾İÔ´£¬²¢ÓÃÕâ¸öÊı¾İÔ´´´½¨Á¬½Ó
+      * ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½
+      * ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
       */
      public PropsUtil() {
 
@@ -34,7 +34,7 @@ public class PropsUtil {
         return ins;
     }
     /**
-     * ¶ÁÈ¡ÊôĞÔÎÄ¼şÖĞµÄÊôĞÔÖµ
+     * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ğµï¿½ï¿½ï¿½ï¿½ï¿½Öµ
      * @param attr
      * @return
      */
@@ -57,7 +57,7 @@ public class PropsUtil {
         return retValue;
     }
     /**
-     * ¶ÁÈ¡ÊôĞÔÎÄ¼şÖĞµÄÊôĞÔÖµ
+     * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ğµï¿½ï¿½ï¿½ï¿½ï¿½Öµ
      * @return
      */
     public HashMap readAllProps(){

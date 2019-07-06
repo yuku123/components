@@ -1,4 +1,4 @@
-package com.zifang.demo.temp.sun.tools;
+package com.zifang.util.core.demo.temp.sun.tools;
 
 import java.net.URISyntaxException;
 import java.util.Iterator;

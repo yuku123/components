@@ -1,4 +1,4 @@
-package com.zifang.demo.temp.tool;
+package com.zifang.util.core.demo.temp.tool;
 
 
 public class Numeric2ChineseStr {

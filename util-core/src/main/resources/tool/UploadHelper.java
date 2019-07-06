@@ -1,7 +1,7 @@
 /**
- * ÉÏ´«ÎÄ¼þÀà
+ * ï¿½Ï´ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
  */
-package com.zifang.demo.temp.tool;
+package com.zifang.util.core.demo.temp.tool;
 
 /**
  * @author advance
@@ -40,7 +40,7 @@ public class UploadHelper {
     	}
 	};
 	/**
-	 * »ñµÃµ±Ç°µÄÎÄ¼þÂ·¾¶£¨Í¨¹ýµ±Ç°ÈÕÆÚÉú³É£©
+	 * ï¿½ï¿½Ãµï¿½Ç°ï¿½ï¿½ï¿½Ä¼ï¿½Â·ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½
 	 * @param basePath
 	 * @return
 	 */
@@ -87,7 +87,7 @@ public class UploadHelper {
 	}
 	
  	/**
- 	 * ±£´æÎÄ¼þ
+ 	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
    	 * This method checks if the given file exists on disk. If it does it's ignored because
    	 * that means that the file is allready cached on the server. If not we take out the stream from the 
    	 * digitalAsset-object and dumps it.
@@ -122,7 +122,7 @@ public class UploadHelper {
 	}
 
 	/**
-	 * ±£´æËõÂÔÍ¼
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
 	 * This method checks if the given file exists on disk. If it does it's ignored because
 	 * that means that the file is allready cached on the server. If not we take out the stream from the 
 	 * digitalAsset-object and dumps a thumbnail to it.

@@ -1,32 +1,32 @@
-package com.zifang.demo.temp.tool.utils;
+package com.zifang.util.core.demo.temp.tool.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Ê±¼ä¹¤¾ßÀà
+ * Ê±ï¿½ä¹¤ï¿½ï¿½ï¿½ï¿½
  * 
  * @version 1.0
  */
 public class DateUtils {
 
 	/**
-	 * MySQLÈÕÆÚ¸ñÊ½
+	 * MySQLï¿½ï¿½ï¿½Ú¸ï¿½Ê½
 	 */
 	private static final String dateMySQLPattern = "yyyy-MM-dd";
 
 	/**
-	 * MySQLÈÕÆÚÊ±¼ä¸ñÊ½
+	 * MySQLï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ê½
 	 */
 	private static final String datetimeMySQLPattern = "yyyy-MM-dd HH:mm:ss";
 
 	/**
-	 * ÈÕÆÚ¶ÔÏóÒÀ¾Ý¸ñÊ½×ª»»ÎªÈÕÆÚÊ±¼ä×Ö·û´®
+	 * ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¸ï¿½Ê½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ¶ÔÏó
+	 *            ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½
 	 * @param formatStr
-	 *            ¸ñÊ½×Ö·û´®
+	 *            ï¿½ï¿½Ê½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @return String
 	 */
 	public static String DateToStringByFormat(Date date, String formatStr) {
@@ -39,12 +39,12 @@ public class DateUtils {
 	}
 
 	/**
-	 * ÈÕÆÚÊ±¼ä×Ö·û´®ÒÀ¾Ý¸ñÊ½×ª»»ÎªÈÕÆÚ¶ÔÏó
+	 * ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¸ï¿½Ê½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½
 	 * 
 	 * @param dateStr
-	 *            ÈÕÆÚÊ±¼ä×Ö·û´®
+	 *            ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @param formatStr
-	 *            ¸ñÊ½×Ö·û´®
+	 *            ï¿½ï¿½Ê½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @return Date
 	 */
 	public static Date StringToDateByFormat(String dateStr, String formatStr) {
@@ -58,7 +58,7 @@ public class DateUtils {
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°ÈÕÆÚµÄMySQL¸ñÊ½×Ö·û´®£¬¸ñÊ½"yyyy-MM-dd"
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Úµï¿½MySQLï¿½ï¿½Ê½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½"yyyy-MM-dd"
 	 * 
 	 * @return String
 	 */
@@ -67,10 +67,10 @@ public class DateUtils {
 	}
 
 	/**
-	 * »ñÈ¡Ö¸¶¨ÈÕÆÚµÄMySQL¸ñÊ½×Ö·û´®£¬¸ñÊ½"yyyy-MM-dd"
+	 * ï¿½ï¿½È¡Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½MySQLï¿½ï¿½Ê½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½"yyyy-MM-dd"
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ¶ÔÏó
+	 *            ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½
 	 * @return String
 	 */
 	public static String getMySQLDate(Date date) {
@@ -78,7 +78,7 @@ public class DateUtils {
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°ÈÕÆÚÊ±¼äµÄMySQL¸ñÊ½×Ö·û´®£¬¸ñÊ½"yyyy-MM-dd HH:mm:ss"
+	 * ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½MySQLï¿½ï¿½Ê½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½"yyyy-MM-dd HH:mm:ss"
 	 * 
 	 * @return String
 	 */
@@ -87,10 +87,10 @@ public class DateUtils {
 	}
 
 	/**
-	 * »ñÈ¡Ö¸¶¨ÈÕÆÚÊ±¼äµÄMySQL¸ñÊ½×Ö·û´®£¬¸ñÊ½"yyyy-MM-dd HH:mm:ss"
+	 * ï¿½ï¿½È¡Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½MySQLï¿½ï¿½Ê½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½"yyyy-MM-dd HH:mm:ss"
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ¶ÔÏó
+	 *            ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½
 	 * @return String
 	 */
 	public static String getMySQLDateTime(Date date) {
@@ -98,10 +98,10 @@ public class DateUtils {
 	}
 
 	/**
-	 * MySQL¸ñÊ½ÈÕÆÚ×Ö·û´®"yyyy-MM-dd"×ª»»ÎªDate¶ÔÏó
+	 * MySQLï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½"yyyy-MM-dd"×ªï¿½ï¿½ÎªDateï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param dateStr
-	 *            ÈÕÆÚ×Ö·û´®
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @return Date
 	 */
 	public static Date strMySQLDateToDate(String dateStr) {
@@ -109,10 +109,10 @@ public class DateUtils {
 	}
 
 	/**
-	 * MySQL¸ñÊ½ÈÕÆÚÊ±¼ä×Ö·û´®"yyyy-MM-dd HH:mm:ss"×ª»»ÎªDate¶ÔÏó
+	 * MySQLï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½"yyyy-MM-dd HH:mm:ss"×ªï¿½ï¿½ÎªDateï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param dateStr
-	 *            ÈÕÆÚÊ±¼ä×Ö·û´®
+	 *            ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @return Date
 	 */
 	public static Date strMySQLDateTimeToDate(String dateStr) {

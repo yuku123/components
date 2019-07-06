@@ -1,10 +1,9 @@
 /**
  * 
  */
-package com.zifang.demo.temp.tool;
+package com.zifang.util.core.demo.temp.tool;
 
 import java.text.NumberFormat;
-import java.util.Date;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
@@ -17,17 +16,17 @@ public class DealString {
 	public DealString() {
 	}
 
-	//ÅÐ¶Ï×Ö·û´®ÊÇ·ñÎª¿Õ£¬²¢É¾³ýÊ×Î²¿Õ¸ñ
+	//ï¿½Ð¶ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Î²ï¿½Õ¸ï¿½
 	public static String convertNullCode(String tempSql){
 		if (tempSql==null) tempSql="";
 		return tempSql;
 	}
 	/**
-	 * ×Ö·û´®Ìæ»»²Ù×÷
-	 * @param originString Ô­×Ö·û´®
-	 * @param oldString ±»Ìæ»»×Ö·û´®
-	 * @param newString Ìæ»»×Ö·û´®
-	 * @return Ìæ»»²Ù×÷ºóµÄ×Ö·û´®
+	 * ï¿½Ö·ï¿½ï¿½ï¿½ï¿½æ»»ï¿½ï¿½ï¿½ï¿½
+	 * @param originString Ô­ï¿½Ö·ï¿½ï¿½ï¿½
+	 * @param oldString ï¿½ï¿½ï¿½æ»»ï¿½Ö·ï¿½ï¿½ï¿½
+	 * @param newString ï¿½æ»»ï¿½Ö·ï¿½ï¿½ï¿½
+	 * @return ï¿½æ»»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 	 */
 	public static String replace(String originString,String oldString,String newString){
 		String getstr = originString;
@@ -37,8 +36,8 @@ public class DealString {
 		return getstr;
 	}
 	/**
-	 * ´úÂë×ª»»£¬GBK×ª»»ÎªISO-8859-1
-	 * @param tempSql Òª×ª»»µÄ×Ö·û´®
+	 * ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½GBK×ªï¿½ï¿½ÎªISO-8859-1
+	 * @param tempSql Òª×ªï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public static String ISOCode(String tempSql){
@@ -55,8 +54,8 @@ public class DealString {
 	}
 
 	/**
-	 * ´úÂë×ª»»£¬ISO-8859-1×ª»»ÎªGBK
-	 * @param tempSql Òª×ª»»µÄ×Ö·û´®
+	 * ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ISO-8859-1×ªï¿½ï¿½ÎªGBK
+	 * @param tempSql Òª×ªï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public static String GBKCode(String tempSql){
@@ -70,10 +69,10 @@ public class DealString {
 	    return returnString;
 	}
 	/**
-	 * ´úÂë×ª»» ´ÓsrcCode×ª»»ÎªdestCode
-	 * @param srcCode Ô­±àÂë
-	 * @param destCode Ä¿±ê±àÂë
-	 * @param strTmp Òª×ª»»µÄ×Ö·û´®
+	 * ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ ï¿½ï¿½srcCode×ªï¿½ï¿½ÎªdestCode
+	 * @param srcCode Ô­ï¿½ï¿½ï¿½ï¿½
+	 * @param destCode Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param strTmp Òª×ªï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public static String convertCode(String srcCode,String destCode,String strTmp){
@@ -87,8 +86,8 @@ public class DealString {
 	    return returnString;
 	}
 	/**
-	 * ´úÂë×ª»»£¬GBK×ª»»Îªbig5
-	 * @param tempSql Òª×ª»»µÄ×Ö·û´®
+	 * ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½GBK×ªï¿½ï¿½Îªbig5
+	 * @param tempSql Òª×ªï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public static String GBK2BIG5Code(String tempSql){
@@ -101,7 +100,7 @@ public class DealString {
 	    }
 	    return returnString;
 	}
-	//Ìæ»»·Ç·¨×Ö·û
+	//ï¿½æ»»ï¿½Ç·ï¿½ï¿½Ö·ï¿½
 	public static String convertHtml(String input){
 		StringBuffer returnString = new StringBuffer(input.length());
 
@@ -132,7 +131,7 @@ public class DealString {
 	    String delSql = "in(";
 	    StringTokenizer Tokenizer = new StringTokenizer(sql,"|");
 
-	    // ±ê¼Ç±¾ÉíµÈÓÚ·Ö¸ô·ûµÄÌØÊâÇé¿ö
+	    // ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½Ú·Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	    delSql += Tokenizer.nextToken().toString();
 	    while (Tokenizer.hasMoreTokens()) {
 	    	delSql += Tokenizer.nextToken() + ",";
@@ -223,7 +222,7 @@ public class DealString {
 		return returnString.toString();
 	}
 	/**
-	 * Êý×ÖµÄ½ð¶î±í´ïÊ½
+	 * ï¿½ï¿½ï¿½ÖµÄ½ï¿½ï¿½ï¿½ï¿½Ê½
 	 * @param num
 	 * @return
 	 */

@@ -1,7 +1,7 @@
 /**
- * Éú³ÉËõÂÔÍ¼Àà
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
  */
-package com.zifang.demo.temp.tool;
+package com.zifang.util.core.demo.temp.tool;
 
 /**
  * @author advance

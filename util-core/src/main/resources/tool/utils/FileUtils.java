@@ -1,4 +1,4 @@
-package com.zifang.demo.temp.tool.utils;
+package com.zifang.util.core.demo.temp.tool.utils;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,7 +11,7 @@ import java.util.List;
 
 
 /**
- * ÎÄ¼þ¹¤¾ßÀà
+ * ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author linkwechat linkwechat@foxmail.com
  * @version 1.0
@@ -20,7 +20,7 @@ public class FileUtils {
 
 
     /**
-     * Ä¬ÈÏ×Ö·û¼¯
+     * Ä¬ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
      */
     private static String defaultCharset = "UTF-8";
 
@@ -33,10 +33,10 @@ public class FileUtils {
     }
 
     /**
-     * ¶ÁÈ¡ÎÄ¼þÄÚÈÝ£¨Ä¬ÈÏÎªUTF-8ÎÄ¼þ±àÂë£©
+     * ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ý£ï¿½Ä¬ï¿½ï¿½ÎªUTF-8ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ë£©
      * 
      * @param filePath
-     *            ÎÄ¼þÂ·¾¶
+     *            ï¿½Ä¼ï¿½Â·ï¿½ï¿½
      * @return List&lt;String&gt;
      */
     public static List<String> readLines(String filePath) {
@@ -44,12 +44,12 @@ public class FileUtils {
     }
 
     /**
-     * ¶ÁÈ¡ÎÄ¼þÄÚÈÝ
+     * ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * 
      * @param filePath
-     *            ÎÄ¼þÂ·¾¶
+     *            ï¿½Ä¼ï¿½Â·ï¿½ï¿½
      * @param charset
-     *            ÎÄ¼þ±àÂë
+     *            ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * @return List&lt;String&gt;
      */
     public static List<String> readLines(String filePath, String charset) {
@@ -99,12 +99,12 @@ public class FileUtils {
     }
 
     /**
-     * Ð´ÈëÎÄ¼þÄÚÈÝ£¨Ä¬ÈÏÎªUTF-8ÎÄ¼þ±àÂë£¬¸²¸ÇÒÑÓÐÎÄ¼þ£©
+     * Ð´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ý£ï¿½Ä¬ï¿½ï¿½ÎªUTF-8ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
      * 
      * @param filePath
-     *            ÎÄ¼þÂ·¾¶
+     *            ï¿½Ä¼ï¿½Â·ï¿½ï¿½
      * @param text
-     *            ÎÄ¼þÄÚÈÝ
+     *            ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * @return boolean
      */
     public static boolean writeFile(String filePath, String text) {
@@ -112,14 +112,14 @@ public class FileUtils {
     }
 
     /**
-     * Ð´ÈëÎÄ¼þÄÚÈÝ£¨¸²¸ÇÒÑÓÐÎÄ¼þ£©
+     * Ð´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
      * 
      * @param filePath
-     *            ÎÄ¼þÂ·¾¶
+     *            ï¿½Ä¼ï¿½Â·ï¿½ï¿½
      * @param text
-     *            ÎÄ¼þÄÚÈÝ
+     *            ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * @param charset
-     *            ÎÄ¼þ±àÂë
+     *            ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * @return boolean
      */
     public static boolean writeFile(String filePath, String text, String charset) {
@@ -127,14 +127,14 @@ public class FileUtils {
     }
 
     /**
-     * Ð´ÈëÎÄ¼þÄÚÈÝ£¨Ä¬ÈÏÎªUTF-8ÎÄ¼þ±àÂë£©
+     * Ð´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ý£ï¿½Ä¬ï¿½ï¿½ÎªUTF-8ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ë£©
      * 
      * @param filePath
-     *            ÎÄ¼þÂ·¾¶
+     *            ï¿½Ä¼ï¿½Â·ï¿½ï¿½
      * @param text
-     *            ÎÄ¼þÄÚÈÝ
+     *            ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * @param append
-     *            ÊÇ·ñ×·¼Ó
+     *            ï¿½Ç·ï¿½×·ï¿½ï¿½
      * @return boolean
      */
     public static boolean writeFile(String filePath, String text, boolean append) {
@@ -142,16 +142,16 @@ public class FileUtils {
     }
 
     /**
-     * Ð´ÈëÎÄ¼þÄÚÈÝ
+     * Ð´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * 
      * @param filePath
-     *            ÎÄ¼þÂ·¾¶
+     *            ï¿½Ä¼ï¿½Â·ï¿½ï¿½
      * @param text
-     *            ÎÄ¼þÄÚÈÝ
+     *            ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * @param charset
-     *            ÎÄ¼þ±àÂë
+     *            ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * @param append
-     *            ÊÇ·ñ×·¼Ó
+     *            ï¿½Ç·ï¿½×·ï¿½ï¿½
      * @return boolean
      */
     public static boolean writeFile(String filePath, String text, String charset, boolean append) {
@@ -159,20 +159,20 @@ public class FileUtils {
     }
 
     /**
-     * Ð´ÈëÎÄ¼þÄÚÈÝ
+     * Ð´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * 
      * @param filePath
-     *            ÎÄ¼þÂ·¾¶
+     *            ï¿½Ä¼ï¿½Â·ï¿½ï¿½
      * @param text
-     *            ÎÄ¼þÄÚÈÝ
+     *            ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * @param offset
-     *            ÆðÊ¼Î»ÖÃ
+     *            ï¿½ï¿½Ê¼Î»ï¿½ï¿½
      * @param length
-     *            Ð´Èë³¤¶È
+     *            Ð´ï¿½ë³¤ï¿½ï¿½
      * @param charset
-     *            ÎÄ¼þ±àÂë
+     *            ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
      * @param append
-     *            ÊÇ·ñ×·¼Ó
+     *            ï¿½Ç·ï¿½×·ï¿½ï¿½
      * @return boolean
      */
     public static boolean writeFile(String filePath, String text, int offset, int length, String charset,

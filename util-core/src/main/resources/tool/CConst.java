@@ -1,51 +1,51 @@
-package com.zifang.demo.temp.tool;
+package com.zifang.util.core.demo.temp.tool;
 
 public class CConst {
 
    /**
-   * ÍøÕ¾Í¼Æ¬Ä¿Â¼
+   * ï¿½ï¿½Õ¾Í¼Æ¬Ä¿Â¼
    */
    public final static String PIC_ROOT = "/pic/";
 
    /**
-    * ÍøÕ¾Èí¼þÄ¿Â¼
+    * ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½Ä¿Â¼
     */
 
    public final static String SOFT_ROOT = "/soft/";
 
    /**
-    * ¸½¼þÎÄ¼þ´æ·ÅµÄ¾ø¶ÔÂ·¾¶
+    * ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ÅµÄ¾ï¿½ï¿½ï¿½Â·ï¿½ï¿½
     */
 
    public final static String ATTACH_ROOT = "/attach/";
 
    /**
-    * ¶¯Ì¬³ÌÐòÂ·¾¶
+    * ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
     */
 
    public final static String ProgramPath = "/programs/";
 
 
    /**
-    * ÉÏ´«Í¼Æ¬´óÐ¡ÏÞÖÆ£¬µ¥Î»byte
+    * ï¿½Ï´ï¿½Í¼Æ¬ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Î»byte
     */
    public final static  long MAX_UPLOAD_PIC_SIZE = 1000 * 1024 * 4;
    /**
-    * ÉÏ´«ÎÄ¼þ´óÐ¡ÏÞÖÆ£¬µ¥Î»byte
+    * ï¿½Ï´ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Î»byte
     */
    public final static  long MAX_UPLOAD_FILE_SIZE = 10 * 1024 * 1024 * 8;
 
    /**
-    * ÉÏ´«Èí¼þ´óÐ¡ÏÞÖÆ£¬µ¥Î»byte
+    * ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½Î»byte
     */
    public final static  long MAX_UPLOAD_SOFT_SIZE = 100 * 1024 * 1024 * 8;
 
    /**
-     * ´íÎóµÇÂ¼´ÎÊý×î¶à3´Î
+     * ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½
      */
    public final static  int MAX_LOGIN_TIMES = 3;
    /**
-     * ´íÎóµÇÂ¼3´ÎºóÓÃ»§±»Ëø10·ÖÖÓ
+     * ï¿½ï¿½ï¿½ï¿½ï¿½Â¼3ï¿½Îºï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½ï¿½
      */
    public final static int LOCK_TIME = +10;
 

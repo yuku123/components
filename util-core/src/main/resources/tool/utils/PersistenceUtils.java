@@ -1,4 +1,4 @@
-package com.zifang.demo.temp.tool.utils;
+package com.zifang.util.core.demo.temp.tool.utils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 
 
 /**
- * ¶ÔÏó³Ö¾Ã»¯¹¤¾ßÀà
+ * ï¿½ï¿½ï¿½ï¿½Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author linkwechat linkwechat@foxmail.com
  * @version 1.0
@@ -16,10 +16,10 @@ public class PersistenceUtils {
 
 
     /**
-     * ¶ÁÈ¡³Ö¾Ã»¯¶ÔÏó
+     * ï¿½ï¿½È¡ï¿½Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
      * 
      * @param filePath
-     *            ÎÄ¼þÂ·¾¶
+     *            ï¿½Ä¼ï¿½Â·ï¿½ï¿½
      * @return Object
      */
     public static Object readObject(String filePath) {
@@ -57,12 +57,12 @@ public class PersistenceUtils {
     }
 
     /**
-     * Ð´Èë³Ö¾Ã»¯¶ÔÏó
+     * Ð´ï¿½ï¿½Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
      * 
      * @param obj
-     *            ³Ö¾Ã»¯¶ÔÏó
+     *            ï¿½Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
      * @param filePath
-     *            ÎÄ¼þÂ·¾¶
+     *            ï¿½Ä¼ï¿½Â·ï¿½ï¿½
      * @return boolean
      */
     public static boolean writeObject(Object obj, String filePath) {

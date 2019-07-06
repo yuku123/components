@@ -9,12 +9,17 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>util-configration</module>
-        <module>util-proxy</module>
-        <module>util-security</module>
         <module>util-core</module>
+        <module>util-configration</module>
+        <module>util-security</module>
         <module>util-algrithm</module>
         <module>util-analysis</module>
+        <module>util-designpatten</module>
+        <module>util-db</module>
+        <module>util-bigdata</module>
+        <module>util-resource</module>
+        <module>p-3dcube</module>
+        <module>p-effectivejava</module>
     </modules>
 
     <properties>
