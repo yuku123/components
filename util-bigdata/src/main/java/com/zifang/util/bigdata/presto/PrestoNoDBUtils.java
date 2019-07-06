@@ -1,13 +1,13 @@
-package presto;
+package com.zifang.util.bigdata.presto;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class PrestoNoDBUtils {
-    private static String driverClassName = "com.facebook.presto.jdbc.PrestoDriver";
+    private static String driverClassName = "com.facebook.com.zifang.util.bigdata.presto.jdbc.PrestoDriver";
     private static String userName = "piday";
-    private static String url = "jdbc:presto://192.168.1.103:9002/hive";
+    private static String url = "jdbc:com.zifang.util.bigdata.presto://192.168.1.103:9002/hive";
 
     public static Connection getConnection() {
         try {

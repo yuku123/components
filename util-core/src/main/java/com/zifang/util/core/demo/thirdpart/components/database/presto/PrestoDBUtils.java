@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 
 public class PrestoDBUtils {
-    private static String driverClassName = "com.facebook.presto.jdbc.PrestoDriver";
+    private static String driverClassName = "com.facebook.com.zifang.util.bigdata.presto.jdbc.PrestoDriver";
     private static String userName = "piday";
-    private static String url = "jdbc:presto://192.168.1.103:9002/hive";
+    private static String url = "jdbc:com.zifang.util.bigdata.presto://192.168.1.103:9002/hive";
     private static ComboPooledDataSource dpds = null;
 
     public static ComboPooledDataSource getComboPooledDataSource() throws PropertyVetoException {

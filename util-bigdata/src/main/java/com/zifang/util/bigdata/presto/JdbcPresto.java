@@ -1,4 +1,4 @@
-package presto;
+package com.zifang.util.bigdata.presto;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
