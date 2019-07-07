@@ -20,6 +20,7 @@
         <module>util-resource</module>
         <module>p-3dcube</module>
         <module>p-effectivejava</module>
+        <module>p-leetcode</module>
     </modules>
 
     <properties>

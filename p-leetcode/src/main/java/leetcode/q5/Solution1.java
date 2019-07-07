@@ -1,4 +1,4 @@
-package com.zifang.util.core.projects.leetcode.q5;
+package leetcode.q5;
 
 public class Solution1 {
 
