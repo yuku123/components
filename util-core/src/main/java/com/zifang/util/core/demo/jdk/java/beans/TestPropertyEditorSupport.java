@@ -14,8 +14,6 @@ public class TestPropertyEditorSupport extends TestCase {
         System.out.println(support.getValue());
     }
 
-
-
     static class UserPropertyEditorSupport extends PropertyEditorSupport {
         private static final Pattern pattern = Pattern.compile("User \\[age=(\\d+), name=(\\S+)\\]");
 

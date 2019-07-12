@@ -9,8 +9,6 @@ import java.lang.ref.SoftReference;
  * 的 get() 方法的调用情况来决定是否对其进行回收。 具体使用一般是通过 SoftReference
  * 的构造方法，将需要用弱引用来指向的对象包装起来。当需要使用的时候，调用 SoftReference 的 get() 方法来获取。当对象未被回收时
  * SoftReference 的 get() 方法会返回该对象的强引用。如下：
- * 
- *
  *
  */
 public class SoftReferenceDemo {

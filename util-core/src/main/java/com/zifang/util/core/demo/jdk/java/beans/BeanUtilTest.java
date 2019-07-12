@@ -11,7 +11,6 @@ import java.util.Properties;
 
 public class BeanUtilTest {
 
-
     @Test
     public void tes1() throws Exception {
         Map<String,Object> map= new HashedMap();
@@ -27,9 +26,7 @@ public class BeanUtilTest {
         map.put("longWapperType",new Long("12"));
         map.put("floatWapperType",new Float("9.1"));
         map.put("doubleWapperType",new Double(22.22d));
-
         map.put("stringType",new String("s"));
-
         Person person = BeanUtil.beanMapper(Person.class,map);
         System.out.println(GsonUtil.objectToJsonStr(person));
     }

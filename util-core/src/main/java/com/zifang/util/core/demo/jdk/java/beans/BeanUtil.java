@@ -24,9 +24,6 @@ public class BeanUtil {
         return t;
     }
 
-
-
-
     public static void main(String[] args) throws ClassNotFoundException, IntrospectionException, InstantiationException, IllegalAccessException {
 //        Class<?> clazz = Class.forName("com.zifang.util.core.demo.jdk.java.beans.Person");
 //        // 在bean上进行内省
@@ -38,7 +35,5 @@ public class BeanUtil {
 //            String setter = propertyDescriptor.getWriteMethod().getName();
 //            System.out.println(name+":"+getter+":"+setter);
 //        }
-
-
     }
 }

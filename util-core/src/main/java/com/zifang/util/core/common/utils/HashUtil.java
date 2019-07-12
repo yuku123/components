@@ -1,7 +1,6 @@
 package com.zifang.util.core.common.utils;
 
-public class HashUtil
-{  
+public class HashUtil {
     /**
     * 加法hash 
     * @param key 字符串 
