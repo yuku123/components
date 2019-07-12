@@ -1,4 +1,4 @@
-package com.zifang.resource.properties.conf;
+package com.zifang.util.resource.analytic.args;
 
 
 import java.io.File;
