@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.java.beans;
+package com.zifang.util.core.beans;
 
 import com.zifang.util.core.demo.thirdpart.jar.json.GsonUtil;
 import org.apache.commons.collections.map.HashedMap;
@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Properties;
 
-public class BeanUtilTest {
+public class BeanUtilsTest {
 
     @Test
     public void tes1() throws Exception {
@@ -26,8 +26,8 @@ public class BeanUtilTest {
         map.put("longWapperType",new Long("12"));
         map.put("floatWapperType",new Float("9.1"));
         map.put("doubleWapperType",new Double(22.22d));
-        map.put("stringType",new String("s"));
-        Person person = BeanUtil.beanMapper(Person.class,map);
+        map.put("stringType","s");
+        Person person = BeanUtils.beanMapper(Person.class,map);
         System.out.println(GsonUtil.objectToJsonStr(person));
     }
 
@@ -35,7 +35,7 @@ public class BeanUtilTest {
     public void test2() throws Exception {
         PropertyDescriptor pro = new PropertyDescriptor("name", Person.class);
         Person preson=new Person();
-        Method  method=pro.getWriteMethod();
+        Method method=pro.getWriteMethod();
         method.invoke(preson, "xiong");
         System.out.println(pro.getReadMethod().invoke(preson));
     }
@@ -85,5 +85,18 @@ public class BeanUtilTest {
     public static void main(String[] args) throws IllegalAccessException, InstantiationException {
         getPropValue(Person.class,"stringType");
     }
+
+//    public static void main(String[] args) throws ClassNotFoundException, IntrospectionException, InstantiationException, IllegalAccessException {
+//        Class<?> clazz = Class.forName("com.zifang.util.core.beans.Person");
+//        // 在bean上进行内省
+//        BeanInfo beaninfo = Introspector.getBeanInfo(clazz, Object.class);
+//        PropertyDescriptor[] pro = beaninfo.getPropertyDescriptors();
+//        for(PropertyDescriptor propertyDescriptor:pro){
+//            String name = propertyDescriptor.getName();
+//            String getter = propertyDescriptor.getReadMethod().getName();
+//            String setter = propertyDescriptor.getWriteMethod().getName();
+//            System.out.println(name+":"+getter+":"+setter);
+//        }
+//    }
 
 }

@@ -6,12 +6,7 @@ import java.nio.CharBuffer;
 import java.nio.ByteOrder;
 
 /**
- * 2.2����һ���ַ���ͼ Test asCharBuffer view.
  *
- * Created May 2002
- * 
- * @author Ron Hitchens (ron@ronsoft.com)
- * @version $Id: BufferCharView.java,v 1.2 2002/05/20 07:24:24 ron Exp $
  */
 public class BufferCharView {
 	public static void main(String[] argv) throws Exception {

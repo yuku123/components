@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.java.beans;
+package com.zifang.util.core.beans;
 
 public class Person {
 
