@@ -5,7 +5,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import com.zifang.util.core.demo.thirdpart.jar.json.GsonUtil;
+//import com.zifang.util.core.demo.thirdpart.jar.json.GsonUtil;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class Test {
 			s.replace("_id", s.get("_id").toString());
 			recommandationList.add(s);
 		}
-		System.out.println(GsonUtil.objectToJsonStr(recommandationList));
+		//System.out.println(GsonUtil.objectToJsonStr(recommandationList));
 	}
 	
 	

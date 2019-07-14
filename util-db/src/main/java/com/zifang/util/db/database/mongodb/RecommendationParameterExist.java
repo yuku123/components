@@ -6,7 +6,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import com.zifang.util.core.demo.thirdpart.jar.json.GsonUtil;
+//import com.zifang.util.core.demo.thirdpart.jar.json.GsonUtil;
 import org.bson.Document;
 
 import java.io.BufferedWriter;
@@ -145,7 +145,7 @@ public class RecommendationParameterExist {
 		recommendationParameterExist.setSku("308497-406");
 		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("t.txt"));
 		try {
-			bufferedWriter.write(GsonUtil.objectToJsonStr(recommendationParameterExist.getRecommendationList()));
+			//bufferedWriter.write(GsonUtil.objectToJsonStr(recommendationParameterExist.getRecommendationList()));
 			bufferedWriter.flush();
 			bufferedWriter.close();
 		} catch (IOException e) {
