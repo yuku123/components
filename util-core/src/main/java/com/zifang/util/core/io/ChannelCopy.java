@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.java.io.nio;
+package com.zifang.util.core.io;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.ReadableByteChannel;

@@ -1,43 +1,41 @@
-package com.zifang.util.core.demo.jdk.java.io.nio;
+package com.zifang.util.core.demo.jdk.java.net.socket;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 
 /**
- * NIO客户端
+ * NIO服务端
  * 
  */
-public class NIOClient {
+public class NIOServer {
 	// 通道管理器
 	private Selector selector;
 
 	/**
-	 * 获得一个Socket通道，并对该通道做一些初始化的工作
+	 * 获得一个ServerSocket通道，并对该通道做一些初始化的工作
 	 * 
-	 * @param ip
-	 *            连接的服务器的ip
 	 * @param port
-	 *            连接的服务器的端口号
+	 *            绑定的端口号
 	 * @throws IOException
 	 */
-	public void initClient(String ip, int port) throws IOException {
-		// 获得一个Socket通道
-		SocketChannel channel = SocketChannel.open();
+	public void initServer(int port) throws IOException {
+		// 获得一个ServerSocket通道
+		ServerSocketChannel serverChannel = ServerSocketChannel.open();
 		// 设置通道为非阻塞
-		channel.configureBlocking(false);
+		serverChannel.configureBlocking(false);
+		// 将该通道对应的ServerSocket绑定到port端口
+		serverChannel.socket().bind(new InetSocketAddress(port));
 		// 获得一个通道管理器
 		this.selector = Selector.open();
-
-		// 客户端连接服务器,其实方法执行并没有实现连接，需要在listen（）方法中调
-		// 用channel.finishConnect();才能完成连接
-		channel.connect(new InetSocketAddress(ip, port));
-		// 将通道管理器和该通道绑定，并为该通道注册SelectionKey.OP_CONNECT事件。
-		channel.register(selector, SelectionKey.OP_CONNECT);
+		// 将通道管理器和该通道绑定，并为该通道注册SelectionKey.OP_ACCEPT事件,注册该事件后，
+		// 当该事件到达时，selector.select()会返回，如果该事件没到达selector.select()会一直阻塞。
+		serverChannel.register(selector, SelectionKey.OP_ACCEPT);
 	}
 
 	/**
@@ -47,29 +45,28 @@ public class NIOClient {
 	 */
 	@SuppressWarnings("unchecked")
 	public void listen() throws IOException {
+		System.out.println("服务端启动成功！");
 		// 轮询访问selector
 		while (true) {
+			// 当注册的事件到达时，方法返回；否则,该方法会一直阻塞
 			selector.select();
-			// 获得selector中选中的项的迭代器
+			// 获得selector中选中的项的迭代器，选中的项为注册的事件
 			Iterator ite = this.selector.selectedKeys().iterator();
 			while (ite.hasNext()) {
 				SelectionKey key = (SelectionKey) ite.next();
 				// 删除已选的key,以防重复处理
 				ite.remove();
-				// 连接事件发生
-				if (key.isConnectable()) {
-					SocketChannel channel = (SocketChannel) key.channel();
-					// 如果正在连接，则完成连接
-					if (channel.isConnectionPending()) {
-						channel.finishConnect();
-
-					}
+				// 客户端请求连接事件
+				if (key.isAcceptable()) {
+					ServerSocketChannel server = (ServerSocketChannel) key.channel();
+					// 获得和客户端连接的通道
+					SocketChannel channel = server.accept();
 					// 设置成非阻塞
 					channel.configureBlocking(false);
 
-					// 在这里可以给服务端发送信息哦
-					channel.write(ByteBuffer.wrap(new String("向服务端发送了一条信息").getBytes()));
-					// 在和服务端连接成功之后，为了可以接收到服务端的信息，需要给通道设置读的权限。
+					// 在这里可以给客户端发送信息哦
+					channel.write(ByteBuffer.wrap(new String("向客户端发送了一条信息").getBytes()));
+					// 在和客户端连接成功之后，为了可以接收到客户端的信息，需要给通道设置读的权限。
 					channel.register(this.selector, SelectionKey.OP_READ);
 
 					// 获得了可读的事件
@@ -83,7 +80,7 @@ public class NIOClient {
 	}
 
 	/**
-	 * 处理读取服务端发来的信息 的事件
+	 * 处理读取客户端发来的信息 的事件
 	 * 
 	 * @param key
 	 * @throws IOException
@@ -96,20 +93,20 @@ public class NIOClient {
 		channel.read(buffer);
 		byte[] data = buffer.array();
 		String msg = new String(data).trim();
-		System.out.println("客务端收到信息：" + msg);
+		System.out.println("服务端收到信息：" + msg);
 		ByteBuffer outBuffer = ByteBuffer.wrap(msg.getBytes());
 		channel.write(outBuffer);// 将消息回送给客户端
 	}
 
 	/**
-	 * 启动客户端测试
+	 * 启动服务端测试
 	 * 
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		NIOClient client = new NIOClient();
-		client.initClient("localhost", 8000);
-		client.listen();
+		NIOServer server = new NIOServer();
+		server.initServer(8000);
+		server.listen();
 	}
 
 }

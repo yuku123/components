@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.java.util.regex;
+package com.zifang.util.core.regex;
 
 /**
  * 实例解析Java程序中正则表达式的贪婪模式匹配

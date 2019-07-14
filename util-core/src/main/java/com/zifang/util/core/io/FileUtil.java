@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.java.io;
+package com.zifang.util.core.io;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -20,7 +20,6 @@ public class FileUtil {
      * <b>目前这个方法的行为方式还不稳定，主要是方法有些信息输出，这些信息输出是否保留还在考虑中。</b>
      *
      * @param file 需要修改最后访问时间的文件。
-     * @since 1.0
      */
     public static void touch(File file) {
         long currentTime = System.currentTimeMillis();
@@ -95,6 +94,7 @@ public class FileUtil {
      * @since 1.0
      */
     public static boolean isFileExist(String fileName) {
+
         return new File(fileName).isFile();
     }
 
@@ -651,26 +651,6 @@ public class FileUtil {
     }
 
     /**
-     * 拷贝文件
-     *
-     * @param infile  输入字符串
-     * @param outfile 输出字符串
-     * @return
-     * @throws Exception
-     */
-    public static final boolean CopyFile(String infile, String outfile) throws Exception {
-        try {
-            File in = new File(infile);
-            File out = new File(outfile);
-            return CopyFile(in, out);
-        } catch (IOException ie) {
-            ie.printStackTrace();
-            return false;
-        }
-
-    }
-
-    /**
      * 把内容content写的path文件中
      *
      * @param content 输入内容
@@ -893,5 +873,9 @@ public class FileUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void renameTo(File oldFile,File newFile){
+        oldFile.renameTo(newFile);
     }
 }

@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.java.util.regex;
+package com.zifang.util.core.regex;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -12,9 +12,6 @@ package com.zifang.util.core.demo.jdk.java.lang.innerclass;
  * 但可以使用final和 abstract修饰 
  * 		2.方法中的内部类可以访问外部类成员。对于方法的参数和局部变量，必须有final修饰才可以访问。
  * 		3.static方法中定义的内部类可以访问外部类定义的static成员
- * 
- *
- *
  */
 public class Jubu3 {
 	private int size = 5, y = 7;
