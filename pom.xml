@@ -21,6 +21,7 @@
         <module>p-effectivejava</module>
         <module>p-leetcode</module>
         <module>util-poi</module>
+        <module>util-script</module>
     </modules>
 
     <properties>
