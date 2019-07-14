@@ -33,7 +33,7 @@ public class BeanUtilsTest {
 
     @Test
     public void test2() throws Exception {
-        PropertyDescriptor pro = new PropertyDescriptor("name", Person.class);
+        PropertyDescriptor pro = new PropertyDescriptor("stringType", Person.class);
         Person preson=new Person();
         Method method=pro.getWriteMethod();
         method.invoke(preson, "xiong");

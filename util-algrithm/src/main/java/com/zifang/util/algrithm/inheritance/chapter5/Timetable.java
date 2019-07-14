@@ -4,25 +4,25 @@ import java.util.HashMap;
 
 /**
  * Timetable is the main evaluation class for the class scheduler GA.
- * 
+ *
  * A timetable represents a potential solution in human-readable form, unlike an
  * Individual or a chromosome. This timetable class, then, can read a chromosome
  * and develop a timetable from it, and ultimately can evaluate the timetable
  * for its fitness and number of scheduling clashes.
- * 
+ *
  * The most important methods in this class are createClasses and calcClashes.
- * 
+ *
  * The createClasses method accepts an Individual (really, a chromosome),
  * unpacks its chromosome, and creates Class objects from the genetic
  * information. Class objects are lightweight; they're just containers for
  * information with getters and setters, but it's more convenient to work with
  * them than with the chromosome directly.
- * 
+ *
  * The calcClashes method is used by GeneticAlgorithm.calcFitness, and requires
  * that createClasses has been run first. calcClashes looks at the Class objects
  * created by createClasses, and figures out how many hard constraints have been
  * violated.
- * 
+ *
  */
 public class Timetable {
 	private final HashMap<Integer, Room> rooms;
@@ -30,7 +30,7 @@ public class Timetable {
 	private final HashMap<Integer, Module> modules;
 	private final HashMap<Integer, Group> groups;
 	private final HashMap<Integer, Timeslot> timeslots;
-	private java.lang.Class classes[];
+	private Class classes[];
 
 	private int numClasses = 0;
 
@@ -152,7 +152,7 @@ public class Timetable {
 	 */
 	public void createClasses(Individual individual) {
 		// Init classes
-		java.lang.Class classes[] = new java.lang.Class[this.getNumClasses()];
+		Class classes[] = new Class[this.getNumClasses()];
 
 		// Get individual's chromosome
 		int chromosome[] = individual.getChromosome();
@@ -162,7 +162,7 @@ public class Timetable {
 		for (Group group : this.getGroupsAsArray()) {
 			int moduleIds[] = group.getModuleIds();
 			for (int moduleId : moduleIds) {
-				classes[classIndex] = new java.lang.Class(classIndex, group.getGroupId(), moduleId);
+				classes[classIndex] = new Class(classIndex, group.getGroupId(), moduleId);
 
 				// Add timeslot
 				classes[classIndex].addTimeslot(chromosome[chromosomePos]);
@@ -287,7 +287,7 @@ public class Timetable {
 	 *
 	 * @return classes
 	 */
-	public java.lang.Class[] getClasses() {
+	public Class[] getClasses() {
 		return this.classes;
 	}
 
@@ -336,7 +336,7 @@ public class Timetable {
 	public int calcClashes() {
 		int clashes = 0;
 
-		for (java.lang.Class classA : this.classes) {
+		for (Class classA : this.classes) {
 			// Check room capacity
 			int roomCapacity = this.getRoom(classA.getRoomId()).getRoomCapacity();
 			int groupSize = this.getGroup(classA.getGroupId()).getGroupSize();
@@ -346,7 +346,7 @@ public class Timetable {
 			}
 
 			// Check if room is taken
-			for (java.lang.Class classB : this.classes) {
+			for (Class classB : this.classes) {
 				if (classA.getRoomId() == classB.getRoomId() && classA.getTimeslotId() == classB.getTimeslotId()
 						&& classA.getClassId() != classB.getClassId()) {
 					clashes++;
@@ -355,7 +355,7 @@ public class Timetable {
 			}
 
 			// Check if professor is available
-			for (java.lang.Class classB : this.classes) {
+			for (Class classB : this.classes) {
 				if (classA.getProfessorId() == classB.getProfessorId() && classA.getTimeslotId() == classB.getTimeslotId()
 						&& classA.getClassId() != classB.getClassId()) {
 					clashes++;
