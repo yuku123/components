@@ -14,9 +14,6 @@ import java.util.concurrent.Semaphore;
  * 因此，如果应用场景为“通过管道,将一段一段的数据一次次的发送到目的地”，就会发现很难使用。
  * 为此，使用Java多线程中的信号量来进行同步可以很好的满足此需求。
  * 源代码二：在线程Sender中反复写入多个字符串，在Reciever中多次接收字符串；使用两个信号量Semaphore来控制写入和读取。
- *
- *
- *
  */
 public class PipedStreamDemo2 {
 	// 控制读取的信号量，初始状态为0

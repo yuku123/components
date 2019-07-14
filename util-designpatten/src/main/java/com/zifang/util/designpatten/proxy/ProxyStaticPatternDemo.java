@@ -1,4 +1,4 @@
-package com.zifang.util.designpatten;
+package com.zifang.util.designpatten.proxy;
 
 /**
  * 静态代理模式

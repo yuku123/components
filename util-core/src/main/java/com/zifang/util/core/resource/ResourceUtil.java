@@ -1,4 +1,4 @@
-package com.zifang.util.core.common.utils;
+package com.zifang.util.core.resource;
 
 public class ResourceUtil {
     public static String getFileFromResource(String path){

@@ -1,4 +1,4 @@
-package com.zifang.util.designpatten;
+package com.zifang.util.designpatten.command;
 
 import java.util.ArrayList;
 import java.util.List;
