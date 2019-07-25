@@ -1,4 +1,4 @@
-package com.zifang.util.core.beans.converter;
+package com.zifang.util.core.base;
 
 public class BaseTypeConvertUtil {
 

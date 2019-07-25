@@ -1,8 +1,8 @@
-package com.zifang.util.core.demo.thirdpart.jar.common.dbutils;
+package com.zifang.util.db.database.dbutils;
 
-import com.zifang.util.core.demo.thirdpart.jar.json.GsonUtil;
-import com.zifang.util.core.demo.thirdpart.components.database.mysql.JdbcDruidMysql;
-import com.zifang.util.core.demo.thirdpart.components.database.mysql.MysqlDruidDBUtils;
+
+import com.zifang.util.db.database.mysql.JdbcDruidMysql;
+import com.zifang.util.db.database.mysql.MysqlDruidDBUtils;
 import org.apache.commons.dbutils.BeanProcessor;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -74,7 +74,7 @@ public class App {
         ResultSet resultSet = jdbcDruidMysql.select("select * from users");
         resultSet.next();
         Users a = beanProcessor.toBean(resultSet,Users.class);
-        System.out.println(GsonUtil.objectToJsonStr(a));
+        //System.out.println(GsonUtil.objectToJsonStr(a));
     }
 
 
@@ -82,7 +82,7 @@ public class App {
         QueryRunner qr = new QueryRunner(MysqlDruidDBUtils.getComboPooledDataSource());
         String sql = "select * from users";
         Users a = qr.query(sql,new BeanHandler<>(Users.class));
-        System.out.println(GsonUtil.objectToJsonStr(a));
+        //System.out.println(GsonUtil.objectToJsonStr(a));
     }
 
     public static void test5(){

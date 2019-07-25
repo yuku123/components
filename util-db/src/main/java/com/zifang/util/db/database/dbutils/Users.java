@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.thirdpart.jar.common.dbutils;
+package com.zifang.util.db.database.dbutils;
 
 public class Users {
     private Integer id;
