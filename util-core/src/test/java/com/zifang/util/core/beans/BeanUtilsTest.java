@@ -27,7 +27,7 @@ public class BeanUtilsTest {
         map.put("floatWapperType",new Float("9.1"));
         map.put("doubleWapperType",new Double(22.22d));
         map.put("stringType","s");
-        Person person = BeanUtils.mapToBean(Person.class,map);
+        Person person = BasicBeanUtils.mapToBean(Person.class,map);
         System.out.println(GsonUtil.objectToJsonStr(person));
     }
 

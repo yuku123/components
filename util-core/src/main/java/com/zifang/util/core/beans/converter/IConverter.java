@@ -1,8 +1,5 @@
 package com.zifang.util.core.beans.converter;
 
-import org.apache.commons.beanutils.ConversionException;
-
-
 /**
  * <p>the interface for convert object to be specific type</p>
  *

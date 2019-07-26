@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BeanUtils {
+public class BasicBeanUtils {
 
     public static <T> T cloneBean(final T bean) throws IllegalAccessException, InstantiationException, InvocationTargetException, IntrospectionException {
         T t = (T) bean.getClass().newInstance();
