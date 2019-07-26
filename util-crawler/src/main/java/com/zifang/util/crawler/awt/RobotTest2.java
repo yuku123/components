@@ -1,10 +1,8 @@
-package com.zifang.util.core.demo.jdk.java.awt;
+package com.zifang.util.crawler.awt;
 
 
-import java.awt.MouseInfo;
-        import java.awt.Point;
-        import java.awt.Robot;
-        import java.awt.event.KeyEvent;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 
 /*******************************************************************************
  * @project: RobotTest

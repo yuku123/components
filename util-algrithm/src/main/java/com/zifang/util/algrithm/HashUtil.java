@@ -1,4 +1,4 @@
-package com.zifang.util.core.common.utils;
+package com.zifang.util.algrithm;
 
 public class HashUtil {
     /**

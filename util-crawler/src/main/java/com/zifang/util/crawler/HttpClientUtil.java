@@ -1,4 +1,4 @@
-package com.zifang.util.core.common.utils;
+package com.zifang.util.crawler;
 
 import java.io.*;
 import java.util.List;

@@ -1,13 +1,11 @@
-package com.zifang.util.core.demo.jdk.java.awt;
+package com.zifang.util.crawler.awt;
 
 
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 
 public class RobotPrintILoveYou {
 

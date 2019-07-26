@@ -23,6 +23,7 @@
         <module>util-poi</module>
         <module>util-script</module>
         <module>util-media</module>
+        <module>util-crawler</module>
     </modules>
 
     <properties>
