@@ -17,9 +17,7 @@
         <module>util-db</module>
         <module>util-bigdata</module>
         <module>util-resource</module>
-        <module>p-3dcube</module>
         <module>p-effectivejava</module>
-        <module>p-leetcode</module>
         <module>util-poi</module>
         <module>util-script</module>
         <module>util-media</module>
