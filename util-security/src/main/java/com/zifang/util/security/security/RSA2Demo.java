@@ -36,8 +36,8 @@ public class RSA2Demo {
 			KeyPair keyPair = keyPairGenerator.generateKeyPair();
 			RSAPublicKey rsaPublicKey = (RSAPublicKey)keyPair.getPublic(); 
 			RSAPrivateKey rsaPrivateKey = (RSAPrivateKey)keyPair.getPrivate();
-			System.out.println("Public Key : "+ Base64.encodeBase64String(rsaPublicKey.getEncoded()));
-			System.out.println("Private Key : "+ Base64.encodeBase64String(rsaPrivateKey.getEncoded()));
+			//System.out.println("Public Key : "+ Base64.encodeBase64String(rsaPublicKey.getEncoded()));
+			//System.out.println("Private Key : "+ Base64.encodeBase64String(rsaPrivateKey.getEncoded()));
 			
 			//2、签名
 			PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(rsaPrivateKey.getEncoded());

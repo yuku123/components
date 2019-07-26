@@ -76,7 +76,7 @@ public class DHDemo {
 			Cipher cipher = Cipher.getInstance("DES");
 			cipher.init(Cipher.ENCRYPT_MODE, senderDesKey);
 			byte[] result = cipher.doFinal(src.getBytes());
-			System.out.println("jdk dh encrypt : " + Base64.encodeBase64String(result));
+			//System.out.println("jdk dh encrypt : " + Base64.encodeBase64String(result));
 
 			// 5、解密
 			cipher.init(Cipher.DECRYPT_MODE, receiverDesKey);

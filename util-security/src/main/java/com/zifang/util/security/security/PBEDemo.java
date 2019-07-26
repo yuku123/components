@@ -43,7 +43,7 @@ public class PBEDemo {
 			Cipher cipher = Cipher.getInstance("PBEWITHMD5andDES");
 			cipher.init(Cipher.ENCRYPT_MODE, key, pbeParameterSpec);
 			byte[] result = cipher.doFinal(src.getBytes());
-			System.out.println("jdk pbe encrypt : "+ Base64.encodeBase64String(result));
+			//System.out.println("jdk pbe encrypt : "+ Base64.encodeBase64String(result));
 			
 			//解密
 			cipher.init(Cipher.DECRYPT_MODE, key, pbeParameterSpec);
