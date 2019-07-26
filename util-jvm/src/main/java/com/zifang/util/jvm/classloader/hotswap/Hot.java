@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.jvm.classloader.hotswap;
+package com.zifang.util.jvm.classloader.hotswap;
 
 
 import com.zifang.util.core.demo.jdk.jvm.classloader.Test;

@@ -1,12 +1,12 @@
-package com.zifang.util.core.demo.jdk.jvm.compiler;
+package com.zifang.util.jvm.compiler;
 
-import java.awt.*;
-import java.io.*;
-import java.util.*;
-import java.util.List;
 import javax.swing.*;
 import javax.tools.*;
-import javax.tools.JavaFileObject.*;
+import javax.tools.JavaFileObject.Kind;
+import java.awt.*;
+import java.io.IOException;
+import java.util.List;
+import java.util.*;
 
 /**
  * @version 1.00 2007-10-28

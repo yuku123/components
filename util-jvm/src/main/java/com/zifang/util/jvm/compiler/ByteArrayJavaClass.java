@@ -1,8 +1,10 @@
-package com.zifang.util.core.demo.jdk.jvm.compiler;
+package com.zifang.util.jvm.compiler;
 
-import java.io.*;
-import java.net.*;
-import javax.tools.*;
+import javax.tools.SimpleJavaFileObject;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URI;
 
 /**
  * A Java class that holds the bytecodes in a byte array.

@@ -1,7 +1,7 @@
-package com.zifang.util.core.demo.jdk.jvm.compiler;
+package com.zifang.util.jvm.compiler;
 
-import java.net.*;
-import javax.tools.*;
+import javax.tools.SimpleJavaFileObject;
+import java.net.URI;
 
 /**
  * A Java source that holds the code in a string builder.

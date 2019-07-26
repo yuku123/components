@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.jvm.classloader;
+package com.zifang.util.jvm.classloader;
 
 public class Person implements IPerson {
 

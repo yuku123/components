@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.java.lang;
+package com.zifang.util.core.base.primitives;
 
 import java.util.Arrays;
 

@@ -1,6 +1,6 @@
-package com.zifang.util.core.demo.jdk.jvm.compiler;
+package com.zifang.util.jvm.compiler;
 
-import java.util.*;
+import java.util.Map;
 
 /**
  * A class loader that loads classes from a map whose keys are class names and whose values are byte

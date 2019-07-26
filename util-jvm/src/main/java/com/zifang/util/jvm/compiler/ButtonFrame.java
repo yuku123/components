@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.jvm.compiler;
+package com.zifang.util.jvm.compiler;
 import javax.swing.*;
 
 /**

@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.jvm;
+package com.zifang.util.jvm;
 
 public class StringDemo {
 

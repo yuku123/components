@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.jvm.classloader;
+package com.zifang.util.jvm.classloader;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

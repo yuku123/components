@@ -1,10 +1,6 @@
-package com.zifang.util.core.demo.jdk.jvm.classloader;
+package com.zifang.util.jvm.classloader;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 

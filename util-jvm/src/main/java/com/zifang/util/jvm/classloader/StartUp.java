@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.jvm.classloader;
+package com.zifang.util.jvm.classloader;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
