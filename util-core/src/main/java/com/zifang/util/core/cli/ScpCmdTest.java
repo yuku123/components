@@ -1,8 +1,9 @@
-package com.zifang.util.core.demo.thirdpart.jar.common.cli;
+package com.zifang.util.core.cli;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import org.apache.commons.cli.*;
+import org.apache.commons.cli.Option;
 
 
 //https://www.jianshu.com/p/c3ae61787a42
@@ -25,15 +26,15 @@ public class ScpCmdTest {
         // help
         OPTIONS.addOption("help","usage help");
         // host
-        OPTIONS.addOption(Option.builder("h").argName("ipv4 or ipv6").required().hasArg(true).longOpt("host").type(String.class).desc("the host of remote server").build());
+        OPTIONS.addOption(org.apache.commons.cli.Option.builder("h").argName("ipv4 or ipv6").required().hasArg(true).longOpt("host").type(String.class).desc("the host of remote server").build());
         // port
-        OPTIONS.addOption(Option.builder("P").hasArg(true).longOpt("port").type(Short.TYPE).desc("the port of remote server").build());
+        OPTIONS.addOption(org.apache.commons.cli.Option.builder("P").hasArg(true).longOpt("port").type(Short.TYPE).desc("the port of remote server").build());
         // user
-        OPTIONS.addOption(Option.builder("u").required().hasArg(true).longOpt("user").type(String.class).desc("the user of remote server").build());
+        OPTIONS.addOption(org.apache.commons.cli.Option.builder("u").required().hasArg(true).longOpt("user").type(String.class).desc("the user of remote server").build());
         // password
-        OPTIONS.addOption(Option.builder("p").required().hasArg(true).longOpt("password").type(String.class).desc("the password of remote server").build());
+        OPTIONS.addOption(org.apache.commons.cli.Option.builder("p").required().hasArg(true).longOpt("password").type(String.class).desc("the password of remote server").build());
         // srcPath
-        OPTIONS.addOption(Option.builder("s").required().hasArg(true).longOpt("src_path").type(String.class).desc("the srcPath of local").build());
+        OPTIONS.addOption(org.apache.commons.cli.Option.builder("s").required().hasArg(true).longOpt("src_path").type(String.class).desc("the srcPath of local").build());
         // dstPath
         OPTIONS.addOption(Option.builder("d").required().hasArg(true).longOpt("dst_path").type(String.class).desc("the dstPath of remote").build());
         try {
