@@ -1,36 +1,13 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-package com.zifang.util.core.common.utils;
+package com.zifang.util.core.base;
 
 import java.util.Collection;
 import java.util.Map;
 
-/** Basic assertions. The static methods in this class provide a convenient way
- * to test method arguments. All of the methods in this class throw <code>
- * IllegalArgumentException</code> if the method arguments are invalid.
- * 
- */
-public class AssertUtil {
-
+public class Validator {
     /**
      * Tests if an argument is not null and can be cast to a specified class.
      * <p><code>Assert.isAssignableTo("foo", foo, Foo.class);</code></p>
-     * 
+     *
      * @param argumentName
      * @param argumentObject
      * @param targetClass
@@ -46,7 +23,7 @@ public class AssertUtil {
     /**
      * Tests if an argument is not null and is an instance of a specified class.
      * <p><code>Assert.isInstanceOf("foo", foo, Foo.class);</code></p>
-     * 
+     *
      * @param argumentName
      * @param argumentObject
      * @param targetClass
@@ -62,7 +39,7 @@ public class AssertUtil {
     /**
      * Tests if an argument is not null and is an instance of one of the specified classes.
      * <p><code>Assert.isInstanceOf("foo", foo, Foo.class, Bar.class, ...);</code></p>
-     * 
+     *
      * @param argumentName
      * @param argumentObject
      * @param targetClasses
@@ -89,7 +66,7 @@ public class AssertUtil {
     /**
      * Tests if an argument is not null and is not an instance of a specified class.
      * <p><code>Assert.isNotInstanceOf("foo", foo, Foo.class);</code></p>
-     * 
+     *
      * @param argumentName
      * @param argumentObject
      * @param targetClass
@@ -105,7 +82,7 @@ public class AssertUtil {
     /**
      * Tests if an argument is not null and is not an instance of one of the specified classes.
      * <p><code>Assert.isNotInstanceOf("foo", foo, Foo.class, Bar.class, ...);</code></p>
-     * 
+     *
      * @param argumentName
      * @param argumentObject
      * @param targetClasses
@@ -124,7 +101,7 @@ public class AssertUtil {
     /**
      * Tests if an argument is not null and is not empty.
      * <p><code>Assert.notEmpty("foo", foo);</code></p>
-     * 
+     *
      * @param argumentName
      * @param argumentObject
      * @throws IllegalArgumentException
@@ -139,7 +116,7 @@ public class AssertUtil {
     /**
      * Tests if an argument is not null and is not empty.
      * <p><code>Assert.notEmpty("foo", foo);</code></p>
-     * 
+     *
      * @param argumentName
      * @param argumentObject
      * @throws IllegalArgumentException
@@ -154,7 +131,7 @@ public class AssertUtil {
     /**
      * Tests if an argument is not null and is not empty.
      * <p><code>Assert.notEmpty("foo", foo);</code></p>
-     * 
+     *
      * @param argumentName
      * @param argumentObject
      * @throws IllegalArgumentException
@@ -169,7 +146,7 @@ public class AssertUtil {
     /**
      * Tests if an argument is not null and is not empty.
      * <p><code>Assert.notEmpty("foo", foo);</code></p>
-     * 
+     *
      * @param argumentName
      * @param argumentObject
      * @throws IllegalArgumentException
@@ -184,7 +161,7 @@ public class AssertUtil {
     /**
      * Tests a list of arguments for <code>null</code>.
      * <p><code>Assert.notNull("foo", foo, "bar", bar, ...);</code></p>
-     * 
+     *
      * @param arguments
      * @throws IllegalArgumentException
      */
@@ -197,7 +174,7 @@ public class AssertUtil {
     /**
      * Tests an argument for <code>null</code>.
      * <p><code>Assert.notNull("foo", foo);</code></p>
-     * 
+     *
      * @param argumentName
      * @param objectToTest
      * @throws IllegalArgumentException
@@ -207,6 +184,4 @@ public class AssertUtil {
             throw new IllegalArgumentException(argumentName + " cannot be null");
         }
     }
-
-    private AssertUtil() {}
 }
