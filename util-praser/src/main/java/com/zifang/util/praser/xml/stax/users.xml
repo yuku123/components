@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company>
+	<depart title="Develop Group">
+		<user name="Tom" age="28" gender="male" >Manager</user>
+		<user name="Lily" age="26" gender="female" />
+	</depart>
+	<depart title="Test Group">
+		<user name="Frank" age="32" gender="male" >Team Leader</user>
+		<user name="Bob" age="45" gender="male" />
+		<user name="Kate" age="25" gender="female" />
+	</depart>
+</company>

@@ -30,8 +30,6 @@
             <artifactId>commons-dbutils</artifactId>
             <version>1.6</version>
         </dependency>
-
-
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
         <dependency>
             <groupId>com.alibaba</groupId>

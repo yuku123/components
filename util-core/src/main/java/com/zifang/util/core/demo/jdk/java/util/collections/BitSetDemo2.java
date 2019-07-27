@@ -21,9 +21,6 @@ import java.util.BitSet;
  * 	bs[0,0,0,1,0,1,1,0,0,1] 3, 5,6, 9
  * 	这样一个本来要int型需要占4字节共32位的数字现在只用了1位！ 比例32:1
  * 	这样就省下了很大空间。
- *
- *
- *
  */
 public class BitSetDemo2 {
 
