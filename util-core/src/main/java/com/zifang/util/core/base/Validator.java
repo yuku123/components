@@ -184,4 +184,10 @@ public class Validator {
             throw new IllegalArgumentException(argumentName + " cannot be null");
         }
     }
+
+    public static void isEmail(){}
+
+    public static boolean isDouble(){
+        return Boolean.parseBoolean(null);
+    }
 }

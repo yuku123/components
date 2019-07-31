@@ -2,6 +2,7 @@ package com.zifang.util.core.base.primitives;
 
 public class Arrays {
 
+
     /**
      * long 转 byte数组
      */
