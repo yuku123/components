@@ -24,6 +24,7 @@
         <module>util-crawler</module>
         <module>util-jvm</module>
         <module>util-praser</module>
+        <module>util-workflow</module>
     </modules>
 
     <properties>
