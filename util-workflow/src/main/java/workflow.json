@@ -1,0 +1,25 @@
+{
+  "workflowNodeList":[
+    {
+      "service":"ss",
+      "workerId":"1",
+      "parameterPraser":"Map",
+      "parameter":{
+        "key":"value"
+      },
+      "isHandled":true
+    },{
+
+    }
+  ],
+  "workflowNodeOrder":[
+    {
+      "parent":["2","3","4"],
+      "child":"4"
+    },
+    {
+      "parent":"3",
+      "child":""
+    }
+  ]
+}
