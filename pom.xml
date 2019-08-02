@@ -27,6 +27,7 @@
         <module>util-workflow</module>
         <module>util-all</module>
         <module>util-server</module>
+        <module>util-swing</module>
     </modules>
 
     <properties>
