@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class TerminalUtil {
 
-    public static void run(String cmd){
+    /**
+     * @param cmd  the command that include pipeline executions such as >
+     *
+     * */
+    public static void runCommandAsShScript(String cmd){
         List list = new ArrayList<>();
         list.add("sh");
         list.add("-c");
@@ -40,9 +43,15 @@ public class TerminalUtil {
 
     }
 
-    public static String runAndGetReturn(String cmd) throws IOException {
+    /**
+     * @param command let os to execute the command and return the result of command
+     *                if command do print something
+     *
+     * @return String the result-print-out that when you execute in os
+     * */
+    public static String runAndGetReturn(String command) throws IOException {
         StringBuffer sb = new StringBuffer();
-        Process process = Runtime.getRuntime().exec(cmd);
+        Process process = Runtime.getRuntime().exec(command);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), "utf-8"));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
@@ -52,6 +61,6 @@ public class TerminalUtil {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println(TerminalUtil.runAndGetReturn("ls -la"));
+        System.out.println(TerminalUtil.runAndGetReturn("python3 /home/zifang/workplace/idea_workplace/aa.py 1 2"));
     }
 }

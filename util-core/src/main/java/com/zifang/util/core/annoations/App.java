@@ -18,7 +18,7 @@ public class App {
     }
 
     private static void handleClass(Class clazz) {
-
+        //clazz.get
     }
 
     private static void handleField(Class clazz) {
