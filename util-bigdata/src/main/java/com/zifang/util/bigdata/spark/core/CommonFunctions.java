@@ -492,60 +492,7 @@ public class CommonFunctions implements Serializable {
 //		}
 //
 //	}
-//	public StructType datasetSchema(Map<Integer, String> map, Map<Integer, String> map2) {
-//		StructType struct = new StructType();
-//		SortedSet<Integer> keys = new TreeSet<Integer>(map.keySet());
-//		for (Integer key : keys) {
-//			switch (map.get(key).toLowerCase()) {
-//			case HiveConstant.GENERAL:
-//				struct = struct.add(map2.get(key), DataTypes.StringType);
-//				break;
-//			case HiveConstant.CHARACTER:
-//				struct = struct.add(map2.get(key), DataTypes.StringType);
-//				break;
-//			case HiveConstant.NUMERIC:
-//				struct = struct.add(map2.get(key), DataTypes.DoubleType);
-//				break;
-//			case HiveConstant.DEPENDENT:
-//				struct = struct.add(map2.get(key), DataTypes.StringType);
-//				break;
-//			case HiveConstant.DISCRETE:
-//				struct = struct.add(map2.get(key), DataTypes.IntegerType);
-//				break;
-//			case HiveConstant.STRINGL:
-//				struct = struct.add(map2.get(key), DataTypes.StringType);
-//				break;
-//			}
-//		}
-//		return struct;
-//	}
-//	@Deprecated
-//	public Long getCount(JavaRDD<String> lines) {
-//		return lines.count();
-//	}
-//
-//	public Dataset<Row> getColMissPairRDD(SQLContext sqlContext, JavaRDD<String> lines, final Map<Integer, String> colINameMap,
-//                                          final Integer tcount, final String missPTable){
-//		try {
-//			JavaPairRDD<Integer, Double> MissingCountLength = lines.flatMapToPair(new GetColMissValue());
-//			JavaPairRDD<Integer, Double> MissingCountSum = MissingCountLength.reduceByKey(new Sum());
-//			JavaPairRDD<String, Double> colMissPairRDD = MissingCountSum.mapToPair(new Percentage(colINameMap, tcount));
-//			JavaRDD<Row> rows = convertToROW(colMissPairRDD).persist(StorageLevel.MEMORY_AND_DISK_SER());
-//			Map<Integer, String> map1 = new HashMap<Integer, String>();
-//			map1.put(1,HiveConstant.CHARACTER);
-//			map1.put(2,HiveConstant.NUMERIC);
-//			Map<Integer, String> map2 = new HashMap<Integer, String>();
-//			map2.put(1,HiveConstant.COLUMN);
-//			map2.put(2,HiveConstant.PERCENTAGE);
-//			final StructType schema = datasetSchema(map1, map2);
-//			Dataset<Row> nrows = sqlContext.createDataFrame(rows, schema);
-//			return nrows;
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//
-//	}
+
 //	class GetColMissValue implements PairFlatMapFunction<String, Integer, Double> {
 //		@Override
 //		public Iterator<Tuple2<Integer, Double>> call(String s) throws Exception {
@@ -559,12 +506,7 @@ public class CommonFunctions implements Serializable {
 //		}
 //
 //	}
-//	class Sum implements Function2<Double, Double, Double> {
-//		@Override
-//		public Double call(Double v1, Double v2) throws Exception {
-//			return v1+v2;
-//		}
-//	}
+
 //	class Percentage implements PairFunction<Tuple2<Integer, Double>, String, Double> {
 //
 //		private Map<Integer, String> colINameMap;
