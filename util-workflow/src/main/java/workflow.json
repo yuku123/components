@@ -1,15 +1,19 @@
 {
   "workflowNodeList":[
     {
-      "service":"ss",
+      "service":"s1",
       "workerId":"1",
-      "parameterPraser":"Map",
       "parameter":{
         "key":"value"
       },
       "isHandled":true
-    },{
-
+    }, {
+      "service":"s2",
+      "workerId":"2",
+      "parameter":{
+        "key":"value"
+      },
+      "isHandled":true
     }
   ],
   "workflowNodeOrder":[
