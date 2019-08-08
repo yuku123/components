@@ -1,4 +1,4 @@
 package com.zifang.util.workflow.interfaces;
 
-public class Looper {
+public interface Looper {
 }
