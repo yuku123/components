@@ -1,8 +1,26 @@
 package com.zifang.util.bigdata.spark.core;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.api.java.function.Function2;
+import org.apache.spark.api.java.function.PairFlatMapFunction;
+import org.apache.spark.api.java.function.PairFunction;
+import org.apache.spark.mllib.recommendation.Rating;
+import scala.Tuple2;
+
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
+
+//PairFunction
+//JavaPairRDD
 
 public class CommonFunctions implements Serializable {
+
 //
 //	private long serialVersionUID = 1L;
 //

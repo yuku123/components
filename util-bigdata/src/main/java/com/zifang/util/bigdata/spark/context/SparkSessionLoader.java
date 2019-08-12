@@ -19,7 +19,7 @@ public class SparkSessionLoader {
 				if(null == instance) {
 					instance = new SparkSessionLoader();
 					conf = new SparkConf().setMaster(master).setAppName(app)
-							.setJars(new String[] {"common.jar"})//"/home/treex/.m2/repository/com/github/noraui/ojdbc7/12.1.0.2/ojdbc7-12.1.0.2.jar"})
+							.setJars(new String[] {"common.jar"})
 							.set("com.zifang.util.bigdata.spark.sql.warehouse.dir", "hive.warehouse")
 							.set("hive.metastore.uris", "hive.metastore.uris")
 							.set("com.zifang.util.bigdata.spark.executor.memory","com.zifang.util.bigdata.spark.executor.memory")
