@@ -1,5 +1,7 @@
 package com.zifang.util.core.base.condition;
 
+import com.google.common.collect.Lists;
+
 /**
  * 在此先记录一下，此目标是为了条件过滤
  *
@@ -11,4 +13,7 @@ package com.zifang.util.core.base.condition;
  *
  * */
 public class ss {
+    public static void main(String[] args) {
+
+    }
 }

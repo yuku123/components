@@ -1,4 +1,13 @@
 package com.zifang.util.core.collections;
 
-public class CollectionDiscripter {
+import java.util.Collection;
+
+public class CollectionDiscripter<E> {
+
+    private Collection<E> collection;
+
+    public CollectionDiscripter(Collection<E> collection){
+        this.collection = collection;
+    }
+
 }
