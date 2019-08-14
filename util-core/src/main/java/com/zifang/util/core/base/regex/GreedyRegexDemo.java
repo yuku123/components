@@ -9,16 +9,6 @@ package com.zifang.util.core.base.regex;
  * 贪婪模式(Greedy)：
  *
  *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  * 数量表示符默认采用贪婪模式，除非另有表示。贪婪模式的表达式会一直匹配下去，直到无法匹配为止。
  * 如果你发现表达式匹配的结果与预期的不符，很有可能是因为——你以为表达式只会匹配前面几个字符，而实际上它是贪婪模式，
  * 所以会一直匹配下去。
@@ -34,7 +24,7 @@ public class GreedyRegexDemo {
 	 */
 	public static void test1(){
 		String str = "aaa\"bbb\"ccc\"ddd\"eee"; 
-		System.out.println(str); 
+		System.out.println(str);
 		str = str.replaceAll("\"(.*)\"", "@"); 
 		System.out.println(str); 
 	}
