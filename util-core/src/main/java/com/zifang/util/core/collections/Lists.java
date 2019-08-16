@@ -1,5 +1,6 @@
 package com.zifang.util.core.collections;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -25,6 +26,19 @@ public class Lists {
         return Arrays.asList(content.split(splitor));
     }
 
+
+    /**
+     * 将迭代器的数据转换为List
+     *
+     * @param iterable 迭代器数据
+     * @return 包装迭代器数据的list
+     * */
+    public static <E> List<E> of(Iterable<E> iterable){
+        List<E> list = new ArrayList<>();
+        iterable.forEach(e->list.add(e));
+        return list;
+    }
+
     /**
      *
      * 对一个数组进行过滤操作
@@ -35,5 +49,7 @@ public class Lists {
     public static <E> List<E> filter(List<E> elements,Predicate<E> predicate){
         return elements.stream().filter(predicate).collect(Collectors.toList());
     }
+
+
 
 }

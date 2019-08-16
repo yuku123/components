@@ -10,7 +10,17 @@ import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructType;
 
+/**
+ * 使用local的方式，导入标准格式的数据集，返回模拟的Dataset出来
+ * */
 public class SparkDataMockUtil implements java.io.Serializable{
+
+    /**
+     * 传入JavaSparkContext 与文件路径 返回Dataset schema都是string的格式
+     *
+     * @param sc JavaSparkContext类型的上下文
+     * @param fileLocation 单个本地文件
+     */
 
     public Dataset<Row> creatDataset(JavaSparkContext sc,String fileLocation){
 
