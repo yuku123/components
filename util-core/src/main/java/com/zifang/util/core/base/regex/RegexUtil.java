@@ -1,6 +1,7 @@
 package com.zifang.util.core.base.regex;
 
 public class RegexUtil {
+
     public static String number = "^[0-9]*$";       //0-9的数字
     public static String number_1 = "^\\d{n}$";       //n位的数字
     public static String number_2 = "^\\d{n,}$";       //至少n位的数字
@@ -49,8 +50,6 @@ public class RegexUtil {
 //18. 负浮点数：^-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$ 或 ^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$
 //
 //19. 浮点数：^(-?\d+)(\.\d+)?$ 或 ^-?([1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0)$
-
-
 
     public static String chinessWord = "^[\u4e00-\u9fa5]{0,}$";  //汉字
 

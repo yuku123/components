@@ -166,6 +166,32 @@ public class ClassUtil {
 	}
 
 	/**
+	 * Tests if an argument is not null and is an instance of one of the specified classes.
+	 * <p><code>Assert.isInstanceOf("foo", foo, Foo.class, Bar.class, ...);</code></p>
+	 *
+	 * @param argumentName
+	 * @param argumentObject
+	 * @param targetClasses
+	 * @throws IllegalArgumentException
+	 */
+	public static void isInstanceOf(String argumentName, Object argumentObject, Class<?>... targetClasses) {
+		for (int i = 0; i < targetClasses.length;) {
+			if (targetClasses[i++].isInstance(argumentObject)) {
+				return;
+			}
+		}
+		StringBuilder sb = new StringBuilder(argumentName);
+		sb.append(" must be an instance of");
+		for (int i = 0; i < targetClasses.length;) {
+			if (i != 0) {
+				sb.append(",");
+			}
+			sb.append(" ").append(targetClasses[i++].getName());
+		}
+		throw new IllegalArgumentException(sb.toString());
+	}
+
+	/**
 	 * 判断是否为子类
 	 * */
 	public static boolean isInstanceOf(final Object object, final Class target) {
