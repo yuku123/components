@@ -60,6 +60,24 @@ public class TerminalUtil {
         return sb.toString();
     }
 
+    /**
+     * @param command let os to execute the command and return the result of command
+     *                if command do print something
+     *
+     * @return String the result-print-out that when you execute in os,and in java console it will print out
+     * */
+    public static String runAndPrintLog(String command) throws IOException {
+        StringBuffer sb = new StringBuffer();
+        Process process = Runtime.getRuntime().exec(command);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), "utf-8"));
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            sb.append(line+"\n");
+            System.out.println(line+"\n");
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) throws IOException {
         System.out.println(TerminalUtil.runAndGetReturn("python3 /home/zifang/workplace/idea_workplace/aa.py 1 2"));
     }
