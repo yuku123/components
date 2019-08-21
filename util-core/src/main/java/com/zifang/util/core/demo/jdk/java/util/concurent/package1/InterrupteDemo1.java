@@ -9,9 +9,6 @@ import java.util.concurrent.TimeUnit;
  * 		第一个不会改变interrupted属性值，但是第二个会设置成false。 
  * 		interrupted()方法是一个静态方法，建议使用isInterrupted()方法。 
  * 在之前提到的，线程是可以忽略中断指令的，但是并这不是我们所期望的行为。
- * 
- *
- *
  */
 public class InterrupteDemo1 {
 

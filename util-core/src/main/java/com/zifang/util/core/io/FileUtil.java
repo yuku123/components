@@ -94,7 +94,6 @@ public class FileUtil {
      * @since 1.0
      */
     public static boolean isFileExist(String fileName) {
-
         return new File(fileName).isFile();
     }
 

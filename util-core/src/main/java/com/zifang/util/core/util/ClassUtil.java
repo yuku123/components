@@ -23,14 +23,13 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package com.zifang.util.core.annoations;
+package com.zifang.util.core.util;
 
 import jodd.net.URLDecoder;
 import jodd.util.*;
 import jodd.util.cl.ClassLoaderStrategy;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.net.URL;
@@ -1378,5 +1377,23 @@ public class ClassUtil {
 		}
 		return false;
 	}
+
+
+//	/**
+//	 * 5.使用反序列化
+//	 *  无论何时我们对一个对象进行序列化和反序列化，JAVA虚拟机都会为我们创建一个单独的对象。在反序列化中，
+//	 *  JAVA虚拟机不会使用任何构造函数来创建对象。 对一个对象进行序列化需要我们在类中实现可序列化的接口。
+//	 */
+//	// By using Deserialization
+//	// Serialization
+//	ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("data.obj"));
+//		out.writeObject(emp4);
+//		out.close();
+//	// Deserialization
+//	ObjectInputStream in = new ObjectInputStream(new FileInputStream("data.obj"));
+//	ClassNewInstanceDemo.Employee emp5 = (ClassNewInstanceDemo.Employee) in.readObject();
+//		in.close();
+//		emp5.setName("Akash");
+//		System.out.println(emp5 + ", hashcode : " + emp5.hashCode());
 
 }

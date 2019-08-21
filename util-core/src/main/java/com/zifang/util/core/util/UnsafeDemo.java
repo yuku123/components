@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.java.util.concurent.analy;
+package com.zifang.util.core.util;
 
 import org.junit.Test;
 import sun.misc.Unsafe;

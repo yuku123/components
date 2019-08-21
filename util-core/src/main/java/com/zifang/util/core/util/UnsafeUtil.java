@@ -67,6 +67,29 @@ public class UnsafeUtil {
 		STRING_COUNT_FIELD_OFFSET = stringCountFieldOffset;
 	}
 
+
+	/**
+	 * 获得一个unsafe实例类
+	 *
+	 * unsafe实力类是不能被jdk外的代码获取的
+	 *
+	 * */
+	public static Unsafe getUnsageInstance(){
+		Field f = null;
+		Unsafe unsafe = null;
+		try {
+			f = Unsafe.class.getDeclaredField("theUnsafe");
+			f.setAccessible(true);
+			unsafe = (Unsafe) f.get(null);
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return unsafe;
+
+	}
+
 	static char[] unsafeGetChars(final String string) {
 		final char[] value = (char[]) UNSAFE.getObject(string, STRING_VALUE_FIELD_OFFSET);
 

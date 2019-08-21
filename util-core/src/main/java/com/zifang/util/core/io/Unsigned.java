@@ -1,21 +1,7 @@
 package com.zifang.util.core.io;
 import java.nio.ByteBuffer;
 
-/**2.3�޷��ŵĶ���
- * Utility class to get and put unsigned values to a ByteBuffer object.
- * All methods here are static and take a ByteBuffer object argument.
- * Since java does not provide unsigned primitive types, each unsigned
- * value read from the buffer is promoted up to the next bigger primitive
- * data type.  getUnsignedByte() returns a short, getUnsignedShort() returns
- * an int and getUnsignedInt() returns a long.  There is no getUnsignedLong()
- * since there is no primitive type to hold the value returned.  If needed,
- * methods returning BigInteger could be implemented.
- * Likewise, the put methods take a value larger than the type they will
- * be assigning.  putUnsignedByte takes a short argument, etc.
- *
- * @author Ron Hitchens (ron@ronsoft.com)
- * @version $Id: Unsigned.java,v 1.1 2002/02/12 22:06:44 ron Exp $
- */
+
 public class Unsigned
 {
 	public static short getUnsignedByte (ByteBuffer bb)

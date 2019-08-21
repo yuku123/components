@@ -1,4 +1,4 @@
-package com.zifang.util.core.demo.jdk.java.util.collections;
+package com.zifang.util.core.io;
 
 import java.io.*;
 import java.util.Enumeration;
