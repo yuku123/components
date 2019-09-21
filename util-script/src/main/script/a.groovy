@@ -20,4 +20,3 @@ assert '李四' == person.getName()
 class c {
      String name
 }
-
