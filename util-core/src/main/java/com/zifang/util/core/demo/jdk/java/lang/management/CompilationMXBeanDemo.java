@@ -12,9 +12,6 @@ import javax.management.remote.JMXServiceURL;
 
 /**
  * 用于 Java 虚拟机的编译系统的管理接口。
- * 
- *
- *
  */
 public class CompilationMXBeanDemo {
 

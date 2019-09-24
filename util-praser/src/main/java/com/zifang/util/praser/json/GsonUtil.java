@@ -42,5 +42,10 @@ public class GsonUtil {
 	}
 	
 	public static void main(String[] args) {
+		User user = new User();
+		user.setUserName("aa");
+		user.setPasswors("bb");
+		String str = GsonUtil.objectToJsonStr(user);
+		GsonUtil.jsonStrToObject(str,User.class);
 	}
 }

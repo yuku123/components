@@ -26,7 +26,6 @@ public class AnnotationParser {
 	 * @param annotationClass annotation type to read from
 	 * @param defaultAnnotationClass optional default annotation type, used to annotate the annotation class.
 	 */
-	@SuppressWarnings( {"unchecked"})
 	public AnnotationParser(Class<? extends Annotation> annotationClass, final Class<? extends Annotation> defaultAnnotationClass) {
 		if (annotationClass == null) {
 			Class[] genericSupertypes = ClassUtil.getGenericSupertypes(this.getClass());
