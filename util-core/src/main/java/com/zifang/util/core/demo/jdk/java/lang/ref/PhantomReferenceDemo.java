@@ -2,6 +2,7 @@ package com.zifang.util.core.demo.jdk.java.lang.ref;
 
 import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
+import java.util.LinkedHashMap;
 
 
 /**
@@ -57,6 +58,8 @@ public class PhantomReferenceDemo {
 	
 	
 	public static void main(String[] args) throws InterruptedException {
+		LinkedHashMap linkedHashMap = new LinkedHashMap();
+		linkedHashMap.put("","");
 		test1();
 		test2();
 	}
