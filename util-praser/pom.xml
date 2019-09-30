@@ -12,7 +12,21 @@
     <artifactId>util-praser</artifactId>
 
 
+
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-digester3</artifactId>
+            <version>3.2</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.jdom/jdom2 -->
         <dependency>
