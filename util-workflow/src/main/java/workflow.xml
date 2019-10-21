@@ -4,6 +4,7 @@
     <!--<resource-adapter>engine.</resource-adapter>-->
     <node-list>
         <!--模仿css,name可以是表明一类别组件，id为特指某个，跳转的标识号-->
+        <!--每个resource只能携带一个单纯的数据-->
         <node name="input" id="1">
             <!--表明是什么类型的-->
             <type>engine.nodeType.resource</type>
@@ -38,6 +39,9 @@
                 <!--后面的节点-->
                 <post>2</post>
             </connector>
+        </node>
+        <node name="" id="3">
+
         </node>
     </node-list>
 
