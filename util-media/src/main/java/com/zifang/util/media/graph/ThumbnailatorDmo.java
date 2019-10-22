@@ -1,4 +1,4 @@
-package com.zifang.util.media;
+package com.zifang.util.media.graph;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;

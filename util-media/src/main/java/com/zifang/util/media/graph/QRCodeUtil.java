@@ -1,4 +1,4 @@
-package com.zifang.util.media;
+package com.zifang.util.media.graph;
 
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
