@@ -1,7 +1,6 @@
 
 package com.zifang.util.core.resource.praser.xml.example.rulesbinder.pojo;
 
-import com.zifang.util.praser.xml.example.rulesbinder.pojo.Address;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +15,9 @@ public class Employee {
 
 	private String firstName;
 	private String lastName;
-	private List<com.zifang.util.praser.xml.example.rulesbinder.pojo.Address> addressList = new ArrayList<com.zifang.util.praser.xml.example.rulesbinder.pojo.Address>();
+	private List<Address> addressList = new ArrayList<Address>();
 	
-	public void addAddress(com.zifang.util.praser.xml.example.rulesbinder.pojo.Address address){
+	public void addAddress(Address address){
 		addressList.add(address);
 	}
 	
@@ -50,7 +49,7 @@ public class Employee {
 	/**
 	 * @return the addressList
 	 */
-	public List<com.zifang.util.praser.xml.example.rulesbinder.pojo.Address> getAddressList() {
+	public List<Address> getAddressList() {
 		return addressList;
 	}
 	/**

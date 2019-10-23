@@ -1,8 +1,8 @@
 package com.zifang.util.core.resource.praser.xml.example.rulesbinder.module;
 
 
-import com.zifang.util.praser.xml.example.rulesbinder.pojo.Address;
-import com.zifang.util.praser.xml.example.rulesbinder.pojo.Employee;
+import com.zifang.util.core.resource.praser.xml.example.rulesbinder.pojo.Address;
+import com.zifang.util.core.resource.praser.xml.example.rulesbinder.pojo.Employee;
 import org.apache.commons.digester3.binder.RulesBinder;
 import org.apache.commons.digester3.binder.RulesModule;
 

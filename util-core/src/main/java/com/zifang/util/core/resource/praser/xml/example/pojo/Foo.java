@@ -1,7 +1,5 @@
 package com.zifang.util.core.resource.praser.xml.example.pojo;
 
-import com.zifang.util.praser.xml.example.pojo.Bar;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,16 +11,16 @@ import java.util.List;
 public class Foo
 {
     private String name;
-    private List<com.zifang.util.praser.xml.example.pojo.Bar> barList = new ArrayList<com.zifang.util.praser.xml.example.pojo.Bar>();
+    private List<Bar> barList = new ArrayList<Bar>();
 
-    public void addBar(com.zifang.util.praser.xml.example.pojo.Bar bar)
+    public void addBar(Bar bar)
     {
         barList.add(bar);
     }
 
-    public com.zifang.util.praser.xml.example.pojo.Bar findBar(int id)
+    public Bar findBar(int id)
     {
-        for (com.zifang.util.praser.xml.example.pojo.Bar bar : barList)
+        for (Bar bar : barList)
         {
             if (bar.getId() == id)
             {
@@ -32,7 +30,7 @@ public class Foo
         return null;
     }
 
-    public Iterator<com.zifang.util.praser.xml.example.pojo.Bar> getBars()
+    public Iterator<Bar> getBars()
     {
         return barList.iterator();
     }
@@ -56,7 +54,7 @@ public class Foo
     /**
      * @return the barList
      */
-    public List<com.zifang.util.praser.xml.example.pojo.Bar> getBarList()
+    public List<Bar> getBarList()
     {
         return barList;
     }

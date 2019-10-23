@@ -1,10 +1,10 @@
 
 package com.zifang.util.core.resource.praser.xml.example.rulesbinder;
 
-import com.zifang.util.praser.xml.example.rulesbinder.module.EmployeeModule;
-import com.zifang.util.praser.xml.example.rulesbinder.pojo.Address;
-import com.zifang.util.praser.xml.example.rulesbinder.pojo.Employee;
-import com.zifang.util.praser.xml.example.simpletest.ExampleMain;
+import com.zifang.util.core.resource.praser.xml.example.rulesbinder.module.EmployeeModule;
+import com.zifang.util.core.resource.praser.xml.example.rulesbinder.pojo.Address;
+import com.zifang.util.core.resource.praser.xml.example.rulesbinder.pojo.Employee;
+import com.zifang.util.core.resource.praser.xml.example.simpletest.ExampleMain;
 import org.apache.commons.digester3.Digester;
 import org.apache.commons.digester3.Substitutor;
 import org.apache.commons.digester3.binder.DigesterLoader;

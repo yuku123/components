@@ -1,7 +1,6 @@
 package com.zifang.util.core.resource.praser.xml.example.annotations;
 
-import com.zifang.util.praser.xml.example.annotations.Image;
-import com.zifang.util.praser.xml.example.annotations.Item;
+
 import org.apache.commons.digester3.annotations.rules.BeanPropertySetter;
 import org.apache.commons.digester3.annotations.rules.ObjectCreate;
 import org.apache.commons.digester3.annotations.rules.SetNext;
@@ -19,9 +18,9 @@ import java.util.List;
 public class Channel
 {
 
-    private final List<com.zifang.util.praser.xml.example.annotations.Item> items = new ArrayList<com.zifang.util.praser.xml.example.annotations.Item>();
+    private final List<Item> items = new ArrayList<Item>();
 
-    private com.zifang.util.praser.xml.example.annotations.Image image;
+    private Image image;
     
     @BeanPropertySetter(pattern = "rss/channel/title")
     private String title;
@@ -37,13 +36,13 @@ public class Channel
 
 
     @SetNext
-    public void setImage(com.zifang.util.praser.xml.example.annotations.Image image)
+    public void setImage(Image image)
     {
         this.image = image;
     }
 
     @SetNext
-    public void addItem(com.zifang.util.praser.xml.example.annotations.Item item)
+    public void addItem(Item item)
     {
         this.items.add(item);
     }

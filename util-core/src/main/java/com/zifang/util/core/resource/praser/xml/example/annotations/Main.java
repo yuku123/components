@@ -6,7 +6,6 @@
  */
 package com.zifang.util.core.resource.praser.xml.example.annotations;
 
-import com.zifang.util.praser.xml.example.annotations.Channel;
 import org.apache.commons.digester3.Digester;
 import org.apache.commons.digester3.annotations.FromAnnotationsRuleModule;
 import org.apache.commons.digester3.binder.DigesterLoader;

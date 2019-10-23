@@ -1,6 +1,6 @@
 package com.zifang.util.core.beans;
 
-import com.zifang.util.praser.json.GsonUtil;
+import com.zifang.util.core.resource.analytic.json.GsonUtil;
 import org.apache.commons.collections.map.HashedMap;
 import org.junit.Test;
 

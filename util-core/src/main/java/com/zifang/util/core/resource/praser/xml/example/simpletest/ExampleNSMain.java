@@ -6,7 +6,8 @@
  */
 package com.zifang.util.core.resource.praser.xml.example.simpletest;
 
-import com.zifang.util.praser.xml.example.pojo.*;
+import com.zifang.util.core.resource.praser.xml.example.pojo.Bar;
+import com.zifang.util.core.resource.praser.xml.example.pojo.Foo;
 import org.apache.commons.digester3.Digester;
 import org.xml.sax.SAXException;
 

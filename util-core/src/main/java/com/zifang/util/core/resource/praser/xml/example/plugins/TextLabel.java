@@ -1,6 +1,5 @@
 package com.zifang.util.core.resource.praser.xml.example.plugins;
 
-import com.zifang.util.praser.xml.example.plugins.Widget;
 
 public class TextLabel
     implements Widget

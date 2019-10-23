@@ -1,7 +1,7 @@
 
 package com.zifang.util.core.resource.praser.xml.example.rulesbinder;
 
-import com.zifang.util.praser.xml.example.rulesbinder.pojo.MyBean;
+import com.zifang.util.core.resource.praser.xml.example.rulesbinder.pojo.MyBean;
 import org.apache.commons.digester3.Digester;
 import org.apache.commons.digester3.ObjectCreateRule;
 import org.xml.sax.SAXException;

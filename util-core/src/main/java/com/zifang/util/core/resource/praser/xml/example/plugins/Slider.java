@@ -1,5 +1,4 @@
 package com.zifang.util.core.resource.praser.xml.example.plugins;
-import com.zifang.util.praser.xml.example.plugins.Widget;
 import org.apache.commons.digester3.Digester;
 
 public class Slider
