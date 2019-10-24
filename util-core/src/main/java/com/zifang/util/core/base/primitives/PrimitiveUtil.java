@@ -53,6 +53,13 @@ public class PrimitiveUtil {
     }
 
     /**
+     * 判断是否为普通类型：既不是基本类型也不是基本类型的包装
+     * */
+    public static <T> boolean isGeneralType(Class<T> clazz){
+        return (!isPrimitive(clazz)) && (!isPrimitiveWrapper(clazz));
+    }
+
+    /**
      * 得到包装类对应的基本类型
      * */
     public static Class getPrimitive(Class clazz){
