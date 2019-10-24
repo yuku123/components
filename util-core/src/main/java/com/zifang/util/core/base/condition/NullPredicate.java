@@ -4,14 +4,7 @@ import java.util.function.Predicate;
 
 
 /**
- * 在此先记录一下，此目标是为了条件过滤
- *
- * 提供逻辑判断的
- *
- * 组合框架，验证框架
- *
- * https://blog.csdn.net/ghsau/article/details/51704892
- *
+ * 判断是否为null的类
  * */
 public class  NullPredicate<T> implements Predicate<T> {
     @Override

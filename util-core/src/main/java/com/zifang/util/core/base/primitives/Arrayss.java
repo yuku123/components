@@ -1,6 +1,6 @@
 package com.zifang.util.core.base.primitives;
 
-public class Arrays {
+public class Arrayss {
 
 
     /**
@@ -21,6 +21,4 @@ public class Arrays {
         for (int i = 0; i < bytes.length; i++)
             System.out.print("\t" + bytes[i]);
     }
-
-
 }
