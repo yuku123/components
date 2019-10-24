@@ -1,5 +1,7 @@
 package com.zifang.util.core.base.regex;
 
+import org.junit.Test;
+
 /**
  * 实例解析Java程序中正则表达式的贪婪模式匹配
  * 
@@ -22,7 +24,8 @@ public class GreedyRegexDemo {
 	 * aaa"bbb"ccc"ddd"eee
 	 * aaa@eee
 	 */
-	public static void test1(){
+	@Test
+	public void test1(){
 		String str = "aaa\"bbb\"ccc\"ddd\"eee"; 
 		System.out.println(str);
 		str = str.replaceAll("\"(.*)\"", "@"); 
@@ -34,7 +37,8 @@ public class GreedyRegexDemo {
 	 * aaa"bbb"ccc"ddd"eee
 	 * aaa@ccc@eee
 	 */
-	public static void test2(){
+	@Test
+	public  void test2(){
 		String str = "aaa\"bbb\"ccc\"ddd\"eee"; 
 		System.out.println(str); 
      
@@ -50,7 +54,5 @@ public class GreedyRegexDemo {
 	 * 发现匹配为false，又回溯到找到回退的最近一个匹配为true的位置，返回结果。
 	 */
 	public static void main(String[] args) {
-		test1();
-		test2();
 	}
 }

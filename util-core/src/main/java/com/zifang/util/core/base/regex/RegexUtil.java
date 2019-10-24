@@ -8,10 +8,6 @@ public class RegexUtil {
     public static String number_3 = "^\\d{m,n}$";       //m-n位的数字
     public static String number_4 = "^(0|[1-9][0-9]*)$";       //零和非零开头的数字
 //    public static String number = "^[0-9]*$";       //0-9的数字
-//    public static String number = "^[0-9]*$";       //0-9的数字
-//    public static String number = "^[0-9]*$";       //0-9的数字
-//    public static String number = "^[0-9]*$";       //0-9的数字
-//    public static String number = "^[0-9]*$";       //0-9的数字
 
 //    1. 数字：^[0-9]*$
 //

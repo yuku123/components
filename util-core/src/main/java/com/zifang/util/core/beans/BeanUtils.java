@@ -9,8 +9,16 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BasicBeanUtils {
+/**
+ * 提供Bean的相关操作
+ * */
+public class BeanUtils {
 
+    public static <T> boolean isBean(T bean){
+        return true;
+    }
+
+    @SuppressWarnings("unchecked")
     public static <T> T cloneBean(final T bean) throws IllegalAccessException, InstantiationException, InvocationTargetException, IntrospectionException {
         T t = (T) bean.getClass().newInstance();
         PropertyDescriptor[] pro = Introspector.getBeanInfo(bean.getClass(),Object.class).getPropertyDescriptors();
@@ -22,14 +30,14 @@ public class BasicBeanUtils {
         return t;
     }
 
+    @SuppressWarnings("unchecked")
     public static <T extends java.io.Serializable> T deepCloneBean(final T bean) throws IOException, ClassNotFoundException {
         ByteArrayOutputStream bos=new ByteArrayOutputStream();
         ObjectOutputStream oos=new ObjectOutputStream(bos);
         oos.writeObject(bean);
         oos.flush();
         ObjectInputStream ois=new ObjectInputStream(new ByteArrayInputStream(bos.toByteArray()));
-        T t=(T)ois.readObject();
-        return t;
+        return (T)ois.readObject();
     }
 
     public static <T> T  mapToBean(Class<T> clazz, Map<String,? extends Object> map) throws IllegalAccessException, InstantiationException, IntrospectionException {
@@ -67,11 +75,7 @@ public class BasicBeanUtils {
             if(propertyDescriptor!=null){
                 propertyDescriptor.getWriteMethod().invoke(obj,value);
             }
-        } catch (IntrospectionException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
 
@@ -84,11 +88,7 @@ public class BasicBeanUtils {
             if(propertyDescriptor!=null){
                 return propertyDescriptor.getReadMethod().invoke(obj);
             }
-        } catch (IntrospectionException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return null;

@@ -69,8 +69,8 @@ public class PrimitiveUtilTest {
 
     @Test
     public void isGeneralType() {
-        assertTrue(PrimitiveUtil.isPrimitiveWrapper(String.class));
-        assertFalse(PrimitiveUtil.isPrimitiveWrapper(byte.class));
-        assertFalse(PrimitiveUtil.isPrimitiveWrapper(Byte.class));
+        assertTrue(PrimitiveUtil.isGeneralType(String.class));
+        assertFalse(PrimitiveUtil.isGeneralType(byte.class));
+        assertFalse(PrimitiveUtil.isGeneralType(Byte.class));
     }
 }

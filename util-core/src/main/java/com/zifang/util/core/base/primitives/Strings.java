@@ -2,11 +2,11 @@ package com.zifang.util.core.base.primitives;
 
 public class Strings {
 
-    public static String fill(Integer count,Character c){
-        char[] characters = new char[count];
-        for(int i = 0 ; i<characters.length;i++){
-            characters[i]=c;
+    public static String repeat(String element,Integer times){
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i<times;i++){
+            sb.append(element);
         }
-        return new String(characters);
+        return sb.toString();
     }
 }
