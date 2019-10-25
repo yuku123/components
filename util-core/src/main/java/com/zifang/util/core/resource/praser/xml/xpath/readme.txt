@@ -1,50 +1,50 @@
-һ�������������
+一、基本概念介绍
 
-    XPath ��һ���� XML �ĵ��в�����Ϣ�����ԣ� �������� XML �ĵ��ж�Ԫ�غ����Խ��б�����XPath �� W3C XSLT ��׼����ҪԪ�أ����� XQuery �� XPointer ͬʱ�������� XPath ����֮�ϡ���ˣ��� XPath �������Ǻܶ�߼� XML Ӧ�õĻ�����
-    XPath�ǳ����ƶ����ݿ������SQL���ԣ�����˵JQuery�������Է��㿪����ץ���ĵ�����Ҫ�Ķ�������dom4jҲ֧��xpath
+    XPath 是一门在 XML 文档中查找信息的语言， 可用来在 XML 文档中对元素和属性进行遍历。XPath 是 W3C XSLT 标准的主要元素，并且 XQuery 和 XPointer 同时被构建于 XPath 表达之上。因此，对 XPath 的理解是很多高级 XML 应用的基础。
+    XPath非常类似对数据库操作的SQL语言，或者说JQuery，它可以方便开发者抓起文档中需要的东西。（dom4j也支持xpath
 
-   1.�ڵ�����
+   1.节点类型
 
-    XPath�������ֽ�����ͣ�Ԫ�ء����ԡ��ı��������ռ䡢����ָ�ע���Լ��ĵ��ڵ㣨���Ϊ���ڵ㣩���ĵ��д���Ԫ�ؽڵ㣬���Խڵ㣬���ڵ�
+    XPath中有七种结点类型：元素、属性、文本、命名空间、处理指令、注释以及文档节点（或称为根节点）。文档中存在元素节点，属性节点，根节点
 
-   2.����·������ʽ
+   2.常用路径表达式
 
 
-����ʽ
-���� 
-�ڵ�����(nodename)	ѡȡ�˽ڵ�������ӽڵ�
-/	�Ӹ��ڵ�ѡȡ
-//	��ƥ��ѡ��ĵ�ǰ�ڵ�ѡ���ĵ��еĽڵ㣬�����������ǵ�λ��
-.	ѡȡ��ǰ�ڵ�
-..	ѡȡ��ǰ�ڵ�ĸ��ڵ�
-@	ѡȡ����
+表达式
+描述 
+节点名称(nodename)	选取此节点的所有子节点
+/	从根节点选取
+//	从匹配选择的当前节点选择文档中的节点，而不考虑它们的位置
+.	选取当前节点
+..	选取当前节点的父节点
+@	选取属性
   
-ʾ�����£�
+示例如下：
 
-//@lang	ѡȡ������Ϊ lang ������
- 3.�޶���
+//@lang	选取所有名为 lang 的属性
+ 3.限定语
 
-��������ĳ���ض��Ľڵ���߰���ĳ��ָ����ֵ�Ľڵ㡣�Է���������
+用来查找某个特定的节点或者包含某个指定的值的节点。以方括号括起
 
-//book[price>35.00]	ѡ������book Ԫ�أ������е� price Ԫ�ص�ֵ����� 35.00
-/bookstore/book[1]	ѡȡ���� bookstore ��Ԫ�صĵ�һ�� book Ԫ�ء� 
-/bookstore/book[last()]	ѡȡ���� bookstore ��Ԫ�ص����һ�� book Ԫ�ء� 
-/bookstore/book[last()-1]	ѡȡ���� bookstore ��Ԫ�صĵ����ڶ��� book Ԫ�ء� 
-/bookstore/book[position()<3]	ѡȡ��ǰ����������� bookstore Ԫ�ص���Ԫ�ص� book Ԫ�ء� 
-//title[@lang]	ѡȡ����ӵ����Ϊ lang �����Ե� title Ԫ�ء� 
-//title[@lang='eng']	ѡȡ���� title Ԫ�أ�����ЩԪ��ӵ��ֵΪ eng �� lang ���ԡ� 
-/bookstore/book[price>35.00]	ѡȡ���� bookstore Ԫ�ص� book Ԫ�أ������е� price Ԫ�ص�ֵ����� 35.00�� 
-/bookstore/book[price>35.00]/title	ѡȡ���� bookstore Ԫ���е� book Ԫ�ص� title Ԫ�أ������е� price Ԫ�ص�ֵ����� 35.00��  4 .ͨ���
-ͨ���	���� 
-*	ƥ���κ�Ԫ�ؽڵ� 
-@*	ƥ���κ����Խڵ� 
-node()	ƥ���κ����͵Ľڵ� 
-|	ѡȡ����·��  
-ʹ��ʾ��
-·������ʽ	��� 
-/bookstore/*	ѡȡ bookstore Ԫ�ص������ӽڵ� 
-//*	ѡȡ�ĵ��е�����Ԫ�� 
-//title[@*]	ѡȡ���д������Ե� title Ԫ�ء� 
-//book/title | //book/price	ѡȡ���� book Ԫ�ص� tilte �� price Ԫ�ء� 
-//title | //price	ѡȡ�����ĵ��е� title �� price Ԫ�ء� 
-/bookstore/book/title | //price	ѡȡ�������� bookstore Ԫ�ص� book Ԫ�ص� title Ԫ�أ��Լ��ĵ������е� price Ԫ��
+//book[price>35.00]	选择所有book 元素，且其中的 price 元素的值须大于 35.00
+/bookstore/book[1]	选取属于 bookstore 子元素的第一个 book 元素。 
+/bookstore/book[last()]	选取属于 bookstore 子元素的最后一个 book 元素。 
+/bookstore/book[last()-1]	选取属于 bookstore 子元素的倒数第二个 book 元素。 
+/bookstore/book[position()<3]	选取最前面的两个属于 bookstore 元素的子元素的 book 元素。 
+//title[@lang]	选取所有拥有名为 lang 的属性的 title 元素。 
+//title[@lang='eng']	选取所有 title 元素，且这些元素拥有值为 eng 的 lang 属性。 
+/bookstore/book[price>35.00]	选取所有 bookstore 元素的 book 元素，且其中的 price 元素的值须大于 35.00。 
+/bookstore/book[price>35.00]/title	选取所有 bookstore 元素中的 book 元素的 title 元素，且其中的 price 元素的值须大于 35.00。  4 .通配符
+通配符	描述 
+*	匹配任何元素节点 
+@*	匹配任何属性节点 
+node()	匹配任何类型的节点 
+|	选取若干路径  
+使用示例
+路径表达式	结果 
+/bookstore/*	选取 bookstore 元素的所有子节点 
+//*	选取文档中的所有元素 
+//title[@*]	选取所有带有属性的 title 元素。 
+//book/title | //book/price	选取所有 book 元素的 tilte 和 price 元素。 
+//title | //price	选取所有文档中的 title 和 price 元素。 
+/bookstore/book/title | //price	选取所有属于 bookstore 元素的 book 元素的 title 元素，以及文档中所有的 price 元素
