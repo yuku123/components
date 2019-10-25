@@ -1,12 +1,10 @@
 package com.zifang.util.bigdata.spark.mock;
 
-import org.apache.spark.SparkConf;
+import com.zifang.util.bigdata.spark.context.LocalSparkContext;
 import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
-import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructType;
 
@@ -15,18 +13,22 @@ import org.apache.spark.sql.types.StructType;
  * */
 public class SparkDataMockUtil implements java.io.Serializable{
 
+
+    private LocalSparkContext localSparkContext;
+
+    public SparkDataMockUtil(LocalSparkContext localSparkContext){
+        this.localSparkContext = localSparkContext;
+    }
+
     /**
      * 传入JavaSparkContext 与文件路径 返回Dataset schema都是string的格式
      *
-     * @param sc JavaSparkContext类型的上下文
      * @param fileLocation 单个本地文件
      */
 
-    public Dataset<Row> creatDataset(JavaSparkContext sc,String fileLocation){
+    public Dataset<Row> creatDataset(String fileLocation){
 
-        SQLContext sqlContext = new SQLContext(sc);
-
-        JavaRDD<String> lineRDD = sc.textFile(fileLocation);
+        JavaRDD<String> lineRDD = localSparkContext.getJavaSparkContext().textFile(fileLocation);
 
         String header = lineRDD.first();
 
@@ -38,9 +40,7 @@ public class SparkDataMockUtil implements java.io.Serializable{
 
         StructType schema = produceSchema(header);
 
-        Dataset<Row> nrows = sqlContext.createDataFrame(rows, schema);
-
-        return nrows;
+        return localSparkContext.getSqlContext().createDataFrame(rows, schema);
     }
 
     private StructType produceSchema(String header) {
@@ -49,15 +49,5 @@ public class SparkDataMockUtil implements java.io.Serializable{
             schema = schema.add(item, DataTypes.StringType);
         }
         return schema;
-    }
-
-    public static void main(String[] args) {
-        String fileLocation = "/Users/zifang/workplace/idea_workplace/components/util-bigdata/src/main/resources/test.txt";
-        SparkConf conf = new SparkConf();
-        conf.setMaster("local").setAppName("RDD");
-        JavaSparkContext sc = new JavaSparkContext(conf);
-        SparkDataMockUtil sparkDataMockUtil = new SparkDataMockUtil();
-        Dataset<Row> rowDataset = sparkDataMockUtil.creatDataset(sc,fileLocation);
-        rowDataset.show();
     }
 }
