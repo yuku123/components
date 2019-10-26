@@ -1,11 +1,11 @@
 package com.zifang.util.core.beans;
 
 import com.zifang.util.core.util.GsonUtil;
-import org.apache.commons.collections.map.HashedMap;
 import org.junit.Test;
 
 import java.beans.*;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -13,7 +13,7 @@ public class BeanUtilsTest {
 
     @Test
     public void tes1() throws Exception {
-        Map<String,Object> map= new HashedMap();
+        Map<String,Object> map= new HashMap();
         map.put("baseByteType",(byte)1);
         map.put("baseCharType",'c');
         map.put("baseIntType",2);

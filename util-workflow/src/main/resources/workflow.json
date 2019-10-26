@@ -1,22 +1,69 @@
 {
   "configurations": {
     "engine": "engine.mode.spark",
-    "properties": {
+    "property": {
       "aa": "bb"
     }
   },
   "workflowNodeList":[
     {
-      "nodeId": "firstInput",
+      "nodeId": "start",
+      "serviceUnit": "engine.service.empty",
+      "connector": {
+        "pre": [],
+        "post": ["input1","input2"]
+      }
+    },
+    {
+      "nodeId": "input1",
       "name": "input",
       "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "properties":{
+        "localFile":"util-workflow/src/main/resources/input1.csv"
+      },
+      "connector": {
+        "pre": ["start"],
+        "post": ["join1"]
+      }
+    },
+    {
+      "nodeId": "input2",
+      "name": "input",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "properties":{
+        "localFile":"util-workflow/src/main/resources/input2.csv"
+      },
+      "connector": {
+        "pre": ["start"],
+        "post": ["join1"]
+      }
+    },
+    {
+      "nodeId": "join1",
+      "name": "join_input1_input2",
+      "type": "engine.nodeType.connectors",
       "serviceUnit": "engine.service.resourceHandler",
       "properties":{
         "aa":"bb"
       },
       "connector": {
-        "pre": ["1","2"],
-        "post": ["1","2"]
+        "pre": ["input1","input2"],
+        "post": ["changeColumnName"]
+      }
+    },
+    {
+      "nodeId": "changeColumnName",
+      "name": "join_input1_input2",
+      "type": "engine.nodeType.connectors",
+      "serviceUnit": "engine.service.resourceHandler",
+      "properties":{
+        "aa":"bb"
+      },
+      "connector": {
+        "pre": ["join1"],
+        "post": []
       }
     }
   ]

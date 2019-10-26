@@ -25,4 +25,11 @@ public class SparkDataMockUtilTest {
         aa.show();
         rowDataset.show();
     }
+
+    @Test
+    public void ss() {
+        String path = "file:/Users/zifang/workplace/idea_workplace/components/util-workflow/src/main/resources/input1.csv";
+        Dataset<Row> dataset = new SparkDataMockUtil(SparkContextFactory.getLocalSparkContext()).creatDataset(path);
+        dataset.show();
+    }
 }

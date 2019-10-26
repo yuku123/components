@@ -8,7 +8,7 @@ public class Client {
     //
 
     public static void main(String[] args) {
-        String filePath = "util-workflow/src/main/resources/workflow1.json";
+        String filePath = "util-workflow/src/main/resources/workflow.json";
 
         //一个workflow 对应
         WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext(filePath);
