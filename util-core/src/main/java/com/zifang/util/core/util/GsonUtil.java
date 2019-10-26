@@ -1,4 +1,4 @@
-package com.zifang.util.core.resource.analytic.json;
+package com.zifang.util.core.util;
 
 import com.google.gson.Gson;
 

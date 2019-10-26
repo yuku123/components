@@ -19,7 +19,7 @@ public class XmlParserByDOM {
 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document doc = db.parse(new File("pom.xml"));
+		Document doc = db.parse(new File("util-workflow/src/main/resources/workflow.xml"));
 		Element root = doc.getDocumentElement();
 		parseElement(root);
 	}

@@ -1,4 +1,4 @@
-package com.zifang.util.core.io;
+package com.zifang.util.core.util;
 
 import java.io.File;
 import java.io.FileOutputStream;

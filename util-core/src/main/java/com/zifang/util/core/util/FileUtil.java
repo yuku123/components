@@ -1,4 +1,4 @@
-package com.zifang.util.core.io;
+package com.zifang.util.core.util;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -49,7 +49,6 @@ public class FileUtil {
      * <b>目前这个方法的行为方式还不稳定，主要是方法有些信息输出，这些信息输出是否保留还在考虑中。</b>
      *
      * @param fileName 需要修改最后访问时间的文件的文件名。
-     * @since 1.0
      */
     public static void touch(String fileName) {
         File file = new File(fileName);
@@ -62,7 +61,7 @@ public class FileUtil {
      * <b>目前这个方法的行为方式还不稳定，主要是方法有些信息输出，这些信息输出是否保留还在考虑中。</b>
      *
      * @param files 需要修改最后访问时间的文件数组。
-     * @since 1.0
+     *
      */
     public static void touch(File[] files) {
         for (int i = 0; i < files.length; i++) {
@@ -76,7 +75,7 @@ public class FileUtil {
      * <b>目前这个方法的行为方式还不稳定，主要是方法有些信息输出，这些信息输出是否保留还在考虑中。</b>
      *
      * @param fileNames 需要修改最后访问时间的文件名数组。
-     * @since 1.0
+     *
      */
     public static void touch(String[] fileNames) {
         File[] files = new File[fileNames.length];
@@ -91,7 +90,7 @@ public class FileUtil {
      *
      * @param fileName 要判断的文件的文件名
      * @return 存在时返回true，否则返回false。
-     * @since 1.0
+     *
      */
     public static boolean isFileExist(String fileName) {
         return new File(fileName).isFile();
@@ -104,7 +103,7 @@ public class FileUtil {
      *
      * @param file 要创建的目录
      * @return 完全创建成功时返回true，否则返回false。
-     * @since 1.0
+     *
      */
     public static boolean makeDirectory(File file) {
         File parent = file.getParentFile();
@@ -121,7 +120,7 @@ public class FileUtil {
      *
      * @param fileName 要创建的目录的目录名
      * @return 完全创建成功时返回true，否则返回false。
-     * @since 1.0
+     *
      */
     public static boolean makeDirectory(String fileName) {
         File file = new File(fileName);
@@ -135,7 +134,7 @@ public class FileUtil {
      *
      * @param directory 要清空的目录
      * @return 目录下的所有文件都被成功删除时返回true，否则返回false.
-     * @since 1.0
+     *
      */
     public static boolean emptyDirectory(File directory) {
         boolean result = true;
@@ -155,7 +154,7 @@ public class FileUtil {
      *
      * @param directoryName 要清空的目录的目录名
      * @return 目录下的所有文件都被成功删除时返回true，否则返回false。
-     * @since 1.0
+     *
      */
     public static boolean emptyDirectory(String directoryName) {
         File dir = new File(directoryName);
@@ -167,7 +166,7 @@ public class FileUtil {
      *
      * @param dirName 要删除的目录的目录名
      * @return 删除成功时返回true，否则返回false。
-     * @since 1.0
+     *
      */
     public static boolean deleteDirectory(String dirName) {
         return deleteDirectory(new File(dirName));
@@ -178,7 +177,7 @@ public class FileUtil {
      *
      * @param dir 要删除的目录
      * @return 删除成功时返回true，否则返回false。
-     * @since 1.0
+     *
      */
     public static boolean deleteDirectory(File dir) {
         if ((dir == null) || !dir.isDirectory()) {
@@ -213,7 +212,7 @@ public class FileUtil {
      * @param file   要列出的目录
      * @param filter 过滤器
      * @return 目录内容的文件数组。
-     * @since 1.0
+     *
      */
     public static File[] listAll(File file,
                                  javax.swing.filechooser.FileFilter filter) {
@@ -258,7 +257,7 @@ public class FileUtil {
      * @param file 文件
      * @return 文件对应的的URL地址
      * @throws MalformedURLException
-     * @since 1.0
+     *
      * @deprecated 在实现的时候没有注意到File类本身带一个toURL方法将文件路径转换为URL。
      * 请使用File.toURL方法。
      */
@@ -273,7 +272,7 @@ public class FileUtil {
      *
      * @param filePath 文件的路径，可以是相对路径也可以是绝对路径
      * @return 对应的文件名
-     * @since 1.0
+     *
      */
     public static String getFileName(String filePath) {
         File file = new File(filePath);
@@ -285,7 +284,7 @@ public class FileUtil {
      *
      * @param fileName 文件名
      * @return 对应的文件路径
-     * @since 1.0
+     *
      */
     public static String getFilePath(String fileName) {
         File file = new File(fileName);
@@ -299,7 +298,7 @@ public class FileUtil {
      *
      * @param filePath 转换前的路径
      * @return 转换后的路径
-     * @since 1.0
+     *
      */
     public static String toUNIXpath(String filePath) {
         return filePath.replace('\\', '/');
@@ -311,7 +310,7 @@ public class FileUtil {
      * @param fileName 文件名
      * @return 对应的UNIX风格的文件路径
      * @see #toUNIXpath(String filePath) toUNIXpath
-     * @since 1.0
+     *
      */
     public static String getUNIXfilePath(String fileName) {
         File file = new File(fileName);
@@ -324,7 +323,7 @@ public class FileUtil {
      *
      * @param fileName 文件名
      * @return 文件名中的类型部分
-     * @since 1.0
+     *
      */
     public static String getTypePart(String fileName) {
         int point = fileName.lastIndexOf('.');
@@ -342,7 +341,7 @@ public class FileUtil {
      *
      * @param file 文件
      * @return 文件名中的类型部分
-     * @since 1.0
+     *
      */
     public static String getFileType(File file) {
         return getTypePart(file.getName());
@@ -354,7 +353,7 @@ public class FileUtil {
      *
      * @param fileName 文件名
      * @return 文件名中的名字部分
-     * @since 1.0
+     *
      */
     public static String getNamePart(String fileName) {
         int point = getPathLsatIndex(fileName);
@@ -385,7 +384,7 @@ public class FileUtil {
      *
      * @param fileName 文件名
      * @return 父路径，不存在或者已经是父目录时返回""
-     * @since 1.0
+     *
      */
     public static String getPathPart(String fileName) {
         int point = getPathLsatIndex(fileName);
@@ -410,7 +409,7 @@ public class FileUtil {
      *
      * @param fileName 文件路径
      * @return 路径分隔符在路径中首次出现的位置，没有出现时返回-1。
-     * @since 1.0
+     *
      */
     public static int getPathIndex(String fileName) {
         int point = fileName.indexOf('/');
@@ -427,7 +426,7 @@ public class FileUtil {
      * @param fileName  文件路径
      * @param fromIndex 开始查找的位置
      * @return 路径分隔符在路径中指定位置后首次出现的位置，没有出现时返回-1。
-     * @since 1.0
+     *
      */
     public static int getPathIndex(String fileName, int fromIndex) {
         int point = fileName.indexOf('/', fromIndex);
@@ -443,7 +442,7 @@ public class FileUtil {
      *
      * @param fileName 文件路径
      * @return 路径分隔符在路径中最后出现的位置，没有出现时返回-1。
-     * @since 1.0
+     *
      */
     public static int getPathLsatIndex(String fileName) {
         int point = fileName.lastIndexOf('/');
@@ -460,7 +459,7 @@ public class FileUtil {
      * @param fileName  文件路径
      * @param fromIndex 开始查找的位置
      * @return 路径分隔符在路径中指定位置前最后出现的位置，没有出现时返回-1。
-     * @since 1.0
+     *
      */
     public static int getPathLsatIndex(String fileName, int fromIndex) {
         int point = fileName.lastIndexOf('/', fromIndex);
@@ -475,7 +474,7 @@ public class FileUtil {
      *
      * @param filename 文件名
      * @return 去掉类型部分的结果
-     * @since 1.0
+     *
      */
     public static String trimType(String filename) {
         int index = filename.lastIndexOf(".");
@@ -493,7 +492,7 @@ public class FileUtil {
      * @param pathName 目录名
      * @param fileName 文件名
      * @return 得到文件名相对于目录名的相对路径，目录下不存在该文件时返回文件名
-     * @since 1.0
+     *
      */
     public static String getSubpath(String pathName, String fileName) {
         int index = fileName.indexOf(pathName);
@@ -510,7 +509,7 @@ public class FileUtil {
      *
      * @param path
      * @return 真假值
-     * @since 1.0
+     *
      */
     public static final boolean pathValidate(String path) {
         //String path="d:/web/www/sub";
@@ -540,7 +539,7 @@ public class FileUtil {
      *
      * @param path 为要读取文件的绝对路径
      * @return 以行读取文件后的内容。
-     * @since 1.0
+     *
      */
     public static final String getFileContent(String path) throws IOException {
         String filecontent = "";
@@ -571,7 +570,7 @@ public class FileUtil {
      * @param path          要生成文件的绝对路径，
      * @param modulecontent 文件的内容。
      * @return 真假值
-     * @since 1.0
+     *
      */
     public static final boolean genModuleTpl(String path, String modulecontent) throws IOException {
 
@@ -603,7 +602,7 @@ public class FileUtil {
      *
      * @param pic_path 为图片名称加上前面的路径不包括扩展名
      * @return 图片的扩展名
-     * @since 1.0
+     *
      */
     public static final String getPicExtendName(String pic_path) {
         pic_path = getUNIXfilePath(pic_path);

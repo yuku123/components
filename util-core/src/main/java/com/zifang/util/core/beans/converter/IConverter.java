@@ -3,7 +3,7 @@ package com.zifang.util.core.beans.converter;
 /**
  * <p>the interface for convert object to be specific type</p>
  *
- * @since 1.0
+ *
  */
 public interface IConverter<T> {
     /**

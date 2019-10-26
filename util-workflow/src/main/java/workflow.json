@@ -1,29 +1,23 @@
 {
+  "configurations": {
+    "engine": "engine.mode.spark",
+    "properties": {
+      "aa": "bb"
+    }
+  },
   "workflowNodeList":[
     {
-      "service":"s1",
-      "workerId":"1",
-      "parameter":{
-        "key":"value"
+      "nodeId": "firstInput",
+      "name": "input",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "properties":{
+        "aa":"bb"
       },
-      "isHandled":true
-    }, {
-      "service":"s2",
-      "workerId":"2",
-      "parameter":{
-        "key":"value"
-      },
-      "isHandled":true
-    }
-  ],
-  "workflowNodeOrder":[
-    {
-      "parent":["2","3","4"],
-      "child":"4"
-    },
-    {
-      "parent":"3",
-      "child":""
+      "connector": {
+        "pre": ["1","2"],
+        "post": ["1","2"]
+      }
     }
   ]
 }

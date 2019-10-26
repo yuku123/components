@@ -23,7 +23,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
-package com.zifang.util.core.collections;
+package com.zifang.util.core.util;
 
 import jodd.util.StringBand;
 import jodd.util.StringPool;

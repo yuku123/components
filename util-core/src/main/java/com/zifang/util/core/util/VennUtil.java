@@ -1,4 +1,4 @@
-package com.zifang.util.core.collections.venn;
+package com.zifang.util.core.util;
 
 
 import java.util.ArrayList;

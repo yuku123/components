@@ -1104,7 +1104,7 @@ public class StringHelper {
 	 * @return unescaped String.
 	 * @throws NullPointerException if s is null.
 	 *
-	 * @since 1.00.00
+	 * 0.00
 	 */
 	public static String unescapeHTML(String s){
 		StringBuffer result = new StringBuffer(s.length());

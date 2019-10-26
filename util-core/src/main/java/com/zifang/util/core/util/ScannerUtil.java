@@ -1,4 +1,4 @@
-package com.zifang.util.core.coder;
+package com.zifang.util.core.util;
 
 import java.util.Scanner;
 import java.util.function.Function;
