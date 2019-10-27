@@ -16,6 +16,5 @@ public class Client {
         Task task = workFlowApplicationContext.getTask();
 
         task.exec();
-        //Task
     }
 }

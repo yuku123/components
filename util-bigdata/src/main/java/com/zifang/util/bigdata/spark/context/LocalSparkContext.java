@@ -3,6 +3,7 @@ package com.zifang.util.bigdata.spark.context;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;
+import org.apache.spark.SparkContext;
 
 public class LocalSparkContext {
 
@@ -12,11 +13,15 @@ public class LocalSparkContext {
 
     private JavaSparkContext javaSparkContext;
 
+    private SparkContext sparkContext;
+
     LocalSparkContext(){
         sparkConf = new SparkConf();
         sparkConf.setMaster("local").setAppName("test");
         javaSparkContext = new JavaSparkContext(sparkConf);
         sqlContext = new SQLContext(javaSparkContext);
+//        sparkContext = new SparkContext(sparkConf);
+//        sparkContext.setLogLevel("ERROR");
     }
 
     public SparkConf getSparkConf() {

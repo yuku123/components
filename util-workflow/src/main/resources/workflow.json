@@ -20,7 +20,8 @@
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "properties":{
-        "localFile":"util-workflow/src/main/resources/input1.csv"
+        "localFile":"util-workflow/src/main/resources/input1.csv",
+        "tempName":"input1"
       },
       "connector": {
         "pre": ["start"],
@@ -33,7 +34,8 @@
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "properties":{
-        "localFile":"util-workflow/src/main/resources/input2.csv"
+        "localFile":"util-workflow/src/main/resources/input2.csv",
+        "tempName":"input2"
       },
       "connector": {
         "pre": ["start"],
@@ -44,10 +46,11 @@
       "nodeId": "join1",
       "name": "join_input1_input2",
       "type": "engine.nodeType.connectors",
-      "serviceUnit": "engine.service.resourceHandler",
+      "serviceUnit": "engine.service.joinHandler",
       "properties":{
-        "aa":"bb"
+        "sql":"select input1.*,input2.score from input1 inner join input2 on input1.userId = input2.userId"
       },
+
       "connector": {
         "pre": ["input1","input2"],
         "post": ["changeColumnName"]

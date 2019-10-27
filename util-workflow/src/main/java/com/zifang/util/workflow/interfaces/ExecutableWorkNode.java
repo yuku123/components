@@ -7,6 +7,8 @@ import org.apache.spark.sql.Row;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 public class ExecutableWorkNode {
 
@@ -15,6 +17,8 @@ public class ExecutableWorkNode {
     private AbstractEngineService abstractEngineService;
     private WorkflowNode workflowNode;
     private Dataset<Row> dataset;
+
+    private Future<Integer> back;
 
     private List<ExecutableWorkNode> post = new ArrayList<>();
     private List<ExecutableWorkNode> pre = new ArrayList<>();
@@ -72,18 +76,36 @@ public class ExecutableWorkNode {
     }
 
     public void exec() {
-        abstractEngineService.setProperty(workflowNode.getProperties());
-        abstractEngineService.exec();
-        dataset = abstractEngineService.getDataset();
+        for(ExecutableWorkNode executableWorkNode : pre){
+            try {
+                if(executableWorkNode.getBack()!=null){
+                    executableWorkNode.getBack().get();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        back =  WorkFlowApplication.threadPool.submit(()->{
+            abstractEngineService.setProperty(workflowNode.getProperties());
+            abstractEngineService.exec();
+            dataset = abstractEngineService.getDataset();
+            return 1;
+        });
         handlePass();
     }
 
     public void handlePass(){
         for(ExecutableWorkNode executableWorkNode : post){
             executableWorkNode.exec();
-//            Runnable runnable = () -> executableWorkNode.exec();
-//            new Thread(runnable).start();
         }
+    }
 
+
+
+    public Future<Integer> getBack() {
+        return back;
     }
 }
