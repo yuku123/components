@@ -1,14 +1,19 @@
 package com.zifang.util.workflow.interfaces;
 
+import com.zifang.util.workflow.config.ExecutableWorkflowNode;
+
 import java.util.List;
 import java.util.Map;
 
 public class Task {
 
-    WorkFlowApplicationContext workFlowApplicationContext;
-    ExecutableWorkNode start;
-    List<ExecutableWorkNode> executableWorkNodes;
-    Map<String, ExecutableWorkNode> executableWorkNodeIdMap;
+    private WorkFlowApplicationContext workFlowApplicationContext;
+
+    private ExecutableWorkflowNode start;
+
+    private List<ExecutableWorkflowNode> executableWorkNodes;
+
+    private Map<String, ExecutableWorkflowNode> executableWorkNodeIdMap;
 
     public void exec() {
         start.exec();
@@ -18,15 +23,15 @@ public class Task {
         this.workFlowApplicationContext = workFlowApplicationContext;
     }
 
-    public void setStartExecutableWorkNode(ExecutableWorkNode start) {
+    public void setStartExecutableWorkNode(ExecutableWorkflowNode start) {
         this.start = start;
     }
 
-    public void setExecutableWorkNodes(List<ExecutableWorkNode> executableWorkNodes) {
+    public void setExecutableWorkNodes(List<ExecutableWorkflowNode> executableWorkNodes) {
         this.executableWorkNodes = executableWorkNodes;
     }
 
-    public void setExecutableWorkNodeIdMap(Map<String, ExecutableWorkNode> executableWorkNodeIdMap) {
+    public void setExecutableWorkNodeIdMap(Map<String, ExecutableWorkflowNode> executableWorkNodeIdMap) {
         this.executableWorkNodeIdMap = executableWorkNodeIdMap;
     }
 }
