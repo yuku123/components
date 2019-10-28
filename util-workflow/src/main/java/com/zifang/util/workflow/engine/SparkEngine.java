@@ -1,5 +1,6 @@
 package com.zifang.util.workflow.engine;
 
+import com.zifang.util.workflow.service.spark.ChangeColumnNameHandle;
 import com.zifang.util.workflow.service.spark.EmptyHandler;
 import com.zifang.util.workflow.service.spark.JoinHandler;
 import com.zifang.util.workflow.service.spark.ResourceHandler;
@@ -14,6 +15,7 @@ public class SparkEngine extends AbstractEngine {
             put("engine.service.resourceHandler",ResourceHandler.class);
             put("engine.service.empty",EmptyHandler.class);
             put("engine.service.joinHandler",JoinHandler.class);
+            put("engine.service.changeColumn", ChangeColumnNameHandle.class);
         }
     };
 

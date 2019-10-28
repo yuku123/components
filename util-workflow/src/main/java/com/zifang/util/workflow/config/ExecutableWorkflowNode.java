@@ -15,7 +15,12 @@ public class ExecutableWorkflowNode extends WorkflowNode{
 
     private AbstractEngineService abstractEngineService;
 
-    private Dataset<Row> dataset;
+    //每个可执行节点会有两种方式与其他节点交流：
+    //1. 主动将数据集塞给后置节点，表现为主动遍历所有前置节点得到数据集合
+    //2. 被动接收前置节点传入的，表现为获取当前节点内的datasetPre
+    private Dataset<Row> dataset;//当前的数据结果集合
+
+    private Dataset<Row> datasetPre; //上个节点传入的dataSet
 
     private CountDownLatch countDownLatch;//用于控制前置节点的
     private List<CountDownLatch> postCountDownLatchList = new ArrayList<>();//用于通知后置节点的
@@ -41,7 +46,7 @@ public class ExecutableWorkflowNode extends WorkflowNode{
 
     public void exec() {
         abstractEngineService.setProperty(getProperties());
-        abstractEngineService.exec();
+        abstractEngineService.exec(this);
         dataset = abstractEngineService.getDataset();
 
         for(CountDownLatch countDownLatch : postCountDownLatchList){
@@ -118,5 +123,13 @@ public class ExecutableWorkflowNode extends WorkflowNode{
 
     public void setAbstractEngineService(AbstractEngineService abstractEngineService) {
         this.abstractEngineService = abstractEngineService;
+    }
+
+    public Dataset<Row> getDatasetPre() {
+        return datasetPre;
+    }
+
+    public void setDatasetPre(Dataset<Row> datasetPre) {
+        this.datasetPre = datasetPre;
     }
 }

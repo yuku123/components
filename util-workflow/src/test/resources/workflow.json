@@ -53,6 +53,20 @@
 
       "connector": {
         "pre": ["input1","input2"],
+        "post": ["changeColumnName"]
+      }
+    },
+    {
+      "nodeId": "changeColumnName",
+      "name": "changeColumnName",
+      "type": "engine.nodeType.connectors",
+      "serviceUnit": "engine.service.changeColumn",
+      "properties":{
+        "name":"changedName"
+      },
+
+      "connector": {
+        "pre": ["join1"],
         "post": []
       }
     }

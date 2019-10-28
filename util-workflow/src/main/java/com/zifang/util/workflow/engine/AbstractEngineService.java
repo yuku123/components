@@ -1,5 +1,6 @@
 package com.zifang.util.workflow.engine;
 
+import com.zifang.util.workflow.config.ExecutableWorkflowNode;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 
@@ -7,9 +8,17 @@ import java.util.Map;
 
 public abstract class AbstractEngineService {
 
-    public abstract void setProperty(Map<String, String> properties);
+    protected Map<String, String> properties;
 
-    public abstract void exec();
+    protected Dataset<Row> dataset;
 
-    public abstract Dataset<Row> getDataset();
+    public void setProperty(Map<String, String> properties) {
+        this.properties = properties;
+    }
+    public abstract void exec(ExecutableWorkflowNode executableWorkflowNode);
+
+
+    public Dataset<Row> getDataset() {
+        return dataset;
+    }
 }

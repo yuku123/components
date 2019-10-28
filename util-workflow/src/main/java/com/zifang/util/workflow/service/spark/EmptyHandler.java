@@ -1,5 +1,6 @@
 package com.zifang.util.workflow.service.spark;
 
+import com.zifang.util.workflow.config.ExecutableWorkflowNode;
 import com.zifang.util.workflow.engine.AbstractEngineService;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -14,7 +15,7 @@ public class EmptyHandler extends AbstractEngineService {
     }
 
     @Override
-    public void exec() {
+    public void exec(ExecutableWorkflowNode executableWorkflowNode) {
 
     }
 
