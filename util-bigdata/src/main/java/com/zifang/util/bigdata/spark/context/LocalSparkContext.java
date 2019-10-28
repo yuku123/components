@@ -33,9 +33,6 @@ public class LocalSparkContext {
         sparkContext.setLogLevel("ERROR");
         javaSparkContext = JavaSparkContext.fromSparkContext(sparkContext);
         sqlContext = sparkSession.sqlContext();
-
-//        sparkContext = new SparkContext(sparkConf);
-//        sparkContext.setLogLevel("ERROR");
     }
 
     public SparkConf getSparkConf() {

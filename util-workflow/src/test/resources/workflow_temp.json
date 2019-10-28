@@ -1,0 +1,74 @@
+{
+  "configurations": {
+    "engine": "engine.mode.spark",
+    "property": {
+      "aa": "bb"
+    }
+  },
+  "workflowNodeList":[
+    {
+      "nodeId": "start",
+      "serviceUnit": "engine.service.empty",
+      "connector": {
+        "pre": [],
+        "post": ["input1","input2"]
+      }
+    },
+    {
+      "nodeId": "input1",
+      "name": "input",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "properties":{
+        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input1.csv",
+        "tempName":"input1"
+      },
+      "connector": {
+        "pre": ["start"],
+        "post": ["join1"]
+      }
+    },
+    {
+      "nodeId": "input2",
+      "name": "input",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "properties":{
+        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input2.csv",
+        "tempName":"input2"
+      },
+      "connector": {
+        "pre": ["start"],
+        "post": ["join1"]
+      }
+    },
+    {
+      "nodeId": "join1",
+      "name": "join_input1_input2",
+      "type": "engine.nodeType.connectors",
+      "serviceUnit": "engine.service.joinHandler",
+      "properties":{
+        "sql":"select input1.*,input2.score from input1 inner join input2 on input1.userId = input2.userId"
+      },
+
+      "connector": {
+        "pre": ["input1","input2"],
+        "post": ["changeColumnName"]
+      }
+    }
+  ,
+    {
+      "nodeId": "changeColumnName",
+      "name": "join_input1_input2",
+      "type": "engine.nodeType.connectors",
+      "serviceUnit": "engine.service.resourceHandler",
+      "properties":{
+        "aa":"bb"
+      },
+      "connector": {
+        "pre": ["join1"],
+        "post": []
+      }
+    }
+  ]
+}

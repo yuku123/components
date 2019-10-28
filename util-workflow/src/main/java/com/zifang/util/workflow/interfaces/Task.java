@@ -14,7 +14,6 @@ public class Task {
         start.exec();
     }
 
-
     public void setWorkFlowApplicationContext(WorkFlowApplicationContext workFlowApplicationContext) {
         this.workFlowApplicationContext = workFlowApplicationContext;
     }

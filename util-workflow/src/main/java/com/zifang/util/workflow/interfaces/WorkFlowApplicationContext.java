@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * 每个工作流的上下文，是工作引擎的工作子单元。工作引擎只负责发布命令，调度资源，调度任务相关功能
@@ -78,7 +79,13 @@ public class WorkFlowApplicationContext {
                     System.out.println("");
                 }
             }
+            //定义同步协调器
+            CountDownLatch latch = new CountDownLatch(post.size());
         }
+
+
+
+
     }
 
     private void registerWorkFlowNode() {

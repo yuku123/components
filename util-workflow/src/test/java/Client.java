@@ -1,14 +1,12 @@
-package com.zifang.util.workflow.test;
-
 import com.zifang.util.workflow.interfaces.Task;
 import com.zifang.util.workflow.interfaces.WorkFlowApplicationContext;
+import org.junit.Test;
 
 public class Client {
 
-    //
-
-    public static void main(String[] args) {
-        String filePath = "util-workflow/src/main/resources/workflow.json";
+    @Test
+    public void testClient() {
+        String filePath = "/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/workflow.json";
 
         //一个workflow 对应
         WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext(filePath);

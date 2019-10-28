@@ -24,6 +24,7 @@ public class JoinHandler extends AbstractEngineService {
     public void exec() {
         dataset = SparkContextFactory.getLocalSparkContext().getSqlContext().sql(properties.get("sql"));
         dataset.show();
+        System.out.println("-------------");
     }
 
     @Override

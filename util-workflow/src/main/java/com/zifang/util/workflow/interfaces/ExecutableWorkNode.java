@@ -7,6 +7,7 @@ import org.apache.spark.sql.Row;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -18,10 +19,17 @@ public class ExecutableWorkNode {
     private WorkflowNode workflowNode;
     private Dataset<Row> dataset;
 
+    private CountDownLatch countDownLatch;//用于控制前置节点的
+    private List<CountDownLatch> postCountDownLatchList;//用于通知后置节点的
+
     private Future<Integer> back;
 
     private List<ExecutableWorkNode> post = new ArrayList<>();
     private List<ExecutableWorkNode> pre = new ArrayList<>();
+
+    //是否被调用，因为会有很多个前置节点同时进行调用，那么就只会有一个节点会成功发起请求
+    //真正开始执行需要使用countDownLatch 进行判断是否已经同时到达这个栏栅
+    private int isCalled;
 
     public void setEngine(AbstractEngine abstractEngine) {
         this.abstractEngine = abstractEngine;
@@ -76,6 +84,7 @@ public class ExecutableWorkNode {
     }
 
     public void exec() {
+        //得到所有的前处理结果
         for(ExecutableWorkNode executableWorkNode : pre){
             try {
                 if(executableWorkNode.getBack()!=null){
@@ -88,6 +97,7 @@ public class ExecutableWorkNode {
             }
         }
 
+        //生成当前处理的future
         back =  WorkFlowApplication.threadPool.submit(()->{
             abstractEngineService.setProperty(workflowNode.getProperties());
             abstractEngineService.exec();
@@ -103,9 +113,23 @@ public class ExecutableWorkNode {
         }
     }
 
-
-
     public Future<Integer> getBack() {
         return back;
+    }
+
+    public CountDownLatch getCountDownLatch() {
+        return countDownLatch;
+    }
+
+    public void setCountDownLatch(CountDownLatch countDownLatch) {
+        this.countDownLatch = countDownLatch;
+    }
+
+    public List<CountDownLatch> getPostCountDownLatchList() {
+        return postCountDownLatchList;
+    }
+
+    public void setPostCountDownLatchList(List<CountDownLatch> postCountDownLatchList) {
+        this.postCountDownLatchList = postCountDownLatchList;
     }
 }

@@ -10,6 +10,10 @@ import java.util.Map;
 
 public class ResourceHandler extends AbstractEngineService {
 
+    private static String tempName = "tempName";
+
+    private static String localFile = "localFile";
+
     private Dataset<Row> dataset;
     private Map<String, String> properties;
 
@@ -20,8 +24,9 @@ public class ResourceHandler extends AbstractEngineService {
 
     @Override
     public void exec() {
-        dataset = new SparkDataMockUtil(SparkContextFactory.getLocalSparkContext()).creatDataset(properties.get("localFile"));
-        dataset.registerTempTable(properties.get("tempName"));
+        dataset = new SparkDataMockUtil(SparkContextFactory.getLocalSparkContext()).creatDataset(properties.get(localFile));
+        dataset.registerTempTable(properties.get(tempName));
+        dataset.show();
     }
 
     @Override

@@ -20,7 +20,7 @@
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "properties":{
-        "localFile":"util-workflow/src/main/resources/input1.csv",
+        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input1.csv",
         "tempName":"input1"
       },
       "connector": {
@@ -34,7 +34,7 @@
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "properties":{
-        "localFile":"util-workflow/src/main/resources/input2.csv",
+        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input2.csv",
         "tempName":"input2"
       },
       "connector": {
@@ -53,19 +53,6 @@
 
       "connector": {
         "pre": ["input1","input2"],
-        "post": ["changeColumnName"]
-      }
-    },
-    {
-      "nodeId": "changeColumnName",
-      "name": "join_input1_input2",
-      "type": "engine.nodeType.connectors",
-      "serviceUnit": "engine.service.resourceHandler",
-      "properties":{
-        "aa":"bb"
-      },
-      "connector": {
-        "pre": ["join1"],
         "post": []
       }
     }
