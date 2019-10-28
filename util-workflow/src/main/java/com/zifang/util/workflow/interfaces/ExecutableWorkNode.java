@@ -29,7 +29,8 @@ public class ExecutableWorkNode {
 
     //是否被调用，因为会有很多个前置节点同时进行调用，那么就只会有一个节点会成功发起请求
     //真正开始执行需要使用countDownLatch 进行判断是否已经同时到达这个栏栅
-    private int isCalled;
+    //0是没有被call,1是被call了
+    private volatile int isCalled = 0;
 
     public void setEngine(AbstractEngine abstractEngine) {
         this.abstractEngine = abstractEngine;
@@ -83,33 +84,60 @@ public class ExecutableWorkNode {
         this.pre = pre;
     }
 
-    public void exec() {
-        //得到所有的前处理结果
-        for(ExecutableWorkNode executableWorkNode : pre){
-            try {
-                if(executableWorkNode.getBack()!=null){
-                    executableWorkNode.getBack().get();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
+    public int exec() {
+
+        if(isCalled == 0){
+            synchronized (this){
+                isCalled = 1;
             }
+        }else{
+            //没有意义，就是纯粹的跳出方法
+            return 1;
         }
+
+        //等到前置节点到这个地方
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        //得到所有的前处理结果
+//        for(ExecutableWorkNode executableWorkNode : pre){
+//            try {
+//                if(executableWorkNode.getBack()!=null){
+//                    executableWorkNode.getBack().get();
+//                }
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } catch (ExecutionException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         //生成当前处理的future
         back =  WorkFlowApplication.threadPool.submit(()->{
             abstractEngineService.setProperty(workflowNode.getProperties());
             abstractEngineService.exec();
             dataset = abstractEngineService.getDataset();
+
+            //对所有的后置节点进行更新信息
+            for(CountDownLatch countDownLatch : postCountDownLatchList){
+                countDownLatch.countDown();
+            }
             return 1;
+
         });
+
         handlePass();
+
+        //无意义
+        //之后要引入生命周期概念，目前预留
+        return 1;
     }
 
     public void handlePass(){
         for(ExecutableWorkNode executableWorkNode : post){
-            executableWorkNode.exec();
+             WorkFlowApplication.threadPool.submit(()->executableWorkNode.exec());
         }
     }
 

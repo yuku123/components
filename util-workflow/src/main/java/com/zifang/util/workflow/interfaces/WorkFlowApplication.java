@@ -5,6 +5,6 @@ import java.util.concurrent.Executors;
 
 public class WorkFlowApplication {
 
-    public static ExecutorService threadPool = Executors.newSingleThreadExecutor();
+    public static ExecutorService threadPool = Executors.newFixedThreadPool(5);
 
 }

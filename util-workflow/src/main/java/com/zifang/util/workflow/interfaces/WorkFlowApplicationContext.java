@@ -64,6 +64,8 @@ public class WorkFlowApplicationContext {
 
     private void connectWorkFlowNode() {
 
+        //针对每个节点，生成关联
+        //针对每个节点，生成各自的同步处理器
         for(ExecutableWorkNode executableWorkNode : executableWorkNodes){
             
             List<String> pre = executableWorkNode.getWorkflowNode().getConnector().getPre();
@@ -79,14 +81,23 @@ public class WorkFlowApplicationContext {
                     System.out.println("");
                 }
             }
-            //定义同步协调器
-            CountDownLatch latch = new CountDownLatch(post.size());
+            //定义 负责处理前置节点的处理器
+            CountDownLatch latch = new CountDownLatch(pre.size());
+            executableWorkNode.setCountDownLatch(latch);
+
+            //初始化对后置节点的处理器
+            executableWorkNode.setPostCountDownLatchList(new ArrayList<>());
         }
 
+        //完成后置节点的处理器的连接
+        for(ExecutableWorkNode executableWorkNode : executableWorkNodes){
+            //从每个节点上，得到后置节点的所有同步器存到当前的同步器列表
+            for(ExecutableWorkNode executableWorkNode1 : executableWorkNode.getPost()){
+                executableWorkNode.getPostCountDownLatchList().add(executableWorkNode1.getCountDownLatch());
+            }
+        }
 
-
-
-    }
+        }
 
     private void registerWorkFlowNode() {
 
@@ -117,8 +128,7 @@ public class WorkFlowApplicationContext {
         }
     }
 
-
-    public Task getTask() {
-        return task;
+    public void executeTask() {
+        task.exec();
     }
 }
