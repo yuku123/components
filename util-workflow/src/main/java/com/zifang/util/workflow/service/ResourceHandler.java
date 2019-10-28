@@ -24,19 +24,17 @@ public class ResourceHandler extends AbstractEngineService {
 
     @Override
     public void exec() {
-        dataset = new SparkDataMockUtil(SparkContextFactory.getLocalSparkContext()).creatDataset(properties.get(localFile));
-        dataset.registerTempTable(properties.get(tempName));
-        dataset.show();
+        try {
+            dataset = new SparkDataMockUtil(SparkContextFactory.getLocalSparkContext()).creatDataset(properties.get(localFile));
+            dataset.registerTempTable(properties.get(tempName));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public Dataset<Row> getDataset() {
         return dataset;
-    }
-
-    public static void main(String[] args) {
-        String path = "util-workflow/src/main/resources/input1.csv";
-        Dataset<Row> dataset = new SparkDataMockUtil(SparkContextFactory.getLocalSparkContext()).creatDataset(path);
-        dataset.show();
     }
 }

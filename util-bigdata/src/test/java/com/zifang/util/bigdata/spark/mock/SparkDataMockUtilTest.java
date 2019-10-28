@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class SparkDataMockUtilTest {
 
-    @Test
+    //@Test
     public void creatDataset() {
         String fileLocation = "/Users/zifang/workplace/idea_workplace/components/util-bigdata/src/main/resources/test.txt";
         LocalSparkContext localSparkContext = SparkContextFactory.getLocalSparkContext();
@@ -26,7 +26,7 @@ public class SparkDataMockUtilTest {
         rowDataset.show();
     }
 
-    @Test
+    //@Test
     public void ss() {
         String path = "file:/Users/zifang/workplace/idea_workplace/components/util-workflow/src/main/resources/input1.csv";
         Dataset<Row> dataset = new SparkDataMockUtil(SparkContextFactory.getLocalSparkContext()).creatDataset(path);

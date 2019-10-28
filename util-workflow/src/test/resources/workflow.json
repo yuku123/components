@@ -16,7 +16,7 @@
     },
     {
       "nodeId": "input1",
-      "name": "input",
+      "name": "input1",
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "properties":{
@@ -30,7 +30,7 @@
     },
     {
       "nodeId": "input2",
-      "name": "input",
+      "name": "input2",
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "properties":{

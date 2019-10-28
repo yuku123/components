@@ -12,6 +12,6 @@ public class Client {
 
         workFlowApplicationContext.executeTask();
 
-        Thread.sleep(100000);
+        //Thread.sleep(100000000);
     }
 }

@@ -18,12 +18,10 @@ public class LocalSparkContext {
 
     private SparkSession sparkSession;
 
-    LocalSparkContext(){
+    public LocalSparkContext(){
         sparkConf = new SparkConf();
         sparkConf.setMaster("local[4]").setAppName("test");
-//        javaSparkContext = new JavaSparkContext(sparkConf);
-//        sqlContext = new SQLContext(javaSparkContext);
-
+        
         sparkSession = SparkSession.builder()
                 .master("local[4]")
                 .appName("appName")
@@ -34,6 +32,23 @@ public class LocalSparkContext {
         javaSparkContext = JavaSparkContext.fromSparkContext(sparkContext);
         sqlContext = sparkSession.sqlContext();
     }
+
+//    public LocalSparkContext(){
+//        sparkConf = new SparkConf();
+//        sparkConf.setMaster("local[4]").setAppName("test");
+//        javaSparkContext = new JavaSparkContext(sparkConf);
+//        sqlContext = new SQLContext(javaSparkContext);
+//
+////        sparkSession = SparkSession.builder()
+////                .master("local[4]")
+////                .appName("appName")
+////                .config(sparkConf)
+////                .getOrCreate();
+////        sparkContext = sparkSession.sparkContext();
+////        sparkContext.setLogLevel("ERROR");
+////        javaSparkContext = JavaSparkContext.fromSparkContext(sparkContext);
+////        sqlContext = sparkSession.sqlContext();
+//    }
 
     public SparkConf getSparkConf() {
         return sparkConf;

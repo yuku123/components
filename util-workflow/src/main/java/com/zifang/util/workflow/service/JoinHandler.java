@@ -1,7 +1,6 @@
 package com.zifang.util.workflow.service;
 
 import com.zifang.util.bigdata.spark.context.SparkContextFactory;
-import com.zifang.util.bigdata.spark.mock.SparkDataMockUtil;
 import com.zifang.util.workflow.interfaces.AbstractEngineService;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -22,9 +21,12 @@ public class JoinHandler extends AbstractEngineService {
 
     @Override
     public void exec() {
-        dataset = SparkContextFactory.getLocalSparkContext().getSqlContext().sql(properties.get("sql"));
-        dataset.show();
-        System.out.println("-------------");
+        try{
+            dataset = SparkContextFactory.getLocalSparkContext().getSqlContext().sql(properties.get("sql"));
+            dataset.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -96,6 +96,10 @@ public class WorkFlowApplicationContext {
             CountDownLatch latch = new CountDownLatch(executableWorkNode.getPre().size());
             executableWorkNode.setCountDownLatch(latch);
 
+        }
+
+        for(ExecutableWorkflowNode executableWorkNode : executableWorkNodes){
+
             //从每个节点上，得到后置节点的所有同步器存到当前的同步器列表
             for(ExecutableWorkflowNode executableWorkNodePost : executableWorkNode.getPost()){
                 executableWorkNode.getPostCountDownLatchList().add(executableWorkNodePost.getCountDownLatch());
@@ -140,8 +144,6 @@ public class WorkFlowApplicationContext {
             ExecutableWorkflowNode executableWorkNode = new ExecutableWorkflowNode(workflowNode);
 
             executableWorkNode.setEngine(abstractEngine);
-
-            executableWorkNode.setAbstractEngineService(EngineService.getEngineService(workflowNode.getServiceUnit()));
 
             executableWorkNodeIdMap.put(workflowNode.getNodeId(),executableWorkNode);
 

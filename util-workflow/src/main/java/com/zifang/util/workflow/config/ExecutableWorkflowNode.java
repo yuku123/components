@@ -44,48 +44,22 @@ public class ExecutableWorkflowNode extends WorkflowNode{
     }
 
     public int exec() {
+        abstractEngineService.setProperty(getProperties());
+        abstractEngineService.exec();
+        dataset = abstractEngineService.getDataset();
 
-        if(isCalled == 0){
-            synchronized (this){
-                isCalled = 1;
-            }
-        }else{
-            //没有意义，就是纯粹的跳出方法
-            return 1;
+        for(CountDownLatch countDownLatch : postCountDownLatchList){
+            countDownLatch.countDown();
         }
 
-        //等到前置节点到这个地方
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        //生成当前处理的future
-        back =  WorkFlowApplication.threadPool.submit(()->{
-            abstractEngineService.setProperty(getProperties());
-            abstractEngineService.exec();
-            dataset = abstractEngineService.getDataset();
-
-            //对所有的后置节点进行更新信息
-            for(CountDownLatch countDownLatch : postCountDownLatchList){
-                countDownLatch.countDown();
-            }
-            return 1;
-
-        });
-
-        handlePass();
-
-        //无意义
-        //之后要引入生命周期概念，目前预留
-        return 1;
-    }
-
-    public void handlePass(){
         for(ExecutableWorkflowNode executableWorkNode : post){
-             WorkFlowApplication.threadPool.submit(()->executableWorkNode.exec());
+            final ExecutableWorkflowNode executableWorkflowNodeTemp = executableWorkNode;
+            if(executableWorkNode.getCountDownLatch().getCount() == 0){
+                executableWorkflowNodeTemp.exec();
+            }
         }
+
+        return 1;
     }
 
     public void putPost(ExecutableWorkflowNode executableWorkNode) {
@@ -155,6 +129,4 @@ public class ExecutableWorkflowNode extends WorkflowNode{
     public void setAbstractEngineService(AbstractEngineService abstractEngineService) {
         this.abstractEngineService = abstractEngineService;
     }
-
-
 }
