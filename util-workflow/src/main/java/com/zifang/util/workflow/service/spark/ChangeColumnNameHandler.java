@@ -5,7 +5,7 @@ import com.zifang.util.workflow.engine.AbstractEngineService;
 
 import java.util.Map;
 
-public class ChangeColumnNameHandle extends AbstractEngineService {
+public class ChangeColumnNameHandler extends AbstractEngineService {
 
     @Override
     public void exec(ExecutableWorkflowNode executableWorkflowNode) {
