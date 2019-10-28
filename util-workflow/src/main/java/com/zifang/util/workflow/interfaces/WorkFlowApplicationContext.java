@@ -6,6 +6,7 @@ import com.zifang.util.workflow.config.ExecutableWorkflowNode;
 import com.zifang.util.workflow.config.WorkflowConfiguration;
 import com.zifang.util.workflow.config.WorkflowNode;
 import com.zifang.util.workflow.engine.AbstractEngine;
+import com.zifang.util.workflow.engine.AbstractEngineService;
 import com.zifang.util.workflow.engine.EngineFactory;
 import org.apache.log4j.Logger;
 
@@ -115,10 +116,12 @@ public class WorkFlowApplicationContext {
 
             List<String> post = executableWorkNode.getConnector().getPost();
 
+            //将每个前置节点内的后置节点列表增加自身
             for(String connectNodeId: pre){
                 executableWorkNodeIdMap.get(connectNodeId).putPost(executableWorkNode);
             }
 
+            //将每个后置节点的前置节点列表增加自身
             for(String connectNodeId: post){
                 executableWorkNodeIdMap.get(connectNodeId).putPre(executableWorkNode);
             }

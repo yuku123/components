@@ -1,15 +1,13 @@
 package com.zifang.util.workflow.config;
 
 import com.zifang.util.workflow.engine.AbstractEngine;
-import com.zifang.util.workflow.interfaces.AbstractEngineService;
-import com.zifang.util.workflow.interfaces.WorkFlowApplication;
+import com.zifang.util.workflow.engine.AbstractEngineService;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Future;
 
 public class ExecutableWorkflowNode extends WorkflowNode{
 
@@ -21,8 +19,6 @@ public class ExecutableWorkflowNode extends WorkflowNode{
 
     private CountDownLatch countDownLatch;//用于控制前置节点的
     private List<CountDownLatch> postCountDownLatchList = new ArrayList<>();//用于通知后置节点的
-
-    private Future<Integer> back;
 
     private List<ExecutableWorkflowNode> post = new ArrayList<>();
     private List<ExecutableWorkflowNode> pre = new ArrayList<>();
@@ -43,7 +39,7 @@ public class ExecutableWorkflowNode extends WorkflowNode{
         super.setType(workflowNode.getType());
     }
 
-    public int exec() {
+    public void exec() {
         abstractEngineService.setProperty(getProperties());
         abstractEngineService.exec();
         dataset = abstractEngineService.getDataset();
@@ -58,8 +54,6 @@ public class ExecutableWorkflowNode extends WorkflowNode{
                 executableWorkflowNodeTemp.exec();
             }
         }
-
-        return 1;
     }
 
     public void putPost(ExecutableWorkflowNode executableWorkNode) {
@@ -88,10 +82,6 @@ public class ExecutableWorkflowNode extends WorkflowNode{
 
     public void setPre(List<ExecutableWorkflowNode> pre) {
         this.pre = pre;
-    }
-
-    public Future<Integer> getBack() {
-        return back;
     }
 
     public CountDownLatch getCountDownLatch() {

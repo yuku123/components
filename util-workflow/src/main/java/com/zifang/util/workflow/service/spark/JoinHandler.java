@@ -1,7 +1,7 @@
-package com.zifang.util.workflow.service;
+package com.zifang.util.workflow.service.spark;
 
 import com.zifang.util.bigdata.spark.context.SparkContextFactory;
-import com.zifang.util.workflow.interfaces.AbstractEngineService;
+import com.zifang.util.workflow.engine.AbstractEngineService;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 

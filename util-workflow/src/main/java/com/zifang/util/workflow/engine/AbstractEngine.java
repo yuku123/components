@@ -1,16 +1,12 @@
 package com.zifang.util.workflow.engine;
 
-import com.zifang.util.workflow.interfaces.AbstractEngineService;
-
 import java.util.Map;
 
 public abstract class AbstractEngine {
 
-    public Map<String, ? extends AbstractEngineService> getRegisteredEngineServiceMap() {
-        return null;
-    }
+    public abstract Map<String, Class<? extends AbstractEngineService>> getRegisteredEngineServiceMap();
 
-    public AbstractEngineService getRegisteredEngineService(String serviceUnit) {
-        return null;
-    }
+    public abstract AbstractEngineService getRegisteredEngineService(String serviceUnit);
+
+    public abstract void register(String name,Class<? extends AbstractEngineService> engineService);
 }

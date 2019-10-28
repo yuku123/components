@@ -1,30 +1,41 @@
 package com.zifang.util.workflow.engine;
 
-import com.zifang.util.workflow.interfaces.AbstractEngineService;
-import com.zifang.util.workflow.service.EmptyHandler;
-import com.zifang.util.workflow.service.JoinHandler;
-import com.zifang.util.workflow.service.ResourceHandler;
+import com.zifang.util.workflow.service.spark.EmptyHandler;
+import com.zifang.util.workflow.service.spark.JoinHandler;
+import com.zifang.util.workflow.service.spark.ResourceHandler;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SparkEngine extends AbstractEngine {
 
-    public static Map<String, ? extends AbstractEngineService> registedEngineServiceMap = new HashMap<String, AbstractEngineService>(){
+    public Map<String, Class<? extends AbstractEngineService>> registeredEngineServiceMap = new HashMap<String, Class<? extends AbstractEngineService>>(){
         {
-            put("engine.service.resourceHandler",new ResourceHandler());
-            put("engine.service.empty",new EmptyHandler());
-            put("engine.service.joinHandler",new JoinHandler());
+            put("engine.service.resourceHandler",ResourceHandler.class);
+            put("engine.service.empty",EmptyHandler.class);
+            put("engine.service.joinHandler",JoinHandler.class);
         }
     };
 
     @Override
-    public Map<String, ? extends AbstractEngineService> getRegisteredEngineServiceMap() {
-        return registedEngineServiceMap;
+    public Map<String, Class<? extends AbstractEngineService>> getRegisteredEngineServiceMap() {
+        return registeredEngineServiceMap;
     }
 
     @Override
     public AbstractEngineService getRegisteredEngineService(String serviceUnit) {
-        return registedEngineServiceMap.get(serviceUnit);
+        try {
+            return registeredEngineServiceMap.get(serviceUnit).newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void register(String name,Class<? extends AbstractEngineService> engineService) {
+        registeredEngineServiceMap.put(name,engineService);
     }
 }
