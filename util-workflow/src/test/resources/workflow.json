@@ -1,6 +1,6 @@
 {
   "configurations": {
-    "engine": "engine.mode.spark",
+    "engine": "engine.mode.spark.local",
     "property": {
       "aa": "bb"
     }

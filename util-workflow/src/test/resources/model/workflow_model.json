@@ -1,0 +1,32 @@
+{
+  "configurations": {
+    "engine": "engine.mode.spark.cluster",
+    "property": {
+      "aa": "bb"
+    }
+  },
+  "workflowNodeList":[
+    {
+      "nodeId": "start",
+      "serviceUnit": "engine.service.empty",
+      "connector": {
+        "pre": [],
+        "post": ["input1"]
+      }
+    },
+    {
+      "nodeId": "input1",
+      "name": "input1",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "properties":{
+        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input1.csv",
+        "tempName":"input1"
+      },
+      "connector": {
+        "pre": ["start"],
+        "post": []
+      }
+    }
+  ]
+}
