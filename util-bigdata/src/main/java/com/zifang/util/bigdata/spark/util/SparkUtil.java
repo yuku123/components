@@ -1,6 +1,6 @@
-package com.zifang.util.bigdata.spark.mock;
+package com.zifang.util.bigdata.spark.util;
 
-import com.zifang.util.bigdata.spark.context.LocalSparkContext;
+import com.zifang.util.bigdata.spark.context.SparkContextInstance;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -8,18 +8,13 @@ import org.apache.spark.sql.RowFactory;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructType;
 
-/**
- * 使用local的方式，导入标准格式的数据集，返回模拟的Dataset出来
- * */
-public class SparkDataMockUtil implements java.io.Serializable{
+public class SparkUtil {
 
+    private SparkContextInstance sparkContextInstance;
 
-    private LocalSparkContext localSparkContext;
-
-    public SparkDataMockUtil(LocalSparkContext localSparkContext){
-        this.localSparkContext = localSparkContext;
+    public SparkUtil(SparkContextInstance sparkContextInstance){
+        this.sparkContextInstance = sparkContextInstance;
     }
-
     /**
      * 传入JavaSparkContext 与文件路径 返回Dataset schema都是string的格式
      *
@@ -28,7 +23,7 @@ public class SparkDataMockUtil implements java.io.Serializable{
 
     public Dataset<Row> creatDataset(String fileLocation){
 
-        JavaRDD<String> lineRDD = localSparkContext.getJavaSparkContext().textFile(fileLocation);
+        JavaRDD<String> lineRDD = sparkContextInstance.getJavaSparkContext().textFile(fileLocation);
 
         String header = lineRDD.first();
 
@@ -36,11 +31,11 @@ public class SparkDataMockUtil implements java.io.Serializable{
         //把string转化为row形式
         JavaRDD<Row> rows = lineRDD
                 .filter(row -> !row.equals(header))
-                .map(s->RowFactory.create(s.split(",")));
+                .map(s-> RowFactory.create(s.split(",")));
 
         StructType schema = produceSchema(header);
 
-        return localSparkContext.getSqlContext().createDataFrame(rows, schema);
+        return sparkContextInstance.getSqlContext().createDataFrame(rows, schema);
     }
 
     private StructType produceSchema(String header) {

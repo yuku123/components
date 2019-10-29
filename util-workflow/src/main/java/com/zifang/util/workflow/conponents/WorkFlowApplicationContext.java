@@ -53,8 +53,6 @@ public class WorkFlowApplicationContext {
         //从文件内初始化配置
         initialConfiguration();
 
-        abstractEngine = EngineFactory.getEngine(this.workflowConfiguration.getConfigurations().getEngine());
-
         //转换所有的节点定义，生成可执行的松散节点，这个时候节点间没有任何关联
         transformWorkFlowNode();
 
@@ -158,6 +156,8 @@ public class WorkFlowApplicationContext {
         try {
             String json = FileUtil.getFileContent(this.filePath);
             workflowConfiguration = GsonUtil.jsonStrToObject(json,WorkflowConfiguration.class);
+            //初始化引擎
+            abstractEngine = EngineFactory.getEngine(this.workflowConfiguration.getConfigurations().getEngine());
         } catch (IOException e) {
             logger.error("解析文件出现问题:"+filePath);
             e.printStackTrace();
