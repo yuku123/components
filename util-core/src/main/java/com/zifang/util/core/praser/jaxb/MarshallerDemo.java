@@ -1,8 +1,5 @@
 package com.zifang.util.core.praser.jaxb;
 
-import com.zifang.util.praser.xml.jaxb.Book;
-import com.zifang.util.praser.xml.jaxb.Customer;
-
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,24 +32,24 @@ public class MarshallerDemo {
 
 	// Marshaller
 	public static void Object2Xml() {
-		com.zifang.util.praser.xml.jaxb.Customer customer = new com.zifang.util.praser.xml.jaxb.Customer();
+		Customer customer = new Customer();
 		customer.setId(100);
 		customer.setName("suo");
 		customer.setAge(29);
 		customer.setAddr("Beijing");
 		customer.setMobile("010-62670085");
 
-		com.zifang.util.praser.xml.jaxb.Book book = new com.zifang.util.praser.xml.jaxb.Book();
+		Book book = new Book();
 		book.setId("1");
 		book.setName("哈里波特");
 		book.setPrice(100);
 
-		com.zifang.util.praser.xml.jaxb.Book book2 = new com.zifang.util.praser.xml.jaxb.Book();
+		Book book2 = new Book();
 		book2.setId("2");
 		book2.setName("苹果");
 		book2.setPrice(50);
 
-		Set<com.zifang.util.praser.xml.jaxb.Book> bookSet = new HashSet<Book>();
+		Set<Book> bookSet = new HashSet<Book>();
 		bookSet.add(book);
 		bookSet.add(book2);
 
@@ -60,7 +57,7 @@ public class MarshallerDemo {
 
 		try {
 			File file = new File("D:\\file.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(com.zifang.util.praser.xml.jaxb.Customer.class);
+			JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 			// output pretty printed
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -75,9 +72,9 @@ public class MarshallerDemo {
 	public static void Xml2Object() {
 		try {
 			File file = new File("D:\\file.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(com.zifang.util.praser.xml.jaxb.Customer.class);
+			JAXBContext jaxbContext = JAXBContext.newInstance(Customer.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			com.zifang.util.praser.xml.jaxb.Customer customer = (Customer) jaxbUnmarshaller.unmarshal(file);
+			Customer customer = (Customer) jaxbUnmarshaller.unmarshal(file);
 			System.out.println(customer);
 		} catch (JAXBException e) {
 			e.printStackTrace();

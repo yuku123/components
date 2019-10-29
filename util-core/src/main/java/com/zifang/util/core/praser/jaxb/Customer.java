@@ -1,7 +1,5 @@
 package com.zifang.util.core.praser.jaxb;
 
-import com.zifang.util.praser.xml.jaxb.Book;
-
 import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -36,7 +34,7 @@ public class Customer {
 
 	@XmlElementWrapper(name = "books")
 	@XmlElement(name = "book")
-	private Set<com.zifang.util.praser.xml.jaxb.Book> book;
+	private Set<Book> book;
 	
 	
 	public int getId() {
@@ -79,7 +77,7 @@ public class Customer {
 		this.age = age;
 	}
 
-	public Set<com.zifang.util.praser.xml.jaxb.Book> getBook() {
+	public Set<Book> getBook() {
 		return book;
 	}
 

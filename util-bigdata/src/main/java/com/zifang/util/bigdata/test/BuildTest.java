@@ -44,7 +44,7 @@ public class BuildTest {
         pre_data.show();
 
         //判断好坏 Confusion matrix
-        JavaRDD<Tuple2<Object,Object>> javaRDD = pre_data.select("pre_lable", "target").toJavaRDD()
+        JavaRDD<Tuple2<Object,Object>> javaRDD = pre_data.select("pre_label", "target").toJavaRDD()
                 .map(row -> new Tuple2<>( row.get(0), (double)row.getInt(1)));
         MulticlassMetrics metrics = new MulticlassMetrics(javaRDD.rdd());
         Matrix confusion = metrics.confusionMatrix();
