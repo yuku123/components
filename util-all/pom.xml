@@ -24,11 +24,6 @@
         </dependency>
         <dependency>
             <groupId>com.zifang</groupId>
-            <artifactId>util-analysis</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zifang</groupId>
             <artifactId>util-bigdata</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
@@ -60,11 +55,6 @@
         <dependency>
             <groupId>com.zifang</groupId>
             <artifactId>util-media</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zifang</groupId>
-            <artifactId>util-praser</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
