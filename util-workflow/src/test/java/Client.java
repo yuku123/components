@@ -1,4 +1,4 @@
-import com.zifang.util.workflow.interfaces.WorkFlowApplicationContext;
+import com.zifang.util.workflow.conponents.WorkFlowApplicationContext;
 import org.junit.Test;
 
 public class Client {

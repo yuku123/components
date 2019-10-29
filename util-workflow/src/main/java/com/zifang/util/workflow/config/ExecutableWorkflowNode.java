@@ -1,7 +1,7 @@
 package com.zifang.util.workflow.config;
 
-import com.zifang.util.workflow.engine.AbstractEngine;
-import com.zifang.util.workflow.engine.AbstractEngineService;
+import com.zifang.util.workflow.engine.interfaces.AbstractEngine;
+import com.zifang.util.workflow.engine.interfaces.AbstractEngineService;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 
