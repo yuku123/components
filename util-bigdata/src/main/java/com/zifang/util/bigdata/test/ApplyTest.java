@@ -39,7 +39,7 @@ public class ApplyTest {
 
         RandomForestClassificationModel model = RandomForestClassificationModel.load("hdfs://piday03:9000/user/piday/model_yj_plusv3");
 
-        Dataset<Row> pre_data = model.transform(dataSet).select("id","target","pre_label");
+        Dataset<Row> pre_data = model.transform(dataSet).select("id","target","pre_lable");
         pre_data.show();
     }
 }

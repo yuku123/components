@@ -4,23 +4,25 @@ import java.util.Map;
 
 public class Configurations {
 
-    private String engine;
 
-    private Map<String,String> properties;
+    private Engine engine;
 
-    public String getEngine() {
+    private Map<String,String> runtimeParameter;
+
+    public Engine getEngine() {
         return engine;
     }
 
-    public void setEngine(String engine) {
+    public void setEngine(Engine engine) {
         this.engine = engine;
     }
 
-    public Map<String, String> getProperties() {
-        return properties;
+    public Map<String, String> getRuntimeParameter() {
+        return runtimeParameter;
     }
 
-    public void setProperties(Map<String, String> properties) {
-        this.properties = properties;
+    public void setRuntimeParameter(Map<String, String> runtimeParameter) {
+        this.runtimeParameter = runtimeParameter;
     }
+
 }

@@ -13,7 +13,7 @@ public class SparkContextFactory {
         return localSparkContext;
     }
 
-    public static ClusterSparkContext getClusterSparkContext(ClusterSparkConfiguration clusterSparkConfiguration){
+    public static ClusterSparkContext getClusterSparkContext(SparkConfiguration clusterSparkConfiguration){
         return null;
     }
 }

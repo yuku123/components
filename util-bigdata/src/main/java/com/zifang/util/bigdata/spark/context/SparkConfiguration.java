@@ -1,4 +1,4 @@
 package com.zifang.util.bigdata.spark.context;
 
-public class ClusterSparkConfiguration {
+public class SparkConfiguration {
 }
