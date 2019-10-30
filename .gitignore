@@ -5,3 +5,7 @@
 .idea/
 */target/
 */metastore_db
+
+/logs
+*/logs/
+*.log

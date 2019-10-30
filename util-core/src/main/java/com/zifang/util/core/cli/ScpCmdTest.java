@@ -6,7 +6,6 @@ import org.apache.commons.cli.*;
 import org.apache.commons.cli.Option;
 
 
-//https://www.jianshu.com/p/c3ae61787a42
 public class ScpCmdTest {
     private static Options OPTIONS = new Options();
     private static CommandLine commandLine;
