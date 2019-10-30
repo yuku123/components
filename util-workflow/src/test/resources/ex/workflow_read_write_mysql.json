@@ -34,7 +34,10 @@
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleMysqlInput",
       "properties":{
-        "table": "test.test",
+        "dbUrl":"jdbc:mysql://localhost:3306/test",
+        "table":"test",
+        "user": "root",
+        "password": "zxc123",
         "tempName":"input_mysql",
         "flush": "yes"
       },
@@ -49,8 +52,10 @@
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleMysqlOutput",
       "properties":{
-        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input1.csv",
-        "tempName":"input_hive",
+        "dbUrl":"jdbc:mysql://localhost:3306/test",
+        "table":"test2",
+        "user": "root",
+        "password": "zxc123",
         "flush": "yes"
       },
       "connector": {

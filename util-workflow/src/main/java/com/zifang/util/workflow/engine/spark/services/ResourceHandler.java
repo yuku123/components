@@ -1,7 +1,6 @@
 package com.zifang.util.workflow.engine.spark.services;
 
 import com.zifang.util.workflow.engine.spark.impl.AbstractSparkEngineService;
-import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SaveMode;
 
 import java.util.Properties;
@@ -45,30 +44,27 @@ public class ResourceHandler extends AbstractSparkEngineService {
     }
 
     public void handleMysqlInput(){
-        String dbUrl = "jdbc:mysql://localhost:3306/test";
-        String table = "test";
+
         Properties props = new Properties();
-        props.put("user", "root");
-        props.put("password", "zxc123");
+        props.put("user", properties.get("user"));
+        props.put("password", properties.get("password"));
 
         //从mysql读数据
         dataset = sparkContextInstance.getSqlContext()
                 .read()
-                .jdbc(dbUrl, table, props);
+                .jdbc(properties.get("dbUrl"), properties.get("table"), props);
         dataset.show();
-        System.out.println("aa");
-
     }
 
     public void handleMysqlOutput(){
-        String dbUrl = "jdbc:mysql://localhost:3306/test";
-        String table = "test.test_a";
-        Properties props = new Properties();
-        props.put("user", "root");
-        props.put("password", "zxc123");
 
-        executableWorkflowNode.getPre().get(0).getDataset().write()
+        Properties props = new Properties();
+        props.put("user", properties.get("user"));
+        props.put("password", properties.get("password"));
+
+        executableWorkflowNode.getPre().get(0).getDataset()
+                .write()
                 .mode(SaveMode.Overwrite)
-                .jdbc(dbUrl, table,props);
+                .jdbc(properties.get("dbUrl"), properties.get("table"), props);
     }
 }
