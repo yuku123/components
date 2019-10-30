@@ -41,6 +41,7 @@ public class ExecutableWorkflowNode extends WorkflowNode{
         super.setName(workflowNode.getName());
         super.setProperties(workflowNode.getProperties());
         super.setServiceUnit(workflowNode.getServiceUnit());
+        super.setInvokeDynamic(workflowNode.getInvokeDynamic());
         super.setType(workflowNode.getType());
     }
 
@@ -131,5 +132,13 @@ public class ExecutableWorkflowNode extends WorkflowNode{
 
     public void setDatasetPre(Dataset<Row> datasetPre) {
         this.datasetPre = datasetPre;
+    }
+
+    public Dataset<Row> getDataset() {
+        return dataset;
+    }
+
+    public void setDataset(Dataset<Row> dataset) {
+        this.dataset = dataset;
     }
 }

@@ -33,6 +33,11 @@ public class WorkflowNode {
     private String serviceUnit;
 
     /**
+     * 处理引擎的处理实例方法
+     * */
+    private String invokeDynamic;
+
+    /**
      * 可以被处理引擎所识别并且转换的参数合集
      * */
     private Map<String,String> properties;
@@ -96,5 +101,13 @@ public class WorkflowNode {
 
     public void setConnector(Connector connector) {
         this.connector = connector;
+    }
+
+    public String getInvokeDynamic() {
+        return invokeDynamic;
+    }
+
+    public void setInvokeDynamic(String invokeDynamic) {
+        this.invokeDynamic = invokeDynamic;
     }
 }

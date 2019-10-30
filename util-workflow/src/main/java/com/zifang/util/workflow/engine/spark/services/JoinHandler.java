@@ -6,7 +6,7 @@ import com.zifang.util.workflow.engine.spark.impl.AbstractSparkEngineService;
 public class JoinHandler extends AbstractSparkEngineService {
 
     @Override
-    public void exec(ExecutableWorkflowNode executableWorkflowNode) {
+    public void defaultHandler() {
         try{
             dataset = sparkContextInstance.getSqlContext().sql(properties.get("sql"));
             dataset.show();
