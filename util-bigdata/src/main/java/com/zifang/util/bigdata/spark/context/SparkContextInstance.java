@@ -23,6 +23,9 @@ public class SparkContextInstance {
 
     private SparkSession sparkSession;
 
+    public SparkContextInstance(){
+        doLocalInitial(null);
+    }
     public SparkContextInstance(String mode, Map<String, String> properties) {
         if(local.equals(mode)){
             doLocalInitial(properties);
