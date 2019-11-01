@@ -19,7 +19,7 @@ public class ResourceHandler extends AbstractSparkEngineService {
     public void handleLocalInput(){
         try {
             dataset = sparkUtil.creatDataset(properties.get(localFile));
-            dataset.registerTempTable(properties.get(tempName));
+            dataset.createOrReplaceTempView(properties.get(tempName));
             dataset.show();
         }catch (Exception e){
             e.printStackTrace();
@@ -67,4 +67,19 @@ public class ResourceHandler extends AbstractSparkEngineService {
                 .mode(SaveMode.Overwrite)
                 .jdbc(properties.get("dbUrl"), properties.get("table"), props);
     }
+
+
+    public void handleHiveInput(){
+        dataset = sparkContextInstance.getSqlContext().sql("select * from "+ properties.get("tableName"));
+        dataset.show();
+    }
+
+    public void handleHiveOutput(){
+        String view = "t"+"_"+System.currentTimeMillis();
+        executableWorkflowNode.getPre().get(0).getDataset().createOrReplaceTempView(view);
+        String tableName = properties.get("tableName");
+        sparkContextInstance.getSqlContext().sql("drop table if exists "+tableName);
+        dataset = sparkContextInstance.getSqlContext().sql("create table "+tableName+" as select * from "+ view);
+    }
+
 }

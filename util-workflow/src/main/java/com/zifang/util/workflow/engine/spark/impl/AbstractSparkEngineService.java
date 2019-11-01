@@ -29,6 +29,7 @@ public abstract class AbstractSparkEngineService extends AbstractEngineService {
             invokeDynamic = defaultInvokeDynamicMethod;
         }
         try {
+            System.out.println("want to call:"+invokeDynamic);
             Method method = this.getClass().getMethod(invokeDynamic);
             method.invoke(this);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {

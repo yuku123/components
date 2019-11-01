@@ -25,7 +25,7 @@
       "serviceUnit": "engine.service.empty",
       "connector": {
         "pre": [],
-        "post": ["input_local"]
+        "post": ["input_hive"]
       }
     },
     {

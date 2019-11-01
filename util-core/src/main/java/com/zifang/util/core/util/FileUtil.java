@@ -543,6 +543,9 @@ public class FileUtil {
      */
     public static final String getFileContent(String path) throws IOException {
         String filecontent = "";
+        if(!path.startsWith("/")){
+            path = FileUtil.class.getResource("/").getPath()+path;
+        }
         try {
             File f = new File(path);
             if (f.exists()) {

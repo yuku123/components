@@ -35,7 +35,7 @@
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleLocalInput",
       "properties":{
-        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input1.csv",
+        "localFile":"/home/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1.csv",
         "tempName":"input_local",
         "flush": "yes"
       },
@@ -50,7 +50,7 @@
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleLocalOutput",
       "properties":{
-        "outputDir":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input1_output",
+        "outputDir":"/home/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1_output",
         "tempName":"input_local",
         "flush": "yes"
       },
