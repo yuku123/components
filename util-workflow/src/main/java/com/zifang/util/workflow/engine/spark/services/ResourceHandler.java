@@ -18,7 +18,7 @@ public class ResourceHandler extends AbstractSparkEngineService {
 
     public void handleLocalInput(){
         try {
-            dataset = sparkUtil.creatDataset(properties.get(localFile));
+            dataset = sparkUtil.createDataSet(properties.get(localFile));
             dataset.createOrReplaceTempView(properties.get(tempName));
             dataset.show();
         }catch (Exception e){
