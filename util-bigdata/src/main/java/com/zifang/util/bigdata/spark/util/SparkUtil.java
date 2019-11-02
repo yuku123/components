@@ -26,6 +26,7 @@ public class SparkUtil {
         Dataset<Row> dataSet = sparkContextInstance.getSqlContext().read()
                 .format("csv")
                 .option("header","true")
+                .option("inferSchema", "true")
                 .load(fileLocation);
         return dataSet;
     }
