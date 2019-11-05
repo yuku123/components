@@ -1,4 +1,4 @@
-package com.zifang.util.bigdata.spark.context;
+package com.zifang.util.bigdata.spark.util;
 
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;

@@ -34,8 +34,8 @@
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleLocalInput",
-      "properties":{
-        "localFile":"/home/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1.csv",
+      "invokeParameter":{
+        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1.csv",
         "tempName":"input_local",
         "flush": "yes"
       },
@@ -49,8 +49,8 @@
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleLocalOutput",
-      "properties":{
-        "outputDir":"/home/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1_output",
+      "invokeParameter":{
+        "outputDir":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1_output",
         "tempName":"input_local",
         "flush": "yes"
       },

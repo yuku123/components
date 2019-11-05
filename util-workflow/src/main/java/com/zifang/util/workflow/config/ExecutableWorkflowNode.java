@@ -40,12 +40,14 @@ public class ExecutableWorkflowNode extends WorkflowNode{
         super.setGroupId(workflowNode.getGroupId());
         super.setName(workflowNode.getName());
         super.setProperties(workflowNode.getProperties());
+        super.setInvokeParameter(workflowNode.getInvokeParameter());
         super.setServiceUnit(workflowNode.getServiceUnit());
         super.setInvokeDynamic(workflowNode.getInvokeDynamic());
         super.setType(workflowNode.getType());
     }
 
     public void exec() {
+        abstractEngineService.setInvokeParameter(getInvokeParameter());
         abstractEngineService.setProperty(getProperties());
         abstractEngineService.exec(this);
         dataset = abstractEngineService.getDataset();
