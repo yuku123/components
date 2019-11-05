@@ -34,25 +34,33 @@
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleLocalInput",
-      "properties":{
-        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input1.csv",
+      "invokeParameter":{
+        "localFile":"/home/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input_pivot.csv",
         "tempName":"input_local",
         "flush": "yes"
       },
       "connector": {
         "pre": ["start"],
-        "post": ["output_local"]
+        "post": ["pivot"]
       }
     },{
-      "nodeId": "output_local",
-      "name": "output_local",
+      "nodeId": "pivot",
+      "name": "pivot",
       "type": "engine.nodeType.resource",
-      "serviceUnit": "engine.service.resourceHandler",
-      "invokeDynamic": "handleLocalOutput",
-      "properties":{
-        "outputDir":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input1_output",
-        "tempName":"input_local",
-        "flush": "yes"
+      "serviceUnit": "engine.service.pivot",
+      "invokeDynamic": "pivot",
+      "invokeParameter":{
+        "pivotColumnDefinations":[
+          {
+            "columnName":"name1",
+            "pivotColumns":["name1_u1","name1_u2","name1_u3","name1_u4","name1_u5"],
+            "value":"name1_value"
+          },
+          {
+            "columnName":"name2",
+            "pivotColumns":["name2_u1","name2_u2","name2_u3","name2_u4","name2_u5"]
+          }
+        ]
       },
       "connector": {
         "pre": ["input_local"],

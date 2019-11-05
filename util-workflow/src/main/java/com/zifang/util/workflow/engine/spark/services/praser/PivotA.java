@@ -26,25 +26,3 @@ public class PivotA {
         this.columnMap = columnMap;
     }
 }
-
-class PivotANode{
-
-    String columnName;
-    List<String> pivotColumns;
-
-    public String getColumnName() {
-        return columnName;
-    }
-
-    public void setColumnName(String columnName) {
-        this.columnName = columnName;
-    }
-
-    public List<String> getPivotColumns() {
-        return pivotColumns;
-    }
-
-    public void setPivotColumns(List<String> pivotColumns) {
-        this.pivotColumns = pivotColumns;
-    }
-}

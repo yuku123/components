@@ -27,7 +27,7 @@ public class PivotTest {
         a.add("name_u4");
         a.add("name_u5");
 
-        dataset.groupBy("userId","c")
+        dataset.groupBy(dataset.col("userId"))
                 .pivot("name",a)
                 .agg(functions.sum("value"))
                 .na().fill(0).show();
