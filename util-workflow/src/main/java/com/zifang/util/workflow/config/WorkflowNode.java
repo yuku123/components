@@ -43,9 +43,22 @@ public class WorkflowNode {
     private Map<String,String> properties;
 
     /**
+     * 可以被处理引擎所识别并且转换的参数合集
+     * */
+    private Object invokeParameter;
+
+    /**
      * 描述此节点与其他节点的关联情况
      * */
     private Connector connector;
+
+    public Object getInvokeParameter() {
+        return invokeParameter;
+    }
+
+    public void setInvokeParameter(Object invokeParameter) {
+        this.invokeParameter = invokeParameter;
+    }
 
     public String getNodeId() {
         return nodeId;

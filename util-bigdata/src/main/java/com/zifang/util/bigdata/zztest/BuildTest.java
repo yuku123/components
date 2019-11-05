@@ -1,7 +1,7 @@
-package com.zifang.util.bigdata.test;
+package com.zifang.util.bigdata.zztest;
 
 import com.zifang.util.bigdata.spark.context.ClusterSparkContext;
-import com.zifang.util.bigdata.spark.context.Model_Function;
+import com.zifang.util.bigdata.spark.util.Model_Function;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.ml.classification.RandomForestClassificationModel;
 import org.apache.spark.ml.feature.VectorAssembler;

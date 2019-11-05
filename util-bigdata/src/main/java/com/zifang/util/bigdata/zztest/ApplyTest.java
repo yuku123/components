@@ -1,24 +1,10 @@
-package com.zifang.util.bigdata.test;
+package com.zifang.util.bigdata.zztest;
 
 import com.zifang.util.bigdata.spark.context.ClusterSparkContext;
-import org.apache.spark.api.java.JavaPairRDD;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.ml.classification.RandomForestClassificationModel;
 import org.apache.spark.ml.feature.VectorAssembler;
-import org.apache.spark.mllib.evaluation.MulticlassMetrics;
-import org.apache.spark.mllib.linalg.Matrix;
-import org.apache.spark.mllib.linalg.Vector;
-import org.apache.spark.mllib.linalg.Vectors;
-import org.apache.spark.mllib.regression.LabeledPoint;
-import org.apache.spark.mllib.tree.model.RandomForestModel;
 import org.apache.spark.sql.*;
-import org.apache.spark.sql.types.StructField;
-import org.apache.spark.sql.types.StructType;
-import scala.Tuple2;
-import scala.collection.JavaConverters;
-import scala.collection.Seq;
-import static org.apache.spark.sql.functions.*;
-import static org.apache.spark.sql.types.DataTypes.*;
+
 import java.util.Arrays;
 import java.util.stream.Collectors;
 

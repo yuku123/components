@@ -1,8 +1,11 @@
 package com.zifang.util.workflow.engine.spark.services;
 
+import com.zifang.util.core.util.GsonUtil;
 import com.zifang.util.workflow.engine.spark.impl.AbstractSparkEngineService;
 import org.apache.spark.sql.SaveMode;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class ResourceHandler extends AbstractSparkEngineService {
@@ -17,9 +20,11 @@ public class ResourceHandler extends AbstractSparkEngineService {
     }
 
     public void handleLocalInput(){
+
+        HashMap<String,String> transformedParameter = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
         try {
-            dataset = sparkUtil.createDataSet(properties.get(localFile));
-            dataset.createOrReplaceTempView(properties.get(tempName));
+            dataset = sparkUtil.createDataSet(transformedParameter.get(localFile));
+            dataset.createOrReplaceTempView(transformedParameter.get(tempName));
             dataset.show();
         }catch (Exception e){
             e.printStackTrace();
@@ -27,6 +32,8 @@ public class ResourceHandler extends AbstractSparkEngineService {
     }
 
     public void handleLocalOutput(){
+        Map<String,String> transformedParameter = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+
         try {
             sparkContextInstance.getSparkContext()
                     .hadoopConfiguration()
@@ -37,7 +44,7 @@ public class ResourceHandler extends AbstractSparkEngineService {
                     .mode(SaveMode.Overwrite)
                     .format("csv")
                     .option("header","true")
-                    .save(properties.get("outputDir"));
+                    .save(transformedParameter.get("outputDir"));
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -73,6 +80,7 @@ public class ResourceHandler extends AbstractSparkEngineService {
         dataset = sparkContextInstance.getSqlContext().sql("select * from "+ properties.get("tableName"));
         dataset.show();
     }
+
 
     public void handleHiveOutput(){
         String view = "t"+"_"+System.currentTimeMillis();

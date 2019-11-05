@@ -21,6 +21,9 @@ public class GsonUtil {
 		return gson.fromJson(jsonStr, classOfT);
 	}
 
+	public static <T> T changeToSubClass(Object o,Class<T> t){
+		return jsonStrToObject(objectToJsonStr(o),t);
+	}
 	public static ParameterizedType type(final Class<?> raw, final Type... args) {
 		return new ParameterizedType() {
 

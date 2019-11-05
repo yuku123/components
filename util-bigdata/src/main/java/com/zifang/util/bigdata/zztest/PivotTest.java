@@ -1,4 +1,4 @@
-package com.zifang.util.bigdata.test;
+package com.zifang.util.bigdata.zztest;
 
 import com.zifang.util.bigdata.spark.context.SparkContextInstance;
 import com.zifang.util.bigdata.spark.util.SparkUtil;

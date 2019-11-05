@@ -16,10 +16,6 @@ import org.apache.spark.sql.Row;
  * JavaPairRDD<Integer,String>
  *
  *
- *
- *
- *
- *
  * */
 public class SparkCoreSupport {
 

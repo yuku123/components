@@ -36,16 +36,6 @@ public class SparkContextInstance {
 
     private void doClusterInitial(Map<String, String> properties) {
         sparkConf = new SparkConf();
-
-//        sparkConf = new SparkConf();
-//        sparkConf.setMaster("spark://192.168.1.103:7077").setAppName("test");
-//        sparkConf.set("spark.sql.warehouse.dir","hdfs://192.168.1.103:9000/user/hive/warehouse");
-//        sparkConf.set("hive.metastore.uris","thrift://192.168.1.103:9083");
-//        sparkConf.set("spark.executor.memory","2g");
-//        sparkConf.set("spark.driver.maxResultSize","2g");
-//        sparkConf.set("spark.cores.max","1");
-//        sparkConf.setJars(new String[]{"/home/zifang/workplace/idea_workplace/components/util-bigdata/target/util-bigdata-1.0-SNAPSHOT.jar"});
-
         sparkConf.setMaster(properties.get("master"));
         sparkConf.setAppName(properties.get("appName") == null?"default":properties.get("appName"));
         sparkConf.set("spark.sql.warehouse.dir",properties.get("spark.sql.warehouse.dir"));
