@@ -13,7 +13,7 @@ import java.util.List;
 public class PivotTest {
     public static void main(String[] args) {
         SparkContextInstance sparkContextInstance = new SparkContextInstance();
-        Dataset<Row> dataset = new SparkUtil(sparkContextInstance).createDataSet("file:/Users/zifang/workplace/idea_workplace/components/util-bigdata/src/test/resources/input1.csv");
+        Dataset<Row> dataset = new SparkUtil(sparkContextInstance).createDataSet("file:/home/zifang/workplace/idea_workplace/components/util-bigdata/src/test/resources/input1.csv");
 
         dataset.show();
         for(StructField field :dataset.schema().fields()){
