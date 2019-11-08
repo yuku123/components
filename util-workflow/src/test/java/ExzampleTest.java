@@ -24,7 +24,7 @@ public class ExzampleTest {
         workFlowApplicationContext.executeTask();
     }
 
-    @Test
+    //@Test
     public void workflow_pivot(){
         String filePath = "ex/workflow_pivot.json";
         WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext(filePath);
