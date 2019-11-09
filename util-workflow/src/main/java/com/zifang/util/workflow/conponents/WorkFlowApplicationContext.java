@@ -144,7 +144,7 @@ public class WorkFlowApplicationContext {
 
             ExecutableWorkflowNode executableWorkNode = new ExecutableWorkflowNode(workflowNode);
 
-            executableWorkNode.setEngine(abstractEngine);
+            executableWorkNode.setAbstractEngine(abstractEngine);
 
             executableWorkNodeIdMap.put(workflowNode.getNodeId(),executableWorkNode);
 

@@ -2,6 +2,9 @@ package com.zifang.util.workflow.config;
 
 import com.zifang.util.workflow.engine.interfaces.AbstractEngine;
 import com.zifang.util.workflow.engine.interfaces.AbstractEngineService;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 
@@ -9,7 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-public class ExecutableWorkflowNode extends WorkflowNode{
+
+@Setter
+@Getter
+public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycle{
+
+    private String status;
 
     private AbstractEngine abstractEngine;
 
@@ -19,7 +27,6 @@ public class ExecutableWorkflowNode extends WorkflowNode{
     //1. 主动将数据集塞给后置节点，表现为主动遍历所有前置节点得到数据集合
     //2. 被动接收前置节点传入的，表现为获取当前节点内的datasetPre
     private Dataset<Row> dataset;//当前的数据结果集合
-
     private Dataset<Row> datasetPre; //上个节点传入的dataSet
 
     private CountDownLatch countDownLatch;//用于控制前置节点的
@@ -44,11 +51,12 @@ public class ExecutableWorkflowNode extends WorkflowNode{
         super.setServiceUnit(workflowNode.getServiceUnit());
         super.setInvokeDynamic(workflowNode.getInvokeDynamic());
         super.setType(workflowNode.getType());
+        this.setStatus(NodeLifeCycle.PREPARED);
+        this.init();
     }
 
     public void exec() {
         abstractEngineService.setInvokeParameter(getInvokeParameter());
-        abstractEngineService.setProperty(getProperties());
         abstractEngineService.exec(this);
         dataset = abstractEngineService.getDataset();
 
@@ -76,71 +84,28 @@ public class ExecutableWorkflowNode extends WorkflowNode{
         }
     }
 
-    public List<ExecutableWorkflowNode> getPost() {
-        return post;
+    @Override
+    public String getStatus() {
+        return null;
     }
 
-    public void setPost(List<ExecutableWorkflowNode> post) {
-        this.post = post;
+    @Override
+    public void preExecute() {
+
     }
 
-    public List<ExecutableWorkflowNode> getPre() {
-        return pre;
+    @Override
+    public void postExecute() {
+
     }
 
-    public void setPre(List<ExecutableWorkflowNode> pre) {
-        this.pre = pre;
+    @Override
+    public void init() {
+
     }
 
-    public CountDownLatch getCountDownLatch() {
-        return countDownLatch;
-    }
-
-    public void setCountDownLatch(CountDownLatch countDownLatch) {
-        this.countDownLatch = countDownLatch;
-    }
-
-    public List<CountDownLatch> getPostCountDownLatchList() {
-        return postCountDownLatchList;
-    }
-
-    public void setPostCountDownLatchList(List<CountDownLatch> postCountDownLatchList) {
-        this.postCountDownLatchList = postCountDownLatchList;
-    }
-
-    public AbstractEngine getAbstractEngine() {
-        return abstractEngine;
-    }
-
-    public void setAbstractEngine(AbstractEngine abstractEngine) {
-        this.abstractEngine = abstractEngine;
-    }
-
-    public AbstractEngineService getAbstractEngineService() {
-        return abstractEngineService;
-    }
-
-    public void setEngine(AbstractEngine abstractEngine) {
-        this.abstractEngine = abstractEngine;
-    }
-
-    public void setAbstractEngineService(AbstractEngineService abstractEngineService) {
-        this.abstractEngineService = abstractEngineService;
-    }
-
-    public Dataset<Row> getDatasetPre() {
-        return datasetPre;
-    }
-
-    public void setDatasetPre(Dataset<Row> datasetPre) {
-        this.datasetPre = datasetPre;
-    }
-
-    public Dataset<Row> getDataset() {
-        return dataset;
-    }
-
-    public void setDataset(Dataset<Row> dataset) {
-        this.dataset = dataset;
+    @Override
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

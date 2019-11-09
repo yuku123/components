@@ -1,10 +1,13 @@
 package com.zifang.util.workflow.config;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
  * 整个流程图的定义
  * */
+@Data
 public class WorkflowConfiguration {
 
     /**
@@ -17,20 +20,4 @@ public class WorkflowConfiguration {
      * */
     private List<WorkflowNode> workflowNodeList;
 
-
-    public Configurations getConfigurations() {
-        return configurations;
-    }
-
-    public void setConfigurations(Configurations configurations) {
-        this.configurations = configurations;
-    }
-
-    public List<WorkflowNode> getWorkflowNodeList() {
-        return workflowNodeList;
-    }
-
-    public void setWorkflowNodeList(List<WorkflowNode> workflowNodeList) {
-        this.workflowNodeList = workflowNodeList;
-    }
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 public abstract class AbstractEngine {
 
     protected String mode;
+
     protected Map<String, String> properties;
 
     public abstract Map<String, Class<? extends AbstractEngineService>> getRegisteredEngineServiceMap();
