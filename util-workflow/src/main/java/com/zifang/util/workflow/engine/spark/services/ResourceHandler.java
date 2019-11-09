@@ -52,6 +52,8 @@ public class ResourceHandler extends AbstractSparkEngineService {
 
     public void handleMysqlInput(){
 
+        Map<String,String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+
         Properties props = new Properties();
         props.put("user", properties.get("user"));
         props.put("password", properties.get("password"));
@@ -64,6 +66,7 @@ public class ResourceHandler extends AbstractSparkEngineService {
     }
 
     public void handleMysqlOutput(){
+        Map<String,String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
 
         Properties props = new Properties();
         props.put("user", properties.get("user"));
@@ -77,12 +80,16 @@ public class ResourceHandler extends AbstractSparkEngineService {
 
 
     public void handleHiveInput(){
+        Map<String,String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+
         dataset = sparkContextInstance.getSqlContext().sql("select * from "+ properties.get("tableName"));
         dataset.show();
     }
 
 
     public void handleHiveOutput(){
+        Map<String,String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+
         String view = "t"+"_"+System.currentTimeMillis();
         executableWorkflowNode.getPre().get(0).getDataset().createOrReplaceTempView(view);
         String tableName = properties.get("tableName");
