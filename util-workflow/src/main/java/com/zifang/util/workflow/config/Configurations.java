@@ -1,28 +1,20 @@
 package com.zifang.util.workflow.config;
 
+import lombok.Data;
+
 import java.util.Map;
 
+@Data
 public class Configurations {
 
-
+    /**
+     * 全局配置的引擎配置
+     * */
     private Engine engine;
 
+    /**
+     * 运行时参数设置
+     * */
     private Map<String,String> runtimeParameter;
-
-    public Engine getEngine() {
-        return engine;
-    }
-
-    public void setEngine(Engine engine) {
-        this.engine = engine;
-    }
-
-    public Map<String, String> getRuntimeParameter() {
-        return runtimeParameter;
-    }
-
-    public void setRuntimeParameter(Map<String, String> runtimeParameter) {
-        this.runtimeParameter = runtimeParameter;
-    }
 
 }

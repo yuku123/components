@@ -1,7 +1,10 @@
 package com.zifang.util.workflow.config;
 
+import lombok.Data;
+
 import java.util.Map;
 
+@Data
 public class Engine {
 
     /**
@@ -19,27 +22,4 @@ public class Engine {
      * */
     private Map<String,String> properties;
 
-    public String getMode() {
-        return mode;
-    }
-
-    public void setMode(String mode) {
-        this.mode = mode;
-    }
-
-    public Map<String, String> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(Map<String, String> properties) {
-        this.properties = properties;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }

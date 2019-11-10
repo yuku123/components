@@ -1,33 +1,20 @@
 package com.zifang.util.workflow.config;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class Connector {
 
     /**
-     * 前置节点
+     * 前置节点列表
      * */
     private List<String> pre;
 
     /**
-     * 后置节点
+     * 后置节点列表
      * */
     private List<String> post;
 
-
-    public List<String> getPre() {
-        return pre;
-    }
-
-    public void setPre(List<String> pre) {
-        this.pre = pre;
-    }
-
-    public List<String> getPost() {
-        return post;
-    }
-
-    public void setPost(List<String> post) {
-        this.post = post;
-    }
 }

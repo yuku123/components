@@ -1,10 +1,14 @@
 package com.zifang.util.workflow.conponents;
 
 import com.zifang.util.workflow.config.ExecutableWorkflowNode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Map;
 
+@Setter
+@Getter
 public class Task {
 
     private WorkFlowApplicationContext workFlowApplicationContext;
@@ -19,19 +23,4 @@ public class Task {
         start.exec();
     }
 
-    public void setWorkFlowApplicationContext(WorkFlowApplicationContext workFlowApplicationContext) {
-        this.workFlowApplicationContext = workFlowApplicationContext;
-    }
-
-    public void setStartExecutableWorkNode(ExecutableWorkflowNode start) {
-        this.start = start;
-    }
-
-    public void setExecutableWorkNodes(List<ExecutableWorkflowNode> executableWorkNodes) {
-        this.executableWorkNodes = executableWorkNodes;
-    }
-
-    public void setExecutableWorkNodeIdMap(Map<String, ExecutableWorkflowNode> executableWorkNodeIdMap) {
-        this.executableWorkNodeIdMap = executableWorkNodeIdMap;
-    }
 }

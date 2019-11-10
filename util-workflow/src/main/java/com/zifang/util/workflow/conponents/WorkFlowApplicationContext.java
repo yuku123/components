@@ -47,11 +47,35 @@ public class WorkFlowApplicationContext {
         initial();
     }
 
+    public WorkFlowApplicationContext(){
+    }
+
+    public void initialByLocalFilePath(String filePath){
+
+        try {
+            String json = FileUtil.getFileContent(filePath);
+            workflowConfiguration = GsonUtil.jsonStrToObject(json,WorkflowConfiguration.class);
+        } catch (IOException e) {
+            logger.error("解析文件出现问题:"+ this.filePath);
+            e.printStackTrace();
+        }
+
+        initial();
+    }
+
+    public void initialByJsonStream(String json){
+        workflowConfiguration = GsonUtil.jsonStrToObject(json,WorkflowConfiguration.class);
+        initial();
+    }
+
     //初始化该上下文
     private void initial() {
 
-        //从文件内初始化配置
-        initialConfiguration();
+        // 使用各种规则判断这个入参是否是正常的
+        validate();
+
+        //初始化引擎
+        initialEngine();
 
         //转换所有的节点定义，生成可执行的松散节点，这个时候节点间没有任何关联
         transformWorkFlowNode();
@@ -63,9 +87,18 @@ public class WorkFlowApplicationContext {
         produceExecutableTask();
     }
 
+    private void validate() {
+
+    }
+
+    private void initialEngine() {
+        //初始化引擎
+        abstractEngine = EngineFactory.getEngine(this.workflowConfiguration.getConfigurations().getEngine());
+    }
+
     private void produceExecutableTask() {
         task.setWorkFlowApplicationContext(this);
-        task.setStartExecutableWorkNode(executableWorkNodeIdMap.get("start"));
+        task.setStart(executableWorkNodeIdMap.get("start"));
         task.setExecutableWorkNodes(executableWorkNodes);
         task.setExecutableWorkNodeIdMap(executableWorkNodeIdMap);
     }
@@ -93,6 +126,7 @@ public class WorkFlowApplicationContext {
 
             //定义 负责处理前置节点的处理器
             CountDownLatch latch = new CountDownLatch(executableWorkNode.getPre().size());
+
             executableWorkNode.setCountDownLatch(latch);
 
         }
@@ -149,18 +183,6 @@ public class WorkFlowApplicationContext {
             executableWorkNodeIdMap.put(workflowNode.getNodeId(),executableWorkNode);
 
             executableWorkNodes.add(executableWorkNode);
-        }
-    }
-
-    private void initialConfiguration() {
-        try {
-            String json = FileUtil.getFileContent(this.filePath);
-            workflowConfiguration = GsonUtil.jsonStrToObject(json,WorkflowConfiguration.class);
-            //初始化引擎
-            abstractEngine = EngineFactory.getEngine(this.workflowConfiguration.getConfigurations().getEngine());
-        } catch (IOException e) {
-            logger.error("解析文件出现问题:"+filePath);
-            e.printStackTrace();
         }
     }
 

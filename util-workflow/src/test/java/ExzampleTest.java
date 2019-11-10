@@ -3,10 +3,11 @@ import org.junit.Test;
 
 public class ExzampleTest {
 
-    @Test
+    //@Test
     public void workflow_read_write_local(){
         String filePath = "ex/workflow_read_write_local.json";
-        WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext(filePath);
+        WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext();
+        workFlowApplicationContext.initialByLocalFilePath(filePath);
         workFlowApplicationContext.executeTask();
     }
 

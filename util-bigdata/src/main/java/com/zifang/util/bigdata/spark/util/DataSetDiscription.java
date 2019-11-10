@@ -19,7 +19,7 @@ public class DataSetDiscription {
     }
 
     /**
-     *
+     * 得到列名列表
      * */
     public List<String> getColumnList(){
         List<String> columnList = new ArrayList<>();
