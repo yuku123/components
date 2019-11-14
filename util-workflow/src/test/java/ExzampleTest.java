@@ -42,4 +42,13 @@ public class ExzampleTest {
         workFlowApplicationContext.initialByLocalFilePath(filePath);
         workFlowApplicationContext.executeTask();
     }
+
+    @Test
+    public void testOnWindows(){
+        String filePath = "/C:\\workspace\\components\\util-workflow\\src\\test\\resources\\ex\\workflow_readlocal_writehive_windows.json";
+        if (ConnectHadoopPrepare.isWindows()) ConnectHadoopPrepare.loadHadoopPrepareFile();
+        WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext();
+        workFlowApplicationContext.initialByLocalFilePath(filePath);
+        workFlowApplicationContext.executeTask();
+    }
 }

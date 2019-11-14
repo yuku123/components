@@ -1,0 +1,384 @@
+{
+  "configurations": {
+    "engine": {
+      "type": "spark",
+      "mode": "engine.spark.mode.cluster",
+      "properties": {
+        "master": "spark://192.168.1.103:7077",
+        "appName": "write hive restaurant",
+        "spark.sql.warehouse.dir": "hdfs://192.168.1.103:9000/user/hive/warehouse",
+        "hive.metastore.uris": "thrift://192.168.1.103:9083",
+        "spark.executor.memory": "2g",
+        "spark.driver.maxResultSize": "2g",
+        "spark.cores.max": "1",
+        "jars": "C:\\workspace\\components\\util-bigdata\\target\\util-bigdata-1.0-SNAPSHOT.jar",
+        "logLevel": "ERROR"
+      }
+    },
+    "runtimeParameter": {
+      "HADOOP_USER_NAME": "piday"
+    }
+  },
+  "workflowNodeList": [
+    {
+      "nodeId": "start",
+      "serviceUnit": "engine.service.empty",
+      "connector": {
+        "pre": [],
+        "post": [
+          "input_account",
+          "input_account_info",
+          "input_desk_info",
+          "input_food",
+          "input_on_account",
+          "input_on_duty",
+          "input_order",
+          "input_order_creator",
+          "input_order_dish"
+        ]
+      }
+    },
+    {
+      "nodeId": "input_account",
+      "name": "input_account",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalInput",
+      "invokeParameter": {
+        "localFile": "hdfs://192.168.1.103:9000/user/piday/restaurant/raw/account/account.csv",
+        "tempName": "input_local",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_account"
+        ]
+      }
+    },
+    {
+      "nodeId": "output_account",
+      "name": "output_account",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleHiveOutput",
+      "invokeParameter": {
+        "tableName": "restaurant.raw_account",
+        "tempName": "input_local",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "input_account"
+        ],
+        "post": []
+      }
+    },
+    {
+      "nodeId": "input_account_info",
+      "name": "input_account_info",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalInput",
+      "invokeParameter": {
+        "localFile": "hdfs://192.168.1.103:9000/user/piday/restaurant/raw/account_info/account_info.csv",
+        "tempName": "input_account_info",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_account_info"
+        ]
+      }
+    },
+    {
+      "nodeId": "output_account_info",
+      "name": "output_account_info",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleHiveOutput",
+      "invokeParameter": {
+        "tableName": "restaurant.raw_account_info",
+        "tempName": "input_account_info",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "input_account_info"
+        ],
+        "post": []
+      }
+    },
+    {
+      "nodeId": "input_desk_info",
+      "name": "input_desk_info",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalInput",
+      "invokeParameter": {
+        "localFile": "hdfs://192.168.1.103:9000/user/piday/restaurant/raw/desk_info/desk_info.csv",
+        "tempName": "input_desk_info",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_desk_info"
+        ]
+      }
+    },
+    {
+      "nodeId": "output_desk_info",
+      "name": "output_desk_info",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleHiveOutput",
+      "invokeParameter": {
+        "tableName": "restaurant.raw_desk_info",
+        "tempName": "input_desk_info",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "input_desk_info"
+        ],
+        "post": []
+      }
+    },
+    {
+      "nodeId": "input_food",
+      "name": "input_food",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalInput",
+      "invokeParameter": {
+        "localFile": "hdfs://192.168.1.103:9000/user/piday/restaurant/raw/food/food.csv",
+        "tempName": "input_food",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_food"
+        ]
+      }
+    },
+    {
+      "nodeId": "output_food",
+      "name": "output_food",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleHiveOutput",
+      "invokeParameter": {
+        "tableName": "restaurant.raw_food",
+        "tempName": "input_food",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "input_food"
+        ],
+        "post": []
+      }
+    },
+    {
+      "nodeId": "input_on_account",
+      "name": "input_on_account",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalInput",
+      "invokeParameter": {
+        "localFile": "hdfs://192.168.1.103:9000/user/piday/restaurant/raw/on_account/on_account.csv",
+        "tempName": "input_on_account",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_on_account"
+        ]
+      }
+    },
+    {
+      "nodeId": "output_on_account",
+      "name": "output_on_account",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleHiveOutput",
+      "invokeParameter": {
+        "tableName": "restaurant.raw_on_account",
+        "tempName": "input_on_account",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "input_on_account"
+        ],
+        "post": []
+      }
+    },
+    {
+      "nodeId": "input_on_duty",
+      "name": "input_on_duty",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalInput",
+      "invokeParameter": {
+        "localFile": "hdfs://192.168.1.103:9000/user/piday/restaurant/raw/on_duty/on_duty.csv",
+        "tempName": "input_on_duty",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_on_duty"
+        ]
+      }
+    },
+    {
+      "nodeId": "output_on_duty",
+      "name": "output_on_duty",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleHiveOutput",
+      "invokeParameter": {
+        "tableName": "restaurant.raw_on_duty",
+        "tempName": "input_on_duty",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "input_on_duty"
+        ],
+        "post": []
+      }
+    },
+    {
+      "nodeId": "input_order",
+      "name": "input_order",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalInput",
+      "invokeParameter": {
+        "localFile": "hdfs://192.168.1.103:9000/user/piday/restaurant/raw/order/order.csv",
+        "tempName": "input_order",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_order"
+        ]
+      }
+    },
+    {
+      "nodeId": "output_order",
+      "name": "output_order",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleHiveOutput",
+      "invokeParameter": {
+        "tableName": "restaurant.raw_order",
+        "tempName": "input_order",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "input_order"
+        ],
+        "post": []
+      }
+    },
+    {
+      "nodeId": "input_order_creator",
+      "name": "input_order_creator",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalInput",
+      "invokeParameter": {
+        "localFile": "hdfs://192.168.1.103:9000/user/piday/restaurant/raw/order_creator/order_creator.csv",
+        "tempName": "input_order_creator",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_order_creator"
+        ]
+      }
+    },
+    {
+      "nodeId": "output_order_creator",
+      "name": "output_order_creator",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleHiveOutput",
+      "invokeParameter": {
+        "tableName": "restaurant.raw_order_creator",
+        "tempName": "input_order_creator",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "input_order_creator"
+        ],
+        "post": []
+      }
+    },
+    {
+      "nodeId": "input_order_dish",
+      "name": "input_order_dish",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalInput",
+      "invokeParameter": {
+        "localFile": "hdfs://192.168.1.103:9000/user/piday/restaurant/raw/order_dish/order_dish.csv",
+        "tempName": "input_order_dish",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_order_dish"
+        ]
+      }
+    },
+    {
+      "nodeId": "output_order_dish",
+      "name": "output_order_dish",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleHiveOutput",
+      "invokeParameter": {
+        "tableName": "restaurant.raw_order_dish",
+        "tempName": "input_order_dish",
+        "flush": "yes"
+      },
+      "connector": {
+        "pre": [
+          "input_order_dish"
+        ],
+        "post": []
+      }
+    }
+  ]
+}
