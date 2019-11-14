@@ -1,0 +1,97 @@
+{
+  "configurations": {
+    "engine": {
+      "type": "spark",
+      "mode": "engine.spark.mode.cluster",
+      "properties": {
+        "master": "spark://192.168.1.103:7077",
+        "appName": "cc",
+        "spark.sql.warehouse.dir": "hdfs://192.168.1.103:9000/user/hive/warehouse",
+        "hive.metastore.uris": "thrift://192.168.1.103:9083",
+        "spark.executor.memory": "2g",
+        "spark.driver.maxResultSize": "2g",
+        "spark.cores.max": "1",
+        "jars": "/home/zifang/workplace/idea_workplace/components/util-bigdata/target/util-bigdata-1.0-SNAPSHOT.jar",
+        "logLevel": "ERROR"
+      }
+    },
+    "runtimeParameter": {
+      "HADOOP_USER_NAME": "piday"
+    }
+  },
+  "workflowNodeList":[
+    {
+      "nodeId": "start",
+      "serviceUnit": "engine.service.empty",
+      "connector": {
+        "pre": [],
+        "post": ["looper"]
+      }
+    },
+    {
+      "nodeId": "looper",
+      "name": "looper",
+      "type": "engine.nodeType.loop",
+      "serviceUnit": "engine.service.loopHandler",
+      "invokeDynamic": "lookUpLocalDirLoopHandler",
+      "invokeParameter":{
+        "localDir":"/home/zifang/data/aa",
+        "export":"fileName"
+      },
+      "connector": {
+        "pre": ["start"],
+        "post": ["loadToHDFS"]
+      }
+    },
+    {
+      "nodeId": "loadToHDFS",
+      "name": "loadToHDFS",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "loadLocalFileToHDFSHandler",
+      "invokeParameter":{
+        "hdfsPath":"hdfs://192.168.1.103:9000/user/piday/test/aa/${fileName}.csv"
+      },
+      "connector": {
+        "pre": ["looper"],
+        "post": ["output_hive"]
+      }
+    },
+    {
+      "nodeId": "output_hive",
+      "name": "output_hive",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleHiveOutput",
+      "invokeParameter": {
+        "tableName": "model_test.${fileName}"
+      },
+      "connector": {
+        "pre": [
+          "loadToHDFS"
+        ],
+        "post": [
+          "validator"
+        ]
+      }
+    },
+    {
+      "nodeId": "validator",
+      "name": "validator",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.gotoHandler",
+      "invokeDynamic": "checkLoop",
+      "invokeParameter": {
+        "goto": "looper"
+      },
+      "connector": {
+        "pre": [
+          "output_hive"
+        ],
+        "post": [
+
+        ]
+      }
+    }
+  ]
+}
