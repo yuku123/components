@@ -35,7 +35,7 @@ public class ExzampleTest {
     //真实的干活的
 
 
-    @Test
+    //@Test
     public void aa(){
         String filePath = "ex/workflow_readlocal_writehive.json";
         WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext();
