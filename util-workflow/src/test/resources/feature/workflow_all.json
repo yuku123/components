@@ -15,6 +15,14 @@
         "logLevel": "ERROR"
       }
     },
+    "cacheEngine":{
+      "engineType":"hadoop",
+      "cacheEngineService":"default"
+    },
+    "personalEnvironment":{
+      "hdfsPath":"hdfs://192.168.1.103:/user/piday/test/a",
+      "hiveDatabase":"personal"
+    },
     "runtimeParameter": {
       "HADOOP_USER_NAME": "piday"
     }
