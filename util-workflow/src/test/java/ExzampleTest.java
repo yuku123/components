@@ -31,4 +31,15 @@ public class ExzampleTest {
         WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext(filePath);
         workFlowApplicationContext.executeTask();
     }
+
+    //真实的干活的
+
+
+    @Test
+    public void aa(){
+        String filePath = "ex/workflow_readlocal_writehive.json";
+        WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext();
+        workFlowApplicationContext.initialByLocalFilePath(filePath);
+        workFlowApplicationContext.executeTask();
+    }
 }
