@@ -33,12 +33,48 @@
       "serviceUnit": "engine.service.empty",
       "connector": {
         "pre": [],
-        "post": ["looper"]
+        "post": ["read_local"]
       }
     },
     {
-      "nodeId": "looper",
-      "name": "looper",
+      "nodeId": "read_local",
+      "name": "read_local",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalInput",
+      "invokeParameter":{
+        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1.csv"
+      },
+      "cache":{
+        "flushFlag": true,
+        "cacheTempNameAlias":"input_local"
+      },
+      "connector": {
+        "pre": ["start"],
+        "post": ["output_local"]
+      }
+    },
+    {
+      "nodeId": "output_local",
+      "name": "output_local",
+      "type": "engine.nodeType.resource",
+      "serviceUnit": "engine.service.resourceHandler",
+      "invokeDynamic": "handleLocalOutput",
+      "invokeParameter":{
+        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1.csv"
+      },
+      "cache":{
+        "flushFlag": true,
+        "cacheTempNameAlias":"input_local"
+      },
+      "connector": {
+        "pre": ["output_local"],
+        "post": []
+      }
+    },
+    {
+      "nodeId": "output_local",
+      "name": "output_local",
       "type": "engine.nodeType.loop",
       "serviceUnit": "engine.service.loopHandler",
       "invokeDynamic": "lookUpLocalDirLoopHandler",

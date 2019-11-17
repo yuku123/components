@@ -22,6 +22,8 @@ import java.util.concurrent.CountDownLatch;
  * */
 public class WorkFlowApplicationContext {
 
+    private Integer workFlowApplicationContextId;
+
     private static Logger logger = Logger.getLogger(WorkFlowApplicationContext.class);
 
     //存储所有的执行节点
@@ -60,6 +62,11 @@ public class WorkFlowApplicationContext {
             e.printStackTrace();
         }
 
+        initial();
+    }
+
+    public void initialByWorkflowConfigurationInstance(WorkflowConfiguration workflowConfiguration){
+        this.workflowConfiguration = workflowConfiguration;
         initial();
     }
 
