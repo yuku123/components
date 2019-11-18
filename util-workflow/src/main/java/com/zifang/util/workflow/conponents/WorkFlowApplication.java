@@ -59,5 +59,33 @@ public class WorkFlowApplication {
         return null;
     }
 
+    /***
+     * 单步执行，执行到指定位置的node,中止
+     * */
+    public synchronized Boolean startReferTo(){
+        return null;
+    }
+
+    /**
+     * 强制这个上下文暂停，并返回状态
+     * */
+    public synchronized Boolean forcePause(){
+        return null;
+    }
+
+    /**
+     * 再重新启动这个 工作流的上下文
+     * */
+    public synchronized Boolean resume(){
+        return null;
+    }
+
+    /**
+     * 所有的上下文的状态情况
+     * */
+    public Boolean status(){
+        return null;
+    }
+
 
 }
