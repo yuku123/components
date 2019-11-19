@@ -1,5 +1,6 @@
 {
   "configurations": {
+    "workflowConfigurationId": "testId",
     "engine": {
       "type": "spark",
       "mode": "engine.spark.mode.cluster",

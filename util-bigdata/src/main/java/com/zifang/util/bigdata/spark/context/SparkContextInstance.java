@@ -34,6 +34,10 @@ public class SparkContextInstance {
         }
     }
 
+    public static void main(String[] args) {
+        SparkContextInstance sparkContextInstance = new SparkContextInstance();
+    }
+
     private void doClusterInitial(Map<String, String> properties) {
         sparkConf = new SparkConf();
         sparkConf.setMaster(properties.get("master"));

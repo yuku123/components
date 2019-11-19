@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class WorkFlowApplication {
 
@@ -15,7 +16,7 @@ public class WorkFlowApplication {
 
     public static ExecutorService threadPool = Executors.newFixedThreadPool(100);
 
-    public static Random random = new Random(Integer.MAX_VALUE);
+    public static AtomicInteger workflowContextId = new AtomicInteger(0);
 
     /**
      * 通过一个workflowConfiguration 主动创造一个workflow的上下文
@@ -23,17 +24,14 @@ public class WorkFlowApplication {
      * return WorkFlowApplicationContextId
      * */
     public synchronized Integer createWorkflowContext(WorkflowConfiguration workflowConfiguration){
-        Integer index = null;
-        while(true){
-            index = random.nextInt();
-            if(!workFlowContextMap.containsKey(index)){
-                WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext();
-                workFlowApplicationContext.initialByWorkflowConfigurationInstance(workflowConfiguration);
-                workFlowContextMap.put(index,workFlowApplicationContext);
-                break;
-            }
-        }
-        return index;
+
+        WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext();
+
+        workFlowApplicationContext.initialByWorkflowConfigurationInstance(workflowConfiguration);
+
+        workFlowContextMap.put(workflowContextId.getAndIncrement(),workFlowApplicationContext);
+
+        return workflowContextId.get();
     }
 
     /**
@@ -41,10 +39,13 @@ public class WorkFlowApplication {
      *
      * 参数需要提供全量
      * */
-    public synchronized Boolean addSimpleWorkfloeNode(Integer workFlowApplicationContextId,WorkflowNode workflowNode){
+    public synchronized Boolean addSimpleWorkflowNode(Integer workFlowApplicationContextId,WorkflowNode workflowNode){
 
         //从共享上下文池内得到缓存
         WorkFlowApplicationContext workFlowApplicationContext = workFlowContextMap.get(workFlowApplicationContextId);
+
+        //上下文自行分配nodeID
+        workflowNode.setNodeId(workFlowApplicationContext.produceNodeId());
 
         //上下文的 元配置信息内部增加 节点信息
         workFlowApplicationContext.getWorkflowConfiguration().getWorkflowNodeList().add(workflowNode);
@@ -52,9 +53,7 @@ public class WorkFlowApplication {
         //通过上下文内的更新方法，根据元配置信息更新节点
         workFlowApplicationContext.refreshByWorkflowConfiguration();
 
-        String nodeId = workFlowApplicationContext.produceNodeId();
-
-        return null;
+        return true;
     }
 
     /**

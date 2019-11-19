@@ -8,6 +8,11 @@ import java.util.Map;
 public class Configurations {
 
     /**
+     * 唯一的标识出配置id , 这个值与工作流上下文的id绑定
+     * */
+    private String workflowConfigurationId;
+
+    /**
      * 全局配置的执行引擎配置
      * */
     private Engine engine;
