@@ -13,11 +13,14 @@ import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 每个工作流的上下文，是工作引擎的工作子单元。工作引擎只负责发布命令，调度资源，调度任务相关功能
  * */
 public class WorkFlowApplicationContext {
+
+    private volatile AtomicInteger nodeId = new AtomicInteger(0);
 
     public static Random random = new Random(System.currentTimeMillis());
 
@@ -231,17 +234,7 @@ public class WorkFlowApplicationContext {
 
     }
 
-    /**
-     * 生产
-     * */
-    public synchronized String produceNodeId() {
-        String index = String.valueOf(random.nextInt());
-        while(true){
-            if(executableWorkNodeIdMap.containsKey(index)){
-                index = String.valueOf(random.nextInt());
-                break;
-            }
-        }
-        return index;
+    public String produceNodeId() {
+        return String.valueOf(nodeId.getAndIncrement());
     }
 }
