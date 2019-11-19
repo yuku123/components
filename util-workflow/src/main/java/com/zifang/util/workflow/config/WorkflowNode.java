@@ -43,11 +43,6 @@ public class WorkflowNode {
     /**
      * 可以被处理引擎所识别并且转换的参数合集
      * */
-    private Map<String,String> properties;
-
-    /**
-     * 可以被处理引擎所识别并且转换的参数合集
-     * */
     private Object invokeParameter;
 
     /**

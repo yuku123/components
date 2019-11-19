@@ -58,7 +58,6 @@ public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycl
         super.setConnector(workflowNode.getConnector());
         super.setGroupId(workflowNode.getGroupId());
         super.setName(workflowNode.getName());
-        super.setProperties(workflowNode.getProperties());
         super.setInvokeParameter(workflowNode.getInvokeParameter());
         super.setServiceUnit(workflowNode.getServiceUnit());
         super.setInvokeDynamic(workflowNode.getInvokeDynamic());
@@ -111,16 +110,20 @@ public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycl
                 }
             }
         }
-
-
     }
 
+    /**
+     * 防止重复添加值
+     * */
     public void putPost(ExecutableWorkflowNode executableWorkNode) {
         if(!post.contains(executableWorkNode)){
             post.add(executableWorkNode);
         }
     }
 
+    /**
+     * 防止重复添加值
+     * */
     public void putPre(ExecutableWorkflowNode executableWorkNode) {
         if(!pre.contains(executableWorkNode)){
             pre.add(executableWorkNode);

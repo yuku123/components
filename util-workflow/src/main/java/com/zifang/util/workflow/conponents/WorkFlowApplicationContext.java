@@ -11,16 +11,15 @@ import com.zifang.util.workflow.engine.interfaces.EngineFactory;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 /**
  * 每个工作流的上下文，是工作引擎的工作子单元。工作引擎只负责发布命令，调度资源，调度任务相关功能
  * */
 public class WorkFlowApplicationContext {
+
+    public static Random random = new Random(System.currentTimeMillis());
 
     private Integer workFlowApplicationContextId;
 
@@ -41,15 +40,15 @@ public class WorkFlowApplicationContext {
     //执行单元
     private Task task = new Task();
 
-    //当前的配置信息
+    //当前的配置信息,最重要的核心元配置，所有的与执行节点相关的信息全部包裹在执行单元内
     private WorkflowConfiguration workflowConfiguration;
+
+    public WorkFlowApplicationContext(){
+    }
 
     public WorkFlowApplicationContext(String filePath){
         this.filePath = filePath;
         initial();
-    }
-
-    public WorkFlowApplicationContext(){
     }
 
     public void initialByLocalFilePath(String filePath){
@@ -61,7 +60,6 @@ public class WorkFlowApplicationContext {
             logger.error("解析文件出现问题:"+ this.filePath);
             e.printStackTrace();
         }
-
         initial();
     }
 
@@ -99,8 +97,10 @@ public class WorkFlowApplicationContext {
     }
 
     private void initialEngine() {
-        //初始化引擎
-        abstractEngine = EngineFactory.getEngine(this.workflowConfiguration.getConfigurations().getEngine());
+        //初始化引擎,这个方法可能面临更新
+        if(abstractEngine == null){
+            abstractEngine = EngineFactory.getEngine(this.workflowConfiguration.getConfigurations().getEngine());
+        }
     }
 
     private void produceExecutableTask() {
@@ -169,12 +169,14 @@ public class WorkFlowApplicationContext {
 
     private void initialEngineService() {
         for(ExecutableWorkflowNode executableWorkNode : executableWorkNodes){
-            //通过每个节点自己的引擎与 执行单元， 得到真正的单元执行服务者
-            AbstractEngineService abstractEngineService = executableWorkNode
-                    .getAbstractEngine()
-                    .getRegisteredEngineService(executableWorkNode.getServiceUnit());
-            //对执行单元赋予单元执行服务者
-            executableWorkNode.setAbstractEngineService(abstractEngineService);
+            if (executableWorkNode.getAbstractEngineService()==null){
+                //通过每个节点自己的引擎与 执行单元， 得到真正的单元执行服务者
+                AbstractEngineService abstractEngineService = executableWorkNode
+                        .getAbstractEngine()
+                        .getRegisteredEngineService(executableWorkNode.getServiceUnit());
+                //对执行单元赋予单元执行服务者
+                executableWorkNode.setAbstractEngineService(abstractEngineService);
+            }
         }
     }
 
@@ -183,17 +185,63 @@ public class WorkFlowApplicationContext {
         //遍历nodeList,将每一个节点的信息使用可执行node进行包装
         for(WorkflowNode workflowNode : workflowConfiguration.getWorkflowNodeList()){
 
-            ExecutableWorkflowNode executableWorkNode = new ExecutableWorkflowNode(workflowNode);
+            String nodeId = workflowNode.getNodeId();
 
-            executableWorkNode.setAbstractEngine(abstractEngine);
+            //只有当executableWorkNodeIdMap 不存在 这个可执行Node的情况下，才可以真正地添加 节点到可执行列表内
+            if(!executableWorkNodeIdMap.containsKey(nodeId)){
 
-            executableWorkNodeIdMap.put(workflowNode.getNodeId(),executableWorkNode);
+                ExecutableWorkflowNode executableWorkNode = new ExecutableWorkflowNode(workflowNode);
 
-            executableWorkNodes.add(executableWorkNode);
+                executableWorkNode.setAbstractEngine(abstractEngine);
+
+                // 可执行节点的对照表
+                executableWorkNodeIdMap.put(workflowNode.getNodeId(),executableWorkNode);
+
+                //可执行节点列表
+                executableWorkNodes.add(executableWorkNode);
+            }
         }
     }
 
     public void executeTask() {
         task.exec();
+    }
+
+    public WorkflowConfiguration getWorkflowConfiguration() {
+        return workflowConfiguration;
+    }
+
+    /**
+     * 返回当前的上下文的全量信息
+     * */
+    public Object getDescriptionMsg(){
+        return null;
+    }
+
+    /**
+     * 根据元数据更新当前的节点
+     * */
+    public void refreshByWorkflowConfiguration() {
+        // 使用各种规则判断这个入参是否是正常的
+        validate();
+
+        transformWorkFlowNode();
+
+        connectWorkFlowNode();
+
+    }
+
+    /**
+     * 生产
+     * */
+    public synchronized String produceNodeId() {
+        String index = String.valueOf(random.nextInt());
+        while(true){
+            if(executableWorkNodeIdMap.containsKey(index)){
+                index = String.valueOf(random.nextInt());
+                break;
+            }
+        }
+        return index;
     }
 }

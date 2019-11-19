@@ -1,6 +1,7 @@
 package com.zifang.util.workflow.conponents;
 
 import com.zifang.util.workflow.config.WorkflowConfiguration;
+import com.zifang.util.workflow.config.WorkflowNode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,8 +39,21 @@ public class WorkFlowApplication {
     /**
      * 增加一个游离节点
      *
+     * 参数需要提供全量
      * */
-    public synchronized Boolean addSimpleWorkfloeNode(){
+    public synchronized Boolean addSimpleWorkfloeNode(Integer workFlowApplicationContextId,WorkflowNode workflowNode){
+
+        //从共享上下文池内得到缓存
+        WorkFlowApplicationContext workFlowApplicationContext = workFlowContextMap.get(workFlowApplicationContextId);
+
+        //上下文的 元配置信息内部增加 节点信息
+        workFlowApplicationContext.getWorkflowConfiguration().getWorkflowNodeList().add(workflowNode);
+
+        //通过上下文内的更新方法，根据元配置信息更新节点
+        workFlowApplicationContext.refreshByWorkflowConfiguration();
+
+        String nodeId = workFlowApplicationContext.produceNodeId();
+
         return null;
     }
 
