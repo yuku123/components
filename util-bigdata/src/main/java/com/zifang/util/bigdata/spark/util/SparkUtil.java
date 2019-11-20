@@ -2,6 +2,7 @@ package com.zifang.util.bigdata.spark.util;
 
 import com.zifang.util.bigdata.spark.context.SparkContextInstance;
 import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.function.Function;
 import org.apache.spark.sql.Column;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -58,5 +59,20 @@ public class SparkUtil {
             columnList.add(dataset.col(column));
         }
         return columnList;
+    }
+
+    public JavaRDD<String> readFromLocalToJavaRDD(String filePath){
+        return sparkContextInstance.getJavaSparkContext().textFile(filePath);
+    }
+
+    public static void main(String[] args) {
+        SparkUtil sparkUtil = new SparkUtil(new SparkContextInstance());
+        Long a = sparkUtil.readFromLocalToJavaRDD("/Users/zifang/workplace/idea_workplace/components/util-bigdata/src/main/resources/input1.csv")
+                .count();
+        System.out.println(a);
+        JavaRDD<Row> b = sparkUtil.readFromLocalToJavaRDD("/Users/zifang/workplace/idea_workplace/components/util-bigdata/src/main/resources/input1.csv")
+                .map(e -> RowFactory.create(e.split(",")));
+        System.out.println(b.count());
+
     }
 }

@@ -49,4 +49,23 @@ public class WorkflowNode {
      * 描述此节点与其他节点的关联情况
      * */
     private Connector connector;
+
+
+    /**
+     * 防止重复添加值
+     * */
+    public void putPost(String nodeId) {
+        if(!connector.getPost().contains(nodeId)){
+            connector.getPost().add(nodeId);
+        }
+    }
+
+    /**
+     * 防止重复添加值
+     * */
+    public void putPre(String nodeId) {
+        if(!connector.getPre().contains(nodeId)){
+            connector.getPre().add(nodeId);
+        }
+    }
 }

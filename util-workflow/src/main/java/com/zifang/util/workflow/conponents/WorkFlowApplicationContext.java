@@ -28,11 +28,14 @@ public class WorkFlowApplicationContext {
 
     private static Logger logger = Logger.getLogger(WorkFlowApplicationContext.class);
 
-    //存储所有的执行节点
-    private List<ExecutableWorkflowNode> executableWorkNodes = new ArrayList<>();
-
     //执行引擎
     private AbstractEngine abstractEngine;
+
+    //存储元配置节点信息映射表
+    private Map<String,WorkflowNode> workflowNodeMap;
+
+    //存储所有的执行节点
+    private List<ExecutableWorkflowNode> executableWorkNodes = new ArrayList<>();
 
     //存储所有的执行单元，id:执行单元
     private Map<String, ExecutableWorkflowNode> executableWorkNodeIdMap = new LinkedHashMap<>();
@@ -222,19 +225,48 @@ public class WorkFlowApplicationContext {
     }
 
     /**
-     * 根据元数据更新当前的节点
+     * 更新源信息，并相互关联
      * */
-    public void refreshByWorkflowConfiguration() {
+    public void refreshWorkflowConfiguration() {
+
+        //需要更新一下辅助用的map: nodeId:workflowNode
+        refreshHelperMapList();
+
         // 使用各种规则判断这个入参是否是正常的
         validate();
 
-        transformWorkFlowNode();
+        for(WorkflowNode workflowNode : workflowConfiguration.getWorkflowNodeList()){
 
-        connectWorkFlowNode();
+            List<String> pre = workflowNode.getConnector().getPre();
 
+            List<String> post = workflowNode.getConnector().getPost();
+
+            //将每个前置节点内的后置节点列表增加自身
+            for(String connectNodeId: pre){
+                workflowNodeMap.get(connectNodeId).putPost(workflowNode.getNodeId());
+            }
+
+            //将每个后置节点的前置节点列表增加自身
+            for(String connectNodeId: post){
+                executableWorkNodeIdMap.get(connectNodeId).putPre(connectNodeId);
+            }
+        }
+    }
+
+    private void refreshHelperMapList() {
+        Map<String,WorkflowNode> workflowNodeMap = new LinkedHashMap<>();
+        for(WorkflowNode workflowNode : workflowConfiguration.getWorkflowNodeList()){
+            workflowNodeMap.put(workflowNode.getNodeId(),workflowNode);
+        }
+        this.workflowNodeMap = workflowNodeMap;
     }
 
     public String produceNodeId() {
         return String.valueOf(nodeId.getAndIncrement());
+    }
+
+    public void refreshExecutableNodeByWorkflowConfiguration() {
+        transformWorkFlowNode();
+        connectWorkFlowNode();
     }
 }

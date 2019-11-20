@@ -57,14 +57,19 @@ public class WorkFlowApplication {
         //如果workflowNode传入已经有nodeId的情况下，就沿用
         //@TODO 需要检查nodeId是否冲撞，一般都应该是系统生成的nodeId,而不是让用户对nodeId进行赋值
         String nodeId = workflowNode.getNodeId() == null?workFlowApplicationContext.produceNodeId():workflowNode.getNodeId();
+
         //上下文自行分配nodeID
         workflowNode.setNodeId(nodeId);
 
         //上下文的 元配置信息内部增加 节点信息
         workFlowApplicationContext.getWorkflowConfiguration().getWorkflowNodeList().add(workflowNode);
 
-        //通过上下文内的更新方法，根据元配置信息更新节点
-        workFlowApplicationContext.refreshByWorkflowConfiguration();
+        //通过上下文内的更新方法，更新源信息
+        workFlowApplicationContext.refreshWorkflowConfiguration();
+
+        //根据更新了的元信息，更新整个可执行workflow
+        workFlowApplicationContext.refreshExecutableNodeByWorkflowConfiguration();
+
 
         return true;
     }
