@@ -2,8 +2,6 @@ package com.zifang.util.workflow.config;
 
 import lombok.Data;
 
-import java.util.Map;
-
 /**
  * 描述业务流节点的最小单元定义
  * */
@@ -55,7 +53,7 @@ public class WorkflowNode {
      * 防止重复添加值
      * */
     public void putPost(String nodeId) {
-        if(!connector.getPost().contains(nodeId)){
+        if(!connector.getPost().contains(nodeId) && !this.nodeId.equals(nodeId)){
             connector.getPost().add(nodeId);
         }
     }
@@ -64,7 +62,7 @@ public class WorkflowNode {
      * 防止重复添加值
      * */
     public void putPre(String nodeId) {
-        if(!connector.getPre().contains(nodeId)){
+        if(!connector.getPre().contains(nodeId) && !this.nodeId.equals(nodeId)){
             connector.getPre().add(nodeId);
         }
     }

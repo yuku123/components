@@ -4,11 +4,13 @@ import com.zifang.util.workflow.config.WorkflowConfiguration;
 import com.zifang.util.workflow.config.WorkflowNode;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class WorkFlowApplication {
 
@@ -70,6 +72,51 @@ public class WorkFlowApplication {
         //根据更新了的元信息，更新整个可执行workflow
         workFlowApplicationContext.refreshExecutableNodeByWorkflowConfiguration();
 
+        return true;
+    }
+
+    public synchronized Boolean removeWorkflownNode(Integer workFlowApplicationContextId,String nodeId){
+        //从共享上下文池内得到缓存
+        WorkFlowApplicationContext workFlowApplicationContext = workFlowContextMap.get(workFlowApplicationContextId);
+
+        //挑选出将要被移除的nodeId
+        WorkflowNode workflowNodePrepareToRemove = null;
+        for(WorkflowNode workflowNode : workFlowApplicationContext.getWorkflowConfiguration().getWorkflowNodeList()){
+            if(nodeId.equals(workflowNode.getNodeId())){
+                workflowNodePrepareToRemove = workflowNode;
+                break;
+            }
+        }
+
+        //清理这个Id相关的连接信息
+        for(String preNodeId : workflowNodePrepareToRemove.getConnector().getPre()){
+            workFlowApplicationContext.getWorkflowNodeMap().get(preNodeId).getConnector().getPost().remove(nodeId);
+        }
+
+        for(String postNodeId : workflowNodePrepareToRemove.getConnector().getPost()){
+            workFlowApplicationContext.getWorkflowNodeMap().get(postNodeId).getConnector().getPre().remove(nodeId);
+        }
+
+
+        //删除这个节点
+        workFlowApplicationContext.getWorkflowConfiguration().getWorkflowNodeList().remove(workflowNodePrepareToRemove);
+
+//        List<WorkflowNode> workflowNodes = workFlowApplicationContext
+//                .getWorkflowConfiguration()
+//                .getWorkflowNodeList()
+//                .stream()
+//                .filter(e -> !nodeId.equals(e.getNodeId()))
+//                .collect(Collectors.toList());
+//
+//        //更新一波，删掉指定nodeId
+//        workFlowApplicationContext.getWorkflowConfiguration()
+//                .setWorkflowNodeList(workflowNodes);
+
+        //通过上下文内的更新方法，更新源信息
+        workFlowApplicationContext.refreshWorkflowConfiguration();
+
+        //根据更新了的元信息，更新整个可执行workflow
+        workFlowApplicationContext.refreshExecutableNodeByWorkflowConfiguration();
 
         return true;
     }

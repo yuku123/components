@@ -269,4 +269,12 @@ public class WorkFlowApplicationContext {
         transformWorkFlowNode();
         connectWorkFlowNode();
     }
+
+    public Map<String, WorkflowNode> getWorkflowNodeMap() {
+        return workflowNodeMap;
+    }
+
+    public void setWorkflowNodeMap(Map<String, WorkflowNode> workflowNodeMap) {
+        this.workflowNodeMap = workflowNodeMap;
+    }
 }
