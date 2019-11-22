@@ -58,6 +58,6 @@ public class SparkDataMockUtil implements java.io.Serializable{
         JavaSparkContext sc = new JavaSparkContext(conf);
         SparkDataMockUtil sparkDataMockUtil = new SparkDataMockUtil();
         Dataset<Row> rowDataset = sparkDataMockUtil.creatDataset(sc,fileLocation);
-        rowDataset.show();
+        rowDataset.show(20);
     }
 }
