@@ -1,6 +1,5 @@
 package com.zifang.util.core.io;
 
-import org.springframework.core.io.InputStreamSource;
 
 import java.io.File;
 import java.io.IOException;

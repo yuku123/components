@@ -5,5 +5,4 @@ package com.zifang.util.core.beans;
  *
  * 动态Object的支持与实现
  *
- *
  * */
