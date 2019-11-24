@@ -253,7 +253,7 @@ public class WorkFlowApplicationContext {
         }
     }
 
-    private void refreshHelperMapList() {
+    private synchronized void refreshHelperMapList() {
         Map<String,WorkflowNode> workflowNodeMap = new LinkedHashMap<>();
         for(WorkflowNode workflowNode : workflowConfiguration.getWorkflowNodeList()){
             workflowNodeMap.put(workflowNode.getNodeId(),workflowNode);
@@ -276,5 +276,18 @@ public class WorkFlowApplicationContext {
 
     public void setWorkflowNodeMap(Map<String, WorkflowNode> workflowNodeMap) {
         this.workflowNodeMap = workflowNodeMap;
+    }
+
+    public void replaceWorkflowNode(WorkflowNode workflowNode) {
+
+        Integer nodeId = Integer.parseInt(workflowNode.getNodeId());
+
+        List<WorkflowNode> workflowNodes = workflowConfiguration.getWorkflowNodeList();
+
+        //先删除
+        workflowNodes.removeIf( e -> nodeId.equals(e.getNodeId()));
+
+        //再增加
+        workflowNodes.add(workflowNode);
     }
 }

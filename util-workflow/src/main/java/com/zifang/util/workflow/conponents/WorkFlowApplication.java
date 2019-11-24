@@ -125,7 +125,19 @@ public class WorkFlowApplication {
      * 更新某一个节点的配置 配置包含 执行单元，执行单元所需参数，上下游连接情况
      *
      * */
-    public synchronized Boolean modifyWorkflowNodeConfiguration(){
+    public synchronized Boolean modifyWorkflowNodeConfiguration(Integer workFlowApplicationContextId,WorkflowNode workflowNode){
+
+        //从共享上下文池内得到缓存
+        WorkFlowApplicationContext workFlowApplicationContext = workFlowContextMap.get(workFlowApplicationContextId);
+
+        workFlowApplicationContext.replaceWorkflowNode(workflowNode);
+
+        //通过上下文内的更新方法，更新源信息
+        workFlowApplicationContext.refreshWorkflowConfiguration();
+
+        //根据更新了的元信息，更新整个可执行workflow
+        workFlowApplicationContext.refreshExecutableNodeByWorkflowConfiguration();
+
         return null;
     }
 
