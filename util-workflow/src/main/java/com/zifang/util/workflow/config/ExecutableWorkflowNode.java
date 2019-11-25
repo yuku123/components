@@ -62,6 +62,7 @@ public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycl
         super.setServiceUnit(workflowNode.getServiceUnit());
         super.setInvokeDynamic(workflowNode.getInvokeDynamic());
         super.setType(workflowNode.getType());
+        super.setCache(workflowNode.getCache());
         this.setStatus(NodeLifeCycle.PREPARED);
         this.init();
     }

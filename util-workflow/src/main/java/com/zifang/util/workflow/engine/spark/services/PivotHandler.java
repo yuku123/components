@@ -22,6 +22,7 @@ public class PivotHandler extends AbstractSparkEngineService {
         PivotA pivotA = GsonUtil.changeToSubClass(invokeParameter, PivotA.class);
 
         dataset = executableWorkflowNode.getPre().get(0).getDataset();
+
         for(PivotANode pivotANode : pivotA.getPivotColumnDefinations()){
 
             //得到所有的column name的列表
@@ -44,9 +45,11 @@ public class PivotHandler extends AbstractSparkEngineService {
             }
         }
 
-        // 外部介入,将最终的数据进行列明映射作用
-        for(Map.Entry<String,String> entry : pivotA.getColumnMap().entrySet()){
-            dataset = dataset.withColumnRenamed(entry.getKey(),entry.getValue());
+        if(pivotA.getColumnMap() != null){
+            // 外部介入,将最终的数据进行列明映射作用
+            for(Map.Entry<String,String> entry : pivotA.getColumnMap().entrySet()){
+                dataset = dataset.withColumnRenamed(entry.getKey(),entry.getValue());
+            }
         }
         dataset.show();
     }

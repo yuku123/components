@@ -2,6 +2,8 @@ package com.zifang.util.workflow.config;
 
 import lombok.Data;
 
+import java.util.HashMap;
+
 /**
  * 描述业务流节点的最小单元定义
  * */
@@ -47,6 +49,8 @@ public class WorkflowNode {
      * 描述此节点与其他节点的关联情况
      * */
     private Connector connector;
+
+    private HashMap<String,String> cache;
 
 
     /**

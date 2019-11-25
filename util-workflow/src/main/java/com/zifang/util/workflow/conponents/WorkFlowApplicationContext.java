@@ -8,6 +8,7 @@ import com.zifang.util.workflow.config.WorkflowNode;
 import com.zifang.util.workflow.engine.interfaces.AbstractEngine;
 import com.zifang.util.workflow.engine.interfaces.AbstractEngineService;
 import com.zifang.util.workflow.engine.interfaces.EngineFactory;
+import com.zifang.util.workflow.engine.spark.impl.CacheEngineService;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -30,6 +31,8 @@ public class WorkFlowApplicationContext {
 
     //执行引擎
     private AbstractEngine abstractEngine;
+
+    private CacheEngineService cacheEngineService;
 
     //存储元配置节点信息映射表
     private Map<String,WorkflowNode> workflowNodeMap;
@@ -88,6 +91,9 @@ public class WorkFlowApplicationContext {
         //初始化引擎
         initialEngine();
 
+        //初始化缓存引擎
+        initialCacheEngine();
+
         //转换所有的节点定义，生成可执行的松散节点，这个时候节点间没有任何关联
         transformWorkFlowNode();
 
@@ -96,6 +102,11 @@ public class WorkFlowApplicationContext {
 
         //生成可执行task组件
         produceExecutableTask();
+    }
+
+    private void initialCacheEngine() {
+        //暂时使用默认的Cache执行引擎
+        cacheEngineService = new CacheEngineService(workflowConfiguration.getConfigurations().getCacheEngine());
     }
 
     private void validate() {
@@ -180,6 +191,8 @@ public class WorkFlowApplicationContext {
                 AbstractEngineService abstractEngineService = executableWorkNode
                         .getAbstractEngine()
                         .getRegisteredEngineService(executableWorkNode.getServiceUnit());
+                //对执行上下文 放入当前的实例
+                abstractEngineService.setWorkFlowApplicationContext(this);
                 //对执行单元赋予单元执行服务者
                 executableWorkNode.setAbstractEngineService(abstractEngineService);
             }
@@ -290,4 +303,9 @@ public class WorkFlowApplicationContext {
         //再增加
         workflowNodes.add(workflowNode);
     }
+
+    public CacheEngineService getCacheEngineService() {
+        return cacheEngineService;
+    }
+
 }

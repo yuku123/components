@@ -2,6 +2,7 @@ package com.zifang.util.workflow.engine.spark.services;
 
 import com.zifang.util.core.util.GsonUtil;
 import com.zifang.util.workflow.engine.spark.impl.AbstractSparkEngineService;
+import com.zifang.util.workflow.engine.spark.impl.CacheEngineService;
 import org.apache.spark.sql.SaveMode;
 
 import java.util.HashMap;
@@ -21,10 +22,13 @@ public class ResourceHandler extends AbstractSparkEngineService {
 
     public void handleLocalInput(){
 
+        //得到缓存控制服务器
+        CacheEngineService cacheEngineService = getWorkFlowApplicationContext().getCacheEngineService();
+
         HashMap<String,String> transformedParameter = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
         try {
             dataset = sparkUtil.createDataSet(transformedParameter.get(localFile));
-            dataset.createOrReplaceTempView(transformedParameter.get(tempName));
+            cacheEngineService.doCache(dataset,executableWorkflowNode.getCache().get("cacheTempNameAlias"));
             dataset.show();
         }catch (Exception e){
             e.printStackTrace();

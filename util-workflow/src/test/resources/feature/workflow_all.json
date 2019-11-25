@@ -1,9 +1,9 @@
 {
   "configurations": {
-    "workflowConfigurationId": "testId",
+    "workflowConfigurationId": "1",
     "engine": {
       "type": "spark",
-      "mode": "engine.spark.mode.cluster",
+      "mode": "engine.spark.mode.local",
       "properties": {
         "master": "spark://192.168.1.103:7077",
         "appName": "cc",
@@ -44,7 +44,7 @@
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleLocalInput",
       "invokeParameter":{
-        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1.csv"
+        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/feature/input_all.csv"
       },
       "cache":{
         "flushFlag": true,
@@ -52,90 +52,45 @@
       },
       "connector": {
         "pre": ["start"],
-        "post": ["output_local"]
+        "post": ["pivot"]
       }
     },
     {
-      "nodeId": "output_local",
-      "name": "output_local",
+      "nodeId": "pivot",
+      "name": "pivot",
       "type": "engine.nodeType.resource",
-      "serviceUnit": "engine.service.resourceHandler",
-      "invokeDynamic": "handleLocalOutput",
+      "serviceUnit": "engine.service.pivot",
+      "invokeDynamic": "pivot",
       "invokeParameter":{
-        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1.csv"
-      },
-      "cache":{
-        "flushFlag": true,
-        "cacheTempNameAlias":"input_local"
-      },
-      "connector": {
-        "pre": ["output_local"],
-        "post": []
-      }
-    },
-    {
-      "nodeId": "output_local",
-      "name": "output_local",
-      "type": "engine.nodeType.loop",
-      "serviceUnit": "engine.service.loopHandler",
-      "invokeDynamic": "lookUpLocalDirLoopHandler",
-      "invokeParameter":{
-        "localDir":"/home/zifang/data/aa",
-        "export":"fileName"
-      },
-      "connector": {
-        "pre": ["start"],
-        "post": ["loadToHDFS"]
-      }
-    },
-    {
-      "nodeId": "loadToHDFS",
-      "name": "loadToHDFS",
-      "type": "engine.nodeType.resource",
-      "serviceUnit": "engine.service.resourceHandler",
-      "invokeDynamic": "loadLocalFileToHDFSHandler",
-      "invokeParameter":{
-        "hdfsPath":"hdfs://192.168.1.103:9000/user/piday/test/aa/${fileName}.csv"
-      },
-      "connector": {
-        "pre": ["looper"],
-        "post": ["output_hive"]
-      }
-    },
-    {
-      "nodeId": "output_hive",
-      "name": "output_hive",
-      "type": "engine.nodeType.resource",
-      "serviceUnit": "engine.service.resourceHandler",
-      "invokeDynamic": "handleHiveOutput",
-      "invokeParameter": {
-        "tableName": "model_test.${fileName}"
-      },
-      "connector": {
-        "pre": [
-          "loadToHDFS"
-        ],
-        "post": [
-          "validator"
+        "pivotColumnDefinations":[
+          {
+            "columnName":"name1",
+            "pivotColumns":["name1_u1","name1_u2","name1_u3","name1_u4","name1_u5"],
+            "value":"name1_value"
+          },
+          {
+            "columnName":"name2",
+            "pivotColumns":["name2_u1","name2_u2","name2_u3","name2_u4","name2_u5"]
+          }
         ]
+      },
+      "connector": {
+        "pre": ["read_local"],
+        "post": ["changeColumnName"]
       }
     },
     {
-      "nodeId": "validator",
-      "name": "validator",
-      "type": "engine.nodeType.resource",
-      "serviceUnit": "engine.service.gotoHandler",
-      "invokeDynamic": "checkLoop",
-      "invokeParameter": {
-        "goto": "looper"
+      "nodeId": "changeColumnName",
+      "name": "changeColumnName",
+      "type": "engine.nodeType.connectors",
+      "serviceUnit": "engine.service.changeColumn",
+      "invokeParameter":{
+        "name1_u1":"name1_changed_u1"
       },
-      "connector": {
-        "pre": [
-          "output_hive"
-        ],
-        "post": [
 
-        ]
+      "connector": {
+        "pre": ["pivot"],
+        "post": []
       }
     }
   ]

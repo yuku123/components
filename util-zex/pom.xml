@@ -35,6 +35,14 @@
             <version>3.6.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.mebigfatguy/commons-beanutils2 -->
+        <dependency>
+            <groupId>com.mebigfatguy</groupId>
+            <artifactId>commons-beanutils2</artifactId>
+            <version>1.9.9</version>
+        </dependency>
+
+
 
         <dependency>
             <groupId>org.apache.activemq</groupId>
