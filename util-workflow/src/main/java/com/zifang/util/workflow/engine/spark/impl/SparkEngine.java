@@ -19,6 +19,7 @@ public class SparkEngine extends AbstractSparkEngine {
             put("engine.service.changeColumn", ChangeColumnNameHandler.class);//专门用作数据映射
             put("engine.service.pivot", PivotHandler.class);//专门处理数据透视功能
             put("engine.service.codification", CodificationHandler.class);//数据转换的一个环节，将列向数据转化为标定量
+            put("engine.service.sql",SqlHandler.class);
 //            put("engine.service.castColumn", CodificationHandler.class);//更改列的类型性质
             //横向 行数据 过滤(数据过滤)
             //纵向 列数据 过滤(挑选列)
