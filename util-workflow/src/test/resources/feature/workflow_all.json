@@ -90,6 +90,19 @@
 
       "connector": {
         "pre": ["pivot"],
+        "post": ["codification"]
+      }
+    },{
+      "nodeId": "codification",
+      "name": "codification",
+      "type": "engine.nodeType.connectors",
+      "serviceUnit": "engine.service.codification",
+      "invokeParameter":{
+        "name1_u1":"name1_changed_u1"
+      },
+
+      "connector": {
+        "pre": ["pivot"],
         "post": []
       }
     }
