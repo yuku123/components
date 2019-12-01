@@ -4,6 +4,7 @@ package com.zifang.util.core.annoations;
 import java.lang.annotation.*;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,9 +12,6 @@ import java.util.Map;
 /**
  * 注解工具类<br>
  * 快速获取注解对象、注解值等工具封装
- *
- * @author looly
- * @since 4.0.9
  */
 public class AnnotationUtil {
 
@@ -82,11 +80,24 @@ public class AnnotationUtil {
 			return null;
 		}
 
-//		final Method method = ReflectUtil.getMethodOfObj(annotation, propertyName);
-//		if (null == method) {
-//			return null;
-//		}
-//		return ReflectUtil.invoke(annotation, method);
+		try {
+			Method method = annotation.getClass().getMethod(propertyName);
+			method.setAccessible(true);
+			T s = (T) method.invoke(annotation);
+			return s;
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+////		final Method method = ReflectUtil.getMethodOfObj(annotation, propertyName);
+////		if (null == method) {
+////			return null;
+////		}
+////		return ReflectUtil.invoke(annotation, method);
+//		return null;
 		return null;
 	}
 

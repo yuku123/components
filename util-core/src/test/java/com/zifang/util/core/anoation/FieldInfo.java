@@ -1,4 +1,4 @@
-package com.zifang.util.core.annoations;
+package com.zifang.util.core.anoation;
 
 import java.lang.annotation.*;
 

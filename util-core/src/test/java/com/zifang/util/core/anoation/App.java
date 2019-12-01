@@ -1,4 +1,4 @@
-package com.zifang.util.core.annoations;
+package com.zifang.util.core.anoation;
 
 
 import java.lang.annotation.Annotation;
@@ -18,7 +18,13 @@ public class App {
     }
 
     private static void handleClass(Class clazz) {
-        //clazz.get
+        for(Annotation annotation : clazz.getAnnotations()){
+            System.out.println(annotation.annotationType());
+        }
+
+        if(clazz.isAnnotationPresent(ClassInfo.class)){
+            clazz.getAnnotation(ClassInfo.class);
+        }
     }
 
     private static void handleField(Class clazz) {
@@ -26,8 +32,9 @@ public class App {
             //field.setAccessible(true);
             System.out.println(field);
             if(field.isAnnotationPresent(FieldInfo.class)){
-                for (Annotation anno : field.getDeclaredAnnotations()) {
-                    System.out.println("Annotation in field----" + field + "----" + anno);
+                FieldInfo[] s = field.getAnnotationsByType(FieldInfo.class);
+                for (int i = 0; i < s.length; i++) {
+                    System.out.println("Annotation in field----" + s[i].comments() + "----" + s[i].password());
                 }
             }
         }
