@@ -11,8 +11,7 @@ import java.util.*;
  * 组合注解 对JDK的原生注解机制做一个增强，支持类似Spring的组合注解。<br>
  * 核心实现使用了递归获取指定元素上的注解以及注解的注解，以实现复合注解的获取。
  *
- * @author Succy,Looly
- * @since 4.0.9
+ * 这个类提供了可以被解析的类型 的递归 全解析过程
  **/
 
 public class CombinationAnnotationElement implements AnnotatedElement, Serializable {
