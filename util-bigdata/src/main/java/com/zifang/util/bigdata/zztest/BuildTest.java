@@ -39,7 +39,7 @@ public class BuildTest {
         //建立模型
         RandomForestClassificationModel rfModel = Model_Function.build_rfModel(trainDataSet,"target","features","pre_lable","pre_probilty");
         Model_Function.getModelImportance(rfModel,filteredColumnName);
-        rfModel.write().overwrite().save("hdfs://piday03:9000/user/piday/model_yj_plusv3");
+        rfModel.write().overwrite().save("hdfs://192.168.1.103:9000/user/piday/model_yj_plusv3");
         Dataset<Row> pre_data = rfModel.transform(testDataSet);
         pre_data.show();
 
