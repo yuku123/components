@@ -87,22 +87,25 @@
       "invokeParameter":{
         "name1_u1":"name1_changed_u1"
       },
-
+      "cache":{
+        "flushFlag": true,
+        "cacheTempNameAlias":"changed_column"
+      },
       "connector": {
         "pre": ["pivot"],
-        "post": ["codification"]
+        "post": ["sql"]
       }
     },{
-      "nodeId": "codification",
-      "name": "codification",
+      "nodeId": "sql",
+      "name": "sql",
       "type": "engine.nodeType.connectors",
-      "serviceUnit": "engine.service.codification",
+      "serviceUnit": "engine.service.sql",
+      "invokeDynamic": "sql",
       "invokeParameter":{
-        "name1_u1":"name1_changed_u1"
+        "sql": "select *,'a' as new from changed_column"
       },
-
       "connector": {
-        "pre": ["pivot"],
+        "pre": ["changeColumnName"],
         "post": []
       }
     }

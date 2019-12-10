@@ -13,6 +13,6 @@ public class CacheEngineService {
     }
 
     public void doCache(Dataset<Row> dataset,String cacheName){
-
+        dataset.createOrReplaceTempView(cacheName);
     }
 }
