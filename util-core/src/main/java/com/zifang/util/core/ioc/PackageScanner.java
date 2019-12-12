@@ -8,14 +8,16 @@ import java.net.JarURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public abstract class PackageScanner {
-    public PackageScanner() {}
+public class PackageScanner {
 
-    public abstract void dealClass(Class<?> klass);
+    public void dealClass(Class<?> klass) {
+        System.out.println(klass.getName());
 
+    }
     //扫描一般的包。
     private void scanPackage(String packageName,File currentfile) {
         File[] filelist = currentfile.listFiles(new FileFilter() {
@@ -120,14 +122,10 @@ public abstract class PackageScanner {
     }
 
     public static void main(String[] args) {
-        new PackageScanner() {
 
-            @Override
-            public void dealClass(Class<?> klass) {
-                System.out.println(klass.getName());
+        new PackageScanner().packageScan("com.google");
 
-            }
-        }.packageScan("com.zifang.util.core.function");
+
 
     }
 }
