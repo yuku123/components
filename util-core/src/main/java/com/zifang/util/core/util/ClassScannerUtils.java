@@ -31,7 +31,7 @@ public class ClassScannerUtils {
         return searchClasses(packageName,null);
     }
 
-    public static Set<Class<?>> searchClasses(String packageName, Predicate predicate){
+    public static Set<Class<?>> searchClasses(String packageName, Predicate<Class<?>> predicate){
         return search(packageName,predicate);
     }
 
