@@ -3,7 +3,7 @@ package com.zifang.util.workflow.engine.interfaces;
 import com.zifang.util.workflow.config.Engine;
 import com.zifang.util.workflow.engine.java.JavaEngine;
 import com.zifang.util.workflow.engine.python.PythonEngine;
-import com.zifang.util.workflow.engine.spark.impl.SparkEngine;
+import com.zifang.util.workflow.engine.spark.SparkEngine;
 
 import java.util.HashMap;
 import java.util.Map;

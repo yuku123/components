@@ -1,4 +1,4 @@
-package com.zifang.util.workflow.engine.spark.impl;
+package com.zifang.util.workflow.engine.spark;
 
 import com.zifang.util.bigdata.spark.context.SparkContextInstance;
 import com.zifang.util.bigdata.spark.util.SparkUtil;

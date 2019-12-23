@@ -1,14 +1,16 @@
 package com.zifang.util.workflow.engine.spark.services;
 
 import com.zifang.util.core.util.GsonUtil;
-import com.zifang.util.workflow.engine.spark.impl.AbstractSparkEngineService;
-import com.zifang.util.workflow.engine.spark.impl.CacheEngineService;
+import com.zifang.util.workflow.anoation.EngineService;
+import com.zifang.util.workflow.engine.spark.AbstractSparkEngineService;
+import com.zifang.util.workflow.engine.spark.CacheEngineService;
 import org.apache.spark.sql.SaveMode;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+@EngineService(name = "engine.service.resourceHandler")
 public class ResourceHandler extends AbstractSparkEngineService {
 
     private static String tempName = "tempName";

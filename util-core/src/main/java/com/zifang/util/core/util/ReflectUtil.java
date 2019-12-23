@@ -1,181 +1,167 @@
-//package com.zifang.util.core.util;
-//
-//import cn.hutool.core.collection.CollectionUtil;
-//import cn.hutool.core.convert.Convert;
-//import cn.hutool.core.exceptions.UtilException;
-//import cn.hutool.core.lang.Assert;
-//import cn.hutool.core.lang.Filter;
-//import cn.hutool.core.lang.SimpleCache;
-//
-//import java.lang.reflect.AccessibleObject;
-//import java.lang.reflect.Constructor;
-//import java.lang.reflect.Field;
-//import java.lang.reflect.Method;
-//import java.util.ArrayList;
-//import java.util.HashSet;
-//import java.util.List;
-//import java.util.Set;
-//
-///**
-// * 反射工具类
-// *
-// * @author Looly
-// * @since 3.0.9
-// */
-//public class ReflectUtil {
-//
-//	/**
-//	 * 构造对象缓存
-//	 */
-//	private static final SimpleCache<Class<?>, Constructor<?>[]> CONSTRUCTORS_CACHE = new SimpleCache<>();
-//	/**
-//	 * 字段缓存
-//	 */
-//	private static final SimpleCache<Class<?>, Field[]> FIELDS_CACHE = new SimpleCache<>();
-//	/**
-//	 * 方法缓存
-//	 */
-//	private static final SimpleCache<Class<?>, Method[]> METHODS_CACHE = new SimpleCache<>();
-//
-//	// --------------------------------------------------------------------------------------------------------- Constructor
-//
-//	/**
-//	 * 查找类中的指定参数的构造方法，如果找到构造方法，会自动设置可访问为true
-//	 *
-//	 * @param <T>            对象类型
-//	 * @param clazz          类
-//	 * @param parameterTypes 参数类型，只要任何一个参数是指定参数的父类或接口或相等即可，此参数可以不传
-//	 * @return 构造方法，如果未找到返回null
-//	 */
-//	@SuppressWarnings("unchecked")
-//	public static <T> Constructor<T> getConstructor(Class<T> clazz, Class<?>... parameterTypes) {
-//		if (null == clazz) {
-//			return null;
-//		}
-//
-//		final Constructor<?>[] constructors = getConstructors(clazz);
-//		Class<?>[] pts;
-//		for (Constructor<?> constructor : constructors) {
-//			pts = constructor.getParameterTypes();
-//			if (ClassUtil.isAllAssignableFrom(pts, parameterTypes)) {
-//				// 构造可访问
-//				setAccessible(constructor);
-//				return (Constructor<T>) constructor;
-//			}
-//		}
-//		return null;
-//	}
-//
-//	/**
-//	 * 获得一个类中所有构造列表
-//	 *
-//	 * @param <T>       构造的对象类型
-//	 * @param beanClass 类
-//	 * @return 字段列表
-//	 * @throws SecurityException 安全检查异常
-//	 */
-//	@SuppressWarnings("unchecked")
-//	public static <T> Constructor<T>[] getConstructors(Class<T> beanClass) throws SecurityException {
-//		Assert.notNull(beanClass);
-//		Constructor<?>[] constructors = CONSTRUCTORS_CACHE.get(beanClass);
-//		if (null != constructors) {
-//			return (Constructor<T>[]) constructors;
-//		}
-//
-//		constructors = getConstructorsDirectly(beanClass);
-//		return (Constructor<T>[]) CONSTRUCTORS_CACHE.put(beanClass, constructors);
-//	}
-//
-//	/**
-//	 * 获得一个类中所有字段列表，直接反射获取，无缓存
-//	 *
-//	 * @param beanClass 类
-//	 * @return 字段列表
-//	 * @throws SecurityException 安全检查异常
-//	 */
-//	public static Constructor<?>[] getConstructorsDirectly(Class<?> beanClass) throws SecurityException {
-//		Assert.notNull(beanClass);
-//		return beanClass.getDeclaredConstructors();
-//	}
-//
-//	// --------------------------------------------------------------------------------------------------------- Field
-//
-//	/**
-//	 * 查找指定类中是否包含指定名称对应的字段，包括所有字段（包括非public字段），也包括父类和Object类的字段
-//	 *
-//	 * @param beanClass 被查找字段的类,不能为null
-//	 * @param name      字段名
-//	 * @return 是否包含字段
-//	 * @throws SecurityException 安全异常
-//	 * @since 4.1.21
-//	 */
-//	public static boolean hasField(Class<?> beanClass, String name) throws SecurityException {
-//		return null != getField(beanClass, name);
-//	}
-//
-//	/**
-//	 * 查找指定类中的所有字段（包括非public字段），也包括父类和Object类的字段， 字段不存在则返回<code>null</code>
-//	 *
-//	 * @param beanClass 被查找字段的类,不能为null
-//	 * @param name      字段名
-//	 * @return 字段
-//	 * @throws SecurityException 安全异常
-//	 */
-//	public static Field getField(Class<?> beanClass, String name) throws SecurityException {
-//		final Field[] fields = getFields(beanClass);
-//		if (ArrayUtil.isNotEmpty(fields)) {
-//			for (Field field : fields) {
-//				if ((name.equals(field.getName()))) {
-//					return field;
-//				}
-//			}
-//		}
-//		return null;
-//	}
-//
-//	/**
-//	 * 获得一个类中所有字段列表，包括其父类中的字段
-//	 *
-//	 * @param beanClass 类
-//	 * @return 字段列表
-//	 * @throws SecurityException 安全检查异常
-//	 */
-//	public static Field[] getFields(Class<?> beanClass) throws SecurityException {
-//		Field[] allFields = FIELDS_CACHE.get(beanClass);
-//		if (null != allFields) {
-//			return allFields;
-//		}
-//
-//		allFields = getFieldsDirectly(beanClass, true);
-//		return FIELDS_CACHE.put(beanClass, allFields);
-//	}
-//
-//	/**
-//	 * 获得一个类中所有字段列表，直接反射获取，无缓存
-//	 *
-//	 * @param beanClass           类
-//	 * @param withSuperClassFieds 是否包括父类的字段列表
-//	 * @return 字段列表
-//	 * @throws SecurityException 安全检查异常
-//	 */
-//	public static Field[] getFieldsDirectly(Class<?> beanClass, boolean withSuperClassFieds) throws SecurityException {
-//		Assert.notNull(beanClass);
-//
-//		Field[] allFields = null;
-//		Class<?> searchType = beanClass;
-//		Field[] declaredFields;
-//		while (searchType != null) {
-//			declaredFields = searchType.getDeclaredFields();
-//			if (null == allFields) {
-//				allFields = declaredFields;
-//			} else {
-//				allFields = ArrayUtil.append(allFields, declaredFields);
-//			}
-//			searchType = withSuperClassFieds ? searchType.getSuperclass() : null;
-//		}
-//
-//		return allFields;
-//	}
+package com.zifang.util.core.util;
+
+import com.zifang.util.core.cache.SimpleCache;
+
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.*;
+
+/**
+ * 反射工具类
+ */
+public class ReflectUtil {
+
+	/**
+	 * 构造对象缓存
+	 */
+	private static final SimpleCache<Class<?>, Constructor<?>[]> CONSTRUCTORS_CACHE = new SimpleCache<>();
+	/**
+	 * 字段缓存
+	 */
+	private static final SimpleCache<Class<?>, Field[]> FIELDS_CACHE = new SimpleCache<>();
+	/**
+	 * 方法缓存
+	 */
+	private static final SimpleCache<Class<?>, Method[]> METHODS_CACHE = new SimpleCache<>();
+
+	// --------------------------------------------------------------------------------------------------------- Constructor
+
+	/**
+	 * 查找类中的指定参数的构造方法，如果找到构造方法，会自动设置可访问为true
+	 *
+	 * @param <T>            对象类型
+	 * @param clazz          类
+	 * @param parameterTypes 参数类型，只要任何一个参数是指定参数的父类或接口或相等即可，此参数可以不传
+	 * @return 构造方法，如果未找到返回null
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> Constructor<T> getConstructor(Class<T> clazz, Class<?>... parameterTypes) {
+		if (null == clazz) {
+			return null;
+		}
+
+		final Constructor<?>[] constructors = getConstructors(clazz);
+		Class<?>[] pts;
+		for (Constructor<?> constructor : constructors) {
+			pts = constructor.getParameterTypes();
+			if (ClassUtil.isAllAssignableFrom(pts, parameterTypes)) {
+				// 构造可访问
+				setAccessible(constructor);
+				return (Constructor<T>) constructor;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 获得一个类中所有构造列表
+	 *
+	 * @param <T>       构造的对象类型
+	 * @param beanClass 类
+	 * @return 字段列表
+	 * @throws SecurityException 安全检查异常
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> Constructor<T>[] getConstructors(Class<T> beanClass) throws SecurityException {
+		Constructor<?>[] constructors = CONSTRUCTORS_CACHE.get(beanClass);
+		if (null != constructors) {
+			return (Constructor<T>[]) constructors;
+		}
+
+		constructors = getConstructorsDirectly(beanClass);
+		return (Constructor<T>[]) CONSTRUCTORS_CACHE.put(beanClass, constructors);
+	}
+
+	/**
+	 * 获得一个类中所有字段列表，直接反射获取，无缓存
+	 *
+	 * @param beanClass 类
+	 * @return 字段列表
+	 * @throws SecurityException 安全检查异常
+	 */
+	public static Constructor<?>[] getConstructorsDirectly(Class<?> beanClass) throws SecurityException {
+		return beanClass.getDeclaredConstructors();
+	}
+
+	// --------------------------------------------------------------------------------------------------------- Field
+
+	/**
+	 * 查找指定类中是否包含指定名称对应的字段，包括所有字段（包括非public字段），也包括父类和Object类的字段
+	 *
+	 * @param beanClass 被查找字段的类,不能为null
+	 * @param name      字段名
+	 * @return 是否包含字段
+	 * @throws SecurityException 安全异常
+	 * @since 4.1.21
+	 */
+	public static boolean hasField(Class<?> beanClass, String name) throws SecurityException {
+		return null != getField(beanClass, name);
+	}
+
+	/**
+	 * 查找指定类中的所有字段（包括非public字段），也包括父类和Object类的字段， 字段不存在则返回<code>null</code>
+	 *
+	 * @param beanClass 被查找字段的类,不能为null
+	 * @param name      字段名
+	 * @return 字段
+	 * @throws SecurityException 安全异常
+	 */
+	public static Field getField(Class<?> beanClass, String name) throws SecurityException {
+		final Field[] fields = getFields(beanClass);
+		if (fields != null) {
+			for (Field field : fields) {
+				if ((name.equals(field.getName()))) {
+					return field;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 获得一个类中所有字段列表，包括其父类中的字段
+	 *
+	 * @param beanClass 类
+	 * @return 字段列表
+	 * @throws SecurityException 安全检查异常
+	 */
+	public static Field[] getFields(Class<?> beanClass) throws SecurityException {
+		Field[] allFields = FIELDS_CACHE.get(beanClass);
+		if (null != allFields) {
+			return allFields;
+		}
+
+		allFields = getFieldsDirectly(beanClass, true);
+		return FIELDS_CACHE.put(beanClass, allFields);
+	}
+
+	/**
+	 * 获得一个类中所有字段列表，直接反射获取，无缓存
+	 *
+	 * @param beanClass           类
+	 * @param withSuperClassFieds 是否包括父类的字段列表
+	 * @return 字段列表
+	 * @throws SecurityException 安全检查异常
+	 */
+	public static Field[] getFieldsDirectly(Class<?> beanClass, boolean withSuperClassFieds) throws SecurityException {
+
+		Field[] allFields = null;
+		Class<?> searchType = beanClass;
+		Field[] declaredFields;
+		while (searchType != null) {
+			declaredFields = searchType.getDeclaredFields();
+			if (null == allFields) {
+				allFields = declaredFields;
+			} else {
+                return ArraysUtil.append(allFields,declaredFields);
+			}
+			searchType = withSuperClassFieds ? searchType.getSuperclass() : null;
+		}
+
+		return allFields;
+	}
 //
 //	/**
 //	 * 获取字段值
@@ -824,19 +810,18 @@
 //		}
 //		return invoke(obj, method, args);
 //	}
-//
-//	/**
-//	 * 设置方法为可访问（私有方法可以被外部调用）
-//	 *
-//	 * @param <T>              AccessibleObject的子类，比如Class、Method、Field等
-//	 * @param accessibleObject 可设置访问权限的对象，比如Class、Method、Field等
-//	 * @return 被设置可访问的对象
-//	 * @since 4.6.8
-//	 */
-//	public static <T extends AccessibleObject> T setAccessible(T accessibleObject) {
-//		if (null != accessibleObject && false == accessibleObject.isAccessible()) {
-//			accessibleObject.setAccessible(true);
-//		}
-//		return accessibleObject;
-//	}
-//}
+
+	/**
+	 * 设置方法为可访问（私有方法可以被外部调用）
+	 *
+	 * @param <T>              AccessibleObject的子类，比如Class、Method、Field等
+	 * @param accessibleObject 可设置访问权限的对象，比如Class、Method、Field等
+	 * @return 被设置可访问的对象
+	 */
+	public static <T extends AccessibleObject> T setAccessible(T accessibleObject) {
+		if (null != accessibleObject && false == accessibleObject.isAccessible()) {
+			accessibleObject.setAccessible(true);
+		}
+		return accessibleObject;
+	}
+}

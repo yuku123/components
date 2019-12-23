@@ -63,12 +63,6 @@
             <version>4.5.9</version>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-
-
-
-
         <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
         <dependency>
             <groupId>commons-net</groupId>
@@ -83,10 +77,6 @@
             <artifactId>jodd-core</artifactId>
             <version>5.0.7</version>
         </dependency>
-
-
-
-
 
 
         <!-- https://mvnrepository.com/artifact/c3p0/c3p0 -->

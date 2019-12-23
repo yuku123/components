@@ -8,7 +8,8 @@ import com.zifang.util.workflow.config.WorkflowNode;
 import com.zifang.util.workflow.engine.interfaces.AbstractEngine;
 import com.zifang.util.workflow.engine.interfaces.AbstractEngineService;
 import com.zifang.util.workflow.engine.interfaces.EngineFactory;
-import com.zifang.util.workflow.engine.spark.impl.CacheEngineService;
+import com.zifang.util.workflow.engine.spark.CacheEngineService;
+import lombok.Data;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -19,7 +20,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 每个工作流的上下文，是工作引擎的工作子单元。工作引擎只负责发布命令，调度资源，调度任务相关功能
  * */
+@Data
 public class WorkFlowApplicationContext {
+
+    private static Logger logger = Logger.getLogger(WorkFlowApplicationContext.class);
 
     private volatile AtomicInteger nodeId = new AtomicInteger(0);
 
@@ -27,11 +31,10 @@ public class WorkFlowApplicationContext {
 
     private Integer workFlowApplicationContextId;
 
-    private static Logger logger = Logger.getLogger(WorkFlowApplicationContext.class);
-
     //执行引擎
     private AbstractEngine abstractEngine;
 
+    //缓存引擎
     private CacheEngineService cacheEngineService;
 
     //存储元配置节点信息映射表
@@ -43,7 +46,7 @@ public class WorkFlowApplicationContext {
     //存储所有的执行单元，id:执行单元
     private Map<String, ExecutableWorkflowNode> executableWorkNodeIdMap = new LinkedHashMap<>();
 
-    //工作流的配置文件地
+    //工作流的配置文件地址
     private String filePath;
 
     //执行单元
@@ -226,9 +229,6 @@ public class WorkFlowApplicationContext {
         task.exec();
     }
 
-    public WorkflowConfiguration getWorkflowConfiguration() {
-        return workflowConfiguration;
-    }
 
     /**
      * 返回当前的上下文的全量信息
@@ -283,13 +283,6 @@ public class WorkFlowApplicationContext {
         connectWorkFlowNode();
     }
 
-    public Map<String, WorkflowNode> getWorkflowNodeMap() {
-        return workflowNodeMap;
-    }
-
-    public void setWorkflowNodeMap(Map<String, WorkflowNode> workflowNodeMap) {
-        this.workflowNodeMap = workflowNodeMap;
-    }
 
     public void replaceWorkflowNode(WorkflowNode workflowNode) {
 
@@ -303,9 +296,4 @@ public class WorkFlowApplicationContext {
         //再增加
         workflowNodes.add(workflowNode);
     }
-
-    public CacheEngineService getCacheEngineService() {
-        return cacheEngineService;
-    }
-
 }
