@@ -62,6 +62,8 @@ public class SparkEngine extends AbstractSparkEngine {
     @Override
     public void doInitial() {
         sparkContextInstance = new SparkContextInstance(mode,properties);
+
+        //注册引擎方法
         Set<Class<?>> classSet = ClassScannerUtils.searchClasses(this.getClass().getPackage().getName(),e -> e.isAnnotationPresent(EngineService.class));
 
         for(Class<?> clazz : classSet){
