@@ -391,6 +391,121 @@ public class ClassUtil {
 	}
 
 
+	/**
+	 * 指定类是否为Public
+	 *
+	 * @param clazz 类
+	 * @return 是否为public
+	 */
+	public static boolean isPublic(Class<?> clazz) {
+		if (null == clazz) {
+			throw new NullPointerException("Class to provided is null.");
+		}
+		return Modifier.isPublic(clazz.getModifiers());
+	}
+
+	/**
+	 * 指定方法是否为Public
+	 *
+	 * @param method 方法
+	 * @return 是否为public
+	 */
+	public static boolean isPublic(Method method) {
+		return Modifier.isPublic(method.getModifiers());
+	}
+
+	/**
+	 * 指定类是否为非public
+	 *
+	 * @param clazz 类
+	 * @return 是否为非public
+	 */
+	public static boolean isNotPublic(Class<?> clazz) {
+		return false == isPublic(clazz);
+	}
+
+	/**
+	 * 指定方法是否为非public
+	 *
+	 * @param method 方法
+	 * @return 是否为非public
+	 */
+	public static boolean isNotPublic(Method method) {
+		return false == isPublic(method);
+	}
+
+	/**
+	 * 是否为静态方法
+	 *
+	 * @param method 方法
+	 * @return 是否为静态方法
+	 */
+	public static boolean isStatic(Method method) {
+		return Modifier.isStatic(method.getModifiers());
+	}
+
+	/**
+	 * 设置方法为可访问
+	 *
+	 * @param method 方法
+	 * @return 方法
+	 */
+	public static Method setAccessible(Method method) {
+		if (null != method && false == method.isAccessible()) {
+			method.setAccessible(true);
+		}
+		return method;
+	}
+
+	/**
+	 * 是否为抽象类
+	 *
+	 * @param clazz 类
+	 * @return 是否为抽象类
+	 */
+	public static boolean isAbstract(Class<?> clazz) {
+		return Modifier.isAbstract(clazz.getModifiers());
+	}
+
+	/**
+	 * 是否为标准的类<br>
+	 * 这个类必须：
+	 *
+	 * <pre>
+	 * 1、非接口
+	 * 2、非抽象类
+	 * 3、非Enum枚举
+	 * 4、非数组
+	 * 5、非注解
+	 * 6、非原始类型（int, long等）
+	 * </pre>
+	 *
+	 * @param clazz 类
+	 * @return 是否为标准类
+	 */
+	public static boolean isNormalClass(Class<?> clazz) {
+		return null != clazz //
+				&& false == clazz.isInterface() //
+				&& false == isAbstract(clazz) //
+				&& false == clazz.isEnum() //
+				&& false == clazz.isArray() //
+				&& false == clazz.isAnnotation() //
+				&& false == clazz.isSynthetic() //
+				&& false == clazz.isPrimitive();//
+	}
+
+	/**
+	 * 判断类是否为枚举类型
+	 *
+	 * @param clazz 类
+	 * @return 是否为枚举类型
+	 * @since 3.2.0
+	 */
+	public static boolean isEnum(Class<?> clazz) {
+		return null != clazz && clazz.isEnum();
+	}
+
+
 	// ---------------------------------------------------------------- supported methods
 
 
@@ -542,13 +657,6 @@ public class ClassUtil {
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * Returns <code>true</code> if class is public.
-	 */
-	public static boolean isPublic(final Class c) {
-		return Modifier.isPublic(c.getModifiers());
 	}
 
 
@@ -1141,6 +1249,10 @@ public class ClassUtil {
 		} catch (Exception ignore) {
 			return null;
 		}
+	}
+
+	public static ClassLoader getClassLoader() {
+		return Thread.currentThread().getContextClassLoader();
 	}
 
 	// ---------------------------------------------------------------- caller
