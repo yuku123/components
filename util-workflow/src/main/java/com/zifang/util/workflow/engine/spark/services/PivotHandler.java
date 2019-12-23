@@ -1,8 +1,8 @@
 package com.zifang.util.workflow.engine.spark.services;
 
-import com.zifang.util.bigdata.spark.util.SparkUtil;
 import com.zifang.util.core.util.GsonUtil;
-import com.zifang.util.workflow.engine.spark.impl.AbstractSparkEngineService;
+import com.zifang.util.workflow.anoation.EngineService;
+import com.zifang.util.workflow.engine.spark.AbstractSparkEngineService;
 import com.zifang.util.workflow.engine.spark.services.praser.PivotA;
 import com.zifang.util.workflow.engine.spark.services.praser.PivotANode;
 import org.apache.spark.sql.Column;
@@ -11,6 +11,7 @@ import org.apache.spark.sql.functions;
 import java.util.List;
 import java.util.Map;
 
+@EngineService(name = "engine.service.pivot")
 public class PivotHandler extends AbstractSparkEngineService {
 
     @Override

@@ -58,8 +58,6 @@ public class PhantomReferenceDemo {
 	
 	
 	public static void main(String[] args) throws InterruptedException {
-		LinkedHashMap linkedHashMap = new LinkedHashMap();
-		linkedHashMap.put("","");
 		test1();
 		test2();
 	}

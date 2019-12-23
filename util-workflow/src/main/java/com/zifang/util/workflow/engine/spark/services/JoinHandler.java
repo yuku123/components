@@ -1,12 +1,14 @@
 package com.zifang.util.workflow.engine.spark.services;
 
 import com.zifang.util.core.util.GsonUtil;
+import com.zifang.util.workflow.anoation.EngineService;
 import com.zifang.util.workflow.config.ExecutableWorkflowNode;
-import com.zifang.util.workflow.engine.spark.impl.AbstractSparkEngineService;
+import com.zifang.util.workflow.engine.spark.AbstractSparkEngineService;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@EngineService(name = "engine.service.joinHandler")
 public class JoinHandler extends AbstractSparkEngineService {
 
     @Override

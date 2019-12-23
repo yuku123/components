@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.stream.Collectors;
 
 /**
  * 提供对 包名下的类的扫描工具
@@ -31,11 +32,16 @@ public class ClassScannerUtils {
         return searchClasses(packageName,null);
     }
 
-    public static Set<Class<?>> searchClasses(String packageName, Predicate predicate){
-        return search(packageName,predicate);
+    public static Set<Class<?>> searchClasses(String packageName, Predicate<Class<?>> predicate){
+        Set<Class<?>> set = search(packageName);
+        if(predicate == null){
+            return set;
+        }else{
+            return set.stream().filter(predicate).collect(Collectors.toSet());
+        }
     }
 
-    private static Set<Class<?>> search(String packageName, Predicate<Class<?>> predicate) {
+    private static Set<Class<?>> search(String packageName) {
 
         Set<Class<?>> classes = new HashSet<>();
 
@@ -55,16 +61,13 @@ public class ClassScannerUtils {
                                 String jarEntryName = entry.getName();
                                 if (jarEntryName.contains(CLASS_SUFFIX) && jarEntryName.replaceAll("/", ".").startsWith(packageName)) {
                                     String className = jarEntryName.substring(0, jarEntryName.lastIndexOf(".")).replace("/", ".");
-                                    Class cls = Class.forName(className);
-                                    if(predicate == null || predicate.test(cls)){
-                                        classes.add(cls);
-                                    }
+                                    classes.add(Class.forName(className));
                                 }
                             }
                         }
                     }
                 }else if(FILE.equalsIgnoreCase(protocol)){
-                    Set<Class<?>> set = searchFromFile(packageName,predicate);
+                    Set<Class<?>> set = searchFromFile(packageName);
                     classes.addAll(set);
                 }
             }
@@ -78,7 +81,7 @@ public class ClassScannerUtils {
     private static class ClassSearcher{
         private Set<Class<?>> classPaths = new HashSet<>();
 
-        private Set<Class<?>> doPath(File file,String packageName, Predicate<Class<?>> predicate,boolean flag) {
+        private Set<Class<?>> doPath(File file,String packageName,boolean flag) {
 
             if (file.isDirectory()) {
                 File[] files = file.listFiles();
@@ -87,15 +90,13 @@ public class ClassScannerUtils {
                 }
 
                 for (File f1 : files) {
-                    doPath(f1,packageName,predicate,false);
+                    doPath(f1,packageName,false);
                 }
             } else {
                 if (file.getName().endsWith(CLASS_SUFFIX)) {
                     try {
                         Class<?> clazz = Class.forName(packageName + "."+ file.getName().substring(0,file.getName().lastIndexOf(".")));
-                        if(predicate==null||predicate.test(clazz)){
-                            classPaths.add(clazz);
-                        }
+                        classPaths.add(clazz);
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -105,13 +106,11 @@ public class ClassScannerUtils {
         }
     }
 
-    public static Set<Class<?>> searchFromFile(String packageName, Predicate<Class<?>> predicate) {
-        //�ȰѰ���ת��Ϊ·��,���ȵõ���Ŀ��classpath
+    public static Set<Class<?>> searchFromFile(String packageName) {
         String classpath = defaultClassPath;
-        //Ȼ������ǵİ���basPackת��Ϊ·����
         String basePackPath = packageName.replace(".", File.separator);
         String searchPath = classpath + basePackPath;
-        return new ClassSearcher().doPath(new File(searchPath),packageName, predicate,true);
+        return new ClassSearcher().doPath(new File(searchPath),packageName,true);
     }
 
     public static void main(String[] args) throws IOException {
@@ -121,7 +120,7 @@ public class ClassScannerUtils {
             System.out.println(aClass.getName());
         }
 
-        Set<Class<?>> set1 = searchClasses("com.zifang");
+        Set<Class<?>> set1 = searchClasses("com.zifang.util.core.io");
         for (Class<?> aClass : set1) {
             System.out.println(aClass.getName());
         }

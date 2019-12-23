@@ -31,6 +31,9 @@ import jodd.util.StringUtil;
 
 import javax.annotation.Generated;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static jodd.util.StringPool.NULL;
 
@@ -449,6 +452,12 @@ public class ArraysUtil {
 		T[] t = resize(buffer, buffer.length + 1);
 		t[buffer.length] = newElement;
 		return t;
+	}
+
+	public static <T> T[] append(T[] buffer, T[] newElement) {
+		List<T> list = Arrays.asList(buffer);
+		list.addAll(Arrays.asList(newElement));
+		return (T[]) list.toArray();
 	}
 
 	/**

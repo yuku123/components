@@ -1,12 +1,14 @@
 package com.zifang.util.workflow.engine.spark.services;
 
 import com.zifang.util.core.util.GsonUtil;
-import com.zifang.util.workflow.engine.spark.impl.AbstractSparkEngineService;
-import com.zifang.util.workflow.engine.spark.impl.CacheEngineService;
+import com.zifang.util.workflow.anoation.EngineService;
+import com.zifang.util.workflow.engine.spark.AbstractSparkEngineService;
+import com.zifang.util.workflow.engine.spark.CacheEngineService;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@EngineService(name = "engine.service.changeColumn")
 public class ChangeColumnNameHandler extends AbstractSparkEngineService {
 
     @Override
@@ -15,7 +17,6 @@ public class ChangeColumnNameHandler extends AbstractSparkEngineService {
         CacheEngineService cacheEngineService = getWorkFlowApplicationContext().getCacheEngineService();
         //当前内的节点的缓存参数
         Map<String,String> cacheParameter = executableWorkflowNode.getCache();
-
 
         //获得当前节点的前置节点的数据
         dataset = executableWorkflowNode.getDatasetPre();

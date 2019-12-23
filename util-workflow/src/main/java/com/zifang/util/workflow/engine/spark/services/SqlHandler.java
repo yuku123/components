@@ -1,8 +1,9 @@
 package com.zifang.util.workflow.engine.spark.services;
 
 import com.zifang.util.core.util.GsonUtil;
-import com.zifang.util.workflow.engine.spark.impl.AbstractSparkEngineService;
-import com.zifang.util.workflow.engine.spark.impl.CacheEngineService;
+import com.zifang.util.workflow.anoation.EngineService;
+import com.zifang.util.workflow.engine.spark.AbstractSparkEngineService;
+import com.zifang.util.workflow.engine.spark.CacheEngineService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Map;
 /**
  * 支持书写任意sql的处理器件
  * */
+@EngineService(name = "engine.service.sql")
 public class SqlHandler extends AbstractSparkEngineService {
 
     @Override

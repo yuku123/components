@@ -71,7 +71,7 @@ public class UnsafeUtil {
 	/**
 	 * 获得一个unsafe实例类
 	 *
-	 * unsafe实力类是不能被jdk外的代码获取的
+	 * unsafe实例是不能被jdk外的代码获取的
 	 *
 	 * */
 	public static Unsafe getUnsageInstance(){
