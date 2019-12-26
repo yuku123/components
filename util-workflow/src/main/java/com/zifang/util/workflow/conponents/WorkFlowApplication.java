@@ -12,6 +12,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+/**
+ * 整个处理流的应用
+ * */
 public class WorkFlowApplication {
 
     public static Map<Integer,WorkFlowApplicationContext> workFlowContextMap = new HashMap<>();

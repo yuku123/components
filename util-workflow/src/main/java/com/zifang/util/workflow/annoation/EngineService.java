@@ -1,4 +1,4 @@
-package com.zifang.util.workflow.anoation;
+package com.zifang.util.workflow.annoation;
 
 
 import java.lang.annotation.*;
@@ -8,4 +8,5 @@ import java.lang.annotation.*;
 @Documented
 public @interface EngineService {
     String name();
+    String engine() default "spark";
 }

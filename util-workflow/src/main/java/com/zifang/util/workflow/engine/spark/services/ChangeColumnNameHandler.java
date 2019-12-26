@@ -1,7 +1,7 @@
 package com.zifang.util.workflow.engine.spark.services;
 
 import com.zifang.util.core.util.GsonUtil;
-import com.zifang.util.workflow.anoation.EngineService;
+import com.zifang.util.workflow.annoation.EngineService;
 import com.zifang.util.workflow.engine.spark.AbstractSparkEngineService;
 import com.zifang.util.workflow.engine.spark.CacheEngineService;
 

@@ -1,7 +1,7 @@
 package com.zifang.util.workflow.engine.spark.services.interceptor;
 
 import com.zifang.util.core.aop.aspects.Aspect;
-import com.zifang.util.workflow.anoation.EngineServiceInterceptor;
+import com.zifang.util.workflow.annoation.EngineServiceInterceptor;
 
 import java.lang.reflect.Method;
 

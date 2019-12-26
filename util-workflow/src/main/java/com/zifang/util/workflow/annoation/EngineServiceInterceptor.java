@@ -1,4 +1,4 @@
-package com.zifang.util.workflow.anoation;
+package com.zifang.util.workflow.annoation;
 
 import java.lang.annotation.*;
 

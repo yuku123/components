@@ -1,7 +1,8 @@
 package com.zifang.util.workflow.test;
 
+import com.zifang.util.workflow.conponents.WorkFlowApplication;
+import com.zifang.util.workflow.conponents.WorkFlowApplicationBuilder;
 import com.zifang.util.workflow.conponents.WorkFlowApplicationContext;
-import org.junit.Test;
 
 public class newFeatureTest {
 
@@ -13,6 +14,22 @@ public class newFeatureTest {
         workFlowApplicationContext.initialByLocalFilePath(filePath);
         workFlowApplicationContext.executeTask();
     }
+
+//    public void test1All(){
+//
+//        String filePath = "/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/feature/workflow_all.json";
+//
+//        WorkFlowApplication workFlowApplication = new WorkFlowApplicationBuilder().
+//
+//
+//
+//
+//        WorkFlowApplication workFlowApplication = new WorkFlowApplication();
+//
+//        WorkFlowApplicationContext workFlowApplicationContext = new WorkFlowApplicationContext();
+//        workFlowApplicationContext.initialByLocalFilePath(filePath);
+//        workFlowApplicationContext.executeTask();
+//    }
 
     public static void main(String[] args) {
         new newFeatureTest().testAll();
