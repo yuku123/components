@@ -1,5 +1,7 @@
 package com.zifang.util.core.beans;
 
+import com.zifang.util.core.util.ClassUtil;
+
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -12,13 +14,25 @@ import java.util.Map;
 /**
  * 提供Bean的相关操作
  * */
+@SuppressWarnings("unchecked")
 public class BeanUtils {
 
+    /**
+     * 检测传入的Object是否为标准的Bean
+     * */
     public static <T> boolean isBean(T bean){
-        return true;
+        if (ClassUtil.isNormalClass(bean.getClass())) {
+            final Method[] methods = bean.getClass().getMethods();
+            for (Method method : methods) {
+                if (method.getParameterTypes().length == 1 && method.getName().startsWith("set")) {
+                    // 检测包含标准的setXXX方法即视为标准的JavaBean
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    @SuppressWarnings("unchecked")
     public static <T> T cloneBean(final T bean) throws IllegalAccessException, InstantiationException, InvocationTargetException, IntrospectionException {
         T t = (T) bean.getClass().newInstance();
         PropertyDescriptor[] pro = Introspector.getBeanInfo(bean.getClass(),Object.class).getPropertyDescriptors();
@@ -28,16 +42,6 @@ public class BeanUtils {
             writeMethod.invoke(t,readMethod.invoke(bean));
         }
         return t;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <T extends java.io.Serializable> T deepCloneBean(final T bean) throws IOException, ClassNotFoundException {
-        ByteArrayOutputStream bos=new ByteArrayOutputStream();
-        ObjectOutputStream oos=new ObjectOutputStream(bos);
-        oos.writeObject(bean);
-        oos.flush();
-        ObjectInputStream ois=new ObjectInputStream(new ByteArrayInputStream(bos.toByteArray()));
-        return (T)ois.readObject();
     }
 
     public static <T> T  mapToBean(Class<T> clazz, Map<String,? extends Object> map) throws IllegalAccessException, InstantiationException, IntrospectionException {
@@ -68,10 +72,19 @@ public class BeanUtils {
         }
         return map;
     }
+
+    /**
+     * 对一个贫血对象设入参数
+     *
+     * @param obj 等待设入
+     * @param name 设入的字段名
+     * @param value 设入的字段值
+     *
+     */
     public static void setProperty(Object obj,String name,Object value){
         try {
             PropertyDescriptor[] pro = Introspector.getBeanInfo(obj.getClass(),Object.class).getPropertyDescriptors();
-            PropertyDescriptor propertyDescriptor = findByName(pro,name);
+            PropertyDescriptor propertyDescriptor = findPropertyDescriptorByName(pro,name);
             if(propertyDescriptor!=null){
                 propertyDescriptor.getWriteMethod().invoke(obj,value);
             }
@@ -81,10 +94,17 @@ public class BeanUtils {
 
     }
 
+    /**
+     * 得到一个Object的字段值
+     *
+     * @param obj 等待被摄取的实例
+     * @param name 摄取的字段名
+     * @return 字段值
+     */
     public static Object getProperty(Object obj,String name){
         try {
             PropertyDescriptor[] pro = Introspector.getBeanInfo(obj.getClass(),Object.class).getPropertyDescriptors();
-            PropertyDescriptor propertyDescriptor = findByName(pro,name);
+            PropertyDescriptor propertyDescriptor = findPropertyDescriptorByName(pro,name);
             if(propertyDescriptor!=null){
                 return propertyDescriptor.getReadMethod().invoke(obj);
             }
@@ -94,7 +114,7 @@ public class BeanUtils {
         return null;
     }
 
-    private static PropertyDescriptor findByName(PropertyDescriptor[] pro,String name){
+    private static PropertyDescriptor findPropertyDescriptorByName(PropertyDescriptor[] pro,String name){
         for (PropertyDescriptor propertyDescriptor : pro) {
             if(name.equals(propertyDescriptor.getName())){
                 return propertyDescriptor;

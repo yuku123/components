@@ -16,7 +16,7 @@ public class ScriptEngineDemo {
 	 * Java6只支持JavaScript脚本，它底层的实现是Mozilla Rhino，它是个纯Java的JavaScript实现。
 	 * 可以通过下面的代码列出当前环境中支持的脚本引擎。
 	 * 
-	 * @date 2016年12月5日 下午12:05:18
+	 * @date 2019年12月5日 下午12:05:18
 	 */
 	public static void test1() {
 		ScriptEngineManager manager = new ScriptEngineManager();
@@ -53,7 +53,7 @@ public class ScriptEngineDemo {
 	 * 从工厂中创建ScriptEngine可以使用getEngineByName、getEngineByExtension或
 	 * getEngineByMimeType来得到，只要参数名字能对上。执行脚本调用eval方法即可（效果等同于JavaScript中的eval）。
 	 * 
-	 * @date 2016年12月5日 下午12:09:47
+	 * @date 2019年12月5日 下午12:09:47
 	 */
 	public static void test2() {
 		ScriptEngineManager manager = new ScriptEngineManager();
@@ -75,7 +75,7 @@ public class ScriptEngineDemo {
 	 * 和ENGINE_SCOPE相对，还有个ScriptContext.GLOBAL_SCOPE
 	 * 作用域，其作用的变量是由同一ScriptEngineFactory创建的所有ScriptEngine共享的全局作用域。
 	 * 
-	 * @date 2016年12月5日 下午12:11:16
+	 * @date 2019年12月5日 下午12:11:16
 	 */
 	public static void test3() {
 		ScriptEngineManager manager = new ScriptEngineManager();
@@ -96,7 +96,7 @@ public class ScriptEngineDemo {
 	 * 上面的例子中定义了一个JavaScript函数max_num，可以通过Invocable接口来多次调用脚本库中的函数，Invocable接口是
 	 * ScriptEngine可选实现的接口。下面是个使用示例：
 	 * 
-	 * @date 2016年12月5日 下午12:14:27
+	 * @date 2019年12月5日 下午12:14:27
 	 */
 	public static void test4() {
 		ScriptEngineManager manager = new ScriptEngineManager();
@@ -123,7 +123,7 @@ public class ScriptEngineDemo {
 	 * Invocable还有个很酷的功能，就是动态实现接口，它可以从脚本引擎中得到Java Interface
 	 * 的实例；也就是说，可以定义个一个Java接口，其实现是由脚本完成。以上面的例子为例，定义接口JSLib，该接口中的函数和JavaScript中的函数签名保持一致：
 	 * 
-	 * @date 2016年12月5日 下午12:17:59
+	 * @date 2019年12月5日 下午12:17:59
 	 */
 	public static void test41() {
 		ScriptEngineManager manager = new ScriptEngineManager();
@@ -144,7 +144,7 @@ public class ScriptEngineDemo {
 	 * 可以在JavaScript中使用Java代码，这确实是很酷的事情。在Rhino中，可以通过importClass导入一个类，
 	 * 也可以通过importPackage导入一个包，也可以直接使用全路经的类。在创建对象时，new也不是必须的。 示例代码如下：
 	 * 
-	 * @date 2016年12月5日 下午12:46:06
+	 * @date 2019年12月5日 下午12:46:06
 	 */
 	public static void test5() {
 		ScriptEngineManager manager = new ScriptEngineManager();
@@ -162,7 +162,7 @@ public class ScriptEngineDemo {
 	 * 
 	 * 脚本引擎默认是解释执行的，如果需要反复执行脚本，可以使用它的可选接口Compilable来编译执行脚本，以获得更好的性能，示例代码如下：
 	 * 
-	 * @date 2016年12月5日 下午12:46:39 @throws
+	 * @date 2019年12月5日 下午12:46:39 @throws
 	 */
 	public static void test6() {
 		ScriptEngineManager manager = new ScriptEngineManager();

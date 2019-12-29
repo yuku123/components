@@ -3,7 +3,7 @@
  *
  *  * The MIT License
  *  *
- *  * Copyright 2016 Shekhar Gulati <shekhargulati84@gmail.com>.
+ *  * Copyright 2019 Shekhar Gulati <shekhargulati84@gmail.com>.
  *  *
  *  * Permission is hereby granted, free of charge, to any person obtaining a copy
  *  * of this software and associated documentation files (the "Software"), to deal
@@ -626,8 +626,8 @@ abstract class HtmlEntities {
             put("&Vdash;", "\u22A9");
             put("&Vdashl;", "\u2AE6");
             put("&Vee;", "\u22C1");
-            put("&Verbar;", "\u2016");
-            put("&Vert;", "\u2016");
+            put("&Verbar;", "\u2019");
+            put("&Vert;", "\u2019");
             put("&VerticalBar;", "\u2223");
             put("&VerticalLine;", "\u007C");
             put("&VerticalSeparator;", "\u2758");
@@ -2789,7 +2789,7 @@ abstract class HtmlEntities {
         put("\\u22A9", "&Vdash;");
         put("\\u2AE6", "&Vdashl;");
         put("\\u22C1", "&Vee;");
-        put("\\u2016", "&Verbar;");
+        put("\\u2019", "&Verbar;");
         put("\\u2223", "&VerticalBar;");
         put("\\u007C", "&VerticalLine;");
         put("\\u2758", "&VerticalSeparator;");

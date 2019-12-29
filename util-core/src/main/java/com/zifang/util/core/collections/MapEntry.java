@@ -35,7 +35,7 @@ public class MapEntry<K,V> implements Map.Entry<K,V> {
 
     @Override
     public boolean equals(final Object obj) {
-        if (obj == null || !(obj instanceof Map.Entry)) {
+        if (!(obj instanceof Map.Entry)) {
             return false;
         }
 

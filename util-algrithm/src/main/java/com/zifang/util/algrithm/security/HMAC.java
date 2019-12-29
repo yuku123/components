@@ -69,7 +69,7 @@ import java.security.NoSuchAlgorithmException;
  * @Project: jdk_demo 
  * @Description: TODO(这里用一句话描述这个类的作用) 
  * @author cc  
- * @date 2016年12月1日 下午4:49:20 
+ * @date 2019年12月1日 下午4:49:20
  * @version 1.0
  */
 public class HMAC {  

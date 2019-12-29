@@ -1,9 +1,9 @@
 /*
  * 文件名：CacheStudy.java
- * 版权：Copyright 2007-2016 zxiaofan.com. Co. Ltd. All Rights Reserved. 
+ * 版权：Copyright 2007-2019 zxiaofan.com. Co. Ltd. All Rights Reserved.
  * 描述： CacheStudy.java
  * 修改人：zxiaofan
- * 修改时间：2016年12月12日
+ * 修改时间：2019年12月12日
  * 修改内容：新增
  */
 package com.zifang.util.zex.guava.caching;

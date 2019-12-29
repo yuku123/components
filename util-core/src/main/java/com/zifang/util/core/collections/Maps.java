@@ -1,8 +1,5 @@
 package com.zifang.util.core.collections;
 
-
-import com.zifang.util.core.base.condition.NullPredicate;
-
 import java.util.*;
 
 import java.util.function.Function;
@@ -17,7 +14,7 @@ public class Maps {
      *
      * */
     public static <K,V> void removeNullKeys(Map<K,V> map){
-        removeKeys(map, new NullPredicate<>());
+        removeKeys(map, Objects::isNull);
     }
 
     /**
@@ -27,7 +24,7 @@ public class Maps {
      *
      * */
     public static <K,V> void removeNullValues(Map<K,V> map){
-        removeValues(map, new NullPredicate<>());
+        removeValues(map, Objects::isNull);
     }
 
 
@@ -39,13 +36,7 @@ public class Maps {
      *
      * */
     public static <K,V> void removeKeys(Map<K,V> map, Predicate<K> predicate){
-        Iterator<Map.Entry<K,V>> it = map.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry<K,V> entry = it.next();
-            if(predicate.test(entry.getKey())){
-                it.remove();
-            }
-        }
+        map.entrySet().removeIf(entry -> predicate.test(entry.getKey()));
     }
 
 
@@ -57,13 +48,7 @@ public class Maps {
      *
      * */
     public static <K,V> void removeValues(Map<K,V> map, Predicate<V> predicate){
-        Iterator<Map.Entry<K,V>> it = map.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry<K,V> entry = it.next();
-            if(predicate.test(entry.getValue())){
-                it.remove();
-            }
-        }
+        map.entrySet().removeIf(entry -> predicate.test(entry.getValue()));
     }
 
     /**
@@ -74,13 +59,7 @@ public class Maps {
      *
      * */
     public static <K,V> void remove(Map<K,V> map, Predicate<Map.Entry<K,V>> predicate){
-        Iterator<Map.Entry<K,V>> it = map.entrySet().iterator();
-        while(it.hasNext()){
-            Map.Entry<K,V> entry = it.next();
-            if(predicate.test(entry)){
-                it.remove();
-            }
-        }
+        map.entrySet().removeIf(predicate::test);
     }
 
     /**

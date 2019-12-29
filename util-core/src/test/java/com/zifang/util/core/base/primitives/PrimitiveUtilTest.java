@@ -1,5 +1,6 @@
 package com.zifang.util.core.base.primitives;
 
+import com.zifang.util.core.lang.PrimitiveUtil;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

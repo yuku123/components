@@ -57,12 +57,12 @@ public class ThumbnailatorDmo {
      */
     private static void generateRotationWatermark(){
         try {
-            Thumbnails.of("data/2016010208.jpg").
+            Thumbnails.of("data/2019010208.jpg").
                     size(160,160). // 缩放大小
                     rotate(90). // 顺时针旋转90度
                     watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File("data/newmeinv.jpg")),0.5f). //水印位于右下角,半透明
                     outputQuality(0.8). // 图片压缩80%质量
-                    toFile("data/2016010208_new.jpg");
+                    toFile("data/2019010208_new.jpg");
         } catch (IOException e) {
             System.out.println("原因: " + e.getMessage());
         }
@@ -72,8 +72,8 @@ public class ThumbnailatorDmo {
      * 转换图片格式,将流写入到输出流
      */
     private static void generateOutputstream(){
-        try(OutputStream outputStream = new FileOutputStream("data/2016010208_outputstream.png")) { //自动关闭流
-            Thumbnails.of("data/2016010208.jpg").
+        try(OutputStream outputStream = new FileOutputStream("data/2019010208_outputstream.png")) { //自动关闭流
+            Thumbnails.of("data/2019010208.jpg").
                     size(500,500).
                     outputFormat("png"). // 转换格式
                     toOutputStream(outputStream); // 写入输出流
@@ -87,11 +87,11 @@ public class ThumbnailatorDmo {
      */
     private static void generateScale(){
         try {
-            Thumbnails.of("data/2016010208.jpg").
+            Thumbnails.of("data/2019010208.jpg").
                     //scalingMode(ScalingMode.BICUBIC).
                             scale(0.8). // 图片缩放80%, 不能和size()一起使用
                     outputQuality(0.8). // 图片质量压缩80%
-                    toFile("data/2016010208_scale.jpg");
+                    toFile("data/2019010208_scale.jpg");
         } catch (IOException e) {
             System.out.println("原因: " + e.getMessage());
         }
@@ -102,7 +102,7 @@ public class ThumbnailatorDmo {
      */
     private static void generateThumbnail2Directory(){
         try {
-            Thumbnails.of("data/2016010208.jpg","data/meinv.jpg").
+            Thumbnails.of("data/2019010208.jpg","data/meinv.jpg").
                     //scalingMode(ScalingMode.BICUBIC).
                             scale(0.8). // 图片缩放80%, 不能和size()一起使用
                     toFiles(new File("data/new/"), Rename.NO_CHANGE);//指定的目录一定要存在,否则报错

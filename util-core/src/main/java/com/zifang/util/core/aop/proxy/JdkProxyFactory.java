@@ -1,8 +1,9 @@
 package com.zifang.util.core.aop.proxy;
 
-import cn.hutool.aop.ProxyUtil;
-import cn.hutool.aop.aspects.Aspect;
-import cn.hutool.aop.interceptor.JdkInterceptor;
+
+import com.zifang.util.core.aop.ProxyUtil;
+import com.zifang.util.core.aop.aspects.Aspect;
+import com.zifang.util.core.aop.interceptor.JdkInterceptor;
 
 /**
  * JDK实现的切面代理

@@ -1,23 +1,18 @@
 package com.zifang.util.core.util;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 
 /**
  * 将Iterator类型的数据转化为流操作
- *
- *
  * */
 public class StreamUtils {
 
 
     /**
-     * Converts iterator to a stream.
+     * 转换 iterator 为串行流
      */
     public static <T> Stream<T> streamOf(final Iterator<T> iterator) {
         return StreamSupport.stream(((Iterable<T>) () -> iterator).spliterator(), false);

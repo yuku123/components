@@ -18,7 +18,7 @@ public class LockMonitor {
 	// 1. 创建一个类，名为 MyLock ，扩展 ReentrantLock 类。
 	static class MyLock extends ReentrantLock {
 
-		private static final long serialVersionUID = -3923919855732016852L;
+		private static final long serialVersionUID = -3923919855732019852L;
 
 		// 2. 实现 getOwnerName() 方法。此方法使用Lock类的保护方法 getOwner()，
 		// 返回控制锁的线程（如果存在）的名字。

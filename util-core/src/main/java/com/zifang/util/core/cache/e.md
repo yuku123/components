@@ -1,3 +1,8 @@
 FIFO
 LFUC
 LRUC
+
+
+
+
+
