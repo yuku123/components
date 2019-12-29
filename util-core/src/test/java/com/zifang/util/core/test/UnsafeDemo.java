@@ -1,5 +1,6 @@
-package com.zifang.util.core.util;
+package com.zifang.util.core.test;
 
+import com.zifang.util.core.util.UnsafeUtil;
 import org.junit.Test;
 import sun.misc.Unsafe;
 

@@ -3,7 +3,7 @@ import org.junit.Test;
 
 public class newFeatureTest {
 
-    @Test
+    //@Test
     public void testAll(){
 
         String filePath = "feature/workflow_all.json";
