@@ -7,9 +7,6 @@ import java.io.Serializable;
 /**
  * 代理工厂<br>
  * 根据用户引入代理库的不同，产生不同的代理对象
- * 
- * @author looly
- *
  */
 public abstract class ProxyFactory implements Serializable{
 	private static final long serialVersionUID = 1L;

@@ -7,15 +7,16 @@
  * For a commercial use license, or to purchase the book (recommended),
  * visit http://www.davidflanagan.com/javaexamples2.
  */
-package com.zifang.util.zex.demo.jdk.lang.reflect.class_info;
+package com.zifang.util.zex.demo.jdk.lang.reflect;
 import java.lang.reflect.*;
 
 /** A program that displays a class synopsis for the named class */
 public class ShowClass {
     /** The main method.  Print info about the named class */
     public static void main(String[] args) throws ClassNotFoundException {
-        Class c = Class.forName("java.lang.String");
+        Class c = Class.forName("java.util.ArrayList");
         print_class(c);
+
     }
     
     /**

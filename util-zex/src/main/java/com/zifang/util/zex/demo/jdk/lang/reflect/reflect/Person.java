@@ -1,7 +1,7 @@
 package com.zifang.util.zex.demo.jdk.lang.reflect.reflect;
 
 @MyAnnotation(value="infcn")
-public class Person extends Creature<String> implements Comparable,MyInterface {
+public class Person<A,B> extends Creature<String> implements Comparable,MyInterface {
 
 	public String name;
 	private int age;

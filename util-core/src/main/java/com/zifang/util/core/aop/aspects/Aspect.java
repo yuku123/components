@@ -4,10 +4,6 @@ import java.lang.reflect.Method;
 
 /**
  * 切面接口
- *
- * @author looly
- * @author ted.L
- * @since 4.18
  */
 public interface Aspect {
 

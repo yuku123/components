@@ -9,7 +9,6 @@ import java.lang.reflect.Proxy;
 
 /**
  * 代理工具
- *
  */
 public final class ProxyUtil {
 	

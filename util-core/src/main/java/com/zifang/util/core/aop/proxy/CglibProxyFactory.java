@@ -6,9 +6,6 @@ import net.sf.cglib.proxy.Enhancer;
 
 /**
  * 基于Cglib的切面代理工厂
- * 
- * @author looly
- *
  */
 public class CglibProxyFactory extends ProxyFactory{
 	private static final long serialVersionUID = 1L;

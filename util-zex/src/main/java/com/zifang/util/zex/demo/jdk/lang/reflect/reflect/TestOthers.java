@@ -34,33 +34,4 @@ public class TestOthers {
 			System.out.println(((Class)t).getName());
 		}
 	}
-	
-	//4、获取实现的接口
-	@Test
-	public void test4(){
-		Class clazz = Person.class;
-		Class[] interfaces = clazz.getInterfaces();
-		for (Class i : interfaces) {
-			System.out.println(i);
-		}
-	}
-	
-	//5、获取所在的包
-	@Test
-	public void test5(){
-		Class clazz = Person.class;
-		Package pack = clazz.getPackage();
-		System.out.println(pack);
-	}
-	
-	//6、获取注解
-	@Test
-	public void test6(){
-		Class clazz = Person.class;
-		//runtime的类型才能获取到
-		Annotation[] anns = clazz.getAnnotations();
-		for (Annotation a : anns) {
-			System.out.println(a);
-		}
-	}
 }

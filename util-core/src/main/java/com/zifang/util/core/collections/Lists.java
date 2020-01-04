@@ -35,7 +35,7 @@ public class Lists {
      * */
     public static <E> List<E> of(Iterable<E> iterable){
         List<E> list = new ArrayList<>();
-        iterable.forEach(e->list.add(e));
+        iterable.forEach(list::add);
         return list;
     }
 

@@ -7,8 +7,6 @@ import com.zifang.util.core.aop.interceptor.JdkInterceptor;
 
 /**
  * JDK实现的切面代理
- *
- * @author looly
  */
 public class JdkProxyFactory extends ProxyFactory {
 	private static final long serialVersionUID = 1L;

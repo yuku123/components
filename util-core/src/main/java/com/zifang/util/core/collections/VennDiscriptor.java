@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 /**
  *
- * 两个集合之间的内容关系
+ * 描述两个集合之间的内容关系
  *
  * */
 public class VennDiscriptor<E> {

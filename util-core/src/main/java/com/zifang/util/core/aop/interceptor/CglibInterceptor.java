@@ -10,8 +10,6 @@ import java.lang.reflect.Method;
 
 /**
  * Cglib实现的动态代理切面
- *
- * @author looly, ted.L
  */
 public class CglibInterceptor implements MethodInterceptor, Serializable {
 	private static final long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package com.zifang.util.core.cli;
+package com.zifang.util.core.util;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,10 +9,9 @@ public class TerminalUtil {
 
     /**
      * @param cmd  the command that include pipeline executions such as >
-     *
      * */
     public static void runCommandAsShScript(String cmd){
-        List list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add("sh");
         list.add("-c");
         list.add(cmd);
@@ -21,9 +20,7 @@ public class TerminalUtil {
             Process process = processBuilder.start();
             process.waitFor();
             process.destroy();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -35,9 +32,7 @@ public class TerminalUtil {
             pro1 = Runtime.getRuntime().exec(cmdarray,null);
             pro1.waitFor();
             pro1.destroy();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
 
