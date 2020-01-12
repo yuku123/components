@@ -48,9 +48,12 @@ public class RobotTest2 {
         robot.delay(500);
 
         // 输入字母a,即工程名
+
+
         robot.keyPress(KeyEvent.VK_A);
         robot.keyRelease(KeyEvent.VK_A);
         robot.delay(500);
+
 
         // 回车确定创建工程
         robot.keyPress(KeyEvent.VK_ENTER);

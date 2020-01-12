@@ -25,6 +25,7 @@
         <module>util-swing</module>
         <module>util-middleware</module>
         <module>util-zex</module>
+        <module>util-web</module>
     </modules>
 
     <properties>
