@@ -89,7 +89,7 @@
       },
       "cache":{
         "flushFlag": true,
-        "cacheTempNameAlias":"changed_column"
+        "cacheTempNameAlias":"changed_columns"
       },
       "connector": {
         "pre": ["pivot"],
@@ -102,7 +102,7 @@
       "serviceUnit": "engine.service.sql",
       "invokeDynamic": "sql",
       "invokeParameter":{
-        "sql": "select *,'a' as new from changed_column"
+        "sql": "select *,'a' as new from changed_columns"
       },
       "connector": {
         "pre": ["changeColumnName"],

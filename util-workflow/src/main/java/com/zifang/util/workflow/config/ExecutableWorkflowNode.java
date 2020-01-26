@@ -96,7 +96,7 @@ public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycl
                 }
             }
 
-        }else if(EXECUTED.equals(status)){
+        } else if(EXECUTED.equals(status)){
             //如果当前是已经执行过了的，就不真正的去执行当前指令
 
             //将当前的结果再强制往后面塞一遍，并去调用下一个节点，执行权交由下个节点
