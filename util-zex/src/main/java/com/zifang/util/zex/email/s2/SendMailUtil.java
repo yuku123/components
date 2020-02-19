@@ -1,6 +1,7 @@
 package com.zifang.util.zex.email.s2;
 
 
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
