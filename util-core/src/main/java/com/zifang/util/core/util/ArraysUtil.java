@@ -14,13 +14,13 @@ import java.util.List;
 import static jodd.util.StringPool.NULL;
 
 /**
- * 数组相关的
+ * 数组相关的工具类
  */
 public class ArraysUtil {
 
 	/**
-	 * Wraps elements into an array.
-	 */
+	 * 转换多个元素为整个数组
+	 * */
 	public static <T> T[] array(T... elements) {
 		return elements;
 	}
@@ -183,11 +183,6 @@ public class ArraysUtil {
 		System.arraycopy(dest, offset + 1, temp, src.length + offset, dest.length - offset - 1);
 		return temp;
 	}
-
-
-
-
-
 
 
 	/**

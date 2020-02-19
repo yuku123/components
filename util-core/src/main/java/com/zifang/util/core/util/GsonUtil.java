@@ -8,15 +8,18 @@ import java.util.List;
 
 public class GsonUtil {
 	private static Gson gson = new Gson();
+
 	public static <T> String objectToJsonStr(T object) {
 		return gson.toJson(object);
 	}
+
 	public static <T> String objectToJsonStr(T object, Type type) {
 		return gson.toJson(object, type);
 	}
 	public static <T> List<T> jsonToList(String jsonStr, Type type) {
 		return gson.fromJson(jsonStr, type);
 	}
+
 	public static <T> T jsonStrToObject(String jsonStr, Class<T> classOfT) {
 		return gson.fromJson(jsonStr, classOfT);
 	}
@@ -24,6 +27,7 @@ public class GsonUtil {
 	public static <T> T changeToSubClass(Object o,Class<T> t){
 		return jsonStrToObject(objectToJsonStr(o),t);
 	}
+
 	public static ParameterizedType type(final Class<?> raw, final Type... args) {
 		return new ParameterizedType() {
 
@@ -42,8 +46,5 @@ public class GsonUtil {
 				return args;
 			}
 		};
-	}
-	
-	public static void main(String[] args) {
 	}
 }

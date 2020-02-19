@@ -133,14 +133,12 @@
             <artifactId>commons-digester3</artifactId>
             <version>3.2</version>
         </dependency>
-
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
-
         <dependency>
             <groupId>org.jdom</groupId>
             <artifactId>jdom</artifactId>
@@ -156,9 +154,5 @@
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>
         </dependency>
-
-
     </dependencies>
-
-
 </project>

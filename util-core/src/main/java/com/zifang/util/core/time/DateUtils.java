@@ -10,11 +10,10 @@ import java.util.Date;
  * @desc:时间处理工具类
  */
 public class DateUtils {
+
 	private static final String[] weeks = {"星期日","星期一","星期二","星期三","星期四","星期五","星期六"};
 	/**
 	 * 根据指定格式获取当前时间
-	 * @author chenssy
-	 * @date Dec 27, 2013
 	 * @param format
 	 * @return String
 	 */
@@ -715,14 +714,10 @@ public class DateUtils {
 	
 	/**
 	 * 获取所在星期的最后一天
-	 * 
-	 * @author : chenssy
-	 * @date : 2019年6月1日 下午12:40:31
 	 *
 	 * @param date
 	 * @return
 	 */
-	@SuppressWarnings("static-access")
 	public static Date geWeektLastDate(Date date) {
 		Calendar now = Calendar.getInstance();
 		now.setTime(date);

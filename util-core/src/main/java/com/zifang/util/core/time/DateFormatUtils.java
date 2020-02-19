@@ -6,7 +6,6 @@ import java.util.Date;
 
 /**
  * 日期格式化工具类
- *
  */
 public class DateFormatUtils {
 	/** yyyy:年 */
@@ -47,8 +46,7 @@ public class DateFormatUtils {
 	 * 格式转换<br>
 	 * yyyy-MM-dd hh:mm:ss 和 yyyyMMddhhmmss 相互转换<br>
 	 * yyyy-mm-dd 和yyyymmss 相互转换
-	 * @author chenssy
-	 * @date Dec 26, 2013
+	 *
 	 * @param value 
 	 * 				日期
 	 * @return String
@@ -132,9 +130,6 @@ public class DateFormatUtils {
 
 	/**
 	 * 格式化日期
-	 *
-	 * @author chenming
-	 * @date 2019年5月31日
 	 * 
 	 * @param date
 	 * @param format
@@ -146,8 +141,6 @@ public class DateFormatUtils {
 	
 	/**
 	 * @desc:格式化是时间，采用默认格式（yyyy-MM-dd HH:mm:ss）
-	 * @autor:chenssy
-	 * @date:2014年8月6日
 	 *
 	 * @param value
 	 * @return
@@ -158,9 +151,6 @@ public class DateFormatUtils {
 	
 	/**
 	 * 格式化日期
-	 * 
-	 * @author : chenssy
-	 * @date : 2019年5月31日 下午5:40:58
 	 *
 	 * @param value
 	 * @return
@@ -171,8 +161,6 @@ public class DateFormatUtils {
 	
 	/**
 	 * 获取日期显示格式，为空默认为yyyy-mm-dd HH:mm:ss
-	 * @author chenssy
-	 * @date Dec 30, 2013
 	 * @param format
 	 * @return
 	 * @return SimpleDateFormat

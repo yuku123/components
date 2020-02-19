@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
  * --15位身份证号码：第7、8位为出生年份(两位数)，第9、10位为出生月份，第11、12位代表出生日期，第15位代表性别，奇数为男，偶数为女。
  * --18位身份证号码
  * ：第7、8、9、10位为出生年份(四位数)，第11、第12位为出生月份，第13、14位代表出生日期，第17位代表性别，奇数为男，偶数为女。
- *
  */
 public class IdcardValidator {
 
@@ -33,8 +32,7 @@ public class IdcardValidator {
 	}
 
 	/**
-	 * 
-	 <p>
+	 *
 	 * 判断18位身份证的合法性
 	 * </p>
 	 * 根据〖中华人民共和国国家标准GB11643-1999〗中有关公民身份号码的规定，公民身份号码是特征组合码，由十七位数字本体码和一位数字校验码组成。
@@ -121,9 +119,6 @@ public class IdcardValidator {
 
 	/**
 	 * 数字验证
-	 * 
-	 * @author : chenssy
-	 * @date : 2016年6月1日 下午12:32:18
 	 *
 	 * @param str
 	 * @return
@@ -134,9 +129,6 @@ public class IdcardValidator {
 
 	/**
 	 * 将身份证的每位和对应位的加权因子相乘之后，再得到和值
-	 * 
-	 * @author : chenssy
-	 * @date : 2016年6月1日 下午12:32:34
 	 *
 	 * @param bit
 	 * @return
@@ -160,9 +152,6 @@ public class IdcardValidator {
 
 	/**
 	 * 将和值与11取模得到余数进行校验码判断
-	 * 
-	 * @author : chenssy
-	 * @date : 2016年6月1日 下午12:32:51
 	 *
 	 * @param sum17
 	 * @return
@@ -209,9 +198,6 @@ public class IdcardValidator {
 
 	/**
 	 * 将字符数组转为整型数组
-	 * 
-	 * @author : chenssy
-	 * @date : 2016年6月1日 下午12:33:22
 	 *
 	 * @param c
 	 * @return
@@ -227,7 +213,6 @@ public class IdcardValidator {
 	}
 	
 	/**
-	 * 
 	 * @param idno
 	 * @return 身份证信息中代表性别的数值
 	 */

@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 /***
  * 韦恩图操作
  */
-
 public class VennUtil {
 
     public static <E> Collection<E> union(Collection<E> ...collection){
@@ -26,5 +25,4 @@ public class VennUtil {
         left.retainAll(right);
         return left;
     }
-
 }
