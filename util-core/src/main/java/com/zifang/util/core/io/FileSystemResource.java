@@ -1,7 +1,5 @@
 package com.zifang.util.core.io;
 
-import com.zifang.util.core.util.FileUtil;
-
 import java.io.*;
 
 public class FileSystemResource {

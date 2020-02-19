@@ -11,7 +11,6 @@
     <modules>
         <module>util-core</module>
         <module>util-algrithm</module>
-        <module>util-designpatten</module>
         <module>util-db</module>
         <module>util-bigdata</module>
         <module>util-poi</module>

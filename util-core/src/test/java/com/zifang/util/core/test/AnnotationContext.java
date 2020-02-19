@@ -1,6 +1,6 @@
 package com.zifang.util.core.test;
 
-import com.zifang.util.core.util.ClassScannerUtils;
+import com.zifang.util.core.reflect.ClassScannerUtils;
 
 import java.util.Set;
 

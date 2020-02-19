@@ -2,7 +2,7 @@ package com.zifang.util.core.aop;
 
 import com.zifang.util.core.aop.aspects.Aspect;
 import com.zifang.util.core.aop.proxy.ProxyFactory;
-import com.zifang.util.core.util.ClassUtil;
+import com.zifang.util.core.reflect.ClassUtil;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;

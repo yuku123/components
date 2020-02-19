@@ -1,7 +1,7 @@
 
 package com.zifang.util.core.annoations;
 
-import com.zifang.util.core.util.ClassUtil;
+import com.zifang.util.core.reflect.ClassUtil;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
