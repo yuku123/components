@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,7 +53,7 @@ public class Redirector {
 
 		public void run() {
 			try {
-				Writer out = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), "US-ASCII"));
+				Writer out = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), StandardCharsets.US_ASCII));
 				Reader in = new InputStreamReader(new BufferedInputStream(connection.getInputStream()));
 
 				// read the first line only; that's all we need

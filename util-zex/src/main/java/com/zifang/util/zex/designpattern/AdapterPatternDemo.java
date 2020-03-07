@@ -46,13 +46,13 @@ public class AdapterPatternDemo {
 	 *
 	 */
 	public interface MediaPlayer {
-		public void play(String audioType, String fileName);
+		void play(String audioType, String fileName);
 	}
 
 	public interface AdvancedMediaPlayer {
-		public void playVlc(String fileName);
+		void playVlc(String fileName);
 
-		public void playMp4(String fileName);
+		void playMp4(String fileName);
 	}
 
 	/**

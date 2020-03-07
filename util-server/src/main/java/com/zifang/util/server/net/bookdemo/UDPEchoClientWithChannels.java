@@ -49,7 +49,7 @@ public class UDPEchoClientWithChannels {
 				} else {
 					Iterator<SelectionKey> iterator = readyKeys.iterator();
 					while (iterator.hasNext()) {
-						SelectionKey key = (SelectionKey) iterator.next();
+						SelectionKey key = iterator.next();
 						iterator.remove();
 						if (key.isReadable()) {
 							buffer.clear();

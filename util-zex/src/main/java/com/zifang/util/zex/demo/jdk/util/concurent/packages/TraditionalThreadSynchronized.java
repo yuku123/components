@@ -22,8 +22,8 @@ public class TraditionalThreadSynchronized {
 					}
 					outputer.output("infcn.com.cn");
 				}
-			};
-		}.start();
+			}
+        }.start();
 		
 		new Thread(){
 			public void run() {
@@ -35,8 +35,8 @@ public class TraditionalThreadSynchronized {
 					}
 					outputer.output2("laodahahaha");
 				}
-			};
-		}.start();
+			}
+        }.start();
 	}
 	
 	static class Outputer{

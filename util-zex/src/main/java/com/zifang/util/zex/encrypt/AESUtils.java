@@ -3,6 +3,7 @@ package com.zifang.util.zex.encrypt;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 
 
@@ -66,7 +67,7 @@ class AESUtils {
         Cipher cipher = Cipher.getInstance("AES");  
         cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(kgen.generateKey().getEncoded(), "AES"));  
           
-        return cipher.doFinal(content.getBytes("utf-8"));  
+        return cipher.doFinal(content.getBytes(StandardCharsets.UTF_8));
     }  
       
     private static String aesDecryptByBytes(byte[] encryptBytes, String decryptKey) throws Exception {  

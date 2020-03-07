@@ -24,8 +24,8 @@ public class LockTest {
 					}
 					outputer.output("infcn.com.cn");
 				}
-			};
-		}.start();
+			}
+        }.start();
 		
 		new Thread(){
 			public void run() {
@@ -35,10 +35,10 @@ public class LockTest {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					outputer.output3("laodahahaha");
+					Outputer.output3("laodahahaha");
 				}
-			};
-		}.start();
+			}
+        }.start();
 	}
 	
 	static class Outputer{

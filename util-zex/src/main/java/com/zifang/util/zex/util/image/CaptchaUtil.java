@@ -98,7 +98,7 @@ public final class CaptchaUtil {
             gifEncoder.setDelay(100);
             gifEncoder.setRepeat(0);
             BufferedImage frame;
-            Color fontcolor[] = new Color[len];
+            Color[] fontcolor = new Color[len];
             for (int i = 0; i < len; i++) {
                 fontcolor[i] = new Color(20 + num(110), 20 + num(110), 20 + num(110));
             }
@@ -171,7 +171,7 @@ public final class CaptchaUtil {
             gifEncoder.setDelay(100);
             gifEncoder.setRepeat(0);
             BufferedImage frame;
-            Color fontcolor[] = new Color[len];
+            Color[] fontcolor = new Color[len];
             for (int i = 0; i < len; i++) {
                 fontcolor[i] = new Color(20 + num(110), 20 + num(110), 20 + num(110));
             }

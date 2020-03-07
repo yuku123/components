@@ -37,7 +37,7 @@ public class SafeBufferedReader extends BufferedReader {
 	}
 
 	public String readLine() throws IOException {
-		StringBuilder sb = new StringBuilder("");
+		StringBuilder sb = new StringBuilder();
 		while (true) {
 			int c = super.read();
 			if (c == -1) { // end of stream

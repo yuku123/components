@@ -77,7 +77,7 @@ public class InvokeAllExecutorDemo {
 	public static void main(String[] args) {
 		/// 15．通过Executors工厂类的newCachedThreadPool()方法创建一个ThreadPoolExecutor
 		/// 执行器对象。
-		ExecutorService executor = (ExecutorService) Executors.newCachedThreadPool();
+		ExecutorService executor = Executors.newCachedThreadPool();
 		// 16．创建一个Task类型的任务列表taskList。创建3个Task任务并将它们添加到任务列表taskList中。
 		List<Task> taskList = new ArrayList<>();
 

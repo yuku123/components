@@ -112,7 +112,6 @@ public class SingleFileHTTPServer {
 
 		try {
 			Path path = Paths.get(args[0]);
-			;
 			byte[] data = Files.readAllBytes(path);
 
 			String contentType = URLConnection.getFileNameMap().getContentTypeFor(args[0]);

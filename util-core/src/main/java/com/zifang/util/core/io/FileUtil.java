@@ -205,10 +205,7 @@ public class FileUtil {
             }
         }
 
-        if (!dir.delete()) {
-            return false;
-        }
-        return true;
+        return dir.delete();
     }
 
     /**
@@ -248,7 +245,7 @@ public class FileUtil {
             }
         }
         if (file.isDirectory()) {
-            File files[] = file.listFiles();
+            File[] files = file.listFiles();
             for (int i = 0; i < files.length; i++) {
                 list(list, files[i], filter);
             }
@@ -1075,7 +1072,7 @@ public class FileUtil {
         }
         MessageDigest digest = null;
         FileInputStream in = null;
-        byte buffer[] = new byte[1024];
+        byte[] buffer = new byte[1024];
         int len;
         try {
             digest = MessageDigest.getInstance("MD5");

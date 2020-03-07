@@ -156,7 +156,7 @@ public class GeneticAlgorithm {
 	 */
 	public Individual selectParent(Population population) {
 		// Get individuals
-		Individual individuals[] = population.getIndividuals();
+        Individual[] individuals = population.getIndividuals();
 
 		// Spin roulette wheel
 		double populationFitness = population.getPopulationFitness();

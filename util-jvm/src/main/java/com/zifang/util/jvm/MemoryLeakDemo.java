@@ -169,12 +169,9 @@ public class MemoryLeakDemo {
 			if (age != other.age)
 				return false;
 			if (userName == null) {
-				if (other.userName != null)
-					return false;
-			} else if (!userName.equals(other.userName))
-				return false;
-			return true;
-		}
+                return other.userName == null;
+			} else return userName.equals(other.userName);
+        }
 
 		@Override
 		public String toString() {

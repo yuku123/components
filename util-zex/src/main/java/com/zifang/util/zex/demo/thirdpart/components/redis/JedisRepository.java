@@ -296,7 +296,7 @@ public class JedisRepository {
 	 * @throws Exception 
 	 */
 	public Boolean containsKey(String collection, String key) throws Exception {
-		return get(collection, key) != null ? true : false;
+		return get(collection, key) != null;
 	}
 
 	/**
@@ -311,7 +311,7 @@ public class JedisRepository {
 
 		try {
 			jedis = readPool.getResource();
-			returnValue = jedis.exists(serialize(collection)) ? true : false;
+			returnValue = jedis.exists(serialize(collection));
 		} catch (Exception ex) {
 			throw ex;
 		} finally {

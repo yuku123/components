@@ -36,7 +36,7 @@ class FileSearch implements Runnable {
 	// 方法。
 	private void directoryProcess(File file) {
 
-		File list[] = file.listFiles();
+        File[] list = file.listFiles();
 		if (list != null) {
 			for (int i = 0; i < list.length; i++) {
 

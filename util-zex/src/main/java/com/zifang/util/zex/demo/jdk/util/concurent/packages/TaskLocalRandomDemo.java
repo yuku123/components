@@ -29,7 +29,7 @@ public class TaskLocalRandomDemo {
 	// 4.通过实现Main类，并添加main()方法，实现这个例子的主类。
 	public static void main(String[] args) {
 		// 5.为3个Thread对象创建一个数组。
-		Thread threads[] = new Thread[3];
+        Thread[] threads = new Thread[3];
 		// 6.创建和启动TaskLocalRandom任务，用前面创建的数组存储线程。
 		for (int i = 0; i < 3; i++) {
 			TaskLocalRandom task = new TaskLocalRandom();

@@ -6,6 +6,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 
 public class UDPPoke {
 
@@ -63,18 +64,13 @@ public class UDPPoke {
 			return;
 		}
 
-		try {
-			UDPPoke poker = new UDPPoke(host, port);
-			byte[] response = poker.poke();
-			if (response == null) {
-				System.out.println("No response within allotted time");
-				return;
-			}
-			String result = new String(response, "US-ASCII");
-			System.out.println(result);
-		} catch (UnsupportedEncodingException ex) {
-			// Really shouldn't happen
-			ex.printStackTrace();
-		}
-	}
+        UDPPoke poker = new UDPPoke(host, port);
+        byte[] response = poker.poke();
+        if (response == null) {
+            System.out.println("No response within allotted time");
+            return;
+        }
+        String result = new String(response, StandardCharsets.US_ASCII);
+        System.out.println(result);
+    }
 }

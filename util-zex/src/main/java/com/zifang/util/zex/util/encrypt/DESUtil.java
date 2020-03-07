@@ -6,6 +6,7 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 
 /**
@@ -33,7 +34,7 @@ public class DESUtil {
         Cipher cipher = Cipher.getInstance("desede/CBC/PKCS5Padding");
         IvParameterSpec ips = new IvParameterSpec(iv.getBytes());
         cipher.init(Cipher.ENCRYPT_MODE, deskey, ips);
-        byte[] encryptData = cipher.doFinal(plainText.getBytes(Opslab.UTF_8));
+        byte[] encryptData = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
         return Base64.encodeToString(encryptData);
     }
 
@@ -53,7 +54,7 @@ public class DESUtil {
         IvParameterSpec ips = new IvParameterSpec(iv.getBytes());
         cipher.init(Cipher.DECRYPT_MODE, deskey, ips);
         byte[] decryptData = cipher.doFinal(Base64.decode(encryptText));
-        return new String(decryptData, Opslab.UTF_8);
+        return new String(decryptData, StandardCharsets.UTF_8);
     }
 
 

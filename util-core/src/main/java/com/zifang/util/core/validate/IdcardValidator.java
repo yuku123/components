@@ -19,7 +19,7 @@ public class IdcardValidator {
 	 */
 
 	// 每位加权因子
-	private static int power[] = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
+	private static int[] power = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
 
 	/**
 	 * 验证身份证是否合法
@@ -75,7 +75,7 @@ public class IdcardValidator {
 		String idcard17 = idcard.substring(0, 17);
 		// 获取第18位
 		String idcard18Code = idcard.substring(17, 18);
-		char c[] = null;
+		char[] c = null;
 		String checkCode = "";
 		// 是否都为数字
 		if (isDigital(idcard17)) {
@@ -85,7 +85,7 @@ public class IdcardValidator {
 		}
 
 		if (null != c) {
-			int bit[] = new int[idcard17.length()];
+			int[] bit = new int[idcard17.length()];
 			bit = converCharToInt(c);
 			int sum17 = 0;
 			sum17 = getPowerSum(bit);
@@ -95,9 +95,7 @@ public class IdcardValidator {
 				return false;
 			}
 			// 将身份证的第18位与算出来的校码进行匹配，不相等就为假
-			if (!idcard18Code.equalsIgnoreCase(checkCode)) {
-				return false;
-			}
+			return idcard18Code.equalsIgnoreCase(checkCode);
 		}
 		
 		return true;
@@ -124,7 +122,7 @@ public class IdcardValidator {
 	 * @return
 	 */
 	private static boolean isDigital(String str) {
-		return str == null || "".equals(str) ? false : str.matches("^[0-9]*$");
+		return str != null && !"".equals(str) && str.matches("^[0-9]*$");
 	}
 
 	/**

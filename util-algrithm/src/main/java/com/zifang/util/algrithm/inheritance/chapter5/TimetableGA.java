@@ -73,7 +73,7 @@ public class TimetableGA {
 
 		// Print classes
 		System.out.println();
-		Class classes[] = timetable.getClasses();
+        Class[] classes = timetable.getClasses();
 		int classIndex = 1;
 		for (Class bestClass : classes) {
 			System.out.println("Class " + classIndex + ":");

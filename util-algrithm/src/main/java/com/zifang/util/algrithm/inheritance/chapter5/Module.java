@@ -7,7 +7,7 @@ public class Module {
     private final int moduleId;
     private final String moduleCode;
     private final String module;
-    private final int professorIds[];
+    private final int[] professorIds;
     
     /**
      * Initialize new Module
@@ -17,7 +17,7 @@ public class Module {
      * @param module
      * @param professorIds
      */
-    public Module(int moduleId, String moduleCode, String module, int professorIds[]){
+    public Module(int moduleId, String moduleCode, String module, int[] professorIds){
         this.moduleId = moduleId;
         this.moduleCode = moduleCode;
         this.module = module;

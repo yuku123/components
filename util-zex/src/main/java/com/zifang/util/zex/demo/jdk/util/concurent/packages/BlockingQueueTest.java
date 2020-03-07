@@ -23,8 +23,8 @@ public class BlockingQueueTest {
 							e.printStackTrace();
 						}
 					}
-				};
-			}.start();;
+				}
+			}.start();
 		}
 		new Thread(){
 			public void run() {
@@ -41,7 +41,7 @@ public class BlockingQueueTest {
 						e.printStackTrace();
 					}
 				}
-			};
-		}.start();;
+			}
+		}.start();
 	}
 }

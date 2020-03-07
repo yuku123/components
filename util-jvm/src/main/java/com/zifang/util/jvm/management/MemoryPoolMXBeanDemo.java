@@ -51,7 +51,7 @@ public class MemoryPoolMXBeanDemo{
 
 				Iterator<ObjectName> iterator = mbeans.iterator();
 				while (iterator.hasNext()) {
-					ObjectName objName = (ObjectName) iterator.next();
+					ObjectName objName = iterator.next();
 					System.out.println("objName:" + objName.getCanonicalName());
 					MemoryPoolMXBean p = ManagementFactory.newPlatformMXBeanProxy(mbs, objName.getCanonicalName(),
 							MemoryPoolMXBean.class);

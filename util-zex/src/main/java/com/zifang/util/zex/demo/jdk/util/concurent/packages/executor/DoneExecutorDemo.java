@@ -68,9 +68,9 @@ public class DoneExecutorDemo {
 	// 9．实现范例的主类，创建Main主类，然后实现main()方法。
 	public static void main(String[] args) {
 		/// 10．调用Executors工厂类的newCachedThreadPool()方法创建一个 ExecutorService 执行器对象。
-		ExecutorService executor = (ExecutorService) Executors.newCachedThreadPool();
+		ExecutorService executor = Executors.newCachedThreadPool();
 		// 11．创建一个数组用来存储5个ResultTask对象。
-		ResultTask resultTasks[] = new ResultTask[5];
+        ResultTask[] resultTasks = new ResultTask[5];
 		// 12．初始化ResultTask对象。在数组的每一个位置上，必须创建 ExecutorTask
 		// 对象，然后创建ResultTask对象来使用ExecutorTask对象，最后调用submit()方法将
 		// ResultTask任务发送给执行器。

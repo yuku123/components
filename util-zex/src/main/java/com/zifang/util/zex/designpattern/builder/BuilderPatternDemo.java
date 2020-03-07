@@ -38,15 +38,15 @@ public class BuilderPatternDemo {
 	 * 	创建一个表示食物条目和食物包装的接口。
 	 */
 	interface Item {
-		public String name();
+		String name();
 
-		public Packing packing();
+		Packing packing();
 
-		public float price();
+		float price();
 	}
 
 	interface Packing {
-		public String pack();
+		String pack();
 	}
 
 	/**

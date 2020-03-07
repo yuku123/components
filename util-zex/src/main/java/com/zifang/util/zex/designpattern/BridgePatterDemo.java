@@ -37,8 +37,8 @@ public class BridgePatterDemo {
 	 *
 	 *
 	 */
-	static interface DrawAPI {
-		public void drawCircle(int radius, int x, int y);
+    interface DrawAPI {
+		void drawCircle(int radius, int x, int y);
 	}
 
 	/**

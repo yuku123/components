@@ -31,7 +31,7 @@ public class PhantomReferenceDemo {
 	 */
 	public static void test1() {
 		ReferenceQueue<String> refQueue = new ReferenceQueue<String>();
-		PhantomReference<String> referent = new PhantomReference<String>(new String("T"), refQueue);
+		PhantomReference<String> referent = new PhantomReference<String>("T", refQueue);
 		System.out.println(referent.get());// null
 
 		// 只有被垃圾回收后才把referent放进ReferenceQueue中

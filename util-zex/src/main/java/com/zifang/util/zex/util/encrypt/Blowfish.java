@@ -4,6 +4,7 @@ package com.zifang.util.zex.util.encrypt;
 import com.zifang.util.zex.Opslab;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Blowfish加密算法Java实现
@@ -311,12 +312,8 @@ public class Blowfish {
     }
 
     public byte[] encrypt(final String input) {
-        try {
-            final byte[] bytes = input.getBytes(Opslab.UTF_8);
-            return encrypt(bytes, 0, bytes.length);
-        } catch (UnsupportedEncodingException e) {
-            return null;
-        }
+        final byte[] bytes = input.getBytes(StandardCharsets.UTF_8);
+        return encrypt(bytes, 0, bytes.length);
     }
 
     public byte[] encrypt(final byte[] source) {
@@ -347,11 +344,7 @@ public class Blowfish {
     }
 
     public String decryptString(final byte[] source) {
-        try {
-            return new String(decryptBytes(source), Opslab.UTF_8);
-        } catch (UnsupportedEncodingException e) {
-            return null;
-        }
+        return new String(decryptBytes(source), StandardCharsets.UTF_8);
     }
 
     public byte[] decryptBytes(final byte[] source) {

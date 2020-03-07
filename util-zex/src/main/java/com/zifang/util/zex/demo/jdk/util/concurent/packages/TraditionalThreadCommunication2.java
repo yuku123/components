@@ -26,8 +26,8 @@ public class TraditionalThreadCommunication2 {
 					shouldSub = false;
 					notify();
 				}
-			};
-		}.start();
+			}
+        }.start();
 	}
 
 	public void test2() {

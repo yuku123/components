@@ -1,6 +1,7 @@
 package com.zifang.util.zex.encrypt;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * BASE64加解密工具类
@@ -82,7 +83,7 @@ class Base64Utils {
 	 */
 	protected static byte[] decrypt(String str) throws Exception{
 		StringBuffer sb = new StringBuffer();
-		byte[] data =  str.getBytes("US-ASCII");
+		byte[] data =  str.getBytes(StandardCharsets.US_ASCII);
 		int len = data.length;
 		int i = 0;
 		int b1, b2, b3, b4;

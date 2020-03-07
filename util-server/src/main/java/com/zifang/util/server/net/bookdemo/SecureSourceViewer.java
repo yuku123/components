@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class SecureSourceViewer {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		// args = new
 		// String[]{"http://192.168.10.125:8080/mss3.1/meta/mssDataLogAction!mssDataLog.action"};
 		args = new String[] { "https://dev.infcn.com.cn:6249/svn/2019/青岛政务搜索" };

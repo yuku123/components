@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 
 public class IBiblioAddress {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		try {
 			InetAddress ibiblio = InetAddress.getByName("www.sina.com");
 			InetAddress helios = InetAddress.getByName("www.sina.com.cn");

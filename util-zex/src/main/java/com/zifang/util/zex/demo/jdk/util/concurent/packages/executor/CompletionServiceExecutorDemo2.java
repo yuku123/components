@@ -113,7 +113,7 @@ public class CompletionServiceExecutorDemo2 {
 
 	public static void main(String[] args) {
 		/// 19．调用Executors工厂类的newCachedThreadPool()方法创建ThreadPoolExecutor执行器对象。
-		ExecutorService executor = (ExecutorService) Executors.newCachedThreadPool();
+		ExecutorService executor = Executors.newCachedThreadPool();
 		// 20．创建CompletionService对象，并将上一步创建的executor对象作为构造器的参数。
 		CompletionService<String> service = new ExecutorCompletionService<>(executor);
 		// 21．创建两个ReportRequest对象，然后创建两个线程Thread对象分别来执行它们。

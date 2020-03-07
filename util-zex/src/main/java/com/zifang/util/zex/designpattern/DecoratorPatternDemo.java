@@ -31,7 +31,7 @@ public class DecoratorPatternDemo {
 	 *
 	 *
 	 */
-	static interface Shape {
+    interface Shape {
 		void draw();
 	}
 

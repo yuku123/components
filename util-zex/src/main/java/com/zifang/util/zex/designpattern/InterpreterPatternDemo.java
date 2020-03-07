@@ -40,7 +40,7 @@ public class InterpreterPatternDemo {
 	 *
 	 */
 	public interface Expression {
-		public boolean interpret(String context);
+		boolean interpret(String context);
 	}
 
 	/**
@@ -60,11 +60,8 @@ public class InterpreterPatternDemo {
 
 		@Override
 		public boolean interpret(String context) {
-			if (context.contains(data)) {
-				return true;
-			}
-			return false;
-		}
+            return context.contains(data);
+        }
 	}
 
 	static class OrExpression implements Expression {

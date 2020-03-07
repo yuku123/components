@@ -240,8 +240,8 @@ public class FileUtils {
             return null;  
         }  
         MessageDigest digest = null;  
-        FileInputStream in = null;  
-        byte buffer[] = new byte[1024];  
+        FileInputStream in = null;
+        byte[] buffer = new byte[1024];
         int len;  
         try {  
             digest = MessageDigest.getInstance("MD5");  

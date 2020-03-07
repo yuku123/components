@@ -7,6 +7,7 @@ import com.zifang.util.zex.util.encrypt.Decode;
 
 import java.math.BigInteger;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
@@ -37,7 +38,7 @@ public class CryptoHelper {
      * @throws Exception
      */
     public static String encryptBASE64(byte[] key) throws Exception {
-        return new String(Base64Ext.encode(key, Base64Ext.NO_WRAP),UTF8);
+        return new String(Base64Ext.encode(key, Base64Ext.NO_WRAP), StandardCharsets.UTF_8);
 
     }
 

@@ -59,7 +59,7 @@ public class ConcurrentLinkedDequeDemo {
 		/// 10．创建ConcurrentLinkedDeque对象，并指定它的泛型参数是String型的。
 		ConcurrentLinkedDeque<String> list = new ConcurrentLinkedDeque<>();
 		// 11．创建线程数组threads，它包含100个线程。
-		Thread threads[] = new Thread[100];
+        Thread[] threads = new Thread[100];
 		// 12．创建100个AddTask对象及其对应的运行线程。将每个线程存放到上一步创建的数组中，然后启动线程。
 		for (int i = 0; i < threads.length; i++) {
 			AddTask task = new AddTask(list);

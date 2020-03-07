@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.nio.charset.StandardCharsets;
 
 public class DaytimeUDPClient {
 
@@ -18,7 +19,7 @@ public class DaytimeUDPClient {
 			DatagramPacket response = new DatagramPacket(new byte[1024], 1024);
 			socket.send(request);
 			socket.receive(response);
-			String result = new String(response.getData(), 0, response.getLength(), "US-ASCII");
+			String result = new String(response.getData(), 0, response.getLength(), StandardCharsets.US_ASCII);
 			System.out.println(result);
 		} catch (IOException ex) {
 			ex.printStackTrace();

@@ -12,15 +12,15 @@ public class RecursiveTaskDemo {
 
 	// 1．创建一个名为DocumentMock的类。它将生成一个字符串矩阵来模拟一个文档。
 	static class Document {
-		// 2．用一些词来创建一个字符串数组。这个数组将被用来生成字符串矩阵。
-		private String words[] = { "the", "hello", "goodbye", "packt", "java", "thread", "pool", "random", "class",
-				"main" };
+        // 2．用一些词来创建一个字符串数组。这个数组将被用来生成字符串矩阵。
+        private String[] words = {"the", "hello", "goodbye", "packt", "java", "thread", "pool", "random", "class",
+                "main"};
 
 		// 3．实现generateDocument()方法。它接收3个参数，分别是行数numLines，每一行词的个数numWords，和准备查找的词word。然后返回一个字符串矩阵。
 		public String[][] generateDocument(int numLines, int numWords, String word) {
 			// 4．创建用来生成文档所需要的对象：String矩阵，和用来生成随机数的Random对象。
 			int counter = 0;
-			String document[][] = new String[numLines][numWords];
+            String[][] document = new String[numLines][numWords];
 			Random random = new Random();
 			// 5．为字符串矩阵填上字符串。通过随机数取得数组words中的某一字符串，然后存入到字符串矩阵document对应的位置上，同时计算生成的字符串矩阵中将要查找的词出现的次数。这个值可以用来与后续程序运行查找任务时统计的次数相比较，检查两个值是否相同。
 			for (int i = 0; i < numLines; i++) {
@@ -42,13 +42,13 @@ public class RecursiveTaskDemo {
 	static class DocumentTask extends RecursiveTask<Integer> {
 		private static final long serialVersionUID = -6062187295810572604L;
 
-		// 8．声明一个名为document的私有String矩阵，以及两个名为start和end的私有int属性，并声明一个名为word的私有String属性。
-		private String document[][];
+        // 8．声明一个名为document的私有String矩阵，以及两个名为start和end的私有int属性，并声明一个名为word的私有String属性。
+        private String[][] document;
 		private int start, end;
 		private String word;
 
 		// 9．实现类的构造器，用来初始化类的所有属性。
-		public DocumentTask(String document[][], int start, int end, String word) {
+		public DocumentTask(String[][] document, int start, int end, String word) {
 			this.document = document;
 			this.start = start;
 			this.end = end;
@@ -113,12 +113,12 @@ public class RecursiveTaskDemo {
 	static class LineTask extends RecursiveTask<Integer> {
 		// 19．声明类的serialVersionUID属性。这个元素是必需的，因为RecursiveTask的父类ForkJoinTask实现了Serializable接口。声明一个名为line的私有String数组属性和两个名为start和end的私有int属性。最后，声明一个名为word的私有String属性。
 		private static final long serialVersionUID = 1L;
-		private String line[];
+        private String[] line;
 		private int start, end;
 		private String word;
 
 		// 20．实现类的构造器，用来初始化它的属性。
-		public LineTask(String line[], int start, int end, String word) {
+		public LineTask(String[] line, int start, int end, String word) {
 			this.line = line;
 			this.start = start;
 			this.end = end;

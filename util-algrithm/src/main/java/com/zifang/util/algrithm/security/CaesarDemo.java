@@ -7,7 +7,7 @@ package com.zifang.util.algrithm.security;
  * 要解密，则只要将字母向相反方向移动同样位数即可。如密文“Jgnnq”每个字母左移两位 变为“Hello” 。这里，移动的位数“2”是加密和解密所用的密钥。
  */
 public class CaesarDemo {
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args) throws Exception {
 		String s = args[0];
 		s = "1234567890abcd";
 		int key = Integer.parseInt(args[1]);

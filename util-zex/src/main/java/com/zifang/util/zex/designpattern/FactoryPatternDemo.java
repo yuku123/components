@@ -36,7 +36,7 @@ public class FactoryPatternDemo {
 	 *
 	 *
 	 */
-	static interface Shape {
+    interface Shape {
 		void draw();
 	}
 

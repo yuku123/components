@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -88,10 +89,7 @@ public class FTPUtilImpl implements FTPUtil {
     @Override
     public boolean isExists(String fileName) {
         List<String> list = listFile(vo.getRemoteDir());
-        if (list.contains(fileName)) {
-            return true;
-        }
-        return false;
+        return list.contains(fileName);
     }
 
     @Override
@@ -101,7 +99,7 @@ public class FTPUtilImpl implements FTPUtil {
         OutputStream out = null;
         try {
             out = new FileOutputStream(localfileName, true);
-            client.retrieveFile(new String(fileName.getBytes(vo.getRemoteEncoding()), "ISO-8859-1"), out);
+            client.retrieveFile(new String(fileName.getBytes(vo.getRemoteEncoding()), StandardCharsets.ISO_8859_1), out);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -129,7 +127,7 @@ public class FTPUtilImpl implements FTPUtil {
     public boolean deleteFile(String fileName) {
         if (isExists(fileName)) {
             try {
-                client.deleteFile(new String(fileName.getBytes(vo.getRemoteEncoding()), "ISO-8859-1"));
+                client.deleteFile(new String(fileName.getBytes(vo.getRemoteEncoding()), StandardCharsets.ISO_8859_1));
                 return reply("DELETE", "", fileName);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -147,9 +145,9 @@ public class FTPUtilImpl implements FTPUtil {
             }
             List<String> dirs = listDir(directory);
             for (int i = dirs.size() - 1; i >= 0; i--) {
-                client.removeDirectory(new String(dirs.get(i).getBytes(vo.getRemoteEncoding()), "ISO-8859-1"));
+                client.removeDirectory(new String(dirs.get(i).getBytes(vo.getRemoteEncoding()), StandardCharsets.ISO_8859_1));
             }
-            client.removeDirectory(new String(directory.getBytes(vo.getRemoteEncoding()), "ISO-8859-1"));
+            client.removeDirectory(new String(directory.getBytes(vo.getRemoteEncoding()), StandardCharsets.ISO_8859_1));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -175,9 +173,9 @@ public class FTPUtilImpl implements FTPUtil {
         }
         try (InputStream in = new FileInputStream(file)) {
             if (isDelete) {
-                deleteFile(new String(file.getName().getBytes(vo.getRemoteEncoding()), "ISO-8859-1"));
+                deleteFile(new String(file.getName().getBytes(vo.getRemoteEncoding()), StandardCharsets.ISO_8859_1));
             }
-            client.appendFile(new String(fileName.getBytes(vo.getRemoteEncoding()), "ISO-8859-1"), in);
+            client.appendFile(new String(fileName.getBytes(vo.getRemoteEncoding()), StandardCharsets.ISO_8859_1), in);
             return reply("UPLOAD", file.getAbsoluteFile().toString(), remoteFileName);
         } catch (IOException e) {
             e.printStackTrace();
@@ -276,7 +274,7 @@ public class FTPUtilImpl implements FTPUtil {
             directory = directory.substring(0, directory.length() - 1);
         }
         try {
-            String[] str = (new String(directory.getBytes(vo.getRemoteEncoding()), "ISO-8859-1")).split("/");
+            String[] str = (new String(directory.getBytes(vo.getRemoteEncoding()), StandardCharsets.ISO_8859_1)).split("/");
             String t = "";
             String parnet = "";
             for (int i = 0; i < str.length; i++) {

@@ -3,6 +3,7 @@ package com.zifang.util.server.net.bookdemo;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.nio.charset.StandardCharsets;
 
 class ReceiverThread extends Thread {
 
@@ -26,7 +27,7 @@ class ReceiverThread extends Thread {
 			DatagramPacket dp = new DatagramPacket(buffer, buffer.length);
 			try {
 				socket.receive(dp);
-				String s = new String(dp.getData(), 0, dp.getLength(), "UTF-8");
+				String s = new String(dp.getData(), 0, dp.getLength(), StandardCharsets.UTF_8);
 				System.out.println(s);
 				Thread.yield();
 			} catch (IOException ex) {

@@ -593,7 +593,7 @@ public class DateUtils {
         }     
         n = n-1;     
         if(stype==2){     
-            n = (int)n/365;     
+            n = n /365;
         }        
         return n;     
     }   

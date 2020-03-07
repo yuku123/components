@@ -10,8 +10,8 @@ public class WhoisGUI extends JFrame {
 
 	private JTextField searchString = new JTextField(30);
 	private JTextArea names = new JTextArea(15, 80);
-	private JButton findButton = new JButton("Find");;
-	private ButtonGroup searchIn = new ButtonGroup();
+	private JButton findButton = new JButton("Find");
+    private ButtonGroup searchIn = new ButtonGroup();
 	private ButtonGroup searchFor = new ButtonGroup();
 	private JCheckBox exactMatch = new JCheckBox("Exact Match", true);
 	private JTextField chosenServer = new JTextField();

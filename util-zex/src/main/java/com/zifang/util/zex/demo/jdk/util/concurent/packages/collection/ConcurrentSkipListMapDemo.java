@@ -72,7 +72,7 @@ public class ConcurrentSkipListMapDemo {
 		ConcurrentSkipListMap<String, Contact> map;
 		map = new ConcurrentSkipListMap<>();
 		// 12.创建一个有25个Thread对象的数组，用来存储你将要执行的所有任务。
-		Thread threads[] = new Thread[25];
+        Thread[] threads = new Thread[25];
 		int counter = 0;
 		// 13.创建和启动25个任务，对于每个任务指定一个大写字母作为ID。
 		for (char i = 'A'; i < 'Z'; i++) {

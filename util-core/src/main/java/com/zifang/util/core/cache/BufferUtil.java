@@ -73,7 +73,7 @@ public class BufferUtil {
         dosview.setHidden(true);
         dosview.setReadOnly(false);
         dosview.setArchive(false);
-        dosview.setSystem(false);;
+        dosview.setSystem(false);
     }
 
     public void writeFile(String s) {

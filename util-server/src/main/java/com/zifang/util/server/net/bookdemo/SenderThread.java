@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.nio.charset.StandardCharsets;
 
 class SenderThread extends Thread {
 
@@ -35,7 +36,7 @@ class SenderThread extends Thread {
 				String theLine = userInput.readLine();
 				if (theLine.equals("."))
 					break;
-				byte[] data = theLine.getBytes("UTF-8");
+				byte[] data = theLine.getBytes(StandardCharsets.UTF_8);
 				DatagramPacket output = new DatagramPacket(data, data.length, server, port);
 				socket.send(output);
 				Thread.yield();

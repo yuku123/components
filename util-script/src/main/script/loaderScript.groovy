@@ -3,8 +3,8 @@
 
 class LoaderScript {
 
-    public createFile(String fileName){
-        File file = new File(fileName);
-        file.createNewFile();
+    def createFile(String fileName){
+        File file = new File(fileName)
+        file.createNewFile()
     }
 }

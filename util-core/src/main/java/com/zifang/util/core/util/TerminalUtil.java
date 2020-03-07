@@ -1,6 +1,7 @@
 package com.zifang.util.core.util;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,7 +48,7 @@ public class TerminalUtil {
     public static String runAndGetReturn(String command) throws IOException {
         StringBuffer sb = new StringBuffer();
         Process process = Runtime.getRuntime().exec(command);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), "utf-8"));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             sb.append(line+"\n");
@@ -64,7 +65,7 @@ public class TerminalUtil {
     public static String runAndPrintLog(String command) throws IOException {
         StringBuffer sb = new StringBuffer();
         Process process = Runtime.getRuntime().exec(command);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), "utf-8"));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             sb.append(line+"\n");

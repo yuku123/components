@@ -10,6 +10,7 @@ import javax.net.ssl.SSLSession;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 封装常见的HTTP方法
@@ -45,7 +46,7 @@ public final class HttpHelper {
             if (connection.getResponseCode() == 200) {
                 is = connection.getInputStream();
                 // 封装输入流is，并指定字符集
-                br = new BufferedReader(new InputStreamReader(is, Opslab.UTF_8));
+                br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
                 // 存放数据
                 StringBuilder sbf = new StringBuilder();
                 String temp = null;
@@ -131,7 +132,7 @@ public final class HttpHelper {
             if (connection.getResponseCode() == 200) {
                 is = connection.getInputStream();
                 // 封装输入流is，并指定字符集
-                br = new BufferedReader(new InputStreamReader(is, Opslab.UTF_8));
+                br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
                 // 存放数据
                 StringBuilder sbf = new StringBuilder();
                 String temp;
@@ -208,7 +209,7 @@ public final class HttpHelper {
             if (connection.getResponseCode() == 200) {
                 is = connection.getInputStream();
                 // 对输入流对象进行包装:charset根据工作项目组的要求来设置
-                br = new BufferedReader(new InputStreamReader(is, Opslab.UTF_8));
+                br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
 
                 StringBuilder sbf = new StringBuilder();
                 String temp;
@@ -310,7 +311,7 @@ public final class HttpHelper {
             if (connection.getResponseCode() == 200) {
                 is = connection.getInputStream();
                 // 对输入流对象进行包装:charset根据工作项目组的要求来设置
-                br = new BufferedReader(new InputStreamReader(is, Opslab.UTF_8));
+                br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
 
                 StringBuilder sbf = new StringBuilder();
                 String temp;

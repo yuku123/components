@@ -59,7 +59,7 @@ public class GeneticAlgorithm {
 	 *            the cities being referenced
 	 * @return double The fitness value for individual
 	 */
-    public double calcFitness(Individual individual, City cities[]){
+    public double calcFitness(Individual individual, City[] cities){
         // Get fitness
         Route route = new Route(individual, cities);
         double fitness = 1 / route.getDistance();
@@ -76,7 +76,7 @@ public class GeneticAlgorithm {
      * @param population the population to evaluate
      * @param cities the cities being referenced
      */
-    public void evalPopulation(Population population, City cities[]){
+    public void evalPopulation(Population population, City[] cities){
         double populationFitness = 0;
         
         // Loop over population evaluating individuals and summing population fitness
@@ -149,7 +149,7 @@ public class GeneticAlgorithm {
                 Individual parent2 = this.selectParent(population);
 
                 // Create blank offspring chromosome
-                int offspringChromosome[] = new int[parent1.getChromosomeLength()];
+                int[] offspringChromosome = new int[parent1.getChromosomeLength()];
                 Arrays.fill(offspringChromosome, -1);
                 Individual offspring = new Individual(offspringChromosome);
 

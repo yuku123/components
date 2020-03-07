@@ -203,7 +203,7 @@ public final class StringUtil {
     public static String ltrim(String str1, int num) {
         String tt = "";
         if (!isEmpty(str1) && str1.length() >= num) {
-            tt = str1.substring(num, str1.length());
+            tt = str1.substring(num);
         }
         return tt;
 
@@ -279,7 +279,7 @@ public final class StringUtil {
             return "";
         }
         count = (count > input.length()) ? input.length() : count;
-        return input.substring(input.length() - count, input.length());
+        return input.substring(input.length() - count);
     }
 
 
@@ -353,7 +353,7 @@ public final class StringUtil {
     public static String string2Unicode(String string) {
         StringBuilder uni = new StringBuilder();
         for (int i = 0; i < string.length(); i++) {
-            String temp = "\\u" + String.valueOf(Integer.toHexString(string.charAt(i)));
+            String temp = "\\u" + Integer.toHexString(string.charAt(i));
             uni.append(temp);
         }
         return uni.toString();
@@ -487,11 +487,11 @@ public final class StringUtil {
         }
         StringBuilder sb = new StringBuilder(s.length());
         do {
-            sb.append(s.substring(c, i));
+            sb.append(s, c, i);
             c = i + sublen;
         } while ((i = s.indexOf(sub, c)) != -1);
         if (c < s.length()) {
-            sb.append(s.substring(c, s.length()));
+            sb.append(s.substring(c));
         }
         return sb.toString();
     }

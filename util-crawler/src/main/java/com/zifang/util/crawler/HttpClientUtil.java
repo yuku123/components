@@ -1,6 +1,7 @@
 package com.zifang.util.crawler;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +35,7 @@ public class HttpClientUtil {
             }
             // 定义BufferedReader输入流来读取URL的响应,并设置编码方式
             in = new BufferedReader(new InputStreamReader(httpConn
-                    .getInputStream(), "UTF-8"));
+                    .getInputStream(), StandardCharsets.UTF_8));
             String line;
             // 读取返回的内容
             while ((line = in.readLine()) != null) {
@@ -84,7 +85,7 @@ public class HttpClientUtil {
             out.flush();
             // 定义BufferedReader输入流来读取URL的响应，设置编码方式
             in = new BufferedReader(new InputStreamReader(httpConn
-                    .getInputStream(), "UTF-8"));
+                    .getInputStream(), StandardCharsets.UTF_8));
             String line;
             // 读取返回的内容
             while ((line = in.readLine()) != null) {
@@ -134,7 +135,7 @@ public class HttpClientUtil {
             // flush输出流的缓冲
             out.flush();
             // 定义BufferedReader输入流来读取URL的响应，设置编码方式
-            in = new BufferedReader(new InputStreamReader(httpConn.getInputStream(), "UTF-8"));
+            in = new BufferedReader(new InputStreamReader(httpConn.getInputStream(), StandardCharsets.UTF_8));
             String line;
             // 读取返回的内容
             while ((line = in.readLine()) != null) {

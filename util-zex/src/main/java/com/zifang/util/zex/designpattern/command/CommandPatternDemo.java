@@ -37,7 +37,7 @@ public class CommandPatternDemo {
 	 * 
 	 * @author cc
 	 */
-	static interface Order {
+    interface Order {
 		void execute();
 	}
 

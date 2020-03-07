@@ -4,6 +4,7 @@ import com.zifang.util.zex.Opslab;
 
 import javax.crypto.Cipher;
 import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -337,7 +338,7 @@ public final class RsaUtil {
      */
     public static String decryptDataWithPubKey(String data, String PUBLICKEY) throws Exception {
         byte[] rs = decryptBASE64(data);
-        return new String(decryptByPublicKey(rs, PUBLICKEY), Opslab.UTF_8);
+        return new String(decryptByPublicKey(rs, PUBLICKEY), StandardCharsets.UTF_8);
     }
 
 
@@ -358,7 +359,7 @@ public final class RsaUtil {
      */
     public static String decryptDataWithPriKey(String data, String PRIVATEKEY) throws Exception {
         byte[] rs = decryptBASE64(data);
-        return new String(decryptByPrivateKey(rs, PRIVATEKEY), Opslab.UTF_8);
+        return new String(decryptByPrivateKey(rs, PRIVATEKEY), StandardCharsets.UTF_8);
     }
 
 

@@ -7,13 +7,13 @@ import java.util.concurrent.TimeUnit;
 public class RecursiveTaskExceptionDemo {
 	// 1．创建名为Task的类，并继承RecursiveTask类，RecursiveTask类的泛型参数为Integer 类型。
 	static class Task extends RecursiveTask<Integer> {
-		// 2．声明一个名为array的私有int数组。用来模拟在这个范例中即将处理的数据数组。
-		private int array[];
+        // 2．声明一个名为array的私有int数组。用来模拟在这个范例中即将处理的数据数组。
+        private int[] array;
 		// 3．声明两个分别名为start和end的私有int属性。这些属性将决定任务要处理的数组元素。
 		private int start, end;
 
 		// 4．实现类的构造器，用来初始化类的属性。
-		public Task(int array[], int start, int end) {
+		public Task(int[] array, int start, int end) {
 			this.array = array;
 			this.start = start;
 			this.end = end;
@@ -54,7 +54,7 @@ public class RecursiveTaskExceptionDemo {
 
 	public static void main(String[] args) {
 		// 11．创建一个名为array并能容纳100个整数的int数组。
-		int array[] = new int[100];
+        int[] array = new int[100];
 		// 12．创建一个Task对象来处理这个数组。
 		Task task = new Task(array, 0, 100);
 		// 13．通过默认的构造器创建ForkJoinPool对象。

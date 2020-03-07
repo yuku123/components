@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
 public class FormPoster {
 
@@ -31,7 +32,7 @@ public class FormPoster {
 		// open the connection and prepare it to POST
 		URLConnection uc = url.openConnection();
 		uc.setDoOutput(true);
-		try (OutputStreamWriter out = new OutputStreamWriter(uc.getOutputStream(), "UTF-8")) {
+		try (OutputStreamWriter out = new OutputStreamWriter(uc.getOutputStream(), StandardCharsets.UTF_8)) {
 
 			// The POST line, the Content-type header,
 			// and the Content-length headers are sent by the URLConnection.

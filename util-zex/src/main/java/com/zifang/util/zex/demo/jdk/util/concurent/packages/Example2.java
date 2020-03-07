@@ -24,8 +24,8 @@ public class Example2 {
 						}
 					}
 				}
-			}).start();;
-		}
+			}).start();
+        }
 		
 		for(int i=0; i<10; i++){
 			String input= i+"";

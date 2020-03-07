@@ -19,7 +19,7 @@ public class GZipRunnable implements Runnable {
 			if (!output.exists()) { // Don't overwrite an existing file
 				try (InputStream in = new BufferedInputStream(new FileInputStream(input));
 						OutputStream out = new BufferedOutputStream(
-								new GZIPOutputStream(new FileOutputStream(output)));) {
+								new GZIPOutputStream(new FileOutputStream(output)))) {
 					int b;
 					while ((b = in.read()) != -1) {
 						out.write(b);

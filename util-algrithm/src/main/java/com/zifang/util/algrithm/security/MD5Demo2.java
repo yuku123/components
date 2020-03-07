@@ -50,7 +50,7 @@ public class MD5Demo2 {
     String resultString = null;
 
     try {
-      resultString = new String(origin);
+      resultString = origin;
       MessageDigest md = MessageDigest.getInstance("MD5");
       resultString = byteArrayToString(md.digest(resultString.getBytes()));
     }

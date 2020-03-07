@@ -12,7 +12,7 @@ public class InterfaceLister {
 			NetworkInterface ni = interfaces.nextElement();
 			if (ni.isUp()) {
 				System.out.println(ni);
-				byte addres[] = ni.getHardwareAddress();
+                byte[] addres = ni.getHardwareAddress();
 				if (addres != null) {
 					System.out.println(addres.length);
 				}

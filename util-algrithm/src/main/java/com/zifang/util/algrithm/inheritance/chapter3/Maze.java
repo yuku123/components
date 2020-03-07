@@ -21,10 +21,10 @@ import java.util.ArrayList;
  *
  */
 public class Maze {
-	private final int maze[][];
-	private int startPosition[] = { -1, -1 };
+    private final int[][] maze;
+    private int[] startPosition = {-1, -1};
 
-	public Maze(int maze[][]) {
+	public Maze(int[][] maze) {
 		this.maze = maze;
 	}
 
@@ -40,7 +40,7 @@ public class Maze {
 		}
 
 		// Default return value
-		int startPosition[] = { 0, 0 };
+        int[] startPosition = {0, 0};
 
 		// Loop over rows
 		for (int rowIndex = 0; rowIndex < this.maze.length; rowIndex++) {
@@ -116,11 +116,11 @@ public class Maze {
 	 */
 	public int scoreRoute(ArrayList<int[]> route) {
 		int score = 0;
-		boolean visited[][] = new boolean[this.getMaxY() + 1][this.getMaxX() + 1];
+        boolean[][] visited = new boolean[this.getMaxY() + 1][this.getMaxX() + 1];
 
 		// Loop over route and score each move
 		for (Object routeStep : route) {
-			int step[] = (int[]) routeStep;
+            int[] step = (int[]) routeStep;
 			if (this.maze[step[1]][step[0]] == 3 && visited[step[1]][step[0]] == false) {
 				// Increase score for correct move
 				score++;

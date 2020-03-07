@@ -61,9 +61,9 @@ public class TraditionalThread {
 					}
 					System.out.println("thread:" + Thread.currentThread().getName());
 				}
-			};
-			
-		}.start();
+			}
+
+        }.start();
 	}
 	
 }

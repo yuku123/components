@@ -19,8 +19,8 @@ public class CacheDemo {
 	
 	private ReadWriteLock rwl = new ReentrantReadWriteLock();
 	public synchronized Object getData(String key){
-		rwl.readLock().lock();;
-		Object value = null;
+		rwl.readLock().lock();
+        Object value = null;
 		try{
 			value = cache.get(key);
 			if(value == null){

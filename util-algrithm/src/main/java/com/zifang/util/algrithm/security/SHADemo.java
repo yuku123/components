@@ -1,5 +1,6 @@
 package com.zifang.util.algrithm.security;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
@@ -23,7 +24,7 @@ public class SHADemo {
 			return "";
 		}
 
-		byte[] byteArray = inStr.getBytes("UTF-8");
+		byte[] byteArray = inStr.getBytes(StandardCharsets.UTF_8);
 		byte[] md5Bytes = sha.digest(byteArray);
 		StringBuffer hexValue = new StringBuffer();
 		for (int i = 0; i < md5Bytes.length; i++) {
@@ -42,8 +43,8 @@ public class SHADemo {
 	 * @param args
 	 * @throws Exception
 	 */
-	public static void main(String args[]) throws Exception {
-		String str = new String("amigoxiexiexingxing");
+	public static void main(String[] args) throws Exception {
+		String str = "amigoxiexiexingxing";
 		System.out.println("原始：" + str);
 		System.out.println("SHA后：" + shaEncode(str));
 	}

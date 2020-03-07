@@ -5,6 +5,7 @@ import com.zifang.util.zex.Opslab;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Description:
@@ -81,7 +82,7 @@ public final class CharsetUtil {
     }
 
     public final static String getDefaultCharSet() throws UnsupportedEncodingException {
-        OutputStreamWriter writer = new OutputStreamWriter(new ByteArrayOutputStream(), Opslab.UTF_8);
+        OutputStreamWriter writer = new OutputStreamWriter(new ByteArrayOutputStream(), StandardCharsets.UTF_8);
         String enc = writer.getEncoding();
         return enc;
     }
@@ -117,7 +118,7 @@ public final class CharsetUtil {
             return "";
         } else {
             String s1;
-            s1 = new String(input.getBytes(Opslab.ISO_8859_1), Opslab.GBK);
+            s1 = new String(input.getBytes(StandardCharsets.ISO_8859_1), Opslab.GBK);
             return s1;
         }
     }
@@ -133,7 +134,7 @@ public final class CharsetUtil {
             return "";
         } else {
             String s1;
-            s1 = new String(input.getBytes(Opslab.GBK), Opslab.ISO_8859_1);
+            s1 = new String(input.getBytes(Opslab.GBK), StandardCharsets.ISO_8859_1);
             return s1;
         }
     }

@@ -5,7 +5,7 @@ import java.net.URL;
 
 public class URLSplitter {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 			try {
 				URL u = new URL("http://a@www.baidu.com:8000/aa/aa?c=s");

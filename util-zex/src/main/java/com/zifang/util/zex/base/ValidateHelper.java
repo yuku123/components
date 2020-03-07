@@ -22,12 +22,7 @@ public final class ValidateHelper {
 	 */
 	@SuppressWarnings("unused")
 	private static <T> boolean isEmptyArray(T[] array){
-		if (array == null || array.length == 0){
-			return true;
-		}
-		else{
-			return false;
-		}
+        return array == null || array.length == 0;
 	}
 	
 	/**
@@ -38,12 +33,7 @@ public final class ValidateHelper {
 	 * @return boolean
 	 */
 	public static <T> boolean isNotEmptyArray(T[] array){
-		if (array != null && array.length > 0){
-			return true;
-		}
-		else{
-			return false;
-		}
+        return array != null && array.length > 0;
 	}
 	
 	/**
@@ -54,12 +44,7 @@ public final class ValidateHelper {
 	 * @return boolean
 	 */
 	public static boolean isEmptyString(String string){
-		if (string == null || string.length() == 0){
-			return true;
-		}
-		else{
-			return false;
-		}
+        return string == null || string.length() == 0;
 	}
 	
 	/**
@@ -70,12 +55,7 @@ public final class ValidateHelper {
 	 * @return boolean
 	 */
 	public static boolean isNotEmptyString(String string){
-		if (string != null && string.length() > 0){
-			return true;
-		}
-		else{
-			return false;
-		}
+        return string != null && string.length() > 0;
 	}
 	
 	/**
@@ -86,12 +66,7 @@ public final class ValidateHelper {
 	 * @return boolean
 	 */
 	public static boolean isEmptyCollection(Collection<?> collection){
-		if (collection == null || collection.isEmpty()){
-			return true;
-		}
-		else{
-			return false;
-		}
+        return collection == null || collection.isEmpty();
 	}
 	
 	/**
@@ -102,12 +77,7 @@ public final class ValidateHelper {
 	 * @return boolean
 	 */
 	public static boolean isNotEmptyCollection(Collection<?> collection){
-		if (collection != null && !collection.isEmpty()){
-			return true;
-		}
-		else{
-			return false;
-		}
+        return collection != null && !collection.isEmpty();
 	}
 	
 	/**
@@ -119,12 +89,7 @@ public final class ValidateHelper {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static boolean isNotEmptyMap(Map map){
-		if (map != null && !map.isEmpty()){
-			return true;
-		}
-		else{
-			return false;
-		}
+        return map != null && !map.isEmpty();
 	}
 	
 	/**
@@ -136,12 +101,7 @@ public final class ValidateHelper {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static boolean isEmptyMap(Map map){
-		if (map == null || map.isEmpty()){
-			return true;
-		}
-		else{
-			return false;
-		}
+        return map == null || map.isEmpty();
 	}
 	
 	/**

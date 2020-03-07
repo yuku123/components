@@ -3,6 +3,7 @@ package com.zifang.util.server.net.bookdemo;
 import java.io.*;
 import java.net.Socket;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Date;
 import java.util.logging.Level;
@@ -39,7 +40,7 @@ public class RequestProcessor implements Runnable {
 		try {
 			OutputStream raw = new BufferedOutputStream(connection.getOutputStream());
 			Writer out = new OutputStreamWriter(raw);
-			Reader in = new InputStreamReader(new BufferedInputStream(connection.getInputStream()), "US-ASCII");
+			Reader in = new InputStreamReader(new BufferedInputStream(connection.getInputStream()), StandardCharsets.US_ASCII);
 			StringBuilder requestLine = new StringBuilder();
 			while (true) {
 				int c = in.read();
@@ -64,7 +65,7 @@ public class RequestProcessor implements Runnable {
 					version = tokens[2];
 				}
 
-				File theFile = new File(rootDirectory, fileName.substring(1, fileName.length()));
+				File theFile = new File(rootDirectory, fileName.substring(1));
 
 				if (theFile.canRead()
 						// Don't let clients outside the document root

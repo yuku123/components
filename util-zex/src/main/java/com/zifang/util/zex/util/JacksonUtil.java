@@ -31,7 +31,7 @@ public class JacksonUtil {
         mapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>() {
             @Override
             public void serialize(Object value, JsonGenerator gen, SerializerProvider serializers)
-                    throws IOException, JsonProcessingException {
+                    throws IOException {
                 gen.writeString("");
             }
         });
@@ -65,7 +65,7 @@ public class JacksonUtil {
     }
 
     public static <T> T JsonToBean(String jsonStr, Class<T> objClass)
-            throws JsonParseException, JsonMappingException, IOException {
+            throws IOException {
         return mapper.readValue(jsonStr, objClass);
     }
 

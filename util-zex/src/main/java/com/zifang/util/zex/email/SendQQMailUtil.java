@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class SendQQMailUtil {
 
-    public static void main(String[] args) throws AddressException,MessagingException {
+    public static void main(String[] args) throws MessagingException {
         Properties properties = new Properties();
         properties.put("mail.transport.protocol", "smtp");// 连接协议
         properties.put("mail.smtp.host", "smtp.qq.com");// 主机名

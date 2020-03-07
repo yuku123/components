@@ -3,6 +3,7 @@ package com.zifang.util.server.net.bookdemo;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,7 @@ public class DaytimeUDPServer {
 					socket.receive(request);
 
 					String daytime = new Date().toString();
-					byte[] data = daytime.getBytes("US-ASCII");
+					byte[] data = daytime.getBytes(StandardCharsets.US_ASCII);
 					DatagramPacket response = new DatagramPacket(data, data.length, request.getAddress(),
 							request.getPort());
 					socket.send(response);

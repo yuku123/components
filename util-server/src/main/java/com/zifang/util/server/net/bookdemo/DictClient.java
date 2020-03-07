@@ -2,6 +2,7 @@ package com.zifang.util.server.net.bookdemo;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class DictClient {
 
@@ -16,10 +17,10 @@ public class DictClient {
 			socket = new Socket(SERVER, PORT);
 			socket.setSoTimeout(TIMEOUT);
 			OutputStream out = socket.getOutputStream();
-			Writer writer = new OutputStreamWriter(out, "UTF-8");
+			Writer writer = new OutputStreamWriter(out, StandardCharsets.UTF_8);
 			writer = new BufferedWriter(writer);
 			InputStream in = socket.getInputStream();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
 
 			for (String word : args) {
 				define(word, writer, reader);
@@ -41,7 +42,7 @@ public class DictClient {
 	}
 
 	static void define(String word, Writer writer, BufferedReader reader)
-			throws IOException, UnsupportedEncodingException {
+			throws IOException {
 		writer.write("DEFINE eng-lat " + word + "\r\n");
 		writer.flush();
 

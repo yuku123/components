@@ -22,7 +22,7 @@ public class BubbleSort {
 	 * @param arr
 	 * @return
 	 */
-	public static int[] bubbleSort(int arr[]){
+	public static int[] bubbleSort(int[] arr){
 		int m=0;	//循环次数
 		int n=0;	//交换次数
 		int l = arr.length;

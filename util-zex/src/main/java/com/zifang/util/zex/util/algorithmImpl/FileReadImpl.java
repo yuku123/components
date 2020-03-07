@@ -20,7 +20,7 @@ public class FileReadImpl {
                 FileInputStream inStream = new FileInputStream(source);
                 FileOutputStream outStream = new FileOutputStream(target);
                 FileChannel in = inStream.getChannel();
-                FileChannel out = outStream.getChannel();
+                FileChannel out = outStream.getChannel()
         ) {
             in.transferTo(0, in.size(), out);
         } catch (IOException e) {
@@ -82,7 +82,7 @@ public class FileReadImpl {
     public static void customBufferStreamCopy(File source, File target) {
         try (
                 InputStream fis = new FileInputStream(source);
-                OutputStream fos = new FileOutputStream(target);
+                OutputStream fos = new FileOutputStream(target)
         ) {
             byte[] buf = new byte[4096];
             int i;

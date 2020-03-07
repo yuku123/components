@@ -2,6 +2,7 @@ package com.zifang.util.core.lang;
 
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -31,6 +32,8 @@ import java.util.Random;
  * 如果为byte、char、short，则会首先将他们扩充到32位，然后的规则就按照int类型来处理。
  */
 public class Bits {
+
+    static final int MAXIMUM_CAPACITY = 1 << 30;
 
 
     public String bitArray(int i){
@@ -143,7 +146,7 @@ public class Bits {
      * @throws Exception
      */
     public static String bytes2String(byte[] b) throws Exception {
-        String r = new String(b, "UTF-8");
+        String r = new String(b, StandardCharsets.UTF_8);
         return r;
     }
 
@@ -502,4 +505,18 @@ public class Bits {
 //
 //        //...
 //    }
+
+    /**
+     * hashMap中拿到的源码，获得cap以上，最接近cap的2的倍数
+     * */
+    static final int tableSizeFor(int cap) {
+        // 扩容门槛为传入的初始容量往上取最近的2的n次方
+        int n = cap - 1;
+        n |= n >>> 1;
+        n |= n >>> 2;
+        n |= n >>> 4;
+        n |= n >>> 8;
+        n |= n >>> 16;
+        return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+    }
 }

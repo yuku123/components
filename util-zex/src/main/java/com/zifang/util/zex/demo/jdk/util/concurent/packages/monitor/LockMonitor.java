@@ -77,7 +77,7 @@ public class LockMonitor {
 		MyLock lock = new MyLock();
 
 		// 12. 创建有5个Thread对象的 array。
-		Thread threads[] = new Thread[5];
+        Thread[] threads = new Thread[5];
 
 		// 13. 创建并开始5个线程来执行5个Task对象。
 		for (int i = 0; i < 5; i++) {

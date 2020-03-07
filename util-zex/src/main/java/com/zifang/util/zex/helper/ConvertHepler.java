@@ -192,9 +192,9 @@ public final class ConvertHepler {
         StringBuilder result = new StringBuilder();
         for (byte b : bytes) {
             //字节高4位
-            result.append(String.valueOf(Opslab.HEX_CHAR_STR.charAt((b & 0xF0) >> 4)));
+            result.append(Opslab.HEX_CHAR_STR.charAt((b & 0xF0) >> 4));
             //字节低4位
-            result.append(String.valueOf(Opslab.HEX_CHAR_STR.charAt(b & 0x0F)));
+            result.append(Opslab.HEX_CHAR_STR.charAt(b & 0x0F));
             result.append(" ");
         }
         return result.toString();

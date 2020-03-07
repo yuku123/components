@@ -30,7 +30,7 @@ public class Timetable {
 	private final HashMap<Integer, Module> modules;
 	private final HashMap<Integer, Group> groups;
 	private final HashMap<Integer, Timeslot> timeslots;
-	private Class classes[];
+    private Class[] classes;
 
 	private int numClasses = 0;
 
@@ -110,7 +110,7 @@ public class Timetable {
 	 * @param module
 	 * @param professorIds
 	 */
-	public void addModule(int moduleId, String moduleCode, String module, int professorIds[]) {
+	public void addModule(int moduleId, String moduleCode, String module, int[] professorIds) {
 		this.modules.put(moduleId, new Module(moduleId, moduleCode, module, professorIds));
 	}
 
@@ -121,7 +121,7 @@ public class Timetable {
 	 * @param groupSize
 	 * @param moduleIds
 	 */
-	public void addGroup(int groupId, int groupSize, int moduleIds[]) {
+	public void addGroup(int groupId, int groupSize, int[] moduleIds) {
 		this.groups.put(groupId, new Group(groupId, groupSize, moduleIds));
 		this.numClasses = 0;
 	}
@@ -152,15 +152,15 @@ public class Timetable {
 	 */
 	public void createClasses(Individual individual) {
 		// Init classes
-		Class classes[] = new Class[this.getNumClasses()];
+        Class[] classes = new Class[this.getNumClasses()];
 
 		// Get individual's chromosome
-		int chromosome[] = individual.getChromosome();
+        int[] chromosome = individual.getChromosome();
 		int chromosomePos = 0;
 		int classIndex = 0;
 
 		for (Group group : this.getGroupsAsArray()) {
-			int moduleIds[] = group.getModuleIds();
+            int[] moduleIds = group.getModuleIds();
 			for (int moduleId : moduleIds) {
 				classes[classIndex] = new Class(classIndex, group.getGroupId(), moduleId);
 
@@ -193,7 +193,7 @@ public class Timetable {
 		if (!this.rooms.containsKey(roomId)) {
 			System.out.println("Rooms doesn't contain key " + roomId);
 		}
-		return (Room) this.rooms.get(roomId);
+		return this.rooms.get(roomId);
 	}
 
 	public HashMap<Integer, Room> getRooms() {
@@ -218,7 +218,7 @@ public class Timetable {
 	 * @return professor
 	 */
 	public Professor getProfessor(int professorId) {
-		return (Professor) this.professors.get(professorId);
+		return this.professors.get(professorId);
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class Timetable {
 	 * @return module
 	 */
 	public Module getModule(int moduleId) {
-		return (Module) this.modules.get(moduleId);
+		return this.modules.get(moduleId);
 	}
 
 	/**
@@ -238,7 +238,7 @@ public class Timetable {
 	 * @return moduleId array
 	 */
 	public int[] getGroupModules(int groupId) {
-		Group group = (Group) this.groups.get(groupId);
+		Group group = this.groups.get(groupId);
 		return group.getModuleIds();
 	}
 
@@ -249,7 +249,7 @@ public class Timetable {
 	 * @return group
 	 */
 	public Group getGroup(int groupId) {
-		return (Group) this.groups.get(groupId);
+		return this.groups.get(groupId);
 	}
 
 	/**
@@ -258,7 +258,7 @@ public class Timetable {
 	 * @return array of groups
 	 */
 	public Group[] getGroupsAsArray() {
-		return (Group[]) this.groups.values().toArray(new Group[this.groups.size()]);
+		return this.groups.values().toArray(new Group[this.groups.size()]);
 	}
 
 	/**
@@ -268,7 +268,7 @@ public class Timetable {
 	 * @return timeslot
 	 */
 	public Timeslot getTimeslot(int timeslotId) {
-		return (Timeslot) this.timeslots.get(timeslotId);
+		return this.timeslots.get(timeslotId);
 	}
 
 	/**
@@ -302,7 +302,7 @@ public class Timetable {
 		}
 
 		int numClasses = 0;
-		Group groups[] = (Group[]) this.groups.values().toArray(new Group[this.groups.size()]);
+        Group[] groups = this.groups.values().toArray(new Group[this.groups.size()]);
 		for (Group group : groups) {
 			numClasses += group.getModuleIds().length;
 		}

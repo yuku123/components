@@ -13,7 +13,7 @@ public class RecursiveTaskCancelDemo {
 	// 1．创建一个名为ArrayGenerator的类。这个类将生成一个指定大小的随机整数数组。实现generateArray()方法，它将生成数字数组，接收一个int参数表示数组的大小。
 	static class ArrayGenerator {
 		public int[] generateArray(int size) {
-			int array[] = new int[size];
+            int[] array = new int[size];
 			Random random = new Random();
 			for (int i = 0; i < size; i++) {
 				array[i] = random.nextInt(10);
@@ -50,8 +50,8 @@ public class RecursiveTaskCancelDemo {
 
 	// 7．实现SearchNumberTask类，并继承RecursiveTask类，RecursiveTask类的泛型参数为Integer类型。这个类将寻找在整数数组元素块中的一个数字。
 	static class SearchNumberTask extends RecursiveTask<Integer> {
-		// 8．声明一个名为array的私有int数组。
-		private int numbers[];
+        // 8．声明一个名为array的私有int数组。
+        private int[] numbers;
 		// 9．声明两个分别名为start和end的私有int属性。这两个属性将决定任务所要处理的数组的元素。
 		private int start, end;
 		// 10．声明一个名为number的私有int属性，用来存储将要寻找的数字。
@@ -62,7 +62,7 @@ public class RecursiveTaskCancelDemo {
 		private final static int NOT_FOUND = -1;
 
 		// 13．实现类的构造器，用来初始化它的属性。
-		public SearchNumberTask(int numbers[], int start, int end, int number, TaskManager manager) {
+		public SearchNumberTask(int[] numbers, int start, int end, int number, TaskManager manager) {
 			this.numbers = numbers;
 			this.start = start;
 			this.end = end;
@@ -140,7 +140,7 @@ public class RecursiveTaskCancelDemo {
 	public static void main(String[] args) {
 		// 28．用ArrayGenerator类创建一个容量为1,000的数字数组。
 		ArrayGenerator generator = new ArrayGenerator();
-		int array[] = generator.generateArray(1000);
+        int[] array = generator.generateArray(1000);
 		// 29．创建一个TaskManager对象。
 		TaskManager manager = new TaskManager();
 		// 30．通过默认的构造器创建一个ForkJoinPool对象。

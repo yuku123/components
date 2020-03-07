@@ -6,6 +6,7 @@ import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -43,7 +44,7 @@ public final class ASEUtil {
             // 7.初始化密码器，第一个参数为加密(Encrypt_mode)或者解密解密(Decrypt_mode)操作，第二个参数为使用的KEY
             cipher.init(Cipher.ENCRYPT_MODE, key);
             // 8.获取加密内容的字节数组(这里要设置为utf-8)不然内容中如果有中文和英文混合中文就会解密为乱码
-            byte[] byte_encode = content.getBytes(Opslab.UTF_8);
+            byte[] byte_encode = content.getBytes(StandardCharsets.UTF_8);
             // 9.根据密码器的初始化方式--加密：将数据加密
             byte[] byte_AES = cipher.doFinal(byte_encode);
             // 10.将加密后的数据转换为字符串
@@ -63,8 +64,6 @@ public final class ASEUtil {
         } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
@@ -103,14 +102,12 @@ public final class ASEUtil {
              * 解密
 			 */
             byte[] byte_decode = cipher.doFinal(byte_content);
-            return new String(byte_decode, Opslab.UTF_8);
+            return new String(byte_decode, StandardCharsets.UTF_8);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {
             e.printStackTrace();
         } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         } catch (IllegalBlockSizeException e) {
             e.printStackTrace();

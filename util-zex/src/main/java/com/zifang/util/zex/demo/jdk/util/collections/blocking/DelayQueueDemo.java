@@ -80,7 +80,7 @@ public class DelayQueueDemo {
 			/// 13.创建一个参数化为Event类的DelayedQueue对象。
 			DelayQueue<Event> queue = new DelayQueue<>();
 			/// 14.创建一个有5个Thread对象的数组，用来存储将要执行的任务。
-			Thread threads[] = new Thread[5];
+            Thread[] threads = new Thread[5];
 			/// 15.创建5个具有不同IDs的Task对象。
 			for (int i = 0; i < threads.length; i++) {
 				Task task = new Task(i + 1, queue);

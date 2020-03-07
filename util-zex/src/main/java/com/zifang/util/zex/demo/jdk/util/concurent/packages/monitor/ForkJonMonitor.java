@@ -26,7 +26,7 @@ public class ForkJonMonitor {
 		private int end;
 
 		// 4. 实现类的构造函数，初始化属性值。
-		public Task(int array[], int start, int end) {
+		public Task(int[] array, int start, int end) {
 			this.array = array;
 			this.start = start;
 			this.end = end;
@@ -70,7 +70,7 @@ public class ForkJonMonitor {
 		ForkJoinPool pool = new ForkJoinPool();
 
 		// 9. 创建 10，000个元素的整数 array ，名为 array。
-		int array[] = new int[10000];
+        int[] array = new int[10000];
 
 		// 10. 创建新的 Task 对象来处理整个array。
 		Task task1 = new Task(array, 0, array.length);

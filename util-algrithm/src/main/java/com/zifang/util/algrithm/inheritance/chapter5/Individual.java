@@ -33,7 +33,7 @@ public class Individual {
 		// 1 gene for room, 1 for time, 1 for professor
 		int chromosomeLength = numClasses * 3;
 		// Create random individual
-		int newChromosome[] = new int[chromosomeLength];
+        int[] newChromosome = new int[chromosomeLength];
 		int chromosomeIndex = 0;
 		// Loop through groups
 		for (Group group : timetable.getGroupsAsArray()) {

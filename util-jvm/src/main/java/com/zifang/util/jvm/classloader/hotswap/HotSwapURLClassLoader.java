@@ -150,11 +150,8 @@ public class HotSwapURLClassLoader extends URLClassLoader {
 	private boolean isModify(String name) {
 		long lastmodify = getClassLastModifyTime(name);
 		long previousModifyTime = cacheLastModifyTimeMap.get(name);
-		if (lastmodify > previousModifyTime) {
-			return true;
-		}
-		return false;
-	}
+        return lastmodify > previousModifyTime;
+    }
 
 	/**
 	 * @param name

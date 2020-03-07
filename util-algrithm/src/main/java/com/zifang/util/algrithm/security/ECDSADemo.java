@@ -46,8 +46,8 @@ public class ECDSADemo {
 			System.out.println("jdk ecdsa sign : " + Hex.encodeHexString(result));
 			
 			//3、签名验证
-			X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(ecPublicKey.getEncoded());;
-			keyFactory  = KeyFactory.getInstance("EC");
+			X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(ecPublicKey.getEncoded());
+            keyFactory  = KeyFactory.getInstance("EC");
 			PublicKey publicKey = keyFactory.generatePublic(x509EncodedKeySpec);
 			signature = Signature.getInstance("SHA1withECDSA");
 			signature.initVerify(publicKey);

@@ -114,7 +114,7 @@ public class ScriptEngineDemo {
 	}
 
 	interface JSLib {
-		public int max_num(int a, int b);
+		int max_num(int a, int b);
 	}
 
 	/**

@@ -589,7 +589,7 @@ public class DateUtils {
         }     
         n = n-1;     
         if(stype==2){     
-            n = (int)n/365;     
+            n = n /365;
         }        
         return n;     
     }   
@@ -724,7 +724,7 @@ public class DateUtils {
 		int today = now.get(Calendar.DAY_OF_WEEK);
 		int first_day_of_week = now.get(Calendar.DATE) + 2 - today; // 星期一
 		int last_day_of_week = first_day_of_week + 6; // 星期日
-		now.set(now.DATE, last_day_of_week);
+		now.set(Calendar.DATE, last_day_of_week);
 		return now.getTime();
 	}
 }

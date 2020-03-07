@@ -21,14 +21,14 @@ public class ReadWriteLockTest {
 						q3.get();
 					}
 				}
-			}.start();;
-			
+			}.start();
+
 			new Thread(){
 				public void run() {
 					while(true){
 						q3.put(new Random().nextInt(10000));
 					}
-				};
+				}
 			}.start();
 		}
 	}

@@ -34,9 +34,9 @@ public class ObserverPatternDemo2 {
 		public String toString() {
 			return "房子价格为：" + this.price;
 		}
-	};
+	}
 
-	static class HousePriceObserver implements Observer {
+    static class HousePriceObserver implements Observer {
 		private String name;
 
 		public HousePriceObserver(String name) { // 设置每一个购房者的名字
@@ -49,9 +49,9 @@ public class ObserverPatternDemo2 {
 				System.out.println(((Float) arg).floatValue());
 			}
 		}
-	};
+	}
 
-	public static void main(String args[]) {
+    public static void main(String[] args) {
 		House h = new House(1000000);
 		HousePriceObserver hpo1 = new HousePriceObserver("购房者A");
 		HousePriceObserver hpo2 = new HousePriceObserver("购房者B");

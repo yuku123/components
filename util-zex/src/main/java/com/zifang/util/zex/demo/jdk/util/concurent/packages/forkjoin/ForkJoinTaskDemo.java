@@ -12,7 +12,7 @@ public class ForkJoinTaskDemo {
 
         private static final int THRESHOLD = 20;
 
-        private int arr[];
+        private int[] arr;
         private int start;
         private int end;
 

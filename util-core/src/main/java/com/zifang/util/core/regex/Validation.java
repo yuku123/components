@@ -127,7 +127,7 @@ public class Validation {
      * @return boolean
      */
     public static synchronized boolean StrisNull(String str) {
-        return null == str || str.trim().length() <= 0 ? true : false ;
+        return null == str || str.trim().length() <= 0;
     }
     /**
      * 判断字段是非空 符合返回ture
@@ -274,7 +274,7 @@ public class Validation {
      * @return boolean
      */
     public static  boolean isLengOut(String str,int leng) {
-        return StrisNull(str)?false:str.trim().length() > leng ;
+        return !StrisNull(str) && str.trim().length() > leng;
     }
     /**
      * 判断字段是否为身份证 符合返回ture

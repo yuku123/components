@@ -5,7 +5,7 @@ import java.net.URISyntaxException;
 
 public class URISplitter {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 		for (int i = 0; i < args.length; i++) {
 			try {

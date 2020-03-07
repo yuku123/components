@@ -3,8 +3,8 @@ package com.zifang.util.jvm;
 public class StringDemo {
 
 	public void test1() {
-		String a = new String("ab");
-		String b = new String("ab");
+		String a = "ab";
+		String b = "ab";
 		String c = "ab";
 		String d = "a" + "b";
 		String e = "b";

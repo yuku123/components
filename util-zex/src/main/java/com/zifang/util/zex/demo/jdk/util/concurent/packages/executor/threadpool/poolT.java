@@ -11,7 +11,7 @@ public class poolT {
     private static int num = 3;
 
     public poolT(int num) {
-        this.num = num;
+        poolT.num = num;
         for (int i = 0; i < num; i++) {
             Work w = new Work();
             w.start();

@@ -42,7 +42,7 @@ public class StatePatternDemo {
 	 *
 	 */
 	interface State {
-		public void doAction(Context context);
+		void doAction(Context context);
 	}
 
 	/**

@@ -114,7 +114,7 @@ public class ThreadLoggerMonitor {
 			logger.entering("Core", "main()", args);
 
 			// 18. 创建 Thread array 来保存5个线程。
-			Thread threads[] = new Thread[5];
+            Thread[] threads = new Thread[5];
 
 			// 19. 创建5个Task对象和5个执行他们的线程。写日志信息表明，你将运行一个新的线程和表明你已经创建了线程。
 			for (int i = 0; i < threads.length; i++) {

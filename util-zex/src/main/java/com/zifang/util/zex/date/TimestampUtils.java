@@ -84,6 +84,6 @@ public class TimestampUtils {
      * @since v1.0.0
      */
     public static Date timestamp2Date(Timestamp time){
-        return time == null ? null : time;
+        return time;
     }
 }

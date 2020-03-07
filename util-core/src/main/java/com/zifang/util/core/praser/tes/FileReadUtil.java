@@ -75,7 +75,7 @@ public class FileReadUtil {
 
     /** 将字节数组转换成16进制字符串 */
     private static String bytesToHex(byte[] src){
-        StringBuilder stringBuilder = new StringBuilder("");
+        StringBuilder stringBuilder = new StringBuilder();
         if (src == null || src.length <= 0) {
             return null;
         }

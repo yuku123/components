@@ -3,6 +3,7 @@ package com.zifang.util.server.net.bookdemo;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class HTTPSClient {
 
@@ -25,7 +26,7 @@ public class HTTPSClient {
 			String[] supported = socket.getSupportedCipherSuites();
 			socket.setEnabledCipherSuites(supported);
 
-			Writer out = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
+			Writer out = new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8);
 			// https requires the full URL in the GET line
 			out.write("GET http://" + host + "/ HTTP/1.1\r\n");
 			out.write("Host: " + host + "\r\n");

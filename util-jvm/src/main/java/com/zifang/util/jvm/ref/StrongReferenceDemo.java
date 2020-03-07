@@ -32,6 +32,6 @@ public class StrongReferenceDemo {
 		 * 我们要讨论的这三种 Reference较之于强引用而言都属于“弱引用”，也就是他们所引用的对象只要没有强引用，就会根据条件被 JVM
 		 * 的垃圾回收器所回收，它们被回收的时机以及用法各不相同。下面分别来进行讨论。 
 		 */
-		String tag = new String("T");
+		String tag = "T";
 	}
 }

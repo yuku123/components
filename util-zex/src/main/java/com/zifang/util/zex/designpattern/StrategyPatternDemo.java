@@ -33,8 +33,8 @@ package com.zifang.util.zex.designpattern;
 public class StrategyPatternDemo {
 
 	//创建一个接口
-	static interface Strategy{
-	    public int doOperation(int num1, int num2);
+    interface Strategy{
+	    int doOperation(int num1, int num2);
 	}
 	
 	//创建实现接口的实体类1。

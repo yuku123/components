@@ -30,13 +30,13 @@ public class IteratorPatternDemo {
 	 * 	创建接口。
 	 */
 	public interface Iterator {
-		public boolean hasNext();
+		boolean hasNext();
 
-		public Object next();
+		Object next();
 	}
 
 	public interface Container {
-		public Iterator getIterator();
+		Iterator getIterator();
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class IteratorPatternDemo {
 	 *  该类有实现了 Iterator 接口的内部类NameIterator。
 	 */
 	static class NameRepository implements Container {
-		public String names[] = { "Robert", "John", "Julie", "Lora" };
+        public String[] names = {"Robert", "John", "Julie", "Lora"};
 
 		@Override
 		public Iterator getIterator() {
@@ -58,11 +58,8 @@ public class IteratorPatternDemo {
 
 			@Override
 			public boolean hasNext() {
-				if (index < names.length) {
-					return true;
-				}
-				return false;
-			}
+                return index < names.length;
+            }
 
 			@Override
 			public Object next() {

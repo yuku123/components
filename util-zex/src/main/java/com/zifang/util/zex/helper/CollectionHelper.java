@@ -293,8 +293,8 @@ public final class CollectionHelper {
         }
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<K, V> entry : map.entrySet()) {
-            sb.append(String.valueOf(entry.getKey())).append(separator1)
-                    .append(String.valueOf(entry.getValue())).append(separator);
+            sb.append(entry.getKey()).append(separator1)
+                    .append(entry.getValue()).append(separator);
         }
         return sb.toString().substring(0, sb.toString().length() - separator.length());
     }
@@ -311,7 +311,7 @@ public final class CollectionHelper {
     public static <K, V> String keyJoin(Map<K, V> map, String separator) {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<K, V> entry : map.entrySet()) {
-            sb.append(String.valueOf(entry.getKey())).append(separator);
+            sb.append(entry.getKey()).append(separator);
         }
         return sb.toString().substring(0, sb.toString().length() - separator.length());
     }
@@ -329,7 +329,7 @@ public final class CollectionHelper {
         StringBuilder sb = new StringBuilder();
 
         for (Map.Entry<K, V> entry : map.entrySet()) {
-            sb.append(String.valueOf(entry.getValue())).append(separator);
+            sb.append(entry.getValue()).append(separator);
         }
         return sb.toString().substring(0, sb.toString().length() - separator.length());
     }

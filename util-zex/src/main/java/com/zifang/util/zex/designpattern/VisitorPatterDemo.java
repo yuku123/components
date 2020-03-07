@@ -36,10 +36,10 @@ public class VisitorPatterDemo {
 		public abstract void doSomething();
 	}
 
-	static interface IVisitor {
-		public void visit(ConcreteElement1 el1);
+	interface IVisitor {
+		void visit(ConcreteElement1 el1);
 
-		public void visit(ConcreteElement2 el2);
+		void visit(ConcreteElement2 el2);
 	}
 
 	static class ConcreteElement1 extends Element {

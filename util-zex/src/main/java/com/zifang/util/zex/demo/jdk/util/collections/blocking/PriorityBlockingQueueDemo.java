@@ -77,7 +77,7 @@ public class PriorityBlockingQueueDemo {
 		/// 14.创建一个参数化为Event类的PriorityBlockingQueue对象。
 		PriorityBlockingQueue<Event> queue = new PriorityBlockingQueue<>();
 		// 15.创建一个有5个Thread对象的数组，用来存储执行5个任务的线程。
-		Thread taskThreads[] = new Thread[5];
+        Thread[] taskThreads = new Thread[5];
 		// 16.创建5个Task对象。存储前面创建的线程数组。
 		for (int i = 0; i < taskThreads.length; i++) {
 			Task task = new Task(i, queue);

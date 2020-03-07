@@ -2,6 +2,7 @@ package com.zifang.util.server.net.bookdemo;
 
 import java.io.*;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 
 public class Whois {
 
@@ -39,7 +40,7 @@ public class Whois {
 
 		private String label;
 
-		private SearchFor(String label) {
+		SearchFor(String label) {
 			this.label = label;
 		}
 	}
@@ -50,7 +51,7 @@ public class Whois {
 
 		private String label;
 
-		private SearchIn(String label) {
+		SearchIn(String label) {
 			this.label = label;
 		}
 	}
@@ -69,8 +70,8 @@ public class Whois {
 		try {
 			SocketAddress address = new InetSocketAddress(host, port);
 			socket.connect(address);
-			Writer out = new OutputStreamWriter(socket.getOutputStream(), "ASCII");
-			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "ASCII"));
+			Writer out = new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.US_ASCII);
+			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.US_ASCII));
 			out.write(query + "\r\n");
 			out.flush();
 

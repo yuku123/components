@@ -41,8 +41,8 @@ public class CyclicBarrierTest {
 						e.printStackTrace();
 					} catch (BrokenBarrierException e) {
 						e.printStackTrace();
-					};
-					
+					}
+
 				}
 			};
 			service.execute(runnable);

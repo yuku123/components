@@ -94,10 +94,10 @@ public class FlyweightPatternDemo {
 		}
 	}
 
-	/**
-	 * 步骤 4 使用该工厂，通过传递颜色信息来获取实体类的对象。
-	 */
-	private static final String colors[] = { "Red", "Green", "Blue", "White", "Black" };
+    /**
+     * 步骤 4 使用该工厂，通过传递颜色信息来获取实体类的对象。
+     */
+    private static final String[] colors = {"Red", "Green", "Blue", "White", "Black"};
 
 	public static void main(String[] args) {
 

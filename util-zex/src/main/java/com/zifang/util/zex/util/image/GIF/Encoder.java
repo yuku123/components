@@ -89,7 +89,7 @@ public class Encoder {
     int cur_accum = 0;
     int cur_bits = 0;
 
-    int masks[] =
+    int[] masks =
             {
                     0x0000,
                     0x0001,

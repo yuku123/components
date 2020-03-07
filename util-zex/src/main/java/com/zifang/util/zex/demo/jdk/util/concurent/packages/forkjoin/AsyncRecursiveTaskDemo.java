@@ -34,7 +34,7 @@ public class AsyncRecursiveTaskDemo {
 			// 9．获取文件夹的内容。
 			File file = new File(path);
 
-			File content[] = file.listFiles();
+            File[] content = file.listFiles();
 			// 10．对于文件夹中的每一个元素，如果它是子文件夹，就创建一个新的FolderProcessor对象，然后调用fork()方法采用异步方式来执行它。
 			if (content != null) {
 				for (int i = 0; i < content.length; i++) {

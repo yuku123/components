@@ -104,7 +104,9 @@ public class ShowClass {
      * to allow this method to work with both Method and Constructor objects
      **/
     public static void print_method_or_constructor(Member member) {
-        Class returntype=null, parameters[], exceptions[];
+        Class returntype=null;
+        Class[] parameters;
+        Class[] exceptions;
         if (member instanceof Method) {
             Method m = (Method) member;
             returntype = m.getReturnType();

@@ -11,7 +11,7 @@ package com.zifang.util.algrithm.inheritance.chapter4;
  */
 
 public class Route {
-	private City route[];
+    private City[] route;
 	private double distance = 0;
 
 	/**
@@ -22,9 +22,9 @@ public class Route {
 	 * @param cities
 	 *            The cities referenced
 	 */
-	public Route(Individual individual, City cities[]) {
+	public Route(Individual individual, City[] cities) {
 		// Get individual's chromosome
-		int chromosome[] = individual.getChromosome();
+        int[] chromosome = individual.getChromosome();
 		// Create route
 		this.route = new City[cities.length];
 		for (int geneIndex = 0; geneIndex < chromosome.length; geneIndex++) {

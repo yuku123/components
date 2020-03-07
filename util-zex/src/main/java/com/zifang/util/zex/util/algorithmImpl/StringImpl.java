@@ -5,6 +5,7 @@ import com.zifang.util.zex.Opslab;
 import com.zifang.util.zex.helper.SysHepler;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 对比俩个字符串的相似度
@@ -74,7 +75,7 @@ public class StringImpl {
 
     //第二种实现方式
     private static int compare(String str, String target) {
-        int d[][]; // 矩阵
+        int[][] d; // 矩阵
         int n = str.length();
         int m = target.length();
         int i; // 遍历str的
@@ -139,13 +140,13 @@ public class StringImpl {
     public static String simpleEncoding(String str) {
         try {
             byte[] bs = str.getBytes(SysHepler.JVM_ENCODING);
-            if (str.equals(new String(bs, Opslab.UTF_8))) {
+            if (str.equals(new String(bs, StandardCharsets.UTF_8))) {
                 return Opslab.UTF_8;
             }
             if (str.equals(new String(bs, Opslab.GBK))) {
                 return Opslab.GBK;
             }
-            if (str.equals(new String(bs, Opslab.ISO_8859_1))) {
+            if (str.equals(new String(bs, StandardCharsets.ISO_8859_1))) {
                 return Opslab.ISO_8859_1;
             }
         } catch (UnsupportedEncodingException e) {

@@ -653,9 +653,7 @@ public class ClassUtil {
 	 */
 	public static boolean isPublicPublic(final Member member) {
 		if (Modifier.isPublic(member.getModifiers())) {
-			if (Modifier.isPublic(member.getDeclaringClass().getModifiers())) {
-				return true;
-			}
+			return Modifier.isPublic(member.getDeclaringClass().getModifiers());
 		}
 		return false;
 	}
@@ -834,17 +832,14 @@ public class ClassUtil {
 		Class returnType = method.getReturnType();
 		Class[] paramTypes =  method.getParameterTypes();
 		if (methodName.startsWith(METHOD_GET_PREFIX)) {		// getter method must starts with 'get' and it is not getClass()
-			if ((returnType != null) && (paramTypes.length == 0)) {	// getter must have a return type and no arguments
-				return true;
-			}
+			// getter must have a return type and no arguments
+			return (returnType != null) && (paramTypes.length == 0);
 		} else if (methodName.startsWith(METHOD_IS_PREFIX)) {		    // ister must starts with 'is'
-			if ((returnType != null)  && (paramTypes.length == 0)) {	// ister must have return type and no arguments
-				return true;
-			}
+			// ister must have return type and no arguments
+			return (returnType != null) && (paramTypes.length == 0);
 		} else if (methodName.startsWith(METHOD_SET_PREFIX)) {	// setter must start with a 'set'
-			if (paramTypes.length == 1) {				        // setter must have just one argument
-				return true;
-			}
+			// setter must have just one argument
+			return paramTypes.length == 1;
 		}
 		return false;
 	}

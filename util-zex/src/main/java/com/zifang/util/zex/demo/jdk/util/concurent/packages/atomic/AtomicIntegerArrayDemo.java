@@ -73,8 +73,8 @@ public class AtomicIntegerArrayDemo {
 		Decrementer decrementer = new Decrementer(vector);
 
 		// 13.创建2个array 分别存储 100 个Thread 对象。
-		Thread threadIncrementer[] = new Thread[THREADS];
-		Thread threadDecrementer[] = new Thread[THREADS];
+        Thread[] threadIncrementer = new Thread[THREADS];
+        Thread[] threadDecrementer = new Thread[THREADS];
 
 		// 14.创建并运行 100 个线程来执行 Incrementer 任务和另外 100 个线程来执行 Decrementer
 		// 任务。把线程储存入之前创建的arrays内。

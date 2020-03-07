@@ -20,7 +20,7 @@ public class TSP {
 		
 		// Create cities
 		int numCities = 100;
-		City cities[] = new City[numCities];
+        City[] cities = new City[numCities];
 		
 		// Loop to create random cities
 		for (int cityIndex = 0; cityIndex < numCities; cityIndex++) {

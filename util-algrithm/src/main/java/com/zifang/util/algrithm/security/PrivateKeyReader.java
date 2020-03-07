@@ -22,7 +22,7 @@ public class PrivateKeyReader {
 		return kf.generatePrivate(spec);
 	}
 
-	public static void main(String[] args) throws Exception, InvalidKeySpecException, IOException {
+	public static void main(String[] args) throws Exception {
 		PrivateKeyReader.get("d:/privateKeyFile");
 	}
 }

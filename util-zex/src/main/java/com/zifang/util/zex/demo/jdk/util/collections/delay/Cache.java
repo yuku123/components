@@ -137,7 +137,7 @@ class DelayedItem<T> implements Delayed{
     @Override
     public boolean equals(Object object){
         if (object instanceof DelayedItem) {
-            return object.hashCode() == hashCode() ?true:false;
+            return object.hashCode() == hashCode();
         }
         return false;
     }

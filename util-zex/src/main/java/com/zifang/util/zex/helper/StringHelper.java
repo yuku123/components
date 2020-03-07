@@ -139,7 +139,7 @@ public class StringHelper {
     public static String string2Unicode(String string) {
         StringBuilder uni = new StringBuilder();
         for (int i = 0; i < string.length(); i++) {
-            String temp = "\\u" + String.valueOf(Integer.toHexString(string.charAt(i)));
+            String temp = "\\u" + Integer.toHexString(string.charAt(i));
             uni.append(temp);
         }
         return uni.toString();
@@ -188,7 +188,7 @@ public class StringHelper {
             return "";
         }
         count = (count > input.length()) ? input.length() : count;
-        return input.substring(input.length() - count, input.length());
+        return input.substring(input.length() - count);
     }
 
     /**
@@ -262,7 +262,7 @@ public class StringHelper {
                 int pos = 0;
 
                 for (int patLen = oldPattern.length(); index >= 0; index = inString.indexOf(oldPattern, pos)) {
-                    sb.append(inString.substring(pos, index));
+                    sb.append(inString, pos, index);
                     sb.append(newPattern);
                     pos = index + patLen;
                 }

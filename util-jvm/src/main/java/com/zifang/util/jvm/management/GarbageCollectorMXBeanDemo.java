@@ -51,7 +51,7 @@ public class GarbageCollectorMXBeanDemo{
 			if (mbeans != null) {
 				Iterator<ObjectName> iterator = mbeans.iterator();
 				while (iterator.hasNext()) {
-					ObjectName objName = (ObjectName) iterator.next();
+					ObjectName objName = iterator.next();
 					GarbageCollectorMXBean gc = ManagementFactory.newPlatformMXBeanProxy(mbs,
 							objName.getCanonicalName(), GarbageCollectorMXBean.class);
 					

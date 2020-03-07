@@ -71,7 +71,7 @@ public class CacheStudy {
                 map.put(key, "hello" + key);
             }
             return map;
-        };
+        }
     });
 
     /**
@@ -321,7 +321,7 @@ public class CacheStudy {
          */
         private boolean neverNeedRefresh(String key) {
             return false;
-        };
+        }
     });
 
     /**

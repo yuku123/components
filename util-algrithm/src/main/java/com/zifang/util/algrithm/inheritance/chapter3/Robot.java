@@ -9,15 +9,15 @@ import java.util.ArrayList;
  *
  */
 public class Robot {
-    private enum Direction {NORTH, EAST, SOUTH, WEST};
- 
+    private enum Direction {NORTH, EAST, SOUTH, WEST}
+
     private int xPosition;
     private int yPosition;
     private Direction heading;
     int maxMoves;
     int moves;
     private int sensorVal;
-    private final int sensorActions[];
+    private final int[] sensorActions;
     private Maze maze;
     private ArrayList<int[]> route;
     
@@ -31,7 +31,7 @@ public class Robot {
     public Robot(int[] sensorActions, Maze maze, int maxMoves){
         this.sensorActions = this.calcSensorActions(sensorActions);
         this.maze = maze;
-        int startPos[] = this.maze.getStartPosition();
+        int[] startPos = this.maze.getStartPosition();
         this.xPosition = startPos[0];
         this.yPosition = startPos[1];
         this.sensorVal = -1;
@@ -77,8 +77,8 @@ public class Robot {
      */
     private int[] calcSensorActions(int[] sensorActionsStr){
         // How many actions are there?
-        int numActions = (int) sensorActionsStr.length / 2;
-        int sensorActions[] = new int[numActions];
+        int numActions = sensorActionsStr.length / 2;
+        int[] sensorActions = new int[numActions];
         
         // Loop through actions
         for (int sensorValue = 0; sensorValue < numActions; sensorValue++){
@@ -299,7 +299,7 @@ public class Robot {
         String route = "";
         
         for (Object routeStep : this.route) {
-            int step[] = (int[]) routeStep;
+            int[] step = (int[]) routeStep;
             route += "{" + step[0] + "," + step[1] + "}";
         }
         return route;

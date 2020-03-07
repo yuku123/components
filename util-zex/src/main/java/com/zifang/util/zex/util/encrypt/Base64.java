@@ -3,6 +3,7 @@ package com.zifang.util.zex.util.encrypt;
 import com.zifang.util.zex.Opslab;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 /**
@@ -64,19 +65,11 @@ public final class Base64 {
     }
 
     public final static byte[] encodeToByte(String s) {
-        try {
-            return encodeToByte(s.getBytes(Opslab.UTF_8), false);
-        } catch (UnsupportedEncodingException ignore) {
-            return new byte[]{};
-        }
+        return encodeToByte(s.getBytes(StandardCharsets.UTF_8), false);
     }
 
     public final static byte[] encodeToByte(String s, boolean lineSep) {
-        try {
-            return encodeToByte(s.getBytes(Opslab.UTF_8), lineSep);
-        } catch (UnsupportedEncodingException ignore) {
-            return new byte[]{};
-        }
+        return encodeToByte(s.getBytes(StandardCharsets.UTF_8), lineSep);
     }
 
     public final static byte[] encodeToByte(byte[] arr) {
@@ -127,11 +120,7 @@ public final class Base64 {
     }
 
     public final static String decodeToString(byte[] arr) {
-        try {
-            return new String(decode(arr), Opslab.UTF_8);
-        } catch (UnsupportedEncodingException ignore) {
-            return null;
-        }
+        return new String(decode(arr), StandardCharsets.UTF_8);
     }
 
     /**
@@ -178,19 +167,11 @@ public final class Base64 {
     }
 
     public final static String encodeToString(String s) {
-        try {
-            return new String(encodeToChar(s.getBytes(Opslab.UTF_8), false));
-        } catch (UnsupportedEncodingException ignore) {
-            return null;
-        }
+        return new String(encodeToChar(s.getBytes(StandardCharsets.UTF_8), false));
     }
 
     public final static String encodeToString(String s, boolean lineSep) {
-        try {
-            return new String(encodeToChar(s.getBytes(Opslab.UTF_8), lineSep));
-        } catch (UnsupportedEncodingException ignore) {
-            return null;
-        }
+        return new String(encodeToChar(s.getBytes(StandardCharsets.UTF_8), lineSep));
     }
 
     public final static String encodeToString(byte[] arr) {
@@ -205,11 +186,7 @@ public final class Base64 {
     }
 
     public final static String decodeToString(String s) {
-        try {
-            return new String(decode(s), Opslab.UTF_8);
-        } catch (UnsupportedEncodingException ignore) {
-            return null;
-        }
+        return new String(decode(s), StandardCharsets.UTF_8);
     }
 
     /**

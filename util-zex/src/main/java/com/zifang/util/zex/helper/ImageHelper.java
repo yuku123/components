@@ -25,10 +25,7 @@ public final class ImageHelper {
         Image img = null;
         try {
             img = ImageIO.read(imageFile);
-            if (img == null || img.getWidth(null) <= 0 || img.getHeight(null) <= 0) {
-                return false;
-            }
-            return true;
+            return img != null && img.getWidth(null) > 0 && img.getHeight(null) > 0;
         } catch (Exception e) {
             return false;
         } finally {

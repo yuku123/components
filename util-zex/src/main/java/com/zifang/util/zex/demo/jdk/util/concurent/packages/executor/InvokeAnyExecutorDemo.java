@@ -102,7 +102,7 @@ public class InvokeAnyExecutorDemo {
 		taskList.add(dbTask);
 		// 21．通过Executors工厂类的newCachedThreadPool()方法创建一个新的 ThreadPoolExecutor
 		// 执行器对象，并创建一个名为 result 的 String 对象。
-		ExecutorService executor = (ExecutorService) Executors.newCachedThreadPool();
+		ExecutorService executor = Executors.newCachedThreadPool();
 		String result;
 		// 22．调用执行器的 invokeAny() 方法。这个方法接收 taskList 作为参数，并返回String
 		// 对象。然后，在控制台上输出这个方法返回的 String 对象。
