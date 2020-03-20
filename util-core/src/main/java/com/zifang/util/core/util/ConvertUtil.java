@@ -1,62 +1,127 @@
-package com.zifang.util.zex.base;
+package com.zifang.util.core.util;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 /**
- * 转换工具类<br>
+ * 转换工具类
  * 若待转换值为null或者出现异常，则使用默认值
- *
- * @Author:chenssy
- * @date:2016年5月21日 上午10:18:12
  */
-public class ConvertUtils {
-	
-	/**
-	 * 字符串转换为int
-	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:16:27
-	 *
-	 * @param str	
-	 * 					待转换的字符串
-	 * @param defaultValue
-	 * 					默认值
-	 * @return
-	 */
-	public static int strToInt(String str, int defaultValue) {
-		try {
-			defaultValue = Integer.parseInt(str);
-		} catch (Exception localException) {
-		}
-		return defaultValue;
+public class ConvertUtil {
+
+	//----byte,short,int,long,float,long,double,char,string---------//
+	//------------------------byte---------------------------//
+
+	public byte to(byte value,byte defaultValue){
+		return value;
 	}
 
-	/**
-	 * String转换为long
-	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:18:44
-	 *
-	 * @param str
-	 * 					待转换字符串
-	 * @param defaultValue
-	 * 					默认值
-	 * @return
-	 */
-	public static long strToLong(String str, long defaultValue) {
-		try {
-			defaultValue = Long.parseLong(str);
-		} catch (Exception localException) {
-		}
-		return defaultValue;
-	}
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * 字符串转换为float
-	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:19:12
 	 *
 	 * @param str
 	 * 				
@@ -73,9 +138,6 @@ public class ConvertUtils {
 
 	/**
 	 * String转换为Double
-	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:21:59
 	 *
 	 * @param str
 	 * 					待转换字符串
@@ -94,9 +156,6 @@ public class ConvertUtils {
 	/**
 	 * 字符串转换日期
 	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:27:01
-	 *
 	 * @param str
 	 * 						待转换的字符串
 	 * @param defaultValue
@@ -109,9 +168,6 @@ public class ConvertUtils {
 
 	/**
 	 * 字符串转换为指定格式的日期
-	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:27:24
 	 *
 	 * @param str
 	 * 					待转换的字符串
@@ -132,9 +188,6 @@ public class ConvertUtils {
 
 	/**
 	 * 日期转换为字符串
-	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:28:05
 	 *
 	 * @param date
 	 * 				待转换的日期
@@ -228,9 +281,6 @@ public class ConvertUtils {
 
 	/**
 	 * timestamp 转换为date
-	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:31:13
 	 *
 	 * @param date
 	 * @return

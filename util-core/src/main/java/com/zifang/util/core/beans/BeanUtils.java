@@ -32,6 +32,9 @@ public class BeanUtils {
         return false;
     }
 
+    /**
+     * t通过序列化的方式进行深复制
+     * */
     public static <T> T cloneBean(final T bean) throws IllegalAccessException, InstantiationException, InvocationTargetException, IntrospectionException {
         T t = (T) bean.getClass().newInstance();
         PropertyDescriptor[] pro = Introspector.getBeanInfo(bean.getClass(),Object.class).getPropertyDescriptors();
@@ -43,6 +46,9 @@ public class BeanUtils {
         return t;
     }
 
+    /**
+     * 输入map，输出组装好了的bean
+     * */
     public static <T> T  mapToBean(Class<T> clazz, Map<String,? extends Object> map) throws IllegalAccessException, InstantiationException, IntrospectionException {
         T t = clazz.newInstance();
         PropertyDescriptor[] pro = Introspector.getBeanInfo(clazz,Object.class).getPropertyDescriptors();
@@ -60,6 +66,9 @@ public class BeanUtils {
         return t;
     }
 
+    /**
+     * 输入bean 输出这个bean第一层value值
+     * */
     public static <T> Map<String,Object>  beanToMap(final T t) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
         Map<String,Object> map = new HashMap<>();
         PropertyDescriptor[] pro = Introspector.getBeanInfo(t.getClass(),Object.class).getPropertyDescriptors();
@@ -113,6 +122,9 @@ public class BeanUtils {
         return null;
     }
 
+    /**
+     * 找到所需要的handle
+     * */
     private static PropertyDescriptor findPropertyDescriptorByName(PropertyDescriptor[] pro,String name){
         for (PropertyDescriptor propertyDescriptor : pro) {
             if(name.equals(propertyDescriptor.getName())){

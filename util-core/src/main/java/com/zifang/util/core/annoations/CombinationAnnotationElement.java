@@ -94,7 +94,7 @@ public class CombinationAnnotationElement implements AnnotatedElement, Serializa
 		// 直接注解
 		for (Annotation annotation : annotations) {
 			annotationType = annotation.annotationType();
-			if (false == META_ANNOTATIONS.contains(annotationType)) {
+			if (!META_ANNOTATIONS.contains(annotationType)) {
 				declaredAnnotationMap.put(annotationType, annotation);
 				parseDeclared(annotationType.getDeclaredAnnotations());
 			}
@@ -110,7 +110,7 @@ public class CombinationAnnotationElement implements AnnotatedElement, Serializa
 		Class<? extends Annotation> annotationType;
 		for (Annotation annotation : annotations) {
 			annotationType = annotation.annotationType();
-			if (false == META_ANNOTATIONS.contains(annotationType)) {
+			if (!META_ANNOTATIONS.contains(annotationType)) {
 				annotationMap.put(annotationType, annotation);
 				parse(annotationType.getAnnotations());
 			}
