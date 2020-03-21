@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * 提供精确的加减乘除运算
  */
-public class BigDecimalUtils {
+public class BigDecimalUtil {
 
 	/**
 	 * 默认保留位：2
