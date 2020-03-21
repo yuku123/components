@@ -25,7 +25,6 @@ public class ArraysUtil {
 		return elements;
 	}
 
-	// ---------------------------------------------------------------- join
 
 	/**
 	 * Joins arrays. Component type is resolved from the array argument.
@@ -1467,5 +1466,25 @@ public class ArraysUtil {
 			result[i] = String.valueOf(array[i]);
 		}
 		return result;
+	}
+
+	/**
+	 * 判断数组是否 为空
+	 *
+	 * @param array
+	 * @return boolean
+	 */
+	private static <T> boolean isEmptyArray(T[] array){
+		return array == null || array.length == 0;
+	}
+
+	/**
+	 *  判断数组是否 不为空
+	 *
+	 * @param array
+	 * @return boolean
+	 */
+	public static <T> boolean isNotEmptyArray(T[] array){
+		return array != null && array.length > 0;
 	}
 }
