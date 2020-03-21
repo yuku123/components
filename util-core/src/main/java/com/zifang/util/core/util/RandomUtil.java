@@ -12,8 +12,6 @@ public class RandomUtil {
     
     /**
      * 获取定长的随机数，包含大小写、数字
-     * @autor:chenssy
-     * @date:2014年8月11日
      *
      * @param length
      * 				随机数长度
@@ -30,8 +28,6 @@ public class RandomUtil {
     
     /**
      * 获取定长的随机数，包含大小写字母
-     * @autor:chenssy
-     * @date:2014年8月11日
      *
      * @param length
      * 				随机数长度
@@ -48,8 +44,6 @@ public class RandomUtil {
     
     /**
      * 获取定长的随机数，只包含小写字母
-     * @autor:chenssy
-     * @date:2014年8月11日
      *
      * @param length	
      * 				随机数长度
@@ -61,8 +55,6 @@ public class RandomUtil {
     
     /**
      * 获取定长的随机数，只包含大写字母
-     * @autor:chenssy
-     * @date:2014年8月11日
      *
      * @param length
      * 				随机数长度
@@ -74,8 +66,6 @@ public class RandomUtil {
     
     /**
      * 获取定长的随机数，只包含数字
-     * @autor:chenssy
-     * @date:2014年8月11日
      *
      * @param length
      * 				随机数长度

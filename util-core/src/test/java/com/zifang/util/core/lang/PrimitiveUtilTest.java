@@ -1,8 +1,11 @@
-package com.zifang.util.core.base.primitives;
+package com.zifang.util.core.lang;
 
-import com.zifang.util.core.lang.PrimitiveUtil;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class PrimitiveUtilTest {
 
@@ -74,4 +77,5 @@ public class PrimitiveUtilTest {
         assertFalse(PrimitiveUtil.isGeneralType(byte.class));
         assertFalse(PrimitiveUtil.isGeneralType(Byte.class));
     }
+
 }

@@ -1,6 +1,5 @@
 package com.zifang.util.core.regex;
 
-import org.junit.Test;
 
 /**
  * 实例解析Java程序中正则表达式的贪婪模式匹配
@@ -24,7 +23,6 @@ public class GreedyRegexDemo {
 	 * aaa"bbb"ccc"ddd"eee
 	 * aaa@eee
 	 */
-	@Test
 	public void test1(){
 		String str = "aaa\"bbb\"ccc\"ddd\"eee"; 
 		System.out.println(str);
@@ -37,7 +35,6 @@ public class GreedyRegexDemo {
 	 * aaa"bbb"ccc"ddd"eee
 	 * aaa@ccc@eee
 	 */
-	@Test
 	public  void test2(){
 		String str = "aaa\"bbb\"ccc\"ddd\"eee"; 
 		System.out.println(str); 

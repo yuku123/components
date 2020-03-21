@@ -11,6 +11,9 @@ public class PrimitiveUtil {
 
     private final static Logger log = Logger.getLogger(PrimitiveUtil.class);
 
+    /**
+     * 原始类型的集合
+     * */
     private static List<Class> primitiveTypeList = new ArrayList<Class>(){
         {
             add(byte.class);
@@ -24,6 +27,9 @@ public class PrimitiveUtil {
         }
     };
 
+    /**
+     * 封装类型的集合
+     * */
     private static List<Class> primitiveWrapperTypeList = new ArrayList<Class>(){
         {
             add(Byte.class);
@@ -53,7 +59,7 @@ public class PrimitiveUtil {
     }
 
     /**
-     * 判断是否为普通类型：既不是基本类型也不是基本类型的包装
+     * 判断是否为普通类型 -> 既不是基本类型也不是基本类型的包装
      * */
     public static <T> boolean isGeneralType(Class<T> clazz){
         return (!isPrimitive(clazz)) && (!isPrimitiveWrapper(clazz));

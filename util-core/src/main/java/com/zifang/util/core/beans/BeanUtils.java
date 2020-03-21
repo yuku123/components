@@ -13,7 +13,6 @@ import java.util.Map;
 /**
  * 提供Bean的相关操作
  * */
-@SuppressWarnings("unchecked")
 public class BeanUtils {
 
     /**

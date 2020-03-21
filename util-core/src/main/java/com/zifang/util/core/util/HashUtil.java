@@ -387,11 +387,12 @@ public class HashUtil {
 
     /**
      * 从hashmap 中得到
+     *
+     * 如果key为null，则hash值为0，否则调用key的hashCode()方法
+     * 并让高16位与整个hash异或，这样做是为了使计算出的hash更分散
      * */
-    public static final int hash(Object key) {
+    public static int hash(Object key) {
         int h;
-        // 如果key为null，则hash值为0，否则调用key的hashCode()方法
-        // 并让高16位与整个hash异或，这样做是为了使计算出的hash更分散
         return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
     }
 }  

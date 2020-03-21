@@ -13,13 +13,6 @@ public class GsonUtil {
 		return gson.toJson(object);
 	}
 
-	public static <T> String objectToJsonStr(T object, Type type) {
-		return gson.toJson(object, type);
-	}
-	public static <T> List<T> jsonToList(String jsonStr, Type type) {
-		return gson.fromJson(jsonStr, type);
-	}
-
 	public static <T> T jsonStrToObject(String jsonStr, Class<T> classOfT) {
 		return gson.fromJson(jsonStr, classOfT);
 	}

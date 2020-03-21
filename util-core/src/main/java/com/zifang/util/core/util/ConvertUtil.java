@@ -16,6 +16,34 @@ public class ConvertUtil {
 		return value;
 	}
 
+	public short to(byte value,short defaultValue){
+		return value;
+	}
+
+	public int to(byte value,int defaultValue){
+		return value;
+	}
+
+	public long to(byte value,long defaultValue){
+		return value;
+	}
+
+	public float to(byte value,float defaultValue){
+		return value;
+	}
+
+	public double to(byte value,double defaultValue){
+		return value;
+	}
+
+	public char to(byte value,char defaultValue){
+		return (char) value;
+	}
+
+	public String to(byte value,String defaultValue){
+		return String.valueOf(value);
+	}
+
 
 
 
@@ -132,6 +160,7 @@ public class ConvertUtil {
 		try {
 			defaultValue = Float.parseFloat(str);
 		} catch (Exception localException) {
+
 		}
 		return defaultValue;
 	}
