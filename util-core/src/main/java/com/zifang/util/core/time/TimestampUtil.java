@@ -7,17 +7,13 @@ import java.util.Date;
 /**
  * TimeStamp工具类，提供TimeStamp与String、Date的转换
  */
-public class TimestampUtils {
+public class TimestampUtil {
 
     /**
      * String转换为TimeStamp
      * @param value
      *              待转换的String，格式必须为 yyyy-mm-dd hh:mm:ss[.f...] 这样的格式，中括号表示可选，否则报错
      * @return java.sql.Timestamp
-     *
-     * @author chenssy
-     * @date 2019-09-24
-     * @since v1.0.0
      */
     public static Timestamp string2Timestamp(String value){
         if(value == null && !"".equals(value.trim())){
@@ -45,7 +41,7 @@ public class TimestampUtils {
     	if(null == value){
     		return "";
     	}
-    	SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+    	SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
     	
     	return sdf.format(value);
     }

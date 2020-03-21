@@ -7,15 +7,12 @@ import java.util.zip.ZipOutputStream;
 /**
  * 文件压缩、解压工具类。文件压缩格式为zip
  */
-public class ZipUitls {
+public class ZipUtil {
 	/** 文件后缀名 */
 	private static final String ZIP_FILE_SUFFIX = ".zip";
 	
 	/**
 	 * 压缩文件
-	 *
-	 * @author:zifang
-	 * @date : 2019年5月24日 下午9:56:36
 	 *
 	 * @param resourcePath
 	 * 						源文件

@@ -1,4 +1,4 @@
-package com.zifang.util.core.praser.tes;
+package com.zifang.util.core.io;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;

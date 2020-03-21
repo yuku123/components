@@ -2,21 +2,9 @@ package com.zifang.util.bigdata.spark.context;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.SparkContext;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.ml.classification.RandomForestClassificationModel;
-import org.apache.spark.ml.feature.VectorAssembler;
-import org.apache.spark.mllib.evaluation.MulticlassMetrics;
-import org.apache.spark.mllib.linalg.Matrix;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.SparkSession;
-import scala.Tuple2;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class ClusterSparkContext implements java.io.Serializable{
 

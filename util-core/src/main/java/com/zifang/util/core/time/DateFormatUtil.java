@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * 日期格式化工具类
  */
-public class DateFormatUtils {
+public class DateFormatUtil {
 	/** yyyy:年 */
 	public static final String DATE_YEAR = "yyyy";
 	

@@ -1,4 +1,4 @@
-package com.zifang.util.core.praser.XmlUtil;
+package com.zifang.util.core.io;
 
 import org.apache.log4j.Logger;
 import org.dom4j.Document;

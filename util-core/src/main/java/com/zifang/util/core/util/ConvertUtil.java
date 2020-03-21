@@ -115,39 +115,6 @@ public class ConvertUtil {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	/**
 	 * 字符串转换为float
 	 *
@@ -230,9 +197,6 @@ public class ConvertUtil {
 
 	/**
 	 * 日期转换为指定格式的字符串
-	 * 
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:28:51
 	 *
 	 * @param date
 	 * 				待转换的日期
@@ -254,9 +218,6 @@ public class ConvertUtil {
 	/**
 	 * 如果字符串为空则使用默认字符串
 	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:29:35
-	 *
 	 * @param str
 	 * 				字符串
 	 * @param defaultValue
@@ -272,9 +233,6 @@ public class ConvertUtil {
 	/**
 	 * util date 转换为 sqldate
 	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:30:09
-	 *
 	 * @param date
 	 * @return
 	 */
@@ -285,9 +243,6 @@ public class ConvertUtil {
 	/**
 	 * sql date 转换为 util date
 	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:30:26
-	 *
 	 * @param date
 	 * @return
 	 */
@@ -297,9 +252,6 @@ public class ConvertUtil {
 
 	/**
 	 * date 转换为 timestamp
-	 *
-	 * @author:chenssy
-	 * @date : 2016年5月21日 上午10:30:51
 	 *
 	 * @param date
 	 * @return

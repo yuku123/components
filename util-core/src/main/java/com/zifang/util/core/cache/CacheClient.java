@@ -6,8 +6,6 @@ package com.zifang.util.core.cache;
  * FIFO
  * LFUC
  * LRUC
- *
- *
  * */
 public class CacheClient {
 }

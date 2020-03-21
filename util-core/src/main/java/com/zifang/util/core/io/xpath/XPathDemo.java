@@ -1,4 +1,4 @@
-package com.zifang.util.core.praser.xpath;
+package com.zifang.util.core.io.xpath;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

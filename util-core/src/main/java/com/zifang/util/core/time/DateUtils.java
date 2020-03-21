@@ -18,7 +18,7 @@ public class DateUtils {
 	 * @return String
 	 */
 	public static String getCurrentTime(String format){
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
 		Date date = new Date();
 		return sdf.format(date);
 	}
@@ -30,7 +30,7 @@ public class DateUtils {
 	 * @return String
 	 */
 	public static String getCurrentTime(){
-		return getCurrentTime(DateFormatUtils.DATE_FORMAT2);
+		return getCurrentTime(DateFormatUtil.DATE_FORMAT2);
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class DateUtils {
 	 * @return Date
 	 */
 	public static Date getCurrentDate(String format){
-		 SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+		 SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
 		 String dateS = getCurrentTime(format);
 		 Date date = null;
 		 try {
@@ -59,7 +59,7 @@ public class DateUtils {
 	 * @return Date
 	 */
 	public static Date getCurrentDate(){
-		return getCurrentDate(DateFormatUtils.DATE_FORMAT2);
+		return getCurrentDate(DateFormatUtil.DATE_FORMAT2);
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class DateUtils {
 	 */
 	public static String addYearToDate(int year, Date date, String format){
 		Calendar calender = getCalendar(date,format);
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
 		
 		calender.add(Calendar.YEAR, year);
 		
@@ -109,7 +109,7 @@ public class DateUtils {
 	 */
 	public static String addMothToDate(int month, Date date, String format) {
 		Calendar calender = getCalendar(date,format);
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
 		
 		calender.add(Calendar.MONTH, month);
 		
@@ -145,7 +145,7 @@ public class DateUtils {
 	 */
 	public static String addDayToDate(int day, Date date, String format) {
 		Calendar calendar = getCalendar(date, format);
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
 		
 		calendar.add(Calendar.DATE, day);
 		
@@ -181,7 +181,7 @@ public class DateUtils {
 	 */
 	public static String addHourToDate(int hour, Date date, String format) {
 		Calendar calendar = getCalendar(date, format);
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
 		
 		calendar.add(Calendar.HOUR, hour);
 		
@@ -217,7 +217,7 @@ public class DateUtils {
 	 */
 	public static String addMinuteToDate(int minute, Date date, String format) {
 		Calendar calendar = getCalendar(date, format);
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
 		
 		calendar.add(Calendar.MINUTE, minute);
 		
@@ -253,7 +253,7 @@ public class DateUtils {
 	 */
 	public static String addSecondToDate(int second, Date date, String format){
 		Calendar calendar = getCalendar(date, format);
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
 		
 		calendar.add(Calendar.SECOND, second);
 		
@@ -312,11 +312,11 @@ public class DateUtils {
 			return null;
 		}
 		
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(DateFormatUtils.DATE_FORMAT2);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(DateFormatUtil.DATE_FORMAT2);
 		Date date = null;
 		
 		try {
-			value = DateFormatUtils.formatDate(value, DateFormatUtils.DATE_FORMAT2);
+			value = DateFormatUtil.formatDate(value, DateFormatUtil.DATE_FORMAT2);
 			date = sdf.parse(value);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -337,11 +337,11 @@ public class DateUtils {
 			return null;
 		}
 		
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
 		Date date = null;
 		
 		try {
-			value = DateFormatUtils.formatDate(value, format);
+			value = DateFormatUtil.formatDate(value, format);
 			date = sdf.parse(value);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -363,7 +363,7 @@ public class DateUtils {
 			return null;
 		}
 		
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(format);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
 		return sdf.format(value);
 	}
 	
@@ -381,7 +381,7 @@ public class DateUtils {
 			return null;
 		}
 		
-		SimpleDateFormat sdf = DateFormatUtils.getFormat(DateFormatUtils.DATE_FORMAT2);
+		SimpleDateFormat sdf = DateFormatUtil.getFormat(DateFormatUtil.DATE_FORMAT2);
 		return sdf.format(value);
 	}
 	
@@ -393,7 +393,7 @@ public class DateUtils {
 	 * @return int
 	 */
 	public static int getCurrentYear(Date value){
-		String date = date2String(value, DateFormatUtils.DATE_YEAR);
+		String date = date2String(value, DateFormatUtil.DATE_YEAR);
 		return Integer.valueOf(date);
 	}
 	
@@ -405,8 +405,8 @@ public class DateUtils {
 	 * @return int
 	 */
 	public static int getCurrentYear(String value) {
-		Date date = string2Date(value, DateFormatUtils.DATE_YEAR);
-		Calendar calendar = getCalendar(date, DateFormatUtils.DATE_YEAR);
+		Date date = string2Date(value, DateFormatUtil.DATE_YEAR);
+		Calendar calendar = getCalendar(date, DateFormatUtil.DATE_YEAR);
 		return calendar.get(Calendar.YEAR);
 	}
 	
@@ -418,7 +418,7 @@ public class DateUtils {
 	 * @return int
 	 */
 	public static int getCurrentMonth(Date value){
-		String date = date2String(value, DateFormatUtils.DATE_MONTH);
+		String date = date2String(value, DateFormatUtil.DATE_MONTH);
 		return Integer.valueOf(date);
 	}
 	
@@ -430,8 +430,8 @@ public class DateUtils {
 	 * @return int
 	 */
 	public static int getCurrentMonth(String value) {
-		Date date = string2Date(value, DateFormatUtils.DATE_MONTH);
-		Calendar calendar = getCalendar(date, DateFormatUtils.DATE_MONTH);
+		Date date = string2Date(value, DateFormatUtil.DATE_MONTH);
+		Calendar calendar = getCalendar(date, DateFormatUtil.DATE_MONTH);
 		
 		return calendar.get(Calendar.MONTH);
 	}
@@ -444,7 +444,7 @@ public class DateUtils {
 	 * @return int
 	 */
 	public static int getCurrentDay(Date value){
-		String date = date2String(value, DateFormatUtils.DATE_DAY);
+		String date = date2String(value, DateFormatUtil.DATE_DAY);
 		return Integer.valueOf(date);
 	}
 	
@@ -456,8 +456,8 @@ public class DateUtils {
 	 * @return int
 	 */
 	public static int getCurrentDay(String value){
-		Date date = string2Date(value, DateFormatUtils.DATE_DAY);
-		Calendar calendar = getCalendar(date, DateFormatUtils.DATE_DAY);
+		Date date = string2Date(value, DateFormatUtil.DATE_DAY);
+		Calendar calendar = getCalendar(date, DateFormatUtil.DATE_DAY);
 		
 		return calendar.get(Calendar.DATE);
 	}
@@ -470,7 +470,7 @@ public class DateUtils {
 	 * @return String
 	 */
 	public static String getCurrentWeek(Date value) {
-		Calendar calendar = getCalendar(value, DateFormatUtils.DATE_FORMAT1);
+		Calendar calendar = getCalendar(value, DateFormatUtil.DATE_FORMAT1);
 		int weekIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1 < 0 ? 0 : calendar.get(Calendar.DAY_OF_WEEK) - 1;
 		
 		return weeks[weekIndex];
@@ -484,7 +484,7 @@ public class DateUtils {
 	 * @return String
 	 */
 	public static String getCurrentWeek(String value) {
-		Date date = string2Date(value, DateFormatUtils.DATE_FORMAT1);
+		Date date = string2Date(value, DateFormatUtil.DATE_FORMAT1);
 		return getCurrentWeek(date);
 	}
 	
@@ -496,7 +496,7 @@ public class DateUtils {
 	 * @return int
 	 */
 	public static int getCurrentHour(Date value){
-		String date = date2String(value, DateFormatUtils.DATE_HOUR);
+		String date = date2String(value, DateFormatUtil.DATE_HOUR);
 		return Integer.valueOf(date);
 	}
 	
@@ -509,8 +509,8 @@ public class DateUtils {
 	 * @return int
 	 */
 	public static int getCurrentHour(String value) {
-		Date date = string2Date(value, DateFormatUtils.DATE_HOUR);
-		Calendar calendar = getCalendar(date, DateFormatUtils.DATE_HOUR);
+		Date date = string2Date(value, DateFormatUtil.DATE_HOUR);
+		Calendar calendar = getCalendar(date, DateFormatUtil.DATE_HOUR);
 		
 		return calendar.get(Calendar.DATE);
 	}
@@ -523,7 +523,7 @@ public class DateUtils {
 	 * @return int
 	 */
 	public static int getCurrentMinute(Date value){
-		String date = date2String(value, DateFormatUtils.DATE_MINUTE);
+		String date = date2String(value, DateFormatUtil.DATE_MINUTE);
 		return Integer.valueOf(date);
 	}
 	
@@ -535,8 +535,8 @@ public class DateUtils {
 	 * @return int
 	 */
 	public static int getCurrentMinute(String value){
-		Date date = string2Date(value, DateFormatUtils.DATE_MINUTE);
-		Calendar calendar = getCalendar(date, DateFormatUtils.DATE_MINUTE);
+		Date date = string2Date(value, DateFormatUtil.DATE_MINUTE);
+		Calendar calendar = getCalendar(date, DateFormatUtil.DATE_MINUTE);
 		
 		return calendar.get(Calendar.MINUTE);
 	}
@@ -557,8 +557,8 @@ public class DateUtils {
      */    
     public static int compareDate(String startDay, String endDay, int stype) {
         int n = 0;     
-        startDay = DateFormatUtils.formatDate(startDay, "yyyy-MM-dd");
-        endDay = DateFormatUtils.formatDate(endDay, "yyyy-MM-dd");
+        startDay = DateFormatUtil.formatDate(startDay, "yyyy-MM-dd");
+        endDay = DateFormatUtil.formatDate(endDay, "yyyy-MM-dd");
         
         String formatStyle = "yyyy-MM-dd";
         if(1 == stype){
@@ -609,7 +609,7 @@ public class DateUtils {
     		endTime = getCurrentTime();
     	}
     	
-    	SimpleDateFormat sdf = DateFormatUtils.getFormat("");
+    	SimpleDateFormat sdf = DateFormatUtil.getFormat("");
     	int value = 0;
     	try {
 			Date begin = sdf.parse(startTime);
@@ -644,7 +644,7 @@ public class DateUtils {
      * @return 比较结果
      */
     public static int compare(String date1, String date2, String format) {
-        DateFormat df = DateFormatUtils.getFormat(format);
+        DateFormat df = DateFormatUtil.getFormat(format);
         try {
             Date dt1 = df.parse(date1);
             Date dt2 = df.parse(date2);
@@ -671,8 +671,8 @@ public class DateUtils {
      * @return
      */
     public static String getMonthFirstDate(String date){
-    	date = DateFormatUtils.formatDate(date);
-		return DateFormatUtils.formatDate(date, "yyyy-MM") + "-01";
+    	date = DateFormatUtil.formatDate(date);
+		return DateFormatUtil.formatDate(date, "yyyy-MM") + "-01";
     }
     
     /**
@@ -690,7 +690,7 @@ public class DateUtils {
 		calendar.setTime(strDate);
 		calendar.add(Calendar.MONTH, 1);
 		calendar.add(Calendar.DAY_OF_YEAR, -1);
-		return DateFormatUtils.formatDate(calendar.getTime());
+		return DateFormatUtil.formatDate(calendar.getTime());
 	}
 	
 	/**
