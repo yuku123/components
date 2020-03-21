@@ -15,16 +15,24 @@
         <module>util-bigdata</module>
         <module>util-poi</module>
         <module>util-script</module>
-        <module>util-media</module>
         <module>util-crawler</module>
         <module>util-jvm</module>
         <module>util-workflow</module>
         <module>util-all</module>
         <module>util-server</module>
         <module>util-swing</module>
-        <module>util-middleware</module>
         <module>util-zex</module>
         <module>util-web</module>
+        <module>util-graph</module>
+        <module>util-voice</module>
+        <module>util-zookeeper</module>
+        <module>util-al-nnet</module>
+        <module>util-al-inheritance</module>
+        <module>util-al-nnet</module>
+        <module>util-math-numpy</module>
+        <module>util-math-pandas</module>
+        <module>util-kafka</module>
+        <module>util-rpc</module>
     </modules>
 
     <properties>
