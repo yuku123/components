@@ -4,9 +4,6 @@ import java.math.BigDecimal;
 
 /**
  * 提供精确的加减乘除运算
- *
- * @author:zifang
- * @date:2014年9月15日
  */
 public class BigDecimalUtils {
 
@@ -23,8 +20,6 @@ public class BigDecimalUtils {
 	/**
 	 *
 	 * 加法运算
-	 * @autor:chenssy
-	 * @date:2014年9月15日
 	 *
 	 * @param v1	加数
 	 * @param v2	被加数
@@ -39,8 +34,6 @@ public class BigDecimalUtils {
 	/**
 	 * 除法运算<br>
 	 * 当发生除不尽的情况时，由scale参数指定精度，以后的数字四舍五入。
-	 * @autor:chenssy
-	 * @date:2014年9月15日
 	 *
 	 * @param v1
 	 * 			除数
@@ -74,8 +67,6 @@ public class BigDecimalUtils {
 	 * v1 > v2 return 1<br>
 	 * v1 = v2 return 0<br>
 	 * v1 < v2 return -1
-	 * @autor:chenssy
-	 * @date:2014年9月15日
 	 *
 	 * @param v1
 	 * 			比较数
@@ -91,8 +82,6 @@ public class BigDecimalUtils {
 
 	/**
 	 * 返回较小数
-	 * @autor:chenssy
-	 * @date:2014年9月15日
 	 *
 	 * @param v1
 	 * @param v2
@@ -106,8 +95,6 @@ public class BigDecimalUtils {
 
 	/**
 	 * 返回较大数
-	 * @autor:chenssy
-	 * @date:2014年9月15日
 	 *
 	 * @param v1
 	 * @param v2
@@ -121,8 +108,6 @@ public class BigDecimalUtils {
 
 	/**
 	 * 处理BigDecimal数据，保留scale位小数
-	 * @author:zifang
-	 * @date:2014年10月21日
 	 *
 	 * @param value
 	 * @param scale
@@ -137,9 +122,6 @@ public class BigDecimalUtils {
 
 	/**
 	 * 将object转换为Bigdecimal
-	 *
-	 * @author:zifang
-	 * @date:2014年10月17日
 	 *
 	 * @param value
 	 * 				待转换的数值
@@ -170,9 +152,6 @@ public class BigDecimalUtils {
 	/**
 	 * 将object转换为Bigdecimal,若object为空，则返回resultValue
 	 *
-	 * @autor:chenssy
-	 * @date:2014年9月20日
-	 *
 	 * @param value
 	 * @return
 	 */
@@ -188,8 +167,6 @@ public class BigDecimalUtils {
 
 	/**
 	 * 将BigDecimal 转换成Long
-	 * @autor:chenssy
-	 * @date:2014年9月20日
 	 *
 	 * @param value
 	 * @return
@@ -203,8 +180,6 @@ public class BigDecimalUtils {
 
 	/**
 	 * 将BigDecimal 转换成integer
-	 * @autor:huangc
-	 * @date:2014年9月20日
 	 *
 	 * @param value
 	 * @return

@@ -1,6 +1,6 @@
 package com.zifang.util.core.util;
 
-import com.zifang.util.core.cache.SimpleCache;
+import com.zifang.util.core.cache.WeakHashMapCache;
 import com.zifang.util.core.reflect.ClassUtil;
 
 import java.lang.reflect.AccessibleObject;
@@ -16,15 +16,15 @@ public class ReflectUtil {
 	/**
 	 * 构造对象缓存
 	 */
-	private static final SimpleCache<Class<?>, Constructor<?>[]> CONSTRUCTORS_CACHE = new SimpleCache<>();
+	private static final WeakHashMapCache<Class<?>, Constructor<?>[]> CONSTRUCTORS_CACHE = new WeakHashMapCache<>();
 	/**
 	 * 字段缓存
 	 */
-	private static final SimpleCache<Class<?>, Field[]> FIELDS_CACHE = new SimpleCache<>();
+	private static final WeakHashMapCache<Class<?>, Field[]> FIELDS_CACHE = new WeakHashMapCache<>();
 	/**
 	 * 方法缓存
 	 */
-	private static final SimpleCache<Class<?>, Method[]> METHODS_CACHE = new SimpleCache<>();
+	private static final WeakHashMapCache<Class<?>, Method[]> METHODS_CACHE = new WeakHashMapCache<>();
 
 	// --------------------------------------------------------------------------------------------------------- Constructor
 

@@ -15,7 +15,7 @@ import java.util.function.Supplier;
  * @param <K> 键类型
  * @param <V> 值类型
  */
-public class SimpleCache<K, V> implements Serializable{
+public class WeakHashMapCache<K, V> implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	/** 池 */
