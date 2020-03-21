@@ -12,7 +12,6 @@
         <module>util-core</module>
         <module>util-algrithm</module>
         <module>util-db</module>
-        <module>util-bigdata</module>
         <module>util-poi</module>
         <module>util-script</module>
         <module>util-crawler</module>
@@ -23,20 +22,22 @@
         <module>util-swing</module>
         <module>util-zex</module>
         <module>util-web</module>
-        <module>util-graph</module>
-        <module>util-voice</module>
-        <module>util-zookeeper</module>
+        <module>util-rpc</module>
+        <module>util-media-graph</module>
+        <module>util-media-voice</module>
         <module>util-al-nnet</module>
         <module>util-al-inheritance</module>
         <module>util-al-nnet</module>
         <module>util-math-numpy</module>
         <module>util-math-pandas</module>
-        <module>util-kafka</module>
-        <module>util-rpc</module>
-        <module>util-es</module>
-        <module>util-redis</module>
+        <module>util-middleware-es</module>
+        <module>util-middleware-kafka</module>
+        <module>util-middleware-redis</module>
+        <module>util-middleware-zookeeper</module>
         <module>util-bigdata-spark</module>
         <module>util-bigdata-hadoop</module>
+        <module>util-media-video</module>
+        <module>util-robot</module>
     </modules>
 
     <properties>

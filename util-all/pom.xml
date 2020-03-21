@@ -19,27 +19,12 @@
         </dependency>
         <dependency>
             <groupId>com.zifang</groupId>
-            <artifactId>util-algrithm</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zifang</groupId>
-            <artifactId>util-bigdata</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zifang</groupId>
             <artifactId>util-crawler</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>com.zifang</groupId>
             <artifactId>util-db</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.zifang</groupId>
-            <artifactId>util-designpatten</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
