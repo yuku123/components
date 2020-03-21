@@ -33,6 +33,10 @@
         <module>util-math-pandas</module>
         <module>util-kafka</module>
         <module>util-rpc</module>
+        <module>util-es</module>
+        <module>util-redis</module>
+        <module>util-bigdata-spark</module>
+        <module>util-bigdata-hadoop</module>
     </modules>
 
     <properties>
