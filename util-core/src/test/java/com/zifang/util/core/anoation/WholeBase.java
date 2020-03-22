@@ -1,5 +1,7 @@
 package com.zifang.util.core.anoation;
 
+import java.lang.annotation.*;
+
 @ClassInfo(className = "test")
 public class WholeBase {
 
@@ -30,4 +32,63 @@ public class WholeBase {
         return "aa private";
     }
 
+}
+
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE})
+@Documented
+@Inherited
+@superInfo(superInfo = "superInfo")
+@interface ClassInfo {
+    String className();
+    String value() default "default-class-value";
+}
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.ANNOTATION_TYPE})
+@interface superInfo {
+    String superInfo();
+    String value() default "default-class-value";
+
+}
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.CONSTRUCTOR})
+@Documented
+@Inherited
+@interface ConstructInfo {
+    String constructName();
+}
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.PARAMETER})
+@Documented
+@Inherited
+@interface ParameterInfo {
+    String setString();
+}
+
+@Documented
+@Target(ElementType.METHOD)
+@Inherited
+@Retention(RetentionPolicy.RUNTIME)
+@interface MethodInfo {
+    String author() default "Pankaj";
+
+    String date();
+
+    int revision() default 1;
+
+    String comments();
+}
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.FIELD})
+@Documented
+@Inherited
+@interface FieldInfo {
+    String name();
+    String password();
+    String comments() default "this is default parts";
 }
