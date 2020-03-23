@@ -1,13 +1,3 @@
-参考
-guava
-
-org.apache.commons.lang3
-org.aparch.common-long3
-
-beans的 设计参考 org.apache.commons.beanutils
-BeanMap
-
-
     /**
      * 下面根据实例一个一个的来说明各种位运算的运算规则：
      * 	位与&(真真为真 真假为假 假假为假)

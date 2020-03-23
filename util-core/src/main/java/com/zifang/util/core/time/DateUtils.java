@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @desc:时间处理工具类
+ * 时间处理工具类
  */
 public class DateUtils {
 
@@ -25,9 +25,6 @@ public class DateUtils {
 	
 	/**
 	 * 获取当前时间，格式为：yyyy-MM-dd HH:mm:ss
-	 * @author chenssy
-	 * @date Dec 27, 2013
-	 * @return String
 	 */
 	public static String getCurrentTime(){
 		return getCurrentTime(DateFormatUtil.DATE_FORMAT2);
@@ -35,10 +32,6 @@ public class DateUtils {
 	
 	/**
 	 * 获取指定格式的当前时间：为空时格式为yyyy-mm-dd HH:mm:ss
-	 * @author chenssy
-	 * @date Dec 30, 2013
-	 * @param format
-	 * @return Date
 	 */
 	public static Date getCurrentDate(String format){
 		 SimpleDateFormat sdf = DateFormatUtil.getFormat(format);
@@ -54,9 +47,6 @@ public class DateUtils {
 	
 	/**
 	 * 获取当前时间，格式为yyyy-MM-dd HH:mm:ss
-	 * @author chenssy
-	 * @date Dec 30, 2013
-	 * @return Date
 	 */
 	public static Date getCurrentDate(){
 		return getCurrentDate(DateFormatUtil.DATE_FORMAT2);

@@ -14,7 +14,7 @@ public class Maps {
      *
      * */
     public static <K,V> void removeNullKeys(Map<K,V> map){
-        removeKeys(map, Objects::isNull);
+        removeKeys(   map, Objects::isNull);
     }
 
     /**
