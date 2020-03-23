@@ -26,16 +26,13 @@ public class SparkContextInstance {
     public SparkContextInstance(){
         doLocalInitial(null);
     }
+
     public SparkContextInstance(String mode, Map<String, String> properties) {
         if(local.equals(mode)){
             doLocalInitial(properties);
         }else if (cluster.equals(mode)){
             doClusterInitial(properties);
         }
-    }
-
-    public static void main(String[] args) {
-        SparkContextInstance sparkContextInstance = new SparkContextInstance();
     }
 
     private void doClusterInitial(Map<String, String> properties) {
@@ -71,6 +68,10 @@ public class SparkContextInstance {
         sparkContext.setLogLevel("ERROR");
         javaSparkContext = JavaSparkContext.fromSparkContext(sparkContext);
         sqlContext = sparkSession.sqlContext();
+    }
+
+    public static void main(String[] args) {
+        SparkContextInstance sparkContextInstance = new SparkContextInstance();
     }
 
     public SparkConf getSparkConf() {

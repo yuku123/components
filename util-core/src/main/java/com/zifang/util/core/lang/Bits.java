@@ -32,9 +32,7 @@ public class Bits {
     }
 
     /**
-     * 1.  判断int型变量a是偶数
-     *      a&1  = 0 偶数
-     *      a&1 =  1 奇数
+     * 判断是偶数
      */
 
     public static boolean isOdd(int i){
@@ -64,19 +62,16 @@ public class Bits {
 
 
     /**
-     * 5. 求绝对值
-     *     int abs( int x )
-     *     {
-     *         int y ;
-     *         y = x >> 31 ;
-     *         return (x^y)-y ;        //or: (x+y)^y
-     *     }
+     * 求绝对值
      */
     public static int abs(int x){
         int y = x >> 31;
         return (x^y)-y;
     }
 
+    /**
+     * 快速取模
+     * */
     public static int mod(int x,int mod){
         if(isPowFrom2(mod)){
             return x & (mod - 1);
@@ -85,7 +80,9 @@ public class Bits {
         }
     }
 
-    //找出不大于N的最大的2的幂指数
+    /**
+     * 获得n以下，最接近cap的2的倍数
+     * */
     public static int multipleLess(int n){
         n |= n >> 1;
         n |= n >> 2;
@@ -95,7 +92,7 @@ public class Bits {
     }
 
     /**
-     * hashMap中拿到的源码，获得cap以上，最接近cap的2的倍数
+     * 获得cap以上，最接近cap的2的倍数
      * */
     public static int multipleMore(int cap) {
         int n = cap - 1;
