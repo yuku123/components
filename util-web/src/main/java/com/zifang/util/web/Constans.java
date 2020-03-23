@@ -1,4 +1,4 @@
 package com.zifang.util.web;
 
-public class Web {
+public class Constans {
 }
