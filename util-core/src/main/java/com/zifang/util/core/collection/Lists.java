@@ -1,4 +1,4 @@
-package com.zifang.util.core.collections;
+package com.zifang.util.core.collection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +49,4 @@ public class Lists {
     public static <E> List<E> filter(List<E> elements,Predicate<E> predicate){
         return elements.stream().filter(predicate).collect(Collectors.toList());
     }
-
-
-
 }

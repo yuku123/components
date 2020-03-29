@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * class 相关的工具类
+ * */
 public class ClassUtil {
 
     /**

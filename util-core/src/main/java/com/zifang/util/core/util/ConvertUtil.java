@@ -1,152 +1,202 @@
 package com.zifang.util.core.util;
 
+import org.apache.log4j.Logger;
+
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 /**
  * 转换工具类
+ *
  * 若待转换值为null或者出现异常，则使用默认值
  */
 public class ConvertUtil {
 
-	//----byte,short,int,long,float,long,double,char,string---------//
-	//------------------------byte---------------------------//
+	private static Logger logger = Logger.getLogger(ConvertUtil.class);
 
-	public byte to(byte value,byte defaultValue){
+	//----byte,short,int,long,float,double,char,string---------//
+
+	//------------------------------------------Byte---------------------------------------------
+
+	/**
+	 * byte -> byte
+	 * */
+	public Byte to(Byte value,Byte defaultValue){
+		logger.info("call to(Byte value,Byte defaultValue)");
+		if(value == null){
+			return defaultValue;
+		}
 		return value;
 	}
 
-	public short to(byte value,short defaultValue){
-		return value;
+	/**
+	 * byte -> short
+	 * */
+	public Short to(Byte value,Short defaultValue){
+		logger.info("call to(byte value,short defaultValue)");
+		if(value == null){
+			return defaultValue;
+		}
+		return Short.valueOf(value);
 	}
 
-	public int to(byte value,int defaultValue){
-		return value;
+	/**
+	 * byte -> int
+	 * */
+	public Integer to(Byte value,Integer defaultValue){
+		logger.info("call to(Byte value,Integer defaultValue)");
+		if(value == null){
+			return defaultValue;
+		}
+		return Integer.valueOf(value);
 	}
 
-	public long to(byte value,long defaultValue){
-		return value;
+	/**
+	 * byte -> long
+	 * */
+	public Long to(Byte value,Long defaultValue){
+		logger.info("call to(Byte value,Long defaultValue)");
+		if(value == null){
+			return defaultValue;
+		}
+		return Long.valueOf(value);
 	}
 
-	public float to(byte value,float defaultValue){
-		return value;
+	/**
+	 * byte -> float
+	 * */
+	public Float to(Byte value,Float defaultValue){
+		logger.info("call to(Byte value,Float defaultValue)");
+		if(value == null){
+			return defaultValue;
+		}
+		return Float.valueOf(value);
 	}
 
-	public double to(byte value,double defaultValue){
-		return value;
+	/**
+	 * byte -> double
+	 * */
+	public Double to(Byte value,Double defaultValue){
+		logger.info("call to(Byte value,Double defaultValue)");
+		if(value == null){
+			return defaultValue;
+		}
+		return Double.valueOf(value);
 	}
 
-	public char to(byte value,char defaultValue){
-		return (char) value;
+	/**
+	 * char[] -> byte[]
+	 * */
+	public byte[] to(char[] chars) {
+		Charset cs = Charset.forName("UTF-8");
+		CharBuffer cb = CharBuffer.allocate(chars.length);
+		cb.put(chars);
+		cb.flip();
+		ByteBuffer bb = cs.encode(cb);
+		return bb.array();
+	}
+
+	public static char[] to(byte[] bytes) {
+		Charset cs = Charset.forName("UTF-8");
+		ByteBuffer bb = ByteBuffer.allocate(bytes.length);
+		bb.put(bytes);
+		bb.flip();
+		CharBuffer cb = cs.decode(bb);
+		return cb.array();
+	}
+
+	public static byte[] to(char c) {
+		byte[] b = new byte[2];
+		b[0] = (byte) ((c & 0xFF00) >> 8);
+		b[1] = (byte) (c & 0xFF);
+		return b;
+	}
+
+	public char to(byte[] b,char defaultValue) {
+		char c = (char) (((b[0] & 0xFF) << 8) | (b[1] & 0xFF));
+		return c;
 	}
 
 	public String to(byte value,String defaultValue){
 		return String.valueOf(value);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	//------------------------------------------Byte[]---------------------------------------------
+	//------------------------------------------Short---------------------------------------------
+	//------------------------------------------Short[]---------------------------------------------
+	//------------------------------------------int---------------------------------------------
+	//------------------------------------------long---------------------------------------------
+	//------------------------------------------float---------------------------------------------
+	//------------------------------------------double---------------------------------------------
+	//------------------------------------------char---------------------------------------------
+	//------------------------------------------String---------------------------------------------
+
+	//------------------------------------------String---------------------------------------------
+	//------------------------------------------String---------------------------------------------
+	//------------------------------------------String---------------------------------------------
+	//------------------------------------------String---------------------------------------------
+
+
+
+
+
+
+
+
+
+	//------------------------------------------String---------------------------------------------
+	/**
+	 * 字符串转换为 Integer
+	 */
+	public static Integer to(String str, Integer defaultValue) {
+		try {
+			return Integer.valueOf(str);
+		} catch (NumberFormatException localException) {
+			logger.error("to(String str, Integer defaultValue) fail" );
+			localException.printStackTrace();
+			return defaultValue;
+		}
+	}
+
+	/**
+	 * 字符串转换为 Long
+	 */
+	public static Long to(String str, Long defaultValue) {
+		try {
+			return Long.valueOf(str);
+		} catch (NumberFormatException localException) {
+			logger.error("to(String str, Long defaultValue) fail" );
+			localException.printStackTrace();
+			return defaultValue;
+		}
+	}
 
 	/**
 	 * 字符串转换为float
-	 *
-	 * @param str
-	 * 				
-	 * @param defaultValue
-	 * @return
 	 */
-	public static float strToFloat(String str, float defaultValue) {
+	public static Float to(String str, Float defaultValue) {
 		try {
-			defaultValue = Float.parseFloat(str);
-		} catch (Exception localException) {
-
+			return Float.parseFloat(str);
+		} catch (NumberFormatException localException) {
+			logger.error("to(String str, float defaultValue) fail" );
+			localException.printStackTrace();
+			return defaultValue;
 		}
-		return defaultValue;
 	}
 
 	/**
 	 * String转换为Double
-	 *
-	 * @param str
-	 * 					待转换字符串
-	 * @param defaultValue
-	 * 					默认值
-	 * @return
 	 */
-	public static double strToDouble(String str, double defaultValue) {
+	public static Double to(String str, Double defaultValue) {
 		try {
-			defaultValue = Double.parseDouble(str);
-		} catch (Exception localException) {
+			return Double.parseDouble(str);
+		} catch (NumberFormatException localException) {
+			logger.error("to(String str, Double defaultValue) fail" );
+			localException.printStackTrace();
+			return defaultValue;
 		}
-		return defaultValue;
 	}
 
 	/**
@@ -158,22 +208,14 @@ public class ConvertUtil {
 	 * 						默认日期
 	 * @return
 	 */
-	public static java.util.Date strToDate(String str,java.util.Date defaultValue) {
-		return strToDate(str, "yyyy-MM-dd HH:mm:ss", defaultValue);
+	public static java.util.Date to (String str,java.util.Date defaultValue) {
+		return to(str, "yyyy-MM-dd HH:mm:ss", defaultValue);
 	}
 
 	/**
 	 * 字符串转换为指定格式的日期
-	 *
-	 * @param str
-	 * 					待转换的字符串
-	 * @param format
-	 * 					日期格式
-	 * @param defaultValue
-	 * 					默认日期
-	 * @return
 	 */
-	public static java.util.Date strToDate(String str, String format,java.util.Date defaultValue) {
+	public static java.util.Date to(String str, String format,java.util.Date defaultValue) {
 		SimpleDateFormat fmt = new SimpleDateFormat(format);
 		try {
 			defaultValue = fmt.parse(str);
@@ -184,27 +226,13 @@ public class ConvertUtil {
 
 	/**
 	 * 日期转换为字符串
-	 *
-	 * @param date
-	 * 				待转换的日期
-	 * @param defaultValue
-	 * 				默认字符串
-	 * @return
 	 */
-	public static String dateToStr(java.util.Date date, String defaultValue) {
+	public static String to(java.util.Date date, String defaultValue) {
 		return dateToStr(date, "yyyy-MM-dd HH:mm:ss", defaultValue);
 	}
 
 	/**
 	 * 日期转换为指定格式的字符串
-	 *
-	 * @param date
-	 * 				待转换的日期
-	 * @param format
-	 * 				指定格式
-	 * @param defaultValue
-	 * 				默认值
-	 * @return
 	 */
 	public static String dateToStr(java.util.Date date, String format, String defaultValue) {
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
@@ -217,14 +245,8 @@ public class ConvertUtil {
 
 	/**
 	 * 如果字符串为空则使用默认字符串
-	 *
-	 * @param str
-	 * 				字符串
-	 * @param defaultValue
-	 * 				默认值
-	 * @return
 	 */
-	public static String strToStr(String str, String defaultValue) {
+	public static String to(String str, String defaultValue) {
 		if ((str != null) && (!(str.isEmpty())))
 			defaultValue = str;
 		return defaultValue;
@@ -232,41 +254,29 @@ public class ConvertUtil {
 
 	/**
 	 * util date 转换为 sqldate
-	 *
-	 * @param date
-	 * @return
 	 */
-	public static java.sql.Date dateToSqlDate(java.util.Date date) {
+	public static java.sql.Date to(java.util.Date date,java.sql.Date de) {
 		return new java.sql.Date(date.getTime());
 	}
 
 	/**
 	 * sql date 转换为 util date
-	 *
-	 * @param date
-	 * @return
 	 */
-	public static java.util.Date sqlDateToDate(java.sql.Date date) {
+	public static java.util.Date to(java.sql.Date date) {
 		return new java.util.Date(date.getTime());
 	}
 
 	/**
 	 * date 转换为 timestamp
-	 *
-	 * @param date
-	 * @return
 	 */
-	public static Timestamp dateToSqlTimestamp(java.util.Date date) {
+	public static Timestamp to(java.util.Date date,Timestamp defaultValue) {
 		return new Timestamp(date.getTime());
 	}
 
 	/**
 	 * timestamp 转换为date
-	 *
-	 * @param date
-	 * @return
 	 */
-	public static java.util.Date qlTimestampToDate(Timestamp date) {
+	public static java.util.Date to(Timestamp date,java.util.Date defaultValue) {
 		return new java.util.Date(date.getTime());
 	}
 }

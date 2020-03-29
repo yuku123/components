@@ -11,6 +11,9 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 文件相关的工具类
+ * */
 public class FileUtil {
     /**
      * 私有构造方法，防止类的实例化，因为工具类不需要实例化。

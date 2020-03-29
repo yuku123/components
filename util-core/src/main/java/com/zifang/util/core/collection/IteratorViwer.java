@@ -1,19 +1,17 @@
-package com.zifang.util.core.collections;
+package com.zifang.util.core.collection;
 
 import java.util.Iterator;
-import java.util.Spliterator;
 import java.util.function.Consumer;
 
 /**
- * 联立多个Iterator的操作
+ * 联立多个Iterator
  *
+ * 批量操作多个Iterator 的工具
  * */
 public class IteratorViwer<E> implements Iterator<E>{
 
 
-    public IteratorViwer(){
-
-    }
+    public IteratorViwer(){}
 
     public IteratorViwer(Iterator<E> ... interators){
 

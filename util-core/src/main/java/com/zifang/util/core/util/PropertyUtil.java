@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
+ * 系统参数的工具包
+ *
  * 命令行加入参数 -Dconf 指定的文件下所有的文件被认为是参数
  * */
-public class EnviromentPropertyUtil {
+public class PropertyUtil {
 
     private static final Properties configProperties = new Properties();
     static {

@@ -1,7 +1,6 @@
-package com.zifang.util.core.collections;
+package com.zifang.util.core.collection;
 
 import java.util.*;
-import java.util.function.Function;
 
 public class Sets {
 

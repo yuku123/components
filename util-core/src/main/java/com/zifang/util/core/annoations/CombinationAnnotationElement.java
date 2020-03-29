@@ -1,6 +1,6 @@
 package com.zifang.util.core.annoations;
 
-import com.zifang.util.core.collections.Sets;
+import com.zifang.util.core.collection.Sets;
 
 import java.io.Serializable;
 import java.lang.annotation.*;

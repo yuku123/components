@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * 注解工具类<br>
+ * 注解工具类
  * 快速获取注解对象、注解值等工具封装
  */
 public class AnnotationUtil {

@@ -4,10 +4,7 @@ package com.zifang.util.core.util;
 import jodd.util.StringBand;
 import jodd.util.StringPool;
 import jodd.util.StringUtil;
-
-import javax.annotation.Generated;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,7 +24,7 @@ public class ArraysUtil {
 
 
 	/**
-	 * Joins arrays. Component type is resolved from the array argument.
+	 * 合并多个数组变为一个数组
 	 */
 	@SuppressWarnings({"unchecked"})
 	public static <T> T[] join(T[]... arrays) {
@@ -1486,5 +1483,20 @@ public class ArraysUtil {
 	 */
 	public static <T> boolean isNotEmptyArray(T[] array){
 		return array != null && array.length > 0;
+	}
+
+	public static <T> boolean isDeeplyEqual(T[] array1,T[] array2){
+		if(array1 == null || array2 == null){ //清除参数是null的可能性
+			return array1 == array2;
+		} else if(array1.length !=  array2.length){ //排除length大小不同的问题
+			return false;
+		} else {
+			for (int i = 0;i<array1.length;i++){  //遍历判断是否完全一致
+				if(!array1[i].equals(array2[i])){
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
