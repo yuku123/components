@@ -1,6 +1,6 @@
 package com.zifang.util.core.util;
 
-import com.zifang.util.core.cache.WeakHashMapCache;
+import com.zifang.util.cache.WeakHashMapCache;
 import com.zifang.util.core.reflect.ClassUtil;
 
 import java.lang.reflect.AccessibleObject;
