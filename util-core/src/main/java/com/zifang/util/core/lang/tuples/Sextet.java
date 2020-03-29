@@ -1,6 +1,8 @@
 package com.zifang.util.core.lang.tuples;
 
-//6
+import lombok.Data;
+
+@Data
 public class Sextet<A,B,C,D,E,F> extends Quintet<A,B,C,D,E> {
 
     protected F f;

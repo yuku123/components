@@ -29,6 +29,8 @@ public class BeanUtilsTest {
         map.put("stringType","s");
         Person person = BeanUtils.mapToBean(Person.class,map);
         System.out.println(GsonUtil.objectToJsonStr(person));
+        System.out.println(GsonUtil.objectToJsonStr(BeanUtils.beanToMap(person)));
+
     }
 
     @Test

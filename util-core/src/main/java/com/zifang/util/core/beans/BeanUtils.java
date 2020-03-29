@@ -8,7 +8,9 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * 提供Bean的相关操作
@@ -69,7 +71,7 @@ public class BeanUtils {
      * 输入bean 输出这个bean第一层value值
      * */
     public static <T> Map<String,Object>  beanToMap(final T t) throws IllegalAccessException, IntrospectionException, InvocationTargetException {
-        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> map = new LinkedHashMap<>();
         PropertyDescriptor[] pro = Introspector.getBeanInfo(t.getClass(),Object.class).getPropertyDescriptors();
         for(PropertyDescriptor propertyDescriptor : pro){
             String key = propertyDescriptor.getName();

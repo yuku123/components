@@ -1,5 +1,8 @@
 package com.zifang.util.core.lang.tuples;
 
+import lombok.Data;
+
+@Data
 public class Pair<A,B> extends Unit<A> {
     protected B b;
     public Pair(A a,B b){
