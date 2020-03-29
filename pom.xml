@@ -11,7 +11,7 @@
     <modules>
         <module>util-core</module>
         <module>util-db</module>
-        <module>util-poi</module>
+        <module>util-office</module>
         <module>util-script</module>
         <module>util-crawler</module>
         <module>util-jvm</module>
@@ -36,6 +36,7 @@
         <module>util-media-voice</module>
         <module>util-robot</module>
         <module>util-all</module>
+        <module>util-ioc</module>
 
     </modules>
 
