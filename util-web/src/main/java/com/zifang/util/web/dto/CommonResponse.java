@@ -1,6 +1,6 @@
 package com.zifang.util.web.dto;
 
-import com.zifang.util.web.ResultCode;
+import com.zifang.util.web.code.ResultCode;
 import lombok.Data;
 
 @Data

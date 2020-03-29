@@ -1,6 +1,5 @@
 package com.zifang.util.zex.math;
 
-import com.zifang.util.zex.base.ValidateHelper;
 
 import java.math.BigDecimal;
 
@@ -58,13 +57,13 @@ public class BigDecimalUtils {
 					"The scale must be a positive integer or zero");
 		}
 
-		if (ValidateHelper.isEmpty(scale)) {
-			scale = DEFAULT_SCALE;
-		}
-
-		if (ValidateHelper.isEmpty(round)) {
-			round = DEFAULT_ROUND;
-		}
+//		if (ValidateHelper.isEmpty(scale)) {
+//			scale = DEFAULT_SCALE;
+//		}
+//
+//		if (ValidateHelper.isEmpty(round)) {
+//			round = DEFAULT_ROUND;
+//		}
 
 		BigDecimal b1 = new BigDecimal(v1);
 		BigDecimal b2 = new BigDecimal(v2);
@@ -131,9 +130,9 @@ public class BigDecimalUtils {
 	 * @return
 	 */
 	public static BigDecimal getValue(BigDecimal value,int scale){
-		if(!ValidateHelper.isEmpty(value)){
-			return value.setScale(scale, BigDecimal.ROUND_HALF_UP);
-		}
+//		if(!ValidateHelper.isEmpty(value)){
+//			return value.setScale(scale, BigDecimal.ROUND_HALF_UP);
+//		}
 		return value;
 	}
 	
@@ -179,10 +178,10 @@ public class BigDecimalUtils {
 	 * @return
 	 */
 	public static BigDecimal getBigDecimal(Object value,BigDecimal resultValue){
-		if(ValidateHelper.isEmpty(value)){
-			return resultValue;
-		}
-		
+//		if(ValidateHelper.isEmpty(value)){
+//			return resultValue;
+//		}
+//
 		resultValue = getBigDecimal(resultValue);
 		
 		return resultValue;

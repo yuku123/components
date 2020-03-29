@@ -7,9 +7,6 @@ import java.util.Set;
 
 /**
  * 铭感词过滤工具类
- * 
- * @Author:chenssy
- * @date:2014年8月5日
  */
 public class SensitivewordFilterUtil{
 	@SuppressWarnings("rawtypes")

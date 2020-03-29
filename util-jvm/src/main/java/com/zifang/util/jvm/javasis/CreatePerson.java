@@ -2,11 +2,6 @@ package com.zifang.util.jvm.javasis;
 
 import javassist.*;
 
-/**
- * @author rickiyang
- * @date 2019-08-06
- * @Desc
- */
 public class CreatePerson {
 
     /**

@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>com.zifang</groupId>
-            <artifactId>util-bigdata</artifactId>
+            <artifactId>util-bigdata-spark</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>

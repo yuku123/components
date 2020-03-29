@@ -2,6 +2,7 @@ package com.zifang.util.core.util;
 
 import sun.misc.ProxyGenerator;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -28,5 +29,18 @@ public class ClassUtil {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void aa(Class clazz) {
+        byte[] a = ProxyGenerator.generateProxyClass("",new Class[]{clazz});
+        FileOutputStream  os = null;
+        try {
+            os = new FileOutputStream("aa.class");
+            os.write(a);
+            os.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

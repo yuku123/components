@@ -1,7 +1,6 @@
 package com.zifang.util.zex.helper;
 
-import com.zifang.util.zex.functions.ObjectHandler;
-import com.zifang.util.zex.functions.ObjectProcess;
+
 import com.zifang.util.zex.util.CheckUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,49 +12,6 @@ import java.util.*;
  */
 public final class CollectionHelper {
     private static Logger logger = LoggerFactory.getLogger(CollectionHelper.class);
-
-    /**
-     * 对集合中元素进行特定的处理
-     *
-     * @param collection 集合
-     * @param handler    实现特定处理的方法
-     * @param <T>        泛型
-     */
-    public static <T> void handler(Collection<T> collection, ObjectHandler<T> handler) {
-        if (collection == null || collection.size() == 0) {
-            logger.error("collection is empty or is null");
-            return;
-        }
-        for (T t : collection) {
-            handler.handler(t);
-        }
-    }
-
-    /**
-     * 对集合中的元素进行特定的处理，并获得处理后的结果
-     *
-     * @param collection 待处理的集合
-     * @param result     接受处理后结果的集合
-     * @param process    实现的特定处理
-     * @param <T>        泛型
-     * @param <E>        泛型
-     */
-    public static <T, E> void process(Collection<T> collection, Collection<E> result, ObjectProcess<T, E> process) {
-        if (collection == null || collection.size() == 0) {
-            logger.error("collection is empty or is null");
-            return;
-        }
-        if (result == null || result.size() == 0) {
-            logger.error("receive collection is empty or is null");
-            return;
-        }
-        for (T t : collection) {
-            E next = process.process(t);
-            if (next != null) {
-                result.add(next);
-            }
-        }
-    }
 
     /**
      * 去除重复元素
