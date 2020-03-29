@@ -1,8 +1,12 @@
-package com.zifang.util.zex.demo.temp;
+package com.zifang.util.core.cache;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 /**
  * @Description: 简单的内存缓存工具类
  */

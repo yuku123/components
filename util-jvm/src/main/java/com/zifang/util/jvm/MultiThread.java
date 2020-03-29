@@ -1,4 +1,4 @@
-package com.zifang.util.zex.demo.jdk.concurent.study;
+package com.zifang.util.jvm;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;

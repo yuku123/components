@@ -1,4 +1,4 @@
-package com.zifang.util.zex.demo.temp.test;
+package com.zifang.util.zex.demo.temp;
 
 import com.zifang.util.zex.demo.temp.Sequence;
 import org.junit.Test;
