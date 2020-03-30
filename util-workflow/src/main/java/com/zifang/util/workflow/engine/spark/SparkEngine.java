@@ -2,7 +2,7 @@ package com.zifang.util.workflow.engine.spark;
 
 import com.zifang.util.bigdata.spark.context.SparkContextInstance;
 import com.zifang.util.core.annoations.AnnotationUtil;
-import com.zifang.util.core.reflect.ClassScannerUtils;
+import com.zifang.util.core.util.ClassUtil;
 import com.zifang.util.workflow.annoation.EngineService;
 import com.zifang.util.workflow.engine.interfaces.AbstractEngineService;
 import com.zifang.util.workflow.engine.spark.services.*;
@@ -63,7 +63,7 @@ public class SparkEngine extends AbstractSparkEngine {
         sparkContextInstance = new SparkContextInstance(mode,properties);
 
         //注册引擎方法
-        Set<Class<?>> classSet = ClassScannerUtils.searchClasses(this.getClass().getPackage().getName(),e -> e.isAnnotationPresent(EngineService.class));
+        Set<Class<?>> classSet = ClassUtil.searchClasses(this.getClass().getPackage().getName(), e -> e.isAnnotationPresent(EngineService.class));
 
         for(Class<?> clazz : classSet){
             String value = AnnotationUtil.getAnnotationValue(clazz,EngineService.class,"name");

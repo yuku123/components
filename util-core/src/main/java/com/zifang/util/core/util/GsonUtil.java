@@ -20,24 +20,4 @@ public class GsonUtil {
 	public static <T> T changeToSubClass(Object o,Class<T> t){
 		return jsonStrToObject(objectToJsonStr(o),t);
 	}
-
-	public static ParameterizedType type(final Class<?> raw, final Type... args) {
-		return new ParameterizedType() {
-
-			@Override
-			public Type getRawType() {
-				return raw;
-			}
-
-			@Override
-			public Type getOwnerType() {
-				return null;
-			}
-
-			@Override
-			public Type[] getActualTypeArguments() {
-				return args;
-			}
-		};
-	}
 }

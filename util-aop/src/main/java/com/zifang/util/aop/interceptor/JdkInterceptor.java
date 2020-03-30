@@ -2,7 +2,7 @@ package com.zifang.util.aop.interceptor;
 
 
 import com.zifang.util.aop.aspects.Aspect;
-import com.zifang.util.core.reflect.ClassUtil;
+import com.zifang.util.core.util.ClassUtil;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;

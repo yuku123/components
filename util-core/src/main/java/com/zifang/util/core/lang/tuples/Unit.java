@@ -2,6 +2,7 @@ package com.zifang.util.core.lang.tuples;
 
 
 import com.zifang.util.core.beans.BeanUtils;
+import com.zifang.util.core.util.GsonUtil;
 import lombok.Data;
 
 import java.beans.IntrospectionException;
@@ -25,5 +26,4 @@ public class Unit<A> {
         }
         return new LinkedHashMap<>();
     }
-
 }

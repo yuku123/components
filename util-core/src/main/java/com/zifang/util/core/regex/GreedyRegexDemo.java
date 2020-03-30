@@ -51,5 +51,8 @@ public class GreedyRegexDemo {
 	 * 发现匹配为false，又回溯到找到回退的最近一个匹配为true的位置，返回结果。
 	 */
 	public static void main(String[] args) {
+		new GreedyRegexDemo().test1();
+		new GreedyRegexDemo().test2();
+
 	}
 }

@@ -1,16 +1,14 @@
 package com.zifang.util.core.beans;
 
-import com.zifang.util.core.reflect.ClassUtil;
+import com.zifang.util.core.util.ClassUtil;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * 提供Bean的相关操作
