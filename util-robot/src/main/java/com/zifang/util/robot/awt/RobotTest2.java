@@ -5,14 +5,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /*******************************************************************************
- * @project: RobotTest
- * @package:
- * @file: RobotTest.java
- * @author: Administrator
- * @created: 2018-1-16
- * @purpose:
- *
- * @version: 1.0
  *
  *           Revision History at the end of file.
  *
