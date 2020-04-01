@@ -1,4 +1,4 @@
-package com.zifang.util.crawler.awt;
+package com.zifang.util.robot.awt;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

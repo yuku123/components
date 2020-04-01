@@ -1,4 +1,4 @@
-package com.zifang.util.crawler.awt;
+package com.zifang.util.robot.awt;
 
 import java.awt.*;
 import java.awt.event.InputEvent;

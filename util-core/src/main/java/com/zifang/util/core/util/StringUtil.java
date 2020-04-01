@@ -102,8 +102,6 @@ public class StringUtil {
 	 *  将字符转换为编码为Unicode，格式 为'\u0020'<br>
 	 * 		  unicodeEscaped(' ') = "\u0020"<br>
 	 * 		  unicodeEscaped('A') = "\u0041"
-	 * @autor:chenssy
-	 * @date:2014年8月7日
 	 *
 	 * @param ch
 	 * 			待转换的char 字符
@@ -122,8 +120,6 @@ public class StringUtil {
 	
 	/**
 	 * 进行toString操作，若为空，返回默认值
-	 * @autor:chenssy
-	 * @date:2014年8月9日
 	 *
 	 * @param object
 	 * 				要进行toString操作的对象
@@ -138,8 +134,6 @@ public class StringUtil {
 
 	/**
 	 * 判断字符串是否全部都为小写
-	 * @autor:chenssy
-	 * @date:2014年8月9日
 	 *
 	 * @param value
 	 * 				待判断的字符串
@@ -159,8 +153,6 @@ public class StringUtil {
 	
 	/**
 	 * 判断字符串是否全部大写
-	 * @autor:chenssy
-	 * @date:2014年8月9日
 	 *
 	 * @param value
 	 * 				待判断的字符串
