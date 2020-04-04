@@ -1,4 +1,4 @@
-package numpy;
+package com.zifang.util.math.numpy;
 
 import java.util.List;
 
