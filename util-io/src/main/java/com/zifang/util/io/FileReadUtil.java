@@ -7,9 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-/**
- * Created by yihui on 2017/5/6.
- */
 public class FileReadUtil {
 
 
