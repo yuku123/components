@@ -6,7 +6,7 @@ import java.lang.reflect.*;
  * 反射的 Utils 函数集合
  * 提供访问私有变量, 获取泛型类型 Class, 提取集合中元素属性等 Utils 函数
  */
-public class ReflectionUtils {
+public class ReflectionUtil {
 
 	
 	/**

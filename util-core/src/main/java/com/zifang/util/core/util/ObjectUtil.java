@@ -38,9 +38,9 @@ public class ObjectUtil {
      *
      * @param collection
      * 					待克隆的集合
-     * @return
-     * @throws ClassNotFoundException
-     * @throws java.io.IOException
+     * @return dd
+     * @throws ClassNotFoundException dd
+     * @throws java.io.IOException dd
      */
     @SuppressWarnings("unchecked")
     public static <T> Collection<T> deepCloneCollection(Collection<T> collection) throws ClassNotFoundException, IOException {
