@@ -1,4 +1,8 @@
-package com.zifang.util.middleware;
+package middleware;
 
 public class Main {
+
+    public static void main(String[] args) {
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.zifang.util.middleware.zookeeper;
+package middleware.zookeeper;
 
 import org.apache.log4j.Logger;
 import org.apache.zookeeper.*;
