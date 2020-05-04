@@ -41,6 +41,7 @@
         <module>util-cache</module>
         <module>util-io</module>
         <module>util-time</module>
+        <module>util-redis</module>
 
     </modules>
 
