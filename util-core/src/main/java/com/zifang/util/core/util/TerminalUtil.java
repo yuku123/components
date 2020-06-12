@@ -1,6 +1,8 @@
 package com.zifang.util.core.util;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +56,18 @@ public class TerminalUtil {
             sb.append(line+"\n");
         }
         return sb.toString();
+    }
+
+    /**
+     * @param command let os to execute the command and return the result of command
+     *                if command do print something
+     *
+     * @return String the result-print-out that when you execute in os
+     * */
+    public static Integer runAndGetReturnStatus(String command) throws IOException, InterruptedException {
+        StringBuffer sb = new StringBuffer();
+        Process process = Runtime.getRuntime().exec(command);
+        return process.waitFor();
     }
 
     /**

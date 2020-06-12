@@ -42,6 +42,7 @@
         <module>util-io</module>
         <module>util-time</module>
         <module>util-redis</module>
+        <module>util-git</module>
 
     </modules>
 

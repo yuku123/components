@@ -7,8 +7,7 @@ public class HashUtil {
     * @param prime 一个质数 
     * @return hash结果 
     */  
-    public static int additiveHash(String key, int prime)  
-    {  
+    public static int additiveHash(String key, int prime){
         int hash, i;  
         for (hash = key.length(), i = 0; i < key.length(); i++)  
             hash += key.charAt(i);  
@@ -33,8 +32,7 @@ public class HashUtil {
     // 替代：  
     // 使用：hash = (hash ^ (hash>>10) ^ (hash>>20)) & mask;  
     // 替代：hash %= prime;  
-  
-    /**//** 
+    /**
     * MASK值，随便找一个值，最好是质数 
     */  
     static int M_MASK = 0x8765fed1;  
