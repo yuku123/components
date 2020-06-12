@@ -1,4 +1,4 @@
-package com.zifang.util.jvm.info;
+package com.zifang.util.jvm.analysis.info;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.zifang.util.jvm.monitor;
+package com.zifang.util.jvm.demo;
 
 import javax.tools.JavaCompiler;
 import javax.tools.StandardJavaFileManager;

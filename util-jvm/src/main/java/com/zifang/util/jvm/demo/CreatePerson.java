@@ -1,4 +1,4 @@
-package com.zifang.util.jvm.javasis;
+package com.zifang.util.jvm.demo;
 
 import javassist.*;
 

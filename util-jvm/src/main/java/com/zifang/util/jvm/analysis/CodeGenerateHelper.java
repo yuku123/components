@@ -1,4 +1,4 @@
-package com.zifang.util.jvm.sourceGenerator;
+package com.zifang.util.jvm.analysis;
 
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
@@ -8,9 +8,9 @@ import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ReturnStmt;
-import com.zifang.util.jvm.info.FieldInfo;
-import com.zifang.util.jvm.info.MethodInfo;
-import com.zifang.util.jvm.info.MethodParameterPair;
+import com.zifang.util.jvm.analysis.info.FieldInfo;
+import com.zifang.util.jvm.analysis.info.MethodInfo;
+import com.zifang.util.jvm.analysis.info.MethodParameterPair;
 
 import static com.github.javaparser.ast.Modifier.Keyword.PUBLIC;
 

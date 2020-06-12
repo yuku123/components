@@ -1,7 +1,7 @@
-package com.zifang.util.jvm.sourceGenerator;
+package com.zifang.util.jvm.analysis;
 
 
-import com.zifang.util.jvm.info.ClassInfo;
+import com.zifang.util.jvm.analysis.info.ClassInfo;
 
 /**
  * 标准化 java类信息配置(网状结构的类信息承载体) -> 生成真正的java代码

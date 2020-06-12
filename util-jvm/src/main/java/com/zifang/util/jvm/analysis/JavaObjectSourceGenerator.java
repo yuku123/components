@@ -1,23 +1,22 @@
-package com.zifang.util.jvm.sourceGenerator;
+package com.zifang.util.jvm.analysis;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
-import com.zifang.util.jvm.info.ClassInfo;
-import com.zifang.util.jvm.info.FieldInfo;
-import com.zifang.util.jvm.info.MethodInfo;
-import com.zifang.util.jvm.info.MethodParameterPair;
+import com.zifang.util.jvm.analysis.info.ClassInfo;
+import com.zifang.util.jvm.analysis.info.FieldInfo;
+import com.zifang.util.jvm.analysis.info.MethodInfo;
 
 import java.util.Optional;
 
-import static com.github.javaparser.ast.Modifier.Keyword.PUBLIC;
+import static com.github.javaparser.ast.Modifier.Keyword.PRIVATE;
 
 /**
- * 生产接口代码的 生产者
- * */
-public class JavaInterfaceSourceGenerator implements IGenerator{
+ * 正常类的 源码生产者
+ */
+public class JavaObjectSourceGenerator implements IGenerator {
 
     // 针对一个类的信息载体
     private ClassInfo classInfo;
@@ -30,7 +29,8 @@ public class JavaInterfaceSourceGenerator implements IGenerator{
     // 编译单元下的主类 单元
     private ClassOrInterfaceDeclaration classUnit;
 
-    public JavaInterfaceSourceGenerator(ClassInfo classInfo) {
+
+    public JavaObjectSourceGenerator(ClassInfo classInfo) {
         this.classInfo = classInfo;
     }
 
@@ -41,47 +41,42 @@ public class JavaInterfaceSourceGenerator implements IGenerator{
     }
 
     private void generate() {
+
         // 初始化编译单元
         compilationUnit = new CompilationUnit();
 
         // 设置包名
         compilationUnit.setPackageDeclaration(classInfo.getPackageName());
+        // 往编译单元 添加类 或者 接口
 
-        // 往编译单元 添加接口类
         classUnit = compilationUnit
-                .addInterface(classInfo.getSimpleClassName())
-                .setPublic(classInfo.isPublic());
+                .addClass(classInfo.getSimpleClassName())
+                .setPublic(classInfo.isPublic() == null ? true : classInfo.isPublic());
+
+        // 处理 使用implements 实现接口
+        NodeList<ClassOrInterfaceType> implementedTypes = new NodeList<>();
 
         if(classInfo.getInterfaces() != null){
-            // 使接口继承其他接口
-            for(ClassInfo subInterface : classInfo.getInterfaces()){
+            for (ClassInfo subInterface : classInfo.getInterfaces()) {
                 // 根据持有接口信息进行解析
                 Optional<ClassOrInterfaceType> classOrInterfaceType = javaParser
                         .parseClassOrInterfaceType(subInterface.getSimpleClassName()).getResult();
-                // 添加到既有类上 使用extends方式
-                classOrInterfaceType.ifPresent(orInterfaceType -> classUnit.addExtendedType(orInterfaceType));
+                // 添加到既有类上 使用implement方式
+                classOrInterfaceType.ifPresent(implementedTypes::add);
             }
+            classUnit.setImplementedTypes(implementedTypes);
         }
 
-        if(classInfo.getMethods() != null){
-            // 处理方法相关
-            for(MethodInfo methodInfo : classInfo.getMethods()){
-                MethodDeclaration methodDeclaration = classUnit
-                        .addMethod(methodInfo.getMethodName(), PUBLIC);
-                methodDeclaration.setType(methodInfo.getReturnType());//返回类型
-                // 设置方法入参对
-                for(MethodParameterPair methodParameterPair : methodInfo.getMethodParameterPairs()){
-                    methodDeclaration.addAndGetParameter(methodParameterPair.getParamType(),methodParameterPair.getParamName())
-                            .setVarArgs(false);// setVarArgs(true)表达是否多参
-                }
-                // 接口 实现方法体为空
-                methodDeclaration.setBody(null);
+        if(classInfo.getMethods() != null) {
+            // 处理method
+            for (MethodInfo methodInfo : classInfo.getMethods()) {
+                CodeGenerateHelper.addMethod(classUnit,methodInfo);
             }
         }
 
         if(classInfo.getFields() != null){
             for(FieldInfo fieldInfo : classInfo.getFields()){
-                CodeGenerateHelper.addField(classUnit,fieldInfo);
+                classUnit.addField(fieldInfo.getType(),fieldInfo.getValue(),PRIVATE);
             }
         }
 
@@ -90,7 +85,6 @@ public class JavaInterfaceSourceGenerator implements IGenerator{
     }
 
     private void handleImport() {
-
         // 接口进来之后会增加Import
         for(ClassInfo interfaceInfo : classInfo.getInterfaces()){
             String importedClassName = interfaceInfo.getPackageName()+"."+interfaceInfo.getSimpleClassName();
@@ -102,3 +96,6 @@ public class JavaInterfaceSourceGenerator implements IGenerator{
         }
     }
 }
+
+
+
