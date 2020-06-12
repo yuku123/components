@@ -4,7 +4,6 @@ import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
 
 /**
- * @Author chenjunbin
  * @Date 2020-05-27
  * @Description
  */
