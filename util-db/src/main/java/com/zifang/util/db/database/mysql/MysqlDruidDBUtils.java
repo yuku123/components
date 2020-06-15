@@ -15,7 +15,6 @@ public class MysqlDruidDBUtils {
      * Get the database pool
      *
      * @return ComboPooledDataSource
-     * @throws PropertyVetoException
      */
     public static DruidDataSource getComboPooledDataSource() {
 
