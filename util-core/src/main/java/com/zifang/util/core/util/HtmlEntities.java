@@ -25,7 +25,7 @@
  *
  */
 
-package com.zifang.util.core.util.string;
+package com.zifang.util.core.util;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -2,20 +2,9 @@ package com.zifang.util.core.constans;
 
 public class $ {
 
-    /**
-     * 日期时间类型格式
-     */
-    public static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    // 时间相关的常量包
+    public static TimeConstance time = new TimeConstance();
 
-    /**
-     * 日期类型格式
-     */
-    public static final String DATE_FORMAT = "yyyy-MM-dd";
-
-    /**
-     * 时间类型的格式
-     */
-    public static final String TIME_FORMAT = "HH:mm:ss";
 
     /**
      * 7位ASCII字符，也叫作ISO646-US、Unicode字符集的基本拉丁块
@@ -242,4 +231,8 @@ public class $ {
                     "┕┖┗┘┙┚┛├┝┞┟┠┡┢┣┤┥┦┧┨┩┪┫┬┭┮┯┰┱┲┳┴┵┶┷┸┹┺┻┼┽┾┿╀╁╂╃╄ ╅╆╇╈╉╊╋㊣㈱曱甴" +
                     "∟┅﹍╭╮╰╯^︵^`√卐℡ぁ〝〞ミ灬№*ㄨ≮≯∝≌∽≦≧≒じぷ┗┛￥￡§я-―‥…‰′″℅℉№℡∕∝" +
                     "∣═║╒╓╔╕╖╗╘╙╚╛╜╝╞╟╠╡╢╣╤╥╦╧╨╩╪╫╬╱╲╳▔▕〆〒〡〢〣〤〥〦〧〨〩︰﹍﹎------").toCharArray();
+
+    public static void main(String[] args) {
+        System.out.println(TimeConstance.DATETIME_FORMAT);
+    }
 }

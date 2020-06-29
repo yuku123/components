@@ -29,6 +29,8 @@ public class CombinationAnnotationElement implements AnnotatedElement, Serializa
 
 	/** 注解类型与注解对象对应表 */
 	private Map<Class<? extends Annotation>, Annotation> annotationMap;
+
+
 	/** 直接注解类型与注解对象对应表 */
 	private Map<Class<? extends Annotation>, Annotation> declaredAnnotationMap;
 

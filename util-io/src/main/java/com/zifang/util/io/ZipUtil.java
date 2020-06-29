@@ -55,7 +55,6 @@ public class ZipUtil {
 	 * @date : 2019年5月24日 下午10:00:22
 	 *
 	 * @param out
-	 * @param resourcesFile
 	 * @param dir
 	 */
 	private static void compressedFile(ZipOutputStream out, File file, String dir) {

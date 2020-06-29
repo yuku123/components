@@ -24,7 +24,7 @@
  *
  */
 
-package com.zifang.util.core.util.string;
+package com.zifang.util.core.util;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;

@@ -34,4 +34,14 @@ public class Sets {
         Collections.addAll(set, ts);
         return set;
     }
+
+    public static void intersection(){
+
+    }
+    public static void difference(){
+
+    }
+    public static void union(){
+
+    }
 }

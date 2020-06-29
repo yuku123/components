@@ -7,6 +7,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class GsonUtil {
+
 	private static Gson gson = new Gson();
 
 	public static <T> String objectToJsonStr(T object) {

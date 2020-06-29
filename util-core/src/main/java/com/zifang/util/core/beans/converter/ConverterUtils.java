@@ -1,5 +1,9 @@
 package com.zifang.util.core.beans.converter;
 
+
+/**
+ * 转换
+ * */
 public class ConverterUtils {
 
     private ConverterUtils(){}

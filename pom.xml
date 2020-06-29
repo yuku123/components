@@ -18,7 +18,6 @@
         <module>util-workflow</module>
         <module>util-server</module>
         <module>util-swing</module>
-        <module>util-zex</module>
         <module>util-web</module>
         <module>util-rpc</module>
         <module>util-al-inheritance</module>
@@ -44,7 +43,9 @@
         <module>util-redis</module>
         <module>util-git</module>
         <module>util-compile</module>
-
+        <module>util-json</module>
+        <module>util-extra</module>
+        <module>util-zex</module>
     </modules>
 
     <properties>
@@ -69,33 +70,6 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.5.2</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>org.junit.platform</groupId>-->
-<!--            <artifactId>junit-platform-launcher</artifactId>-->
-<!--            <version>1.0.1</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.jupiter</groupId>-->
-<!--            <artifactId>junit-jupiter-engine</artifactId>-->
-<!--            <version>5.0.1</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.junit.vintage</groupId>-->
-<!--            <artifactId>junit-vintage-engine</artifactId>-->
-<!--            <version>4.12.1</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; 全局单元测试 &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>junit</groupId>-->
-<!--            <artifactId>junit</artifactId>-->
-<!--            <version>${junit.version}</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
 
         <dependency>
             <groupId>org.powermock</groupId>
