@@ -34,8 +34,7 @@ public class CollectionUtil {
      * @param map
      * @return boolean
      */
-    @SuppressWarnings("rawtypes")
-    public static boolean isNotEmptyMap(Map map){
+    public static boolean isNotEmptyMap(Map<?,?> map){
         return map != null && !map.isEmpty();
     }
 
@@ -45,7 +44,7 @@ public class CollectionUtil {
      * @param map
      * @return boolean
      */
-    public static boolean isEmptyMap(Map map){
+    public static boolean isEmptyMap(Map<?,?> map){
         return map == null || map.isEmpty();
     }
 

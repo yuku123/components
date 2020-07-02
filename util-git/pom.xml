@@ -16,6 +16,14 @@
             <artifactId>gitlab4j-api</artifactId>
             <version>4.14.30</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.kohsuke/github-api -->
+        <dependency>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>github-api</artifactId>
+            <version>1.114</version>
+        </dependency>
+
     </dependencies>
 
 

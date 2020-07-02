@@ -3,6 +3,7 @@ package com.zifang.util.git;
 import org.gitlab4j.api.*;
 
 public class GitlabApiWrapper {
+
     private static GitLabApi api;
 
     static {

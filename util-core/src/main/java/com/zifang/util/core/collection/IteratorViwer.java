@@ -1,26 +1,27 @@
 package com.zifang.util.core.collection;
 
-import java.util.Iterator;
+import java.util.*;
 import java.util.function.Consumer;
 
 /**
  * 联立多个Iterator
  *
  * 批量操作多个Iterator 的工具
+ *
  * */
 public class IteratorViwer<E> implements Iterator<E>{
 
+    private List<Iterator<E>> innerIteratorList = new ArrayList<>();
 
     public IteratorViwer(){}
 
     public IteratorViwer(Iterator<E> ... interators){
-
+        innerIteratorList.addAll(Arrays.asList(interators));
     }
 
     public void add(IteratorViwer<E> iteratorViwer){}
 
     public void add(Iterable<E> iterable){}
-
 
     @Override
     public boolean hasNext() {
@@ -36,7 +37,6 @@ public class IteratorViwer<E> implements Iterator<E>{
     public void remove() {
 
     }
-
     @Override
     public void forEachRemaining(Consumer<? super E> action) {
 

@@ -15,7 +15,7 @@ public class GitlabApiHolder {
 
     public static GitlabApiHolder INSTANCE = new GitlabApiHolder();
 
-    private Object api;
+    private GitLabApi api;
 
     private GitlabApiHolder() {
         //api = new GitLabApi(GitLabApi.ApiVersion.V4, URL, token);
@@ -27,7 +27,7 @@ public class GitlabApiHolder {
     }
 
     public GitLabApi getApi() {
-        return (GitLabApi) api;
+        return api;
     }
 
 }

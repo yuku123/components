@@ -22,8 +22,7 @@
         <module>util-rpc</module>
         <module>util-al-inheritance</module>
         <module>util-al-nnet</module>
-        <module>util-math-numpy</module>
-        <module>util-math-pandas</module>
+        <module>util-matrix</module>
         <module>util-middleware-es</module>
         <module>util-middleware-kafka</module>
         <module>util-middleware-redis</module>
@@ -46,6 +45,8 @@
         <module>util-json</module>
         <module>util-extra</module>
         <module>util-zex</module>
+        <module>util-nexus</module>
+        <module>util-http</module>
     </modules>
 
     <properties>

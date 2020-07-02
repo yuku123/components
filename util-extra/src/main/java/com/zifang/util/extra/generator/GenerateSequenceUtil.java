@@ -4,7 +4,7 @@ import java.text.*;
 import java.util.Calendar;
 
 /**
- * 根据时间生成唯一序列ID<br>
+ * 根据时间生成唯一序列ID
  *
  * 时间精确到秒，ID最大值为99999且循环使用
  */

@@ -2,7 +2,7 @@ package com.zifang.util.core.beans.converter;
 
 
 /**
- * 转换
+ * 转换工具类
  * */
 public class ConverterUtils {
 

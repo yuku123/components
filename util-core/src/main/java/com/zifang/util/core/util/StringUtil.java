@@ -5,6 +5,14 @@ package com.zifang.util.core.util;
  */
 public class StringUtil {
 
+	public static String rightPad(String str, int size, char padChar){
+		if(str.length() < size){
+			String padding = repeat(padChar,size-str.length());
+			return  str + padding;
+		}
+		return str;
+	}
+
 	public static String leftPad(String str, int size, char padChar) {
 		if (str == null) {
 			return null;
