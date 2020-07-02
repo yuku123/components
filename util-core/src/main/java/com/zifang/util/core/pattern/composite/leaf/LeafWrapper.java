@@ -36,10 +36,16 @@ public class LeafWrapper<A,B,C> extends Triplet<A,B,C> implements ILeaf{
         return getC();
     }
 
+    @Override
     public void appendSubLeaf(ILeaf leaf){
         if(subLeaves == null){
             subLeaves = new ArrayList<>();
         }
         subLeaves.add(leaf);
+    }
+
+    @Override
+    public void setParent(ILeaf leaf) {
+        parent = leaf;
     }
 }

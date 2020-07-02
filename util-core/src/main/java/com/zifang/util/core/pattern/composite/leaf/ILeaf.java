@@ -46,4 +46,11 @@ public interface ILeaf {
         return this.toString();
     }
 
+
+    /**
+     * 往叶子结点 增加子叶节点
+     * */
+    void appendSubLeaf(ILeaf leaf);
+
+    void setParent(ILeaf leaf);
 }

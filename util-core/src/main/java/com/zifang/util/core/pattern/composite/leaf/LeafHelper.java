@@ -14,7 +14,7 @@ public class LeafHelper {
      *
      * @param leaves 堆放在一起的叶子结点
      * */
-    public static ILeaf pickRootLeaf(List<ILeaf> leaves){
+    public static ILeaf pickRootLeaf(List<? extends ILeaf> leaves){
 
         if(leaves == null){
             throw new NullPointerException();
@@ -28,7 +28,7 @@ public class LeafHelper {
      * 是否包含游离的根节点，就是说这么多结点内 有多个根节点的意思
      *
      * */
-    public static boolean hasDissociateLeaf(List<ILeaf> leaves){
+    public static boolean hasDissociateLeaf(List<? extends ILeaf> leaves){
 
         if(leaves == null){
             throw new NullPointerException();
@@ -54,7 +54,7 @@ public class LeafHelper {
     /**
      * 对一般化object 进行leaf的包装
      * */
-    public static <A,B,C> LeafWrapper wrapper(A currentId, B parentId, C bean){
+    public static <A,B,C> LeafWrapper<A,B,C> wrapper(A currentId, B parentId, C bean){
         return new LeafWrapper<>(currentId,parentId,bean);
     }
 
@@ -65,10 +65,18 @@ public class LeafHelper {
         Map<A,LeafWrapper> leafWrapperMap = leafWrappers.stream()
                 .collect(Collectors.toMap(LeafWrapper::getA,LeafWrapper -> LeafWrapper));
 
+        LeafWrapper root = null;
         for(LeafWrapper leafWrapper : leafWrappers){
             ILeaf parent = leafWrapperMap.get(leafWrapper.getParentId());
+            if(parent == null){
+                root = leafWrapper;
+            } else{
+                leafWrapper.setParent(leafWrapper);
+                parent.appendSubLeaf(leafWrapper);
+            }
+
         }
 
-        return null;
+        return new Tree(root);
     }
 }
