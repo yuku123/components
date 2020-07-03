@@ -52,5 +52,8 @@ public interface ILeaf {
      * */
     void appendSubLeaf(ILeaf leaf);
 
+    /**
+     * 叶子结点有能力接受 父节点
+     * */
     void setParent(ILeaf leaf);
 }

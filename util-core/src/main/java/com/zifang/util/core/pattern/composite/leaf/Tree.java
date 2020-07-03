@@ -11,6 +11,11 @@ public class Tree {
     private ILeaf iLeaf;
 
     public Tree(ILeaf iLeaf){
+
+        if(iLeaf == null){
+            throw new NullPointerException("");
+        }
+
         if(!iLeaf.isRoot()){
             throw new RuntimeException("");
         }
