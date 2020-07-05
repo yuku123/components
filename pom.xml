@@ -47,6 +47,10 @@
         <module>util-zex</module>
         <module>util-nexus</module>
         <module>util-http</module>
+        <module>util-bpmn</module>
+        <module>util-concurrency</module>
+        <module>util-pool</module>
+        <module>util-ct</module>
     </modules>
 
     <properties>
