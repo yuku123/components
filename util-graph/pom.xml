@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>util-media-graph</artifactId>
+    <artifactId>util-graph</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.google.zxing</groupId>

@@ -30,7 +30,7 @@
         <module>util-bigdata-spark</module>
         <module>util-bigdata-hadoop</module>
         <module>util-media-video</module>
-        <module>util-media-graph</module>
+        <module>util-graph</module>
         <module>util-media-voice</module>
         <module>util-robot</module>
         <module>util-all</module>
