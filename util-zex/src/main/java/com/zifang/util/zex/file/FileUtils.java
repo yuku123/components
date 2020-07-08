@@ -49,13 +49,13 @@
 //	 * 				后缀
 //	 * @return
 //	 */
-//	public static String getFileName(String type,String prefix,String suffix){
-//		String date = DateUtils.getCurrentTime("yyyyMMddHH24mmss");   //当前时间
-//		String random = RandomUtils.generateNumberString(10);   //10位随机数
-//
-//		//返回文件名
-//		return prefix + date + random + suffix + "." + type;
-//	}
+////	public static String getFileName(String type,String prefix,String suffix){
+////		String date = DateUtils.getCurrentTime("yyyyMMddHH24mmss");   //当前时间
+////		String random = RandomUtils.generateNumberString(10);   //10位随机数
+////
+////		//返回文件名
+////		return prefix + date + random + suffix + "." + type;
+////	}
 //
 //	/**
 //	 * 获取文件名，文件名构成:当前时间 + 10位随机数 + .type

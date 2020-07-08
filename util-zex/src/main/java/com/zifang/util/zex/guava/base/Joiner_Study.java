@@ -25,7 +25,6 @@ import com.google.common.base.Joiner.MapJoiner;
  * 
  * joiner实例总是不可变的，线程安全，建议定义为static final常量。
  * 
- * @author zxiaofan
  */
 public class Joiner_Study {
     String str1 = "a ";
