@@ -3,10 +3,10 @@ package com.zifang.util.db;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.zifang.util.db.context.DataSourceContext;
 import com.zifang.util.db.context.PersistentContext;
+import com.zifang.util.db.respository.RepositoryProxy;
 import com.zifang.util.db.transation.TransationManager;
 import org.junit.Test;
 import com.zifang.util.core.collection.Lists;
-import javax.sql.DataSource;
 
 
 public class BasicTest {
@@ -31,6 +31,9 @@ public class BasicTest {
                                 .dataSourceFactory(mysqlDatasourceFactory)//设置数据源
                 )
         );
+
+        TestInterface testInterface = RepositoryProxy.proxy(TestInterface.class);
+
 
 
     }
