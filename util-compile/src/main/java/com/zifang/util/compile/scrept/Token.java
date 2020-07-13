@@ -1,4 +1,4 @@
-package com.zifang.util.compile;
+package com.zifang.util.compile.scrept;
 /**
  * 一个简单的Token。
  * 只有类型和文本值两个属性。

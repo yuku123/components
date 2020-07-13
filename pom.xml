@@ -51,6 +51,7 @@
         <module>util-concurrency</module>
         <module>util-pool</module>
         <module>util-ct</module>
+        <module>util-math</module>
     </modules>
 
     <properties>

@@ -1,4 +1,4 @@
-package com.zifang.util.compile;
+package com.zifang.util.compile.scrept;
 /**
  * Token的类型
  */
