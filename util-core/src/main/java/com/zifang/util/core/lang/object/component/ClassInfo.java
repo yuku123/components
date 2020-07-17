@@ -86,4 +86,85 @@ public class ClassInfo{
             methods.addAll(methodInfosFromInterface);
         }
     }
+
+
+    public String getSimpleClassName() {
+        return simpleClassName;
+    }
+
+    public void setSimpleClassName(String simpleClassName) {
+        this.simpleClassName = simpleClassName;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public ClassInfo getSuperClass() {
+        return superClass;
+    }
+
+    public void setSuperClass(ClassInfo superClass) {
+        this.superClass = superClass;
+    }
+
+    public List<ClassInfo> getInterfaces() {
+        return interfaces;
+    }
+
+    public void setInterfaces(List<ClassInfo> interfaces) {
+        this.interfaces = interfaces;
+    }
+
+    public List<FieldInfo> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<FieldInfo> fields) {
+        this.fields = fields;
+    }
+
+    public List<MethodInfo> getMethods() {
+        return methods;
+    }
+
+    public void setMethods(List<MethodInfo> methods) {
+        this.methods = methods;
+    }
+
+    public List<ClassInfo> getImports() {
+        return imports;
+    }
+
+    public void setImports(List<ClassInfo> imports) {
+        this.imports = imports;
+    }
+
+    public Boolean getInterface() {
+        return isInterface;
+    }
+
+    public void setInterface(Boolean anInterface) {
+        isInterface = anInterface;
+    }
+
+    public Boolean getPublic() {
+        return isPublic;
+    }
+
+    public void setPublic(Boolean aPublic) {
+        isPublic = aPublic;
+    }
+
+    public int getModifiers() {
+        return modifiers;
+    }
+
+    public void setModifiers(int modifiers) {
+        this.modifiers = modifiers;
+    }
 }

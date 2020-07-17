@@ -1,13 +1,11 @@
-package com.zifang.util.jvm.analysis;
+package com.zifang.util.ct.generater;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
-import com.zifang.util.jvm.analysis.info.ClassInfo;
-import com.zifang.util.jvm.analysis.info.FieldInfo;
-import com.zifang.util.jvm.analysis.info.MethodInfo;
+import com.zifang.util.core.lang.object.component.*;
 
 import java.util.Optional;
 
@@ -81,20 +79,20 @@ public class JavaObjectSourceGenerator implements IGenerator {
         }
 
         // 处理所有的import 这个方法将会永远存在在最后
-        handleImport();
+        // handleImport();
     }
 
-    private void handleImport() {
-        // 接口进来之后会增加Import
-        for(ClassInfo interfaceInfo : classInfo.getInterfaces()){
-            String importedClassName = interfaceInfo.getPackageName()+"."+interfaceInfo.getSimpleClassName();
-            this.classInfo.getImports().add(importedClassName);
-        }
-
-        for(String im : classInfo.getImports()){
-            compilationUnit.addImport(im);
-        }
-    }
+//    private void handleImport() {
+//        // 接口进来之后会增加Import
+//        for(ClassInfo interfaceInfo : classInfo.getInterfaces()){
+//            String importedClassName = interfaceInfo.getPackageName()+"."+interfaceInfo.getSimpleClassName();
+//            this.classInfo.getImports().add(importedClassName);
+//        }
+//
+//        for(String im : classInfo.getImports()){
+//            compilationUnit.addImport(im);
+//        }
+//    }
 }
 
 

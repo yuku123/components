@@ -1,7 +1,7 @@
-package com.zifang.util.jvm.analysis;
+package com.zifang.util.ct.generater;
 
 
-import com.zifang.util.jvm.analysis.info.ClassInfo;
+import com.zifang.util.core.lang.object.component.ClassInfo;
 
 /**
  * 标准化 java类信息配置(网状结构的类信息承载体) -> 生成真正的java代码
@@ -15,13 +15,14 @@ public class JavaSourceGeneratorDispatcher{
     public static String generateCodeByClassInfo(ClassInfo classInfo){
         if(classInfo.isInterface()){
 
-            return new JavaInterfaceSourceGenerator(classInfo).generateCode();
+            //return new JavaInterfaceSourceGenerator(classInfo).generateCode();
 
         } else {
 
             return new JavaObjectSourceGenerator(classInfo).generateCode();
 
         }
+        return null;
     }
 
 

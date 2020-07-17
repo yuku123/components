@@ -1,4 +1,4 @@
-package com.zifang.util.jvm.analysis;
+package com.zifang.util.ct.generater;
 
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
@@ -11,10 +11,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.SimpleName;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
-import com.zifang.util.jvm.analysis.info.ClassInfo;
-import com.zifang.util.jvm.analysis.info.FieldInfo;
-import com.zifang.util.jvm.analysis.info.MethodInfo;
-import com.zifang.util.jvm.analysis.info.MethodParameterPair;
+import com.zifang.util.core.lang.object.component.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +49,7 @@ public class JavaCodeParser {
         // 分别进行处理
         handlePackageName(cu.getPackageDeclaration());// 处理包
         handleImports(cu.getImports());// 得到所有的Import
-        handleIsInterface(classOrInterfaceDeclaration.isInterface());// 是否是接口
+        //handleIsInterface(classOrInterfaceDeclaration.isInterface());// 是否是接口
         handleClassName(classOrInterfaceDeclaration.getName());// 类名
         handleInterfaces(classOrInterfaceDeclaration.getImplementedTypes());
         handleExtendedTypes(classOrInterfaceDeclaration.getExtendedTypes()); //父亲
@@ -108,16 +105,16 @@ public class JavaCodeParser {
         classInfo.setSimpleClassName(name.getIdentifier());
     }
 
-    private void handleIsInterface(boolean anInterface) {
-        classInfo.setIsInterface(anInterface);
-    }
+//    private void handleIsInterface(boolean anInterface) {
+//        classInfo.setIsInterface(anInterface);
+//    }
 
     private void handleImports(NodeList<ImportDeclaration> imports) {
         List<String> importsToBeSet = new ArrayList<>();
         for(ImportDeclaration importDeclaration : imports){
             importsToBeSet.add(importDeclaration.getNameAsString());
         }
-        classInfo.setImports(importsToBeSet);
+        //classInfo.setImports(importsToBeSet);
     }
 
     private void handlePackageName(Optional<PackageDeclaration> packageDeclaration) {

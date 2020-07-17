@@ -1,4 +1,4 @@
-package com.zifang.util.jvm.analysis;
+package com.zifang.util.ct.generater;
 
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
@@ -8,9 +8,9 @@ import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ReturnStmt;
-import com.zifang.util.jvm.analysis.info.FieldInfo;
-import com.zifang.util.jvm.analysis.info.MethodInfo;
-import com.zifang.util.jvm.analysis.info.MethodParameterPair;
+import com.zifang.util.core.lang.object.component.FieldInfo;
+import com.zifang.util.core.lang.object.component.MethodInfo;
+import com.zifang.util.core.lang.object.component.MethodParameterPair;
 
 import static com.github.javaparser.ast.Modifier.Keyword.PUBLIC;
 
@@ -68,7 +68,7 @@ public class CodeGenerateHelper {
         VariableDeclarator variable = new VariableDeclarator(StaticJavaParser.parseType(fieldInfo.getType()), fieldInfo.getValue());
         variable.setInitializer(new NameExpr(fieldInfo.getInitializer()));
         fieldDeclaration.getVariables().add(variable);
-        fieldDeclaration.setModifiers(fieldInfo.getModifiers());
+        //fieldDeclaration.setModifiers(fieldInfo.getModifiers());
         classDeclaration.getMembers().add(fieldDeclaration);
     }
 }
