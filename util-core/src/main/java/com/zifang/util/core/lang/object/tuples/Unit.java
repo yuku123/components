@@ -1,8 +1,7 @@
-package com.zifang.util.core.lang.tuples;
+package com.zifang.util.core.lang.object.tuples;
 
 
 import com.zifang.util.core.beans.BeanUtils;
-import com.zifang.util.core.util.GsonUtil;
 import lombok.Data;
 
 import java.beans.IntrospectionException;

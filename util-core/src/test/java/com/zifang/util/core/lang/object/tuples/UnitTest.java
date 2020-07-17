@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.tuples;
+package com.zifang.util.core.lang.object.tuples;
 
 import org.junit.jupiter.api.Test;
 
