@@ -1,4 +1,4 @@
-package com.zifang.util.matrix;
+package com.zifang.util.math.matrix;
 
 import java.util.ArrayList;
 import java.util.Arrays;

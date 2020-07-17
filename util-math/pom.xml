@@ -11,5 +11,13 @@
 
     <artifactId>util-math</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.zifang</groupId>
+            <artifactId>util-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
