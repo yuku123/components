@@ -9,15 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>util-io</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.zifang</groupId>
-            <artifactId>util-core</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-    </dependencies>
+    <artifactId>util-encrypt</artifactId>
 
 
 </project>

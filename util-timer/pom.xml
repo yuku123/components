@@ -9,13 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>util-io</artifactId>
-
+    <artifactId>util-timer</artifactId>
     <dependencies>
+        <!--定时调度器-->
         <dependency>
-            <groupId>com.zifang</groupId>
-            <artifactId>util-core</artifactId>
-            <version>1.0.0</version>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.3.2</version>
         </dependency>
     </dependencies>
 

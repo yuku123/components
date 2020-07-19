@@ -51,6 +51,9 @@
         <module>util-pool</module>
         <module>util-ct</module>
         <module>util-math</module>
+        <module>util-encrypt</module>
+        <module>util-geo</module>
+        <module>util-timer</module>
     </modules>
 
     <properties>
