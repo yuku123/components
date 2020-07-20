@@ -132,4 +132,32 @@ public class BeanUtils {
         }
         return null;
     }
+
+    /**
+     * 拆解bean 可以很方便得到bean的一些参数
+     * */
+
+
+    /**
+     * 判断自己定义的而非继承的属性pro是否存在
+     *
+     * @param bean 判断的目标bean
+     * @param pro  判断的属性
+     * @return 是否存在
+     */
+
+    /**
+     * 判断属性是否存在忽略大小写
+     *
+     * @param bean 判断的目标bean
+     * @param pro  判断的属性
+     * @return 是否存在
+     */
+
+    /**
+     * 复制同名属性
+     *
+     * @param srcBean  源Bean
+     * @param destBean 目标Bean
+     */
 }

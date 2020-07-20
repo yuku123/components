@@ -2,8 +2,6 @@ package com.zifang.util.core.util;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.Enumeration;
@@ -16,6 +14,7 @@ import java.util.Properties;
  */
 @Slf4j
 public final class PropertiesUtil {
+
     /**
      * 从系统属性文件中获取相应的值
      *
@@ -49,7 +48,7 @@ public final class PropertiesUtil {
         try {
             pps.load(in);
         } catch (IOException e) {
-            logger.error("load properties error:" + e.getMessage());
+            e.printStackTrace();
         }
         Enumeration en = pps.propertyNames();
         while (en.hasMoreElements()) {
@@ -72,7 +71,7 @@ public final class PropertiesUtil {
         try (InputStream in = new BufferedInputStream(new FileInputStream(filePath))) {
             return properties(in);
         } catch (IOException e) {
-            logger.error("load properties error");
+            e.printStackTrace();
         }
         return map;
     }
