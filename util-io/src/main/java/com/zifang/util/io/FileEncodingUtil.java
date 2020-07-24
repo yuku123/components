@@ -1,6 +1,8 @@
-package com.zifang.util.io.ss;
+package com.zifang.util.io;
 
 
+
+import com.zifang.util.io.ss.FileUtil;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -55,7 +57,7 @@ public class FileEncodingUtil {
      */
     public static void convert(File file, String fromCharsetName, String toCharsetName, FilenameFilter filter) {
         if (file.isDirectory()) {
-            List<File> list = CheckUtil.valid(filter) ? FileUtil.listFileFilter(file, filter) :
+            List<File> list = CheckUtil.valid(filter) ? com.zifang.util.io.ss.FileUtil.listFileFilter(file, filter) :
                     FileUtil.listFile(file);
             if (CheckUtil.valid(list)) {
                 for (File f : list) {
