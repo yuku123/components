@@ -26,6 +26,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.zifang</groupId>
+            <artifactId>util-aop</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
 

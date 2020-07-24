@@ -1,9 +1,7 @@
 package com.zifang.util.core.util.helper;
 
 
-import com.zifang.util.zex.util.ExceptionUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,8 +22,8 @@ import java.util.jar.JarFile;
  * <h6>Description:<h6>
  * <p>Java Class与反射相关的一些工具类</p>
  */
+@Slf4j
 public final class ClassHelper {
-    private static Logger logger = LoggerFactory.getLogger(ClassHelper.class);
 
     /**
      * 获取类加载器
@@ -382,7 +380,7 @@ public final class ClassHelper {
                 }
             }
         } catch (IOException e) {
-            logger.error(ExceptionUtil.stackTraceToString(e, "com.opslab.util"));
+            log.error(ExceptionUtil.stackTraceToString(e, "com.opslab.util"));
         }
         return resource;
     }

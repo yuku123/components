@@ -1,4 +1,4 @@
 package com.zifang.util.core.exception;
 
-public class A {
+public class ExceptionUtil {
 }

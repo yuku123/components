@@ -54,6 +54,7 @@
         <module>util-encrypt</module>
         <module>util-geo</module>
         <module>util-timer</module>
+        <module>util-xml</module>
     </modules>
 
     <properties>
