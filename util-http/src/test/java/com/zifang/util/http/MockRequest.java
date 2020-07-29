@@ -2,7 +2,7 @@ package com.zifang.util.http;
 
 import com.zifang.util.http.define.*;
 
-@RestController("localhost:8080")
+@RestController("http://localhost:8011/test")
 public interface MockRequest {
 
     @RequestMapping(value = "/test1",method = RequestMethod.GET)
