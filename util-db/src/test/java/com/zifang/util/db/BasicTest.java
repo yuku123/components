@@ -6,7 +6,7 @@ import com.zifang.util.db.entity1.User;
 import com.zifang.util.db.respository.RepositoryProxy;
 import com.zifang.util.db.transation.TransationManager;
 import org.junit.Test;
-import com.zifang.util.core.collection.Lists;
+import com.zifang.util.core.collections.Lists;
 
 import java.util.List;
 

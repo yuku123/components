@@ -5,7 +5,6 @@ public class $ {
     // 时间相关的常量包
     public static TimeConstance time = new TimeConstance();
 
-
     /**
      * 7位ASCII字符，也叫作ISO646-US、Unicode字符集的基本拉丁块
      */

@@ -7,5 +7,7 @@ public class MorkRequestTest {
     @Test
     public void t(){
         MockRequest mockRequest = HttpRequestProxy.proxy(MockRequest.class);
+        String s = mockRequest.test1("name","password");
+        System.out.println(s);
     }
 }

@@ -1,4 +1,4 @@
-package com.zifang.util.core.collection;
+package com.zifang.util.core.collections;
 
 import java.util.ArrayList;
 import java.util.Collection;

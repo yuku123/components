@@ -240,45 +240,45 @@ public final class RandomHelper {
      * @param <T>
      * @return
      */
-    public static <T> T randomItem(T[] param, double[] percentum) {
-        int length = percentum.length;
-        Integer[] ints = ArrayUtil.doubleBitCount(percentum);
-        int max = Collections.max(Arrays.asList(ints));
-
-        int sum = 0;
-        Map map = new HashMap(length);
-        StringBuffer buffer = new StringBuffer();
-        for (int i = 0; i < max; i++) {
-            buffer.append("0");
-        }
-        int multiple = Integer.parseInt("1" + buffer.toString());
-        for (int i = 0; i < length; i++) {
-            int temp = (int) (percentum[i] * multiple);
-
-            if (i == 0) {
-                map.put(i, new int[]{1, temp});
-            } else {
-                map.put(i, new int[]{sum, sum + temp});
-            }
-            sum += temp;
-        }
-        int indexSum = integer(1, sum);
-        int index = -1;
-        for (int i = 0; i < length; i++) {
-            int[] scope = (int[]) map.get(i);
-            if (indexSum == 1) {
-                index = 0;
-                break;
-            }
-            if (indexSum > scope[0] && indexSum <= scope[1]) {
-                index = i;
-                break;
-            }
-        }
-        if (index == -1) {
-            throw new RuntimeException("随机失败");
-        } else {
-            return param[index];
-        }
-    }
+//    public static <T> T randomItem(T[] param, double[] percentum) {
+//        int length = percentum.length;
+//        Integer[] ints = ArrayUtil.doubleBitCount(percentum);
+//        int max = Collections.max(Arrays.asList(ints));
+//
+//        int sum = 0;
+//        Map map = new HashMap(length);
+//        StringBuffer buffer = new StringBuffer();
+//        for (int i = 0; i < max; i++) {
+//            buffer.append("0");
+//        }
+//        int multiple = Integer.parseInt("1" + buffer.toString());
+//        for (int i = 0; i < length; i++) {
+//            int temp = (int) (percentum[i] * multiple);
+//
+//            if (i == 0) {
+//                map.put(i, new int[]{1, temp});
+//            } else {
+//                map.put(i, new int[]{sum, sum + temp});
+//            }
+//            sum += temp;
+//        }
+//        int indexSum = integer(1, sum);
+//        int index = -1;
+//        for (int i = 0; i < length; i++) {
+//            int[] scope = (int[]) map.get(i);
+//            if (indexSum == 1) {
+//                index = 0;
+//                break;
+//            }
+//            if (indexSum > scope[0] && indexSum <= scope[1]) {
+//                index = i;
+//                break;
+//            }
+//        }
+//        if (index == -1) {
+//            throw new RuntimeException("随机失败");
+//        } else {
+//            return param[index];
+//        }
+//    }
 }

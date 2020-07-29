@@ -5,10 +5,10 @@ import com.zifang.util.http.define.*;
 @RestController("localhost:8080")
 public interface MockRequest {
 
-    @GetMapping("/test1")
-    String test1(@RequestParam String name, @RequestParam String password);
+    @RequestMapping(value = "/test1",method = RequestMethod.GET)
+    String test1(@RequestParam("name") String name, @RequestParam("password") String password);
 
-    @PostMapping("/test2")
+    @RequestMapping(value = "/test2", method = RequestMethod.POST)
     String test1(@RequestBody Data data);
 }
 

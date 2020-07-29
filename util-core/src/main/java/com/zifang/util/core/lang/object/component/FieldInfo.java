@@ -1,7 +1,6 @@
 package com.zifang.util.core.lang.object.component;
 
 
-import com.github.javaparser.ast.Modifier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,17 +12,17 @@ public class FieldInfo {
 
     private String type;
     private String value;
-    private Modifier.Keyword[] modifiers = new Modifier.Keyword[]{Modifier.Keyword.PRIVATE};
+    private int [] modifiers = new int[]{};
     private String initializer = "null";
 
     public FieldInfo(String type,String value){
         this.type = type;
         this.value = value;
-        this.modifiers = new Modifier.Keyword[]{Modifier.Keyword.PRIVATE};
+        this.modifiers = new int[]{};
         this.initializer = "null";
     }
 
-    public void setModifier(Modifier.Keyword ... modifier) {
+    public void setModifier(int ... modifier) {
         modifiers = modifier;
     }
 

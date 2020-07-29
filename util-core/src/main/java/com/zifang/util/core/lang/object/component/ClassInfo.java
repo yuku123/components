@@ -3,12 +3,9 @@ package com.zifang.util.core.lang.object.component;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * @Author zifang
- * @Date 2020-06-05
- * @Description 标准化类信息承载体
- */
+ * class的标准信息载体
+ * */
 public class ClassInfo{
 
     /**
@@ -46,7 +43,6 @@ public class ClassInfo{
      * */
     private List<ClassInfo> imports = new ArrayList<>(); // 默认为空;
 
-
     /**
      * 标记当前类是否为接口 // 默认为简单class
      * */
@@ -56,7 +52,6 @@ public class ClassInfo{
      * 标记当前类是否为public // 默认为 public
      * */
     private Boolean isPublic = true;
-
 
     /**
      * 标记当前类的modifier

@@ -1,4 +1,4 @@
-package com.zifang.util.core.collection;
+package com.zifang.util.core.collections;
 
 import java.util.Collection;
 import java.util.Map;

@@ -84,19 +84,9 @@ public class AnnotationUtil {
 			method.setAccessible(true);
 			T s = (T) method.invoke(annotation);
 			return s;
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
+		} catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
-////		final Method method = ReflectUtil.getMethodOfObj(annotation, propertyName);
-////		if (null == method) {
-////			return null;
-////		}
-////		return ReflectUtil.invoke(annotation, method);
-//		return null;
 		return null;
 	}
 
