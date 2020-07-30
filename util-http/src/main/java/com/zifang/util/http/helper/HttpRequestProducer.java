@@ -3,6 +3,8 @@ package com.zifang.util.http.helper;
 import com.zifang.util.http.define.RequestMethod;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
@@ -16,7 +18,7 @@ public class HttpRequestProducer {
 
     private static CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
-    public Object produceRequest(HttpRequestDefination httpRequestDefination) {
+    public Object produceRequest(HttpRequestDefinition httpRequestDefination) {
 
         try {
             if(RequestMethod.GET == httpRequestDefination.getHttpRequestLine().getRequestMethod()){
@@ -31,11 +33,15 @@ public class HttpRequestProducer {
         return null;
     }
 
-    private Object handlePostRequest(HttpRequestDefination httpRequestDefination) {
-        return null;
+    private Object handlePostRequest(HttpRequestDefinition httpRequestDefinition) throws IOException {
+        HttpPost httpPost = new HttpPost(httpRequestDefinition.getHttpRequestLine().getUrl());
+        httpPost.setHeader("Content-Type", "application/json;charset=utf8");
+        httpPost.setEntity(new StringEntity(new String(httpRequestDefinition.getHttpRequestBody().getBody())));
+        CloseableHttpResponse response = httpClient.execute(httpPost);
+        return EntityUtils.toString(response.getEntity());
     }
 
-    private Object handleGetRequest(HttpRequestDefination httpRequestDefination) throws IOException {
+    private Object handleGetRequest(HttpRequestDefinition httpRequestDefination) throws IOException {
         HttpGet httpGet = new HttpGet(httpRequestDefination.getHttpRequestLine().getUrl());
         CloseableHttpResponse response = httpClient.execute(httpGet);;
         return EntityUtils.toString(response.getEntity());

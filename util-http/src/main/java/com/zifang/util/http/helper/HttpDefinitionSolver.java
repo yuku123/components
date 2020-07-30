@@ -1,11 +1,9 @@
 package com.zifang.util.http.helper;
 
 import com.zifang.util.core.annoations.AnnotationUtil;
+import com.zifang.util.core.util.GsonUtil;
 import com.zifang.util.http.common.ParameterValuePair;
-import com.zifang.util.http.define.RequestMapping;
-import com.zifang.util.http.define.RequestMethod;
-import com.zifang.util.http.define.RequestParam;
-import com.zifang.util.http.define.RestController;
+import com.zifang.util.http.define.*;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -28,7 +26,7 @@ public class HttpDefinitionSolver implements IDefinitionSolver{
     private List<ParameterValuePair> parameterValuePairList = new ArrayList<>();
 
     // 标准定义实例
-    private HttpRequestDefination httpRequestDefination = new HttpRequestDefination();
+    private HttpRequestDefinition httpRequestDefinition = new HttpRequestDefinition();
 
     public void set(Class target, Object proxy, Method method, Object[] args) {
         this.target = target;
@@ -41,6 +39,18 @@ public class HttpDefinitionSolver implements IDefinitionSolver{
         pre(); //前处理
         handleHttpRequestLine(); // 处理请求行
         handleHttpRequestHeader(); // 处理请求头
+        handleHttpRequestBody();
+    }
+
+    private void handleHttpRequestBody() {
+        HttpRequestBody httpRequestBody = new HttpRequestBody();
+        for(ParameterValuePair parameterValuePair : parameterValuePairList){
+            if(parameterValuePair.getParameter().isAnnotationPresent(RequestBody.class)){
+                byte[] bytes = GsonUtil.objectToJsonStr(parameterValuePair.getObj()).getBytes();
+                httpRequestBody.setBody(bytes);
+            }
+        }
+        httpRequestDefinition.setHttpRequestBody(httpRequestBody);
     }
 
     private void pre() {
@@ -89,11 +99,11 @@ public class HttpDefinitionSolver implements IDefinitionSolver{
         httpRequestLine.setUrl(url);
         httpRequestLine.setRequestMethod(requestMethod);
         // 设入值
-        httpRequestDefination.setHttpRequestLine(httpRequestLine);
+        httpRequestDefinition.setHttpRequestLine(httpRequestLine);
     }
 
 
-    public HttpRequestDefination getHttpRequestDefination() {
-        return this.httpRequestDefination;
+    public HttpRequestDefinition getHttpRequestDefinition() {
+        return this.httpRequestDefinition;
     }
 }

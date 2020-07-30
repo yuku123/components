@@ -12,6 +12,7 @@ public interface MockRequest {
     String test2(@RequestBody Data data);
 }
 
+@lombok.Data
 class Data{
     String name;
     String pw;
