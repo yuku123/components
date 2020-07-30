@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.object.component;
+package com.zifang.util.core.lang.classinfo;
 
 import java.util.ArrayList;
 import java.util.List;

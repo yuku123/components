@@ -1,7 +1,6 @@
 package com.zifang.util.core.pattern.composite.leaf;
 
-import com.zifang.util.core.lang.object.tuples.Pair;
-import com.zifang.util.core.lang.object.tuples.Triplet;
+import com.zifang.util.core.lang.tuples.Triplet;
 
 import java.util.ArrayList;
 import java.util.List;

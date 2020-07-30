@@ -9,7 +9,7 @@ public interface MockRequest {
     String test1(@RequestParam("name") String name, @RequestParam("password") String password);
 
     @RequestMapping(value = "/test2", method = RequestMethod.POST)
-    String test1(@RequestBody Data data);
+    String test2(@RequestBody Data data);
 }
 
 class Data{

@@ -5,8 +5,9 @@ import com.zifang.util.http.define.RequestMapping;
 import com.zifang.util.http.define.RequestMethod;
 import com.zifang.util.http.define.RequestParam;
 import com.zifang.util.http.define.RestController;
-import com.zifang.util.http.helper.HttpDefinationSolveChain;
+import com.zifang.util.http.helper.HttpDefinitionSolver;
 import com.zifang.util.http.helper.HttpRequestDefination;
+import com.zifang.util.http.helper.HttpRequestProducer;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -21,9 +22,6 @@ import java.util.List;
 
 public class HttpRequestInvocationHandler implements InvocationHandler {
 
-    private static CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-
-
     private Class target; // 代理的接口类
 
     public  HttpRequestInvocationHandler(Class requestInterface) {
@@ -33,61 +31,25 @@ public class HttpRequestInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
+        // 1 检查相关
         check(proxy,method,args);
 
-        HttpDefinationSolveChain solveChain = new HttpDefinationSolveChain();
-        solveChain.set(proxy,method,args);
-        solveChain.solve();
+        // 2 解释器
+        HttpDefinitionSolver httpDefinitionSolver = new HttpDefinitionSolver();
+        httpDefinitionSolver.set(target,proxy,method,args); // 设入参数
+        httpDefinitionSolver.solve();
 
-        HttpRequestDefination httpRequestDefination = solveChain.getHttpRequestDefination();
+        // 3 获得标准请求定义
+        HttpRequestDefination httpRequestDefination = httpDefinitionSolver.getHttpRequestDefination();
 
-
-
-
-        String basicPath = AnnotationUtil.getAnnotationValue(target,RestController.class);
-
-        // 查看当前的方法体的调用方式是什么
-        RequestMethod requestMethod = AnnotationUtil.getAnnotationValue(method, RequestMapping.class,"method");
-
-        // 当前方法的调用地址是什么
-        String requestPath = AnnotationUtil.getAnnotationValue(method, RequestMapping.class,"value");
-
-        // 方法参数
-        Parameter[] paras = method.getParameters();
-
-        if(requestMethod == RequestMethod.GET){
-
-            String url = basicPath+requestPath;
-
-
-            List<String> s = new ArrayList<>();
-
-            for(int i = 0; i<paras.length; i++){
-                String key = AnnotationUtil.getAnnotationValue(paras[i], RequestParam.class);
-                String value = String.valueOf(args[i]);
-                s.add(key+"="+value);
-            }
-
-            if(s.size() > 0){
-                url = url + "?" + String.join("&",s);
-            }
-
-            System.out.println(url);
-            HttpGet httpGet = new HttpGet(url);
-            CloseableHttpResponse response = httpClient.execute(httpGet);
-
-
-            System.out.println(EntityUtils.toString(response.getEntity()));
-
-            //httpClient.
-        }
-
-        return "";
+        // 4 产生请求
+        HttpRequestProducer httpRequestProducer = new HttpRequestProducer();
+        Object response = httpRequestProducer.produceRequest(httpRequestDefination);
+        return response;
 
     }
 
     private void check(Object proxy, Method method, Object[] args) {
-
         // 1. class 必须继承为 RestController
         if( !target.isAnnotationPresent(RestController.class)) {
             throw new RuntimeException(target.getName() + "类没有RestController注解");

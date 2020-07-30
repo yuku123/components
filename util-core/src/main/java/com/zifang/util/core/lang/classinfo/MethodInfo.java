@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.object.component;
+package com.zifang.util.core.lang.classinfo;
 
 import lombok.Builder;
 import lombok.Data;

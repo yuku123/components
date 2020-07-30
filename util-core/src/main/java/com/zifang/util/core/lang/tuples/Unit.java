@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.object.tuples;
+package com.zifang.util.core.lang.tuples;
 
 
 import com.zifang.util.core.beans.BeanUtils;
