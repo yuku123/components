@@ -10,7 +10,6 @@ import com.zifang.util.http.define.RestController;
 public class HttpRequestProxy {
 
     public static<T> T proxy(Class<T> requestInterface) {
-
         return ProxyUtil.newProxyInstance(new HttpRequestInvocationHandler(requestInterface),requestInterface);
     }
 }
