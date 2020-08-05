@@ -1,5 +1,5 @@
 # components
 
-the collection of util that support for develop-guys
+测试用的包
 
-1. util-core
+研究其他包的一些测试用例等

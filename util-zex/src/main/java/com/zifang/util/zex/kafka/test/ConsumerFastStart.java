@@ -1,4 +1,4 @@
-package kafka.test;
+package com.zifang.util.zex.kafka.test;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
