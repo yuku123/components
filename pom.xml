@@ -56,6 +56,10 @@
         <module>util-ql</module>
         <!--特殊化功能-->
         <module>util-extra</module>
+        <module>util-monitor</module>
+        <module>util-devops</module>
+        <module>util-bytecode</module>
+        <module>util-serializer</module>
 
     </modules>
 

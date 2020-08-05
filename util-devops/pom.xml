@@ -9,30 +9,29 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>util-compile</artifactId>
+    <artifactId>util-devops</artifactId>
 
     <dependencies>
+
         <dependency>
-            <groupId>com.zifang</groupId>
-            <artifactId>util-core</artifactId>
-            <version>1.0.0</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.25.0-GA</version>
+            <groupId>org.gitlab4j</groupId>
+            <artifactId>gitlab4j-api</artifactId>
+            <version>4.14.30</version>
         </dependency>
 
-        <!--https://juejin.im/post/5edae70551882543194ed3e1-->
+        <!-- https://mvnrepository.com/artifact/org.kohsuke/github-api -->
         <dependency>
-            <groupId>org.openjdk.jol</groupId>
-            <artifactId>jol-core</artifactId>
-            <version>0.10</version>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>github-api</artifactId>
+            <version>1.114</version>
         </dependency>
-
-
     </dependencies>
-
 
 </project>
