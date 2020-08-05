@@ -1,4 +1,4 @@
 package com.zifang.util.ioc.context;
 
-public class AnnoationContext {
+public class AnnotationContext {
 }

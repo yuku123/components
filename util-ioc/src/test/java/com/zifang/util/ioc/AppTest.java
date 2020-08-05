@@ -1,12 +1,12 @@
 package com.zifang.util.ioc;
 
-import com.zifang.util.ioc.context.AnnoationContext;
+import com.zifang.util.ioc.context.AnnotationContext;
 import org.junit.Test;
 
 public class AppTest {
 
     @Test
     public void test(){
-        AnnoationContext annoationContext = new AnnoationContext();
+        AnnotationContext annoationContext = new AnnotationContext();
     }
 }

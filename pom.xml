@@ -55,6 +55,7 @@
         <module>util-geo</module>
         <module>util-timer</module>
         <module>util-xml</module>
+        <module>util-ql</module>
     </modules>
 
     <properties>
