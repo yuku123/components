@@ -1,10 +1,10 @@
-package com.zifang.util.redis.basic;
+package com.zifang.util.zex.redis.basic;
 
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import redis.clients.jedis.Jedis;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class BasicTest {

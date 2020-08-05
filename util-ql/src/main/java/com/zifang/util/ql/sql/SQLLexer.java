@@ -1,6 +1,5 @@
-package com.zifang.util.compile.sql;
+package com.zifang.util.ql.sql;
 
-import com.zifang.util.compile.scrept.SimpleLexer;
 import com.zifang.util.compile.scrept.Token;
 
 import java.io.CharArrayReader;

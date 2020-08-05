@@ -1,4 +1,4 @@
-package com.zifang.util.compile.sql;
+package com.zifang.util.ql.sql;
 
 public enum  SQLDfaState {
 

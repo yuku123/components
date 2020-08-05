@@ -1,4 +1,4 @@
-package com.zifang.util.redis.basic;
+package com.zifang.util.zex.redis.basic;
 
 import java.util.HashMap;
 import java.util.Map;

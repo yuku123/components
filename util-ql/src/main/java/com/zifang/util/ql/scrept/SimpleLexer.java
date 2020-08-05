@@ -1,4 +1,4 @@
-package com.zifang.util.compile.scrept;
+package com.zifang.util.ql.scrept;
 
 import java.io.CharArrayReader;
 import java.io.IOException;

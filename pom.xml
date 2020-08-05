@@ -30,7 +30,7 @@
         <module>util-bigdata-hadoop</module>
         <module>util-media-video</module>
         <module>util-graph</module>
-        <module>util-media-voice</module>
+        <module>util-voice</module>
         <module>util-robot</module>
         <module>util-all</module>
         <module>util-ioc</module>
@@ -38,11 +38,9 @@
         <module>util-cache</module>
         <module>util-io</module>
         <module>util-time</module>
-        <module>util-redis</module>
         <module>util-git</module>
         <module>util-compile</module>
         <module>util-json</module>
-        <module>util-extra</module>
         <module>util-zex</module>
         <module>util-nexus</module>
         <module>util-http</module>
@@ -56,6 +54,9 @@
         <module>util-timer</module>
         <module>util-xml</module>
         <module>util-ql</module>
+        <!--特殊化功能-->
+        <module>util-extra</module>
+
     </modules>
 
     <properties>

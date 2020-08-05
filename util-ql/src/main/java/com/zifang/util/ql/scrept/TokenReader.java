@@ -1,4 +1,4 @@
-package com.zifang.util.compile.scrept;
+package com.zifang.util.ql.scrept;
 
 /**
  * 一个Token流。由Lexer生成。Parser可以从中获取Token。
