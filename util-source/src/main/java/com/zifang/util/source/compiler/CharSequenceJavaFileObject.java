@@ -3,52 +3,45 @@ package com.zifang.util.source.compiler;
 import javax.tools.SimpleJavaFileObject;
 import java.io.*;
 import java.net.URI;
-import java.net.URISyntaxException;
 
+/**
+ * 自定义的JavaFileObject
+ *
+ * 里面覆盖实现了存放源代码的
+ *
+ * 里面覆盖四线存储编译之后的字节码
+ *
+ * */
 public class CharSequenceJavaFileObject extends SimpleJavaFileObject {
 
+    /**
+     * 用来存放编译之后的字节码的域
+     * */
+    private ByteArrayOutputStream byteCode = new ByteArrayOutputStream();
 
-
-
-    public static final String CLASS_EXTENSION = ".class";
-
-    public static final String JAVA_EXTENSION = ".java";
-
-    private static URI fromClassName(String className) {
-        try {
-            return new URI(className);
-        } catch (URISyntaxException e) {
-            throw new IllegalArgumentException(className, e);
-        }
-    }
-
-    private ByteArrayOutputStream byteCode;
+    /**
+     * 用来存放java源代码的字段
+     * */
     private final CharSequence sourceCode;
 
+    /**
+     * 把当前类当成存储源码的类的方式
+     * */
     public CharSequenceJavaFileObject(String className, CharSequence sourceCode) {
-        super(fromClassName(className + JAVA_EXTENSION), Kind.SOURCE);
+        super(URI.create(className + Kind.SOURCE.extension), Kind.SOURCE);
         this.sourceCode = sourceCode;
     }
 
-    public CharSequenceJavaFileObject(String fullClassName, Kind kind) {
-        super(fromClassName(fullClassName), kind);
-        this.sourceCode = null;
-    }
-
     /**
-     * Construct a SimpleJavaFileObject of the given kind and with the
-     * given URI.
-     *
-     * @param uri  the URI for this file object
-     * @param kind the kind of this file object
-     */
-    public CharSequenceJavaFileObject(URI uri, Kind kind) {
-        super(uri, kind);
+     * 给编译器那边存储编译之后的字节码
+     * */
+    public CharSequenceJavaFileObject(String fullClassName, Kind kind) {
+        super(URI.create(fullClassName), kind);
         this.sourceCode = null;
     }
 
     @Override
-    public CharSequence getCharContent(boolean ignoreEncodingErrors) throws IOException {
+    public CharSequence getCharContent(boolean ignoreEncodingErrors){
         return sourceCode;
     }
 
@@ -57,10 +50,12 @@ public class CharSequenceJavaFileObject extends SimpleJavaFileObject {
         return new ByteArrayInputStream(getByteCode());
     }
 
-    // 注意这个方法是编译结果回调的OutputStream，回调成功后就能通过下面的getByteCode()方法获取目标类编译后的字节码字节数组
+    /**
+     * 编译结果回调的OutputStream，回调成功后就能通过下面的getByteCode()方法获取目标类编译后的字节码字节数组
+     * */
     @Override
     public OutputStream openOutputStream() {
-        return byteCode = new ByteArrayOutputStream();
+        return byteCode;
     }
 
     public byte[] getByteCode() {

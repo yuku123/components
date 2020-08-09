@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * */
 public class CustomerCompileClassLoader extends ClassLoader {
 
-    public static final String CLASS_EXTENSION = ".class";
+    public static final String CLASS_EXTENSION = JavaFileObject.Kind.CLASS.extension;
 
     private final Map<String, JavaFileObject> javaFileObjectMap = new ConcurrentHashMap<>();
 

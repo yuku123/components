@@ -32,15 +32,6 @@ public class CustomerCompileJavaFileManager extends ForwardingJavaFileManager<Ja
         }
     }
 
-    @Override
-    public FileObject getFileForInput(Location location, String packageName, String relativeName) throws IOException {
-        JavaFileObject javaFileObject = javaFileObjectMap.get(fromLocation(location, packageName, relativeName));
-        if (null != javaFileObject) {
-            return javaFileObject;
-        }
-        return super.getFileForInput(location, packageName, relativeName);
-    }
-
     // 这里是编译器返回的同(源)Java文件对象,替换为CharSequenceJavaFileObject实现
     @Override
     public JavaFileObject getJavaFileForOutput(Location location, String className, JavaFileObject.Kind kind, FileObject sibling) throws IOException {

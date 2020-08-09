@@ -63,7 +63,7 @@ public class CompileContext {
         // 初始化一个编译任务实例
         JavaCompiler.CompilationTask compilationTask = compiler.getTask(
                 null,
-                standardJavaFileManager,
+                customerCompileJavaFileManager,
                 diagnosticCollector,
                 options,
                 null,

@@ -10,6 +10,7 @@ import java.net.URI;
  * A Java class that holds the bytecodes in a byte array.
  * @version 1.00 2007-11-02
  * @author Cay Horstmann
+ *
  */
 public class ByteArrayJavaClass extends SimpleJavaFileObject
 {

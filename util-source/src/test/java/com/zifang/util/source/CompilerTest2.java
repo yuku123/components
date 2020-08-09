@@ -4,20 +4,16 @@ import com.zifang.util.core.util.FileUtil;
 import com.zifang.util.source.compiler.CharSequenceJavaFileObject;
 import com.zifang.util.source.compiler.CompileContext;
 import com.zifang.util.source.compiler.CustomerCompileJavaFileManager;
-import com.zifang.util.source.compiler.CustomerCompileClassLoader;
 
 import javax.tools.*;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class CompilerTest2 {
 
-    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
 
-
+        // 编译上下文
         CompileContext compileContext = new CompileContext();
 
         String className = "A";
@@ -30,7 +26,7 @@ public class CompilerTest2 {
         URI uri = CustomerCompileJavaFileManager.fromLocation(
                 StandardLocation.SOURCE_PATH,
                 packageName,
-                className + CharSequenceJavaFileObject.JAVA_EXTENSION
+                className + JavaFileObject.Kind.SOURCE
         );
 
         compileContext.initial(); // 编译上下文初始化

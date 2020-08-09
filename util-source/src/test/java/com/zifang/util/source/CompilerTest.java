@@ -17,14 +17,10 @@ public class CompilerTest {
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
 
-
-        CompileContext compileContext = new CompileContext();
-
         String className = "A";
         String packageName = "com.zifang.util.sssss";
         String qualifiedName = packageName + "." + className;
         String codeFragment = FileUtil.readFile("A.java");
-
 
         // 获取系统编译器实例
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
@@ -46,14 +42,10 @@ public class CompilerTest {
 
         // 构建Java源文件实例
         CharSequenceJavaFileObject javaFileObject = new CharSequenceJavaFileObject(className, codeFragment);
+        URI uri = URI.create(qualifiedName); // 没什么特殊的作用
 
         // 添加Java源文件实例到自定义Java文件管理器实例中
-        fileManager.addJavaFileObject(
-                StandardLocation.SOURCE_PATH,
-                packageName,
-                className + CharSequenceJavaFileObject.JAVA_EXTENSION,
-                javaFileObject
-        );
+        fileManager.addJavaFileObject(uri, javaFileObject);
 
         // 初始化一个编译任务实例
         JavaCompiler.CompilationTask compilationTask = compiler.getTask(
