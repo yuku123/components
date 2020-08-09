@@ -1,5 +1,9 @@
 package com.zifang.util.compile.compliler.demo;
 
+import javassist.*;
+
+import java.lang.reflect.Modifier;
+
 public class CreatePerson {
 
     /**
