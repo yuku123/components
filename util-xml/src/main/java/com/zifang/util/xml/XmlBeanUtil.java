@@ -28,7 +28,7 @@ public class XmlBeanUtil {
         return xmlStr;
     }
 
-    public static Object xmlToBean(String str, Class<?> load) {
+    public static<T> T xmlToBean(String str, Class<T> load) {
         Object object = null;
         try {
             JAXBContext context = JAXBContext.newInstance(load);
@@ -37,7 +37,7 @@ public class XmlBeanUtil {
         } catch (JAXBException e) {
             log.error("xml转换到实体时出错!", e);
         }
-        return object;
+        return (T)object;
 
     }
 }
