@@ -15,16 +15,16 @@ import java.util.concurrent.ConcurrentHashMap;
  * */
 public class CustomerCompileJavaFileManager extends ForwardingJavaFileManager<JavaFileManager> {
 
-    private final JdkDynamicCompileClassLoader classLoader;
+    private final CustomerCompileClassLoader classLoader;
 
     private final Map<URI, JavaFileObject> javaFileObjectMap = new ConcurrentHashMap<>();
 
-    public CustomerCompileJavaFileManager(JavaFileManager fileManager, JdkDynamicCompileClassLoader classLoader) {
+    public CustomerCompileJavaFileManager(JavaFileManager fileManager, CustomerCompileClassLoader classLoader) {
         super(fileManager);
         this.classLoader = classLoader;
     }
 
-    private static URI fromLocation(Location location, String packageName, String relativeName) {
+    public static URI fromLocation(Location location, String packageName, String relativeName) {
         try {
             return new URI(location.getName() + '/' + packageName + '/' + relativeName);
         } catch (URISyntaxException e) {
@@ -96,5 +96,12 @@ public class CustomerCompileJavaFileManager extends ForwardingJavaFileManager<Ja
      * */
     public void addJavaFileObject(Location location, String packageName, String relativeName, JavaFileObject javaFileObject) {
         javaFileObjectMap.put(fromLocation(location, packageName, relativeName), javaFileObject);
+    }
+
+    /**
+     *  自定义方法,用于添加和缓存待编译的源文件对象
+     * */
+    public void addJavaFileObject(URI uri, JavaFileObject javaFileObject) {
+        javaFileObjectMap.put(uri, javaFileObject);
     }
 }

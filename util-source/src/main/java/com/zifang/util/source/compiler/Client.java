@@ -31,7 +31,7 @@ public class Client {
         // 获取标准的Java文件管理器实例
         StandardJavaFileManager manager = compiler.getStandardFileManager(DIAGNOSTIC_COLLECTOR, null, null);
         // 初始化自定义类加载器
-        JdkDynamicCompileClassLoader classLoader = new JdkDynamicCompileClassLoader(Thread.currentThread().getContextClassLoader());
+        CustomerCompileClassLoader classLoader = new CustomerCompileClassLoader(Thread.currentThread().getContextClassLoader());
         // 初始化自定义Java文件管理器实例
         CustomerCompileJavaFileManager fileManager = new CustomerCompileJavaFileManager(manager, classLoader);
         String packageName = "com.zifang.util.source.compiler";

@@ -4,10 +4,11 @@ import com.zifang.util.core.util.FileUtil;
 import com.zifang.util.source.compiler.CharSequenceJavaFileObject;
 import com.zifang.util.source.compiler.CompileContext;
 import com.zifang.util.source.compiler.CustomerCompileJavaFileManager;
-import com.zifang.util.source.compiler.JdkDynamicCompileClassLoader;
+import com.zifang.util.source.compiler.CustomerCompileClassLoader;
 
 import javax.tools.*;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,12 +17,12 @@ public class CompilerTest {
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
 
-        DiagnosticCollector<JavaFileObject> DIAGNOSTIC_COLLECTOR = new DiagnosticCollector<>();
+
+        CompileContext compileContext = new CompileContext();
 
         String className = "A";
         String packageName = "com.zifang.util.sssss";
         String qualifiedName = packageName + "." + className;
-
         String codeFragment = FileUtil.readFile("A.java");
 
 
@@ -33,15 +34,19 @@ public class CompilerTest {
         options.add("1.8");
         options.add("-target");
         options.add("1.8");
+
+        // 源代码验证信息集合
+        DiagnosticCollector<JavaFileObject> DIAGNOSTIC_COLLECTOR = new DiagnosticCollector<>();
         // 获取标准的Java文件管理器实例
         StandardJavaFileManager manager = compiler.getStandardFileManager(DIAGNOSTIC_COLLECTOR, null, null);
         // 初始化自定义类加载器
-        JdkDynamicCompileClassLoader classLoader = new JdkDynamicCompileClassLoader(Thread.currentThread().getContextClassLoader());
+        CustomerCompileClassLoader classLoader = new CustomerCompileClassLoader(Thread.currentThread().getContextClassLoader());
         // 初始化自定义Java文件管理器实例
         CustomerCompileJavaFileManager fileManager = new CustomerCompileJavaFileManager(manager, classLoader);
 
         // 构建Java源文件实例
         CharSequenceJavaFileObject javaFileObject = new CharSequenceJavaFileObject(className, codeFragment);
+
         // 添加Java源文件实例到自定义Java文件管理器实例中
         fileManager.addJavaFileObject(
                 StandardLocation.SOURCE_PATH,
@@ -49,6 +54,7 @@ public class CompilerTest {
                 className + CharSequenceJavaFileObject.JAVA_EXTENSION,
                 javaFileObject
         );
+
         // 初始化一个编译任务实例
         JavaCompiler.CompilationTask compilationTask = compiler.getTask(
                 null,
@@ -64,15 +70,5 @@ public class CompilerTest {
         Class<?> klass = classLoader.loadClass(qualifiedName);
         Object o = klass.newInstance();
         klass.getMethod("test").invoke(o);
-
-
-
-//        CompileContext compileContext = new CompileContext();
-//
-//
-//
-//        CharSequenceJavaFileObject javaFileObject = new CharSequenceJavaFileObject(className, codeFragment);
-//
-//        compileContext.addJavaObject(javaFileObject);
     }
 }

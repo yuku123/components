@@ -13,13 +13,13 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 自定义类加载器
  * */
-public class JdkDynamicCompileClassLoader extends ClassLoader {
+public class CustomerCompileClassLoader extends ClassLoader {
 
     public static final String CLASS_EXTENSION = ".class";
 
     private final Map<String, JavaFileObject> javaFileObjectMap = new ConcurrentHashMap<>();
 
-    public JdkDynamicCompileClassLoader(ClassLoader parentClassLoader) {
+    public CustomerCompileClassLoader(ClassLoader parentClassLoader) {
         super(parentClassLoader);
     }
 
