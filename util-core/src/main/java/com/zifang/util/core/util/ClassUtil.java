@@ -1596,7 +1596,7 @@ public class ClassUtil {
 
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
 		Set<Class<?>> set = searchClasses("com.google");
 		for (Class<?> aClass : set) {
