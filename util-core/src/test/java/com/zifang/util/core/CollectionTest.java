@@ -1,6 +1,7 @@
 package com.zifang.util.core;
 
 import com.zifang.util.core.collections.MemorySqlExcutor;
+import lombok.Data;
 import org.junit.Test;
 
 import java.util.ArrayList;
