@@ -6,6 +6,9 @@ import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 反射工具类
@@ -24,8 +27,6 @@ public class ReflectUtil {
 	 * 方法缓存
 	 */
 	private static final WeakHashMapCache<Class<?>, Method[]> METHODS_CACHE = new WeakHashMapCache<>();
-
-	// --------------------------------------------------------------------------------------------------------- Constructor
 
 	/**
 	 * 查找类中的指定参数的构造方法，如果找到构造方法，会自动设置可访问为true
@@ -818,9 +819,36 @@ public class ReflectUtil {
 	 * @return 被设置可访问的对象
 	 */
 	public static <T extends AccessibleObject> T setAccessible(T accessibleObject) {
-		if (null != accessibleObject && false == accessibleObject.isAccessible()) {
+		if (null != accessibleObject && !accessibleObject.isAccessible()) {
 			accessibleObject.setAccessible(true);
 		}
 		return accessibleObject;
 	}
+
+
+	/**
+	 * 找到这个class的所有的 递归接口 -> 父类的接口与接口的接口
+	 * */
+	public static List<Class> getAllInterfaces(Class clazz){
+
+		List<Class> implementInterfaces = new ArrayList<>();    //结果
+
+		Class[] interfaces = clazz.getInterfaces(); // 当前的所有接口
+		Class superClass = clazz.getSuperclass();   // 父类
+
+		if(interfaces != null){
+			implementInterfaces.addAll(Arrays.asList(interfaces)); // 当前增加
+			for(Class cl : interfaces){ // 递归当前直接接口
+				implementInterfaces.addAll(getAllInterfaces(cl));
+			}
+		}
+
+		// 当前类的父类处理
+		if(superClass != null){
+			implementInterfaces.addAll(getAllInterfaces(clazz.getSuperclass()));
+		}
+
+		return implementInterfaces;
+	}
+
 }
