@@ -1,7 +1,5 @@
 package com.zifang.util.core;
 
-import com.zifang.util.core.collections.MemorySqlExcutor;
-import lombok.Data;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,9 +16,9 @@ public class CollectionTest {
 
 
 
-        new MemorySqlExcutor()
-        .setData(aa,"aa")
-        .setData(bb,"bb")
-        .select("select aa.*,bb.a from aa left join bb on aa.id = bb.id");
+//        new MemorySqlExcutor()
+//        .setData(aa,"aa")
+//        .setData(bb,"bb")
+//        .select("select aa.*,bb.a from aa left join bb on aa.id = bb.id");
     }
 }

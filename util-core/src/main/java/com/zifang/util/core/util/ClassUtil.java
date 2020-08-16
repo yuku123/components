@@ -25,10 +25,6 @@
 
 package com.zifang.util.core.util;
 
-import jodd.net.URLDecoder;
-import jodd.util.*;
-import jodd.util.StringUtil;
-import jodd.util.cl.ClassLoaderStrategy;
 import sun.misc.ProxyGenerator;
 
 import java.io.*;
@@ -36,6 +32,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.net.JarURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.*;
@@ -703,7 +700,7 @@ public class ClassUtil {
 				return (T) Integer.valueOf(0);
 			}
 			if (type == String.class) {
-				return (T) StringPool.EMPTY;
+				return (T) "";
 			}
 			if (type == Long.class) {
 				return (T) Long.valueOf(0);
@@ -848,18 +845,7 @@ public class ClassUtil {
 		return 0;
 	}
 
-	/**
-	 * Returns property name from a getter method.
-	 * Returns <code>null</code> if method is not a real getter.
-	 */
-	public static String getBeanPropertyGetterName(final Method method) {
-		int prefixLength = getBeanPropertyGetterPrefixLength(method);
-		if (prefixLength == 0) {
-			return null;
-		}
-		String methodName = method.getName().substring(prefixLength);
-		return jodd.util.StringUtil.decapitalize(methodName);
-	}
+
 
 	/**
 	 * Returns <code>true</code> if method is bean setter.
@@ -880,18 +866,6 @@ public class ClassUtil {
 			}
 		}
 		return 0;
-	}
-
-	/**
-	 * Returns beans property setter name or <code>null</code> if method is not a real setter.
-	 */
-	public static String getBeanPropertySetterName(final Method method) {
-		int prefixLength = getBeanPropertySetterPrefixLength(method);
-		if (prefixLength == 0) {
-			return null;
-		}
-		String methodName = method.getName().substring(prefixLength);
-		return jodd.util.StringUtil.decapitalize(methodName);
 	}
 
 	// ---------------------------------------------------------------- generics
@@ -1282,38 +1256,6 @@ public class ClassUtil {
 		}
 	}
 
-	/**
-	 * Smart variant of {@link #getCallerClass(int)} that skips all relevant Jodd calls.
-	 * However, this one does not use the security manager.
-	 */
-	public static Class getCallerClass() {
-		String className = null;
-		StackTraceElement[] stackTraceElements = new Throwable().getStackTrace();
-
-		for (StackTraceElement stackTraceElement : stackTraceElements) {
-			className = stackTraceElement.getClassName();
-			String methodName = stackTraceElement.getMethodName();
-
-			if (methodName.equals("loadClass")) {
-				if (className.contains(ClassLoaderStrategy.class.getSimpleName())) {
-					continue;
-				}
-				if (className.equals(ClassLoaderUtil.class.getName())) {
-					continue;
-				}
-			} else if (methodName.equals("getCallerClass")) {
-				continue;
-			}
-			break;
-		}
-
-		try {
-			return Thread.currentThread().getContextClassLoader().loadClass(className);
-		} catch (ClassNotFoundException cnfex) {
-			throw new UnsupportedOperationException(className + " not found.");
-		}
-	}
-
 	// ---------------------------------------------------------------- enum
 
 	/**
@@ -1371,7 +1313,7 @@ public class ClassUtil {
 	 * Returns the jar file from which the given class is loaded; or null
 	 * if no such jar file can be located.
 	 */
-	public static JarFile jarFileOf(final Class<?> klass) {
+	public static JarFile jarFileOf(final Class<?> klass) throws UnsupportedEncodingException {
 		URL url = klass.getResource(
 			"/" + klass.getName().replace('.', '/') + ".class");
 
@@ -1434,27 +1376,7 @@ public class ClassUtil {
 	 * @return 处理之后的数据
 	 * */
 	private static String getShortClassName(final Class clazz, final int shortUpTo) {
-		final String[] chunks = StringUtil.splitc(clazz.getName(), '.');
-		final StringBand stringBand = new StringBand(chunks.length);
-		int ndx = chunks.length - shortUpTo;
-		if (ndx < 0) {
-			ndx = 0;
-		}
-
-		for (int i = 0; i < ndx; i++) {
-			if (i > 0) {
-				stringBand.append('.');
-			}
-			stringBand.append(chunks[i].charAt(0));
-		}
-
-		for (int i = ndx; i < chunks.length; i++) {
-			if (i > 0) {
-				stringBand.append('.');
-			}
-			stringBand.append(chunks[i]);
-		}
-		return stringBand.toString();
+		return ""; // todo
 	}
 
 
