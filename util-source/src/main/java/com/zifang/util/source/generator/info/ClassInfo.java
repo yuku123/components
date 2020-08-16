@@ -124,10 +124,4 @@ public class ClassInfo{
     public void setModifiers(int modifiers) {
         this.modifiers = modifiers;
     }
-
-    public static void main(String[] args) {
-
-       String s =  Modifier.toString(Modifier.PUBLIC | Modifier.STATIC );
-       System.out.println(s);
-    }
 }

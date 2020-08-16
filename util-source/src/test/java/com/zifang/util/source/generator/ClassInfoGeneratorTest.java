@@ -23,7 +23,9 @@ public class ClassInfoGeneratorTest {
         classDeclaration.setModifiers(
                 ModifierAdapter.getKeyWord(Modifier.PUBLIC)
         );
+        classDeclaration.setJavadocComment(new JavadocComment("dasdasda\ndsdasdasdas\ndaseeeeedasd"));
         classDeclaration.setJavadocComment(new JavadocComment("dasdasda\ndsdasdasdas\ndasdasd"));
+
         System.out.println(compilationUnit.toString());
     }
 
@@ -32,8 +34,6 @@ public class ClassInfoGeneratorTest {
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration("com.abc.def");
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addClass("AnyClassName");
-
-
         System.out.println(compilationUnit.toString());
 
     }
