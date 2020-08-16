@@ -1,4 +1,4 @@
-package com.zifang.util.source.common;
+package com.zifang.util.source.generator.info;
 
 
 import lombok.AllArgsConstructor;

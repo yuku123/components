@@ -40,11 +40,6 @@ public class LeafTest {
         }
     }
 
-    private List<LeafWrapper<Integer, Integer, Node>> getWrapperedNodeList(List<Node> nodes) {
-
-        return nodes.stream().map(e -> LeafHelper.wrapper(e.getId(),e.getParentId(),e)).collect(Collectors.toList());
-    }
-
     private  List<Node> getDataList() {
         List<Node> nodes  = new ArrayList<>();
         nodes.add(new Node(5,3,"EE"));

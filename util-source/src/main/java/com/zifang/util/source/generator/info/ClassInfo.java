@@ -1,5 +1,6 @@
-package com.zifang.util.source.common;
+package com.zifang.util.source.generator.info;
 
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,35 +40,20 @@ public class ClassInfo{
     private List<MethodInfo> methods = new ArrayList<>(); // 默认为空
 
     /**
-     * 导入类
+     * 只是单纯记录类名
      * */
-    private List<ClassInfo> imports = new ArrayList<>(); // 默认为空;
+    private List<String> imports = new ArrayList<>(); // 默认为空;
 
-    /**
-     * 标记当前类是否为接口 // 默认为简单class
-     * */
-    private Boolean isInterface = false;
-
-    /**
-     * 标记当前类是否为public // 默认为 public
-     * */
-    private Boolean isPublic = true;
 
     /**
      * 标记当前类的modifier
      * */
     private int modifiers;
 
-    public boolean isInterface() {
-        return isInterface;
-    }
-
-    public Boolean isPublic() {
-        return isPublic;
-    }
-
-
-    public String getFullClassName(){
+    /**
+     * 全类路径名字
+     * */
+    public String getName(){
         return packageName+"."+simpleClassName;
     }
 
@@ -131,35 +117,17 @@ public class ClassInfo{
         this.methods = methods;
     }
 
-    public List<ClassInfo> getImports() {
-        return imports;
-    }
-
-    public void setImports(List<ClassInfo> imports) {
-        this.imports = imports;
-    }
-
-    public Boolean getInterface() {
-        return isInterface;
-    }
-
-    public void setInterface(Boolean anInterface) {
-        isInterface = anInterface;
-    }
-
-    public Boolean getPublic() {
-        return isPublic;
-    }
-
-    public void setPublic(Boolean aPublic) {
-        isPublic = aPublic;
-    }
-
     public int getModifiers() {
         return modifiers;
     }
 
     public void setModifiers(int modifiers) {
         this.modifiers = modifiers;
+    }
+
+    public static void main(String[] args) {
+
+       String s =  Modifier.toString(Modifier.PUBLIC | Modifier.STATIC );
+       System.out.println(s);
     }
 }
