@@ -1,5 +1,7 @@
 package com.zifang.util.zex.interview.demo2;
 
+import com.zifang.util.aop.ProxyUtil;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -15,15 +17,10 @@ public class Test {
     }
 
     public static void main(String[] args) {
-        IA ia = (IA)createObject(IA.class.getName()+"$getName=Abc");
-        System.out.println(ia.getName());
-        ia = (IA)createObject(IA.class.getName()+"$getName=Bcd");
-        System.out.println(ia.getName());
-
-        IB ib = (IB)createObject(IB.class.getName()+"$getIBName=Bcdss");
-        System.out.println(ib.getIBName());
-        ib = (IB)createObject(IB.class.getName()+"$getName=Bcd");
-        System.out.println(ib.getIBName());
-
+        IA ia = ProxyUtil.newProxyInstance((proxy, method, args1) -> {
+            System.out.println(method.getName());
+            return null;
+        },IA.class);
+        ia.getName();
     }
 }
