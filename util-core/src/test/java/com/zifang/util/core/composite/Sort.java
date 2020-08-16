@@ -14,12 +14,12 @@ public class Sort {
 
     private void print(List<Node> list , Node root,String padding) {
         System.out.println(padding+root.getName());
+
         // 得到这个节点的子节点
         List<Node> subNodes = list.stream().filter(e -> root.getId() == e.getParentId()).collect(Collectors.toList());
-        if(subNodes.size() != 0){
-            for(Node node : subNodes){
-                print(list,node,padding+" ");
-            }
+
+        for(Node node : subNodes){
+            print(list,node,padding+" ");
         }
     }
 

@@ -1,5 +1,8 @@
 package com.zifang.util.core.pattern.composite.leaf;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * 针对很多的叶子结点而组合成的 Tree模型
  * */
@@ -20,5 +23,22 @@ public class Tree {
             throw new RuntimeException("");
         }
         this.iLeaf = iLeaf;
+    }
+
+    public void bfsVisit() {
+        bfsV(iLeaf,"");
+    }
+
+    public void bfsV(ILeaf root, String str){
+
+        System.out.println(str+root.getName());
+
+        List<ILeaf> iLeaves = root.getSubLeaves();
+
+        if(iLeaves != null){
+            for(ILeaf iLeaf : iLeaves){
+                bfsV(iLeaf,str+" ");
+            }
+        }
     }
 }

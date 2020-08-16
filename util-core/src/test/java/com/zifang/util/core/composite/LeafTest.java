@@ -1,5 +1,6 @@
 package com.zifang.util.core.composite;
 
+import com.zifang.util.core.pattern.composite.leaf.ILeaf;
 import com.zifang.util.core.pattern.composite.leaf.LeafHelper;
 import com.zifang.util.core.pattern.composite.leaf.LeafWrapper;
 import com.zifang.util.core.pattern.composite.leaf.Tree;
@@ -7,31 +8,45 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LeafTest {
 
     @Test
     public void test(){
 
-        List<Node> nodes = getDataList();
+        List<Node> nodes = getDataList(); // 获得结点列表
 
-        List<LeafWrapper<Integer,Integer,Node>> leafWrappers = new ArrayList<>();
+        List<LeafWrapper<Integer,Integer,Node>> leafWrappers = nodes.stream()
+                .map(e -> LeafHelper.wrapper(e.getId(),e.getParentId(),e))
+                .collect(Collectors.toList()); // 转换结点
 
-        for(Node e : nodes){
-            LeafWrapper<Integer,Integer,Node> leafWrapper = LeafHelper.wrapper(e.getId(),e.getParentId(),e);
-            leafWrappers.add(leafWrapper);
-        }
-        Tree tree = LeafHelper.solveLeafWrapperList(leafWrappers);
+        ILeaf tree = LeafHelper.solveLeafWrapperList(leafWrappers); // 生成树 获得根结点
 
-        System.out.print(tree);
+        bfsVisit(tree,""); // 广度优先 特殊化，不好抽
 
     }
 
+    private void bfsVisit(ILeaf root,String str) {
 
+        System.out.println(str+root.getName());
+
+        List<ILeaf> iLeaves = root.getSubLeaves();
+
+        if(iLeaves != null){
+            for(ILeaf iLeaf : iLeaves){
+                bfsVisit(iLeaf,str+" ");
+            }
+        }
+    }
+
+    private List<LeafWrapper<Integer, Integer, Node>> getWrapperedNodeList(List<Node> nodes) {
+
+        return nodes.stream().map(e -> LeafHelper.wrapper(e.getId(),e.getParentId(),e)).collect(Collectors.toList());
+    }
 
     private  List<Node> getDataList() {
         List<Node> nodes  = new ArrayList<>();
-
         nodes.add(new Node(5,3,"EE"));
         nodes.add(new Node(8,4,"HH"));
         nodes.add(new Node(9,5,"II"));

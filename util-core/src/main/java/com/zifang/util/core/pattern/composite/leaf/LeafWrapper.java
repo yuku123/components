@@ -46,4 +46,9 @@ public class LeafWrapper<A,B,C> extends Triplet<A,B,C> implements ILeaf{
     public void setParent(ILeaf leaf) {
         parent = leaf;
     }
+
+    @Override
+    public String getName(){
+        return getBean().toString();
+    }
 }

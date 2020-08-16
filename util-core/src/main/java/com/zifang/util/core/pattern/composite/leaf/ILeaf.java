@@ -20,6 +20,9 @@ public interface ILeaf {
      * */
     ILeaf getParentLeaf();
 
+    /**
+     * 判定是否为根结点
+     * */
     default boolean isRoot(){
         return Objects.isNull(getParentLeaf());
     }
@@ -43,9 +46,8 @@ public interface ILeaf {
      * 描述当前这个树的情况
      * */
     default String decribe(){
-        return this.toString();
+        return this.toString(); // Todo
     }
-
 
     /**
      * 往叶子结点 增加子叶节点

@@ -61,7 +61,7 @@ public class LeafHelper {
     /**
      * 组织LeafWrapper的list,进行注入
      * */
-    public static <A,B,C> Tree solveLeafWrapperList(List<LeafWrapper<A,B,C>> leafWrappers){
+    public static <A,B,C> ILeaf solveLeafWrapperList(List<LeafWrapper<A,B,C>> leafWrappers){
         Map<A,LeafWrapper> leafWrapperMap = leafWrappers.stream()
                 .collect(Collectors.toMap(LeafWrapper::getA,LeafWrapper -> LeafWrapper));
 
@@ -77,6 +77,6 @@ public class LeafHelper {
 
         }
 
-        return new Tree(root);
+        return root;
     }
 }
