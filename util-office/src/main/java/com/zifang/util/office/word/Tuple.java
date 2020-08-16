@@ -1,4 +1,4 @@
-package com.zifang.util.poi.word;
+package com.zifang.util.office.word;
 
 public class Tuple<K,V> {
     private K key;

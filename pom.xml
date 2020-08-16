@@ -67,6 +67,7 @@
     <dependencyManagement>
 
         <dependencies>
+
             <dependency>
                 <groupId>com.zifang</groupId>
                 <artifactId>util-core</artifactId>
@@ -80,6 +81,89 @@
             <dependency>
                 <groupId>com.zifang</groupId>
                 <artifactId>util-cache</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-aop</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-ioc</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-io</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-rpc</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-monitor</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-json</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-math</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-ql</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-script</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-xml</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-source</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-web</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-pool</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-serializer</artifactId>
                 <version>${util.version}</version>
             </dependency>
 
@@ -216,6 +300,12 @@
             </dependency>
 
             <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>2.3</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.github.dozermapper</groupId>
                 <artifactId>dozer-core</artifactId>
                 <version>6.4.0</version>
@@ -240,15 +330,12 @@
                 <version>3.6.1</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/com.mebigfatguy/commons-beanutils2 -->
             <dependency>
                 <groupId>com.mebigfatguy</groupId>
                 <artifactId>commons-beanutils2</artifactId>
                 <version>1.9.9</version>
             </dependency>
 
-
-            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -267,7 +354,6 @@
                 <version>3.2.5</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
@@ -281,7 +367,6 @@
                 <scope>provided</scope>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.apache.thrift/libthrift -->
             <dependency>
                 <groupId>org.apache.thrift</groupId>
                 <artifactId>libthrift</artifactId>

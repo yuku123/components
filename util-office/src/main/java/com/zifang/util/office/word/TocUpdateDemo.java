@@ -1,9 +1,7 @@
-package com.zifang.util.poi.word;
+package com.zifang.util.office.word;
 
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.openpackaging.parts.WordprocessingML.MainDocumentPart;
-import org.docx4j.samples.AbstractSample;
-import org.docx4j.toc.Toc;
 import org.docx4j.toc.TocGenerator;
 
 public class TocUpdateDemo  {
