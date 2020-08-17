@@ -11,11 +11,6 @@
 
     <artifactId>util-core</artifactId>
 
-    <properties>
-        <file.encoding>UTF-8</file.encoding>
-        <groovy.version>2.3.6</groovy.version>
-    </properties>
-
     <dependencies>
 
         <!--lombok-->
@@ -50,6 +45,7 @@
             <groupId>com.zifang</groupId>
             <artifactId>util-cache</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>
