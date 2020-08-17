@@ -1,15 +1,15 @@
 package com.zifang.util.source.generator.info;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.experimental.Tolerate;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@Builder
+
 public class MethodInfo {
+
+    /**
+     * 方法的可见性
+     * */
+    private Integer modifier;
 
     /**
      * 返回参数类型
@@ -31,10 +31,6 @@ public class MethodInfo {
      * */
     private List<String> statements;
 
-    @Tolerate
-    public MethodInfo(){
-
-    }
 
     @Override
     public boolean equals(Object obj) {
@@ -54,11 +50,21 @@ public class MethodInfo {
     }
 
     /**
-     * 当前方法的
+     * 当前方法的标致号 不理会modifier
+     *
+     * String name(String cc, Double dd);
      * */
     public String signature(){
         return returnType+" "+methodName+"("+getParameterStr()+")"+";";
+    }
 
+    /**
+     * 当前方法的标致号 理会modifier
+     *
+     * public String name(String cc, Double dd);
+     * */
+    public String fullSignature(){
+        return returnType+" "+methodName+"("+getParameterStr()+")"+";";
     }
 
     private String getParameterStr(){
@@ -71,5 +77,45 @@ public class MethodInfo {
             }
             return String.join(",",sub);
         }
+    }
+
+    public Integer getModifier() {
+        return modifier;
+    }
+
+    public void setModifier(Integer modifier) {
+        this.modifier = modifier;
+    }
+
+    public String getReturnType() {
+        return returnType;
+    }
+
+    public void setReturnType(String returnType) {
+        this.returnType = returnType;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
+    }
+
+    public List<MethodParameterPair> getMethodParameterPairs() {
+        return methodParameterPairs;
+    }
+
+    public void setMethodParameterPairs(List<MethodParameterPair> methodParameterPairs) {
+        this.methodParameterPairs = methodParameterPairs;
+    }
+
+    public List<String> getStatements() {
+        return statements;
+    }
+
+    public void setStatements(List<String> statements) {
+        this.statements = statements;
     }
 }
