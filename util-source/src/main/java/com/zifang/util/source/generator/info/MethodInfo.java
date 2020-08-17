@@ -11,17 +11,25 @@ import java.util.List;
 @Builder
 public class MethodInfo {
 
-    // 返回参数类型
+    /**
+     * 返回参数类型
+     * */
     private String returnType;
 
-    // 方法名字
+    /**
+     * 方法名字
+     * */
     private String methodName;
 
-    // 形参列表
+    /**
+     * 形参列表
+     */
     private List<MethodParameterPair> methodParameterPairs = new ArrayList<>();
 
-    // 返回的字符串
-    private String returnStr;
+    /**
+     * 方法体的语句
+     * */
+    private List<String> statements;
 
     @Tolerate
     public MethodInfo(){
@@ -45,16 +53,15 @@ public class MethodInfo {
         return false;
     }
 
-    public void setReturnStr(String returnStr) {
-        this.returnStr = returnStr;
+    /**
+     * 当前方法的
+     * */
+    public String signature(){
+        return returnType+" "+methodName+"("+getParameterStr()+")"+";";
+
     }
 
-    @Override
-    public String toString(){
-        return returnType+" "+methodName+"("+toParameterString()+")"+";";
-    }
-
-    private String toParameterString(){
+    private String getParameterStr(){
         List<String> sub = new ArrayList<>();
         if(methodParameterPairs == null){
             return "";
