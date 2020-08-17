@@ -1,4 +1,4 @@
-package com.zifang.util.source;
+package com.zifang.util.source.compiler;
 
 import com.zifang.util.core.util.FileUtil;
 import com.zifang.util.source.compiler.CharSequenceJavaFileObject;

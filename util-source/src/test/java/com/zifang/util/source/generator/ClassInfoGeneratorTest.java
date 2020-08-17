@@ -3,6 +3,7 @@ package com.zifang.util.source.generator;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.comments.JavadocComment;
+import com.zifang.util.source.generator.info.ClassInfo;
 import com.zifang.util.source.generator.info.ModifierAdapter;
 import org.junit.Test;
 
@@ -35,6 +36,17 @@ public class ClassInfoGeneratorTest {
         compilationUnit.setPackageDeclaration("com.abc.def");
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addClass("AnyClassName");
         System.out.println(compilationUnit.toString());
+    }
 
+    @Test
+    public void test3(){
+        ClassInfo interfaceClassInfo = new ClassInfo(); // 接口
+        ClassInfo abstractClassInfo = new ClassInfo(); // 父类
+        ClassInfo classInfo = new ClassInfo(); // 主类
+
+        classInfo.setSuperClass(abstractClassInfo);
+        classInfo.appendInterfaces(interfaceClassInfo);
+
+        //classInfo.appendMethods();
     }
 }
