@@ -23,7 +23,7 @@ public class LeafTest {
 
         ILeaf tree = LeafHelper.solveLeafWrapperList(leafWrappers); // 生成树 获得根结点
 
-        bfsVisit(tree,""); // 广度优先 特殊化，不好抽
+        bfsVisit(tree,""); // 广度优先
 
     }
 

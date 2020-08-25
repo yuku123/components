@@ -43,7 +43,6 @@ public class PrimitiveUtil {
         }
     };
 
-
     /**
      * 判断是否是基本类型
      * */
