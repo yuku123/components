@@ -7,8 +7,8 @@ package com.zifang.util.core.util.helper;//package com.zifang.util.zex.helper;
 //import com.zifang.util.zex.util.ZIPUtil;
 ////import com.zifang.util.zex.util.algorithmImpl.FileImpl;
 //import com.zifang.util.zex.util.encrypt.Base64;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+//import org.slf4j.log;
+//import org.slf4j.logFactory;
 //
 //import javax.activation.MimetypesFileTypeMap;
 //import java.io.*;
@@ -25,7 +25,7 @@ package com.zifang.util.core.util.helper;//package com.zifang.util.zex.helper;
 // * 一些操作文件的便捷方法
 // */
 //public final class FileHelper {
-//    private static Logger logger = LoggerFactory.getLogger(FileHelper.class);
+//    private static log log = logFactory.getlog(FileHelper.class);
 //
 ////    /**
 ////     * 逐行处理
@@ -43,7 +43,7 @@ package com.zifang.util.core.util.helper;//package com.zifang.util.zex.helper;
 ////                handler.handler(line);
 ////            }
 ////        } catch (IOException e) {
-////            logger.error("handler error:" + e.getMessage());
+////            log.error("handler error:" + e.getMessage());
 ////            e.printStackTrace();
 ////        }
 ////    }
@@ -59,7 +59,7 @@ package com.zifang.util.core.util.helper;//package com.zifang.util.zex.helper;
 ////     */
 ////    public static <E> void processWithLine(File file, String encoding, Collection<E> result, ObjectProcess<String, E> process) {
 ////        if (result == null) {
-////            logger.info("receive collection is null");
+////            log.info("receive collection is null");
 ////            return;
 ////        }
 ////        try (
@@ -73,7 +73,7 @@ package com.zifang.util.core.util.helper;//package com.zifang.util.zex.helper;
 ////                }
 ////            }
 ////        } catch (IOException e) {
-////            logger.error("process error:" + e.getMessage());
+////            log.error("process error:" + e.getMessage());
 ////            e.printStackTrace();
 ////        }
 ////    }
@@ -352,7 +352,7 @@ package com.zifang.util.core.util.helper;//package com.zifang.util.zex.helper;
 //     */
 //    public static boolean copy(File resource, File target) throws IOException {
 //        if (resource == null) {
-//            logger.error("copy  resource is null");
+//            log.error("copy  resource is null");
 //            return false;
 //        }
 //        if (resource.isFile()) {
@@ -386,7 +386,7 @@ package com.zifang.util.core.util.helper;//package com.zifang.util.zex.helper;
 //     * @return 是否成功
 //     */
 //    public static boolean copyFile(File file, File targetFile) throws IOException {
-//        logger.debug("copy file resource:{} ,target:{}", file.getAbsolutePath(), targetFile.getAbsolutePath());
+//        log.debug("copy file resource:{} ,target:{}", file.getAbsolutePath(), targetFile.getAbsolutePath());
 //        int BUFFER_SIZE = 1024 * 1024;
 //        if (!targetFile.getParentFile().exists()) {
 //            targetFile.getParentFile().mkdirs();
@@ -677,7 +677,7 @@ package com.zifang.util.core.util.helper;//package com.zifang.util.zex.helper;
 //                    return file.createNewFile();
 //                }
 //            } catch (Exception e) {
-//                logger.error("create file exception :" + path + ",Exception" + e.getMessage());
+//                log.error("create file exception :" + path + ",Exception" + e.getMessage());
 //                e.printStackTrace();
 //            }
 //
@@ -723,7 +723,7 @@ package com.zifang.util.core.util.helper;//package com.zifang.util.zex.helper;
 //            }
 //            return hexValue.toString();
 //        } catch (Exception e) {
-//            logger.error("get filehash error" + e.getMessage());
+//            log.error("get filehash error" + e.getMessage());
 //            e.printStackTrace();
 //            return "";
 //        }

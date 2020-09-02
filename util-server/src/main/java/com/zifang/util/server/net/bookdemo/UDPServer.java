@@ -6,13 +6,13 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.log;
 
 public abstract class UDPServer implements Runnable {
 
 	private final int bufferSize; // in bytes
 	private final int port;
-	private final Logger logger = Logger.getLogger(UDPServer.class.getCanonicalName());
+	private final log log = log.getlog(UDPServer.class.getCanonicalName());
 	private volatile boolean isShutDown = false;
 
 	public UDPServer(int port, int bufferSize) {
@@ -40,11 +40,11 @@ public abstract class UDPServer implements Runnable {
 					if (isShutDown)
 						return;
 				} catch (IOException ex) {
-					logger.log(Level.WARNING, ex.getMessage(), ex);
+					log.log(Level.WARNING, ex.getMessage(), ex);
 				}
 			} // end while
 		} catch (SocketException ex) {
-			logger.log(Level.SEVERE, "Could not bind to port: " + port, ex);
+			log.log(Level.SEVERE, "Could not bind to port: " + port, ex);
 		}
 	}
 

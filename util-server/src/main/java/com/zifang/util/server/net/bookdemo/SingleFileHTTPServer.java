@@ -12,11 +12,11 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.log;
 
 public class SingleFileHTTPServer {
 
-	private static final Logger logger = Logger.getLogger("SingleFileHTTPServer");
+	private static final log log = log.getlog("SingleFileHTTPServer");
 
 	private final byte[] content;
 	private final byte[] header;
@@ -40,22 +40,22 @@ public class SingleFileHTTPServer {
 	public void start() {
 		ExecutorService pool = Executors.newFixedThreadPool(100);
 		try (ServerSocket server = new ServerSocket(this.port)) {
-			logger.info("Accepting connections on port " + server.getLocalPort());
-			logger.info("Data to be sent:");
-			logger.info(new String(this.content, encoding));
+			log.info("Accepting connections on port " + server.getLocalPort());
+			log.info("Data to be sent:");
+			log.info(new String(this.content, encoding));
 
 			while (true) {
 				try {
 					Socket connection = server.accept();
 					pool.submit(new HTTPHandler(connection));
 				} catch (IOException ex) {
-					logger.log(Level.WARNING, "Exception accepting connection", ex);
+					log.log(Level.WARNING, "Exception accepting connection", ex);
 				} catch (RuntimeException ex) {
-					logger.log(Level.SEVERE, "Unexpected error", ex);
+					log.log(Level.SEVERE, "Unexpected error", ex);
 				}
 			}
 		} catch (IOException ex) {
-			logger.log(Level.SEVERE, "Could not start server", ex);
+			log.log(Level.SEVERE, "Could not start server", ex);
 		}
 	}
 
@@ -86,7 +86,7 @@ public class SingleFileHTTPServer {
 				out.write(content);
 				out.flush();
 			} catch (IOException ex) {
-				logger.log(Level.WARNING, "Error writing to client", ex);
+				log.log(Level.WARNING, "Error writing to client", ex);
 			} finally {
 				connection.close();
 			}
@@ -121,7 +121,7 @@ public class SingleFileHTTPServer {
 		} catch (ArrayIndexOutOfBoundsException ex) {
 			System.out.println("Usage: java SingleFileHTTPServer filename port encoding");
 		} catch (IOException ex) {
-			logger.severe(ex.getMessage());
+			log.severe(ex.getMessage());
 		}
 	}
 }

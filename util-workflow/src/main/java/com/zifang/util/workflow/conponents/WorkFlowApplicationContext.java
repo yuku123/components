@@ -10,7 +10,7 @@ import com.zifang.util.workflow.engine.interfaces.AbstractEngineService;
 import com.zifang.util.workflow.engine.interfaces.EngineFactory;
 import com.zifang.util.workflow.engine.spark.CacheEngineService;
 import lombok.Data;
-import org.apache.log4j.Logger;
+import org.apache.log4j.log;
 
 import java.io.IOException;
 import java.util.*;
@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Data
 public class WorkFlowApplicationContext {
 
-    private static Logger logger = Logger.getLogger(WorkFlowApplicationContext.class);
+    private static log log = log.getlog(WorkFlowApplicationContext.class);
 
     private volatile AtomicInteger nodeId = new AtomicInteger(0);
 
@@ -69,7 +69,7 @@ public class WorkFlowApplicationContext {
             String json = FileUtil.getFileContent(filePath);
             workflowConfiguration = GsonUtil.jsonStrToObject(json,WorkflowConfiguration.class);
         } catch (IOException e) {
-            logger.error("解析文件出现问题:"+ this.filePath);
+            log.error("解析文件出现问题:"+ this.filePath);
             e.printStackTrace();
         }
         initial();

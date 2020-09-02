@@ -1,8 +1,8 @@
 //package com.zifang.util.core.util.helper;
 //
 //
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+//import org.slf4j.log;
+//import org.slf4j.logFactory;
 //
 //import java.io.*;
 //import java.util.Enumeration;
@@ -14,7 +14,7 @@
 // * 提供一些常用的属性文件相关的方法
 // */
 //public final class PropertiesUtil {
-//    public static Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
+//    public static log log = logFactory.getlog(PropertiesUtil.class);
 //
 //    /**
 //     * 从系统属性文件中获取相应的值
@@ -49,7 +49,7 @@
 //        try {
 //            pps.load(in);
 //        } catch (IOException e) {
-//            logger.error("load properties error:" + e.getMessage());
+//            log.error("load properties error:" + e.getMessage());
 //        }
 //        Enumeration en = pps.propertyNames();
 //        while (en.hasMoreElements()) {
@@ -72,7 +72,7 @@
 //        try (InputStream in = new BufferedInputStream(new FileInputStream(filePath))) {
 //            return properties(in);
 //        } catch (IOException e) {
-//            logger.error("load properties error");
+//            log.error("load properties error");
 //        }
 //        return map;
 //    }

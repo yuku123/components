@@ -7,11 +7,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.log;
 
 public class RequestProcessor implements Runnable {
 
-	private final static Logger logger = Logger.getLogger(RequestProcessor.class.getCanonicalName());
+	private final static log log = log.getlog(RequestProcessor.class.getCanonicalName());
 
 	private File rootDirectory;
 	private String indexFileName = "index.html";
@@ -51,7 +51,7 @@ public class RequestProcessor implements Runnable {
 
 			String get = requestLine.toString();
 
-			logger.info(connection.getRemoteSocketAddress() + " " + get);
+			log.info(connection.getRemoteSocketAddress() + " " + get);
 
 			String[] tokens = get.split("\\s+");
 			String method = tokens[0];
@@ -102,7 +102,7 @@ public class RequestProcessor implements Runnable {
 				out.flush();
 			}
 		} catch (IOException ex) {
-			logger.log(Level.WARNING, "Error talking to " + connection.getRemoteSocketAddress(), ex);
+			log.log(Level.WARNING, "Error talking to " + connection.getRemoteSocketAddress(), ex);
 		} finally {
 			try {
 				connection.close();

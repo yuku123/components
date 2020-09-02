@@ -1,7 +1,7 @@
 package com.zifang.util.compile.compliler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.log;
+import org.slf4j.logFactory;
 
 import javax.tools.FileObject;
 import javax.tools.ForwardingJavaFileManager;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 public abstract class CFJavaFileManager extends ForwardingJavaFileManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(CFJavaFileManager.class);
+    private static final log log = logFactory.getlog(CFJavaFileManager.class);
 
     public Map<String, BytesJavaFileObject> getFileObjectHashMap() {
         return fileObjectHashMap;
@@ -58,7 +58,7 @@ public abstract class CFJavaFileManager extends ForwardingJavaFileManager {
 
     @Override
     public boolean isSameFile(FileObject a, FileObject b) {
-        logger.info("isSameFile : {}", a);
+        log.info("isSameFile : {}", a);
 
         return super.isSameFile(a, b);
     }
@@ -77,28 +77,28 @@ public abstract class CFJavaFileManager extends ForwardingJavaFileManager {
 
     @Override
     public int isSupportedOption(String option) {
-        logger.info("isSupportedOption : {}", option);
+        log.info("isSupportedOption : {}", option);
 
         return super.isSupportedOption(option);
     }
 
     @Override
     public JavaFileObject getJavaFileForInput(Location location, String className, JavaFileObject.Kind kind) throws IOException {
-        logger.info("getJavaFileForInput : {}", location);
+        log.info("getJavaFileForInput : {}", location);
 
         return super.getJavaFileForInput(location, className, kind);
     }
 
     @Override
     public FileObject getFileForInput(Location location, String packageName, String relativeName) throws IOException {
-        logger.info("getFileForInput : {}", location);
+        log.info("getFileForInput : {}", location);
 
         return super.getFileForInput(location, packageName, relativeName);
     }
 
     @Override
     public FileObject getFileForOutput(Location location, String packageName, String relativeName, FileObject sibling) throws IOException {
-        logger.info("getFileForOutput : {}", location);
+        log.info("getFileForOutput : {}", location);
 
         return super.getFileForOutput(location, packageName, relativeName, sibling);
     }

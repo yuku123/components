@@ -10,13 +10,13 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.log;
 
 public class LoggingDaytimeServer {
 
 	public final static int PORT = 13;
-	private final static Logger auditLogger = Logger.getLogger("requests");
-	private final static Logger errorLogger = Logger.getLogger("errors");
+	private final static log auditlog = log.getlog("requests");
+	private final static log errorlog = log.getlog("errors");
 
 	public static void main(String[] args) {
 
@@ -29,15 +29,15 @@ public class LoggingDaytimeServer {
 					Callable<Void> task = new DaytimeTask(connection);
 					pool.submit(task);
 				} catch (IOException ex) {
-					errorLogger.log(Level.SEVERE, "accept error", ex);
+					errorlog.log(Level.SEVERE, "accept error", ex);
 				} catch (RuntimeException ex) {
-					errorLogger.log(Level.SEVERE, "unexpected error " + ex.getMessage(), ex);
+					errorlog.log(Level.SEVERE, "unexpected error " + ex.getMessage(), ex);
 				}
 			}
 		} catch (IOException ex) {
-			errorLogger.log(Level.SEVERE, "Couldn't start server", ex);
+			errorlog.log(Level.SEVERE, "Couldn't start server", ex);
 		} catch (RuntimeException ex) {
-			errorLogger.log(Level.SEVERE, "Couldn't start server: " + ex.getMessage(), ex);
+			errorlog.log(Level.SEVERE, "Couldn't start server: " + ex.getMessage(), ex);
 		}
 	}
 
@@ -54,7 +54,7 @@ public class LoggingDaytimeServer {
 			try {
 				Date now = new Date();
 				// write the log entry first in case the client disconnects
-				auditLogger.info(now + " " + connection.getRemoteSocketAddress());
+				auditlog.info(now + " " + connection.getRemoteSocketAddress());
 				Writer out = new OutputStreamWriter(connection.getOutputStream());
 				out.write(now.toString() + "\r\n");
 				out.flush();

@@ -2,8 +2,8 @@ package com.zifang.util.graph.image;
 
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.log;
+import org.slf4j.logFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,7 +13,7 @@ import java.io.File;
  * 图片比较
  */
 public final class ImageCompare {
-    private static Logger logger = LoggerFactory.getLogger(ImageCompare.class);
+    private static log log = logFactory.getlog(ImageCompare.class);
 
     /**
      * 改变成二进制码
@@ -127,7 +127,7 @@ public final class ImageCompare {
         if (busi == 0) {
             baifen = "100";
         }
-        logger.debug("相似像素数量：" + xiangsi + " 不相似像素数量：" + busi + " 相似率：" + Integer.parseInt(baifen) + "%");
+        log.debug("相似像素数量：" + xiangsi + " 不相似像素数量：" + busi + " 相似率：" + Integer.parseInt(baifen) + "%");
         return Integer.parseInt(baifen);
 
 

@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 public class test {
 
-    //public static final Logger logger = LoggerFactory.getLogger(test.class);
+    //public static final log log = logFactory.getlog(test.class);
 
     public static void main(String[] args) {
 

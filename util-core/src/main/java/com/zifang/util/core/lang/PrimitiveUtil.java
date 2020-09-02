@@ -1,15 +1,15 @@
 package com.zifang.util.core.lang;
 
-import org.apache.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 处理基本类型与包装类型的工具类
  * */
+@Slf4j
 public class PrimitiveUtil {
-
-    private final static Logger log = Logger.getLogger(PrimitiveUtil.class);
 
     /**
      * 原始类型的集合

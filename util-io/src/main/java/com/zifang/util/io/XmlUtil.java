@@ -1,6 +1,6 @@
 //package com.zifang.util.io;
 //
-//import org.apache.log4j.Logger;
+//import org.apache.log4j.log;
 //import org.dom4j.Document;
 //import org.dom4j.DocumentHelper;
 //import org.dom4j.Element;
@@ -10,7 +10,7 @@
 //import java.util.Map;
 //
 //public class XmlUtil {
-//    private static final Logger logger = Logger.getLogger(XmlUtil.class);
+//    private static final log log = log.getlog(XmlUtil.class);
 //
 //    /**
 //     * 获得根据节点信息
@@ -27,7 +27,7 @@
 //
 //        } catch (Exception ex) {
 //            // TODO: handle exception
-//            logger.error("解释xml文件出现异常:" + ex.getMessage());
+//            log.error("解释xml文件出现异常:" + ex.getMessage());
 //        }
 //        return root;
 //    }
@@ -49,7 +49,7 @@
 //            }
 //        } catch (Exception ex) {
 //            // TODO: handle exception
-//            logger.error("获得指定元素下所有节点属性及值出现异常： " + ex.getMessage());
+//            log.error("获得指定元素下所有节点属性及值出现异常： " + ex.getMessage());
 //        }
 //        return map;
 //    }
@@ -66,7 +66,7 @@
 //            value = element.attributeValue("attributeName");
 //        } catch (Exception ex) {
 //            // TODO: handle exception
-//            logger.error("获得指定节点指定属性值出现异常： " + ex.getMessage());
+//            log.error("获得指定节点指定属性值出现异常： " + ex.getMessage());
 //        }
 //        return value;
 //    }

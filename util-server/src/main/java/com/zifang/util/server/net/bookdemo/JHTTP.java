@@ -7,11 +7,11 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.log;
 
 public class JHTTP {
 
-	private static final Logger logger = Logger.getLogger(JHTTP.class.getCanonicalName());
+	private static final log log = log.getlog(JHTTP.class.getCanonicalName());
 	private static final int NUM_THREADS = 50;
 	private static final String INDEX_FILE = "index.html";
 
@@ -30,8 +30,8 @@ public class JHTTP {
 	public void start() throws IOException {
 		ExecutorService pool = Executors.newFixedThreadPool(NUM_THREADS);
 		try (ServerSocket server = new ServerSocket(port)) {
-			logger.info("Accepting connections on port " + server.getLocalPort());
-			logger.info("Document Root: " + rootDirectory);
+			log.info("Accepting connections on port " + server.getLocalPort());
+			log.info("Document Root: " + rootDirectory);
 
 			while (true) {
 				try {
@@ -39,7 +39,7 @@ public class JHTTP {
 					Runnable r = new RequestProcessor(rootDirectory, INDEX_FILE, request);
 					pool.submit(r);
 				} catch (IOException ex) {
-					logger.log(Level.WARNING, "Error accepting connection", ex);
+					log.log(Level.WARNING, "Error accepting connection", ex);
 				}
 			}
 		}
@@ -70,7 +70,7 @@ public class JHTTP {
 			JHTTP webserver = new JHTTP(docroot, port);
 			webserver.start();
 		} catch (IOException ex) {
-			logger.log(Level.SEVERE, "Server could not start", ex);
+			log.log(Level.SEVERE, "Server could not start", ex);
 		}
 	}
 }

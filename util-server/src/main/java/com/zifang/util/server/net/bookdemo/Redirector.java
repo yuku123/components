@@ -7,11 +7,11 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.log;
 
 public class Redirector {
 
-	private static final Logger logger = Logger.getLogger("Redirector");
+	private static final log log = log.getlog("Redirector");
 
 	private final int port;
 	private final String newSite;
@@ -23,7 +23,7 @@ public class Redirector {
 
 	public void start() {
 		try (ServerSocket server = new ServerSocket(port)) {
-			logger.info("Redirecting connections on port " + server.getLocalPort() + " to " + newSite);
+			log.info("Redirecting connections on port " + server.getLocalPort() + " to " + newSite);
 
 			while (true) {
 				try {
@@ -31,15 +31,15 @@ public class Redirector {
 					Thread t = new RedirectThread(s);
 					t.start();
 				} catch (IOException ex) {
-					logger.warning("Exception accepting connection");
+					log.warning("Exception accepting connection");
 				} catch (RuntimeException ex) {
-					logger.log(Level.SEVERE, "Unexpected error", ex);
+					log.log(Level.SEVERE, "Unexpected error", ex);
 				}
 			}
 		} catch (BindException ex) {
-			logger.log(Level.SEVERE, "Could not start server.", ex);
+			log.log(Level.SEVERE, "Could not start server.", ex);
 		} catch (IOException ex) {
-			logger.log(Level.SEVERE, "Error opening server socket", ex);
+			log.log(Level.SEVERE, "Error opening server socket", ex);
 		}
 	}
 
@@ -87,9 +87,9 @@ public class Redirector {
 						+ newSite + theFile + "</A>.\r\n Please update your bookmarks<P>");
 				out.write("</BODY></HTML>\r\n");
 				out.flush();
-				logger.log(Level.INFO, "Redirected " + connection.getRemoteSocketAddress());
+				log.log(Level.INFO, "Redirected " + connection.getRemoteSocketAddress());
 			} catch (IOException ex) {
-				logger.log(Level.WARNING, "Error talking to " + connection.getRemoteSocketAddress(), ex);
+				log.log(Level.WARNING, "Error talking to " + connection.getRemoteSocketAddress(), ex);
 			} finally {
 				try {
 					connection.close();

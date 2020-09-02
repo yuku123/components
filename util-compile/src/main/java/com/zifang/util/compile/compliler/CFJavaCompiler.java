@@ -2,8 +2,8 @@ package com.zifang.util.compile.compliler;
 
 
 import com.google.common.collect.Maps;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.log;
+import org.slf4j.logFactory;
 
 import javax.tools.*;
 import java.io.StringWriter;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class CFJavaCompiler {
 
-    private static final Logger logger = LoggerFactory.getLogger(CFJavaCompiler.class);
+    private static final log log = logFactory.getlog(CFJavaCompiler.class);
 
     /**
      * 将javaCode 编译成为类
@@ -46,14 +46,14 @@ public class CFJavaCompiler {
             return fileManager.getFileObjectHashMap();
         } else {
 
-            logger.info(javaCode);
+            log.info(javaCode);
 
             //如果想得到具体的编译错误，可以对Diagnostics进行扫描
             StringBuilder error = new StringBuilder();
             for (Diagnostic diagnostic : diagnostics.getDiagnostics()) {
                 error.append(compilePrint(diagnostic));
             }
-            logger.error("编译失败. \noutWriter:{} \ndiagnostics info:{}", outWriter.toString(), error.toString());
+            log.error("编译失败. \noutWriter:{} \ndiagnostics info:{}", outWriter.toString(), error.toString());
         }
 
         return Maps.newHashMapWithExpectedSize(0);

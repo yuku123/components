@@ -1,8 +1,8 @@
 //package com.zifang.util.core.util.helper;
 //
 //
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+//import org.slf4j.log;
+//import org.slf4j.logFactory;
 //
 //import java.util.*;
 //
@@ -10,7 +10,7 @@
 // * 集合对象的一些助手工具类
 // */
 //public final class CollectionHelper {
-//    private static Logger logger = LoggerFactory.getLogger(CollectionHelper.class);
+//    private static log log = logFactory.getlog(CollectionHelper.class);
 //
 //    /**
 //     * 去除重复元素
@@ -21,7 +21,7 @@
 //     */
 //    public static <T> List<T> removeDuplicate(List<T> list) {
 //        if (list == null || list.size() == 0) {
-//            logger.error("list is empty or is null");
+//            log.error("list is empty or is null");
 //            return new ArrayList<>();
 //        }
 //        return new ArrayList<>(new HashSet<>(list));

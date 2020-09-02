@@ -332,7 +332,7 @@
 //        try {
 //            theClass = Class.forName(className);
 //        } catch (ClassNotFoundException e1) {
-//            logger.error("load class error:" + e1.getMessage());
+//            log.error("load class error:" + e1.getMessage());
 //            e1.printStackTrace();
 //        }
 //        return theClass;

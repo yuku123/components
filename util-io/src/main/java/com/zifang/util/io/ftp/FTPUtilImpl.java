@@ -5,8 +5,8 @@
 //import org.apache.commons.net.ftp.FTPClient;
 //import org.apache.commons.net.ftp.FTPFile;
 //import org.apache.commons.net.ftp.FTPReply;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+//import org.slf4j.log;
+//import org.slf4j.logFactory;
 //
 //import java.io.*;
 //import java.nio.charset.StandardCharsets;
@@ -18,7 +18,7 @@
 // * FTP工具类的实现
 // */
 //public class FTPUtilImpl implements FTPUtil {
-//    private Logger logger = LoggerFactory.getLogger(FTPUtilImpl.class);
+//    private log log = logFactory.getlog(FTPUtilImpl.class);
 //    private FTPClient client;
 //    private FTPVo vo;
 //
@@ -67,7 +67,7 @@
 //        log.setRemoteFile("");
 //        log.setReplyCode(replyCode);
 //        log.setReplyCodeDesc(FTPConstant.REPLYCODE.get(replyCode));
-//        logger.info(JacksonUtil.toJson(log));
+//        log.info(JacksonUtil.toJson(log));
 //        return FTPReply.isPositiveCompletion(replyCode);
 //    }
 //
@@ -80,7 +80,7 @@
 //        log.setRemoteFile(remoteFile);
 //        log.setReplyCode(replyCode);
 //        log.setReplyCodeDesc(FTPConstant.REPLYCODE.get(replyCode));
-//        logger.info(JacksonUtil.toJson(log));
+//        log.info(JacksonUtil.toJson(log));
 //        return FTPReply.isPositiveCompletion(replyCode);
 //    }
 //

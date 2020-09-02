@@ -5,8 +5,8 @@
 //import com.fasterxml.jackson.databind.JsonSerializer;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.fasterxml.jackson.databind.SerializerProvider;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+//import org.slf4j.log;
+//import org.slf4j.logFactory;
 //
 //import java.io.IOException;
 //import java.io.StringWriter;
@@ -15,7 +15,7 @@
 // * 基于Jackson的JSON工具
 // */
 //public class JacksonUtil {
-//    private static Logger logger = LoggerFactory.getLogger(JacksonUtil.class);
+//    private static log log = logFactory.getlog(JacksonUtil.class);
 //
 //    private static ObjectMapper mapper = new ObjectMapper();
 //
@@ -79,7 +79,7 @@
 //        try {
 //            object = mapper.readValue(json, clazz);
 //        } catch (Exception e) {
-//            logger.error("JSON String Can't covert to Java Object!");
+//            log.error("JSON String Can't covert to Java Object!");
 //        }
 //        return object;
 //    }
