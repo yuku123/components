@@ -2,8 +2,8 @@ package com.zifang.util.graph.image;
 
 
 
-import org.slf4j.log;
-import org.slf4j.logFactory;
+import lombok.extern.slf4j.Slf4j;
+
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -12,8 +12,9 @@ import java.io.File;
 /**
  * 图片比较
  */
+
+@Slf4j
 public final class ImageCompare {
-    private static log log = logFactory.getlog(ImageCompare.class);
 
     /**
      * 改变成二进制码

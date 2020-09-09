@@ -46,7 +46,8 @@ public class ThumbnailatorDmo {
      */
     private static void generateFixedSizeImage(){
         try {
-            Thumbnails.of("data/meinv.jpg").size(80,80).toFile("data/newmeinv.jpg");
+            Thumbnails.of("data/meinv.jpg")
+                    .size(80,80).toFile("data/newmeinv.jpg");
         } catch (IOException e) {
             System.out.println("原因: " + e.getMessage());
         }

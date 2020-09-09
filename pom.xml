@@ -61,6 +61,7 @@
         <module>util-serializer</module>
         <module>util-bpmn</module>
         <module>util-video</module>
+        <module>util-pdf</module>
 
     </modules>
 
