@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class CreatePdfTest {
     public static void main(String[] args) throws IOException {
@@ -21,6 +22,7 @@ public class CreatePdfTest {
         PDDocument document = new PDDocument();
 
         List<File> fileList = Arrays.asList(new File(imageFolder).listFiles());
+        fileList = fileList.stream().filter(e->!e.getName().startsWith(".")).collect(Collectors.toList());
         fileList.sort(Comparator.naturalOrder());
         for(File image : fileList){
 
