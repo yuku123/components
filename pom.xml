@@ -62,6 +62,7 @@
         <module>util-bpmn</module>
         <module>util-video</module>
         <module>util-pdf</module>
+        <module>util-github</module>
 
     </modules>
 
