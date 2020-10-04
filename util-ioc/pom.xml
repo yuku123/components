@@ -28,8 +28,11 @@
             <artifactId>guice</artifactId>
         </dependency>
 
-
-
+        <!--测试-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
 
     </dependencies>
 
