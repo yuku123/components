@@ -8,6 +8,9 @@ import java.util.Iterator;
 import java.util.List;
 
 
+/**
+ * @author zifang
+ */
 public class JsonArray implements Iterable {
 
     private List list = new ArrayList();

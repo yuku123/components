@@ -10,6 +10,9 @@ import org.apache.spark.sql.types.StructField;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author zifang
+ */
 public class PivotTest {
     public static void main(String[] args) {
         SparkContextInstance sparkContextInstance = new SparkContextInstance();

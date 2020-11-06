@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * @author zifang
+ */
 public class JsonObject {
 
     private Map<String, Object> map = new HashMap<String, Object>();

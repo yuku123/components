@@ -9,6 +9,9 @@ import org.apache.spark.sql.Row;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * @author zifang
+ */
 public class ApplyTest {
     public static void main(String[] args) {
         ClusterSparkContext clusterSparkContext = new ClusterSparkContext();

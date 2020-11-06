@@ -8,6 +8,9 @@ import com.zifang.util.json.tokenizer.TokenList;
 import com.zifang.util.json.tokenizer.TokenType;
 
 
+/**
+ * @author zifang
+ */
 public class Parser {
 
     private static final int BEGIN_OBJECT_TOKEN = 1;
@@ -53,13 +56,15 @@ public class Parser {
             switch (tokenType) {
             case BEGIN_OBJECT:
                 checkExpectToken(tokenType, expectToken);
-                jsonObject.put(key, parseJsonObject());    // 递归解析 json object
+                // 递归解析 json object
+                jsonObject.put(key, parseJsonObject());
                 expectToken = SEP_COMMA_TOKEN | END_OBJECT_TOKEN;
                 break;
             case END_OBJECT:
                 checkExpectToken(tokenType, expectToken);
                 return jsonObject;
-            case BEGIN_ARRAY:    // 解析 json array
+                // 解析 json array
+            case BEGIN_ARRAY:
                 checkExpectToken(tokenType, expectToken);
                 jsonObject.put(key, parseJsonArray());
                 expectToken = SEP_COMMA_TOKEN | END_OBJECT_TOKEN;

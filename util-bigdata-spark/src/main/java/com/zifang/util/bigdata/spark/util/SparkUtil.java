@@ -11,6 +11,9 @@ import org.apache.spark.sql.types.StructField;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author zifang
+ */
 public class SparkUtil {
 
     private SparkContextInstance sparkContextInstance;
