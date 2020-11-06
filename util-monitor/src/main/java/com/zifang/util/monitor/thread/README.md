@@ -31,16 +31,3 @@ monitorableexecutor旨在解决JVM内线程池健康状况难以监控的问题�
 其次，目前没有支持丰富的告警策略以及告警服务，需要使用monitorableexecutor的开发者自行去完善这部分功能。
 
 最后，monitorableexecutor目前仅能用于监控单JVM内的线程池，不支持多JVM环境下的监控。
-
-##有问题反馈
-如果有任何意见和建议，请联系我：
-
-* 邮件(jlee381344197#gmail.com, 把#换成@)
-* QQ: 381344197
-* github博客：http://leesir.github.io/
-
-***
-
-##License
-
-See the LICENSE.md file for license rights and limitations (MIT).
