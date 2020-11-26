@@ -63,6 +63,7 @@
         <module>util-video</module>
         <module>util-pdf</module>
         <module>util-github</module>
+        <module>util-distribute</module>
 
     </modules>
 
