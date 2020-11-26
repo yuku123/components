@@ -6,6 +6,8 @@ import java.lang.annotation.Inherited;
 
 /**
  * 注解的验证类，包含多个判断的逻辑
+ *
+ * @author zifang
  * */
 public class AnnotationCheker {
 

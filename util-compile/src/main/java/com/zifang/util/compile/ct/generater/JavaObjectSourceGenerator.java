@@ -5,9 +5,9 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
-import com.zifang.util.core.lang.classinfo.ClassInfo;
-import com.zifang.util.core.lang.classinfo.FieldInfo;
-import com.zifang.util.core.lang.classinfo.MethodInfo;
+import com.zifang.util.core.beans.classinfo.ClassInfo;
+import com.zifang.util.core.beans.classinfo.FieldInfo;
+import com.zifang.util.core.beans.classinfo.MethodInfo;
 import com.zifang.util.core.lang.object.component.*;
 
 import java.util.Optional;

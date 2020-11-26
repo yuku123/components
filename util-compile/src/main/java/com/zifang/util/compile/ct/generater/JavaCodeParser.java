@@ -11,10 +11,10 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.SimpleName;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
-import com.zifang.util.core.lang.classinfo.ClassInfo;
-import com.zifang.util.core.lang.classinfo.FieldInfo;
-import com.zifang.util.core.lang.classinfo.MethodInfo;
-import com.zifang.util.core.lang.classinfo.MethodParameterPair;
+import com.zifang.util.core.beans.classinfo.ClassInfo;
+import com.zifang.util.core.beans.classinfo.FieldInfo;
+import com.zifang.util.core.beans.classinfo.MethodInfo;
+import com.zifang.util.core.beans.classinfo.MethodParameterPair;
 import com.zifang.util.core.lang.object.component.*;
 
 import java.util.ArrayList;

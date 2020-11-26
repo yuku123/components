@@ -6,6 +6,9 @@ import com.zifang.util.core.util.ClassUtil;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 
+/**
+ * @author zifang
+ */
 public class AnnotationParser {
 
 	protected final Annotation defaultAnnotation;

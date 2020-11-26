@@ -2,6 +2,9 @@ package com.zifang.util.core.collections;
 
 import java.util.Map;
 
+/**
+ * @author zifang
+ */
 public class MapEntry<K,V> implements Map.Entry<K,V> {
 
     private K key;
@@ -52,9 +55,4 @@ public class MapEntry<K,V> implements Map.Entry<K,V> {
     public int hashCode() {
         return ((key == null) ? 0 : key.hashCode()) ^ ((value == null) ? 0 : value.hashCode());
     }
-
-    public static void main(String[] args) {
-        System.out.println(""+null+null);
-    }
-
 }

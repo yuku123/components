@@ -1,11 +1,13 @@
 package com.zifang.util.core.pattern.memento;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * 备忘录的上下文
+ *
+ * @author zifang
+ *
  * */
 public class MementoContext<T> {
 

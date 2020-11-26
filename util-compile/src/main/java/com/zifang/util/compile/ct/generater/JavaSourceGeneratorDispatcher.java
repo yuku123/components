@@ -1,7 +1,7 @@
 package com.zifang.util.compile.ct.generater;
 
 
-import com.zifang.util.core.lang.classinfo.ClassInfo;
+import com.zifang.util.core.beans.classinfo.ClassInfo;
 
 /**
  * 标准化 java类信息配置(网状结构的类信息承载体) -> 生成真正的java代码

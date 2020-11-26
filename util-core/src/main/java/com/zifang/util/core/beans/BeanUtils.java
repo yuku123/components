@@ -12,6 +12,9 @@ import java.util.Map;
 
 /**
  * 提供Bean的相关操作
+ *
+ * @author zifang
+ *
  * */
 public class BeanUtils {
 
