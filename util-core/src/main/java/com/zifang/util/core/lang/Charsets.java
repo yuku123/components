@@ -1,5 +1,6 @@
-package com.zifang.util.core.util.helper;
+package com.zifang.util.core.lang;
 
+import com.zifang.util.core.GlobalConstance;
 import com.zifang.util.core.util.StringUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -11,56 +12,56 @@ import java.nio.charset.StandardCharsets;
  * Description:
  * 编码相关的封装类
  */
-public final class CharsetUtil {
+public final class Charsets {
 
 
     /**
      * 将字符编码转换成US-ASCII码
      */
     public final static String toASCII(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, Opslab.US_ASCII);
+        return changeCharset(str, GlobalConstance.US_ASCII);
     }
 
     /**
      * 将字符编码转换成ISO-8859-1码
      */
     public final static String toISO_8859_1(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, Opslab.ISO_8859_1);
+        return changeCharset(str, GlobalConstance.ISO_8859_1);
     }
 
     /**
      * 将字符编码转换成UTF-8码
      */
     public static String toUTF_8(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, Opslab.UTF_8);
+        return changeCharset(str, GlobalConstance.UTF_8);
     }
 
     /**
      * 将字符编码转换成UTF-16BE码
      */
     public final static String toUTF_16BE(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, Opslab.UTF_16BE);
+        return changeCharset(str, GlobalConstance.UTF_16BE);
     }
 
     /**
      * 将字符编码转换成UTF-16LE码
      */
     public final static String toUTF_16LE(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, Opslab.UTF_16LE);
+        return changeCharset(str, GlobalConstance.UTF_16LE);
     }
 
     /**
      * 将字符编码转换成UTF-16码
      */
     public final static String toUTF_16(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, Opslab.UTF_16);
+        return changeCharset(str, GlobalConstance.UTF_16);
     }
 
     /**
      * 将字符编码转换成GBK码
      */
     public final static String toGBK(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, Opslab.GBK);
+        return changeCharset(str, GlobalConstance.GBK);
     }
 
     /**
@@ -118,7 +119,7 @@ public final class CharsetUtil {
             return "";
         } else {
             String s1;
-            s1 = new String(input.getBytes(StandardCharsets.ISO_8859_1), Opslab.GBK);
+            s1 = new String(input.getBytes(StandardCharsets.ISO_8859_1), GlobalConstance.GBK);
             return s1;
         }
     }
@@ -134,7 +135,7 @@ public final class CharsetUtil {
             return "";
         } else {
             String s1;
-            s1 = new String(input.getBytes(Opslab.GBK), StandardCharsets.ISO_8859_1);
+            s1 = new String(input.getBytes(GlobalConstance.GBK), StandardCharsets.ISO_8859_1);
             return s1;
         }
     }
