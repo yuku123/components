@@ -16,6 +16,17 @@ import java.lang.reflect.Method;
  */
 public class AnnotationUtil {
 
+	public static ElementType[] defaultElementTypes = new ElementType[]{
+			ElementType.TYPE,
+			ElementType.FIELD,
+			ElementType.METHOD,
+			ElementType.PARAMETER,
+			ElementType.CONSTRUCTOR,
+			ElementType.LOCAL_VARIABLE,
+			ElementType.ANNOTATION_TYPE,
+			ElementType.PACKAGE
+	};
+
 	/**
 	 * 将指定的被注解的元素转换为组合注解元素
 	 *
@@ -92,42 +103,6 @@ public class AnnotationUtil {
 		return null;
 	}
 
-//	/**
-//	 * 获取指定注解中所有属性值<br>
-//	 * 如果无指定的属性方法返回null
-//	 *
-//	 * @param annotationEle  {@link AnnotatedElement}，可以是Class、Method、Field、Constructor、ReflectPermission
-//	 * @param annotationType 注解类型
-//	 * @return 注解对象
-//	 * @throws UtilException 调用注解中的方法时执行异常
-//	 */
-//	public static Map<String, Object> getAnnotationValueMap(AnnotatedElement annotationEle, Class<? extends Annotation> annotationType) throws UtilException {
-//		final Annotation annotation = getAnnotation(annotationEle, annotationType);
-//		if (null == annotation) {
-//			return null;
-//		}
-//
-//		final Method[] methods = ReflectUtil.getMethods(annotationType, new Filter<Method>() {
-//			@Override
-//			public boolean accept(Method t) {
-//				if (ArrayUtil.isEmpty(t.getParameterTypes())) {
-//					// 只读取无参方法
-//					final String name = t.getName();
-//					// 跳过自有的几个方法
-//					return (false == "hashCode".equals(name)) //
-//							&& (false == "toString".equals(name)) //
-//							&& (false == "annotationType".equals(name));
-//				}
-//				return false;
-//			}
-//		});
-//
-//		final HashMap<String, Object> result = new HashMap<>(methods.length, 1);
-//		for (Method method : methods) {
-//			result.put(method.getName(), ReflectUtil.invoke(annotation, method));
-//		}
-//		return result;
-//	}
 
 	/**
 	 * 获取注解类的保留时间，可选值 SOURCE（源码时），CLASS（编译时），RUNTIME（运行时），默认为 CLASS
@@ -146,21 +121,15 @@ public class AnnotationUtil {
 	/**
 	 * 获取注解类可以用来修饰哪些程序元素，如 TYPE, METHOD, CONSTRUCTOR, FIELD, PARAMETER 等
 	 *
+	 * 当没有标记target的场合，默认都修饰
+	 *
 	 * @param annotationType 注解类
 	 * @return 注解修饰的程序元素数组
 	 */
 	public static ElementType[] getTargetType(Class<? extends Annotation> annotationType) {
 		final Target target = annotationType.getAnnotation(Target.class);
 		if (null == target) {
-			return new ElementType[]{ElementType.TYPE, //
-					ElementType.FIELD, //
-					ElementType.METHOD, //
-					ElementType.PARAMETER, //
-					ElementType.CONSTRUCTOR, //
-					ElementType.LOCAL_VARIABLE, //
-					ElementType.ANNOTATION_TYPE, //
-					ElementType.PACKAGE//
-			};
+			return defaultElementTypes;
 		}
 		return target.value();
 	}

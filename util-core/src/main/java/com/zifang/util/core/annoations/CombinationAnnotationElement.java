@@ -12,19 +12,22 @@ import java.util.*;
  * 核心实现使用了递归获取指定元素上的注解以及注解的注解，以实现复合注解的获取。
  *
  * 这个类提供了可以被解析的类型 的递归 全解析过程
- **/
+ *
+ * @author zifang
+ * */
 
 public class CombinationAnnotationElement implements AnnotatedElement, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** 元注解 */
-	private static final Set<Class<? extends Annotation>> META_ANNOTATIONS = Sets.newHashSet(Target.class, //
-			Retention.class, //
-			Inherited.class, //
-			Documented.class, //
-			SuppressWarnings.class, //
-			Override.class, //
-			Deprecated.class//
+	private static final Set<Class<? extends Annotation>> META_ANNOTATIONS = Sets.newHashSet(
+			Target.class,
+			Retention.class,
+			Inherited.class,
+			Documented.class,
+			SuppressWarnings.class,
+			Override.class,
+			Deprecated.class
 	);
 
 	/** 注解类型与注解对象对应表 */

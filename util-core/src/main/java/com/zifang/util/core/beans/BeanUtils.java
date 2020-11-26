@@ -20,6 +20,8 @@ public class BeanUtils {
 
     /**
      * 检测传入的Object是否为标准的Bean
+     *
+     * 规则:
      * */
     public static <T> boolean isBean(T bean){
         if (ClassUtil.isNormalClass(bean.getClass())) {

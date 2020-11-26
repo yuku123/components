@@ -28,22 +28,22 @@ public class ClassInfo{
     /**
      * 接口集合
      * */
-    private List<ClassInfo> interfaces = new ArrayList<>(); // 默认为空
+    private List<ClassInfo> interfaces = new ArrayList<>();
 
     /**
      * 类的域集合
      * */
-    private List<FieldInfo> fields = new ArrayList<>(); // 默认为空
+    private List<FieldInfo> fields = new ArrayList<>();
 
     /**
      * 类的所有方法
      * */
-    private List<MethodInfo> methods = new ArrayList<>(); // 默认为空
+    private List<MethodInfo> methods = new ArrayList<>();
 
     /**
      * 导入类
      * */
-    private List<ClassInfo> imports = new ArrayList<>(); // 默认为空;
+    private List<ClassInfo> imports = new ArrayList<>();
 
     /**
      * 标记当前类是否为接口 // 默认为简单class
@@ -83,7 +83,6 @@ public class ClassInfo{
             methods.addAll(methodInfosFromInterface);
         }
     }
-
 
     public String getSimpleClassName() {
         return simpleClassName;
