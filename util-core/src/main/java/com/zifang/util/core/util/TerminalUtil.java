@@ -82,13 +82,9 @@ public class TerminalUtil {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
-            sb.append(line+"\n");
-            System.out.println(line+"\n");
+            sb.append(line + "\n");
+            System.out.println(line + "\n");
         }
         return sb.toString();
-    }
-
-    public static void main(String[] args) throws IOException {
-        System.out.println(TerminalUtil.runAndGetReturn("python3 /home/zifang/workplace/idea_workplace/aa.py 1 2"));
     }
 }
