@@ -37,8 +37,9 @@ public class BinarySaver {
 			int offset = 0;
 			while (offset < contentLength) {
 				int bytesRead = in.read(data, offset, data.length - offset);
-				if (bytesRead == -1)
+				if (bytesRead == -1) {
 					break;
+				}
 				offset += bytesRead;
 			}
 

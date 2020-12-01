@@ -22,8 +22,16 @@ public class BeanUtils {
      * 检测传入的Object是否为标准的Bean
      *
      * 规则:
+     *
+     * 1. Bean 应该具有默认构造函数（无参数）。
+     * 2. Bean 应该提供 getter 和 setter 方法。
+     * 3. 使用 getter 方法读取可读属性的值。
+     * 4. Bean 应该实现 java.io.serializable
+     *
      * */
     public static <T> boolean isBean(T bean){
+
+        // @todo
         if (ClassUtil.isNormalClass(bean.getClass())) {
             final Method[] methods = bean.getClass().getMethods();
             for (Method method : methods) {

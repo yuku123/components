@@ -1,19 +1,25 @@
 package com.zifang.util.core.beans;
 
-import com.zifang.util.core.util.GsonUtil;
+import lombok.Data;
+import org.junit.Assert;
 import org.junit.Test;
 
-import java.beans.*;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 public class BeanUtilsTest {
 
     @Test
-    public void tes1() throws Exception {
-        Map<String,Object> map= new HashMap();
+    public void isBeanTest(){
+        Assert.assertFalse(BeanUtils.isBean(new IsBeanTest1()));
+        Assert.assertTrue(BeanUtils.isBean(new IsBeanTest2()));
+        Assert.assertTrue(BeanUtils.isBean(new IsBeanTest3()));
+        Assert.assertTrue(BeanUtils.isBean(new IsBeanTest4()));
+    }
+
+    @Test
+    public void mapToBeanTest() throws Exception {
+        Map<String,Object> map= new HashMap<>();
         map.put("baseByteType",(byte)1);
         map.put("baseCharType",'c');
         map.put("baseIntType",2);
@@ -28,77 +34,70 @@ public class BeanUtilsTest {
         map.put("doubleWapperType",new Double(22.22d));
         map.put("stringType","s");
         Person person = BeanUtils.mapToBean(Person.class,map);
-        System.out.println(GsonUtil.objectToJsonStr(person));
-        System.out.println(GsonUtil.objectToJsonStr(BeanUtils.beanToMap(person)));
+        Assert.assertEquals((byte)1,person.getBaseByteType());
+        Assert.assertEquals('c',person.getBaseCharType());
+        Assert.assertEquals(2,person.getBaseIntType());
+        Assert.assertEquals(3L,person.getBaseLongType());
+        Assert.assertEquals("message",1.2f,person.getBaseFloatType(),0.01);
+        Assert.assertEquals("message",1.4d,person.getBaseDoubleType(),0.01);
+        Assert.assertEquals(new Byte("9"),person.getByteWapperType());
+        Assert.assertEquals(new Character('c'),person.getCharWapperType());
+        Assert.assertEquals(new Integer("11"),person.getIntWapperType());
+        Assert.assertEquals(new Long("12"),person.getLongWapperType());
+        Assert.assertEquals(new Float("9.1"),person.getFloatWapperType());
+        Assert.assertEquals(new Double(22.22d),person.getDoubleWapperType());
+        Assert.assertEquals("s",person.getStringType());
+    }
+}
 
+
+@Data
+class Person {
+
+    private byte baseByteType;
+    private char baseCharType;
+    private int baseIntType;
+    private long baseLongType;
+    private float baseFloatType;
+    private double baseDoubleType;
+
+    private Byte byteWapperType;
+    private Character charWapperType;
+    private Integer intWapperType;
+    private Long longWapperType;
+    private Float floatWapperType;
+    private Double doubleWapperType;
+
+    private String stringType;
+}
+
+class IsBeanTest1{
+    private String name;
+}
+class IsBeanTest2{
+    private String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+class IsBeanTest3 {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+}
+
+class IsBeanTest4 {
+    private String name;
+
+    public String getName() {
+        return name;
     }
 
-    @Test
-    public void test2() throws Exception {
-        PropertyDescriptor pro = new PropertyDescriptor("stringType", Person.class);
-        Person preson=new Person();
-        Method method=pro.getWriteMethod();
-        method.invoke(preson, "xiong");
-        System.out.println(pro.getReadMethod().invoke(preson));
+    public void setName(String name) {
+        this.name = name;
     }
-
-    public static Object evaluatePo(String className, Object po, Properties prop) {
-        try {
-
-            Class poClass = Class.forName(className);
-
-            if (po == null) {
-                po = poClass.newInstance();
-            }
-            // Introspector相当beans这个架构的一个入口。类似于Hibernate的SessionFactory// 通过bean的类型获得bean的描述—》获得属性描述的集合
-            BeanInfo bi = Introspector.getBeanInfo(poClass);
-            PropertyDescriptor[] pd = bi.getPropertyDescriptors();
-
-            for (int i = 0; i < pd.length; i++) {
-                if (prop.getProperty(pd[i].getName()) != null) {
-                    Object value = getPropValue(pd[i].getPropertyType(),
-                            prop.getProperty(pd[i].getName()));
-
-                    executeEvaluate(po, pd[i].getWriteMethod(), value);
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return po;
-    }
-
-    // 这里是PropertyEditor 的使用，规避了if条件的使用。让代码的扩展性得到了很好的保证。这里使用的是依赖查找（DL）的方式。// 注册PropertyEditor 的步骤放在了bean容器当中    static Object getPropValue(Class clazz, String value)
-    static Object getPropValue(Class clazz, String value) throws InstantiationException, IllegalAccessException {
-        PropertyEditor pe = PropertyEditorManager.findEditor(clazz);
-        pe.setAsText(value);
-        return pe.getValue();
-    }
-
-    //调用赋值方法
-    static void executeEvaluate(Object dest, Method m, Object value)
-            throws Exception {
-        Expression e = new Expression(dest, m.getName(),
-                new Object[] { value });
-        e.execute();
-    }
-
-    public static void main(String[] args) throws IllegalAccessException, InstantiationException {
-        getPropValue(Person.class,"stringType");
-    }
-
-//    public static void main(String[] args) throws ClassNotFoundException, IntrospectionException, InstantiationException, IllegalAccessException {
-//        Class<?> clazz = Class.forName("com.zifang.util.core.beans.Person");
-//        // 在bean上进行内省
-//        BeanInfo beaninfo = Introspector.getBeanInfo(clazz, Object.class);
-//        PropertyDescriptor[] pro = beaninfo.getPropertyDescriptors();
-//        for(PropertyDescriptor propertyDescriptor:pro){
-//            String name = propertyDescriptor.getName();
-//            String getter = propertyDescriptor.getReadMethod().getName();
-//            String setter = propertyDescriptor.getWriteMethod().getName();
-//            System.out.println(name+":"+getter+":"+setter);
-//        }
-//    }
-
 }

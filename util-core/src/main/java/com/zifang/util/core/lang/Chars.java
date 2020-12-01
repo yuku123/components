@@ -286,25 +286,6 @@ public class Chars {
     public final static boolean isPropertyNameChar(char c) {
         return isDigit(c) || isAlpha(c) || (c == '_') || (c == '.') || (c == '[') || (c == ']');
     }
-
-    /**
-     * Indicates whether the given character is in the {@code ALPHA} set.
-     *
-     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986, appendix A</a>
-     */
-    public final static boolean isAlpha(char c) {
-        return ((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z'));
-    }
-
-    /**
-     * Indicates whether the given character is in the {@code DIGIT} set.
-     *
-     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986, appendix A</a>
-     */
-    public final static boolean isDigit(char c) {
-        return c >= '0' && c <= '9';
-    }
-
     /**
      * Indicates whether the given character is the hexadecimal digit.
      */
