@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
  * --15位身份证号码：第7、8位为出生年份(两位数)，第9、10位为出生月份，第11、12位代表出生日期，第15位代表性别，奇数为男，偶数为女。
  * --18位身份证号码
  * ：第7、8、9、10位为出生年份(四位数)，第11、第12位为出生月份，第13、14位代表出生日期，第17位代表性别，奇数为男，偶数为女。
+ * 
+ * @author zifang
+ *
  */
 public class IdcardUtil {
 
@@ -18,7 +21,7 @@ public class IdcardUtil {
 	 * 63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外"}
 	 */
 
-	// 每位加权因子
+	/***每位加权因子***/
 	private static int[] power = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
 
 	/**
@@ -190,6 +193,8 @@ public class IdcardUtil {
 		case 0:
 			checkCode = "1";
 			break;
+			default:
+				throw new IllegalStateException("Unexpected value: " + sum17 % 11);
 		}
 		return checkCode;
 	}
