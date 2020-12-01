@@ -8,6 +8,8 @@ import java.util.function.Consumer;
  *
  * 批量操作多个Iterator 的工具
  *
+ * @author zifang
+ *
  * */
 public class IteratorViwer<E> implements Iterator<E>{
 

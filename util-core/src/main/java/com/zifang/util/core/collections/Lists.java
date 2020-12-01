@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * @author zifang
+ */
 public class Lists {
 
     /**

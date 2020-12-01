@@ -5,6 +5,9 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+/**
+ * @author zifang
+ */
 public class Maps {
 
     /**
@@ -85,7 +88,6 @@ public class Maps {
      *
      * @return Map<K,V> 生成符合条件的map对象
      * */
-    //可以对此生成唯一的自增长id
     public static <U,K,V> Map<K,V> populateMap(Set<U> set, Function<U,K> acceptAsKey, Function<U,V> acceptAsValue){
         Map<K,V> map = new LinkedHashMap<>();
         for(U u : set){

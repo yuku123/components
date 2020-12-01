@@ -4,8 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import kong.unirest.HttpResponse;
-import kong.unirest.Unirest;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class NexusComponentManager {
     /**
      * 成功删除的组件数量
      */
-    private static int successDeleteTotal;
+    private int successDeleteTotal;
 
 
     /**
@@ -47,7 +48,12 @@ public class NexusComponentManager {
      */
     public void delete(Component component) {
         String url = String.format("%s/service/rest/v1/components/%s", NEXUS_URL, component.getId());
-        HttpResponse response = Unirest.delete(url).basicAuth(NEXUS_USERNAME, NEXUS_PASSWORD).asEmpty();
+        HttpResponse response = null;
+        try {
+            response = Unirest.delete(url).basicAuth(NEXUS_USERNAME, NEXUS_PASSWORD).asBinary();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
         int status = response.getStatus();
         if (status == 204) {
             successDeleteTotal++;
@@ -82,7 +88,12 @@ public class NexusComponentManager {
         if (token != null) {
             url += "&continuationToken=" + token;
         }
-        HttpResponse<String> response = Unirest.get(url).basicAuth(NEXUS_USERNAME, NEXUS_PASSWORD).asString();
+        HttpResponse<String> response = null;
+        try {
+            response = Unirest.get(url).basicAuth(NEXUS_USERNAME, NEXUS_PASSWORD).asString();
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
         if (response.getStatus() == 200) {
             JsonObject jsonObject = JsonParser.parseString(response.getBody()).getAsJsonObject();
             List<Component> temp = new Gson().fromJson(jsonObject.getAsJsonArray("items"), new TypeToken<List<Component>>() {
