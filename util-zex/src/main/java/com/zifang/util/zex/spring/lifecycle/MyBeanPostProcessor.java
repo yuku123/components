@@ -1,6 +1,6 @@
-package com.zifang.util.zex.framworks.spring.charpter4.lifecycle;
+package com.zifang.util.zex.spring.lifecycle;
 
-import com.zifang.util.zex.framworks.spring.charpter4.Car;
+import com.zifang.util.zex.spring.Car;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 

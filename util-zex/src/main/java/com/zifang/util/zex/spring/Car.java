@@ -1,4 +1,4 @@
-package com.zifang.util.zex.framworks.spring.charpter4;
+package com.zifang.util.zex.spring;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;

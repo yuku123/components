@@ -1,4 +1,4 @@
-package com.zifang.util.zex.framworks.spring.charpter4.lifecycle;
+package com.zifang.util.zex.spring.lifecycle;
 
 import java.beans.PropertyDescriptor;
 

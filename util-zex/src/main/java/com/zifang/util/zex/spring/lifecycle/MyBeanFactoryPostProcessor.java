@@ -1,4 +1,4 @@
-package com.zifang.util.zex.framworks.spring.charpter4.context;
+package com.zifang.util.zex.spring.lifecycle;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -12,4 +12,5 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor{
 		bd.getPropertyValues().addPropertyValue("brand", "奇瑞QQ");
 		System.out.println("调用MyBeanFactoryPostProcessor.postProcessBeanFactory()！");
 	}
+
 }
