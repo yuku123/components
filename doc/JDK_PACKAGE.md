@@ -3,7 +3,6 @@
 rt.jar : 运行时包
 dt.jar:  dt.jar是关于运行环境的类库
 tools.jar:  tools.jar是工具类库,编译和运行需要的都是toos.jar里面的类分别是sun.tools.java.   ; sun.tols.javac.;
-
 ant-javafx.jar:  javaFX包的ant工具
 charsets.jar: Java 字符集，这个类库中包含 Java 所有支持字符集的字符
 cldrdata.jar: http://cldr.unicode.org/  CLDR - Unicode Common Locale Data Repository

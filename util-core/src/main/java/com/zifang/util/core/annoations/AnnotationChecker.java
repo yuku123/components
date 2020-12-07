@@ -10,7 +10,7 @@ import java.lang.reflect.AnnotatedElement;
  *
  * @author zifang
  * */
-public class AnnotationCheker {
+public class AnnotationChecker {
 
     /**
      * 是否会保存到 Javadoc 文档中
