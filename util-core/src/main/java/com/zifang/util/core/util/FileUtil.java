@@ -2,7 +2,6 @@ package com.zifang.util.core.util;
 
 import lombok.extern.slf4j.Slf4j;
 
-import javax.activation.MimetypesFileTypeMap;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -173,20 +172,21 @@ public class FileUtil {
         return null;
     }
 
-    /**
-     * 获取文件content-type
-     * @param file
-     * @return
-     */
-    public static String contentType(String file) {
-        String contentType = null;
-        try {
-            contentType = new MimetypesFileTypeMap().getContentType(new File(file));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return contentType;
-    }
+//
+//    /**
+//     * 获取文件content-type
+//     * @param file
+//     * @return
+//     */
+//    public static String contentType(String file) {
+//        String contentType = null;
+//        try {
+//            contentType = new MimetypesFileTypeMap().getContentType(new File(file));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return contentType;
+//    }
 
     /**
      * 读取文件的内容

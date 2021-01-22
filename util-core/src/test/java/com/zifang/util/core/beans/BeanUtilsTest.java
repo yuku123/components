@@ -13,7 +13,7 @@ public class BeanUtilsTest {
     public void isBeanTest(){
         Assert.assertFalse(BeanUtils.isBean(new IsBeanTest1()));
         Assert.assertTrue(BeanUtils.isBean(new IsBeanTest2()));
-        Assert.assertTrue(BeanUtils.isBean(new IsBeanTest3()));
+        Assert.assertFalse(BeanUtils.isBean(new IsBeanTest3()));
         Assert.assertTrue(BeanUtils.isBean(new IsBeanTest4()));
     }
 
