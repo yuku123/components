@@ -1,4 +1,4 @@
-package com.zifang.util.core.time;
+package com.zifang.util.core.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;

@@ -1,4 +1,6 @@
-package com.zifang.util.core.time;
+package com.zifang.util.core.util;
+
+import com.zifang.util.core.util.DateFormatUtil;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -6,6 +8,7 @@ import java.util.Date;
 
 /**
  * TimeStamp工具类，提供TimeStamp与String、Date的转换
+ * @author zifang
  */
 public class TimestampUtil {
 

@@ -1,4 +1,4 @@
-package com.zifang.util.core.time;
+package com.zifang.util.core.util;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -6,8 +6,11 @@ import java.util.Date;
 
 /**
  * 日期格式化工具类
+ *
+ * @author zifang
  */
 public class DateFormatUtil {
+
 	/** yyyy:年 */
 	public static final String DATE_YEAR = "yyyy";
 	
@@ -53,22 +56,27 @@ public class DateFormatUtil {
 	 */
 	public static String formatString(String value) {
 		String sReturn = "";
-		if (value == null || "".equals(value))
+		if (value == null || "".equals(value)){
 			return sReturn;
-		if (value.length() == 14) {   //长度为14格式转换成yyyy-mm-dd hh:mm:ss
+		}
+		//长度为14格式转换成yyyy-mm-dd hh:mm:ss
+		if (value.length() == 14) {
 			sReturn = value.substring(0, 4) + "-" + value.substring(4, 6) + "-" + value.substring(6, 8) + " "
 					+ value.substring(8, 10) + ":" + value.substring(10, 12) + ":" + value.substring(12, 14);
 			return sReturn;
 		}
-		if (value.length() == 19) {   //长度为19格式转换成yyyymmddhhmmss
+		//长度为19格式转换成yyyymmddhhmmss
+		if (value.length() == 19) {
 			sReturn = value.substring(0, 4) + value.substring(5, 7) + value.substring(8, 10) + value.substring(11, 13)
 					+ value.substring(14, 16) + value.substring(17, 19);
 			return sReturn;
 		}
-		if(value.length() == 10){     //长度为10格式转换成yyyymmhh
+		//长度为10格式转换成yyyymmhh
+		if(value.length() == 10){
 			sReturn = value.substring(0, 4) + value.substring(5,7) + value.substring(8,10);
 		}
-		if(value.length() == 8){      //长度为8格式转化成yyyy-mm-dd
+		//长度为8格式转化成yyyy-mm-dd
+		if(value.length() == 8){
 			sReturn = value.substring(0, 4) + "-" + value.substring(4, 6) + "-" + value.substring(6, 8);
 		}
 		return sReturn;
@@ -83,11 +91,11 @@ public class DateFormatUtil {
 		SimpleDateFormat outFmt = null;
 		ParsePosition pos = new ParsePosition(0);
 		date = date.replace("-", "").replace(":", "");
-		if ((date == null) || ("".equals(date.trim())))
-			return "";
+		if ("".equals(date.trim()))
+		{return "";}
 		try {
 			if (Long.parseLong(date) == 0L)
-				return "";
+			{return "";}
 		} catch (Exception nume) {
 			return date;
 		}
@@ -165,7 +173,7 @@ public class DateFormatUtil {
 	 * @return
 	 * @return SimpleDateFormat
 	 */
-	protected static SimpleDateFormat getFormat(String format){
+	public static SimpleDateFormat getFormat(String format){
 		if(format == null || "".equals(format)){
 			format = DATE_FORMAT2;
 		}

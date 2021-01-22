@@ -124,17 +124,4 @@ public class PackageScanner {
             return classPaths;
         }
     }
-
-    public static void main(String[] args) {
-
-        Set<Class<?>> set = searchClasses("com.google");
-        for (Class<?> aClass : set) {
-            System.out.println(aClass.getName());
-        }
-
-        Set<Class<?>> set1 = searchClasses("com.zifang.util.core.io");
-        for (Class<?> aClass : set1) {
-            System.out.println(aClass.getName());
-        }
-    }
 }
