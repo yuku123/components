@@ -15,7 +15,6 @@ import java.util.*;
  *
  * @author zifang
  * */
-
 public class CombinationAnnotationElement implements AnnotatedElement, Serializable {
 	private static final long serialVersionUID = 1L;
 

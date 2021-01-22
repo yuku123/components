@@ -7,7 +7,6 @@ import java.util.Map;
  * 对集合操作的封装
  *
  * @author zifang
- *
  * */
 public class CollectionUtil {
 

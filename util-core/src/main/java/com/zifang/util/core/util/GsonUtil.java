@@ -5,7 +5,11 @@ import com.google.gson.Gson;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
+/**
+ * @author zifang
+ */
 public class GsonUtil {
 
 	private static Gson gson = new Gson();
@@ -20,5 +24,9 @@ public class GsonUtil {
 
 	public static <T> T changeToSubClass(Object o,Class<T> t){
 		return jsonStrToObject(objectToJsonStr(o),t);
+	}
+
+	public static Map<String,Object> toMap(Object o){
+		return (Map<String, Object>)jsonStrToObject(GsonUtil.objectToJsonStr(o),Map.class);
 	}
 }

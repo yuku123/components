@@ -2,6 +2,9 @@ package com.zifang.util.core.collections;
 
 import java.util.*;
 
+/**
+ * @author zifang
+ */
 public class Sets {
 
     /**

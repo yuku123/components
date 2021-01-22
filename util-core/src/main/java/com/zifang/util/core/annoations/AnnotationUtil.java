@@ -87,7 +87,7 @@ public class AnnotationUtil {
 	 * @return 注解对象
 	 */
 	public static <T> T getAnnotationValue(AnnotatedElement annotationEle, Class<? extends Annotation> annotationType, String propertyName) {
-		final Annotation annotation = getAnnotation(annotationEle, annotationType);
+		Annotation annotation = getAnnotation(annotationEle, annotationType);
 		if (null == annotation) {
 			return null;
 		}

@@ -14,19 +14,53 @@ public class VennDiscriptor<E> {
 
     private Collection<E> empty = new ArrayList<>();
 
-    private Collection<E> collection1 = null;
-    private Collection<E> collection2 = null;
+    private Collection<E> c1 = null;
+    private Collection<E> c2 = null;
 
-    public VennDiscriptor(Collection<E> collection1, Collection<E> collection2){
-        this.collection1 = collection1;
-        this.collection2 = collection2;
+    public VennDiscriptor(Collection<E> c1, Collection<E> c2){
+        this.c1 = c1;
+        this.c2 = c2;
     }
 
-    public static <E> void discripeVenn(Collection<E> collection1,Collection<E> collection2){
+    /**
+     * 并集 c1 U c2
+     *
+     * */
+    public Collection<E> union(){
 
-        Collection<E> disctinctedCollection1 = collection1.stream().distinct().collect(Collectors.toList());
-        Collection<E> disctinctedCollection2 = collection2.stream().distinct().collect(Collectors.toList());
+        Collection<E> dc1 = c1.stream().distinct().collect(Collectors.toList());
+
+        Collection<E> dc2 = c1.stream().distinct().collect(Collectors.toList());
+
+        dc1.addAll(dc2);
+
+        return dc1;
+    }
+
+    public Integer unionCount(){
+        return union().size();
+    }
+
+    /**
+     * 交集 c1 n c2
+     * */
+    public Collection<E> intersection(){
+        Collection<E> dc1 = c1.stream().distinct().collect(Collectors.toList());
+        Collection<E> dc2 = c1.stream().distinct().collect(Collectors.toList());
+        dc1.removeAll(dc2);
+        return dc1;
+    }
+
+    /**
+     * 交集 c1 n c2 后的集合大小
+     * */
+    public Integer intersectionCount(){
+        return intersection().size();
+    }
+
+    public void dicript(){
 
     }
+
 
 }

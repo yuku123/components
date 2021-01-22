@@ -1389,7 +1389,7 @@ public class ClassUtil {
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(path + clazz.getSimpleName() + ".class");
-			fos.write(classFile);//保存到磁盘
+			fos.write(classFile);
 			fos.flush();
 		}catch(Exception e) {
 			e.printStackTrace();
