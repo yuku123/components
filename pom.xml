@@ -37,9 +37,7 @@
         <module>util-robot</module>
         <module>util-ioc</module>
         <module>util-aop</module>
-        <module>util-cache</module>
         <module>util-io</module>
-        <module>util-time</module>
         <module>util-compile</module>
         <module>util-json</module>
         <module>util-zex</module>

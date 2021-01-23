@@ -8,7 +8,6 @@
  */
 package com.zifang.util.zex.guava.collect;
 
-import com.zifang.util.zex.guava.model.UserBo;
 import org.junit.Test;
 
 import com.google.common.collect.ClassToInstanceMap;

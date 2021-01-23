@@ -13,7 +13,6 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
-import com.zifang.util.zex.guava.model.UserBo;
 import com.zifang.util.zex.guava.util.GsonUtil;
 import org.junit.Test;
 
