@@ -16,13 +16,15 @@ import java.util.stream.Collectors;
 
 public class CreatePdfTest {
     public static void main(String[] args) throws IOException {
-        String output = "/Users/zifang/Downloads/imagess.pdf";
-        String imageFolder = "/Users/zifang/Downloads/imageFolder";
+        String output = "/Users/zifang/Downloads/风之圣痕-ignition-06.pdf";
+        String imageFolder = "/Users/zifang/Downloads/06";
 
         PDDocument document = new PDDocument();
 
         List<File> fileList = Arrays.asList(new File(imageFolder).listFiles());
-        fileList = fileList.stream().filter(e->!e.getName().startsWith(".")).collect(Collectors.toList());
+        fileList = fileList.stream().filter(e->!e.getName().startsWith("."))
+                .filter(e->!e.getName().equals("Thumbs.db"))
+                .collect(Collectors.toList());
         fileList.sort(Comparator.naturalOrder());
         for(File image : fileList){
 
