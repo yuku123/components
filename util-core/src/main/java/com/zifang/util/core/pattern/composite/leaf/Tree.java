@@ -1,7 +1,6 @@
 package com.zifang.util.core.pattern.composite.leaf;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 针对很多的叶子结点而组合成的 Tree模型
@@ -11,7 +10,7 @@ public class Tree {
     /**
      * 必须是根节点
      * */
-    private ILeaf iLeaf;
+    private final ILeaf iLeaf;
 
     public Tree(ILeaf iLeaf){
 

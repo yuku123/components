@@ -45,7 +45,7 @@ public interface ILeaf {
     /**
      * 描述当前这个树的情况
      * */
-    default String decribe(){
+    default String describe(){
         return this.toString(); // Todo
     }
 

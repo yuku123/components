@@ -98,6 +98,7 @@ public class PackageScanner {
     }
 
     private static class ClassSearcher{
+
         private Set<Class<?>> classPaths = new HashSet<>();
 
         private Set<Class<?>> doPath(File file,String packageName,boolean flag) {
@@ -107,6 +108,8 @@ public class PackageScanner {
                 if(!flag){
                     packageName = packageName+"."+file.getName();
                 }
+
+                assert files != null;
 
                 for (File f1 : files) {
                     doPath(f1,packageName,false);

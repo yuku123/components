@@ -14,7 +14,7 @@ public class MementoContext<T> {
     /**
      * 状态存储列表
      * */
-    private List<T> mementoList = new LinkedList<>();
+    private final List<T> mementoList = new LinkedList<>();
 
     /**
      * 状态指针

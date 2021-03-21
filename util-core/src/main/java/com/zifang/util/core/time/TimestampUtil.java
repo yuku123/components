@@ -3,6 +3,8 @@ package com.zifang.util.core.time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
+import java.util.UUID;
 
 /**
  * TimeStamp工具类，提供TimeStamp与String、Date的转换
@@ -77,5 +79,16 @@ public class TimestampUtil {
      */
     public static Date timestamp2Date(Timestamp time){
         return time;
+    }
+
+    public static void main(String[] args) {
+        System.gc();
+        System.out.println(UUID.randomUUID());
+        TimeZone timeZone = TimeZone.getDefault();
+        System.out.println(timeZone.getDisplayName());
+        /**
+         * String[] strs=timeZone.getAvailableIDs(); for(String str:strs){
+         * System.out.println(str); }
+         */
     }
 }
