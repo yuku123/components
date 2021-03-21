@@ -34,6 +34,9 @@ public class AnnotationChecker {
 
     /**
      * 检查是否实现了这个注解
+     *
+     * @param annotationClass 注解类型
+     * @param annotatedElement 需要判断的元素
      * */
     public static boolean hasAnnotationOn(Class<? extends Annotation> annotationClass, final AnnotatedElement annotatedElement) {
         return annotatedElement.isAnnotationPresent(annotationClass);

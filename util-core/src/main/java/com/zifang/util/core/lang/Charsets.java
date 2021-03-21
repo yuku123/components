@@ -18,14 +18,14 @@ public final class Charsets {
     /**
      * 将字符编码转换成US-ASCII码
      */
-    public final static String toASCII(String str) throws UnsupportedEncodingException {
+    public static String toASCII(String str) throws UnsupportedEncodingException {
         return changeCharset(str, GlobalConstance.US_ASCII);
     }
 
     /**
      * 将字符编码转换成ISO-8859-1码
      */
-    public final static String toISO_8859_1(String str) throws UnsupportedEncodingException {
+    public static String toISO_8859_1(String str) throws UnsupportedEncodingException {
         return changeCharset(str, GlobalConstance.ISO_8859_1);
     }
 
@@ -39,28 +39,28 @@ public final class Charsets {
     /**
      * 将字符编码转换成UTF-16BE码
      */
-    public final static String toUTF_16BE(String str) throws UnsupportedEncodingException {
+    public static String toUTF_16BE(String str) throws UnsupportedEncodingException {
         return changeCharset(str, GlobalConstance.UTF_16BE);
     }
 
     /**
      * 将字符编码转换成UTF-16LE码
      */
-    public final static String toUTF_16LE(String str) throws UnsupportedEncodingException {
+    public static String toUTF_16LE(String str) throws UnsupportedEncodingException {
         return changeCharset(str, GlobalConstance.UTF_16LE);
     }
 
     /**
      * 将字符编码转换成UTF-16码
      */
-    public final static String toUTF_16(String str) throws UnsupportedEncodingException {
+    public static String toUTF_16(String str) throws UnsupportedEncodingException {
         return changeCharset(str, GlobalConstance.UTF_16);
     }
 
     /**
      * 将字符编码转换成GBK码
      */
-    public final static String toGBK(String str) throws UnsupportedEncodingException {
+    public static String toGBK(String str) throws UnsupportedEncodingException {
         return changeCharset(str, GlobalConstance.GBK);
     }
 
@@ -72,7 +72,7 @@ public final class Charsets {
      * @return
      * @throws UnsupportedEncodingException
      */
-    public final static String changeCharset(String str, String newCharset) throws UnsupportedEncodingException {
+    public static String changeCharset(String str, String newCharset) throws UnsupportedEncodingException {
         if (str != null) {
             // 用默认字符编码解码字符串。
             byte[] bs = str.getBytes();
@@ -82,7 +82,7 @@ public final class Charsets {
         return null;
     }
 
-    public final static String getDefaultCharSet() throws UnsupportedEncodingException {
+    public static String getDefaultCharSet() throws UnsupportedEncodingException {
         OutputStreamWriter writer = new OutputStreamWriter(new ByteArrayOutputStream(), StandardCharsets.UTF_8);
         String enc = writer.getEncoding();
         return enc;
@@ -94,11 +94,11 @@ public final class Charsets {
      * @param str        待转换编码的字符串
      * @param oldCharset 原编码
      * @param newCharset 目标编码
-     * @return
+     * @return a
      * @throws UnsupportedEncodingException
      */
-    public final static String changeCharset(String str, String oldCharset,
-                                             String newCharset) throws UnsupportedEncodingException {
+    public static String changeCharset(String str, String oldCharset,
+                                       String newCharset) throws UnsupportedEncodingException {
         if (str != null) {
             // 用旧的字符编码解码字符串。解码可能会出现异常。
             byte[] bs = str.getBytes(oldCharset);
@@ -114,7 +114,7 @@ public final class Charsets {
      * @param input 待转换字符串
      * @return 转换完成字符串
      */
-    public final static String toGBKWithUTF8(String input) throws UnsupportedEncodingException {
+    public static String toGBKWithUTF8(String input) throws UnsupportedEncodingException {
         if (StringUtil.isEmpty(input)) {
             return "";
         } else {
@@ -130,7 +130,7 @@ public final class Charsets {
      * @param input 待转换字符串
      * @return 转换完成字符串
      */
-    public final static String toUnicodeWithGBK(String input) throws UnsupportedEncodingException {
+    public static String toUnicodeWithGBK(String input) throws UnsupportedEncodingException {
         if (StringUtil.isEmpty(input)) {
             return "";
         } else {

@@ -16,7 +16,7 @@ public class PrimitiveUtil {
     /**
      * 原始类型的集合
      * */
-    private static List<Class> primitiveTypeList = new ArrayList<Class>(){
+    private static final List<Class<?>> primitiveTypeList = new ArrayList<Class<?>>(){
         {
             add(byte.class);
             add(char.class);
@@ -32,7 +32,7 @@ public class PrimitiveUtil {
     /**
      * 封装类型的集合
      * */
-    private static List<Class> primitiveWrapperTypeList = new ArrayList<Class>(){
+    private static final List<Class<?>> primitiveWrapperTypeList = new ArrayList<Class<?>>(){
         {
             add(Byte.class);
             add(Character.class);
@@ -69,9 +69,9 @@ public class PrimitiveUtil {
     /**
      * 得到包装类对应的基本类型
      * */
-    public static Class getPrimitive(Class<?> clazz){
+    public static Class<?> getPrimitive(Class<?> clazz){
         if(!isPrimitiveWrapper(clazz)){
-            String error = "the input class"+clazz.getName()+" is not wapperType";
+            String error = "the input class"+clazz.getName()+" is not wrapperType";
             log.error(error);
             throw new RuntimeException(error);
         }
@@ -81,7 +81,7 @@ public class PrimitiveUtil {
     /**
      * 得到基本类型对应的包装类型
      * */
-    public static Class getPrimitiveWrapper(Class<?> clazz){
+    public static Class<?> getPrimitiveWrapper(Class<?> clazz){
         if(!isPrimitive(clazz)){
             String error = "the input class"+clazz.getName()+" is not Primitive Type";
             log.error(error);

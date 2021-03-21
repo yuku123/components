@@ -8,11 +8,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Description: 简单的内存缓存工具类
+ * 简单的内存缓存工具类
  */
 public class Cache {
+
     //键值对集合
     private final static Map<String, Entity> map = new HashMap<>();
+
     //定时器线程池，用于清除过期缓存
     private final static ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     /**

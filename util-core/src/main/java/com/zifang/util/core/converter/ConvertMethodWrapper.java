@@ -22,7 +22,7 @@ public class ConvertMethodWrapper {
 	/**
 	 * byte -> byte
 	 * */
-	public Byte to(Byte value,Byte defaultValue){
+	public Byte to(Byte value, Byte defaultValue){
 		log.info("call to(Byte value,Byte defaultValue)");
 		if(value == null){
 			return defaultValue;

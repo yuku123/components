@@ -13,7 +13,7 @@ public class CollectionUtil {
     /**
      *  判断集合是否为空
      *
-     * @param collection
+     * @param collection 参数
      * @return boolean
      */
     public static boolean isEmptyCollection(Collection<?> collection){
@@ -23,7 +23,7 @@ public class CollectionUtil {
     /**
      * 判断集合是否不为空
      *
-     * @param collection
+     * @param collection 参数
      * @return boolean
      */
     public static boolean isNotEmptyCollection(Collection<?> collection){
@@ -33,7 +33,7 @@ public class CollectionUtil {
     /**
      * 判断map集合是否不为空
      *
-     * @param map
+     * @param map 参数
      * @return boolean
      */
     public static boolean isNotEmptyMap(Map<?,?> map){
@@ -43,7 +43,7 @@ public class CollectionUtil {
     /**
      * 判断map集合是否为空
      *
-     * @param map
+     * @param map 参数
      * @return boolean
      */
     public static boolean isEmptyMap(Map<?,?> map){
