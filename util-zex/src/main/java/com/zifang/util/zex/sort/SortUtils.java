@@ -1,9 +1,6 @@
 package com.zifang.util.zex.sort;
 
 public class SortUtils {
-
-
-
     /**
      * 直接插入排序
      * 直接插入排序属于稳定排序

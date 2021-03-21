@@ -1,5 +1,8 @@
 package com.zifang.util.io.ss;
 
+import com.zifang.util.core.util.CheckUtil;
+import com.zifang.util.core.util.RegHepler;
+
 import java.io.*;
 import java.math.BigInteger;
 import java.net.FileNameMap;
@@ -183,7 +186,7 @@ public final class FileUtil {
         ) {
             long fileLength = randomFile.length();
             randomFile.seek(fileLength);
-            randomFile.writeBytes(SysHepler.FILE_SEPARATOR + str);
+            //randomFile.writeBytes(SysHepler.FILE_SEPARATOR + str);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -427,7 +430,7 @@ public final class FileUtil {
      */
     public final static boolean deleteDir(File file) {
         List<File> files = listFileAll(file);
-        if (CheckUtil.valid(files)) {
+
             for (File f : files) {
                 if (f.isDirectory()) {
                     deleteDir(f);
@@ -435,7 +438,7 @@ public final class FileUtil {
                     deleteFile(f);
                 }
             }
-        }
+
         return file.delete();
     }
 
@@ -474,7 +477,6 @@ public final class FileUtil {
             createPaths(targetPath);
         }
         File[] files = filePath.listFiles();
-        if (CheckUtil.valid(files)) {
             for (File file : files) {
                 String path = file.getName();
                 if (file.isDirectory()) {
@@ -483,7 +485,7 @@ public final class FileUtil {
                     copy(file, targetPath + "/" + path);
                 }
             }
-        }
+
     }
 
     /**
@@ -518,7 +520,6 @@ public final class FileUtil {
     public final static List<File> listFile(File path) {
         List<File> list = new ArrayList<>();
         File[] files = path.listFiles();
-        if (CheckUtil.valid(files)) {
             for (File file : files) {
                 if (file.isDirectory()) {
                     list.addAll(listFile(file));
@@ -526,7 +527,7 @@ public final class FileUtil {
                     list.add(file);
                 }
             }
-        }
+
         return list;
     }
 
@@ -540,7 +541,6 @@ public final class FileUtil {
     public final static List<File> listFile(File path, boolean child) {
         List<File> list = new ArrayList<>();
         File[] files = path.listFiles();
-        if (CheckUtil.valid(files)) {
             for (File file : files) {
                 if (child && file.isDirectory()) {
                     list.addAll(listFile(file));
@@ -548,7 +548,7 @@ public final class FileUtil {
                     list.add(file);
                 }
             }
-        }
+
         return list;
     }
 
@@ -561,14 +561,13 @@ public final class FileUtil {
     public final static List<File> listFileAll(File path) {
         List<File> list = new ArrayList<>();
         File[] files = path.listFiles();
-        if (CheckUtil.valid(files)) {
             for (File file : files) {
                 list.add(file);
                 if (file.isDirectory()) {
                     list.addAll(listFileAll(file));
                 }
             }
-        }
+
         return list;
     }
 

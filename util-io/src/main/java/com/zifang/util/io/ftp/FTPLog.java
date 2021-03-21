@@ -1,6 +1,6 @@
 package com.zifang.util.io.ftp;
 
-import com.zifang.util.zex.helper.DateHelper;
+//import com.zifang.util.zex.helper.DateHelper;
 
 /**
  * Ftp操作日志
@@ -13,7 +13,7 @@ public class FTPLog {
     private String localFile;
     private String remoteFile;
     private String ReplyCodeDesc;
-    private String createTime = DateHelper.currentDateTime();
+    //private String createTime = DateHelper.currentDateTime();
 
     public String getHost() {
         return host;
@@ -55,13 +55,6 @@ public class FTPLog {
         ReplyCodeDesc = replyCodeDesc;
     }
 
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
 
     public String getOperation() {
         return operation;
@@ -71,16 +64,4 @@ public class FTPLog {
         this.operation = operation;
     }
 
-    @Override
-    public String toString() {
-        return "FTPLog{" +
-                "host='" + host + '\'' +
-                ", operation='" + operation + '\'' +
-                ", ReplyCode=" + ReplyCode +
-                ", localFile='" + localFile + '\'' +
-                ", remoteFile='" + remoteFile + '\'' +
-                ", ReplyCodeDesc='" + ReplyCodeDesc + '\'' +
-                ", createTime='" + createTime + '\'' +
-                '}';
-    }
 }

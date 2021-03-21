@@ -1,9 +1,5 @@
 package com.zifang.util.io.ss;
 
-
-import com.zifang.util.zex.Opslab;
-import com.zifang.util.zex.helper.SysHepler;
-
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
@@ -130,65 +126,65 @@ public class StringImpl {
     public static double SimilarityRatio(String str, String target) {
         return 1 - (double) compare(str, target) / Math.max(str.length(), target.length());
     }
-
-
-    /**
-     * 获取字符串编码
-     *
-     * @param str 需要处理的字符串
-     */
-    public static String simpleEncoding(String str) {
-        try {
-            byte[] bs = str.getBytes(SysHepler.JVM_ENCODING);
-            if (str.equals(new String(bs, StandardCharsets.UTF_8))) {
-                return Opslab.UTF_8;
-            }
-            if (str.equals(new String(bs, Opslab.GBK))) {
-                return Opslab.GBK;
-            }
-            if (str.equals(new String(bs, StandardCharsets.ISO_8859_1))) {
-                return Opslab.ISO_8859_1;
-            }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        String encode = "GB2312";
-
-        try {
-            if (str.equals(new String(str.getBytes(encode), encode))) {
-                return encode;
-            }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        encode = "ISO-8859-1";
-        try {
-            if (str.equals(new String(str.getBytes(encode), encode))) {
-                return encode;
-            }
-        } catch (UnsupportedEncodingException exception1) {
-            exception1.printStackTrace();
-        }
-        encode = Opslab.UTF_8;
-        try {
-            if (str.equals(new String(str.getBytes(encode), encode))) {
-                return encode;
-            }
-        } catch (UnsupportedEncodingException exception1) {
-            exception1.printStackTrace();
-        }
-        encode = "GBK";
-        try {
-            if (str.equals(new String(str.getBytes(encode), encode))) {
-                return encode;
-
-            }
-        } catch (UnsupportedEncodingException exception1) {
-            exception1.printStackTrace();
-        }
-        return "";
-    }
+//
+//
+//    /**
+//     * 获取字符串编码
+//     *
+//     * @param str 需要处理的字符串
+//     */
+//    public static String simpleEncoding(String str) {
+//        try {
+//            byte[] bs = str.getBytes(SysHepler.JVM_ENCODING);
+//            if (str.equals(new String(bs, StandardCharsets.UTF_8))) {
+//                return Opslab.UTF_8;
+//            }
+//            if (str.equals(new String(bs, Opslab.GBK))) {
+//                return Opslab.GBK;
+//            }
+//            if (str.equals(new String(bs, StandardCharsets.ISO_8859_1))) {
+//                return Opslab.ISO_8859_1;
+//            }
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        String encode = "GB2312";
+//
+//        try {
+//            if (str.equals(new String(str.getBytes(encode), encode))) {
+//                return encode;
+//            }
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        encode = "ISO-8859-1";
+//        try {
+//            if (str.equals(new String(str.getBytes(encode), encode))) {
+//                return encode;
+//            }
+//        } catch (UnsupportedEncodingException exception1) {
+//            exception1.printStackTrace();
+//        }
+//        encode = Opslab.UTF_8;
+//        try {
+//            if (str.equals(new String(str.getBytes(encode), encode))) {
+//                return encode;
+//            }
+//        } catch (UnsupportedEncodingException exception1) {
+//            exception1.printStackTrace();
+//        }
+//        encode = "GBK";
+//        try {
+//            if (str.equals(new String(str.getBytes(encode), encode))) {
+//                return encode;
+//
+//            }
+//        } catch (UnsupportedEncodingException exception1) {
+//            exception1.printStackTrace();
+//        }
+//        return "";
+//    }
 
 
 }

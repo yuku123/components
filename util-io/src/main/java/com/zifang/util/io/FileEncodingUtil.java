@@ -2,6 +2,7 @@ package com.zifang.util.io;
 
 
 
+import com.zifang.util.core.util.CheckUtil;
 import com.zifang.util.io.ss.FileUtil;
 
 import java.io.*;

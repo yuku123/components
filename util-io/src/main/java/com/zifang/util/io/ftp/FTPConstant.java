@@ -1,6 +1,5 @@
 package com.zifang.util.io.ftp;
 
-import com.zifang.util.zex.Opslab;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +15,7 @@ public class FTPConstant {
     //用于编码转换
     private static String ISO_ECODING = "ISO-8859-1";
     //程序运行的编码
-    private static String PROJECT_ENCODING = Opslab.UTF_8;
+    //private static String PROJECT_ENCODING = Opslab.UTF_8;
 
     static {
         REPLYCODE.put(120, "服务已就绪，在 nnn 分钟后开始。");

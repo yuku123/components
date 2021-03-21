@@ -1,7 +1,7 @@
 package com.zifang.util.io.ftp;
 
 
-import org.apache.commons.net.ftp.FTPClient;
+//import org.apache.commons.net.ftp.FTPClient;
 
 import java.io.File;
 import java.util.List;
@@ -63,7 +63,7 @@ public interface FTPUtil {
     boolean changName(String oldName, String newName);
 
     //返回FTPCliend对象(已经打开连接)
-    FTPClient client();
+    //FTPClient client();
 
     //释放所有的资源
     void destory();
