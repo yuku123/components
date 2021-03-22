@@ -27,10 +27,8 @@ public class BeanUtils {
      * 2. Bean 应该提供 getter 和 setter 方法。
      * 3. 使用 getter 方法读取可读属性的值。
      * 4. Bean 应该实现 java.io.serializable
-     *
      * */
     public static <T> boolean isBean(T bean){
-
         // @todo
         if (ClassUtil.isNormalClass(bean.getClass())) {
             final Method[] methods = bean.getClass().getMethods();
