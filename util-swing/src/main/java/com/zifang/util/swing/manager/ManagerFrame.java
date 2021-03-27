@@ -137,7 +137,6 @@ public class ManagerFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-
         ManagerFrame managerFrame = new ManagerFrame();
         managerFrame.init();//当前管理系统的全量初始化
     }
