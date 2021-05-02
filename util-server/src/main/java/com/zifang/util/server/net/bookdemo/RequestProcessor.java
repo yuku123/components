@@ -7,11 +7,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.log;
 
 public class RequestProcessor implements Runnable {
 
-	private final static log log = log.getlog(RequestProcessor.class.getCanonicalName());
 
 	private File rootDirectory;
 	private String indexFileName = "index.html";

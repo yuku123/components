@@ -6,13 +6,13 @@ import java.net.DatagramSocket;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.log;
+import java.util.logging.Logger;
 
 public class DaytimeUDPServer {
 
 	private final static int PORT = 13;
-	private final static log audit = log.getlog("requests");
-	private final static log errors = log.getlog("errors");
+	private final static Logger audit = Logger.getLogger("requests");
+	private final static Logger errors = Logger.getLogger("errors");
 
 	public static void main(String[] args) {
 		try (DatagramSocket socket = new DatagramSocket(PORT)) {
