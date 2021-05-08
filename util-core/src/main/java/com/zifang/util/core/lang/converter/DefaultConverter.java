@@ -6,12 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 public class DefaultConverter {
 
     //--------------------Byte-----------------------
+
     /**
      * Byte -> Byte
      **/
-    public Byte to(Byte value, Byte defaultValue){
+    public Byte to(Byte value, Byte defaultValue) {
         log.info("call Byte to(Byte value, Byte defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return value;
@@ -20,9 +21,9 @@ public class DefaultConverter {
     /**
      * Byte -> Short
      **/
-    public Short to(Byte value, Short defaultValue){
+    public Short to(Byte value, Short defaultValue) {
         log.info("call Short to(Byte value, Short defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return value.shortValue();
@@ -31,9 +32,9 @@ public class DefaultConverter {
     /**
      * Byte -> Integer
      **/
-    public Integer to(Byte value, Integer defaultValue){
+    public Integer to(Byte value, Integer defaultValue) {
         log.info("call Integer to(Byte value, Integer defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return value.intValue();
@@ -42,9 +43,9 @@ public class DefaultConverter {
     /**
      * Byte -> Long
      **/
-    public Long to(Byte value, Long defaultValue){
+    public Long to(Byte value, Long defaultValue) {
         log.info("call Long to(Byte value, Long defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return value.longValue();
@@ -53,9 +54,9 @@ public class DefaultConverter {
     /**
      * Byte -> Float
      **/
-    public Float to(Byte value, Float defaultValue){
+    public Float to(Byte value, Float defaultValue) {
         log.info("call Float to(Byte value, Float defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return value.floatValue();
@@ -64,9 +65,9 @@ public class DefaultConverter {
     /**
      * Byte -> Double
      **/
-    public Double to(Byte value, Double defaultValue){
+    public Double to(Byte value, Double defaultValue) {
         log.info("call Double to(Byte value, Double defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return value.doubleValue();
@@ -75,9 +76,9 @@ public class DefaultConverter {
     /**
      * Byte -> Character
      **/
-    public Character to(Byte value, Character defaultValue){
+    public Character to(Byte value, Character defaultValue) {
         log.info("call Character to(Byte value, Character defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -86,21 +87,22 @@ public class DefaultConverter {
     /**
      * Byte -> String
      **/
-    public String to(Byte value, String defaultValue){
+    public String to(Byte value, String defaultValue) {
         log.info("call String to(Byte value, String defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
     }
 
     //--------------------Short-----------------------
+
     /**
      * Short -> Byte
      **/
-    public Byte to(Short value, Byte defaultValue){
+    public Byte to(Short value, Byte defaultValue) {
         log.info("call Byte to(Short value, Byte defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -109,9 +111,9 @@ public class DefaultConverter {
     /**
      * Short -> Short
      **/
-    public Short to(Short value, Short defaultValue){
+    public Short to(Short value, Short defaultValue) {
         log.info("call Short to(Short value, Short defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -120,9 +122,9 @@ public class DefaultConverter {
     /**
      * Short -> Integer
      **/
-    public Integer to(Short value, Integer defaultValue){
+    public Integer to(Short value, Integer defaultValue) {
         log.info("call Integer to(Short value, Integer defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -131,9 +133,9 @@ public class DefaultConverter {
     /**
      * Short -> Long
      **/
-    public Long to(Short value, Long defaultValue){
+    public Long to(Short value, Long defaultValue) {
         log.info("call Long to(Short value, Long defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -142,9 +144,9 @@ public class DefaultConverter {
     /**
      * Short -> Float
      **/
-    public Float to(Short value, Float defaultValue){
+    public Float to(Short value, Float defaultValue) {
         log.info("call Float to(Short value, Float defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -153,9 +155,9 @@ public class DefaultConverter {
     /**
      * Short -> Double
      **/
-    public Double to(Short value, Double defaultValue){
+    public Double to(Short value, Double defaultValue) {
         log.info("call Double to(Short value, Double defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -164,9 +166,9 @@ public class DefaultConverter {
     /**
      * Short -> Character
      **/
-    public Character to(Short value, Character defaultValue){
+    public Character to(Short value, Character defaultValue) {
         log.info("call Character to(Short value, Character defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -175,21 +177,22 @@ public class DefaultConverter {
     /**
      * Short -> String
      **/
-    public String to(Short value, String defaultValue){
+    public String to(Short value, String defaultValue) {
         log.info("call String to(Short value, String defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
     }
 
 //--------------------Integer-----------------------
+
     /**
      * Integer -> Byte
      **/
-    public Byte to(Integer value, Byte defaultValue){
+    public Byte to(Integer value, Byte defaultValue) {
         log.info("call Byte to(Integer value, Byte defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -198,9 +201,9 @@ public class DefaultConverter {
     /**
      * Integer -> Short
      **/
-    public Short to(Integer value, Short defaultValue){
+    public Short to(Integer value, Short defaultValue) {
         log.info("call Short to(Integer value, Short defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -209,9 +212,9 @@ public class DefaultConverter {
     /**
      * Integer -> Integer
      **/
-    public Integer to(Integer value, Integer defaultValue){
+    public Integer to(Integer value, Integer defaultValue) {
         log.info("call Integer to(Integer value, Integer defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -220,9 +223,9 @@ public class DefaultConverter {
     /**
      * Integer -> Long
      **/
-    public Long to(Integer value, Long defaultValue){
+    public Long to(Integer value, Long defaultValue) {
         log.info("call Long to(Integer value, Long defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -231,9 +234,9 @@ public class DefaultConverter {
     /**
      * Integer -> Float
      **/
-    public Float to(Integer value, Float defaultValue){
+    public Float to(Integer value, Float defaultValue) {
         log.info("call Float to(Integer value, Float defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -242,9 +245,9 @@ public class DefaultConverter {
     /**
      * Integer -> Double
      **/
-    public Double to(Integer value, Double defaultValue){
+    public Double to(Integer value, Double defaultValue) {
         log.info("call Double to(Integer value, Double defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -253,9 +256,9 @@ public class DefaultConverter {
     /**
      * Integer -> Character
      **/
-    public Character to(Integer value, Character defaultValue){
+    public Character to(Integer value, Character defaultValue) {
         log.info("call Character to(Integer value, Character defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -264,21 +267,22 @@ public class DefaultConverter {
     /**
      * Integer -> String
      **/
-    public String to(Integer value, String defaultValue){
+    public String to(Integer value, String defaultValue) {
         log.info("call String to(Integer value, String defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
     }
 
 //--------------------Long-----------------------
+
     /**
      * Long -> Byte
      **/
-    public Byte to(Long value, Byte defaultValue){
+    public Byte to(Long value, Byte defaultValue) {
         log.info("call Byte to(Long value, Byte defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -287,9 +291,9 @@ public class DefaultConverter {
     /**
      * Long -> Short
      **/
-    public Short to(Long value, Short defaultValue){
+    public Short to(Long value, Short defaultValue) {
         log.info("call Short to(Long value, Short defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -298,9 +302,9 @@ public class DefaultConverter {
     /**
      * Long -> Integer
      **/
-    public Integer to(Long value, Integer defaultValue){
+    public Integer to(Long value, Integer defaultValue) {
         log.info("call Integer to(Long value, Integer defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -309,9 +313,9 @@ public class DefaultConverter {
     /**
      * Long -> Long
      **/
-    public Long to(Long value, Long defaultValue){
+    public Long to(Long value, Long defaultValue) {
         log.info("call Long to(Long value, Long defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -320,9 +324,9 @@ public class DefaultConverter {
     /**
      * Long -> Float
      **/
-    public Float to(Long value, Float defaultValue){
+    public Float to(Long value, Float defaultValue) {
         log.info("call Float to(Long value, Float defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -331,9 +335,9 @@ public class DefaultConverter {
     /**
      * Long -> Double
      **/
-    public Double to(Long value, Double defaultValue){
+    public Double to(Long value, Double defaultValue) {
         log.info("call Double to(Long value, Double defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -342,9 +346,9 @@ public class DefaultConverter {
     /**
      * Long -> Character
      **/
-    public Character to(Long value, Character defaultValue){
+    public Character to(Long value, Character defaultValue) {
         log.info("call Character to(Long value, Character defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -353,21 +357,22 @@ public class DefaultConverter {
     /**
      * Long -> String
      **/
-    public String to(Long value, String defaultValue){
+    public String to(Long value, String defaultValue) {
         log.info("call String to(Long value, String defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
     }
 
 //--------------------Float-----------------------
+
     /**
      * Float -> Byte
      **/
-    public Byte to(Float value, Byte defaultValue){
+    public Byte to(Float value, Byte defaultValue) {
         log.info("call Byte to(Float value, Byte defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -376,9 +381,9 @@ public class DefaultConverter {
     /**
      * Float -> Short
      **/
-    public Short to(Float value, Short defaultValue){
+    public Short to(Float value, Short defaultValue) {
         log.info("call Short to(Float value, Short defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -387,9 +392,9 @@ public class DefaultConverter {
     /**
      * Float -> Integer
      **/
-    public Integer to(Float value, Integer defaultValue){
+    public Integer to(Float value, Integer defaultValue) {
         log.info("call Integer to(Float value, Integer defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -398,9 +403,9 @@ public class DefaultConverter {
     /**
      * Float -> Long
      **/
-    public Long to(Float value, Long defaultValue){
+    public Long to(Float value, Long defaultValue) {
         log.info("call Long to(Float value, Long defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -409,9 +414,9 @@ public class DefaultConverter {
     /**
      * Float -> Float
      **/
-    public Float to(Float value, Float defaultValue){
+    public Float to(Float value, Float defaultValue) {
         log.info("call Float to(Float value, Float defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -420,9 +425,9 @@ public class DefaultConverter {
     /**
      * Float -> Double
      **/
-    public Double to(Float value, Double defaultValue){
+    public Double to(Float value, Double defaultValue) {
         log.info("call Double to(Float value, Double defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -431,9 +436,9 @@ public class DefaultConverter {
     /**
      * Float -> Character
      **/
-    public Character to(Float value, Character defaultValue){
+    public Character to(Float value, Character defaultValue) {
         log.info("call Character to(Float value, Character defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -442,21 +447,22 @@ public class DefaultConverter {
     /**
      * Float -> String
      **/
-    public String to(Float value, String defaultValue){
+    public String to(Float value, String defaultValue) {
         log.info("call String to(Float value, String defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
     }
 
 //--------------------Double-----------------------
+
     /**
      * Double -> Byte
      **/
-    public Byte to(Double value, Byte defaultValue){
+    public Byte to(Double value, Byte defaultValue) {
         log.info("call Byte to(Double value, Byte defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -465,9 +471,9 @@ public class DefaultConverter {
     /**
      * Double -> Short
      **/
-    public Short to(Double value, Short defaultValue){
+    public Short to(Double value, Short defaultValue) {
         log.info("call Short to(Double value, Short defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -476,9 +482,9 @@ public class DefaultConverter {
     /**
      * Double -> Integer
      **/
-    public Integer to(Double value, Integer defaultValue){
+    public Integer to(Double value, Integer defaultValue) {
         log.info("call Integer to(Double value, Integer defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -487,9 +493,9 @@ public class DefaultConverter {
     /**
      * Double -> Long
      **/
-    public Long to(Double value, Long defaultValue){
+    public Long to(Double value, Long defaultValue) {
         log.info("call Long to(Double value, Long defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -498,9 +504,9 @@ public class DefaultConverter {
     /**
      * Double -> Float
      **/
-    public Float to(Double value, Float defaultValue){
+    public Float to(Double value, Float defaultValue) {
         log.info("call Float to(Double value, Float defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -509,9 +515,9 @@ public class DefaultConverter {
     /**
      * Double -> Double
      **/
-    public Double to(Double value, Double defaultValue){
+    public Double to(Double value, Double defaultValue) {
         log.info("call Double to(Double value, Double defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -520,9 +526,9 @@ public class DefaultConverter {
     /**
      * Double -> Character
      **/
-    public Character to(Double value, Character defaultValue){
+    public Character to(Double value, Character defaultValue) {
         log.info("call Character to(Double value, Character defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -531,21 +537,22 @@ public class DefaultConverter {
     /**
      * Double -> String
      **/
-    public String to(Double value, String defaultValue){
+    public String to(Double value, String defaultValue) {
         log.info("call String to(Double value, String defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
     }
 
 //--------------------Character-----------------------
+
     /**
      * Character -> Byte
      **/
-    public Byte to(Character value, Byte defaultValue){
+    public Byte to(Character value, Byte defaultValue) {
         log.info("call Byte to(Character value, Byte defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -554,9 +561,9 @@ public class DefaultConverter {
     /**
      * Character -> Short
      **/
-    public Short to(Character value, Short defaultValue){
+    public Short to(Character value, Short defaultValue) {
         log.info("call Short to(Character value, Short defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -565,9 +572,9 @@ public class DefaultConverter {
     /**
      * Character -> Integer
      **/
-    public Integer to(Character value, Integer defaultValue){
+    public Integer to(Character value, Integer defaultValue) {
         log.info("call Integer to(Character value, Integer defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -576,9 +583,9 @@ public class DefaultConverter {
     /**
      * Character -> Long
      **/
-    public Long to(Character value, Long defaultValue){
+    public Long to(Character value, Long defaultValue) {
         log.info("call Long to(Character value, Long defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -587,9 +594,9 @@ public class DefaultConverter {
     /**
      * Character -> Float
      **/
-    public Float to(Character value, Float defaultValue){
+    public Float to(Character value, Float defaultValue) {
         log.info("call Float to(Character value, Float defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -598,9 +605,9 @@ public class DefaultConverter {
     /**
      * Character -> Double
      **/
-    public Double to(Character value, Double defaultValue){
+    public Double to(Character value, Double defaultValue) {
         log.info("call Double to(Character value, Double defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -609,9 +616,9 @@ public class DefaultConverter {
     /**
      * Character -> Character
      **/
-    public Character to(Character value, Character defaultValue){
+    public Character to(Character value, Character defaultValue) {
         log.info("call Character to(Character value, Character defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -620,21 +627,22 @@ public class DefaultConverter {
     /**
      * Character -> String
      **/
-    public String to(Character value, String defaultValue){
+    public String to(Character value, String defaultValue) {
         log.info("call String to(Character value, String defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
     }
 
 //--------------------String-----------------------
+
     /**
      * String -> Byte
      **/
-    public Byte to(String value, Byte defaultValue){
+    public Byte to(String value, Byte defaultValue) {
         log.info("call Byte to(String value, Byte defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -643,9 +651,9 @@ public class DefaultConverter {
     /**
      * String -> Short
      **/
-    public Short to(String value, Short defaultValue){
+    public Short to(String value, Short defaultValue) {
         log.info("call Short to(String value, Short defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -654,9 +662,9 @@ public class DefaultConverter {
     /**
      * String -> Integer
      **/
-    public Integer to(String value, Integer defaultValue){
+    public Integer to(String value, Integer defaultValue) {
         log.info("call Integer to(String value, Integer defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -665,9 +673,9 @@ public class DefaultConverter {
     /**
      * String -> Long
      **/
-    public Long to(String value, Long defaultValue){
+    public Long to(String value, Long defaultValue) {
         log.info("call Long to(String value, Long defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -676,9 +684,9 @@ public class DefaultConverter {
     /**
      * String -> Float
      **/
-    public Float to(String value, Float defaultValue){
+    public Float to(String value, Float defaultValue) {
         log.info("call Float to(String value, Float defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -687,9 +695,9 @@ public class DefaultConverter {
     /**
      * String -> Double
      **/
-    public Double to(String value, Double defaultValue){
+    public Double to(String value, Double defaultValue) {
         log.info("call Double to(String value, Double defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -698,9 +706,9 @@ public class DefaultConverter {
     /**
      * String -> Character
      **/
-    public Character to(String value, Character defaultValue){
+    public Character to(String value, Character defaultValue) {
         log.info("call Character to(String value, Character defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;
@@ -709,9 +717,9 @@ public class DefaultConverter {
     /**
      * String -> String
      **/
-    public String to(String value, String defaultValue){
+    public String to(String value, String defaultValue) {
         log.info("call String to(String value, String defaultValue");
-        if(value == null){
+        if (value == null) {
             return defaultValue;
         }
         return null;

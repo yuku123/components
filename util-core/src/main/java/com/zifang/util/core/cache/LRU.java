@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * Least Recently Used 淘汰策略
- * */
+ */
 public class LRU<K, V> extends LinkedHashMap<K, V> {
 
     // 保存缓存的容量
@@ -19,6 +19,7 @@ public class LRU<K, V> extends LinkedHashMap<K, V> {
 
     /**
      * 重写removeEldestEntry()方法设置何时移除旧元素
+     *
      * @param eldest
      * @return
      */

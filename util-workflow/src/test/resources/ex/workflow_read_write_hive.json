@@ -19,13 +19,15 @@
       "HADOOP_USER_NAME": "piday"
     }
   },
-  "workflowNodeList":[
+  "workflowNodeList": [
     {
       "nodeId": "start",
       "serviceUnit": "engine.service.empty",
       "connector": {
         "pre": [],
-        "post": ["input_hive"]
+        "post": [
+          "input_hive"
+        ]
       }
     },
     {
@@ -34,26 +36,33 @@
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleHiveInput",
-      "properties":{
-        "tableName":"model_test.raw",
+      "properties": {
+        "tableName": "model_test.raw",
         "flush": "yes"
       },
       "connector": {
-        "pre": ["start"],
-        "post": ["output_hive"]
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_hive"
+        ]
       }
-    },{
+    },
+    {
       "nodeId": "output_hive",
       "name": "output_hive",
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleHiveOutput",
-      "properties":{
+      "properties": {
         "tableName": "model_test.raw_other",
         "flush": "yes"
       },
       "connector": {
-        "pre": ["input_hive"],
+        "pre": [
+          "input_hive"
+        ],
         "post": []
       }
     }

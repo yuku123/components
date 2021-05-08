@@ -23,14 +23,14 @@ public class SparkContextInstance {
 
     private SparkSession sparkSession;
 
-    public SparkContextInstance(){
+    public SparkContextInstance() {
         doLocalInitial(null);
     }
 
     public SparkContextInstance(String mode, Map<String, String> properties) {
-        if(local.equals(mode)){
+        if (local.equals(mode)) {
             doLocalInitial(properties);
-        }else if (cluster.equals(mode)){
+        } else if (cluster.equals(mode)) {
             doClusterInitial(properties);
         }
     }
@@ -38,12 +38,12 @@ public class SparkContextInstance {
     private void doClusterInitial(Map<String, String> properties) {
         sparkConf = new SparkConf();
         sparkConf.setMaster(properties.get("master"));
-        sparkConf.setAppName(properties.get("appName") == null?"default":properties.get("appName"));
-        sparkConf.set("spark.sql.warehouse.dir",properties.get("spark.sql.warehouse.dir"));
-        sparkConf.set("hive.metastore.uris",properties.get("hive.metastore.uris"));
-        sparkConf.set("spark.executor.memory",properties.get("spark.executor.memory"));
-        sparkConf.set("spark.driver.maxResultSize",properties.get("spark.driver.maxResultSize"));
-        sparkConf.set("spark.cores.max",properties.get("spark.cores.max"));
+        sparkConf.setAppName(properties.get("appName") == null ? "default" : properties.get("appName"));
+        sparkConf.set("spark.sql.warehouse.dir", properties.get("spark.sql.warehouse.dir"));
+        sparkConf.set("hive.metastore.uris", properties.get("hive.metastore.uris"));
+        sparkConf.set("spark.executor.memory", properties.get("spark.executor.memory"));
+        sparkConf.set("spark.driver.maxResultSize", properties.get("spark.driver.maxResultSize"));
+        sparkConf.set("spark.cores.max", properties.get("spark.cores.max"));
         sparkConf.setJars(properties.get("jars").split(","));
         sparkSession = SparkSession.builder()
                 .config(sparkConf)

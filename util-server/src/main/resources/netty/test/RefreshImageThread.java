@@ -1,8 +1,11 @@
 package com.zifang.util.server.netty.test;
 
-public class RefreshImageThread extends Thread{
+public class RefreshImageThread extends Thread {
 
-    public RefreshImageThread(){}
+    public RefreshImageThread() {
+    }
+
     @Override
-    public void run(){}
+    public void run() {
+    }
 }

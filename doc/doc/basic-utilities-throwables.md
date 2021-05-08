@@ -19,6 +19,7 @@ void propagateIfPossible(Throwable, Class<X extends Throwable>) throws X;
 ```
 
 #### 异常链处理
+
 ```java  
 Throwable getRootCause(Throwable)  
 List<Throwable> getCausalChain(Throwable) 

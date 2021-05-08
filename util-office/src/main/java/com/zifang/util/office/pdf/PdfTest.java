@@ -14,7 +14,7 @@ public class PdfTest {
         PDDocument documentRead = PDDocument.load(file);
         PDDocument documentWrite = new PDDocument();
 
-        PDPageContentStream pdPageContentStream = new PDPageContentStream(documentRead,documentRead.getPage(1));
+        PDPageContentStream pdPageContentStream = new PDPageContentStream(documentRead, documentRead.getPage(1));
         System.out.println("PDF loaded");
         //Adding a blank page to the document
         documentWrite.addPage(new PDPage());

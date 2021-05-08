@@ -11,9 +11,9 @@ public class MysqlDatasourceFactory implements DatasourceFactory {
 
     @Override
     public DataSource newDatasource() {
-        try{
-            if(dataSource == null){
-                dataSource=new DruidDataSource();
+        try {
+            if (dataSource == null) {
+                dataSource = new DruidDataSource();
                 //设置连接参数
                 dataSource.setUrl("jdbc:mysql://localhost:3306/test?useSSL=false&autoReconnect=true");
                 dataSource.setDriverClassName("com.mysql.jdbc.Driver");
@@ -38,10 +38,10 @@ public class MysqlDatasourceFactory implements DatasourceFactory {
                 dataSource.setKeepAlive(true);
 
                 dataSource.setFilters("stat");
-            }else {
+            } else {
                 return dataSource;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return dataSource;

@@ -4,6 +4,7 @@ package com.zifang.util.core.io.ftp;
 
 /**
  * Ftp操作日志
+ *
  * @author Created by Administrator on 2015-04-08.
  */
 public class FTPLog {

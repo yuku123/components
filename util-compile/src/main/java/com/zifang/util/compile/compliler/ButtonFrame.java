@@ -1,37 +1,36 @@
 package com.zifang.util.compile.compliler;
+
 import javax.swing.*;
 
 /**
- * @version 1.00 2007-11-02
  * @author Cay Horstmann
+ * @version 1.00 2007-11-02
  */
-public abstract class ButtonFrame extends JFrame
-{
-   public static final int DEFAULT_WIDTH = 300;
-   public static final int DEFAULT_HEIGHT = 200;
+public abstract class ButtonFrame extends JFrame {
+    public static final int DEFAULT_WIDTH = 300;
+    public static final int DEFAULT_HEIGHT = 200;
 
-   protected JPanel panel;
-   protected JButton yellowButton;
-   protected JButton blueButton;
-   protected JButton redButton;
+    protected JPanel panel;
+    protected JButton yellowButton;
+    protected JButton blueButton;
+    protected JButton redButton;
 
-   protected abstract void addEventHandlers();
+    protected abstract void addEventHandlers();
 
-   public ButtonFrame()
-   {
-      setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    public ButtonFrame() {
+        setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
-      panel = new JPanel();
-      add(panel);
+        panel = new JPanel();
+        add(panel);
 
-      yellowButton = new JButton("Yellow");
-      blueButton = new JButton("Blue");
-      redButton = new JButton("Red");
+        yellowButton = new JButton("Yellow");
+        blueButton = new JButton("Blue");
+        redButton = new JButton("Red");
 
-      panel.add(yellowButton);
-      panel.add(blueButton);
-      panel.add(redButton);
-      
-      addEventHandlers();
-   }
+        panel.add(yellowButton);
+        panel.add(blueButton);
+        panel.add(redButton);
+
+        addEventHandlers();
+    }
 }

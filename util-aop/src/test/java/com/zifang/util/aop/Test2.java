@@ -8,19 +8,19 @@ import java.lang.reflect.Method;
 public class Test2 {
 
     @Test
-    public void test(){
+    public void test() {
 
-        te t = ProxyUtil.newProxyInstance(new in(),te.class);
+        te t = ProxyUtil.newProxyInstance(new in(), te.class);
         t.t();
 
     }
 }
 
-interface te{
+interface te {
     void t();
 }
 
-class in implements InvocationHandler{
+class in implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {

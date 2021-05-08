@@ -2,7 +2,7 @@ package com.zifang.util.compile.ct.generater;
 
 /**
  * 静态分析源码包
- * */
+ */
 public class AnalysisApplication {
     public static void main(String[] args) {
         String packageName = "com.zifang.util.jvm.management";

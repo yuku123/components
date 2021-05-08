@@ -4,8 +4,8 @@ import java.util.Optional;
 
 /**
  * 基本接口 的增删改查接口
- * */
-public interface CrudRepository<T, ID> extends Repository{
+ */
+public interface CrudRepository<T, ID> extends Repository {
 
 
     /**

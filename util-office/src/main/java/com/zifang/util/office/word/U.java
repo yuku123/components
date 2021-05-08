@@ -20,7 +20,7 @@ public class U {
 
 
     public static XWPFRun addText(XWPFParagraph p1, String s, int i) {
-        XWPFRun titleParagraphRun = addText(p1,s);
+        XWPFRun titleParagraphRun = addText(p1, s);
         titleParagraphRun.setFontSize(i);
         return titleParagraphRun;
     }
@@ -49,15 +49,15 @@ public class U {
     public static XWPFRun addText(XWPFParagraph titleParagraph, List<String> textList) {
         XWPFRun titleParagraphRun = titleParagraph.createRun();
         titleParagraphRun.addCarriageReturn();
-        for (String text:textList){
+        for (String text : textList) {
             titleParagraphRun.setText(text);
             titleParagraphRun.addCarriageReturn();
         }
         return titleParagraphRun;
     }
 
-    public static void addLoopText(XWPFParagraph titleParagraph, String s,Integer loopTimes){
-        for(Integer i =0;i<loopTimes;i++){
+    public static void addLoopText(XWPFParagraph titleParagraph, String s, Integer loopTimes) {
+        for (Integer i = 0; i < loopTimes; i++) {
             XWPFRun titleParagraphRun = titleParagraph.createRun();
             titleParagraphRun.addCarriageReturn();
             titleParagraphRun.setText(s);
@@ -94,13 +94,13 @@ public class U {
     }
 
     public static void createGraph(XWPFParagraph paragraph, String path) throws Throwable {
-        if(!new File(path).exists()){
-            throw new Exception("文件不存在啊:"+path);
+        if (!new File(path).exists()) {
+            throw new Exception("文件不存在啊:" + path);
         }
         paragraph.setAlignment(ParagraphAlignment.CENTER);
         XWPFRun run = paragraph.createRun();
         try {
-            run.addPicture(new FileInputStream(path),XWPFDocument.PICTURE_TYPE_JPEG, path,Units.toEMU(400), Units.toEMU(300));
+            run.addPicture(new FileInputStream(path), XWPFDocument.PICTURE_TYPE_JPEG, path, Units.toEMU(400), Units.toEMU(300));
         } catch (InvalidFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -182,7 +182,7 @@ public class U {
         rpr.setSzCs(size2);
 
 
-        CTColor color=CTColor.Factory.newInstance();
+        CTColor color = CTColor.Factory.newInstance();
         color.setVal(hexToBytes(hexColor));
         rpr.setColor(color);
         style.getCTStyle().setRPr(rpr);
@@ -199,7 +199,7 @@ public class U {
         return bytes;
     }
 
-    public static void initialStyles(XWPFDocument document){
+    public static void initialStyles(XWPFDocument document) {
         XWPFStyles styles = document.createStyles();
         //对document 进行处理
         U.addCustomHeadingStyle(document, styles, "Heading 1", 1, 44, "4288BC");
@@ -208,7 +208,7 @@ public class U {
         U.addCustomHeadingStyle(document, styles, "Heading 4", 4, 32, "000000");
     }
 
-    public static void addSimpleTable(XWPFDocument document,List<Tuple<String,String>> list, List<Map<String, Object>> dataMapList) {
+    public static void addSimpleTable(XWPFDocument document, List<Tuple<String, String>> list, List<Map<String, Object>> dataMapList) {
         //基本信息表格
         XWPFTable infoTable = document.createTable();
 
@@ -249,36 +249,36 @@ public class U {
         infoTableWidth.setW(BigInteger.valueOf(9072));
 
         //header 处理“
-        for(int i = 0 ; i< list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             XWPFTableRow xwpfTableRow = infoTable.getRow(0);
-            if(i == 0) {
+            if (i == 0) {
                 xwpfTableRow.getCell(0).setText(list.get(i).getKey());
-            }else{
+            } else {
                 xwpfTableRow.addNewTableCell().setText(list.get(i).getKey());
             }
         }
 
-        for(Map<String,Object> data : dataMapList){
+        for (Map<String, Object> data : dataMapList) {
             XWPFTableRow xwpfTableRow = infoTable.createRow();
 
-            for(int i = 0 ; i< list.size();i++){
+            for (int i = 0; i < list.size(); i++) {
 
-                if(i == 0) {
+                if (i == 0) {
                     xwpfTableRow.getCell(0).setText(data.get(list.get(i).getValue()).toString());
-                }else{
+                } else {
                     try {
                         Object o = data.get(list.get(i).getValue());
-                        if(String.valueOf(o).endsWith(".0")){
+                        if (String.valueOf(o).endsWith(".0")) {
                             xwpfTableRow.getCell(i).setText(String.valueOf(o).split("[.]")[0]);
-                        }else if(o instanceof Double){
+                        } else if (o instanceof Double) {
                             xwpfTableRow.getCell(i).setText(String.valueOf(Double.valueOf(o.toString()).doubleValue()));
-                        }else if (o instanceof Integer){
+                        } else if (o instanceof Integer) {
                             xwpfTableRow.getCell(i).setText(String.valueOf(Integer.valueOf(o.toString())));
-                        }else{
+                        } else {
                             xwpfTableRow.getCell(i).setText(String.valueOf(data.get(list.get(i).getValue())));
 
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -291,7 +291,7 @@ public class U {
      * 支持调节行内各自间距离
      *
      * */
-    public static void addSimpleTable(XWPFDocument document,List<Tuple<String,String>> list, List<Map<String, Object>> dataMapList,Map<Integer,String> dimention) {
+    public static void addSimpleTable(XWPFDocument document, List<Tuple<String, String>> list, List<Map<String, Object>> dataMapList, Map<Integer, String> dimention) {
         //基本信息表格
         XWPFTable infoTable = document.createTable();
 
@@ -300,27 +300,27 @@ public class U {
         infoTableWidth.setW(BigInteger.valueOf(9072));
 
         //header 处理“
-        for(int i = 0 ; i< list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             XWPFTableRow xwpfTableRow = infoTable.getRow(0);
-            if(i == 0) {
+            if (i == 0) {
                 xwpfTableRow.getCell(0).setText(list.get(i).getKey());
                 xwpfTableRow.getCell(0).setWidth(dimention.get(0));
-            }else{
+            } else {
                 XWPFTableCell cell = xwpfTableRow.addNewTableCell();
                 cell.setText(list.get(i).getKey());
                 cell.setWidth(dimention.get(i));
             }
         }
 
-        for(Map<String,Object> data : dataMapList){
+        for (Map<String, Object> data : dataMapList) {
             XWPFTableRow xwpfTableRow = infoTable.createRow();
 
-            for(int i = 0 ; i< list.size();i++){
+            for (int i = 0; i < list.size(); i++) {
 
-                if(i == 0) {
+                if (i == 0) {
                     xwpfTableRow.getCell(0).setText(data.get(list.get(i).getValue()).toString());
                     xwpfTableRow.getCell(0).setWidth(dimention.get(i));
-                }else{
+                } else {
                     xwpfTableRow.getCell(i).setText(data.get(list.get(i).getValue()).toString());
                     xwpfTableRow.getCell(i).setWidth(dimention.get(i));
 
@@ -330,16 +330,15 @@ public class U {
     }
 
 
-
-    public  static void mergeCellsHorizontal(XWPFTable table, int row, int fromCell, int toCell) {
+    public static void mergeCellsHorizontal(XWPFTable table, int row, int fromCell, int toCell) {
 
         Integer start = null;
         Integer colNum = table.getRow(row).getTableCells().size();
-        Integer toBe = U.WIDTH*(toCell-fromCell+1)/colNum;
+        Integer toBe = U.WIDTH * (toCell - fromCell + 1) / colNum;
         for (int cellIndex = fromCell; cellIndex <= toCell; cellIndex++) {
             XWPFTableCell cell = table.getRow(row).getCell(cellIndex);
 
-            if ( cellIndex == fromCell ) {
+            if (cellIndex == fromCell) {
                 // The first merged cell is set with RESTART merge value
                 cell.getCTTc().addNewTcPr().addNewHMerge().setVal(STMerge.RESTART);
                 start = cellIndex;
@@ -348,13 +347,14 @@ public class U {
                 cell.getCTTc().addNewTcPr().addNewHMerge().setVal(STMerge.CONTINUE);
             }
         }
-        table.getRow(row).getCell(start).setWidth(""+toBe);
+        table.getRow(row).getCell(start).setWidth("" + toBe);
     }
+
     // word跨行并单元格
     public static void mergeCellsVertically(XWPFTable table, int col, int fromRow, int toRow) {
         for (int rowIndex = fromRow; rowIndex <= toRow; rowIndex++) {
             XWPFTableCell cell = table.getRow(rowIndex).getCell(col);
-            if ( rowIndex == fromRow ) {
+            if (rowIndex == fromRow) {
                 // The first merged cell is set with RESTART merge value
                 cell.getCTTc().addNewTcPr().addNewVMerge().setVal(STMerge.RESTART);
             } else {
@@ -365,10 +365,10 @@ public class U {
     }
 
     public static void appendingBody(XWPFTable t_1_5_1, List<Map<String, Object>> mapList) {
-        for(Map<String,Object> map : mapList){
+        for (Map<String, Object> map : mapList) {
             XWPFTableRow row = t_1_5_1.createRow();
             int i = 0;
-            for(Map.Entry<String,Object> entry : map.entrySet()){
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
                 row.getCell(i++).setText(entry.getValue().toString());
             }
         }
@@ -392,8 +392,8 @@ public class U {
         infoTable.getRow(1).getCell(5).setText("册数(万册)");
         infoTable.getRow(1).getCell(6).setText("码洋(万元)");
 
-        mergeCellsHorizontal(infoTable,0,1,3);
-        mergeCellsHorizontal(infoTable,0,4,6);
-        mergeCellsVertically(infoTable,0,0,1);
+        mergeCellsHorizontal(infoTable, 0, 1, 3);
+        mergeCellsHorizontal(infoTable, 0, 4, 6);
+        mergeCellsVertically(infoTable, 0, 0, 1);
     }
 }

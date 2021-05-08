@@ -12,13 +12,13 @@ public abstract class AbstractEngine {
 
     public abstract AbstractEngineService getRegisteredEngineService(String serviceUnit);
 
-    public abstract void register(String name,Class<? extends AbstractEngineService> engineService);
+    public abstract void register(String name, Class<? extends AbstractEngineService> engineService);
 
-    public void setMode(String mode){
+    public void setMode(String mode) {
         this.mode = mode;
     }
 
-    public void setConfiguration(Map<String, String> properties){
+    public void setConfiguration(Map<String, String> properties) {
         this.properties = properties;
     }
 

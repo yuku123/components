@@ -32,7 +32,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
             // 登录响应
             ByteBuf responseByteBuf = PacketCodeC.INSTANCE.encode(ctx.alloc(), loginResponsePacket);
             ctx.channel().writeAndFlush(responseByteBuf);
-        } else if(packet instanceof LoginResponsePacket) {
+        } else if (packet instanceof LoginResponsePacket) {
             LoginResponsePacket loginResponsePacket = (LoginResponsePacket) packet;
 
             if (loginResponsePacket.isSuccess()) {

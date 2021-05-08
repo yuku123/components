@@ -17,7 +17,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket loginRequestPacket) {
         System.out.println(new Date() + ": 收到客户端登录请求……");
-        System.out.println("人的信息是"+ GsonUtil.objectToJsonStr(loginRequestPacket));
+        System.out.println("人的信息是" + GsonUtil.objectToJsonStr(loginRequestPacket));
 
         LoginResponsePacket loginResponsePacket = new LoginResponsePacket();
         loginResponsePacket.setVersion(loginRequestPacket.getVersion());

@@ -1,6 +1,6 @@
 /*
  * 文件名：Collections2_Study.java
- * 版权：Copyright 2007-2017 zxiaofan.com. Co. Ltd. All Rights Reserved. 
+ * 版权：Copyright 2007-2017 zxiaofan.com. Co. Ltd. All Rights Reserved.
  * 描述： Collections2_Study.java
  * 修改人：zxiaofan
  * 修改时间：2017年1月16日
@@ -24,7 +24,6 @@ import com.google.common.collect.Lists;
 
 
 /**
- * 
  * @author zxiaofan
  */
 public class Collections2_Study {
@@ -56,9 +55,8 @@ public class Collections2_Study {
 
     /**
      * filter返回的filterCollection仍然有predicate的特性（但返回值必须是Collection<T>且不能通过new ArrayList等手段创建新的实例）.
-     * 
+     * <p>
      * 如果新增不符合规则的数据到filterCollection，会抛异常IllegalArgumentException。
-     * 
      */
     @Test
     public void filterTest() {
@@ -81,7 +79,6 @@ public class Collections2_Study {
 
     /**
      * orderedPermutations排列（参数不能含null），产生n!个排列组合.
-     * 
      */
     @Test
     public void orderedPermutationsTest() {
@@ -100,7 +97,7 @@ public class Collections2_Study {
 
     /**
      * transform（对每个元素应用一个function）.
-     * 
+     * <p>
      * Function<UserBo, String>:<入参,返回值>
      */
     @Test

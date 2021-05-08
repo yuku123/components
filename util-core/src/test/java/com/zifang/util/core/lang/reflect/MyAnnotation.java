@@ -10,5 +10,5 @@ import static java.lang.annotation.ElementType.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyAnnotation {
 
-	String value();
+    String value();
 }

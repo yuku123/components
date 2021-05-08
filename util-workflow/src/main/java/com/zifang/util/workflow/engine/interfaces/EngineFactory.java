@@ -10,10 +10,10 @@ import java.util.Map;
 
 public class EngineFactory {
 
-    public static Map<String,AbstractEngine> engineCache = new HashMap<>();
+    public static Map<String, AbstractEngine> engineCache = new HashMap<>();
 
     //type : engine
-    public static Map<String, Class<? extends AbstractEngine>> registeredEngineMap= new HashMap<String,Class<? extends AbstractEngine>>(){
+    public static Map<String, Class<? extends AbstractEngine>> registeredEngineMap = new HashMap<String, Class<? extends AbstractEngine>>() {
         {
             put("spark", SparkEngine.class);
             put("python", PythonEngine.class);
@@ -27,7 +27,7 @@ public class EngineFactory {
         String type = engine.getType();
 
         //引擎缓存是否命中，命中则直接返回
-        if(engineCache.containsKey(type)){
+        if (engineCache.containsKey(type)) {
             return engineCache.get(type);
         } else {
             // 初始化引擎类
@@ -44,7 +44,7 @@ public class EngineFactory {
                 abstractEngine.doInitial();
 
                 //加入缓存
-                engineCache.put(type,abstractEngine);
+                engineCache.put(type, abstractEngine);
             } catch (InstantiationException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {

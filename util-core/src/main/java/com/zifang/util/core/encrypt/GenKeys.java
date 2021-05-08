@@ -15,19 +15,19 @@ import java.util.Date;
 //1. 生成公钥与私钥
 public class GenKeys {
     public static void main(String[] args) throws Exception {
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA"); 
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         SecureRandom secureRandom = new SecureRandom(new Date().toString().getBytes());
         keyPairGenerator.initialize(1024, secureRandom);
         KeyPair keyPair = keyPairGenerator.genKeyPair();
         String publicKeyFilename = "D:/publicKeyFile";
         byte[] publicKeyBytes = keyPair.getPublic().getEncoded();
-        FileOutputStream fos = new FileOutputStream(publicKeyFilename); 
-        fos.write(publicKeyBytes); 
+        FileOutputStream fos = new FileOutputStream(publicKeyFilename);
+        fos.write(publicKeyBytes);
         fos.close();
-        String privateKeyFilename = "D:/privateKeyFile"; 
+        String privateKeyFilename = "D:/privateKeyFile";
         byte[] privateKeyBytes = keyPair.getPrivate().getEncoded();
-        fos = new FileOutputStream(privateKeyFilename); 
-        fos.write(privateKeyBytes); 
+        fos = new FileOutputStream(privateKeyFilename);
+        fos.write(privateKeyBytes);
         fos.close();
     }
 }

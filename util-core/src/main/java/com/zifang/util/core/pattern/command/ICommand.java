@@ -5,6 +5,6 @@ package com.zifang.util.core.pattern.command;
  *
  * @author zifang
  **/
-public interface ICommand extends  IPostExecutor,IPreExecutor{
+public interface ICommand extends IPostExecutor, IPreExecutor {
     void execute();
 }

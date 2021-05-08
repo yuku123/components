@@ -12,21 +12,21 @@ import java.util.Map;
  */
 public class GsonUtil {
 
-	private static Gson gson = new Gson();
+    private static Gson gson = new Gson();
 
-	public static <T> String objectToJsonStr(T object) {
-		return gson.toJson(object);
-	}
+    public static <T> String objectToJsonStr(T object) {
+        return gson.toJson(object);
+    }
 
-	public static <T> T jsonStrToObject(String jsonStr, Class<T> classOfT) {
-		return gson.fromJson(jsonStr, classOfT);
-	}
+    public static <T> T jsonStrToObject(String jsonStr, Class<T> classOfT) {
+        return gson.fromJson(jsonStr, classOfT);
+    }
 
-	public static <T> T changeToSubClass(Object o,Class<T> t){
-		return jsonStrToObject(objectToJsonStr(o),t);
-	}
+    public static <T> T changeToSubClass(Object o, Class<T> t) {
+        return jsonStrToObject(objectToJsonStr(o), t);
+    }
 
-	public static Map<String,Object> toMap(Object o){
-		return (Map<String, Object>)jsonStrToObject(GsonUtil.objectToJsonStr(o),Map.class);
-	}
+    public static Map<String, Object> toMap(Object o) {
+        return (Map<String, Object>) jsonStrToObject(GsonUtil.objectToJsonStr(o), Map.class);
+    }
 }

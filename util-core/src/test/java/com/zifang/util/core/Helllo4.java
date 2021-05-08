@@ -11,17 +11,17 @@ public class Helllo4 {
         return c;
     }
 
-    public static void testException(String a, Integer b){
+    public static void testException(String a, Integer b) {
         try {
-            foo(1,2);
-        } catch (IOException e){
+            foo(1, 2);
+        } catch (IOException e) {
             e.printStackTrace();
-        } catch (NullPointerException exception){
+        } catch (NullPointerException exception) {
             System.out.println("干饭人万万岁@@@@!!!!!");
         }
     }
 
     public static void main(String[] args) {
-        testException("吃饭",100);
+        testException("吃饭", 100);
     }
 }

@@ -6,8 +6,8 @@ import java.net.URI;
 
 public class NoGovernmentCookies implements CookiePolicy {
 
-	@Override
-	public boolean shouldAccept(URI uri, HttpCookie cookie) {
+    @Override
+    public boolean shouldAccept(URI uri, HttpCookie cookie) {
         return !uri.getAuthority().toLowerCase().endsWith(".gov") && !cookie.getDomain().toLowerCase().endsWith(".gov");
     }
 }

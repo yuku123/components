@@ -83,16 +83,16 @@ public class NettyClient {
                     System.out.println("输入消息发送至服务端: ");
                     Scanner sc = new Scanner(System.in);
                     String line = sc.nextLine();
-                    if(line.equals("login")){
-                        String userId = "u"+new Random().nextInt(10);
+                    if (line.equals("login")) {
+                        String userId = "u" + new Random().nextInt(10);
                         LoginRequestPacket loginRequestPacket = new LoginRequestPacket();
                         loginRequestPacket.setUserId(userId);
-                        loginRequestPacket.setPassword("password:"+userId);
-                        loginRequestPacket.setUsername("username:"+userId);
+                        loginRequestPacket.setPassword("password:" + userId);
+                        loginRequestPacket.setUsername("username:" + userId);
                         channel.writeAndFlush(loginRequestPacket);
-                    }else if(line.equals("image")){
+                    } else if (line.equals("image")) {
                         channel.writeAndFlush(new ImageRequestPacket());
-                    } else if(line.contains("message")){
+                    } else if (line.contains("message")) {
                         //message u3 aaaaa
                         String userTo = line.split(" ")[1];
                         String message = line.split(" ")[2];
@@ -102,7 +102,7 @@ public class NettyClient {
 
                         channel.writeAndFlush(messageRequestPacket);
 
-                    } else if(line.contains("control")){
+                    } else if (line.contains("control")) {
                         //control usmyself usto
                         String userId = line.split(" ")[1];
                         String userTo = line.split(" ")[2];

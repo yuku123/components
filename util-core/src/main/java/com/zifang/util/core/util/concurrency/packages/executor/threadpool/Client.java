@@ -2,7 +2,7 @@ package com.zifang.util.core.util.concurrency.packages.executor.threadpool;
 
 public class Client {
     public static void main(String[] args) throws Exception {
-        ThreadPool pool =new ThreadPool(5);
+        ThreadPool pool = new ThreadPool(5);
         pool.execute(new Runnable() {
             @Override
             public void run() {

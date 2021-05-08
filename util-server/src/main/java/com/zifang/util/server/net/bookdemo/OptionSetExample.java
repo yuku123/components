@@ -7,9 +7,9 @@ import java.nio.channels.SocketChannel;
 
 public class OptionSetExample {
 
-	public static void main(String[] args) throws IOException {
-		NetworkChannel channel = SocketChannel.open();
-		channel.setOption(StandardSocketOptions.SO_LINGER, 240);
-	}
+    public static void main(String[] args) throws IOException {
+        NetworkChannel channel = SocketChannel.open();
+        channel.setOption(StandardSocketOptions.SO_LINGER, 240);
+    }
 
 }

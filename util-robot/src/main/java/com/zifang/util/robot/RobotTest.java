@@ -21,7 +21,7 @@ public class RobotTest {
         //以屏幕的尺寸创建个矩形
         Rectangle screenRect = new Rectangle(d);
         //截图（截取整个屏幕图片）
-        BufferedImage bufferedImage =  robot.createScreenCapture(screenRect);
+        BufferedImage bufferedImage = robot.createScreenCapture(screenRect);
         //保存截图
         File file = new File("screenRect.png");
         ImageIO.write(bufferedImage, "png", file);
@@ -50,8 +50,7 @@ public class RobotTest {
 
         //按下Alt+TAB键（切换桌面窗口）
         robot.keyPress(KeyEvent.VK_ALT);
-        for(int i=1;i<=2;i++)
-        {
+        for (int i = 1; i <= 2; i++) {
             robot.keyPress(KeyEvent.VK_TAB);
             robot.keyRelease(KeyEvent.VK_TAB);
         }

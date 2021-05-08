@@ -66,7 +66,7 @@ public class PacketCodeC {
 
         // 数据包长度
         int length = byteBuf.readInt();
-        System.out.println("数据包长度:"+length);
+        System.out.println("数据包长度:" + length);
 
         byte[] bytes = new byte[length];
         byteBuf.readBytes(bytes);

@@ -11,7 +11,7 @@ import org.apache.spark.sql.Row;
 import java.util.*;
 
 public class Model_Function {
-    public static String[] getFeatureNames(Dataset<Row> modeldataste,String userid,String target){
+    public static String[] getFeatureNames(Dataset<Row> modeldataste, String userid, String target) {
         String[] colums = modeldataste.columns();
         List<String> col_names_list = new ArrayList<>(Arrays.asList(colums));
         col_names_list.remove(userid);
@@ -20,14 +20,14 @@ public class Model_Function {
         return var_names_new;
     }
 
-    public static Dataset<Row>  createVectorAssembler(Dataset<Row> modeldataste,String[] var_names_new,String target,String features,String userid){
+    public static Dataset<Row> createVectorAssembler(Dataset<Row> modeldataste, String[] var_names_new, String target, String features, String userid) {
 
         VectorAssembler vector = new VectorAssembler().setInputCols(var_names_new).setOutputCol(features);
-        Dataset<Row> model_dataset = vector.transform(modeldataste).select(target, features,userid);
+        Dataset<Row> model_dataset = vector.transform(modeldataste).select(target, features, userid);
         return model_dataset;
     }
 
-    public static ChiSqSelectorModel createChiqModel(Dataset<Row> dataset,int var_bnumber,String features,String target,String outputfeatures){
+    public static ChiSqSelectorModel createChiqModel(Dataset<Row> dataset, int var_bnumber, String features, String target, String outputfeatures) {
         ChiSqSelector selector = new ChiSqSelector()
                 .setNumTopFeatures(var_bnumber)
                 .setFeaturesCol(features)
@@ -37,13 +37,13 @@ public class Model_Function {
         return model;
     }
 
-    public static void getModelImportance(RandomForestClassificationModel model, String[] var_names){
+    public static void getModelImportance(RandomForestClassificationModel model, String[] var_names) {
         double[] importance_value = model.featureImportances().toArray();
         System.out.println(importance_value.length);
 
         HashMap<String, Double> map = new HashMap<String, Double>();
-        for(int i=0;i<importance_value.length;i++){
-            map.put(var_names[i],importance_value[i]);
+        for (int i = 0; i < importance_value.length; i++) {
+            map.put(var_names[i], importance_value[i]);
         }
 
 
@@ -54,14 +54,14 @@ public class Model_Function {
                 return o2.getValue().compareTo(o1.getValue());
             }
         });
-        for(int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getKey() + ": " + list.get(i).getValue());
         }
     }
 
-    public static String[] select_model_varnames(int[] index,String[] varNames){
+    public static String[] select_model_varnames(int[] index, String[] varNames) {
         ArrayList<String> var_names = new ArrayList<String>();
-        for(int i=0;i<index.length;i++){
+        for (int i = 0; i < index.length; i++) {
             var_names.add(varNames[index[i]]);
             System.out.println(varNames[index[i]]);
         }
@@ -69,7 +69,7 @@ public class Model_Function {
         return selectNames;
     }
 
-    public static RandomForestClassificationModel build_rfModel(Dataset<Row> modelDataset,String target,String features,String pre_lable,String pre_problity){
+    public static RandomForestClassificationModel build_rfModel(Dataset<Row> modelDataset, String target, String features, String pre_lable, String pre_problity) {
 
         RandomForestClassifier rf = new RandomForestClassifier()
                 .setLabelCol(target)

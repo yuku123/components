@@ -38,13 +38,15 @@ public class Sets {
         return set;
     }
 
-    public static void intersection(){
+    public static void intersection() {
 
     }
-    public static void difference(){
+
+    public static void difference() {
 
     }
-    public static void union(){
+
+    public static void union() {
 
     }
 }

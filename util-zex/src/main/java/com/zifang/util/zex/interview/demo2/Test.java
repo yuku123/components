@@ -9,10 +9,10 @@ import java.lang.reflect.Proxy;
 public class Test {
 
 
-    private static Object createObject(String str){
+    private static Object createObject(String str) {
 
         IAImplement iaImplement = new IAImplement(str);
-        Object o = Proxy.newProxyInstance(Test.class.getClassLoader(), IAImplement.class.getInterfaces(), new IAInvocationHandler(iaImplement,str));
+        Object o = Proxy.newProxyInstance(Test.class.getClassLoader(), IAImplement.class.getInterfaces(), new IAInvocationHandler(iaImplement, str));
         return o;
     }
 
@@ -20,7 +20,7 @@ public class Test {
         IA ia = ProxyUtil.newProxyInstance((proxy, method, args1) -> {
             System.out.println(method.getName());
             return null;
-        },IA.class);
+        }, IA.class);
         ia.getName();
     }
 }

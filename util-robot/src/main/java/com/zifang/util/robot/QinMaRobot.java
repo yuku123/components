@@ -7,8 +7,8 @@ import java.awt.event.KeyEvent;
 public class QinMaRobot {
 
     public static void main(String[] args) throws AWTException {
-        Robot  robot = new Robot();
-        robot.mouseMove(500,500);
+        Robot robot = new Robot();
+        robot.mouseMove(500, 500);
         robot.mousePress(InputEvent.BUTTON1_MASK);
         // 输入HelloWorld
         robot.keyPress(KeyEvent.VK_CAPS_LOCK);

@@ -39,7 +39,7 @@ public class BeautifyJsonUtils {
             if (value instanceof JsonObject) {
                 sb.append("\n");
                 sb.append(beautify((JsonObject) value));
-            } else if (value instanceof JsonArray){
+            } else if (value instanceof JsonArray) {
                 sb.append("\n");
                 sb.append(beautify((JsonArray) value));
             } else if (value instanceof String) {

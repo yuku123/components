@@ -28,15 +28,16 @@ public class HDFSApp {
     /**
      * 初始化一些资源
      */
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         configuration = new Configuration();
         // 获取一个fileSystem对象，这就相当于建立连接了
-        fileSystem = FileSystem.get(new URI(HDFS_PATH),configuration,"japson");
+        fileSystem = FileSystem.get(new URI(HDFS_PATH), configuration, "japson");
         System.out.println("HDFSApp.setUp");
     }
 
     /**
      * 创建HDFS目录
+     *
      * @throws Exception
      */
 
@@ -71,7 +72,7 @@ public class HDFSApp {
     public void copyToLocalFile() throws Exception {
         Path localPath = new Path("E:\\IntelliJ IDEA\\hadoopTest1\\download.txt");
         Path hdfsPath = new Path("/hdfsapi/test/b.txt");
-        fileSystem.copyToLocalFile(hdfsPath,localPath);
+        fileSystem.copyToLocalFile(hdfsPath, localPath);
     }
 
     public void copyFromLocalFileWithProgress() throws Exception {
@@ -83,7 +84,7 @@ public class HDFSApp {
                         System.out.print(".");   // 带进度提醒
                     }
                 });
-        IOUtils.copyBytes(in,outputStream,4096);
+        IOUtils.copyBytes(in, outputStream, 4096);
     }
 
 
@@ -91,28 +92,27 @@ public class HDFSApp {
         Path localPath = new Path("E:\\IntelliJ IDEA\\hadoopTest1\\localText.txt");
         Path hdfsPath = new Path("/hdfsapi/test");
 
-        fileSystem.copyFromLocalFile(localPath,hdfsPath);
+        fileSystem.copyFromLocalFile(localPath, hdfsPath);
     }
 
 
     public void rename() throws Exception {
         Path oldPath = new Path("/hdfsapi/test3/a.txt");
         Path newPath = new Path("/hdfsapi/test3/b.txt");
-        fileSystem.rename(oldPath,newPath);
+        fileSystem.rename(oldPath, newPath);
     }
-
 
 
     public void delete() throws Exception {
 
-        fileSystem.delete(new Path("/hdfsapi/test/a.txt"),true);
+        fileSystem.delete(new Path("/hdfsapi/test/a.txt"), true);
 
     }
 
 
     public void cat() throws Exception {
         FSDataInputStream inputStream = fileSystem.open(new Path("/hdfsapi/test3/a.txt"));
-        IOUtils.copyBytes(inputStream,System.out,1024);
+        IOUtils.copyBytes(inputStream, System.out, 1024);
         inputStream.close();
 
     }

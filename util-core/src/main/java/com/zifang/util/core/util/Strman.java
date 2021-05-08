@@ -1441,7 +1441,7 @@ public abstract class Strman {
         // split into a word when we encounter a space, or an underscore, or a dash, or a switch from lower to upper case
         String[] words = words(input, "\\s|_|-|(?<=[a-z])(?=[A-Z])");
         return Arrays.stream(words).filter(w -> !w.trim().isEmpty())
-            .map(w -> upperFirst(w.toLowerCase())).collect(joining(" "));
+                .map(w -> upperFirst(w.toLowerCase())).collect(joining(" "));
     }
 
     public static String escapeRegExp(final String input) {

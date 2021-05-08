@@ -6,6 +6,7 @@ import com.zifang.util.monitor.thread.utility.TimeUtil;
 
 /**
  * 线程池配置。
+ *
  * @author lijing
  * @since 2015/11/25
  */
@@ -102,6 +103,7 @@ public class ThreadPoolConfigUnit {
 
     /**
      * 设置告警策略。
+     *
      * @param alarmPolicy 待设置告警策略。
      */
     public void setAlarmPolicy(AlarmPolicy alarmPolicy) {
@@ -110,6 +112,7 @@ public class ThreadPoolConfigUnit {
 
     /**
      * 设置告警服务。
+     *
      * @param alarmService 待设置告警服务。
      */
     public void setAlarmService(AlarmService alarmService) {

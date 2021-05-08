@@ -19,17 +19,17 @@ public class ApplyTest {
 
         String[] filteredColumnName = Arrays.asList(dataSet.columns())
                 .stream()
-                .filter( e -> (!"id".equals(e)) && (!"target".equals(e)))
+                .filter(e -> (!"id".equals(e)) && (!"target".equals(e)))
                 .collect(Collectors.toList())
                 .toArray(new String[]{});
 
         VectorAssembler vector = new VectorAssembler().setInputCols(filteredColumnName).setOutputCol("features");
 
-        dataSet = vector.transform(dataSet).select("target", "features","id");
+        dataSet = vector.transform(dataSet).select("target", "features", "id");
 
         RandomForestClassificationModel model = RandomForestClassificationModel.load("hdfs://piday03:9000/user/piday/model_yj_plusv3");
 
-        Dataset<Row> pre_data = model.transform(dataSet).select("id","target","pre_lable");
+        Dataset<Row> pre_data = model.transform(dataSet).select("id", "target", "pre_lable");
         pre_data.show();
     }
 }

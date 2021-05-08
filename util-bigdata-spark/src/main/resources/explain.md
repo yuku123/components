@@ -1,4 +1,5 @@
 # 一些有用的指令
+
 ````
 hive -e 'set hive.cli.print.header=true; select * from ruibang.xx' | sed 's/[\t]/,/g'  > xx.csv
 ````

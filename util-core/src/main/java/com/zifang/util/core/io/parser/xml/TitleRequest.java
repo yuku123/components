@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.List;
 
-@XmlRootElement(name="RequestOrder")
+@XmlRootElement(name = "RequestOrder")
 @Data
 public class TitleRequest {
 

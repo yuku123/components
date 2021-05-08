@@ -8,11 +8,11 @@ public class AlgoVisualizer {
     private int[] money;
     private AlgoFrame frame;
 
-    public AlgoVisualizer(int sceneWidth, int sceneHeight){
+    public AlgoVisualizer(int sceneWidth, int sceneHeight) {
 
         // 初始化数据
         money = new int[100];
-        for(int i = 0 ; i < money.length ; i ++)
+        for (int i = 0; i < money.length; i++)
             money[i] = 100;
 
         // 初始化视图
@@ -24,16 +24,16 @@ public class AlgoVisualizer {
         });
     }
 
-    public void run(){
+    public void run() {
 
-        while(true){
+        while (true) {
 
             frame.render(money);
             AlgoVisHelper.pause(DELAY);
 
-            for(int i = 0 ; i < money.length; i ++){
-                if(money[i] > 0){
-                    int j = (int)(Math.random() * money.length);
+            for (int i = 0; i < money.length; i++) {
+                if (money[i] > 0) {
+                    int j = (int) (Math.random() * money.length);
                     money[i] -= 1;
                     money[j] += 1;
                 }

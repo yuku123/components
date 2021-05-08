@@ -10,7 +10,7 @@ import java.util.Map;
 public class BeanUtilsTest {
 
     @Test
-    public void isBeanTest(){
+    public void isBeanTest() {
         Assert.assertFalse(BeanUtils.isBean(new IsBeanTest1()));
         Assert.assertTrue(BeanUtils.isBean(new IsBeanTest2()));
         Assert.assertFalse(BeanUtils.isBean(new IsBeanTest3()));
@@ -19,34 +19,34 @@ public class BeanUtilsTest {
 
     @Test
     public void mapToBeanTest() throws Exception {
-        Map<String,Object> map= new HashMap<>();
-        map.put("baseByteType",(byte)1);
-        map.put("baseCharType",'c');
-        map.put("baseIntType",2);
-        map.put("baseLongType",3L);
-        map.put("baseFloatType",1.2f);
-        map.put("baseDoubleType",1.4d);
-        map.put("byteWapperType",new Byte("9"));
-        map.put("charWapperType",new Character('c'));
-        map.put("intWapperType",new Integer("11"));
-        map.put("longWapperType",new Long("12"));
-        map.put("floatWapperType",new Float("9.1"));
-        map.put("doubleWapperType",new Double(22.22d));
-        map.put("stringType","s");
-        Person person = BeanUtils.mapToBean(Person.class,map);
-        Assert.assertEquals((byte)1,person.getBaseByteType());
-        Assert.assertEquals('c',person.getBaseCharType());
-        Assert.assertEquals(2,person.getBaseIntType());
-        Assert.assertEquals(3L,person.getBaseLongType());
-        Assert.assertEquals("message",1.2f,person.getBaseFloatType(),0.01);
-        Assert.assertEquals("message",1.4d,person.getBaseDoubleType(),0.01);
-        Assert.assertEquals(new Byte("9"),person.getByteWapperType());
-        Assert.assertEquals(new Character('c'),person.getCharWapperType());
-        Assert.assertEquals(new Integer("11"),person.getIntWapperType());
-        Assert.assertEquals(new Long("12"),person.getLongWapperType());
-        Assert.assertEquals(new Float("9.1"),person.getFloatWapperType());
-        Assert.assertEquals(new Double(22.22d),person.getDoubleWapperType());
-        Assert.assertEquals("s",person.getStringType());
+        Map<String, Object> map = new HashMap<>();
+        map.put("baseByteType", (byte) 1);
+        map.put("baseCharType", 'c');
+        map.put("baseIntType", 2);
+        map.put("baseLongType", 3L);
+        map.put("baseFloatType", 1.2f);
+        map.put("baseDoubleType", 1.4d);
+        map.put("byteWapperType", new Byte("9"));
+        map.put("charWapperType", new Character('c'));
+        map.put("intWapperType", new Integer("11"));
+        map.put("longWapperType", new Long("12"));
+        map.put("floatWapperType", new Float("9.1"));
+        map.put("doubleWapperType", new Double(22.22d));
+        map.put("stringType", "s");
+        Person person = BeanUtils.mapToBean(Person.class, map);
+        Assert.assertEquals((byte) 1, person.getBaseByteType());
+        Assert.assertEquals('c', person.getBaseCharType());
+        Assert.assertEquals(2, person.getBaseIntType());
+        Assert.assertEquals(3L, person.getBaseLongType());
+        Assert.assertEquals("message", 1.2f, person.getBaseFloatType(), 0.01);
+        Assert.assertEquals("message", 1.4d, person.getBaseDoubleType(), 0.01);
+        Assert.assertEquals(new Byte("9"), person.getByteWapperType());
+        Assert.assertEquals(new Character('c'), person.getCharWapperType());
+        Assert.assertEquals(new Integer("11"), person.getIntWapperType());
+        Assert.assertEquals(new Long("12"), person.getLongWapperType());
+        Assert.assertEquals(new Float("9.1"), person.getFloatWapperType());
+        Assert.assertEquals(new Double(22.22d), person.getDoubleWapperType());
+        Assert.assertEquals("s", person.getStringType());
     }
 }
 
@@ -71,10 +71,11 @@ class Person {
     private String stringType;
 }
 
-class IsBeanTest1{
+class IsBeanTest1 {
     private String name;
 }
-class IsBeanTest2{
+
+class IsBeanTest2 {
     private String name;
 
     public void setName(String name) {

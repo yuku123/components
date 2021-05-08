@@ -29,7 +29,7 @@ public class NettyServer {
         serverBootstrap
                 .group(boosGroup, workerGroup)
                 .channel(NioServerSocketChannel.class)
-                .childAttr(AttributeKey.newInstance("adas"),"dasdsa")
+                .childAttr(AttributeKey.newInstance("adas"), "dasdsa")
                 .option(ChannelOption.SO_BACKLOG, 1024)
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.TCP_NODELAY, true)

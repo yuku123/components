@@ -8,17 +8,17 @@ public class MethodInfo {
 
     /**
      * 方法的可见性
-     * */
+     */
     private Integer modifier;
 
     /**
      * 返回参数类型
-     * */
+     */
     private String returnType;
 
     /**
      * 方法名字
-     * */
+     */
     private String methodName;
 
     /**
@@ -28,16 +28,16 @@ public class MethodInfo {
 
     /**
      * 方法体的语句
-     * */
+     */
     private List<String> statements;
 
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof MethodInfo){
-            MethodInfo tobeCompare = (MethodInfo)obj;
-            if(returnType.equals(tobeCompare.getReturnType()) && methodName.equals(tobeCompare.getMethodName() )){
-                if(methodParameterPairs.toString().equals(tobeCompare.getMethodParameterPairs().toString())){
+        if (obj instanceof MethodInfo) {
+            MethodInfo tobeCompare = (MethodInfo) obj;
+            if (returnType.equals(tobeCompare.getReturnType()) && methodName.equals(tobeCompare.getMethodName())) {
+                if (methodParameterPairs.toString().equals(tobeCompare.getMethodParameterPairs().toString())) {
                     return true;
                 }
             } else {
@@ -51,31 +51,31 @@ public class MethodInfo {
 
     /**
      * 当前方法的标致号 不理会modifier
-     *
+     * <p>
      * String name(String cc, Double dd);
-     * */
-    public String signature(){
-        return returnType+" "+methodName+"("+getParameterStr()+")"+";";
+     */
+    public String signature() {
+        return returnType + " " + methodName + "(" + getParameterStr() + ")" + ";";
     }
 
     /**
      * 当前方法的标致号 理会modifier
-     *
+     * <p>
      * public String name(String cc, Double dd);
-     * */
-    public String fullSignature(){
-        return returnType+" "+methodName+"("+getParameterStr()+")"+";";
+     */
+    public String fullSignature() {
+        return returnType + " " + methodName + "(" + getParameterStr() + ")" + ";";
     }
 
-    private String getParameterStr(){
+    private String getParameterStr() {
         List<String> sub = new ArrayList<>();
-        if(methodParameterPairs == null){
+        if (methodParameterPairs == null) {
             return "";
-        }else{
-            for(MethodParameterPair methodParameterPair : methodParameterPairs){
+        } else {
+            for (MethodParameterPair methodParameterPair : methodParameterPairs) {
                 sub.add(methodParameterPair.toString());
             }
-            return String.join(",",sub);
+            return String.join(",", sub);
         }
     }
 

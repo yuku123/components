@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Scanner {
     @Test
-    public void t(){
+    public void t() {
         Set<Class<?>> set = PackageScanner.searchClasses("com.google");
         for (Class<?> aClass : set) {
             System.out.println(aClass.getName());

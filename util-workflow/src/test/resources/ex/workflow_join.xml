@@ -11,7 +11,8 @@
             <spark.executor.memory>2g</spark.executor.memory>
             <spark.driver.maxResultSize>2g</spark.driver.maxResultSize>
             <spark.cores.max>1</spark.cores.max>
-            <jars>/home/zifang/workplace/idea_workplace/components/util-bigdata/target/util-bigdata-1.0-SNAPSHOT.jar</jars>
+            <jars>/home/zifang/workplace/idea_workplace/components/util-bigdata/target/util-bigdata-1.0-SNAPSHOT.jar
+            </jars>
             <logLevel>ERROR</logLevel>
         </properties>
     </engine>

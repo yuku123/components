@@ -10,14 +10,15 @@ import com.zifang.util.core.beans.classinfo.FieldInfo;
 import com.zifang.util.core.beans.classinfo.MethodInfo;
 import com.zifang.util.core.beans.classinfo.MethodParameterPair;
 import com.zifang.util.core.lang.object.component.*;
+
 import java.util.Optional;
 
 import static com.github.javaparser.ast.Modifier.Keyword.PUBLIC;
 
 /**
  * 生产接口代码的 生产者
- * */
-public class JavaInterfaceSourceGenerator implements IGenerator{
+ */
+public class JavaInterfaceSourceGenerator implements IGenerator {
 
     // 针对一个类的信息载体
     private ClassInfo classInfo;
@@ -52,9 +53,9 @@ public class JavaInterfaceSourceGenerator implements IGenerator{
                 .addInterface(classInfo.getSimpleClassName())
                 .setPublic(classInfo.isPublic());
 
-        if(classInfo.getInterfaces() != null){
+        if (classInfo.getInterfaces() != null) {
             // 使接口继承其他接口
-            for(ClassInfo subInterface : classInfo.getInterfaces()){
+            for (ClassInfo subInterface : classInfo.getInterfaces()) {
                 // 根据持有接口信息进行解析
                 Optional<ClassOrInterfaceType> classOrInterfaceType = javaParser
                         .parseClassOrInterfaceType(subInterface.getSimpleClassName()).getResult();
@@ -63,15 +64,15 @@ public class JavaInterfaceSourceGenerator implements IGenerator{
             }
         }
 
-        if(classInfo.getMethods() != null){
+        if (classInfo.getMethods() != null) {
             // 处理方法相关
-            for(MethodInfo methodInfo : classInfo.getMethods()){
+            for (MethodInfo methodInfo : classInfo.getMethods()) {
                 MethodDeclaration methodDeclaration = classUnit
                         .addMethod(methodInfo.getMethodName(), PUBLIC);
                 methodDeclaration.setType(methodInfo.getReturnType());//返回类型
                 // 设置方法入参对
-                for(MethodParameterPair methodParameterPair : methodInfo.getMethodParameterPairs()){
-                    methodDeclaration.addAndGetParameter(methodParameterPair.getParamType(),methodParameterPair.getParamName())
+                for (MethodParameterPair methodParameterPair : methodInfo.getMethodParameterPairs()) {
+                    methodDeclaration.addAndGetParameter(methodParameterPair.getParamType(), methodParameterPair.getParamName())
                             .setVarArgs(false);// setVarArgs(true)表达是否多参
                 }
                 // 接口 实现方法体为空
@@ -79,9 +80,9 @@ public class JavaInterfaceSourceGenerator implements IGenerator{
             }
         }
 
-        if(classInfo.getFields() != null){
-            for(FieldInfo fieldInfo : classInfo.getFields()){
-                CodeGenerateHelper.addField(classUnit,fieldInfo);
+        if (classInfo.getFields() != null) {
+            for (FieldInfo fieldInfo : classInfo.getFields()) {
+                CodeGenerateHelper.addField(classUnit, fieldInfo);
             }
         }
 

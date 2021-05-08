@@ -8,6 +8,7 @@ public class AssertUtil {
 
     /**
      * 判断对象是否为空
+     *
      * @param object
      * @param message
      */

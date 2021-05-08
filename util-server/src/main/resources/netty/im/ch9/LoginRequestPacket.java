@@ -39,7 +39,7 @@ public class LoginRequestPacket extends Packet {
         return LOGIN_REQUEST;
     }
 
-    public Byte getVersion(){
+    public Byte getVersion() {
         return version;
     }
 }

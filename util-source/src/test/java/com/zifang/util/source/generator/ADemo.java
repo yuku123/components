@@ -32,7 +32,7 @@ public class ADemo {
         VariableDeclarator variable = new VariableDeclarator(StaticJavaParser.parseType("String"), "title");
         variable.setInitializer(new NameExpr("\"sdasdasd\""));
         fieldDeclaration.getVariables().add(variable);
-        fieldDeclaration.setModifiers(createModifierList(PUBLIC,STATIC));
+        fieldDeclaration.setModifiers(createModifierList(PUBLIC, STATIC));
         classDeclaration.getMembers().add(fieldDeclaration);
 
         classDeclaration.addConstructor(PUBLIC)

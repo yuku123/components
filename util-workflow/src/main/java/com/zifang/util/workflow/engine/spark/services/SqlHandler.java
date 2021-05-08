@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * 支持书写任意sql的处理器件
- * */
+ */
 @EngineService(name = "engine.service.sql")
 public class SqlHandler extends AbstractSparkEngineService {
 
@@ -19,11 +19,11 @@ public class SqlHandler extends AbstractSparkEngineService {
 
     }
 
-    public void sql(){
+    public void sql() {
         //得到缓存控制服务器
         CacheEngineService cacheEngineService = getWorkFlowApplicationContext().getCacheEngineService();
         //当前内的节点的缓存参数
-        Map<String,String> cacheParameter = executableWorkflowNode.getCache();
+        Map<String, String> cacheParameter = executableWorkflowNode.getCache();
         //当前的invoke的所需要的参数
         HashMap transformedParameter = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
 

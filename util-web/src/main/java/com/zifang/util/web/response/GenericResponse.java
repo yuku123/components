@@ -9,6 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class GenericResponse<T> extends BaseResponse{
+public class GenericResponse<T> extends BaseResponse {
     private T data;
 }

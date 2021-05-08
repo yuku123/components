@@ -18,7 +18,7 @@ public class SparkUtil {
 
     private SparkContextInstance sparkContextInstance;
 
-    public SparkUtil(SparkContextInstance sparkContextInstance){
+    public SparkUtil(SparkContextInstance sparkContextInstance) {
         this.sparkContextInstance = sparkContextInstance;
     }
 
@@ -27,11 +27,11 @@ public class SparkUtil {
      *
      * @param fileLocation 单个本地文件
      */
-    public Dataset<Row> createDataSet(String fileLocation){
+    public Dataset<Row> createDataSet(String fileLocation) {
 
         Dataset<Row> dataSet = sparkContextInstance.getSqlContext().read()
                 .format("csv")
-                .option("header","true")
+                .option("header", "true")
                 .option("inferSchema", "true")
                 .load(fileLocation);
         return dataSet;
@@ -39,7 +39,7 @@ public class SparkUtil {
 
     public List<String> getColumnsStringList(Dataset<Row> dataset) {
         List<String> columnList = new ArrayList<>();
-        for(StructField field :dataset.schema().fields()){
+        for (StructField field : dataset.schema().fields()) {
             columnList.add(field.name());
         }
         return columnList;
@@ -47,7 +47,7 @@ public class SparkUtil {
 
     public List<Column> getColumnList(Dataset<Row> dataset) {
         List<Column> columnList = new ArrayList<>();
-        for(StructField field :dataset.schema().fields()){
+        for (StructField field : dataset.schema().fields()) {
             columnList.add(dataset.col(field.name()));
         }
         return columnList;
@@ -55,13 +55,13 @@ public class SparkUtil {
 
     public List<Column> transformStringToColumn(Dataset<Row> dataset, List<String> columnsStringType) {
         List<Column> columnList = new ArrayList<>();
-        for(String column : columnsStringType){
+        for (String column : columnsStringType) {
             columnList.add(dataset.col(column));
         }
         return columnList;
     }
 
-    public JavaRDD<String> readFromLocalToJavaRDD(String filePath){
+    public JavaRDD<String> readFromLocalToJavaRDD(String filePath) {
         return sparkContextInstance.getJavaSparkContext().textFile(filePath);
     }
 

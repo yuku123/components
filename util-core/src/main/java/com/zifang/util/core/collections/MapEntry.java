@@ -5,12 +5,12 @@ import java.util.Map;
 /**
  * @author zifang
  */
-public class MapEntry<K,V> implements Map.Entry<K,V> {
+public class MapEntry<K, V> implements Map.Entry<K, V> {
 
     private K key;
     private V value;
 
-    public MapEntry(K key,V value){
+    public MapEntry(K key, V value) {
         this.key = key;
         this.value = value;
     }

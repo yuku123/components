@@ -63,11 +63,11 @@
 
 ## 第二章
 
-
 ### 分区
 
 1. hash分区，列必须是int
 2. range 分区,使用日期，时间类型
+
 ````
 partition by range(customer_id)（
    partition p0 values less than (100000),
@@ -76,6 +76,7 @@ partition by range(customer_id)（
 ````
 
 3. list分区
+
  ````
  partition by range(customer_id)（
     partition p0 values in (100000,1,2,3),

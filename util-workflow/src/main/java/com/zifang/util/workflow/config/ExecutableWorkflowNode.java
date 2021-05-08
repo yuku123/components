@@ -15,7 +15,7 @@ import java.util.concurrent.CountDownLatch;
 
 @Setter
 @Getter
-public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycle{
+public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycle {
 
     // 描述当前节点的状态
     private String status;
@@ -39,12 +39,12 @@ public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycl
 
     /**
      * 集合所有的后置节点
-     * */
+     */
     private List<ExecutableWorkflowNode> post = new ArrayList<>();
 
     /**
      * 集合所有的前置节点
-     * */
+     */
     private List<ExecutableWorkflowNode> pre = new ArrayList<>();
 
     //是否被调用，因为会有很多个前置节点同时进行调用，那么就只会有一个节点会成功发起请求
@@ -53,7 +53,7 @@ public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycl
     private volatile int isCalled = 0;
 
     //初始化，将节点信息同步到可执行node内部
-    public ExecutableWorkflowNode(WorkflowNode workflowNode){
+    public ExecutableWorkflowNode(WorkflowNode workflowNode) {
         super.setNodeId(workflowNode.getNodeId());
         super.setConnector(workflowNode.getConnector());
         super.setGroupId(workflowNode.getGroupId());
@@ -73,40 +73,40 @@ public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycl
         blockExec();
     }
 
-    private synchronized void blockExec(){
+    private synchronized void blockExec() {
 
         //当当前节点是准备状态就开始执行当前的任务
-        if(PREPARED.equals(status)){
+        if (PREPARED.equals(status)) {
             //为当前节点的执行服务设置参数，并执行
             abstractEngineService.setInvokeParameter(getInvokeParameter());
             abstractEngineService.exec(this);
             dataset = abstractEngineService.getDataset();
 
-            for(CountDownLatch countDownLatch : postCountDownLatchList){
+            for (CountDownLatch countDownLatch : postCountDownLatchList) {
                 countDownLatch.countDown();
             }
 
-            for(ExecutableWorkflowNode executableWorkNode : post){
+            for (ExecutableWorkflowNode executableWorkNode : post) {
                 //将当前的结果强塞给下一个节点
                 executableWorkNode.setDatasetPre(dataset);
 
                 //如果下个节点已经准备好执行条件
-                if(executableWorkNode.getCountDownLatch().getCount() == 0){
+                if (executableWorkNode.getCountDownLatch().getCount() == 0) {
                     executableWorkNode.exec();
                 }
             }
 
-        } else if(EXECUTED.equals(status)){
+        } else if (EXECUTED.equals(status)) {
             //如果当前是已经执行过了的，就不真正的去执行当前指令
 
             //将当前的结果再强制往后面塞一遍，并去调用下一个节点，执行权交由下个节点
-            for(ExecutableWorkflowNode executableWorkNode : post){
+            for (ExecutableWorkflowNode executableWorkNode : post) {
 
                 //将当前的结果强塞给下一个节点
                 executableWorkNode.setDatasetPre(dataset);
 
                 //如果下个节点已经准备好执行条件
-                if(executableWorkNode.getCountDownLatch().getCount() == 0){
+                if (executableWorkNode.getCountDownLatch().getCount() == 0) {
                     executableWorkNode.exec();
                 }
             }
@@ -115,18 +115,18 @@ public class ExecutableWorkflowNode extends WorkflowNode implements NodeLifeCycl
 
     /**
      * 防止重复添加值
-     * */
+     */
     public void putPost(ExecutableWorkflowNode executableWorkNode) {
-        if(!post.contains(executableWorkNode)){
+        if (!post.contains(executableWorkNode)) {
             post.add(executableWorkNode);
         }
     }
 
     /**
      * 防止重复添加值
-     * */
+     */
     public void putPre(ExecutableWorkflowNode executableWorkNode) {
-        if(!pre.contains(executableWorkNode)){
+        if (!pre.contains(executableWorkNode)) {
             pre.add(executableWorkNode);
         }
     }

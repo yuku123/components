@@ -16,19 +16,19 @@ public class ChangeColumnNameHandler extends AbstractSparkEngineService {
         //得到缓存控制服务器
         CacheEngineService cacheEngineService = getWorkFlowApplicationContext().getCacheEngineService();
         //当前内的节点的缓存参数
-        Map<String,String> cacheParameter = executableWorkflowNode.getCache();
+        Map<String, String> cacheParameter = executableWorkflowNode.getCache();
 
         //获得当前节点的前置节点的数据
         dataset = executableWorkflowNode.getDatasetPre();
         //得到数据体
-        Map<String,String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+        Map<String, String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
         //传入的是当前的节点
-        for(Map.Entry<String,String> entry : properties.entrySet()){
-            dataset = dataset.withColumnRenamed(entry.getKey(),entry.getValue());
+        for (Map.Entry<String, String> entry : properties.entrySet()) {
+            dataset = dataset.withColumnRenamed(entry.getKey(), entry.getValue());
         }
         dataset.show();
 
-        cacheEngineService.doCache(dataset,cacheParameter.get("cacheTempNameAlias"));
+        cacheEngineService.doCache(dataset, cacheParameter.get("cacheTempNameAlias"));
 
     }
 

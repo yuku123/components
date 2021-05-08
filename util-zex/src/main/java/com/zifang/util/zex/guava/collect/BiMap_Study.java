@@ -20,13 +20,13 @@ import com.google.common.collect.ImmutableBiMap;
 
 /**
  * inverse()反转BiMap<K, V>的键值映射.inverse的map是一个视图，在这个反转后的map中的任何增删改操作都会影响原来的map。
- * 
+ * <p>
  * key/value均唯一，因此 values()返回的是Set而不是普通的Collection.
- * 
+ * <p>
  * 把键映射到已经存在的值，会抛出IllegalArgumentException异常。想要强制替换特定值的键，使用 BiMap.inverse().forcePut(key, value)。
- * 
+ * <p>
  * （key-value随意put，value-key使用inverse().forcePut强制替换）
- * 
+ *
  * @author zxiaofan
  */
 // Key-Value Map Impl--Value-Key Map Impl--Corresponding BiMap
@@ -37,7 +37,6 @@ import com.google.common.collect.ImmutableBiMap;
 public class BiMap_Study {
     /**
      * BiMap基础方法，其他实现类亦有如下方法.
-     * 
      */
     @Test
     public void basicTest() {

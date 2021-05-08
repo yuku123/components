@@ -16,7 +16,7 @@ public abstract class AbstractSparkEngineService extends AbstractEngineService {
 
     private static String defaultInvokeDynamicMethod = "defaultHandler";
 
-    public void setSparkContextInstance(SparkContextInstance sparkContextInstance){
+    public void setSparkContextInstance(SparkContextInstance sparkContextInstance) {
         this.sparkContextInstance = sparkContextInstance;
         sparkUtil = new SparkUtil(this.sparkContextInstance);
     }
@@ -25,11 +25,11 @@ public abstract class AbstractSparkEngineService extends AbstractEngineService {
     public void exec(ExecutableWorkflowNode executableWorkflowNode) {
         this.executableWorkflowNode = executableWorkflowNode;
         String invokeDynamic = executableWorkflowNode.getInvokeDynamic();
-        if(invokeDynamic == null){
+        if (invokeDynamic == null) {
             invokeDynamic = defaultInvokeDynamicMethod;
         }
         try {
-            System.out.println("want to call:"+invokeDynamic);
+            System.out.println("want to call:" + invokeDynamic);
             Method method = this.getClass().getMethod(invokeDynamic);
             method.invoke(this);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {

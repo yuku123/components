@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 public class PinyinGeneratorUtil {
     /**
      * 生成中文拼音全称
+     *
      * @param chinese
      * @return
      */
@@ -52,6 +53,7 @@ public class PinyinGeneratorUtil {
 
     /**
      * 生成中文首字母大写
+     *
      * @param chinese
      * @return
      */
@@ -92,7 +94,7 @@ public class PinyinGeneratorUtil {
      * @param inputString
      * @return
      */
-    public  static String getPingYin(String inputString) {
+    public static String getPingYin(String inputString) {
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
@@ -106,8 +108,9 @@ public class PinyinGeneratorUtil {
                 if (Character.toString(input[i]).matches("[\\u4E00-\\u9FA5]+")) {
                     String[] temp = PinyinHelper.toHanyuPinyinStringArray(input[i], format);
                     output += temp[0];
-                } else{
-                    output += Character.toString(input[i]);}
+                } else {
+                    output += Character.toString(input[i]);
+                }
             }
         } catch (BadHanyuPinyinOutputFormatCombination e) {
             e.printStackTrace();
@@ -121,7 +124,7 @@ public class PinyinGeneratorUtil {
      * @param chinese 汉字串
      * @return 汉语拼音首字母
      */
-    public  static String getFirstSpell(String chinese) {
+    public static String getFirstSpell(String chinese) {
         StringBuilder pybf = new StringBuilder();
         char[] arr = chinese.toCharArray();
         HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
@@ -150,7 +153,7 @@ public class PinyinGeneratorUtil {
      * @param chinese 汉字串
      * @return 汉语拼音
      */
-    public  static String getFullSpell(String chinese) {
+    public static String getFullSpell(String chinese) {
         StringBuffer pybf = new StringBuffer();
         char[] arr = chinese.toCharArray();
         HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
@@ -172,7 +175,7 @@ public class PinyinGeneratorUtil {
 
 
     // 只能判断部分CJK字符（CJK统一汉字）
-    public  static boolean isChineseByREG(String str) {
+    public static boolean isChineseByREG(String str) {
         if (str == null) {
             return false;
         }
@@ -181,7 +184,7 @@ public class PinyinGeneratorUtil {
     }
 
     // 只能判断部分CJK字符（CJK统一汉字）
-    public  static boolean isChineseByName(String str) {
+    public static boolean isChineseByName(String str) {
         if (str == null) {
             return false;
         }
@@ -194,7 +197,7 @@ public class PinyinGeneratorUtil {
 
 
     // 完整的判断中文汉字和符号
-    public  static boolean isChinese(String strName) {
+    public static boolean isChinese(String strName) {
         char[] ch = strName.toCharArray();
         for (int i = 0; i < ch.length; i++) {
             char c = ch[i];
@@ -211,7 +214,7 @@ public class PinyinGeneratorUtil {
      * @param c
      * @return
      */
-    public  static boolean isChinese(char c) {
+    public static boolean isChinese(char c) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
         return ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS || ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A || ub == Character.UnicodeBlock.GENERAL_PUNCTUATION || ub == Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION || ub == Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS;
     }
@@ -219,7 +222,7 @@ public class PinyinGeneratorUtil {
     /**
      * 获取一个字符串中中文字符的个数
      */
-    public  static int ChineseLength(String str) {
+    public static int ChineseLength(String str) {
         Pattern p = Pattern.compile("[\u4E00-\u9FA5]+");
         Matcher m = p.matcher(str);
         int i = 0;
@@ -236,7 +239,7 @@ public class PinyinGeneratorUtil {
      * @param strName
      * @return
      */
-    public  static float isMessyCode(String strName) {
+    public static float isMessyCode(String strName) {
         Pattern p = Pattern.compile("\\s*|\t*|\r*|\n*");
         Matcher m = p.matcher(strName);
         String after = m.replaceAll("");
@@ -257,28 +260,29 @@ public class PinyinGeneratorUtil {
     /* 18位标准身份证号
      * 方法用途：15位身份证转化为18位标准证件号
      */
-    public static String transIDCard15to18(String IdCardNO){
-        String cardNo=null;
-        if(null!=IdCardNO&&IdCardNO.trim().length()==15){
-            IdCardNO=IdCardNO.trim();
-            StringBuilder sb=new StringBuilder(IdCardNO);
+    public static String transIDCard15to18(String IdCardNO) {
+        String cardNo = null;
+        if (null != IdCardNO && IdCardNO.trim().length() == 15) {
+            IdCardNO = IdCardNO.trim();
+            StringBuilder sb = new StringBuilder(IdCardNO);
             sb.insert(6, "19");
             sb.append(transCardLastNo(sb.toString()));
-            cardNo=sb.toString();
+            cardNo = sb.toString();
         }
         return cardNo;
     }
+
     /* 方法用途：15位补全身份证号码
      */
-    private static String transCardLastNo(String newCardId){
-        char[] ch=newCardId.toCharArray();
-        int m=0;
-        int [] co={7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2};
-        char [] verCode=new char[]{'1','0','X','9','8','7','6','5','4','3','2'};
+    private static String transCardLastNo(String newCardId) {
+        char[] ch = newCardId.toCharArray();
+        int m = 0;
+        int[] co = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+        char[] verCode = new char[]{'1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'};
         for (int i = 0; i < newCardId.length(); i++) {
-            m+=(ch[i]-'0')*co[i];
+            m += (ch[i] - '0') * co[i];
         }
-        int residue=m%11;
+        int residue = m % 11;
         return String.valueOf(verCode[residue]);
 
     }

@@ -6,17 +6,17 @@ public class PivotANode {
 
     /**
      * 将要被处理的column列名字
-     * */
+     */
     private String columnName;
 
     /**
      * 定义这个列下面的哪些直需要被pivot,其他的全部被省略
-     * */
+     */
     private List<String> pivotColumns;
 
     /**
      * 统计频次的列
-     * */
+     */
     private String value;
 
 

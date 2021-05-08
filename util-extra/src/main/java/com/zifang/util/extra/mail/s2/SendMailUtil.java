@@ -58,7 +58,7 @@ public class SendMailUtil {
 //        }
 //    }
 
-    public static void sendEmail(String emailSendTo,String content){
+    public static void sendEmail(String emailSendTo, String content) {
         String[] TOS = new String[]{emailSendTo}; //发送到的地方
         Properties props = new Properties();
         props.put("mail.smtp.host", HOST);//设置发送邮件的邮件服务器的属性（这里使用网易的smtp服务器）
@@ -94,6 +94,6 @@ public class SendMailUtil {
 
 
     public static void main(String[] args) {
-        sendEmail("1340947819@qq.com","你妈炸了");
+        sendEmail("1340947819@qq.com", "你妈炸了");
     }
 }

@@ -39,36 +39,36 @@ public class PrimitiveUtilTest {
 
     @Test
     public void getPrimitive() {
-        assertEquals(PrimitiveUtil.getPrimitive(Byte.class),byte.class);
-        assertEquals(PrimitiveUtil.getPrimitive(Character.class),char.class);
-        assertEquals(PrimitiveUtil.getPrimitive(Short.class),short.class);
-        assertEquals(PrimitiveUtil.getPrimitive(Integer.class),int.class);
-        assertEquals(PrimitiveUtil.getPrimitive(Long.class),long.class);
-        assertEquals(PrimitiveUtil.getPrimitive(Float.class),float.class);
-        assertEquals(PrimitiveUtil.getPrimitive(Double.class),double.class);
-        assertEquals(PrimitiveUtil.getPrimitive(Boolean.class),boolean.class);
+        assertEquals(PrimitiveUtil.getPrimitive(Byte.class), byte.class);
+        assertEquals(PrimitiveUtil.getPrimitive(Character.class), char.class);
+        assertEquals(PrimitiveUtil.getPrimitive(Short.class), short.class);
+        assertEquals(PrimitiveUtil.getPrimitive(Integer.class), int.class);
+        assertEquals(PrimitiveUtil.getPrimitive(Long.class), long.class);
+        assertEquals(PrimitiveUtil.getPrimitive(Float.class), float.class);
+        assertEquals(PrimitiveUtil.getPrimitive(Double.class), double.class);
+        assertEquals(PrimitiveUtil.getPrimitive(Boolean.class), boolean.class);
     }
 
     @Test(expected = RuntimeException.class)
     public void getPrimitiveThrow() {
-        assertEquals(PrimitiveUtil.getPrimitive(String.class),byte.class);
+        assertEquals(PrimitiveUtil.getPrimitive(String.class), byte.class);
     }
 
     @Test
     public void getPrimitiveWrapper() {
-        assertEquals(PrimitiveUtil.getPrimitiveWrapper(byte.class),Byte.class);
-        assertEquals(PrimitiveUtil.getPrimitiveWrapper(char.class),Character.class);
-        assertEquals(PrimitiveUtil.getPrimitiveWrapper(short.class),Short.class);
-        assertEquals(PrimitiveUtil.getPrimitiveWrapper(int.class),Integer.class);
-        assertEquals(PrimitiveUtil.getPrimitiveWrapper(long.class),Long.class);
-        assertEquals(PrimitiveUtil.getPrimitiveWrapper(float.class),Float.class);
-        assertEquals(PrimitiveUtil.getPrimitiveWrapper(double.class),Double.class);
-        assertEquals(PrimitiveUtil.getPrimitiveWrapper(boolean.class),Boolean.class);
+        assertEquals(PrimitiveUtil.getPrimitiveWrapper(byte.class), Byte.class);
+        assertEquals(PrimitiveUtil.getPrimitiveWrapper(char.class), Character.class);
+        assertEquals(PrimitiveUtil.getPrimitiveWrapper(short.class), Short.class);
+        assertEquals(PrimitiveUtil.getPrimitiveWrapper(int.class), Integer.class);
+        assertEquals(PrimitiveUtil.getPrimitiveWrapper(long.class), Long.class);
+        assertEquals(PrimitiveUtil.getPrimitiveWrapper(float.class), Float.class);
+        assertEquals(PrimitiveUtil.getPrimitiveWrapper(double.class), Double.class);
+        assertEquals(PrimitiveUtil.getPrimitiveWrapper(boolean.class), Boolean.class);
     }
 
     @Test(expected = RuntimeException.class)
     public void getPrimitiveWrapperThrow() {
-        assertEquals(PrimitiveUtil.getPrimitiveWrapper(String.class),byte.class);
+        assertEquals(PrimitiveUtil.getPrimitiveWrapper(String.class), byte.class);
     }
 
     @Test

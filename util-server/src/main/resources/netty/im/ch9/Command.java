@@ -19,5 +19,4 @@ public interface Command {
     Byte CONTROL_RESPONSE = 8;
 
 
-
 }

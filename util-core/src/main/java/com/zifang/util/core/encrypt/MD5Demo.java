@@ -1,4 +1,5 @@
 package com.zifang.util.core.encrypt;
+
 import java.security.MessageDigest;
 
 public class MD5Demo {
@@ -27,6 +28,7 @@ public class MD5Demo {
             return null;
         }
     }
+
     public static void main(String[] args) {
         System.out.println(MD5Demo.MD5("20121221"));
         System.out.println(MD5Demo.MD5("加密"));

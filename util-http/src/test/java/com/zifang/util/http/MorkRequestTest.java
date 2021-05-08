@@ -5,14 +5,14 @@ import org.junit.Test;
 public class MorkRequestTest {
 
     @Test
-    public void t(){
+    public void t() {
         MockRequest mockRequest = HttpRequestProxy.proxy(MockRequest.class);
-        String s = mockRequest.test1("name1","password1");
+        String s = mockRequest.test1("name1", "password1");
         System.out.println(s);
     }
 
     @Test
-    public void t2(){
+    public void t2() {
         Data data = new Data();
         data.setName("name1");
         data.setPw("password1");

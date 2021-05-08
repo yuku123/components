@@ -1,4 +1,4 @@
-##monitorableexecutor是什么?
+## monitorableexecutor是什么?
 
 monitorableexecutor是一个基于JDK的concurrent包中ThreadPoolExecutor以及ScheduledExecutorService实现的可监控的线程池管理器。
 
@@ -6,7 +6,7 @@ monitorableexecutor里默认的监控线程池的实现FixedMonitorableExecutor�
 
 通过ExecutorManager对象的getExecutor方法获取线程池，则可享受monitorableexecutor监控服务。
 
-##monitorableexecutor有哪些功能？
+## monitorableexecutor有哪些功能？
 
 monitorableexecutor旨在解决JVM内线程池健康状况难以监控的问题。通过内部维护的ScheduledExecutorService，以可配置的时间间隔的频率打印线程池状态，如果需要，则进行告警。
 
@@ -24,7 +24,7 @@ monitorableexecutor旨在解决JVM内线程池健康状况难以监控的问题�
 
 目前已实现的告警服务：LogAlarmService（日志打印告警），告警策略：ThreadPoolOvertimeAlarmPolicy（判断线程池最后一个启动的任务是否在超时时间内结束）
 
-##monitorableexecutor有哪些缺点？
+## monitorableexecutor有哪些缺点？
 
 首先，考虑到大量线程竞争情况下会影响monitorableexecutor吞吐，所以对线程池状态对象ThreadPoolStatus的内部信息（即上述统计信息）进行修改的时候，没有对ThreadPoolStatus进行加锁，这意味着线程池的状态并不是线程安全的。
 

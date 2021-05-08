@@ -11,7 +11,7 @@ public class UserObject {
     private String displayName;
 
     @Override
-    public String toString(){
+    public String toString() {
         return displayName;
     }
 }

@@ -19,13 +19,15 @@
       "HADOOP_USER_NAME": "piday"
     }
   },
-  "workflowNodeList":[
+  "workflowNodeList": [
     {
       "nodeId": "start",
       "serviceUnit": "engine.service.empty",
       "connector": {
         "pre": [],
-        "post": ["input_local"]
+        "post": [
+          "input_local"
+        ]
       }
     },
     {
@@ -34,28 +36,35 @@
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleLocalInput",
-      "invokeParameter":{
-        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1.csv",
-        "tempName":"input_local",
+      "invokeParameter": {
+        "localFile": "/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1.csv",
+        "tempName": "input_local",
         "flush": "yes"
       },
       "connector": {
-        "pre": ["start"],
-        "post": ["output_local"]
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "output_local"
+        ]
       }
-    },{
+    },
+    {
       "nodeId": "output_local",
       "name": "output_local",
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
       "invokeDynamic": "handleLocalOutput",
-      "invokeParameter":{
-        "outputDir":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1_output",
-        "tempName":"input_local",
+      "invokeParameter": {
+        "outputDir": "/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/data/input1_output",
+        "tempName": "input_local",
         "flush": "yes"
       },
       "connector": {
-        "pre": ["input_local"],
+        "pre": [
+          "input_local"
+        ],
         "post": []
       }
     }

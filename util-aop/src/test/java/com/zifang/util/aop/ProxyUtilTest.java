@@ -15,13 +15,13 @@ public class ProxyUtilTest {
     }
 }
 
-class A{
-    public void ex(){
+class A {
+    public void ex() {
         System.out.println("this is ex");
     }
 }
 
-class CustomerAspect implements Aspect{
+class CustomerAspect implements Aspect {
 
     @Override
     public boolean before(Object target, Method method, Object[] args) {

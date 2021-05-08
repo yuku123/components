@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class JvmPropertiesDefine {
 
-    public static Map<String,String> defineMap = new LinkedHashMap<>();
+    public static Map<String, String> defineMap = new LinkedHashMap<>();
 
     public static final String awtToolkit = "awt.toolkit";
     public static final String fileEncoding = "file.encoding";
@@ -68,8 +68,8 @@ public class JvmPropertiesDefine {
 
     static {
         Field[] fields = JvmPropertiesDefine.class.getFields();
-        for(Field field : fields){
-            if(field.getName().equals("defineMap")){
+        for (Field field : fields) {
+            if (field.getName().equals("defineMap")) {
                 continue;
             }
             field.setAccessible(true);

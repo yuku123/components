@@ -2,7 +2,7 @@ package com.zifang.util.monitor.thread.utility;
 
 /**
  * 跟时间有关的函数集合
- *
+ * <p>
  * Created by lijing on 2014/9/5.
  */
 public final class TimeUtil {
@@ -45,6 +45,7 @@ public final class TimeUtil {
 
     /**
      * 获取当前时间戳。
+     *
      * @return 当前时间戳。
      */
     public static int getTimestamp() {
@@ -53,6 +54,7 @@ public final class TimeUtil {
 
     /**
      * 获取当前毫秒时间戳。
+     *
      * @return 当前毫秒时间戳。
      */
     public static long getMillisTimestamp() {
@@ -61,18 +63,20 @@ public final class TimeUtil {
 
     /**
      * 通过时间戳，转化成毫秒时间戳。
+     *
      * @param timestamp 待转换时间戳。
      * @return 转换之后的时间戳。
      */
     public static long getMillisTimestamp(int timestamp) {
         if (timestamp < 0) {
-           throw new IllegalArgumentException("Negative timestamp value.");
+            throw new IllegalArgumentException("Negative timestamp value.");
         }
         return timestamp * ((long) SECOND_MILLISECONDS);
     }
 
     /**
      * 通过毫秒时间戳，获取时间戳。
+     *
      * @param millisTimestamp 待转换毫秒时间戳。
      * @return 转换之后的时间戳。
      */
@@ -82,6 +86,7 @@ public final class TimeUtil {
 
     /**
      * 获取某个小时整点毫秒时间戳。
+     *
      * @param hour 整点小时数。参数范围早0~24。
      * @return 该小时的整点毫秒时间戳。
      */
@@ -131,7 +136,8 @@ public final class TimeUtil {
 
         /**
          * 通过小时数，和枚举描述，构造枚举。
-         * @param hour 小时数。
+         *
+         * @param hour        小时数。
          * @param description 描述。
          */
         Hourage(int hour, String description) {
@@ -141,6 +147,7 @@ public final class TimeUtil {
 
         /**
          * 获取小时数。
+         *
          * @return 此枚举的小时数。
          */
         public int getHour() {
@@ -149,6 +156,7 @@ public final class TimeUtil {
 
         /**
          * 获取整点时间的毫秒数。
+         *
          * @return 毫秒数。
          */
         public long getHourageMillisTimestamp() {

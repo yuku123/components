@@ -14,18 +14,18 @@ import java.util.List;
 public class BasicTest {
 
     @Test
-    public void test(){
+    public void test() {
 
         MysqlDatasourceFactory mysqlDatasourceFactory = new MysqlDatasourceFactory();
 
         // 持久层上下文
         PersistentContext.setDataSourceContexts(
                 Lists.of(
-                         new DataSourceContext()
+                        new DataSourceContext()
                                 .scanPackage("aaa.bbb")
                                 .transationManager(new TransationManager()) //事务管理器
                                 .dataSourceFactory(mysqlDatasourceFactory)  //设置数据源
-                        ,new DataSourceContext()
+                        , new DataSourceContext()
                                 .scanPackage("aaa.bbb")
                                 .transationManager(new TransationManager()) //事务管理器
                                 .dataSourceFactory(mysqlDatasourceFactory)  //设置数据源
@@ -35,7 +35,6 @@ public class BasicTest {
         TestInterface testInterface = RepositoryProxy.proxy(TestInterface.class);
 
         List<User> userList = testInterface.findByName("aa");
-
 
 
     }

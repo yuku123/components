@@ -6,92 +6,92 @@ import java.nio.charset.StandardCharsets;
 
 public class Whois {
 
-	public final static int DEFAULT_PORT = 43;
-	public final static String DEFAULT_HOST = "whois.internic.net";
+    public final static int DEFAULT_PORT = 43;
+    public final static String DEFAULT_HOST = "whois.internic.net";
 
-	private int port = DEFAULT_PORT;
-	private InetAddress host;
+    private int port = DEFAULT_PORT;
+    private InetAddress host;
 
-	public Whois(InetAddress host, int port) {
-		this.host = host;
-		this.port = port;
-	}
+    public Whois(InetAddress host, int port) {
+        this.host = host;
+        this.port = port;
+    }
 
-	public Whois(InetAddress host) {
-		this(host, DEFAULT_PORT);
-	}
+    public Whois(InetAddress host) {
+        this(host, DEFAULT_PORT);
+    }
 
-	public Whois(String hostname, int port) throws UnknownHostException {
-		this(InetAddress.getByName(hostname), port);
-	}
+    public Whois(String hostname, int port) throws UnknownHostException {
+        this(InetAddress.getByName(hostname), port);
+    }
 
-	public Whois(String hostname) throws UnknownHostException {
-		this(InetAddress.getByName(hostname), DEFAULT_PORT);
-	}
+    public Whois(String hostname) throws UnknownHostException {
+        this(InetAddress.getByName(hostname), DEFAULT_PORT);
+    }
 
-	public Whois() throws UnknownHostException {
-		this(DEFAULT_HOST, DEFAULT_PORT);
-	}
+    public Whois() throws UnknownHostException {
+        this(DEFAULT_HOST, DEFAULT_PORT);
+    }
 
-	// Items to search for
-	public enum SearchFor {
-		ANY("Any"), NETWORK("Network"), PERSON("Person"), HOST("Host"), DOMAIN("Domain"), ORGANIZATION(
-				"Organization"), GROUP("Group"), GATEWAY("Gateway"), ASN("ASN");
+    // Items to search for
+    public enum SearchFor {
+        ANY("Any"), NETWORK("Network"), PERSON("Person"), HOST("Host"), DOMAIN("Domain"), ORGANIZATION(
+                "Organization"), GROUP("Group"), GATEWAY("Gateway"), ASN("ASN");
 
-		private String label;
+        private String label;
 
-		SearchFor(String label) {
-			this.label = label;
-		}
-	}
+        SearchFor(String label) {
+            this.label = label;
+        }
+    }
 
-	// Categories to search in
-	public enum SearchIn {
-		ALL(""), NAME("Name"), MAILBOX("Mailbox"), HANDLE("!");
+    // Categories to search in
+    public enum SearchIn {
+        ALL(""), NAME("Name"), MAILBOX("Mailbox"), HANDLE("!");
 
-		private String label;
+        private String label;
 
-		SearchIn(String label) {
-			this.label = label;
-		}
-	}
+        SearchIn(String label) {
+            this.label = label;
+        }
+    }
 
-	public String lookUpNames(String target, SearchFor category, SearchIn group, boolean exactMatch)
-			throws IOException {
+    public String lookUpNames(String target, SearchFor category, SearchIn group, boolean exactMatch)
+            throws IOException {
 
-		String suffix = "";
-		if (!exactMatch)
-			suffix = ".";
+        String suffix = "";
+        if (!exactMatch)
+            suffix = ".";
 
-		String prefix = category.label + " " + group.label;
-		String query = prefix + target + suffix;
+        String prefix = category.label + " " + group.label;
+        String query = prefix + target + suffix;
 
-		Socket socket = new Socket();
-		try {
-			SocketAddress address = new InetSocketAddress(host, port);
-			socket.connect(address);
-			Writer out = new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.US_ASCII);
-			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.US_ASCII));
-			out.write(query + "\r\n");
-			out.flush();
+        Socket socket = new Socket();
+        try {
+            SocketAddress address = new InetSocketAddress(host, port);
+            socket.connect(address);
+            Writer out = new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.US_ASCII);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.US_ASCII));
+            out.write(query + "\r\n");
+            out.flush();
 
-			StringBuilder response = new StringBuilder();
-			String theLine = null;
-			while ((theLine = in.readLine()) != null) {
-				response.append(theLine);
-				response.append("\r\n");
-			}
-			return response.toString();
-		} finally {
-			socket.close();
-		}
-	}
+            StringBuilder response = new StringBuilder();
+            String theLine = null;
+            while ((theLine = in.readLine()) != null) {
+                response.append(theLine);
+                response.append("\r\n");
+            }
+            return response.toString();
+        } finally {
+            socket.close();
+        }
+    }
 
-	public InetAddress getHost() {
-		return this.host;
-	}
+    public InetAddress getHost() {
+        return this.host;
+    }
 
-	public void setHost(String host) throws UnknownHostException {
-		this.host = InetAddress.getByName(host);
-	}
+    public void setHost(String host) throws UnknownHostException {
+        this.host = InetAddress.getByName(host);
+    }
 }

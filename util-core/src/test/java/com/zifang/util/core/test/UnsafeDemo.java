@@ -8,15 +8,15 @@ import java.lang.reflect.Field;
 
 /**
  * show unsafe 实力类都能帮助我们干什么事情
- *
+ * <p>
  * 1. 实例化一个类
  * 2. 修改私有字段的值
  * 3. 使用堆外内存
  * 4. CompareAndSwap操作
  * 5. park/unpark
- *      当一个线程正在等待某个操作时，JVM调用Unsafe的park()方法来阻塞此线程
- *      当阻塞中的线程需要再次运行时，JVM调用Unsafe的unpark()方法来唤醒此线程
- * */
+ * 当一个线程正在等待某个操作时，JVM调用Unsafe的park()方法来阻塞此线程
+ * 当阻塞中的线程需要再次运行时，JVM调用Unsafe的unpark()方法来唤醒此线程
+ */
 public class UnsafeDemo {
 
     private volatile int count = 0;

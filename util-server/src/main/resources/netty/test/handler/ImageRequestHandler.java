@@ -26,18 +26,18 @@ public class ImageRequestHandler extends SimpleChannelInboundHandler<ImageReques
         //以屏幕的尺寸创建个矩形
         Rectangle screenRect = new Rectangle(d);
         //截图（截取整个屏幕图片）
-        BufferedImage bufferedImage =  robot.createScreenCapture(screenRect);
+        BufferedImage bufferedImage = robot.createScreenCapture(screenRect);
         //imageResponsePacket.setBufferedImage(bufferedImage);
 //
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage,"png",out);
+        ImageIO.write(bufferedImage, "png", out);
         imageResponsePacket.setBufferedImage(out.toByteArray());
         channelHandlerContext.channel().writeAndFlush(imageResponsePacket);
 
-        Thread thread = new Thread(){
+        Thread thread = new Thread() {
             @Override
-            public void run(){
-                while(true){
+            public void run() {
+                while (true) {
                     ImageResponsePacket imageResponsePacket = new ImageResponsePacket();
                     Robot robot = null;
                     try {
@@ -53,22 +53,22 @@ public class ImageRequestHandler extends SimpleChannelInboundHandler<ImageReques
                     //以屏幕的尺寸创建个矩形
                     Rectangle screenRect = new Rectangle(d);
                     //截图（截取整个屏幕图片）
-                    BufferedImage bufferedImage =  robot.createScreenCapture(screenRect);
+                    BufferedImage bufferedImage = robot.createScreenCapture(screenRect);
                     //imageResponsePacket.setBufferedImage(bufferedImage);
 //
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
                     try {
-                        ImageIO.write(bufferedImage,"png",out);
+                        ImageIO.write(bufferedImage, "png", out);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     imageResponsePacket.setBufferedImage(out.toByteArray());
                     channelHandlerContext.channel().writeAndFlush(imageResponsePacket);
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }

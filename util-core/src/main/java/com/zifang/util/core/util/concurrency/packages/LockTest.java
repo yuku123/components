@@ -7,65 +7,65 @@ package com.zifang.util.core.util.concurrency.packages;
  */
 public class LockTest {
 
-	public static void main(String[] args) {
-		LockTest t = new LockTest();
-		t.init();
-	}
-	
-	private void init(){
-		final Outputer outputer = new Outputer();
-		new Thread(){
-			public void run() {
-				while(true){
-					try {
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					outputer.output("infcn.com.cn");
-				}
-			}
+    public static void main(String[] args) {
+        LockTest t = new LockTest();
+        t.init();
+    }
+
+    private void init() {
+        final Outputer outputer = new Outputer();
+        new Thread() {
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    outputer.output("infcn.com.cn");
+                }
+            }
         }.start();
-		
-		new Thread(){
-			public void run() {
-				while(true){
-					try {
-						Thread.sleep(10);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					Outputer.output3("laodahahaha");
-				}
-			}
+
+        new Thread() {
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Outputer.output3("laodahahaha");
+                }
+            }
         }.start();
-	}
-	
-	static class Outputer{
-		private void output(String name){
-			int len = name.length();
-			synchronized(Outputer.class){
-				for(int i=0; i<len; i++){
-					System.out.print(name.charAt(i));
-				}
-				System.out.println();
-			}
-		}
-		
-		private synchronized void output2(String name){
-			int len = name.length();
-			for(int i=0; i<len; i++){
-				System.out.print(name.charAt(i));
-			}
-			System.out.println();
-		}
-		
-		private synchronized static void output3(String name){
-			int len = name.length();
-				for(int i=0; i<len; i++){
-					System.out.print(name.charAt(i));
-				}
-				System.out.println();
-		}
-	}
+    }
+
+    static class Outputer {
+        private void output(String name) {
+            int len = name.length();
+            synchronized (Outputer.class) {
+                for (int i = 0; i < len; i++) {
+                    System.out.print(name.charAt(i));
+                }
+                System.out.println();
+            }
+        }
+
+        private synchronized void output2(String name) {
+            int len = name.length();
+            for (int i = 0; i < len; i++) {
+                System.out.print(name.charAt(i));
+            }
+            System.out.println();
+        }
+
+        private synchronized static void output3(String name) {
+            int len = name.length();
+            for (int i = 0; i < len; i++) {
+                System.out.print(name.charAt(i));
+            }
+            System.out.println();
+        }
+    }
 }

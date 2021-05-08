@@ -11,7 +11,7 @@ import java.lang.reflect.Modifier;
 
 public class ClassInfoGeneratorTest {
     @Test
-    public void test1(){
+    public void test1() {
         // 简单诞生一个object javaClass
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration("com.abc.def");
@@ -31,7 +31,7 @@ public class ClassInfoGeneratorTest {
     }
 
     @Test
-    public void test2(){
+    public void test2() {
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration("com.abc.def");
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addClass("AnyClassName");
@@ -39,7 +39,7 @@ public class ClassInfoGeneratorTest {
     }
 
     @Test
-    public void test3(){
+    public void test3() {
         ClassInfo interfaceClassInfo = new ClassInfo(); // 接口
         ClassInfo abstractClassInfo = new ClassInfo(); // 父类
         ClassInfo classInfo = new ClassInfo(); // 主类

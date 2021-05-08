@@ -24,7 +24,7 @@ public class RobotPrintILoveYou {
 //myRobot.setAutoDelay(200); ｉ
 
     public static void main(String[] args) {
-        try{
+        try {
 //创建Windows命令打开记事本
             try {
                 Runtime.getRuntime().exec("notepad");
@@ -33,7 +33,7 @@ public class RobotPrintILoveYou {
                 e.printStackTrace();
             }
 //创建机器人
-            Robot rb=new Robot();
+            Robot rb = new Robot();
             rb.keyPress(KeyEvent.VK_SHIFT);
             rb.keyRelease(KeyEvent.VK_SHIFT);
             rb.keyPress(KeyEvent.VK_I);
@@ -54,8 +54,8 @@ public class RobotPrintILoveYou {
             rb.keyRelease(KeyEvent.VK_V);
             rb.keyRelease(KeyEvent.VK_CONTROL);
 
-        } catch (AWTException e){
-    e.printStackTrace();
+        } catch (AWTException e) {
+            e.printStackTrace();
         }
     }
 }

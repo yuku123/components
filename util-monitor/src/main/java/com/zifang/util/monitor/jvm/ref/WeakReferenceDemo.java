@@ -5,9 +5,6 @@ package com.zifang.util.monitor.jvm.ref;
 
 /**
  * 弱引用所指向的对象只要进行 GC，就会自动进行回收，get() 返回 null。
- * 
- *
- *
  */
 public class WeakReferenceDemo {
 
@@ -33,7 +30,7 @@ public class WeakReferenceDemo {
 //		System.out.println(referent[100].get());// “null”
 //	}
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-	}
+    }
 }

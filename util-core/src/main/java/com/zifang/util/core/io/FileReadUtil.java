@@ -51,7 +51,6 @@ public class FileReadUtil {
     }
 
 
-
     public static InputStream getStreamByFileName(String fileName) throws IOException {
         if (fileName == null) {
             throw new IllegalArgumentException("fileName should not be null!");
@@ -63,15 +62,16 @@ public class FileReadUtil {
         } else if (fileName.startsWith("/")) { // 绝对路径
             Path path = Paths.get(fileName);
             return Files.newInputStream(path);
-        } else  { // 相对路径
+        } else { // 相对路径
             return FileReadUtil.class.getClassLoader().getResourceAsStream(fileName);
         }
     }
 
 
-
-    /** 将字节数组转换成16进制字符串 */
-    private static String bytesToHex(byte[] src){
+    /**
+     * 将字节数组转换成16进制字符串
+     */
+    private static String bytesToHex(byte[] src) {
         StringBuilder stringBuilder = new StringBuilder();
         if (src == null || src.length <= 0) {
             return null;
@@ -92,6 +92,7 @@ public class FileReadUtil {
 
     /**
      * 获取文件对应的魔数
+     *
      * @param file
      * @return
      */

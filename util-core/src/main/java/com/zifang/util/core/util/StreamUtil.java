@@ -10,8 +10,7 @@ import java.util.stream.StreamSupport;
  * 将Iterator类型的数据转化为流操作
  *
  * @author zifang
- *
- * */
+ */
 public class StreamUtil {
 
 

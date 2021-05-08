@@ -48,7 +48,7 @@ public class ControlRequestPacket extends Packet {
         return CONTROL_REQUEST;
     }
 
-    public Byte getVersion(){
+    public Byte getVersion() {
         return version;
     }
 }

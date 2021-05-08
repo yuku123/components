@@ -19,25 +19,25 @@ import com.google.common.collect.Multiset;
 
 /**
  * Multiset继承自JDK中的Collection接口，而不是Set接口，所以包含重复元素并没有违反原有的接口契约。
- * 
+ * <p>
  * Multiset不是一个Map<E,Integer>,本质上是一个Set加一个元素计数器.
- * 
+ * <p>
  * Multiset中的元素的重复个数只会是正数，且最大不会超过Integer.MAX_VALUE。设定计数为0的元素将不会出现multiset中，也不会出现elementSet()和entrySet()的返回结果中。
- * 
+ * <p>
  * multiset.iterator() 会循环迭代每一个出现的元素，迭代的次数与multiset.size()相同。
- * 
+ * <p>
  * Map-Multiset对应关系-是否支持null：
- * 
+ * <p>
  * HashMap-HashMultiset-Yes；TreeMap-TreeMultiset-Yes (if the comparator does)；LinkedHashMap-LinkedHashMultiset-Yes
- * 
+ * <p>
  * ConcurrentHashMap-ConcurrentHashMultiset-No；ImmutableMap-ImmutableMultiset-No
- * 
+ *
  * @author zxiaofan
  */
 public class Multiset_Study {
     /**
      * 允许重复，但是不保证顺序.
-     * 
+     * <p>
      * 底层结构HashMap<E, Count>()，Multiset遍历时可以遍历出Map.keySize * count个元素，而map却不可以，itertator和Entry<T,Count>的iterator实现。
      */
     @Test
@@ -67,7 +67,6 @@ public class Multiset_Study {
 
     /**
      * 底层结构为ConcurrentHashMap<E, AtomicInteger>().
-     * 
      */
     @Test
     public void ConcurrentHashMulisetTest() {

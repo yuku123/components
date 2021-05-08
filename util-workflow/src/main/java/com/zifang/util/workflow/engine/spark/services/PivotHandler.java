@@ -19,26 +19,26 @@ public class PivotHandler extends AbstractSparkEngineService {
 
     }
 
-    public void pivot(){
+    public void pivot() {
         PivotA pivotA = GsonUtil.changeToSubClass(invokeParameter, PivotA.class);
 
         dataset = executableWorkflowNode.getPre().get(0).getDataset();
 
-        for(PivotANode pivotANode : pivotA.getPivotColumnDefinations()){
+        for (PivotANode pivotANode : pivotA.getPivotColumnDefinations()) {
 
             //得到所有的column name的列表
             List<String> columnsStringType = sparkUtil.getColumnsStringList(dataset);
 
             //除去所有的
             columnsStringType.remove(pivotANode.getColumnName());
-            List<Column> columns = sparkUtil.transformStringToColumn(dataset,columnsStringType);
+            List<Column> columns = sparkUtil.transformStringToColumn(dataset, columnsStringType);
 
-            if(pivotANode.getValue() != null){
+            if (pivotANode.getValue() != null) {
                 dataset = dataset.groupBy(columns.toArray(new Column[]{}))
                         .pivot(pivotANode.getColumnName())
                         .agg(functions.sum(pivotANode.getValue()))
                         .na().fill(0);
-            }else{
+            } else {
                 dataset = dataset.groupBy(columns.toArray(new Column[]{}))
                         .pivot(pivotANode.getColumnName())
                         .count()
@@ -46,16 +46,16 @@ public class PivotHandler extends AbstractSparkEngineService {
             }
         }
 
-        if(pivotA.getColumnMap() != null){
+        if (pivotA.getColumnMap() != null) {
             // 外部介入,将最终的数据进行列明映射作用
-            for(Map.Entry<String,String> entry : pivotA.getColumnMap().entrySet()){
-                dataset = dataset.withColumnRenamed(entry.getKey(),entry.getValue());
+            for (Map.Entry<String, String> entry : pivotA.getColumnMap().entrySet()) {
+                dataset = dataset.withColumnRenamed(entry.getKey(), entry.getValue());
             }
         }
         dataset.show();
     }
 
-    public void unpivot(){
+    public void unpivot() {
 
     }
 }

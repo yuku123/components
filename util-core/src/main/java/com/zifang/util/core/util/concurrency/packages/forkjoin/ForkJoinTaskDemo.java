@@ -21,6 +21,7 @@ public class ForkJoinTaskDemo {
             this.start = start;
             this.end = end;
         }
+
         private Integer subtotal() {
             Integer sum = 0;
             for (int i = start; i < end; i++) {
@@ -35,7 +36,7 @@ public class ForkJoinTaskDemo {
 
             if ((end - start) <= THRESHOLD) {
                 return subtotal();
-            }else {
+            } else {
                 int middle = (start + end) / 2;
                 SumTask left = new SumTask(arr, start, middle);
                 SumTask right = new SumTask(arr, middle, end);

@@ -11,9 +11,9 @@ import java.util.List;
 public class TerminalUtil {
 
     /**
-     * @param cmd  the command that include pipeline executions such as >
-     * */
-    public static void runCommandAsShScript(String cmd){
+     * @param cmd the command that include pipeline executions such as >
+     */
+    public static void runCommandAsShScript(String cmd) {
         List<String> list = new ArrayList<>();
         list.add("sh");
         list.add("-c");
@@ -28,11 +28,11 @@ public class TerminalUtil {
         }
     }
 
-    public static void runExec(String []cmdarray) {
+    public static void runExec(String[] cmdarray) {
         System.out.println(Arrays.toString(cmdarray));
         Process pro1;
         try {
-            pro1 = Runtime.getRuntime().exec(cmdarray,null);
+            pro1 = Runtime.getRuntime().exec(cmdarray, null);
             pro1.waitFor();
             pro1.destroy();
         } catch (IOException | InterruptedException e) {
@@ -44,16 +44,15 @@ public class TerminalUtil {
     /**
      * @param command let os to execute the command and return the result of command
      *                if command do print something
-     *
      * @return String the result-print-out that when you execute in os
-     * */
+     */
     public static String runAndGetReturn(String command) throws IOException {
         StringBuffer sb = new StringBuffer();
         Process process = Runtime.getRuntime().exec(command);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
-            sb.append(line+"\n");
+            sb.append(line + "\n");
         }
         return sb.toString();
     }
@@ -61,9 +60,8 @@ public class TerminalUtil {
     /**
      * @param command let os to execute the command and return the result of command
      *                if command do print something
-     *
      * @return String the result-print-out that when you execute in os
-     * */
+     */
     public static Integer runAndGetReturnStatus(String command) throws IOException, InterruptedException {
         StringBuffer sb = new StringBuffer();
         Process process = Runtime.getRuntime().exec(command);
@@ -73,9 +71,8 @@ public class TerminalUtil {
     /**
      * @param command let os to execute the command and return the result of command
      *                if command do print something
-     *
      * @return String the result-print-out that when you execute in os,and in java console it will print out
-     * */
+     */
     public static String runAndPrintLog(String command) throws IOException {
         StringBuffer sb = new StringBuffer();
         Process process = Runtime.getRuntime().exec(command);

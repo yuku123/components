@@ -1,6 +1,6 @@
 /*
  * 文件名：Splitter_Study.java
- * 版权：Copyright 2007-2017 zxiaofan.com. Co. Ltd. All Rights Reserved. 
+ * 版权：Copyright 2007-2017 zxiaofan.com. Co. Ltd. All Rights Reserved.
  * 描述： Splitter_Study.java
  * 修改人：zxiaofan
  * 修改时间：2017年1月4日
@@ -18,7 +18,6 @@ import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
 
 /**
- * 
  * @author zxiaofan
  */
 public class Splitter_Study {
@@ -28,23 +27,22 @@ public class Splitter_Study {
 
     /**
      * 如果想拆分器返回List，使用Lists.newArrayList(splitter.split(string))或类似方法。
-     * 
+     * <p>
      * splitter实例总是不可变，线程安全的，可将其定义为static final常量。
-     * 
+     * <p>
      * 拆分器工厂
-     * 
+     * <p>
      * Splitter.on(char)：按单个字符拆分；Splitter.on(String)：按字符串拆分
-     * 
+     * <p>
      * Splitter.on(CharMatcher)：按字符匹配器拆分；Splitter.on(Pattern) Splitter.onPattern(String)：按正则表达式拆分
-     * 
+     * <p>
      * Splitter.fixedLength(int)：按固定长度拆分。
-     * 
+     * <p>
      * 拆分器修饰符
-     * 
+     * <p>
      * omitEmptyStrings()忽略空字符串；limit(int n)限制拆分出的字符串数量（超出部分将合并到第n部分）；
-     * 
+     * <p>
      * trimResults()移除结果字符串的前导空白和尾部空白；trimResults(CharMatcher)给定匹配器，移除结果字符串的前导匹配字符和尾部匹配字符
-     * 
      */
     @Test
     public void basicTest() {
@@ -65,7 +63,7 @@ public class Splitter_Study {
 
     /**
      * 字符匹配器[CharMatcher].
-     * 
+     * <p>
      * 修剪[trim]、折叠[collapse]、移除[remove]、保留[retain]
      */
     @Test
@@ -99,13 +97,13 @@ public class Splitter_Study {
 
     /**
      * 大小写格式.HYPHEN连字符,underscore下划线
-     * 
+     * <p>
      * LOWER_CAMEL:lowerCamel；UPPER_CAMEL:UpperCamel
-     * 
+     * <p>
      * LOWER_HYPHEN:lower-hyphen【没有UPPER-HYPHEN】
-     * 
+     * <p>
      * LOWER_UNDERSCORE:lower_underscore；UPPER_UNDERSCORE:UPPER_UNDERSCORE
-     * 
+     * <p>
      * 驼峰转换，写代码生成器时很有用
      */
     @Test

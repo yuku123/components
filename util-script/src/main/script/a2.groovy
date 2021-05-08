@@ -3,13 +3,13 @@ package groovy
 /**
  * Groovy容器
  */
-class GroovyCabin{
+class GroovyCabin {
 }
 
 /*
  * List 有丰富的api idea中可用listA. 查看
  */
-def listA = [5,"string","false"]
+def listA = [5, "string", "false"]
 print listA
 println listA[1]
 println listA.size()
@@ -24,7 +24,7 @@ println listA
  * Map
  */
 
-def map = [key1:"john",key2:"tom",key3: listA]
+def map = [key1: "john", key2: "tom", key3: listA]
 println map.keySet()
 println map.values()
 println map.get("key2") //返回key2的值
@@ -54,15 +54,15 @@ println set
  */
 
 def clouserA = {
-    String param1,int param2 ->
+    String param1, int param2 ->
         println "this is code"
         return param1 + "welcome" + param2
 }
 /*
  * 闭包定义好后，要调用它的方法就是 闭包对象.call(参数)  or 闭包对象（参数）
  */
-println clouserA.call("this is code",100)
-println clouserA("A",200)
+println clouserA.call("this is code", 100)
+println clouserA("A", 200)
 
 
 def funC = {
@@ -70,18 +70,18 @@ def funC = {
 }
 println funC.call()
 
-def list = [1,2,3] //定义一个list
-list.each{
+def list = [1, 2, 3] //定义一个list
+list.each {
     println it
 }
 
 //当函数的最后一个参数是闭包的话，可以省略圆括号
 
-def funD(int num,String str,Closure closure) {
-    println num+str
+def funD(int num, String str, Closure closure) {
+    println num + str
     closure() //调用闭包
 }
 
-funD(4,"test",{
+funD(4, "test", {
     println "close package"
 })

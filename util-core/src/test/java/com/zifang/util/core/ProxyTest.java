@@ -16,7 +16,7 @@ public class ProxyTest {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println("invoke before");
-                Object returns = method.invoke(a,args);
+                Object returns = method.invoke(a, args);
                 System.out.println("invoke after function");
                 return returns;
             }
@@ -32,7 +32,7 @@ interface in {
     String ex();
 }
 
-class aa implements in{
+class aa implements in {
 
     @Override
     public String ex() {

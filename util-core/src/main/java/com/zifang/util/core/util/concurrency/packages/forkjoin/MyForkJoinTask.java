@@ -3,35 +3,35 @@ package com.zifang.util.core.util.concurrency.packages.forkjoin;
 import java.util.concurrent.ForkJoinTask;
 
 public class MyForkJoinTask<V> extends ForkJoinTask<V> {
-	
 
-	private static final long serialVersionUID = -6161392123639719799L;
 
-	private V value;
+    private static final long serialVersionUID = -6161392123639719799L;
 
-	private boolean success = false;
+    private V value;
 
-	@Override
-	public V getRawResult() {
-		return value;
-	}
+    private boolean success = false;
 
-	@Override
-	protected void setRawResult(V value) {
-		this.value = value;
-	}
+    @Override
+    public V getRawResult() {
+        return value;
+    }
 
-	@Override
-	protected boolean exec() {
-		System.out.println("exec");
-		return this.success;
-	}
+    @Override
+    protected void setRawResult(V value) {
+        this.value = value;
+    }
 
-	public boolean isSuccess() {
-		return success;
-	}
+    @Override
+    protected boolean exec() {
+        System.out.println("exec");
+        return this.success;
+    }
 
-	public void setSuccess(boolean isSuccess) {
-		this.success = isSuccess;
-	}
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean isSuccess) {
+        this.success = isSuccess;
+    }
 }

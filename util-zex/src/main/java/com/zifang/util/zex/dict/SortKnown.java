@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
  */
 public class SortKnown {
 
-    static  Pattern pattern = Pattern.compile("[0-9]*");
+    static Pattern pattern = Pattern.compile("[0-9]*");
 
     @Test
-    public void showKnown(){
+    public void showKnown() {
 
 
         Set<String> set = getKownSet();
@@ -26,7 +26,7 @@ public class SortKnown {
     }
 
     @Test
-    public void analysisPrinciple(){
+    public void analysisPrinciple() {
 
         List<String> strings = getPrincipleSet();
 
@@ -34,12 +34,12 @@ public class SortKnown {
     }
 
     @Test
-    public void minus(){
+    public void minus() {
         Set<String> kownSet = getKownSet();
         List<String> principleSet = getPrincipleSet();
 
         principleSet.stream().distinct()
-                .filter(e->!kownSet.contains(e)).collect(Collectors.toList())
+                .filter(e -> !kownSet.contains(e)).collect(Collectors.toList())
                 .forEach(System.out::println);
 
     }
@@ -50,36 +50,36 @@ public class SortKnown {
         List<String> strings = Arrays.asList(str.split("\n"));
         strings = strings.stream().map(String::toLowerCase).collect(Collectors.toList());
         strings.sort(Comparator.naturalOrder());
-        return  new LinkedHashSet<>(strings);
+        return new LinkedHashSet<>(strings);
 
     }
 
-    private List<String> getPrincipleSet(){
+    private List<String> getPrincipleSet() {
         String str = FileUtil.readFile("principle.txt");
 
         List<String> lines = Arrays.asList(str.split("\n"));
 
         Set<String> set = new LinkedHashSet<>();
 
-        for(String s : lines){
-            String ss = s.replace(".","")
-                    .replace("("," ")
-                    .replace(")"," ")
-                    .replace(","," ")
-                    .replace("“"," ")
+        for (String s : lines) {
+            String ss = s.replace(".", "")
+                    .replace("(", " ")
+                    .replace(")", " ")
+                    .replace(",", " ")
+                    .replace("“", " ")
                     .replace("”", " ")
-                    .replace(";"," ")
-                    .replace("’"," ")
-                    .replace("?"," ")
-                    .replace(":"," ")
-                    .replace("!"," ")
-                    .replace("—"," ")
+                    .replace(";", " ")
+                    .replace("’", " ")
+                    .replace("?", " ")
+                    .replace(":", " ")
+                    .replace("!", " ")
+                    .replace("—", " ")
                     .toLowerCase();
             List<String> sarry = Arrays.asList(ss.split(" "));
 
-            for(String sss : sarry) {
+            for (String sss : sarry) {
                 if (!sss.startsWith("#") && !sss.startsWith("$") && !sss.startsWith("[")) {
-                    if(!"".equals(sss) && !isStartWithNumber(sss)){
+                    if (!"".equals(sss) && !isStartWithNumber(sss)) {
                         set.add(sss);
                     }
                 }
@@ -92,9 +92,8 @@ public class SortKnown {
     }
 
 
-
     public static boolean isStartWithNumber(String str) {
-        Matcher isNum = pattern.matcher(str.charAt(0)+"");
+        Matcher isNum = pattern.matcher(str.charAt(0) + "");
         if (!isNum.matches()) {
             return false;
         }

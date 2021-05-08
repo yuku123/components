@@ -11,12 +11,12 @@ import java.util.HashMap;
 
 import javax.swing.*;
 
-public class AlgoFrame extends JFrame{
+public class AlgoFrame extends JFrame {
 
     private int canvasWidth;
     private int canvasHeight;
 
-    public AlgoFrame(String title, int canvasWidth, int canvasHeight){
+    public AlgoFrame(String title, int canvasWidth, int canvasHeight) {
 
         super(title);
 
@@ -33,24 +33,30 @@ public class AlgoFrame extends JFrame{
         setVisible(true);
     }
 
-    public AlgoFrame(String title){
+    public AlgoFrame(String title) {
 
         this(title, 1024, 768);
     }
 
-    public int getCanvasWidth(){return canvasWidth;}
-    public int getCanvasHeight(){return canvasHeight;}
+    public int getCanvasWidth() {
+        return canvasWidth;
+    }
+
+    public int getCanvasHeight() {
+        return canvasHeight;
+    }
 
     // data
     private int[] money;
-    public void render(int[] money){
+
+    public void render(int[] money) {
         this.money = money;
         repaint();
     }
 
-    private class AlgoCanvas extends JPanel{
+    private class AlgoCanvas extends JPanel {
 
-        public AlgoCanvas(){
+        public AlgoCanvas() {
             // 双缓存
             super(true);
         }
@@ -59,7 +65,7 @@ public class AlgoFrame extends JFrame{
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
 
-            Graphics2D g2d = (Graphics2D)g;
+            Graphics2D g2d = (Graphics2D) g;
 
             // 抗锯齿
             RenderingHints hints = new RenderingHints(
@@ -70,13 +76,12 @@ public class AlgoFrame extends JFrame{
 
             // 具体绘制
             int w = canvasWidth / money.length;
-            for(int i = 0 ; i < money.length ; i ++)
-                if(money[i] > 0) {
+            for (int i = 0; i < money.length; i++)
+                if (money[i] > 0) {
                     AlgoVisHelper.setColor(g2d, AlgoVisHelper.Blue);
                     AlgoVisHelper.fillRectangle(g2d,
                             i * w + 1, canvasHeight / 2 - money[i], w - 1, money[i]);
-                }
-                else{
+                } else {
                     AlgoVisHelper.setColor(g2d, AlgoVisHelper.Red);
                     AlgoVisHelper.fillRectangle(g2d,
                             i * w + 1, canvasHeight / 2, w - 1, -money[i]);
@@ -84,7 +89,7 @@ public class AlgoFrame extends JFrame{
         }
 
         @Override
-        public Dimension getPreferredSize(){
+        public Dimension getPreferredSize() {
             return new Dimension(canvasWidth, canvasHeight);
         }
     }

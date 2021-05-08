@@ -13,7 +13,7 @@ public abstract class Packet {
     @JSONField(serialize = false)
     public abstract Byte getCommand();
 
-    public Byte getVersion(){
+    public Byte getVersion() {
         return this.version;
     }
 }

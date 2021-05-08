@@ -12,21 +12,21 @@ public class App {
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 
-        Map<Integer,BufferedWriter> bufferedWriters = new LinkedHashMap<>();
+        Map<Integer, BufferedWriter> bufferedWriters = new LinkedHashMap<>();
         String line = null;
         int i = 0;
-        while ((line = bufferedReader.readLine())!=null){
-            i = i+1;
+        while ((line = bufferedReader.readLine()) != null) {
+            i = i + 1;
             int index = i / 100;
             BufferedWriter bufferedWriter = bufferedWriters.get(index);
-            if(bufferedWriter == null){
+            if (bufferedWriter == null) {
                 String filePath = "/Users/zifang/Downloads/konacha/konachar-markdown#index.md";
-                filePath = filePath.replace("#index",index+"");
+                filePath = filePath.replace("#index", index + "");
                 bufferedWriter = new BufferedWriter(new FileWriter(filePath));
-                bufferedWriters.put(index,bufferedWriter);
+                bufferedWriters.put(index, bufferedWriter);
             }
-            String d = String.format("![](%s)",line);
-            bufferedWriter.write(d+"\n");
+            String d = String.format("![](%s)", line);
+            bufferedWriter.write(d + "\n");
             bufferedWriter.flush();
         }
     }

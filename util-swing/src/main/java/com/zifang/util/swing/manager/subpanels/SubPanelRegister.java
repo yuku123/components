@@ -8,12 +8,12 @@ public class SubPanelRegister {
 
     private Map<Integer, JPanel> registedPanel;
 
-    public SubPanelRegister register(Integer id,JPanel jPanel){
-        if(registedPanel.containsKey(id)){
-            throw new RuntimeException("id :"+id+" is dumplicate");
+    public SubPanelRegister register(Integer id, JPanel jPanel) {
+        if (registedPanel.containsKey(id)) {
+            throw new RuntimeException("id :" + id + " is dumplicate");
         }
 
-        registedPanel.put(id,jPanel);
+        registedPanel.put(id, jPanel);
         return this;
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 网状结点 没有上下级别关系
- * */
+ */
 public interface INode {
 
     List<INode> getConbinedNode();

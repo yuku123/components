@@ -32,7 +32,7 @@ public class Tokenizer {
 
     private Token start() throws IOException {
         char ch;
-        for(;;) {
+        for (; ; ) {
             if (!charReader.hasMore()) {
                 return new Token(TokenType.END_DOCUMENT, null);
             }
@@ -80,7 +80,7 @@ public class Tokenizer {
 
     private Token readString() throws IOException {
         StringBuilder sb = new StringBuilder();
-        for (;;) {
+        for (; ; ) {
             char ch = charReader.next();
             if (ch == '\\') {
                 if (!isEscape()) {
@@ -174,7 +174,7 @@ public class Tokenizer {
     private String readFracAndExp() throws IOException {
         StringBuilder sb = new StringBuilder();
         char ch = charReader.next();
-        if (ch ==  '.') {
+        if (ch == '.') {
             sb.append(ch);
             ch = charReader.next();
             if (!isDigit(ch)) {
@@ -206,7 +206,7 @@ public class Tokenizer {
     private String readExp() throws IOException {
         StringBuilder sb = new StringBuilder();
         char ch = charReader.next();
-        if (ch == '+' || ch =='-') {
+        if (ch == '+' || ch == '-') {
             sb.append(ch);
             ch = charReader.next();
             if (isDigit(ch)) {

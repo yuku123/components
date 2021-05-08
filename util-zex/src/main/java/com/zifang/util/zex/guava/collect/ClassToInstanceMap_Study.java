@@ -17,11 +17,11 @@ import com.google.common.collect.MutableClassToInstanceMap;
 
 /**
  * map的key并不是一种类型，是很多类型（常规Map的key、value类型固定），可通过类型得到其实例；
- * 
+ * <p>
  * 保证放入的value和key的类型对应，不一致将报转换异常。
- * 
+ * <p>
  * 实现：MutableClassToInstanceMap、ImmutableClassToInstanceMap
- * 
+ *
  * @author zxiaofan
  */
 public class ClassToInstanceMap_Study {

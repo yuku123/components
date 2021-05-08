@@ -15,7 +15,7 @@ public final class DateUtils {
     /**
      * yyyy-MM-dd hh:mm:ss
      */
-    public static final String DATE_FORMAT="yyyy-MM-dd hh:mm:ss";
+    public static final String DATE_FORMAT = "yyyy-MM-dd hh:mm:ss";
 
     /**
      * 私有构造函数，不允许实例化此类。
@@ -64,6 +64,7 @@ public final class DateUtils {
 
     /**
      * 返回今天的日期，格式是2014-06-04 13:23:22。
+     *
      * @return 今天的日期。
      */
     public static String getDateAndTimeString() {
@@ -151,28 +152,30 @@ public final class DateUtils {
 
     /**
      * 计算两个日期date1-date2相差的天数
+     *
      * @param date1
      * @param date2
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
-    public static long calcDay(String date1,String date2,String format) throws Exception{
-	    SimpleDateFormat sdf=new SimpleDateFormat(format);  
-	    Calendar cal = Calendar.getInstance();    
-	    cal.setTime(sdf.parse(date1));    
-	    long time1 = cal.getTimeInMillis();                 
-	    cal.setTime(sdf.parse(date2));    
-	    long time2 = cal.getTimeInMillis();         
-	    return (time1-time2)/(1000*3600*24);
+    public static long calcDay(String date1, String date2, String format) throws Exception {
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(sdf.parse(date1));
+        long time1 = cal.getTimeInMillis();
+        cal.setTime(sdf.parse(date2));
+        long time2 = cal.getTimeInMillis();
+        return (time1 - time2) / (1000 * 3600 * 24);
     }
 
     /**
      * 比较两个Date类型的日期大小
+     *
      * @param sDate开始时间
      * @param eDate结束时间
-     * @return result返回结果(0--相同  1--前者大  2--后者大)
-     * */
-    public static int compareDate(Date sDate, Date eDate){
+     * @return result返回结果(0 - - 相同 1 - - 前者大 2 - - 后者大)
+     */
+    public static int compareDate(Date sDate, Date eDate) {
         Calendar sC = Calendar.getInstance();
         sC.setTime(sDate);
         Calendar eC = Calendar.getInstance();
@@ -182,13 +185,14 @@ public final class DateUtils {
 
     /**
      * 比较两个String类型的日期大小
+     *
      * @param sDate
      * @param eDate
      * @param formatStr
-     * @return  result返回结果(0--相同  1--前者大  -1--后者大)
+     * @return result返回结果(0 - - 相同 1 - - 前者大 - 1 - - 后者大)
      */
     public static int compareDate(String sDate, String eDate, String formatStr) {
-        Date startDate = strToDate(sDate,formatStr);
+        Date startDate = strToDate(sDate, formatStr);
         Date endDate = strToDate(eDate, formatStr);
         return compareDate(startDate, endDate);
     }

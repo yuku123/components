@@ -8,12 +8,11 @@ import java.util.Map;
 
 public class CollectionTest {
     @Test
-    public void a(){
+    public void a() {
 
-        List<Map<String,Object>> aa = new ArrayList<>();
+        List<Map<String, Object>> aa = new ArrayList<>();
 
-        List<Map<String,Object>> bb = new ArrayList<>();
-
+        List<Map<String, Object>> bb = new ArrayList<>();
 
 
 //        new MemorySqlExcutor()

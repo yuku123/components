@@ -140,11 +140,11 @@ public class GroupApiManager {
 
         ProjectApi projectApi = GitlabApiWrapper.getProjectApi();
         List<Project> list = projectApi.getProjects(projectName);
-        for (Project sub : list){
+        for (Project sub : list) {
             projectName.equals(sub.getName()); // 精确匹配
             return sub;
         }
-        throw new RuntimeException("没有找到名字为："+projectName+"的项目");
+        throw new RuntimeException("没有找到名字为：" + projectName + "的项目");
     }
 
     /**
@@ -236,7 +236,7 @@ public class GroupApiManager {
     /**
      * 获取指定后缀的文件
      *
-     * @param projectId project唯一标识
+     * @param projectId  project唯一标识
      * @param filePath
      * @param branchName
      * @param recursive  是否递归
@@ -254,15 +254,16 @@ public class GroupApiManager {
 
     /**
      * 得到 文件数 根据文件的类型 与后缀进行过滤
-     * @param project project
-     * @param filePath 从哪个路径开始扫描 默认应该为 "" 根路径
+     *
+     * @param project    project
+     * @param filePath   从哪个路径开始扫描 默认应该为 "" 根路径
      * @param branchName 分支名
      * @param recursive  是否递归
-     * @param type TreeItem.Type.BLOB 是实体文件 TreeItem.Type.TREE是路径相关
-     * @param suffix 后缀
+     * @param type       TreeItem.Type.BLOB 是实体文件 TreeItem.Type.TREE是路径相关
+     * @param suffix     后缀
      * @return
      * @throws GitLabApiException
-     * */
+     */
     public List<TreeItem> getTreeByTypeAndSuffix(Project project, String filePath, String branchName, Boolean recursive, TreeItem.Type type, String suffix) throws GitLabApiException {
         List<TreeItem> list = this.getTree(String.valueOf(project.getId()), filePath, branchName, recursive);
         return list.stream()
@@ -273,14 +274,15 @@ public class GroupApiManager {
 
     /**
      * 得到 文件数 根据文件的类型 与后缀进行过滤
-     * @param project project
-     * @param filePath 从哪个路径开始扫描 默认应该为 "" 根路径
+     *
+     * @param project    project
+     * @param filePath   从哪个路径开始扫描 默认应该为 "" 根路径
      * @param branchName 分支名
      * @param recursive  是否递归
-     * @param type TreeItem.Type.BLOB 是实体文件 TreeItem.Type.TREE是路径相关
+     * @param type       TreeItem.Type.BLOB 是实体文件 TreeItem.Type.TREE是路径相关
      * @return
      * @throws GitLabApiException
-     * */
+     */
     public List<TreeItem> getTreeByType(Project project, String filePath, String branchName, Boolean recursive, TreeItem.Type type) throws GitLabApiException {
         List<TreeItem> list = this.getTree(String.valueOf(project.getId()), filePath, branchName, recursive);
         return list.stream()
@@ -294,10 +296,10 @@ public class GroupApiManager {
         // 获得目录
         String pathRoot = getParentPath(filePath);
 
-        List<TreeItem> treeItems = getTreeByType(project,pathRoot,branchName,false,TreeItem.Type.BLOB);
+        List<TreeItem> treeItems = getTreeByType(project, pathRoot, branchName, false, TreeItem.Type.BLOB);
 
-        for(TreeItem treeItem: treeItems){
-            if(filePath.equals(treeItem.getPath())){
+        for (TreeItem treeItem : treeItems) {
+            if (filePath.equals(treeItem.getPath())) {
                 return true;
             }
         }
@@ -305,10 +307,10 @@ public class GroupApiManager {
     }
 
     private String getParentPath(String filePath) {
-        if(!filePath.contains("/")){//是根路径
+        if (!filePath.contains("/")) {//是根路径
             return "";
-        }else{
-            return filePath.substring(0,filePath.lastIndexOf("/"));
+        } else {
+            return filePath.substring(0, filePath.lastIndexOf("/"));
         }
     }
 
@@ -354,14 +356,14 @@ public class GroupApiManager {
     /**
      * 提交(批量)（新增）
      *
-     * @param project    项目
-     * @param branchName 分支
-     * @param commitMsg  提交备注
-     * @param commitActions   commit合集
+     * @param project       项目
+     * @param branchName    分支
+     * @param commitMsg     提交备注
+     * @param commitActions commit合集
      * @return
      * @throws Exception
      */
-    public Commit createCommitBatch(Project project, String branchName, String commitMsg,List<CommitAction> commitActions) throws GitLabApiException {
+    public Commit createCommitBatch(Project project, String branchName, String commitMsg, List<CommitAction> commitActions) throws GitLabApiException {
         CommitsApi commitsApi = GitlabApiWrapper.getCommitsApi();
 
         return commitsApi.createCommit(

@@ -22,9 +22,9 @@ import com.google.common.collect.Multiset;
 
 /**
  * Multimap:get(key)==>Collection<>（可能为空集合（默认容量为3）但不会为null，asMap.get()可能返回null）
- * 
+ * <p>
  * 常使用ListMultimap或SetMultimap。
- * 
+ *
  * @author zxiaofan
  */
 // Multimap实现--key类似--value类似
@@ -41,7 +41,6 @@ import com.google.common.collect.Multiset;
 public class Multimap_Study {
     /**
      * 基本使用.
-     * 
      */
     @Test
     public void basicTest() {
@@ -67,7 +66,7 @@ public class Multimap_Study {
 
     /**
      * Multimap强大的视图.
-     * 
+     * <p>
      * 暂仅发现asMap.get()返回集合支持转换为List<>，其余视图转换时均报ClassCastException
      */
     @Test
@@ -123,7 +122,6 @@ public class Multimap_Study {
 
     /**
      * LinkedHashMultimap保留了映射项的插入顺序，包括键插入的顺序，以及键映射的所有值的插入顺序.
-     * 
      */
     @Test
     public void LinkedHashMultimapTest() {

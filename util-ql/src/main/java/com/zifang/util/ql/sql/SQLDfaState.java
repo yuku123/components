@@ -1,6 +1,6 @@
 package com.zifang.util.ql.sql;
 
-public enum  SQLDfaState {
+public enum SQLDfaState {
 
     Initial,  // 表达刚开始的表达
 

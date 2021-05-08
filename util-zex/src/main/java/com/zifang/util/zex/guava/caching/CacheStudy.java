@@ -37,13 +37,12 @@ import com.google.common.util.concurrent.ListenableFutureTask;
  * 如果你不需要Cache中的特性，使用ConcurrentHashMap有更好的内存效率。
  * get(key) ：入参key不允许为null，否则抛异常com.google.common.cache.CacheLoader$InvalidCacheLoadException: CacheLoader returned null for key "key"；
  * get(key) ：返回值不允许为null，否则抛异常java.lang.NullPointerException at com.google.common.base.Preconditions.checkNotNull(Preconditions.java:770)。
- * 
+ *
  * @author zxiaofan
  */
 public class CacheStudy {
     /**
      * 缓存项被移除时，RemovalListener会获取移除通知[RemovalNotification]，其中包含移除原因[RemovalCause]、键和值.
-     * 
      */
     RemovalListener<String, String> listener = new RemovalListener<String, String>() {
 
@@ -201,7 +200,6 @@ public class CacheStudy {
 
     /**
      * 显示清除.
-     * 
      */
     @Test
     public void removeTest() {
@@ -229,12 +227,10 @@ public class CacheStudy {
 
     /**
      * 移除监听器.
-     * 
+     * <p>
      * 监听器方法是在移除缓存时同步调用的。因为缓存的维护和请求响应通常是同时进行的，代价高昂的监听器方法在同步模式下会拖慢正常的缓存请求。
-     * 
+     * <p>
      * 可以使用RemovalListeners.asynchronous(RemovalListener, Executor)把监听器装饰为异步操作。
-     * 
-     * 
      */
     @Test
     public void removeListenerTest() {
@@ -245,21 +241,20 @@ public class CacheStudy {
 
     /**
      * 何时会清理【主要在写操作、asMap时，偶尔读操作时】 & 实现定时清理.
-     * 
+     * <p>
      * CacheBuilder构建的缓存不会"自动"执行清理和回收工作，也不会在某个缓存项过期后马上清理，也没有诸如此类的清理机制。
-     * 
+     * <p>
      * 它会在【写操作、asMap】时顺带做少量的维护工作；如果写操作实在太少，会【偶尔在读操作】时做。
-     * 
+     * <p>
      * 如果要自动地持续清理缓存，就必须有一个线程，这个线程会和用户操作竞争共享锁。此外，某些环境下线程创建可能受限制，这样CacheBuilder就不可用了。
-     * 
+     * <p>
      * 如果缓存是高吞吐的，无需担心缓存的维护和清理。如果缓存只会偶尔有写操作，而你又不想清理工作阻碍了读操作，
-     * 
+     * <p>
      * 那么可以创建自己的维护线程，以固定的时间间隔调用Cache.cleanUp()。ScheduledExecutorService可以帮助你很好地实现这样的定时调度。
-     * 
+     * <p>
      * cleanUp针对所有过期数据，refresh针对指定key。
-     * 
+     *
      * @throws ExecutionException
-     * 
      */
     @Test
     public void clearWhenTest() throws ExecutionException {
@@ -287,11 +282,11 @@ public class CacheStudy {
 
     /**
      * 缓存刷新-异步
-     * 
+     * <p>
      * （重写reload自定义刷新方法,允许开发者在计算新值时使用旧的值）.
-     * 
+     * <p>
      * refreshAfterWrite自动定时刷新。缓存项只有在被检索时才会真正刷新（如果CacheLoader.refresh实现为异步，那么检索不会被刷新拖慢）。
-     * 
+     * <p>
      * 如果你在缓存上同时声明expireAfterWrite和refreshAfterWrite，缓存并不会因为刷新盲目地定时重置，如果缓存项没有被检索，那刷新就不会真的发生，缓存项在过期时间后也变得可以回收。
      */
     LoadingCache<String, String> cacheRefresh = CacheBuilder.newBuilder().refreshAfterWrite(5, TimeUnit.SECONDS).build(new CacheLoader<String, String>() {
@@ -337,17 +332,17 @@ public class CacheStudy {
 
     /**
      * 刷新：加载新值，可异步，刷新时get仍可返回旧值（和回收操作缓存不同，回收操作必须等待新值加载完成）.
-     * 
+     * <p>
      * 缓存项只有在【被检索（get、getIfPresent）时才会真正刷新,asMap不会触发刷新操作】（如果CacheLoader.refresh实现为【异步】，那么检索不会被刷新拖慢，但【返回值可能是旧数据】）.
-     * 
+     * <p>
      * ###【refresh针对单个key】同步refresh：过期后get立即返回新值（耗时）；异步refresh：过期后get触发refresh，再次get【可能】返回新值。###
-     * 
+     * <p>
      * 当key n秒后没有被写操作时，不会自动清理，需要再次调用get(key)方法时才会触发刷新操.
-     * 
+     * <p>
      * 刷新时抛出异常，缓存将保留旧值，异常记录到日志后将被丢弃。
-     * 
+     * <p>
      * 重载CacheLoader.reload(K, V)可以扩展刷新时的行为，此方法允许开发者在计算新值时使用旧的值。
-     * 
+     *
      * @throws ExecutionException
      */
     @Test
@@ -392,13 +387,12 @@ public class CacheStudy {
 
     /**
      * 统计。Cache.stats()方法会返回CacheStats对象以提供统计信息。
-     * 
+     * <p>
      * hitRate()缓存命中率;averageLoadPenalty()加载新值的平均时间，单位为纳秒；evictionCount()缓存项被回收的总数，不包括显式清除；
-     * 
+     * <p>
      * loadSuccessCount缓存加载新值的成功次数。
-     * 
+     *
      * @throws ExecutionException
-     * 
      */
     @Test
     public void statsTest() throws ExecutionException {
@@ -415,19 +409,18 @@ public class CacheStudy {
 
     /**
      * asMap.
-     * 
+     * <p>
      * cache.asMap()包含当前所有加载到缓存的项，就相当于一个Map。
-     * 
+     * <p>
      * 对cache.asMap的操作相当于对cache的操作。
-     * 
+     * <p>
      * asMap().get(key)实质上等同于cache.getIfPresent(key)，而且不会引起缓存项的加载，这和Map的语义约定一致。
-     * 
+     * <p>
      * 所有读写操作都会重置相关缓存项的访问时间，包括Cache.asMap().get(Object)方法和Cache.asMap().put(K, V)方法。
-     * 
+     * <p>
      * 但不包含：asMap().containsKey()、asMap()的集合视图上的操作（比如遍历asMap().entrySet()）。
-     * 
+     * <p>
      * Guava Cache 无containsKey()
-     * 
      */
     @Test
     public void asMapTest() {
@@ -448,7 +441,7 @@ public class CacheStudy {
 
     /**
      * 缓存无数据时，生成value.
-     * 
+     *
      * @param key
      * @return
      */
@@ -458,7 +451,7 @@ public class CacheStudy {
 
     /**
      * 初始化map.
-     * 
+     *
      * @param key
      * @return
      */

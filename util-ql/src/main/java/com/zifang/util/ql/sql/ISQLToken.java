@@ -9,6 +9,7 @@ public interface ISQLToken {
 
     /**
      * Token的文本值
+     *
      * @return
      */
     SQLTokenType getText();

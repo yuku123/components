@@ -75,11 +75,11 @@ public class JvmProperties {
     }
 
     public void init() {
-        for(Map.Entry<String,String> entry : JvmPropertiesDefine.defineMap.entrySet()){
+        for (Map.Entry<String, String> entry : JvmPropertiesDefine.defineMap.entrySet()) {
             try {
                 Field field = this.getClass().getDeclaredField(entry.getKey());
                 field.setAccessible(true);
-                field.set(this,properties.getProperty(entry.getValue()));
+                field.set(this, properties.getProperty(entry.getValue()));
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 e.printStackTrace();
             }

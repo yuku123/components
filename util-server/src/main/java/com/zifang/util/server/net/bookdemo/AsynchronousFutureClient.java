@@ -10,46 +10,46 @@ import java.util.concurrent.Future;
 
 public class AsynchronousFutureClient {
 
-	public static int DEFAULT_PORT = 19;
+    public static int DEFAULT_PORT = 19;
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		if (args.length == 0) {
-			System.out.println("Usage: java ChargenClient host [port]");
-			return;
-		}
+        if (args.length == 0) {
+            System.out.println("Usage: java ChargenClient host [port]");
+            return;
+        }
 
-		int port;
-		try {
-			port = Integer.parseInt(args[1]);
-		} catch (RuntimeException ex) {
-			port = DEFAULT_PORT;
-		}
+        int port;
+        try {
+            port = Integer.parseInt(args[1]);
+        } catch (RuntimeException ex) {
+            port = DEFAULT_PORT;
+        }
 
-		SocketAddress address = new InetSocketAddress(args[0], port);
-		try {
-			AsynchronousSocketChannel client = AsynchronousSocketChannel.open();
-			Future<Void> connected = client.connect(address);
+        SocketAddress address = new InetSocketAddress(args[0], port);
+        try {
+            AsynchronousSocketChannel client = AsynchronousSocketChannel.open();
+            Future<Void> connected = client.connect(address);
 
-			ByteBuffer buffer = ByteBuffer.allocate(74);
-			System.out.println(buffer.hasArray());
+            ByteBuffer buffer = ByteBuffer.allocate(74);
+            System.out.println(buffer.hasArray());
 
-			connected.get();
+            connected.get();
 
-			Future<Integer> future = client.read(buffer);
+            Future<Integer> future = client.read(buffer);
 
-			future.get();
+            future.get();
 
-			byte[] result = buffer.array();
+            byte[] result = buffer.array();
 
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }

@@ -7,46 +7,48 @@ import org.junit.Test;
 import java.lang.annotation.*;
 
 public class AnnotationUtilTest {
-	
-	@Test
-	public void test1() {
-		Object value = AnnotationUtil.getAnnotationValue(WholeBase.class, ClassInfo.class);
-		Object className = AnnotationUtil.getAnnotationValue(WholeBase.class, ClassInfo.class,"className");
-		Object superInfo = AnnotationUtil.getAnnotationValue(WholeBase.class, SuperInfo.class,"superInfo");
-		Assert.assertEquals("default-class-value", value);
-		Assert.assertEquals("superInfo", superInfo);
-		Assert.assertEquals("test",className);
-	}
+
+    @Test
+    public void test1() {
+        Object value = AnnotationUtil.getAnnotationValue(WholeBase.class, ClassInfo.class);
+        Object className = AnnotationUtil.getAnnotationValue(WholeBase.class, ClassInfo.class, "className");
+        Object superInfo = AnnotationUtil.getAnnotationValue(WholeBase.class, SuperInfo.class, "superInfo");
+        Assert.assertEquals("default-class-value", value);
+        Assert.assertEquals("superInfo", superInfo);
+        Assert.assertEquals("test", className);
+    }
 }
 
 @ClassInfo(className = "test")
 class WholeBase {
 
-	@FieldInfo(name="a-private",password = "a-private")
-	private String a;
-	@FieldInfo(name="b-private",password = "b-private")
-	public String b;
+    @FieldInfo(name = "a-private", password = "a-private")
+    private String a;
+    @FieldInfo(name = "b-private", password = "b-private")
+    public String b;
 
-	@ConstructInfo(constructName = "wholeBase constructName")
-	public WholeBase(@ParameterInfo(setString = "test b")String b){}
+    @ConstructInfo(constructName = "wholeBase constructName")
+    public WholeBase(@ParameterInfo(setString = "test b") String b) {
+    }
 
-	@ConstructInfo(constructName = "wholeBase private constructName---parameter a")
-	private WholeBase(String a,@ParameterInfo(setString = "test b") String b){}
+    @ConstructInfo(constructName = "wholeBase private constructName---parameter a")
+    private WholeBase(String a, @ParameterInfo(setString = "test b") String b) {
+    }
 
-	@Override
-	@Deprecated
-	@SuppressWarnings({"unchecked", "deprecation"})
-	@MethodInfo(author = "Pankaj", comments = "Main method", date = "Nov 17 2012", revision = 1)
-	public String toString() {
-		return "Overriden toString method";
-	}
+    @Override
+    @Deprecated
+    @SuppressWarnings({"unchecked", "deprecation"})
+    @MethodInfo(author = "Pankaj", comments = "Main method", date = "Nov 17 2012", revision = 1)
+    public String toString() {
+        return "Overriden toString method";
+    }
 
-	@Deprecated
-	@SuppressWarnings({"unchecked", "deprecation"})
-	@MethodInfo(author = "sddsd", comments = "aa private", date = "sdsadasdsadsadsa", revision = 1)
-	private String aa() {
-		return "aa private";
-	}
+    @Deprecated
+    @SuppressWarnings({"unchecked", "deprecation"})
+    @MethodInfo(author = "sddsd", comments = "aa private", date = "sdsadasdsadsadsa", revision = 1)
+    private String aa() {
+        return "aa private";
+    }
 
 }
 
@@ -57,15 +59,17 @@ class WholeBase {
 @Inherited
 @SuperInfo(superInfo = "superInfo")
 @interface ClassInfo {
-	String className();
-	String value() default "default-class-value";
+    String className();
+
+    String value() default "default-class-value";
 }
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.ANNOTATION_TYPE})
 @interface SuperInfo {
-	String superInfo();
-	String value() default "default-class-value";
+    String superInfo();
+
+    String value() default "default-class-value";
 
 }
 
@@ -74,7 +78,7 @@ class WholeBase {
 @Documented
 @Inherited
 @interface ConstructInfo {
-	String constructName();
+    String constructName();
 }
 
 @Retention(RetentionPolicy.RUNTIME)
@@ -82,7 +86,7 @@ class WholeBase {
 @Documented
 @Inherited
 @interface ParameterInfo {
-	String setString();
+    String setString();
 }
 
 @Documented
@@ -90,13 +94,13 @@ class WholeBase {
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @interface MethodInfo {
-	String author() default "Pankaj";
+    String author() default "Pankaj";
 
-	String date();
+    String date();
 
-	int revision() default 1;
+    int revision() default 1;
 
-	String comments();
+    String comments();
 }
 
 @Retention(RetentionPolicy.RUNTIME)
@@ -104,7 +108,9 @@ class WholeBase {
 @Documented
 @Inherited
 @interface FieldInfo {
-	String name();
-	String password();
-	String comments() default "this is default parts";
+    String name();
+
+    String password();
+
+    String comments() default "this is default parts";
 }

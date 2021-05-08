@@ -4,7 +4,7 @@ System.out.println "hello world"
 println("hello world")
 println 'hello world'
 
-int[] array = [1,2,3]
+int[] array = [1, 2, 3]
 
 class Person {
     String name
@@ -18,5 +18,5 @@ assert '李四' == person.getName()
 
 
 class c {
-     String name
+    String name
 }

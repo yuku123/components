@@ -16,14 +16,14 @@ import static com.github.javaparser.ast.Modifier.Keyword.PUBLIC;
 
 /**
  * 针对一个编译单元 增加类元素的 帮助类
- * */
+ */
 public class CodeGenerateHelper {
 
-    public static void addMethod(ClassOrInterfaceDeclaration classDeclaration, MethodInfo methodInfo){
+    public static void addMethod(ClassOrInterfaceDeclaration classDeclaration, MethodInfo methodInfo) {
 
         boolean isInterface = classDeclaration.isInterface();
 
-        if(isInterface){
+        if (isInterface) {
             // 给类增加一个方法
             MethodDeclaration methodDeclaration = classDeclaration.addMethod(methodInfo.getMethodName(), PUBLIC);
             methodDeclaration.setType(methodInfo.getReturnType());
@@ -33,7 +33,7 @@ public class CodeGenerateHelper {
                         .setVarArgs(false);// setVarArgs(true)表达是否多参
             }
             methodDeclaration.setBody(null);
-        }else{
+        } else {
             // 给类增加一个方法
             MethodDeclaration methodDeclaration = classDeclaration.addMethod(methodInfo.getMethodName(), PUBLIC);
             methodDeclaration.setType(methodInfo.getReturnType());
@@ -42,7 +42,7 @@ public class CodeGenerateHelper {
                 methodDeclaration.addAndGetParameter(methodParameterPair.getParamType(), methodParameterPair.getParamName())
                         .setVarArgs(false);// setVarArgs(true)表达是否多参
             }
-            if("void".equals(methodInfo.getReturnType())){ // 方法返回是void的时候 就干干净净的空方法
+            if ("void".equals(methodInfo.getReturnType())) { // 方法返回是void的时候 就干干净净的空方法
                 // 增加method的代码块儿
                 BlockStmt blockStmt = new BlockStmt();
                 methodDeclaration.setBody(blockStmt);

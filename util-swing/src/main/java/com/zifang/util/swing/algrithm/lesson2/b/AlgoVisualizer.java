@@ -10,7 +10,7 @@ public class AlgoVisualizer {
     private Object data;        // 数据
     private AlgoFrame frame;    // 视图
 
-    public AlgoVisualizer(int sceneWidth, int sceneHeight){
+    public AlgoVisualizer(int sceneWidth, int sceneHeight) {
 
         // 初始化数据
         // TODO: 初始化数据
@@ -28,14 +28,17 @@ public class AlgoVisualizer {
     }
 
     // 动画逻辑
-    private void run(){
+    private void run() {
 
         // TODO: 编写自己的动画逻辑
     }
 
     // TODO: 根据情况决定是否实现键盘鼠标等交互事件监听器类
-    private class AlgoKeyListener extends KeyAdapter{ }
-    private class AlgoMouseListener extends MouseAdapter{ }
+    private class AlgoKeyListener extends KeyAdapter {
+    }
+
+    private class AlgoMouseListener extends MouseAdapter {
+    }
 
     public static void main(String[] args) {
 

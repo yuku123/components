@@ -19,8 +19,8 @@ public class PivotTest {
         Dataset<Row> dataset = new SparkUtil(sparkContextInstance).createDataSet("file:/home/zifang/workplace/idea_workplace/components/util-bigdata/src/test/resources/input1.csv");
 
         dataset.show();
-        for(StructField field :dataset.schema().fields()){
-            System.out.println(field.name()+":"+field.dataType().typeName());
+        for (StructField field : dataset.schema().fields()) {
+            System.out.println(field.name() + ":" + field.dataType().typeName());
         }
 
         List<Object> a = new ArrayList<Object>();
@@ -31,11 +31,11 @@ public class PivotTest {
         a.add("name_u5");
 
         dataset.groupBy(dataset.col("userId"))
-                .pivot("name",a)
+                .pivot("name", a)
                 .agg(functions.sum("value"))
                 .na().fill(0).show();
         dataset.groupBy("userId")
-                .pivot("name",a)
+                .pivot("name", a)
                 .count()
                 .na().fill(0).show();
     }

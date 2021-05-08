@@ -2,17 +2,17 @@ package com.zifang.util.source.generator.info;
 
 /**
  * 形参列表
- * */
+ */
 public class MethodParameterPair {
 
     /**
      * 形参种类 class的type
-     * */
+     */
     private String paramType;
 
     /**
      * 形参的名字
-     * */
+     */
     private String paramName;
 
 
@@ -33,7 +33,7 @@ public class MethodParameterPair {
     }
 
     @Override
-    public String toString(){
-        return paramType+" "+paramName;
+    public String toString() {
+        return paramType + " " + paramName;
     }
 }

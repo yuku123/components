@@ -25,6 +25,7 @@ import java.util.concurrent.*;
  * 那么在afterExecute中对异常的处理也需要通过Future接口调用get方法去取结果，才能拿到异常。<br/>
  * 如果我们不关心这个任务的结果，可以直接使用ExecutorService中的execute方法（实际是继承Executor接口）来直接去执行任务。<br/>
  * 这样的话，Runnable没有经过多余的封装，在runWorker中得到的异常也直接能在afterExecute中捕捉。<br/>
+ *
  * @author lijing
  * @since 2015/11/24
  */
@@ -52,9 +53,10 @@ public class FixedMonitorableExecutor extends ThreadPoolExecutor implements Moni
 
     /**
      * {@link ThreadPoolExecutor#ThreadPoolExecutor}
+     *
      * @param threadPoolConfigUnit 组件配置。
-     * @param workQueue {@link ThreadPoolExecutor#ThreadPoolExecutor}
-     * @param threadFactory {@link ThreadPoolExecutor#ThreadPoolExecutor}
+     * @param workQueue            {@link ThreadPoolExecutor#ThreadPoolExecutor}
+     * @param threadFactory        {@link ThreadPoolExecutor#ThreadPoolExecutor}
      */
     public FixedMonitorableExecutor(ThreadPoolConfigUnit threadPoolConfigUnit,
                                     BlockingQueue<Runnable> workQueue,
@@ -90,6 +92,7 @@ public class FixedMonitorableExecutor extends ThreadPoolExecutor implements Moni
 
     /**
      * 主要用于捕捉线程池中的线程产生的异常。
+     *
      * @param r 实际执行的任务。
      * @param t 产生的异常。
      */
@@ -133,6 +136,7 @@ public class FixedMonitorableExecutor extends ThreadPoolExecutor implements Moni
 
     /**
      * 计算和生成线程池总体状态。
+     *
      * @return 线程池状态。
      */
     private Status generatePoolStatus() {
@@ -167,6 +171,7 @@ public class FixedMonitorableExecutor extends ThreadPoolExecutor implements Moni
 
     /**
      * 计算和生成线程池中每个线程的状态。
+     *
      * @param threadStatusMap 线程池中线程的状态。
      * @return 线程池状态。
      */
@@ -177,14 +182,15 @@ public class FixedMonitorableExecutor extends ThreadPoolExecutor implements Moni
 
     /**
      * 计算和生成正在执行的任务的状态。
+     *
      * @param taskStatusMap 正在执行的任务的状态。
      * @return 线程池状态。
      */
     private Status generateTaskStatus(Map<Runnable, Map<String, Object>> taskStatusMap) {
         if (taskStatusMap != null) {
             for (Iterator<Map.Entry<Runnable, Map<String, Object>>> iterator = taskStatusMap.entrySet().iterator();
-                 iterator.hasNext();) {
-                Map.Entry<Runnable, Map<String, Object>> entry =  iterator.next();
+                 iterator.hasNext(); ) {
+                Map.Entry<Runnable, Map<String, Object>> entry = iterator.next();
                 if (TimeUtil.getMillisTimestamp() - ((long) entry.getValue().get(MonitorConstant.TASK_START_TIME))
                         >= threadPoolConfigUnit.getThreadOvertimeThreshhold()) {
                     //当任务超时时
@@ -209,6 +215,7 @@ public class FixedMonitorableExecutor extends ThreadPoolExecutor implements Moni
 
     /**
      * 针对正在准备的任务，执行操作预处理。
+     *
      * @param r 待执行任务。
      */
     private void taskStatusPreExecuteConfig(Runnable r) {
@@ -228,6 +235,7 @@ public class FixedMonitorableExecutor extends ThreadPoolExecutor implements Moni
 
     /**
      * 针对已完成的任务，执行操作后处理。
+     *
      * @param r 待执行任务。
      */
     private void taskStatusAfterExecuteConfig(Runnable r) {

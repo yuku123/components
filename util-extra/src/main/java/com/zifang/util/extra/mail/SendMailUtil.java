@@ -21,7 +21,6 @@ public class SendMailUtil {
     static String[] TOS = new String[]{"1340947819@qq.com"}; //发送到的地方
 
 
-
     static String SUBJECT = "手表服务抛异常了"; // 邮件标题
 
 
@@ -39,7 +38,7 @@ public class SendMailUtil {
             for (int i = 0; i < TOS.length; i++) {
                 sendTo[i] = new InternetAddress(TOS[i]);
             }
-            message.addRecipients(Message.RecipientType.TO,sendTo);
+            message.addRecipients(Message.RecipientType.TO, sendTo);
             message.addRecipients(MimeMessage.RecipientType.CC, InternetAddress.parse(FROM));//设置在发送给收信人之前给自己（发送方）抄送一份，不然会被当成垃圾邮件，报554错
             message.setSubject(SUBJECT);//加载标题
             Multipart multipart = new MimeMultipart();//向multipart对象中添加邮件的各个部分内容，包括文本内容和附件

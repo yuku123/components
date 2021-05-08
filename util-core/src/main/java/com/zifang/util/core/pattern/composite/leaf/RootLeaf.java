@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * 哨兵 根节点
- * */
+ */
 public abstract class RootLeaf implements ILeaf {
 
     public abstract List<ILeaf> getSubLeaves();

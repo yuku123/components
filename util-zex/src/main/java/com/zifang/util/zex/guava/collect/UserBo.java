@@ -9,7 +9,6 @@
 package com.zifang.util.zex.guava.collect;
 
 /**
- * 
  * @author zxiaofan
  */
 public class UserBo {

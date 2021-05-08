@@ -4,11 +4,11 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.openpackaging.parts.WordprocessingML.MainDocumentPart;
 import org.docx4j.toc.TocGenerator;
 
-public class TocUpdateDemo  {
+public class TocUpdateDemo {
 
     static boolean update = false;
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         String input_DOCX = "/Users/zifang/Downloads/test.docx";
 
@@ -23,9 +23,9 @@ public class TocUpdateDemo  {
 //        tocGenerator.setDocumentServicesEndpoint("http://192.168.2.16:9015/v1/00000000-0000-0000-0000-000000000000/convert");
 
 //        	Toc.setTocHeadingText("Sumário");
-        tocGenerator.updateToc( false); // true --> skip page numbering; its currently much faster
+        tocGenerator.updateToc(false); // true --> skip page numbering; its currently much faster
 
-        wordMLPackage.save(new java.io.File("/Users/zifang/Downloads/test_out.docx") );
+        wordMLPackage.save(new java.io.File("/Users/zifang/Downloads/test_out.docx"));
 
     }
 

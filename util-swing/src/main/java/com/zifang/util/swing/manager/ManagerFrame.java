@@ -40,12 +40,12 @@ public class ManagerFrame extends JFrame {
             @Override
             public void valueChanged(TreeSelectionEvent e) {
 
-                if(!treePointed.isSelectionEmpty()) {//判断节点是否被选中，被选中为0，没被选中为1
-                    TreePath[] selectionPath =treePointed.getSelectionPaths();//获取所有被选中节点的路径
-                    for(int i = 0; i < selectionPath.length; i++) {
+                if (!treePointed.isSelectionEmpty()) {//判断节点是否被选中，被选中为0，没被选中为1
+                    TreePath[] selectionPath = treePointed.getSelectionPaths();//获取所有被选中节点的路径
+                    for (int i = 0; i < selectionPath.length; i++) {
                         TreePath path = selectionPath[i];
                         Object[] obj = path.getPath();//以Object数组的形式返回该路径中所有节点的对象
-                        for(int j = 0; j < obj.length; j++) {
+                        for (int j = 0; j < obj.length; j++) {
                             DefaultMutableTreeNode node = (DefaultMutableTreeNode) obj[j];// 获得节点
                             System.out.print(node.getUserObject());
                             JPanel jPanel = new JPanel();
@@ -74,7 +74,7 @@ public class ManagerFrame extends JFrame {
         mainSplitPane.setRightComponent(new Button());
     }
 
-    private  void initComponents() {
+    private void initComponents() {
         initJSplitPane();// 初始化分割面板
         initJTreePane();// 初始化左树
     }
@@ -82,20 +82,20 @@ public class ManagerFrame extends JFrame {
     private void initJTreePane() {
 
         RegisterTreeNode registerTreeNode = new RegisterTreeNode();
-        registerTreeNode.register(new TreeNode("root","企业人事管理系统",null))
-                .register(new TreeNode("1","人事管理","root"))
-                .register(new TreeNode("2","待遇管理","root"))
-                .register(new TreeNode("3","系统维护","root"))
-                .register(new TreeNode("1-1","账套管理","1"))
-                .register(new TreeNode("1-2","考勤管理","1"))
-                .register(new TreeNode("1-3","奖惩管理","1"))
-                .register(new TreeNode("1-4","培训管理","1"))
-                .register(new TreeNode("2-1","帐套管理","2"))
-                .register(new TreeNode("2-2","人员设置","2"))
-                .register(new TreeNode("2-3","待遇报表","2"))
-                .register(new TreeNode("3-1","企业架构","3"))
-                .register(new TreeNode("3-2","基本资料","3"))
-                .register(new TreeNode("3-3","系统初始化","3"));
+        registerTreeNode.register(new TreeNode("root", "企业人事管理系统", null))
+                .register(new TreeNode("1", "人事管理", "root"))
+                .register(new TreeNode("2", "待遇管理", "root"))
+                .register(new TreeNode("3", "系统维护", "root"))
+                .register(new TreeNode("1-1", "账套管理", "1"))
+                .register(new TreeNode("1-2", "考勤管理", "1"))
+                .register(new TreeNode("1-3", "奖惩管理", "1"))
+                .register(new TreeNode("1-4", "培训管理", "1"))
+                .register(new TreeNode("2-1", "帐套管理", "2"))
+                .register(new TreeNode("2-2", "人员设置", "2"))
+                .register(new TreeNode("2-3", "待遇报表", "2"))
+                .register(new TreeNode("3-1", "企业架构", "3"))
+                .register(new TreeNode("3-2", "基本资料", "3"))
+                .register(new TreeNode("3-3", "系统初始化", "3"));
 
         DefaultMutableTreeNode root = RegisterTreeNodeHelper.solve(registerTreeNode);
         JTree tree = new JTree(root);
@@ -123,10 +123,10 @@ public class ManagerFrame extends JFrame {
                 tree.expandPath(path);// 如果不是则展开该节点
             }
         }
-        treePointed=tree;
+        treePointed = tree;
     }
 
-    private  void initJSplitPane() {
+    private void initJSplitPane() {
 //        mainSplitPane.setOneTouchExpandable(true);//让分割线显示出箭头
         mainSplitPane.setContinuousLayout(true);//操作箭头，重绘图形
         //jSplitPane.setPreferredSize(new Dimension (100,200));

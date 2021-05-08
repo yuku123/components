@@ -2,14 +2,15 @@ package com.zifang.util.core.lang;
 
 public class Defaults {
 
-    private Defaults() {}
+    private Defaults() {
+    }
 
     private static final Double DOUBLE_DEFAULT = 0d;
     private static final Float FLOAT_DEFAULT = 0f;
 
     /**
      * 获得默认的值
-     * */
+     */
     @SuppressWarnings("unchecked")
     public static <T> T defaultValue(Class<T> type) {
         checkNotNull(type);

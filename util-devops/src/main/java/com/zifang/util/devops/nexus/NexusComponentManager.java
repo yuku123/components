@@ -113,10 +113,10 @@ public class NexusComponentManager {
         List<Component> list = search(respository);
 
         List<Component> filted = list.stream()
-                .filter( e -> e.getGroup().equals(groupId) && e.getName().equals(artifactId) && e.getVersion().equals(version))
+                .filter(e -> e.getGroup().equals(groupId) && e.getName().equals(artifactId) && e.getVersion().equals(version))
                 .collect(Collectors.toList());
 
-        if(filted.size() == 1){
+        if (filted.size() == 1) {
             return filted.get(0);
         }
         return null;
@@ -129,9 +129,9 @@ public class NexusComponentManager {
         System.out.print(list);
 
         List<Component> filted = list.stream()
-                .filter( e -> e.getGroup().equals(groupId) && e.getName().equals(artifactId) && e.getVersion().equals(version))
+                .filter(e -> e.getGroup().equals(groupId) && e.getName().equals(artifactId) && e.getVersion().equals(version))
                 .collect(Collectors.toList());
-        if(filted.size() == 0){
+        if (filted.size() == 0) {
             return false;
         } else {
             return true;

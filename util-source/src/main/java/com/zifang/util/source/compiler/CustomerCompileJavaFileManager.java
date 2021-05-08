@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 用户自定义编译管理器
- * */
+ */
 public class CustomerCompileJavaFileManager extends ForwardingJavaFileManager<JavaFileManager> {
 
     private final CustomerCompileClassLoader classLoader;
@@ -83,15 +83,15 @@ public class CustomerCompileJavaFileManager extends ForwardingJavaFileManager<Ja
     }
 
     /**
-     *  自定义方法,用于添加和缓存待编译的源文件对象
-     * */
+     * 自定义方法,用于添加和缓存待编译的源文件对象
+     */
     public void addJavaFileObject(Location location, String packageName, String relativeName, JavaFileObject javaFileObject) {
         javaFileObjectMap.put(fromLocation(location, packageName, relativeName), javaFileObject);
     }
 
     /**
-     *  自定义方法,用于添加和缓存待编译的源文件对象
-     * */
+     * 自定义方法,用于添加和缓存待编译的源文件对象
+     */
     public void addJavaFileObject(URI uri, JavaFileObject javaFileObject) {
         javaFileObjectMap.put(uri, javaFileObject);
     }

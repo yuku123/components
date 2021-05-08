@@ -6,7 +6,7 @@ import com.zifang.util.db.respository.CrudRepository;
 
 import java.util.List;
 
-public interface TestInterface extends CrudRepository<User,Long> {
+public interface TestInterface extends CrudRepository<User, Long> {
 
     List<User> findByName(String name);
 

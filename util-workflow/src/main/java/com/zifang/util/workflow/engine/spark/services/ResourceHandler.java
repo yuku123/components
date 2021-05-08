@@ -22,23 +22,23 @@ public class ResourceHandler extends AbstractSparkEngineService {
 
     }
 
-    public void handleLocalInput(){
+    public void handleLocalInput() {
 
         //得到缓存控制服务器
         CacheEngineService cacheEngineService = getWorkFlowApplicationContext().getCacheEngineService();
 
-        HashMap<String,String> transformedParameter = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+        HashMap<String, String> transformedParameter = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
         try {
             dataset = sparkUtil.createDataSet(transformedParameter.get(localFile));
-            cacheEngineService.doCache(dataset,executableWorkflowNode.getCache().get("cacheTempNameAlias"));
+            cacheEngineService.doCache(dataset, executableWorkflowNode.getCache().get("cacheTempNameAlias"));
             dataset.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void handleLocalOutput(){
-        Map<String,String> transformedParameter = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+    public void handleLocalOutput() {
+        Map<String, String> transformedParameter = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
 
         try {
             sparkContextInstance.getSparkContext()
@@ -49,16 +49,16 @@ public class ResourceHandler extends AbstractSparkEngineService {
                     .write()
                     .mode(SaveMode.Overwrite)
                     .format("csv")
-                    .option("header","true")
+                    .option("header", "true")
                     .save(transformedParameter.get("outputDir"));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void handleMysqlInput(){
+    public void handleMysqlInput() {
 
-        Map<String,String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+        Map<String, String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
 
         Properties props = new Properties();
         props.put("user", properties.get("user"));
@@ -71,8 +71,8 @@ public class ResourceHandler extends AbstractSparkEngineService {
         dataset.show();
     }
 
-    public void handleMysqlOutput(){
-        Map<String,String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+    public void handleMysqlOutput() {
+        Map<String, String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
 
         Properties props = new Properties();
         props.put("user", properties.get("user"));
@@ -85,22 +85,22 @@ public class ResourceHandler extends AbstractSparkEngineService {
     }
 
 
-    public void handleHiveInput(){
-        Map<String,String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+    public void handleHiveInput() {
+        Map<String, String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
 
-        dataset = sparkContextInstance.getSqlContext().sql("select * from "+ properties.get("tableName"));
+        dataset = sparkContextInstance.getSqlContext().sql("select * from " + properties.get("tableName"));
         dataset.show();
     }
 
 
-    public void handleHiveOutput(){
-        Map<String,String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+    public void handleHiveOutput() {
+        Map<String, String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
 
-        String view = "t"+"_"+System.currentTimeMillis();
+        String view = "t" + "_" + System.currentTimeMillis();
         executableWorkflowNode.getPre().get(0).getDataset().createOrReplaceTempView(view);
         String tableName = properties.get("tableName");
-        sparkContextInstance.getSqlContext().sql("drop table if exists "+tableName);
-        dataset = sparkContextInstance.getSqlContext().sql("create table "+tableName+" as select * from "+ view);
+        sparkContextInstance.getSqlContext().sql("drop table if exists " + tableName);
+        dataset = sparkContextInstance.getSqlContext().sql("create table " + tableName + " as select * from " + view);
     }
 
 }

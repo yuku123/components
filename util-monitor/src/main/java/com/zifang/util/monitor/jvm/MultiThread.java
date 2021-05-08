@@ -4,14 +4,14 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
 
-public class MultiThread extends Thread{
+public class MultiThread extends Thread {
     public static void main(String[] args) {
         ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
         //只要线程和线程堆栈的信息
-        ThreadInfo[] threadInfos = threadMXBean.dumpAllThreads(false,false);
+        ThreadInfo[] threadInfos = threadMXBean.dumpAllThreads(false, false);
 
-        for(ThreadInfo threadInfo : threadInfos){
-            System.out.println("["+threadInfo.getThreadId()+"]"+threadInfo.getThreadName());
+        for (ThreadInfo threadInfo : threadInfos) {
+            System.out.println("[" + threadInfo.getThreadId() + "]" + threadInfo.getThreadName());
         }
     }
 }

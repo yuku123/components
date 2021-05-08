@@ -8,34 +8,34 @@ import java.util.List;
 
 /**
  * 矩阵类
- * */
+ */
 public class Matrix {
 
     private List<List<Double>> data = new ArrayList<>();
 
     /**
      * 矩阵乘法
-     * */
-    public void multiply(Matrix another){
+     */
+    public void multiply(Matrix another) {
 
     }
 
     /**
      * 矩阵的一行
-     * */
-    public void set(Double ... arrays) {
+     */
+    public void set(Double... arrays) {
         data.add(Arrays.asList(arrays));
     }
 
     /**
      * 美化输出
-     * */
+     */
     public void format() {
         Integer padding = analysisPadding();
-        for(List<Double> row : data){
-            for(Double col : row){
-                String paddingedCol = StringUtil.rightPad(String.valueOf(col),padding,' ');
-                System.out.print(paddingedCol+" | ");
+        for (List<Double> row : data) {
+            for (Double col : row) {
+                String paddingedCol = StringUtil.rightPad(String.valueOf(col), padding, ' ');
+                System.out.print(paddingedCol + " | ");
             }
             System.out.println();
         }
@@ -43,10 +43,10 @@ public class Matrix {
 
     private Integer analysisPadding() {
         Integer max = 0;
-        for(List<Double> row : data){
-            for(Double col : row){
+        for (List<Double> row : data) {
+            for (Double col : row) {
                 Integer cu = String.valueOf(col).length();
-                if(cu>max){
+                if (cu > max) {
                     max = cu;
                 }
             }
@@ -54,16 +54,19 @@ public class Matrix {
         return max;
     }
 
-    public void shape(){}
+    public void shape() {
+    }
 
-    public void dtype(){}
+    public void dtype() {
+    }
 
-    public void ndim(){}
+    public void ndim() {
+    }
 
     /**
      * 切片方法
-     * */
-    public List<List<Double>> slice(){
+     */
+    public List<List<Double>> slice() {
         return null;
     }
 

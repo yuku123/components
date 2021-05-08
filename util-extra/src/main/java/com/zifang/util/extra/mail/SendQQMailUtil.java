@@ -25,7 +25,7 @@ public class SendQQMailUtil {
         // 设置发件人邮箱地址
         message.setFrom(new InternetAddress("1340947819@qq.com"));
         // 设置收件人邮箱地址
-        message.setRecipients(Message.RecipientType.TO, new InternetAddress[]{new InternetAddress("1340947819@qq.com"),new InternetAddress("1340947819@qq.com"),new InternetAddress("xxx@qq.com")});
+        message.setRecipients(Message.RecipientType.TO, new InternetAddress[]{new InternetAddress("1340947819@qq.com"), new InternetAddress("1340947819@qq.com"), new InternetAddress("xxx@qq.com")});
         //message.setRecipient(Message.RecipientType.TO, new InternetAddress("xxx@qq.com"));//一个收件人
         // 设置邮件标题
         message.setSubject("xmqtest");

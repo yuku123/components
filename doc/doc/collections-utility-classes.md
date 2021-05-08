@@ -66,7 +66,6 @@ Guava中工具类与集合的对应关系如下:
 </tr>
 </table>
 
-
 * [静态工厂方法](#static-constructor)
 * [Iterables](#iterables)
 * [Lists](#lists)
@@ -87,12 +86,12 @@ Guava提供了能够推断泛型的静态工厂方法
 > List<Type> exactly100 = Lists.newArrayListWithCapacity(100); //更具可读性的工厂方法  
 > List<Type> approx100 = Lists.newArrayListWithExpectedSize(100); //更具可读性的工厂方法  
 > Set<String> set = Sets.newHashSet();  
-> Set<Type> approx100Set = Sets.newHashSetWithExpectedSize(100);  
+> Set<Type> approx100Set = Sets.newHashSetWithExpectedSize(100);
 
 <h3 id="iterables">Iterables</h3>
 
 相比于Collection, Guava更偏向于提供Iterable类型, 原因就不写了，网上可以找到  
-大部分的方法都在Iterators和FluentIterable中, 后者提供了很多链式操作  
+大部分的方法都在Iterators和FluentIterable中, 后者提供了很多链式操作
 
 Iterators常用方法
 <table>
@@ -198,7 +197,7 @@ Sets.powerSet(Sets.newHashSet(1, 2, 3)); // 返回给定集合的所有子集
 
 <h3 id="maps">Maps</h3>
 
-Maps除了类似Lists、Sets一样提供基本的静态工厂方法外，还提供了很多其他有意思的方法  
+Maps除了类似Lists、Sets一样提供基本的静态工厂方法外，还提供了很多其他有意思的方法
 
 #### uniqueIndex
 
@@ -208,6 +207,7 @@ Maps除了类似Lists、Sets一样提供基本的静态工厂方法外，还提�
 > 这个方法返回一个Map，键为Function返回的属性值，值为Iterable中相应的元素，因此我们可以反复用这个Map进行查找操作。
 
 示例:
+
 ```java  
 ImmutableMap<Integer, String> stringsByIndex = Maps.uniqueIndex(strings, new Function<String, Integer> () {
     public Integer apply(String string) {
@@ -216,6 +216,7 @@ ImmutableMap<Integer, String> stringsByIndex = Maps.uniqueIndex(strings, new Fun
 });
   
 ```
+
 如果索引值不是独一无二的，请参见下面的Multimaps.index方法。
 
 #### difference
@@ -251,14 +252,19 @@ unmodifiableSortedMultiset(SortedMultiset); //返回SortedMultiset的只读视�
 <h3 id="multimaps">Multimaps</h3>
 
 #### index
+
 作为Maps.uniqueIndex的兄弟方法，Multimaps.index(Iterable, Function)通常针对的场景是：有一组对象，它们有共同的特定属性，我们希望按照这个属性的值查询对象，但属性值不一定是独一无二的。
 
 #### invertFrom
-鉴于Multimap可以把多个键映射到同一个值，也可以把一个键映射到多个值，反转Multimap也会很有用。Guava 提供了invertFrom(Multimap toInvert, Multimap dest)做这个操作，并且你可以自由选择反转后的Multimap实现。
+
+鉴于Multimap可以把多个键映射到同一个值，也可以把一个键映射到多个值，反转Multimap也会很有用。Guava 提供了invertFrom(Multimap toInvert, Multimap dest)
+做这个操作，并且你可以自由选择反转后的Multimap实现。
 > TreeMultimap<Integer, String> inverse = Multimaps.invertFrom(multimap, TreeMultimap<String, Integer>.create());
 
 #### forMap
+
 forMap方法把Map包装成SetMultimap, 与Multimaps.invertFrom结合使用，可以把多对一的Map反转为一对多的Multimap。
+
 ```java  
 Map<String, Integer> map = ImmutableMap.of("a", 1, "b", 1, "c", 2);  
 SetMultimap<String, Integer> multimap = Multimaps.forMap(map);  
@@ -273,6 +279,7 @@ Multimap<Integer, String> inverse = Multimaps.invertFrom(multimap, HashMultimap.
 #### customTable
 
 Tables.newCustomTable(Map, Supplier<Map>)允许你指定Table用什么样的map实现行和列。
+
 ```java  
 // use LinkedHashMaps instead of HashMaps
 Table<String, Character, Integer> table = Tables.newCustomTable(

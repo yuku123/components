@@ -1,15 +1,16 @@
 package com.zifang.util.core.util.concurrency.packages;
 
 public class ThreadLocalTest3 {
-    ThreadLocal<String> a  = new ThreadLocal<>();
+    ThreadLocal<String> a = new ThreadLocal<>();
 
-    public void a(){
+    public void a() {
         a.set("dsadadasdas");
     }
 
-    public void b(){
+    public void b() {
         System.out.println(a.get());
     }
+
     public static void main(String[] args) {
         ThreadLocalTest3 threadLocalTest3 = new ThreadLocalTest3();
         threadLocalTest3.a();

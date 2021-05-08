@@ -4,7 +4,7 @@ package com.zifang.util.core;
  * @author zifang
  */
 public class GlobalConstance {
-    
+
     /**
      * 7位ASCII字符，也叫作ISO646-US、Unicode字符集的基本拉丁块
      */
@@ -177,7 +177,7 @@ public class GlobalConstance {
     /**
      * 十六进制字符串
      */
-    public static final  String HEX_CHAR_STR = "0123456789ABCDEF";
+    public static final String HEX_CHAR_STR = "0123456789ABCDEF";
 
     /**
      * 常用的符号

@@ -27,6 +27,6 @@ public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRe
 //            toUserChannel.writeAndFlush(messageResponsePacket);
 //        } else {
 //            System.err.println("[" + messageRequestPacket.getToUserId() + "] 不在线，发送失败!");
-        }
     }
+}
 

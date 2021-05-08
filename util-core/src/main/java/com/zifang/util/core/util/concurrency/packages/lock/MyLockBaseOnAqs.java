@@ -17,6 +17,7 @@ public class MyLockBaseOnAqs {
             }
             return false;
         }
+
         // 实现tryRelease(releases)方法
         @Override
         protected boolean tryRelease(int releases) {

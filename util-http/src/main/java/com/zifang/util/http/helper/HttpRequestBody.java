@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * 请求体
- * */
+ */
 @Data
 public class HttpRequestBody {
     private byte[] body;

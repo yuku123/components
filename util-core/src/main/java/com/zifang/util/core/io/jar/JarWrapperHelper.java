@@ -36,8 +36,8 @@ public class JarWrapperHelper {
 
     /**
      * 遍历这个jar包，把所有的entry抠出来放到这里
-     * */
-    public List<JarEntry> getJarEntry(){
+     */
+    public List<JarEntry> getJarEntry() {
         List<JarEntry> jarEntries = new ArrayList<>();
         Enumeration<JarEntry> entrys = jarFile.entries();
         while (entrys.hasMoreElements()) {
@@ -89,8 +89,8 @@ public class JarWrapperHelper {
 
     /**
      * 使用文件路径获得字节数组
-     * */
-    public byte[] getByteArrayByPathInJar(String pathInJar){
+     */
+    public byte[] getByteArrayByPathInJar(String pathInJar) {
 
         byte[] bytes = new byte[0];
         try {
@@ -106,7 +106,7 @@ public class JarWrapperHelper {
 
     /**
      * 输入流转换为字节数组
-     * */
+     */
     private static byte[] toByteArray(InputStream input) throws IOException {
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         byte[] buffer = new byte[4096];
@@ -119,12 +119,12 @@ public class JarWrapperHelper {
 
     /**
      * 将jar里面的内容转换为
-     *
+     * <p>
      * 路径 -> byte数组
-     * */
-    public Map<String,byte[]> getFileByteArray(Predicate<JarEntry> predicate) {
+     */
+    public Map<String, byte[]> getFileByteArray(Predicate<JarEntry> predicate) {
 
-        Map<String,byte[]> map = new LinkedHashMap<>();
+        Map<String, byte[]> map = new LinkedHashMap<>();
 
         List<JarEntry> jarEntries = getJarEntry()
                 .stream()
@@ -132,10 +132,10 @@ public class JarWrapperHelper {
                 .collect(Collectors.toList());
 
 
-        for(JarEntry jarEntry : jarEntries){
+        for (JarEntry jarEntry : jarEntries) {
             String filePath = jarEntry.getName();
             byte[] bytes = getByteArrayByPathInJar(filePath);
-            map.put(filePath,bytes);
+            map.put(filePath, bytes);
         }
 
         return map;

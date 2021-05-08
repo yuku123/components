@@ -4,7 +4,7 @@ import org.junit.Test;
 public class newFeatureTest {
 
     //@Test
-    public void testAll(){
+    public void testAll() {
 
         String filePath = "feature/workflow_all.json";
 

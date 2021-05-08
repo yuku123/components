@@ -23,9 +23,9 @@ import java.util.Optional;
 
 /**
  * 吃掉代码字符串流
- *
+ * <p>
  * 得到ClassInfo
- * */
+ */
 public class JavaCodeParser {
 
 
@@ -37,7 +37,7 @@ public class JavaCodeParser {
 
     private CompilationUnit cu;
 
-    public JavaCodeParser(String code){
+    public JavaCodeParser(String code) {
         this.code = code;
         this.classInfo = new ClassInfo();
     }
@@ -48,7 +48,7 @@ public class JavaCodeParser {
         cu = StaticJavaParser.parse(code);
 
         // 类声明
-        classOrInterfaceDeclaration = (ClassOrInterfaceDeclaration)cu.getType(0);
+        classOrInterfaceDeclaration = (ClassOrInterfaceDeclaration) cu.getType(0);
 
         // 分别进行处理
         handlePackageName(cu.getPackageDeclaration());// 处理包
@@ -63,10 +63,10 @@ public class JavaCodeParser {
 
     /**
      * @TODO
-     * */
+     */
     private void handleInterfaces(NodeList<ClassOrInterfaceType> implementedTypes) {
         List<String> interfaces = new ArrayList<>();
-        for(ClassOrInterfaceType classOrInterfaceType : implementedTypes){
+        for (ClassOrInterfaceType classOrInterfaceType : implementedTypes) {
             interfaces.add(classOrInterfaceType.getNameAsString());
         }
     }
@@ -78,15 +78,15 @@ public class JavaCodeParser {
     private void handleMethods(List<MethodDeclaration> methods) {
 
         List<MethodInfo> methodInfos = new ArrayList<>();
-        for(MethodDeclaration methodDeclaration : methods){
+        for (MethodDeclaration methodDeclaration : methods) {
             MethodInfo methodInfo = new MethodInfo();
             methodInfo.setMethodName(methodDeclaration.getNameAsString());
             methodInfo.setReturnType(methodDeclaration.getTypeAsString());
             List<MethodParameterPair> parameterPairs = new ArrayList<>();
-            for(Parameter parameter : methodDeclaration.getParameters()){
+            for (Parameter parameter : methodDeclaration.getParameters()) {
                 String paramType = parameter.getTypeAsString();
                 String paramName = parameter.getNameAsString();
-                MethodParameterPair methodParameterPair = new MethodParameterPair(paramType,paramName);
+                MethodParameterPair methodParameterPair = new MethodParameterPair(paramType, paramName);
                 parameterPairs.add(methodParameterPair);
             }
             methodInfo.setMethodParameterPairs(parameterPairs);
@@ -97,10 +97,10 @@ public class JavaCodeParser {
 
     private void handleFields(List<FieldDeclaration> fields) {
         List<FieldInfo> fieldInfos = new ArrayList<>();
-        for(FieldDeclaration fieldDeclaration : fields){
+        for (FieldDeclaration fieldDeclaration : fields) {
             String variable = fieldDeclaration.getVariables().get(0).getNameAsString();
             String type = fieldDeclaration.getVariables().get(0).getTypeAsString();
-            fieldInfos.add(new FieldInfo(type,variable));
+            fieldInfos.add(new FieldInfo(type, variable));
         }
         classInfo.setFields(fieldInfos);
     }
@@ -115,7 +115,7 @@ public class JavaCodeParser {
 
     private void handleImports(NodeList<ImportDeclaration> imports) {
         List<String> importsToBeSet = new ArrayList<>();
-        for(ImportDeclaration importDeclaration : imports){
+        for (ImportDeclaration importDeclaration : imports) {
             importsToBeSet.add(importDeclaration.getNameAsString());
         }
         //classInfo.setImports(importsToBeSet);

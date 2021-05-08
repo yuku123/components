@@ -27,28 +27,28 @@ public class BuildTest {
 
         String[] filteredColumnName = Arrays.asList(dataSet.columns())
                 .stream()
-                .filter( e -> (!"id".equals(e)) && (!"target".equals(e)))
+                .filter(e -> (!"id".equals(e)) && (!"target".equals(e)))
                 .collect(Collectors.toList())
                 .toArray(new String[]{});
 
         VectorAssembler vector = new VectorAssembler().setInputCols(filteredColumnName).setOutputCol("features");
-        Dataset<Row> modelDataSet = vector.transform(dataSet).select("target", "features","id");
+        Dataset<Row> modelDataSet = vector.transform(dataSet).select("target", "features", "id");
 
         //切分数据集
-        Dataset<Row>[] splitDataset=modelDataSet.randomSplit(new double[]{0.7, 0.3});
+        Dataset<Row>[] splitDataset = modelDataSet.randomSplit(new double[]{0.7, 0.3});
         Dataset<Row> trainDataSet = splitDataset[0];
         Dataset<Row> testDataSet = splitDataset[1];
 
         //建立模型
-        RandomForestClassificationModel rfModel = Model_Function.build_rfModel(trainDataSet,"target","features","pre_lable","pre_probilty");
-        Model_Function.getModelImportance(rfModel,filteredColumnName);
+        RandomForestClassificationModel rfModel = Model_Function.build_rfModel(trainDataSet, "target", "features", "pre_lable", "pre_probilty");
+        Model_Function.getModelImportance(rfModel, filteredColumnName);
         rfModel.write().overwrite().save("hdfs://192.168.1.103:9000/user/piday/model_yj_plusv3");
         Dataset<Row> pre_data = rfModel.transform(testDataSet);
         pre_data.show();
 
         //判断好坏 Confusion matrix
-        JavaRDD<Tuple2<Object,Object>> javaRDD = pre_data.select("pre_lable", "target").toJavaRDD()
-                .map(row -> new Tuple2<>( row.get(0), (double)row.getInt(1)));
+        JavaRDD<Tuple2<Object, Object>> javaRDD = pre_data.select("pre_lable", "target").toJavaRDD()
+                .map(row -> new Tuple2<>(row.get(0), (double) row.getInt(1)));
         MulticlassMetrics metrics = new MulticlassMetrics(javaRDD.rdd());
         Matrix confusion = metrics.confusionMatrix();
         System.out.println("Confusion matrix: \n" + confusion);

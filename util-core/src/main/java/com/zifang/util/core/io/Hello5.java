@@ -1,6 +1,6 @@
 package com.zifang.util.core.io;
 
-public class Hello5 implements java.io.Serializable{
+public class Hello5 implements java.io.Serializable {
 
     public static final int c = 128;
 
@@ -9,7 +9,7 @@ public class Hello5 implements java.io.Serializable{
     private String b;
 
 
-    public static String test(){
+    public static String test() {
         return null;
     }
 

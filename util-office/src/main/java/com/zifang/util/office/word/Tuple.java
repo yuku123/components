@@ -1,6 +1,6 @@
 package com.zifang.util.office.word;
 
-public class Tuple<K,V> {
+public class Tuple<K, V> {
     private K key;
     private V value;
 

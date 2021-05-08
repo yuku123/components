@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * 1亿：4699,29,162.0344827586207%<p>
  * 1000万：480,12,40.0%<p>
  * 100万：50,10,5.0%<p>
+ *
  * @author lry
  */
 public class SystemClock {
@@ -60,9 +61,9 @@ public class SystemClock {
     public static long now() {
         return instance().currentTimeMillis();
     }
-    
-	public static String nowDate() {
-		return new Timestamp(instance().currentTimeMillis()).toString();
-	}
+
+    public static String nowDate() {
+        return new Timestamp(instance().currentTimeMillis()).toString();
+    }
 
 }

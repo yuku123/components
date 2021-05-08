@@ -395,8 +395,8 @@ public class Blowfish {
     }
 
     /*
-    * apply the encryption cycle to each value pair in the table.
-    */
+     * apply the encryption cycle to each value pair in the table.
+     */
     private void processTable(
             int xl,
             int xr,
@@ -422,15 +422,15 @@ public class Blowfish {
     }
 
     private void setKey(byte[] key) {
-/*
-* - comments are from _Applied Crypto_, Schneier, p338
-* please be careful comparing the two, AC numbers the
-* arrays from 1, the enclosed code from 0.
-*
-* (1)
-* Initialise the S-boxes and the P-array, with a fixed string
-* This string contains the hexadecimal digits of pi (3.141...)
-*/
+        /*
+         * - comments are from _Applied Crypto_, Schneier, p338
+         * please be careful comparing the two, AC numbers the
+         * arrays from 1, the enclosed code from 0.
+         *
+         * (1)
+         * Initialise the S-boxes and the P-array, with a fixed string
+         * This string contains the hexadecimal digits of pi (3.141...)
+         */
         System.arraycopy(KS0, 0, S0, 0, SBOX_SK);
         System.arraycopy(KS1, 0, S1, 0, SBOX_SK);
         System.arraycopy(KS2, 0, S2, 0, SBOX_SK);
@@ -438,13 +438,13 @@ public class Blowfish {
 
         System.arraycopy(KP, 0, P, 0, P_SZ);
 
-/*
-* (2)
-* Now, XOR P[0] with the first 32 bits of the key, XOR P[1] with the
-* second 32-bits of the key, and so on for all bits of the key
-* (up to P[17]). Repeatedly cycle through the key bits until the
-* entire P-array has been XOR-ed with the key bits
-*/
+        /*
+         * (2)
+         * Now, XOR P[0] with the first 32 bits of the key, XOR P[1] with the
+         * second 32-bits of the key, and so on for all bits of the key
+         * (up to P[17]). Repeatedly cycle through the key bits until the
+         * entire P-array has been XOR-ed with the key bits
+         */
         int keyLength = key.length;
         int keyIndex = 0;
 
@@ -464,26 +464,26 @@ public class Blowfish {
             P[i] ^= data;
         }
 
-/*
-* (3)
-* Encrypt the all-zero string with the Blowfish algorithm, using
-* the subkeys described in (1) and (2)
-*
-* (4)
-* Replace P1 and P2 with the output of step (3)
-*
-* (5)
-* Encrypt the output of step(3) using the Blowfish algorithm,
-* with the modified subkeys.
-*
-* (6)
-* Replace P3 and P4 with the output of step (5)
-*
-* (7)
-* Continue the process, replacing all elements of the P-array
-* and then all four S-boxes in order, with the output of the
-* continuously changing Blowfish algorithm
-*/
+        /*
+         * (3)
+         * Encrypt the all-zero string with the Blowfish algorithm, using
+         * the subkeys described in (1) and (2)
+         *
+         * (4)
+         * Replace P1 and P2 with the output of step (3)
+         *
+         * (5)
+         * Encrypt the output of step(3) using the Blowfish algorithm,
+         * with the modified subkeys.
+         *
+         * (6)
+         * Replace P3 and P4 with the output of step (5)
+         *
+         * (7)
+         * Continue the process, replacing all elements of the P-array
+         * and then all four S-boxes in order, with the output of the
+         * continuously changing Blowfish algorithm
+         */
 
         processTable(0, 0, P);
         processTable(P[P_SZ - 2], P[P_SZ - 1], S0);
@@ -493,10 +493,10 @@ public class Blowfish {
     }
 
     /*
-    * Encrypt the given input starting at the given offset and place
-    * the result in the provided buffer starting at the given offset.
-    * The input will be an exact multiple of our blocksize.
-    */
+     * Encrypt the given input starting at the given offset and place
+     * the result in the provided buffer starting at the given offset.
+     * The input will be an exact multiple of our blocksize.
+     */
     private void encryptBlock(
             byte[] src,
             int srcIndex,
@@ -519,10 +519,10 @@ public class Blowfish {
     }
 
     /*
-    * Decrypt the given input starting at the given offset and place
-    * the result in the provided buffer starting at the given offset.
-    * The input will be an exact multiple of our blocksize.
-    */
+     * Decrypt the given input starting at the given offset and place
+     * the result in the provided buffer starting at the given offset.
+     * The input will be an exact multiple of our blocksize.
+     */
     private void decryptBlock(
             byte[] src,
             int srcIndex,

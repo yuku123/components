@@ -11,7 +11,7 @@ public class LoginTest {
     private static String secret = "xx";
 
     @Test
-    public  void test0() throws IOException {
+    public void test0() throws IOException {
         GitHub github = new GitHubBuilder().withOAuthToken(secret).build();
         GHCreateRepositoryBuilder g = github.createRepository("aaaaa");
         g.private_(true);
@@ -21,7 +21,7 @@ public class LoginTest {
     @Test
     public void test1() throws IOException {
         GitHub github = new GitHubBuilder().withOAuthToken(secret).build();
-        PagedIterable<GHRepository>s =  github.listAllPublicRepositories();
+        PagedIterable<GHRepository> s = github.listAllPublicRepositories();
         List<GHRepository> ss = s.toList();
         System.out.println(ss);
     }

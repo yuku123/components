@@ -21,8 +21,8 @@ public class demo {
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addClass("AnyClassName").setPublic(true);
         classDeclaration.addAnnotation("AnyAnnotation");
 
-        classDeclaration.addField("String", "title",PUBLIC);
-        classDeclaration.addField("Person", "author",PUBLIC);
+        classDeclaration.addField("String", "title", PUBLIC);
+        classDeclaration.addField("Person", "author", PUBLIC);
 
         classDeclaration.addConstructor(PUBLIC)
                 .addParameter("String", "title")
@@ -46,7 +46,7 @@ public class demo {
         methodDeclaration.addAndGetParameter(String.class, "cc").setVarArgs(false);// setVarArgs(true)表达是否多参
         // 方法增加注解
         methodDeclaration.addAndGetAnnotation("AnyAnnotation");
-        methodDeclaration.addSingleMemberAnnotation("aa","吃饭=吃饭");
+        methodDeclaration.addSingleMemberAnnotation("aa", "吃饭=吃饭");
 
         // 增加method的代码块儿
         BlockStmt blockStmt = new BlockStmt();

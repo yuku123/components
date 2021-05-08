@@ -39,7 +39,7 @@ public class ImageRequestPacket extends Packet {
         return IMAGE_REQUEST;
     }
 
-    public Byte getVersion(){
+    public Byte getVersion() {
         return version;
     }
 }

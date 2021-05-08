@@ -6,7 +6,8 @@ import java.lang.reflect.Method;
 public class IAInvocationHandler implements InvocationHandler {
     private String s;
     private IAImplement iaImplement;
-    public IAInvocationHandler(IAImplement iaImplement,String s){
+
+    public IAInvocationHandler(IAImplement iaImplement, String s) {
         this.iaImplement = iaImplement;
         this.s = s;
     }
@@ -14,10 +15,10 @@ public class IAInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object returns = null;
-        if(method.getName().equals(iaImplement.getMethod())){
+        if (method.getName().equals(iaImplement.getMethod())) {
             return iaImplement.getReturns();
-        }else{
-            throw  new RuntimeException("method unkown");
+        } else {
+            throw new RuntimeException("method unkown");
         }
     }
 }

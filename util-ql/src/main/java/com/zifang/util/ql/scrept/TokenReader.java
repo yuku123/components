@@ -3,7 +3,7 @@ package com.zifang.util.ql.scrept;
 /**
  * 一个Token流。由Lexer生成。Parser可以从中获取Token。
  */
-public interface TokenReader{
+public interface TokenReader {
     /**
      * 返回Token流中下一个Token，并从流中取出。 如果流已经为空，返回null;
      */
@@ -21,12 +21,14 @@ public interface TokenReader{
 
     /**
      * 获取Token流当前的读取位置。
+     *
      * @return
      */
     public int getPosition();
 
     /**
      * 设置Token流当前的读取位置
+     *
      * @param position
      */
     public void setPosition(int position);

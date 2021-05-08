@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 每个工作流的上下文，是工作引擎的工作子单元。工作引擎只负责发布命令，调度资源，调度任务相关功能
- * */
+ */
 @Data
 public class WorkFlowApplicationContext {
 
@@ -38,7 +38,7 @@ public class WorkFlowApplicationContext {
     private CacheEngineService cacheEngineService;
 
     //存储元配置节点信息映射表
-    private Map<String,WorkflowNode> workflowNodeMap;
+    private Map<String, WorkflowNode> workflowNodeMap;
 
     //存储所有的执行节点
     private List<ExecutableWorkflowNode> executableWorkNodes = new ArrayList<>();
@@ -55,33 +55,33 @@ public class WorkFlowApplicationContext {
     //当前的配置信息,最重要的核心元配置，所有的与执行节点相关的信息全部包裹在执行单元内
     private WorkflowConfiguration workflowConfiguration;
 
-    public WorkFlowApplicationContext(){
+    public WorkFlowApplicationContext() {
     }
 
-    public WorkFlowApplicationContext(String filePath){
+    public WorkFlowApplicationContext(String filePath) {
         this.filePath = filePath;
         initial();
     }
 
-    public void initialByLocalFilePath(String filePath){
+    public void initialByLocalFilePath(String filePath) {
 
         try {
             String json = FileUtil.getFileContent(filePath);
-            workflowConfiguration = GsonUtil.jsonStrToObject(json,WorkflowConfiguration.class);
+            workflowConfiguration = GsonUtil.jsonStrToObject(json, WorkflowConfiguration.class);
         } catch (IOException e) {
-            log.error("解析文件出现问题:"+ this.filePath);
+            log.error("解析文件出现问题:" + this.filePath);
             e.printStackTrace();
         }
         initial();
     }
 
-    public void initialByWorkflowConfigurationInstance(WorkflowConfiguration workflowConfiguration){
+    public void initialByWorkflowConfigurationInstance(WorkflowConfiguration workflowConfiguration) {
         this.workflowConfiguration = workflowConfiguration;
         initial();
     }
 
-    public void initialByJsonStream(String json){
-        workflowConfiguration = GsonUtil.jsonStrToObject(json,WorkflowConfiguration.class);
+    public void initialByJsonStream(String json) {
+        workflowConfiguration = GsonUtil.jsonStrToObject(json, WorkflowConfiguration.class);
         initial();
     }
 
@@ -118,7 +118,7 @@ public class WorkFlowApplicationContext {
 
     private void initialEngine() {
         //初始化引擎,这个方法可能面临更新
-        if(abstractEngine == null){
+        if (abstractEngine == null) {
             abstractEngine = EngineFactory.getEngine(this.workflowConfiguration.getConfigurations().getEngine());
         }
     }
@@ -134,7 +134,7 @@ public class WorkFlowApplicationContext {
      * 1. 初始化每个可执行的 引擎服务
      * 2. 初始化前后关联性
      * 3. 针对每个节点，生成各自的同步处理器
-     * */
+     */
     private void connectWorkFlowNode() {
 
         // 初始化每个工作节点的执行服务单元
@@ -149,7 +149,7 @@ public class WorkFlowApplicationContext {
     }
 
     private void initialCountDownLatchConfiguration() {
-        for(ExecutableWorkflowNode executableWorkNode : executableWorkNodes){
+        for (ExecutableWorkflowNode executableWorkNode : executableWorkNodes) {
 
             //定义 负责处理前置节点的处理器
             CountDownLatch latch = new CountDownLatch(executableWorkNode.getPre().size());
@@ -158,10 +158,10 @@ public class WorkFlowApplicationContext {
 
         }
 
-        for(ExecutableWorkflowNode executableWorkNode : executableWorkNodes){
+        for (ExecutableWorkflowNode executableWorkNode : executableWorkNodes) {
 
             //从每个节点上，得到后置节点的所有同步器存到当前的同步器列表
-            for(ExecutableWorkflowNode executableWorkNodePost : executableWorkNode.getPost()){
+            for (ExecutableWorkflowNode executableWorkNodePost : executableWorkNode.getPost()) {
                 executableWorkNode.getPostCountDownLatchList().add(executableWorkNodePost.getCountDownLatch());
             }
 
@@ -169,27 +169,27 @@ public class WorkFlowApplicationContext {
     }
 
     private void initialConnectionNetWord() {
-        for(ExecutableWorkflowNode executableWorkNode : executableWorkNodes){
+        for (ExecutableWorkflowNode executableWorkNode : executableWorkNodes) {
 
             List<String> pre = executableWorkNode.getConnector().getPre();
 
             List<String> post = executableWorkNode.getConnector().getPost();
 
             //将每个前置节点内的后置节点列表增加自身
-            for(String connectNodeId: pre){
+            for (String connectNodeId : pre) {
                 executableWorkNodeIdMap.get(connectNodeId).putPost(executableWorkNode);
             }
 
             //将每个后置节点的前置节点列表增加自身
-            for(String connectNodeId: post){
+            for (String connectNodeId : post) {
                 executableWorkNodeIdMap.get(connectNodeId).putPre(executableWorkNode);
             }
         }
     }
 
     private void initialEngineService() {
-        for(ExecutableWorkflowNode executableWorkNode : executableWorkNodes){
-            if (executableWorkNode.getAbstractEngineService()==null){
+        for (ExecutableWorkflowNode executableWorkNode : executableWorkNodes) {
+            if (executableWorkNode.getAbstractEngineService() == null) {
                 //通过每个节点自己的引擎与 执行单元， 得到真正的单元执行服务者
                 AbstractEngineService abstractEngineService = executableWorkNode
                         .getAbstractEngine()
@@ -205,19 +205,19 @@ public class WorkFlowApplicationContext {
     private void transformWorkFlowNode() {
 
         //遍历nodeList,将每一个节点的信息使用可执行node进行包装
-        for(WorkflowNode workflowNode : workflowConfiguration.getWorkflowNodeList()){
+        for (WorkflowNode workflowNode : workflowConfiguration.getWorkflowNodeList()) {
 
             String nodeId = workflowNode.getNodeId();
 
             //只有当executableWorkNodeIdMap 不存在 这个可执行Node的情况下，才可以真正地添加 节点到可执行列表内
-            if(!executableWorkNodeIdMap.containsKey(nodeId)){
+            if (!executableWorkNodeIdMap.containsKey(nodeId)) {
 
                 ExecutableWorkflowNode executableWorkNode = new ExecutableWorkflowNode(workflowNode);
 
                 executableWorkNode.setAbstractEngine(abstractEngine);
 
                 // 可执行节点的对照表
-                executableWorkNodeIdMap.put(workflowNode.getNodeId(),executableWorkNode);
+                executableWorkNodeIdMap.put(workflowNode.getNodeId(), executableWorkNode);
 
                 //可执行节点列表
                 executableWorkNodes.add(executableWorkNode);
@@ -232,14 +232,14 @@ public class WorkFlowApplicationContext {
 
     /**
      * 返回当前的上下文的全量信息
-     * */
-    public Object getDescriptionMsg(){
+     */
+    public Object getDescriptionMsg() {
         return null;
     }
 
     /**
      * 更新源信息，并相互关联
-     * */
+     */
     public void refreshWorkflowConfiguration() {
 
         //需要更新一下辅助用的map: nodeId:workflowNode
@@ -248,28 +248,28 @@ public class WorkFlowApplicationContext {
         // 使用各种规则判断这个入参是否是正常的
         validate();
 
-        for(WorkflowNode workflowNode : workflowConfiguration.getWorkflowNodeList()){
+        for (WorkflowNode workflowNode : workflowConfiguration.getWorkflowNodeList()) {
 
             List<String> pre = workflowNode.getConnector().getPre();
 
             List<String> post = workflowNode.getConnector().getPost();
 
             //将每个前置节点内的后置节点列表增加自身
-            for(String connectNodeId: pre){
+            for (String connectNodeId : pre) {
                 workflowNodeMap.get(connectNodeId).putPost(workflowNode.getNodeId());
             }
 
             //将每个后置节点的前置节点列表增加自身
-            for(String connectNodeId: post){
+            for (String connectNodeId : post) {
                 executableWorkNodeIdMap.get(connectNodeId).putPre(connectNodeId);
             }
         }
     }
 
     private synchronized void refreshHelperMapList() {
-        Map<String,WorkflowNode> workflowNodeMap = new LinkedHashMap<>();
-        for(WorkflowNode workflowNode : workflowConfiguration.getWorkflowNodeList()){
-            workflowNodeMap.put(workflowNode.getNodeId(),workflowNode);
+        Map<String, WorkflowNode> workflowNodeMap = new LinkedHashMap<>();
+        for (WorkflowNode workflowNode : workflowConfiguration.getWorkflowNodeList()) {
+            workflowNodeMap.put(workflowNode.getNodeId(), workflowNode);
         }
         this.workflowNodeMap = workflowNodeMap;
     }
@@ -291,7 +291,7 @@ public class WorkFlowApplicationContext {
         List<WorkflowNode> workflowNodes = workflowConfiguration.getWorkflowNodeList();
 
         //先删除
-        workflowNodes.removeIf( e -> nodeId.equals(e.getNodeId()));
+        workflowNodes.removeIf(e -> nodeId.equals(e.getNodeId()));
 
         //再增加
         workflowNodes.add(workflowNode);

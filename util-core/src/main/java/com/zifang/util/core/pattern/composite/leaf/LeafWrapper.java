@@ -5,14 +5,14 @@ import com.zifang.util.core.lang.tuples.Triplet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeafWrapper<A,B,C> extends Triplet<A,B,C> implements ILeaf{
+public class LeafWrapper<A, B, C> extends Triplet<A, B, C> implements ILeaf {
 
     private ILeaf parent;
 
     private List<ILeaf> subLeaves;
 
-    public LeafWrapper(A currentId, B parentId, C bean){
-        super(currentId,parentId,bean);
+    public LeafWrapper(A currentId, B parentId, C bean) {
+        super(currentId, parentId, bean);
     }
 
     @Override
@@ -25,18 +25,18 @@ public class LeafWrapper<A,B,C> extends Triplet<A,B,C> implements ILeaf{
         return parent;
     }
 
-    public B getParentId(){
+    public B getParentId() {
         return getB();
     }
 
 
-    public C getBean(){
+    public C getBean() {
         return getC();
     }
 
     @Override
-    public void appendSubLeaf(ILeaf leaf){
-        if(subLeaves == null){
+    public void appendSubLeaf(ILeaf leaf) {
+        if (subLeaves == null) {
             subLeaves = new ArrayList<>();
         }
         subLeaves.add(leaf);
@@ -48,7 +48,7 @@ public class LeafWrapper<A,B,C> extends Triplet<A,B,C> implements ILeaf{
     }
 
     @Override
-    public String getName(){
+    public String getName() {
         return getBean().toString();
     }
 }

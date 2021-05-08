@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 监控组件管理器。
+ *
  * @author lijing
  * @since 2015/11/24
  */
@@ -45,6 +46,7 @@ public class MonitorManager {
 
     /**
      * 把被监控组件集合全部加入到监控集合中。
+     *
      * @param monitorAggregation 待增加的监控组件集合。
      */
     public synchronized void addAllMonitor(Map<Long, List<Monitorable>> monitorAggregation) {
@@ -53,13 +55,13 @@ public class MonitorManager {
             throw new IllegalStateException("Not supported function addAllMonitor in run-time.");
         }
         //为每个监控周期新建一个定时任务线程池。
-        for(Map.Entry<Long, List<Monitorable>> entry : monitorAggregation.entrySet()) {
-            ScheduledExecutorService scheduledExecutorService  = Executors.newSingleThreadScheduledExecutor(
+        for (Map.Entry<Long, List<Monitorable>> entry : monitorAggregation.entrySet()) {
+            ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor(
                     new ThreadFactoryBuilder().setNameFormat("monitor-thread-%d").build());
             scheduledExecutorService.scheduleAtFixedRate(new MonitorTask(entry.getValue()),
                     entry.getKey(), entry.getKey(), TimeUnit.MILLISECONDS);
             scheduledExecutorServiceList.add(scheduledExecutorService);
-            if(this.monitorAggregation.get(entry.getKey()) == null) {
+            if (this.monitorAggregation.get(entry.getKey()) == null) {
                 this.monitorAggregation.put(entry.getKey(), entry.getValue());
             } else {
                 this.monitorAggregation.get(entry.getKey()).addAll(entry.getValue());
@@ -69,10 +71,11 @@ public class MonitorManager {
 
     /**
      * 关闭监控线程池。
+     *
      * @param forceShutdown 是否强制关闭。
      */
     public void shutdown(boolean forceShutdown) {
-        for(ScheduledExecutorService scheduledExecutorService : scheduledExecutorServiceList) {
+        for (ScheduledExecutorService scheduledExecutorService : scheduledExecutorServiceList) {
             if (scheduledExecutorService != null && !scheduledExecutorService.isShutdown()) {
                 if (!forceShutdown) {
                     scheduledExecutorService.shutdown();

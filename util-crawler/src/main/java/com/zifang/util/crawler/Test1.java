@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -13,7 +14,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-
 
 
 public class Test1 {
@@ -57,23 +57,22 @@ public class Test1 {
         //获取多个元素
         List<WebElement> elList = driver.findElements(By.tagName("input"));
         for (WebElement e : elList) {
-            System.out.println("获取多个元素:"+e.getAttribute("name"));
+            System.out.println("获取多个元素:" + e.getAttribute("name"));
         }
 
         //定位层级元素
         WebElement e = driver.findElement(By.cssSelector("#qrcode-item qrcode-item-1"));
         List<WebElement> list = e.findElements(By.tagName("div"));
         for (WebElement e1 : list) {
-            System.out.println("定位层级元素:"+e1.getAttribute("class"));
+            System.out.println("定位层级元素:" + e1.getAttribute("class"));
         }
-
 
 
         //获取当前的窗口
         String currentWindow = driver.getWindowHandle();
 
         //获取所有的窗口
-        Set<String>  handles = driver.getWindowHandles();
+        Set<String> handles = driver.getWindowHandles();
 
         //遍历窗口
         Iterator<String> iterator = handles.iterator();
@@ -116,7 +115,7 @@ public class Test1 {
 
         //处理cookie
         //添加一个cookie
-        Cookie cookie = new Cookie("COOKIE", "NAME","D://COOKIES");
+        Cookie cookie = new Cookie("COOKIE", "NAME", "D://COOKIES");
         driver.manage().addCookie(cookie);
 
         //获取cookies
@@ -138,7 +137,7 @@ public class Test1 {
         //等待加载完页面
         try {
             driver.manage().timeouts().wait(1);
-            driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);//等待界面加载完
+            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);//等待界面加载完
         } catch (InterruptedException e2) {
 
             e2.printStackTrace();
@@ -148,11 +147,9 @@ public class Test1 {
         Actions action = new Actions(driver);
         action.click();
         action.dragAndDrop(element, e);
-        action.sendKeys(element,"12222").perform();
+        action.sendKeys(element, "12222").perform();
         action.click(element);
         action.keyDown(currentWindow);
-
-
 
 
         // driver.quit();// 退出浏览器

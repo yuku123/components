@@ -5,7 +5,7 @@ import org.apache.commons.lang3.ArchUtils;
 public class TestArch {
 
     //ArchUtils 系统的信息导出
-    public static void archUtils(){
+    public static void archUtils() {
         System.out.println(ArchUtils.getProcessor().getArch());
         System.out.println(ArchUtils.getProcessor().isX86());
         System.out.println(ArchUtils.getProcessor().getType());
@@ -13,39 +13,38 @@ public class TestArch {
     }
 
     /**
-     *
      * 数组工具类
-     *
+     * <p>
      * add(boolean[] array, boolean element) 将给定的数据添加到指定的数组中，返回一个新的数组
-     *
+     * <p>
      * ArrayUtils.add(null, true)          = [true]
      * ArrayUtils.add([true], false)       = [true, false]
      * ArrayUtils.add([true, false], true) = [true, false, true]
      * add(boolean[] array, int index, boolean element) 将给定的数据添加到指定的数组下标中，返回一个新的数组。
-     *
+     * <p>
      * ArrayUtils.add(null, 0, true)          = [true]
      * ArrayUtils.add([true], 0, false)       = [false, true]
      * ArrayUtils.add([false], 1, true)       = [false, true]
      * ArrayUtils.add([true, false], 1, true) = [true, true, false]
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * addAll(boolean[] array1, boolean... array2) 将给定的多个数据添加到指定的数组中，返回一个新的数组
-     *
+     * <p>
      * ArrayUtils.addAll(array1, null)   = cloned copy of array1
      * ArrayUtils.addAll(null, array2)   = cloned copy of array2
      * ArrayUtils.addAll([], [])         = []
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * clone(boolean[] array) 复制数组并返回 结果数组为空将返回空
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * contains(boolean[] array, boolean valueToFind) 检查该数据在该数组中是否存在，返回一个boolean值
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, Object 同理
-     *
+     * <p>
      * getLength(Object array) 返回该数组长度
-     *
+     * <p>
      * ArrayUtils.getLength(null)            = 0
      * ArrayUtils.getLength([])              = 0
      * ArrayUtils.getLength([null])          = 1
@@ -53,72 +52,72 @@ public class TestArch {
      * ArrayUtils.getLength([1, 2, 3])       = 3
      * ArrayUtils.getLength(["a", "b", "c"]) = 3
      * hashCode(Object array) 返回该数组的哈希Code码
-     *
+     * <p>
      * indexOf(boolean[] array, boolean valueToFind) 从数组的第一位开始查询该数组中是否有指定的数值，存在返回index的数值，否则返回-1
-     *
+     * <p>
      * indexOf(boolean[] array, boolean valueToFind, int startIndex) 从数组的第startIndex位开始查询该数组中是否有指定的数值，存在返回index的数值，否则返回-1
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short 同理
-     *
+     * <p>
      * insert(int index, boolean[] array, boolean... values) 向指定的位置往该数组添加指定的元素，返回一个新的数组
-     *
+     * <p>
      * ArrayUtils.insert(index, null, null)      = null
      * ArrayUtils.insert(index, array, null)     = cloned copy of 'array'
      * ArrayUtils.insert(index, null, values)    = null
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * isEmpty(boolean[] array) 判断该数组是否为空，返回一个boolean值
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, Object 同理
-     *
+     * <p>
      * isNotEmpty(boolean[] array) 判断该数组是否为空，而不是null
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * isSameLength(boolean[] array1, boolean[] array2) 判断两个数组的长度是否一样，当数组为空视长度为0。返回一个boolean值
-     *
+     * <p>
      * isSameType(Object array1, Object array2) 判断两个数组的类型是否一样，返回一个boolean值
-     *
+     * <p>
      * isSorted(boolean[] array) 判断该数组是否按照自然排列顺序排序，返回一个boolean值
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * isSorted(T[] array, Comparator<T> comparator) 判断该数组是否按照比较器排列顺序排序，返回一个boolean值
-     *
+     * <p>
      * lastIndexOf(boolean[] array, boolean valueToFind) 从数组的最后一位开始往前查询该数组中是否有指定的数值，存在返回index的数值，否则返回-1
-     *
+     * <p>
      * lastIndexOf(boolean[] array, boolean valueToFind, int startIndex) 从数组的最后startIndex位开始往前查询该数组中是否有指定的数值，存在返回index的数值，否则返回-1
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, Object 同理
-     *
+     * <p>
      * nullToEmpty(boolean[] array) 将null转换为空的数组,如果数组不为null,返回原数组,如果数组为null,返回一个空的数组
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, Object, T 同理
-     *
+     * <p>
      * remove(boolean[] array, int index) 删除该数组指定位置上的元素，返回一个新的数组，所有后续元素左移（下标减1）
-     *
+     * <p>
      * ArrayUtils.remove([true], 0)              = []
      * ArrayUtils.remove([true, false], 0)       = [false]
      * ArrayUtils.remove([true, false], 1)       = [true]
      * ArrayUtils.remove([true, true, false], 1) = [true, false]
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * removeAll(boolean[] array, int... indices) 删除该数组多个指定位置上的元素，返回一个新的数组，所有后续元素左移（下标减1）
-     *
+     * <p>
      * ArrayUtils.removeAll([true, false, true], 0, 2) = [false]
      * ArrayUtils.removeAll([true, false, true], 1, 2) = [true]
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * removeAllOccurences(boolean[] array, boolean element) 从该数组中删除指定的元素，返回一个新的数组
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * removeElement(boolean[] array, boolean element) 从该数组中删除指定的元素，返回一个新的数组
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * removeElements(boolean[] array, boolean... values) 从该数组中删除指定数量的元素，返回一个新的数组
-     *
+     * <p>
      * ArrayUtils.removeElements(null, true, false)               = null
      * ArrayUtils.removeElements([], true, false)                 = []
      * ArrayUtils.removeElements([true], false, false)            = [true]
@@ -126,54 +125,54 @@ public class TestArch {
      * ArrayUtils.removeElements([true, false, true], true)       = [false, true]
      * ArrayUtils.removeElements([true, false, true], true, true) = [false]
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * reverse(boolean[] array) 数组反转
-     *
+     * <p>
      * reverse(boolean[] array, int startIndexInclusive, int endIndexExclusive) 数组从指定位置区间进行反转
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, Object 同理
-     *
+     * <p>
      * shuffle(boolean[] array) 把数组中的元素按随机顺序重新排列
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, Object 同理
-     *
+     * <p>
      * subarray(boolean[] array, int startIndexInclusive, int endIndexExclusive) 截取数组，按指定位置区间截取并返回一个新的数组
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short, T[] 同理
-     *
+     * <p>
      * swap(boolean[] array, int offset1, int offset2) 指定该数组的两个位置的元素交换进行交换
-     *
+     * <p>
      * ArrayUtils.swap([1, 2, 3], 0, 2) -> [3, 2, 1]
      * ArrayUtils.swap([1, 2, 3], 0, 0) -> [1, 2, 3]
      * ArrayUtils.swap([1, 2, 3], 1, 0) -> [2, 1, 3]
      * ArrayUtils.swap([1, 2, 3], 0, 5) -> [1, 2, 3]
      * ArrayUtils.swap([1, 2, 3], -1, 1) -> [2, 1, 3]
      * byte, int, char, double, float, int, long ,short, Object 同理
-     *
+     * <p>
      * toArray(T... items) 创建数组
-     *
+     * <p>
      * String[] array = ArrayUtils.toArray("1", "2");
      * String[] emptyArray = ArrayUtils.<String>toArray();
      * toMap(Object[] array) 将二维数组转换成Map并返会Map
-     *
+     * <p>
      * Map colorMap = ArrayUtils.toMap(new String[][] {
-     *     {"RED", "#FF0000"},
-     *     {"GREEN", "#00FF00"},
-     *     {"BLUE", "#0000FF"}}
+     * {"RED", "#FF0000"},
+     * {"GREEN", "#00FF00"},
+     * {"BLUE", "#0000FF"}}
      * );
      * toObject(boolean[] array) 将基本类型数组转换成对象类型数组并返回
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short 同理
-     *
+     * <p>
      * toPrimitive(Boolean[] array) 将对象类型数组转换成基本类型数组并返回
-     *
+     * <p>
      * byte, int, char, double, float, int, long ,short 同理
-     *
+     * <p>
      * toString(Object array) 将数组转换为string字符串并返回
-     *
+     * <p>
      * toStringArray(Object[] array) 将Object数组转换为String数组类型
-     * */
-    public static void arrayUtils(){
+     */
+    public static void arrayUtils() {
 
     }
 
@@ -312,15 +311,14 @@ public class TestArch {
      * */
 
 
-
     /**
      * 六、ObjectUtils
      * Object工具类
-     *
+     * <p>
      * allNotNull(Object... values) 检查所有元素是否为空,返回一个boolean
-     *
+     * <p>
      * 如果有一个元素为空返回false，所有元素不为空或元素为empty返回true
-     *
+     * <p>
      * ObjectUtils.allNotNull(*)             = true
      * ObjectUtils.allNotNull(*, *)          = true
      * ObjectUtils.allNotNull(null)          = false
@@ -329,9 +327,9 @@ public class TestArch {
      * ObjectUtils.allNotNull(*, null)       = false
      * ObjectUtils.allNotNull(*, *, null, *) = false
      * anyNotNull(Object... values) 检查元素是否为空,返回一个boolean
-     *
+     * <p>
      * 如果有一个元素不为空返回true
-     *
+     * <p>
      * ObjectUtils.anyNotNull(*)                = true
      * ObjectUtils.anyNotNull(*, null)          = true
      * ObjectUtils.anyNotNull(null, *)          = true
@@ -339,80 +337,80 @@ public class TestArch {
      * ObjectUtils.anyNotNull(null)             = false
      * ObjectUtils.anyNotNull(null, null)       = false
      * clone(T obj) 拷贝一个对象并返回
-     *
+     * <p>
      * compare(T c1, T c2) 比较两个对象,返回一个int值
-     *
+     * <p>
      * defaultIfNull(T object, T defaultValue) 如果对象为空返回一个默认值
-     *
+     * <p>
      * firstNonNull(T... values) 返回数组中第一个不为空的值
-     *
+     * <p>
      * notEqual(Object object1, Object object2) 判断两个对象不相等，返回一个boolean
-     *
+     * <p>
      * 七、RandomUtils
      * 随机工具类
-     *
+     * <p>
      * nextBoolean() 返回一个随机boolean值
-     *
+     * <p>
      * nextBytes(int count) 返回一个指定大小的随机byte数组
-     *
+     * <p>
      * nextDouble() 返回一个随机double值
-     *
+     * <p>
      * nextDouble(double startInclusive, double endInclusive) 返回一个指定范围的随机double值
-     *
+     * <p>
      * nextFloat() 返回一个随机float值
-     *
+     * <p>
      * nextFloat(float startInclusive, float endInclusive) 返回一个指定范围的随机float值
-     *
+     * <p>
      * nextInt() 返回一个随机int值
-     *
+     * <p>
      * nextInt(int startInclusive, int endExclusive) 返回一个指定范围的随机int值
-     *
+     * <p>
      * nextLong() 返回一个随机long值
-     *
+     * <p>
      * nextLong(long startInclusive, long endExclusive) 返回一个指定范围的随机long值
-     *
+     * <p>
      * 八、SystemUtils
      * 操作系统工具类
-     *
+     * <p>
      * FILE_ENCODING 返回系统编码
-     *
+     * <p>
      * IS_JAVA_1_1、...、IS_JAVA_1_8、IS_JAVA_10、IS_JAVA_9 判断java版本,返回一个boolean
-     *
+     * <p>
      * IS_OS_LINUX 判断系统是否是linux,返回一个boolean
-     *
+     * <p>
      * IS_OS_MAC 判断系统是否是mac,返回一个boolean
-     *
+     * <p>
      * IS_OS_WINDOWS、IS_OS_WINDOWS_10、 IS_OS_WINDOWS_2000、IS_OS_WINDOWS_2003、IS_OS_WINDOWS_2008、IS_OS_WINDOWS_7、 IS_OS_WINDOWS_8、 IS_OS_WINDOWS_95、 IS_OS_WINDOWS_98、 IS_OS_WINDOWS_XP 判断系统是否是windows,返回一个boolean
-     *
+     * <p>
      * JAVA_CLASS_PATH 返回系统CLASS_PATH值
-     *
+     * <p>
      * JAVA_CLASS_VERSION 返回系统java版本
-     *
+     * <p>
      * JAVA_HOME 返回系统java home
-     *
+     * <p>
      * JAVA_RUNTIME_VERSION 返回java运行版本
-     *
+     * <p>
      * JAVA_VERSION 返回java版本
-     *
+     * <p>
      * OS_NAME 返回系统名
-     *
+     * <p>
      * OS_VERSION 返回系统版本
-     *
+     * <p>
      * USER_COUNTRY 返回用户国家编号
-     *
+     * <p>
      * USER_DIR 返回项目文件夹
-     *
+     * <p>
      * USER_HOME 返回系统用户主文件夹
-     *
+     * <p>
      * USER_LANGUAGE 返回系统用户语言
-     *
+     * <p>
      * USER_NAME 返回系统用户名
-     *
+     * <p>
      * 九、StringUtils
      * 字符串工具类
-     *
+     * <p>
      * abbreviate(String str, int maxWidth) 返回一个指定长度加省略号的字符串，maxWidth必须大于3
-     *
+     * <p>
      * StringUtils.abbreviate(null, *)      = null
      * StringUtils.abbreviate("", 4)        = ""
      * StringUtils.abbreviate("abcdefg", 6) = "abc..."
@@ -421,9 +419,9 @@ public class TestArch {
      * StringUtils.abbreviate("abcdefg", 4) = "a..."
      * StringUtils.abbreviate("abcdefg", 3) = IllegalArgumentException
      * abbreviate(String str, int offset, int maxWidth) 返回一个指定长度加省略号的字符串，maxWidth必须大于3
-     *
+     * <p>
      * abbreviate(String str, String abbrevMarker, int maxWidth) 返回一个自定义省略号的指定长度字符串，maxWidth必须大于3
-     *
+     * <p>
      * StringUtils.abbreviate(null, "...", *)      = null
      * StringUtils.abbreviate("abcdefg", null, *)  = "abcdefg"
      * StringUtils.abbreviate("", "...", 4)        = ""
@@ -435,13 +433,13 @@ public class TestArch {
      * StringUtils.abbreviate("abcdefg", "..", 2)  = IllegalArgumentException
      * StringUtils.abbreviate("abcdefg", "...", 3) = IllegalArgumentException
      * abbreviateMiddle(String str, String abbrevMarker, int maxWidth) 将字符串缩短到指定长度（length），字符串的中间部分用替换字符串（middle）显示
-     *
+     * <p>
      * StringUtils.abbreviateMiddle("abc", null, 0)      = "abc"
      * StringUtils.abbreviateMiddle("abc", ".", 0)      = "abc"
      * StringUtils.abbreviateMiddle("abc", ".", 3)      = "abc"
      * StringUtils.abbreviateMiddle("abcdef", ".", 4)     = "ab.f"
      * appendIfMissing(String str, CharSequence suffix, CharSequence... suffixes) 如果str不是以任何suffixes结尾，将字符串suffix拼接到字符串str后面
-     *
+     * <p>
      * StringUtils.appendIfMissing(null, null) = null
      * StringUtils.appendIfMissing("abc", null) = "abc"
      * StringUtils.appendIfMissing("", "xyz") = "xyz"
@@ -449,11 +447,11 @@ public class TestArch {
      * StringUtils.appendIfMissing("abcxyz", "xyz") = "abcxyz"
      * StringUtils.appendIfMissing("abcXYZ", "xyz") = "abcXYZxyz"
      * appendIfMissingIgnoreCase(String str, CharSequence suffix, CharSequence... suffixes) 同上 不区分大小写
-     *
+     * <p>
      * capitalize(String str) 将字符串第一个字符大写并返回
-     *
+     * <p>
      * center(String str, int size) 用空格字符填充使字符串str位于长度为size的大字符串中间
-     *
+     * <p>
      * StringUtils.center(null, *)   = null
      * StringUtils.center("", 4)     = "    "
      * StringUtils.center("ab", -1)  = "ab"
@@ -461,9 +459,9 @@ public class TestArch {
      * StringUtils.center("abcd", 2) = "abcd"
      * StringUtils.center("a", 4)    = " a  "
      * center(String str, int size, char padChar) 用指定字符填充使字符串str位于长度为size的大字符串中间
-     *
+     * <p>
      * chomp(String str) 删除字符串末尾的一个换行符,返回一个新的字符串（换行符"n", "r", or "rn"）
-     *
+     * <p>
      * StringUtils.chomp(null)          = null
      * StringUtils.chomp("")            = ""
      * StringUtils.chomp("abc \r")      = "abc "
@@ -476,7 +474,7 @@ public class TestArch {
      * StringUtils.chomp("\n")          = ""
      * StringUtils.chomp("\r\n")        = ""
      * chop(String str) 删除字符串末尾的一个字符，返回一个新的字符串
-     *
+     * <p>
      * StringUtils.chop(null)          = null
      * StringUtils.chop("")            = ""
      * StringUtils.chop("abc \r")      = "abc "
@@ -489,11 +487,11 @@ public class TestArch {
      * StringUtils.chop("\n")          = ""
      * StringUtils.chop("\r\n")        = ""
      * compare(String str1, String str2) 比较两个字符串，返回一个int值
-     *
+     * <p>
      * str1等于str2（或都为空）返回0
      * str1小于str2返回小于0
      * str1大于str2返回大于0
-     *
+     * <p>
      * StringUtils.compare(null, null)   = 0
      * StringUtils.compare(null , "a")   < 0
      * StringUtils.compare("a", null)    > 0
@@ -503,7 +501,7 @@ public class TestArch {
      * StringUtils.compare("a", "B")     > 0
      * StringUtils.compare("ab", "abc")  < 0
      * contains(CharSequence seq, CharSequence searchSeq) 检查字符串中是否包含指定字符，返回boolean
-     *
+     * <p>
      * StringUtils.contains(null, *)     = false
      * StringUtils.contains(*, null)     = false
      * StringUtils.contains("", "")      = true
@@ -511,7 +509,7 @@ public class TestArch {
      * StringUtils.contains("abc", "a")  = true
      * StringUtils.contains("abc", "z")  = false
      * containsAny(CharSequence cs, CharSequence... searchCharSequences) 检查字符串中是否包含任一字符，返回boolean
-     *
+     * <p>
      * StringUtils.containsAny(null, *)            = false
      * StringUtils.containsAny("", *)              = false
      * StringUtils.containsAny(*, null)            = false
@@ -520,7 +518,7 @@ public class TestArch {
      * StringUtils.containsAny("abcd", "ab", "cd") = true
      * StringUtils.containsAny("abc", "d", "abc")  = true
      * containsNone(CharSequence cs, String invalidChars) 检查字符串不包含指定字符，返回boolean
-     *
+     * <p>
      * StringUtils.containsNone(null, *)       = true
      * StringUtils.containsNone(*, null)       = true
      * StringUtils.containsNone("", *)         = true
@@ -529,7 +527,7 @@ public class TestArch {
      * StringUtils.containsNone("ab1", "xyz")  = true
      * StringUtils.containsNone("abz", "xyz")  = false
      * containsOnly(CharSequence cs, String validChars) 检查字符串只包含特定的字符，返回boolean
-     *
+     * <p>
      * StringUtils.containsOnly(null, *)       = false
      * StringUtils.containsOnly(*, null)       = false
      * StringUtils.containsOnly("", *)         = true
@@ -538,9 +536,9 @@ public class TestArch {
      * StringUtils.containsOnly("ab1", "abc")  = false
      * StringUtils.containsOnly("abz", "abc")  = false
      * containsWhitespace(CharSequence seq) 检查字符串中是否包含空格字符，返回boolean
-     *
+     * <p>
      * countMatches(CharSequence str, CharSequence sub) 检查字符串中出现指定字符的次数，返回一个int值
-     *
+     * <p>
      * StringUtils.countMatches(null, *)       = 0
      * StringUtils.countMatches("", *)         = 0
      * StringUtils.countMatches("abba", null)  = 0
@@ -549,37 +547,37 @@ public class TestArch {
      * StringUtils.countMatches("abba", "ab")  = 1
      * StringUtils.countMatches("abba", "xxx") = 0
      * defaultIfBlank(T str, T defaultStr) 如果字符串为null、空（""），或全是空格，将返回指定字符串，否则返回原值
-     *
+     * <p>
      * StringUtils.defaultIfBlank(null, "NULL")  = "NULL"
      * StringUtils.defaultIfBlank("", "NULL")    = "NULL"
      * StringUtils.defaultIfBlank(" ", "NULL")   = "NULL"
      * StringUtils.defaultIfBlank("bat", "NULL") = "bat"
      * StringUtils.defaultIfBlank("", null)      = null
      * defaultIfEmpty(T str, T defaultStr) 如果字符串为null、空（""），将返回指定字符串，否则返回原值
-     *
+     * <p>
      * StringUtils.defaultIfEmpty(null, "NULL")  = "NULL"
      * StringUtils.defaultIfEmpty("", "NULL")    = "NULL"
      * StringUtils.defaultIfEmpty(" ", "NULL")   = " "
      * StringUtils.defaultIfEmpty("bat", "NULL") = "bat"
      * StringUtils.defaultIfEmpty("", null)      = null
      * defaultString(String str) 如果字符串为null，将返回空的字符串（""），否则返回原值
-     *
+     * <p>
      * StringUtils.defaultString(null)  = ""
      * StringUtils.defaultString("")    = ""
      * StringUtils.defaultString("bat") = "bat"
      * defaultString(String str, String defaultStr) 如果字符串为null，将返回指定字符，否则返回原值
-     *
+     * <p>
      * StringUtils.defaultString(null, "NULL")  = "NULL"
      * StringUtils.defaultString("", "NULL")    = ""
      * StringUtils.defaultString("bat", "NULL") = "bat"
      * deleteWhitespace(String str) 删除字符串中的空格字符，并返回新的字符串
-     *
+     * <p>
      * StringUtils.deleteWhitespace(null)         = null
      * StringUtils.deleteWhitespace("")           = ""
      * StringUtils.deleteWhitespace("abc")        = "abc"
      * StringUtils.deleteWhitespace("   ab  c  ") = "abc"
      * difference(String str1, String str2) 比较两个字符串差异，并返回差异的字符，返回第二个字符串的剩余部分，这意味着“ABC”和“AB”之间的区别是空字符串而不是“C”。
-     *
+     * <p>
      * StringUtils.difference(null, null) = null
      * StringUtils.difference("", "") = ""
      * StringUtils.difference("", "abc") = "abc"
@@ -590,7 +588,7 @@ public class TestArch {
      * StringUtils.difference("abcde", "abxyz") = "xyz"
      * StringUtils.difference("abcde", "xyz") = "xyz"
      * endsWith(CharSequence str, CharSequence suffix) 检查字符串是否以指定字符结尾，返回一个boolean
-     *
+     * <p>
      * StringUtils.endsWith(null, null)      = true
      * StringUtils.endsWith(null, "def")     = false
      * StringUtils.endsWith("abcdef", null)  = false
@@ -599,7 +597,7 @@ public class TestArch {
      * StringUtils.endsWith("ABCDEF", "cde") = false
      * StringUtils.endsWith("ABCDEF", "")    = true
      * endsWithAny(CharSequence sequence, CharSequence... searchStrings) 检查字符串是否以指定字符数组结尾，返回一个boolean
-     *
+     * <p>
      * StringUtils.endsWithAny(null, null)      = false
      * StringUtils.endsWithAny(null, new String[] {"abc"})  = false
      * StringUtils.endsWithAny("abcxyz", null)     = false
@@ -609,7 +607,7 @@ public class TestArch {
      * StringUtils.endsWithAny("abcXYZ", "def", "XYZ") = true
      * StringUtils.endsWithAny("abcXYZ", "def", "xyz") = false
      * endsWithIgnoreCase(CharSequence str, CharSequence suffix) 检查字符串是否以指定字符（不区分大小写）结尾，返回一个boolean
-     *
+     * <p>
      * StringUtils.endsWithIgnoreCase(null, null)      = true
      * StringUtils.endsWithIgnoreCase(null, "def")     = false
      * StringUtils.endsWithIgnoreCase("abcdef", null)  = false
@@ -617,21 +615,21 @@ public class TestArch {
      * StringUtils.endsWithIgnoreCase("ABCDEF", "def") = true
      * StringUtils.endsWithIgnoreCase("ABCDEF", "cde") = false
      * equals(CharSequence cs1, CharSequence cs2) 比较两个字符串是否相等，返回一个boolean
-     *
+     * <p>
      * StringUtils.equals(null, null)   = true
      * StringUtils.equals(null, "abc")  = false
      * StringUtils.equals("abc", null)  = false
      * StringUtils.equals("abc", "abc") = true
      * StringUtils.equals("abc", "ABC") = false
      * equalsAnyIgnoreCase(CharSequence string, CharSequence... searchStrings) 比较两个字符串是否相等（不区分大小写），返回一个boolean
-     *
+     * <p>
      * StringUtils.equalsIgnoreCase(null, null)   = true
      * StringUtils.equalsIgnoreCase(null, "abc")  = false
      * StringUtils.equalsIgnoreCase("abc", null)  = false
      * StringUtils.equalsIgnoreCase("abc", "abc") = true
      * StringUtils.equalsIgnoreCase("abc", "ABC") = true
      * equalsAny(CharSequence string, CharSequence... searchStrings) 比较字符串是否与指定字符串数组中某一值相等，返回一个boolean
-     *
+     * <p>
      * StringUtils.equalsAny(null, (CharSequence[]) null) = false
      * StringUtils.equalsAny(null, null, null)    = true
      * StringUtils.equalsAny(null, "abc", "def")  = false
@@ -639,7 +637,7 @@ public class TestArch {
      * StringUtils.equalsAny("abc", "abc", "def") = true
      * StringUtils.equalsAny("abc", "ABC", "DEF") = false
      * equalsAnyIgnoreCase(CharSequence string, CharSequence... searchStrings) 比较字符串是否与指定字符串数组中某一值相等（不区分大小写），返回一个boolean
-     *
+     * <p>
      * StringUtils.equalsAnyIgnoreCase(null, (CharSequence[]) null) = false
      * StringUtils.equalsAnyIgnoreCase(null, null, null)    = true
      * StringUtils.equalsAnyIgnoreCase(null, "abc", "def")  = false
@@ -647,7 +645,7 @@ public class TestArch {
      * StringUtils.equalsAnyIgnoreCase("abc", "abc", "def") = true
      * StringUtils.equalsAnyIgnoreCase("abc", "ABC", "DEF") = true
      * getCommonPrefix(String... strs) 获取字符串数组元素公共字符，返回string
-     *
+     * <p>
      * StringUtils.getCommonPrefix(null) = ""
      * StringUtils.getCommonPrefix(new String[] {}) = ""
      * StringUtils.getCommonPrefix(new String[] {"abc"}) = "abc"
@@ -666,7 +664,7 @@ public class TestArch {
      * StringUtils.getCommonPrefix(new String[] {"xyz", "abcde"}) = ""
      * StringUtils.getCommonPrefix(new String[] {"i am a machine", "i am a robot"}) = "i am a "
      * indexOf(CharSequence seq, CharSequence searchSeq) 检查指定字符在字符串中出现的位置，返回一个int值
-     *
+     * <p>
      * StringUtils.indexOf(null, *)          = -1
      * StringUtils.indexOf(*, null)          = -1
      * StringUtils.indexOf("", "")           = 0
@@ -676,9 +674,9 @@ public class TestArch {
      * StringUtils.indexOf("aabaabaa", "ab") = 1
      * StringUtils.indexOf("aabaabaa", "")   = 0
      * indexOfIgnoreCase(CharSequence seq, CharSequence searchSeq) 检查指定字符在字符串中出现的位置（不区分大小写），返回一个int值
-     *
+     * <p>
      * isAllBlank(CharSequence... css) 检查数组所有字符是否为null、empty、或全是空格字符，返回一个boolean
-     *
+     * <p>
      * StringUtils.isAllBlank(null)             = true
      * StringUtils.isAllBlank(null, "foo")      = false
      * StringUtils.isAllBlank(null, null)       = true
@@ -689,7 +687,7 @@ public class TestArch {
      * StringUtils.isAllBlank("foo", "bar")     = false
      * StringUtils.isAllBlank(new String[] {})  = true
      * isAllEmpty(CharSequence... css) 检查数组所有字符是否为null、empty，返回一个boolean
-     *
+     * <p>
      * StringUtils.isAllEmpty(null)             = true
      * StringUtils.isAllEmpty(null, "")         = true
      * StringUtils.isAllEmpty(new String[] {})  = true
@@ -700,11 +698,11 @@ public class TestArch {
      * StringUtils.isAllEmpty(" ", "bar")       = false
      * StringUtils.isAllEmpty("foo", "bar")     = false
      * isAllLowerCase(CharSequence cs) 检查字符串中所有字符是否是小写，返回一个boolean
-     *
+     * <p>
      * isAllUpperCase(CharSequence cs) 检查字符串中所有字符是否是大写，返回一个boolean
-     *
+     * <p>
      * isAnyBlank(CharSequence... css) 检查数组中字符串是否有一个为null、empty或全是空格字符，返回一个boolean
-     *
+     * <p>
      * StringUtils.isAnyBlank(null)             = true
      * StringUtils.isAnyBlank(null, "foo")      = true
      * StringUtils.isAnyBlank(null, null)       = true
@@ -716,7 +714,7 @@ public class TestArch {
      * StringUtils.isAnyBlank(new String[]{""}) = true
      * StringUtils.isAnyBlank("foo", "bar")     = false
      * isAnyEmpty(CharSequence... css) 检查数组中字符串是否有一个为null、empty，返回一个boolean
-     *
+     * <p>
      * StringUtils.isAnyEmpty(null)             = true
      * StringUtils.isAnyEmpty(null, "foo")      = true
      * StringUtils.isAnyEmpty("", "bar")        = true
@@ -727,25 +725,25 @@ public class TestArch {
      * StringUtils.isAnyEmpty(new String[]{})   = false
      * StringUtils.isAnyEmpty(new String[]{""}) = true
      * isBlank(CharSequence cs) 检查字符串是否为null、empty或空格字符，返回一个boolean
-     *
+     * <p>
      * StringUtils.isBlank(null)      = true
      * StringUtils.isBlank("")        = true
      * StringUtils.isBlank(" ")       = true
      * StringUtils.isBlank("bob")     = false
      * StringUtils.isBlank("  bob  ") = false
      * isEmpty(CharSequence cs) 检查字符串是否为null、empty，返回一个boolean
-     *
+     * <p>
      * StringUtils.isEmpty(null)      = true
      * StringUtils.isEmpty("")        = true
      * StringUtils.isEmpty(" ")       = false
      * StringUtils.isEmpty("bob")     = false
      * StringUtils.isEmpty("  bob  ") = false
      * isNotBlank(CharSequence cs) 检查字符串是否不为null、empty或空格字符，返回一个boolean
-     *
+     * <p>
      * isNotEmpty(CharSequence cs) 检查字符串是否不为null、empty，返回一个boolean
-     *
+     * <p>
      * isNumeric(CharSequence cs) 检查字符串是否是数字，返回一个boolean
-     *
+     * <p>
      * StringUtils.isNumeric(null)   = false
      * StringUtils.isNumeric("")     = false
      * StringUtils.isNumeric("  ")   = false
@@ -758,7 +756,7 @@ public class TestArch {
      * StringUtils.isNumeric("-123") = false
      * StringUtils.isNumeric("+123") = false
      * isWhitespace(CharSequence cs) 检查字符串是否是空格字符，返回一个boolean
-     *
+     * <p>
      * StringUtils.isWhitespace(null)   = false
      * StringUtils.isWhitespace("")     = true
      * StringUtils.isWhitespace("  ")   = true
@@ -766,22 +764,22 @@ public class TestArch {
      * StringUtils.isWhitespace("ab2c") = false
      * StringUtils.isWhitespace("ab-c") = false
      * join(byte[] array, char separator) 将字节数组转换成string，以指定字符分隔
-     *
+     * <p>
      * StringUtils.join(null, *)               = null
      * StringUtils.join([], *)                 = ""
      * StringUtils.join([null], *)             = ""
      * StringUtils.join([1, 2, 3], ';')  = "1;2;3"
      * StringUtils.join([1, 2, 3], null) = "123"
      * char、double、float、int、long、short、object、T同理
-     *
+     * <p>
      * joinWith(String separator, Object... objects) 将多个元素已指定字符分隔拼接成String
-     *
+     * <p>
      * StringUtils.joinWith(",", {"a", "b"})        = "a,b"
      * StringUtils.joinWith(",", {"a", "b",""})     = "a,b,"
      * StringUtils.joinWith(",", {"a", null, "b"})  = "a,,b"
      * StringUtils.joinWith(null, {"a", "b"})       = "ab"
      * lastIndexOf(CharSequence seq, CharSequence searchSeq) 获取指定字符在字符串中的最后一个索引位置
-     *
+     * <p>
      * StringUtils.lastIndexOf(null, *)          = -1
      * StringUtils.lastIndexOf(*, null)          = -1
      * StringUtils.lastIndexOf("", "")           = 0
@@ -790,7 +788,7 @@ public class TestArch {
      * StringUtils.lastIndexOf("aabaabaa", "ab") = 4
      * StringUtils.lastIndexOf("aabaabaa", "")   = 8
      * left(String str, int len) 返回从左边开始指定大小的字符串
-     *
+     * <p>
      * StringUtils.left(null, *)    = null
      * StringUtils.left(*, -ve)     = ""
      * StringUtils.left("", *)      = ""
@@ -798,18 +796,18 @@ public class TestArch {
      * StringUtils.left("abc", 2)   = "ab"
      * StringUtils.left("abc", 4)   = "abc"
      * right(String str, int len) 同上相反
-     *
+     * <p>
      * length(CharSequence cs) 获取字符串大小，返回一个int
-     *
+     * <p>
      * lowerCase(String str) 将字符串转换为小写，返回一个string
-     *
+     * <p>
      * StringUtils.lowerCase(null)  = null
      * StringUtils.lowerCase("")    = ""
      * StringUtils.lowerCase("aBc") = "abc"
      * upperCase(String str) 同上相反
-     *
+     * <p>
      * mid(String str, int pos, int len) 获取字符串指定位置区间的字符，返回一个string
-     *
+     * <p>
      * StringUtils.mid(null, *, *)    = null
      * StringUtils.mid(*, *, -ve)     = ""
      * StringUtils.mid("", 0, *)      = ""
@@ -819,7 +817,7 @@ public class TestArch {
      * StringUtils.mid("abc", 4, 2)   = ""
      * StringUtils.mid("abc", -2, 2)  = "ab"
      * overlay(String str, String overlay, int start, int end) 在字符串位置区间插入指定字符，返回一个string
-     *
+     * <p>
      * StringUtils.overlay(null, *, *, *)            = null
      * StringUtils.overlay("", "abc", 0, 0)          = "abc"
      * StringUtils.overlay("abcdef", null, 2, 4)     = "abef"
@@ -832,7 +830,7 @@ public class TestArch {
      * StringUtils.overlay("abcdef", "zzzz", -2, -3) = "zzzzabcdef"
      * StringUtils.overlay("abcdef", "zzzz", 8, 10)  = "abcdefzzzz"
      * prependIfMissing(String str, CharSequence prefix, CharSequence... prefixes) 在字符串最左边插入指定字符，如果已存在，将不插入，返回一个string
-     *
+     * <p>
      * StringUtils.prependIfMissing(null, null) = null
      * StringUtils.prependIfMissing("abc", null) = "abc"
      * StringUtils.prependIfMissing("", "xyz") = "xyz"
@@ -840,17 +838,17 @@ public class TestArch {
      * StringUtils.prependIfMissing("xyzabc", "xyz") = "xyzabc"
      * StringUtils.prependIfMissing("XYZabc", "xyz") = "xyzXYZabc"
      * prependIfMissingIgnoreCase(String str, CharSequence prefix, CharSequence... prefixes) 同上，只是不区分大小写
-     *
+     * <p>
      * remove(String str, char remove) 删除字符串中指定字符，返回一个string
-     *
+     * <p>
      * StringUtils.remove(null, *)       = null
      * StringUtils.remove("", *)         = ""
      * StringUtils.remove("queued", 'u') = "qeed"
      * StringUtils.remove("queued", 'z') = "queued"
      * removeIgnoreCase(String str, String remove) 同上，只是不区分大小写
-     *
+     * <p>
      * removeAll(String text, String regex) 根据匹配规则删除所有字符，返回一个string
-     *
+     * <p>
      * StringUtils.removeAll(null, *)      = null
      * StringUtils.removeAll("any", null)  = "any"
      * StringUtils.removeAll("any", "")    = "any"
@@ -861,7 +859,7 @@ public class TestArch {
      * StringUtils.removeAll("A<__>\n<__>B", "(?s)<.*>")  = "AB"
      * StringUtils.removeAll("ABCabc123abc", "[a-z]")     = "ABC123"
      * removeEnd(String str, String remove) 删除字符串结尾指定字符，返回一个string
-     *
+     * <p>
      * StringUtils.removeEnd(null, *)      = null
      * StringUtils.removeEnd("", *)        = ""
      * StringUtils.removeEnd(*, null)      = *
@@ -870,11 +868,11 @@ public class TestArch {
      * StringUtils.removeEnd("www.domain.com", "domain") = "www.domain.com"
      * StringUtils.removeEnd("abc", "")    = "abc"
      * removeStart(String str, String remove) 同上相反
-     *
+     * <p>
      * removeEndIgnoreCase(String str, String remove) 同上，只是不区分大小写
-     *
+     * <p>
      * removeFirst(String text, String regex) 根据匹配规则删除第一次出现的字符，返回一个string
-     *
+     * <p>
      * StringUtils.removeFirst(null, *)      = null
      * StringUtils.removeFirst("any", null)  = "any"
      * StringUtils.removeFirst("any", "")    = "any"
@@ -886,7 +884,7 @@ public class TestArch {
      * StringUtils.removeFirst("ABCabc123", "[a-z]")          = "ABCbc123"
      * StringUtils.removeFirst("ABCabc123abc", "[a-z]+")      = "ABC123abc"
      * repeat(String str, int repeat) 将字符重复指定次数拼接成新的字符串，返回一个string
-     *
+     * <p>
      * StringUtils.repeat(null, 2) = null
      * StringUtils.repeat("", 0)   = ""
      * StringUtils.repeat("", 2)   = ""
@@ -894,7 +892,7 @@ public class TestArch {
      * StringUtils.repeat("ab", 2) = "abab"
      * StringUtils.repeat("a", -2) = ""
      * replace(String text, String searchString, String replacement) 用replacement替换字符串中的所有searchString，返回一个string
-     *
+     * <p>
      * StringUtils.replace(null, *, *)        = null
      * StringUtils.replace("", *, *)          = ""
      * StringUtils.replace("any", null, *)    = "any"
@@ -904,18 +902,18 @@ public class TestArch {
      * StringUtils.replace("aba", "a", "")    = "b"
      * StringUtils.replace("aba", "a", "z")   = "zbz"
      * reverse(String str) 将字符串反转，返回一个string
-     *
+     * <p>
      * StringUtils.reverse(null)  = null
      * StringUtils.reverse("")    = ""
      * StringUtils.reverse("bat") = "tab"
      * reverseDelimited(String str, char separatorChar) 将字符串指定分隔符出的字符反转
-     *
-     *  StringUtils.reverseDelimited(null, *)      = null
-     *  StringUtils.reverseDelimited("", *)        = ""
-     *  StringUtils.reverseDelimited("a.b.c", 'x') = "a.b.c"
-     *  StringUtils.reverseDelimited("a.b.c", ".") = "c.b.a"
+     * <p>
+     * StringUtils.reverseDelimited(null, *)      = null
+     * StringUtils.reverseDelimited("", *)        = ""
+     * StringUtils.reverseDelimited("a.b.c", 'x') = "a.b.c"
+     * StringUtils.reverseDelimited("a.b.c", ".") = "c.b.a"
      * split(String str, String separatorChars) 将字符串以指定字符分隔，返回数组
-     *
+     * <p>
      * StringUtils.split(null, *)         = null
      * StringUtils.split("", *)           = []
      * StringUtils.split("abc def", null) = ["abc", "def"]
@@ -923,24 +921,24 @@ public class TestArch {
      * StringUtils.split("abc  def", " ") = ["abc", "def"]
      * StringUtils.split("ab:cd:ef", ":") = ["ab", "cd", "ef"]
      * substring(String str, int start) 将字符串从指定位置区间截取，返回string
-     *
+     * <p>
      * swapCase(String str) 将字符串大小写互转，返回一个string
-     *
+     * <p>
      * StringUtils.swapCase(null)                 = null
      * StringUtils.swapCase("")                   = ""
      * StringUtils.swapCase("The dog has a BONE") = "tHE DOG HAS A bone"
      * toEncodedString(byte[] bytes, Charset charset) 将字符串转为指定编码格式，返回一个string
-     *
+     * <p>
      * trim(String str) 去除字符串空格
-     *
+     * <p>
      * trimToEmpty(String str) 去除字符串空格，null转为empty，返回一个string
-     *
+     * <p>
      * StringUtils.trimToEmpty(null)          = ""
      * StringUtils.trimToEmpty("")            = ""
      * StringUtils.trimToEmpty("     ")       = ""
      * StringUtils.trimToEmpty("abc")         = "abc"
      * StringUtils.trimToEmpty("    abc    ") = "abc"
-     * */
+     */
 
     public static void main(String[] args) {
         archUtils();
@@ -949,12 +947,12 @@ public class TestArch {
     public static class Test {
 
         public static void main(String[] args) {
-    //        AbstractStorelessUnivariateStatistic
-    //        AbstractUnivariateStatistic
-    //        StorelessUnivariateStatistic
+            //        AbstractStorelessUnivariateStatistic
+            //        AbstractUnivariateStatistic
+            //        StorelessUnivariateStatistic
 
 
-           // UnivariateStatistic
+            // UnivariateStatistic
         }
     }
 }

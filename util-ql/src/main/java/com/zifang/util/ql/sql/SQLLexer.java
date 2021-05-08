@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * sql的词法解析器
- * */
+ */
 public class SQLLexer {
 
     private StringBuffer tokenText = null;
@@ -23,8 +23,8 @@ public class SQLLexer {
 
     /**
      * 对代码文本进行token流化
-     * */
-    public List<ISQLToken> tokenize(String code){
+     */
+    public List<ISQLToken> tokenize(String code) {
 
         tokens = new ArrayList<>();
         reader = new CharArrayReader(code.toCharArray());

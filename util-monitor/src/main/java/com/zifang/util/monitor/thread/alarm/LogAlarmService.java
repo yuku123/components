@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 日志打印告警服务。
+ *
  * @author lijing
  * @since 2015/11/25
  */
@@ -16,7 +17,7 @@ public class LogAlarmService implements AlarmService {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogAlarmService.class);
 
     @Override
-    public void alarm(Object...arg) {
+    public void alarm(Object... arg) {
         if (arg == null || arg.length <= 0) {
             return;
         }

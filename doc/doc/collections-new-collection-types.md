@@ -14,7 +14,7 @@ Guava新增了一些JDK中没有的，但是被广泛使用到的新集合类型
 
 Multiset和Set的区别就是可以保存多个相同的对象。  
 Multiset占据了List和Set之间的一个灰色地带：允许重复，但是不保证顺序。  
-常见使用场景：Multiset有一个有用的功能，就是跟踪每种对象的数量，所以你可以用来进行数字统计。  
+常见使用场景：Multiset有一个有用的功能，就是跟踪每种对象的数量，所以你可以用来进行数字统计。
 
 Multiset接口定义的接口主要有：
 
@@ -67,7 +67,8 @@ Guava提供了很多和JDK中的Map对应的Multiset的实现
 <h3 id="sortedmultiset">SortedMultiset</h3>
 
 SortedMultiset是Multiset 接口的变种，它支持高效地获取指定范围的子集。  
-比如，你可以用 latencies.subMultiset(0,BoundType.CLOSED, 100, BoundType.OPEN).size()来统计你的站点中延迟在100毫秒以内的访问，然后把这个值和latencies.size()相比，以获取这个延迟水平在总体访问中的比例。
+比如，你可以用 latencies.subMultiset(0,BoundType.CLOSED, 100, BoundType.OPEN).size()
+来统计你的站点中延迟在100毫秒以内的访问，然后把这个值和latencies.size()相比，以获取这个延迟水平在总体访问中的比例。
 
 TreeMultiset实现SortedMultiset接口。
 
@@ -76,16 +77,17 @@ TreeMultiset实现SortedMultiset接口。
 经常会遇到这种结构 Map<K, List<V>>或Map<K, Set<V>>  
 Multimap可以很容易地把一个键映射到多个值。换句话说，Multimap是把键映射到任意多个值的一种方式。
 
-可以用两种方式思考Multimap的概念:  
+可以用两种方式思考Multimap的概念:
 
 * "键-单个值映射"的集合:  a->1, a->2, a->4, b->3, c->5
 * "键-值集合映射"的映射:  a->[1,2,4], b->3, c->5
 
 一般情况下都会使用ListMultimap或SetMultimap接口，它们分别把键映射到List或Set。  
 Multimap.get(key)以集合形式返回键所对应的值视图, 即使没有任何对应的值，也会返回空集合。  
-对值视图集合进行的修改最终都会反映到底层的Multimap。  
+对值视图集合进行的修改最终都会反映到底层的Multimap。
 
 ##### 修改Multimap的方法有:
+
 <table>
 <tr>
 	<td>方法签名</td>
@@ -120,6 +122,7 @@ Multimap.get(key)以集合形式返回键所对应的值视图, 即使没有任�
 </table>
 
 ##### Multimap不是Map
+
 Multimap<K, V>不是Map<K,Collection<V>>
 
 * Multimap.get(key)总是返回非null、但是可能空的集合。这并不意味着Multimap为相应的键花费内存创建了集合，而只是提供一个集合视图方便你为键增加映射值
@@ -143,9 +146,10 @@ BiMap<String,Integer> filelogMap = logfileMap.inverse();
 
 <h3 id="table">Table</h3>
 
-当我们需要多个索引的数据结构的时候，通常情况下，我们只能用这种丑陋的Map<FirstName, Map<LastName, Person>>来实现。为此Guava提供了一个新的集合类型－Table集合类型，来支持这种数据结构的使用场景。  
+当我们需要多个索引的数据结构的时候，通常情况下，我们只能用这种丑陋的Map<FirstName, Map<LastName, Person>>来实现。为此Guava提供了一个新的集合类型－Table集合类型，来支持这种数据结构的使用场景。
 
 ##### Table的视图
+
 <table>
 <tr>
 	<td>视图</td>
@@ -208,14 +212,14 @@ Table有如下实现
 
 <h3 id="classtoinstancemap">ClassToInstanceMap</h3>
 
-ClassToInstanceMap\<B> 相当于 Map<Class<? extends B>, B>, 它的键是类型，而值是符合键所指类型的对象。
-ClassToInstanceMap额外声明了两个方法：T getInstance(Class<T>) 和T putInstance(Class<T>, T)，从而避免强制类型转换，同时保证了类型安全。  
-
+ClassToInstanceMap\<B> 相当于 Map<Class<? extends B>, B>, 它的键是类型，而值是符合键所指类型的对象。 ClassToInstanceMap额外声明了两个方法：T getInstance(
+Class<T>) 和T putInstance(Class<T>, T)，从而避免强制类型转换，同时保证了类型安全。
 
 <h3 id="rangeset">RangeSet</h3>
 
 RangeSet描述了一组不相连的、非空的区间。当把一个区间添加到可变的RangeSet时，所有相连的区间会被合并，空区间会被忽略。  
-例如：  
+例如：
+
 ```java  
 RangeSet<Integer> rangeSet = TreeRangeSet.create();  
 rangeSet.add(Range.closed(1, 10)); // {[1, 10]}  
@@ -226,6 +230,7 @@ rangeSet.remove(Range.open(5, 10)); // 分割[1, 10]; {[1, 5], [10, 10], [11, 20
 ```
 
 RangeMap描述了"不相交的、非空的区间"到特定值的映射。和RangeSet不同，RangeMap不会合并相邻的映射，即便相邻的区间映射到相同的值。例如：
+
 ```java  
 RangeMap<Integer, String> rangeMap = TreeRangeMap.create();
 rangeMap.put(Range.closed(1, 10), "foo"); // {[1, 10] => "foo"}

@@ -1,6 +1,8 @@
 优雅的参数检查(Preconditions)
 ===
+
 #### 问题
+
 对外接口方法参数过多时，需对参数进行必要的检查，将预期之外的请求快速驳回。
 
 ```java  
@@ -14,6 +16,7 @@ public boolean someMethod(int arg1, String arg2, String arg3, Object arg4){
 ```
 
 #### 方案
+
 com.google.common.base.Preconditions
 
 ```java  

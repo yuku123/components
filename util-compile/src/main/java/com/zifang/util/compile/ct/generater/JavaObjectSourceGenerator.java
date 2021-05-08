@@ -57,7 +57,7 @@ public class JavaObjectSourceGenerator implements IGenerator {
         // 处理 使用implements 实现接口
         NodeList<ClassOrInterfaceType> implementedTypes = new NodeList<>();
 
-        if(classInfo.getInterfaces() != null){
+        if (classInfo.getInterfaces() != null) {
             for (ClassInfo subInterface : classInfo.getInterfaces()) {
                 // 根据持有接口信息进行解析
                 Optional<ClassOrInterfaceType> classOrInterfaceType = javaParser
@@ -68,16 +68,16 @@ public class JavaObjectSourceGenerator implements IGenerator {
             classUnit.setImplementedTypes(implementedTypes);
         }
 
-        if(classInfo.getMethods() != null) {
+        if (classInfo.getMethods() != null) {
             // 处理method
             for (MethodInfo methodInfo : classInfo.getMethods()) {
-                CodeGenerateHelper.addMethod(classUnit,methodInfo);
+                CodeGenerateHelper.addMethod(classUnit, methodInfo);
             }
         }
 
-        if(classInfo.getFields() != null){
-            for(FieldInfo fieldInfo : classInfo.getFields()){
-                classUnit.addField(fieldInfo.getType(),fieldInfo.getValue(),PRIVATE);
+        if (classInfo.getFields() != null) {
+            for (FieldInfo fieldInfo : classInfo.getFields()) {
+                classUnit.addField(fieldInfo.getType(), fieldInfo.getValue(), PRIVATE);
             }
         }
 

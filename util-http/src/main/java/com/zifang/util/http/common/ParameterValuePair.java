@@ -4,10 +4,10 @@ import com.zifang.util.core.lang.tuples.Pair;
 
 import java.lang.reflect.Parameter;
 
-public class ParameterValuePair extends Pair<Parameter,Object> {
+public class ParameterValuePair extends Pair<Parameter, Object> {
 
-    public ParameterValuePair(Parameter parameter, Object obj){
-        super(parameter,obj);
+    public ParameterValuePair(Parameter parameter, Object obj) {
+        super(parameter, obj);
     }
 
     public Parameter getParameter() {

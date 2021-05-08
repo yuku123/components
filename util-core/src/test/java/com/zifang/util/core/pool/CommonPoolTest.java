@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class CommonPoolTest {
     @Test
-    public void test1(){
+    public void test1() {
         // 创建池对象工厂
         PooledObjectFactory<Resource> factory = new MyPoolableObjectFactory();
 

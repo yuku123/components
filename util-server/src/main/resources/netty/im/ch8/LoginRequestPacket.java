@@ -2,7 +2,7 @@ package com.zifang.util.server.netty.im.ch8;
 
 import static com.zifang.util.core.demo.thirdpart.components.netty.im.ch8.Command.LOGIN_REQUEST;
 
-public class LoginRequestPacket extends Packet{
+public class LoginRequestPacket extends Packet {
     private String userId;
     private String userName;
     private String password;

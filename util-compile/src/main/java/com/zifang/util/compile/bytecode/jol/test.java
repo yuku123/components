@@ -15,8 +15,8 @@ public class test {
 
     public static void main(String[] args) {
 
-        HashMap hashMap= new HashMap();
-        hashMap.put("flydean","www.flydean.com");
+        HashMap hashMap = new HashMap();
+        hashMap.put("flydean", "www.flydean.com");
 
 
         System.out.println(VM.current().details());

@@ -13,11 +13,11 @@ import java.util.Map;
 public class Unit<A> {
     protected A a;
 
-    public Unit(A a){
+    public Unit(A a) {
         this.a = a;
     }
 
-    protected Map<String,Object> toMap(){
+    protected Map<String, Object> toMap() {
         try {
             return BeanUtils.beanToMap(this);
         } catch (IllegalAccessException | IntrospectionException | InvocationTargetException e) {

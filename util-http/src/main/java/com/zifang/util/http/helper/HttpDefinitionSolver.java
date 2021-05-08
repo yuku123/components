@@ -12,8 +12,8 @@ import java.util.List;
 
 /**
  * 方法解析出http的请求
- * */
-public class HttpDefinitionSolver implements IDefinitionSolver{
+ */
+public class HttpDefinitionSolver implements IDefinitionSolver {
 
     private Object proxy;
 
@@ -44,8 +44,8 @@ public class HttpDefinitionSolver implements IDefinitionSolver{
 
     private void handleHttpRequestBody() {
         HttpRequestBody httpRequestBody = new HttpRequestBody();
-        for(ParameterValuePair parameterValuePair : parameterValuePairList){
-            if(parameterValuePair.getParameter().isAnnotationPresent(RequestBody.class)){
+        for (ParameterValuePair parameterValuePair : parameterValuePairList) {
+            if (parameterValuePair.getParameter().isAnnotationPresent(RequestBody.class)) {
                 byte[] bytes = GsonUtil.objectToJsonStr(parameterValuePair.getObj()).getBytes();
                 httpRequestBody.setBody(bytes);
             }
@@ -56,8 +56,8 @@ public class HttpDefinitionSolver implements IDefinitionSolver{
     private void pre() {
         // 生成 parameter -> 值的对象列表
         Parameter[] parameters = method.getParameters();
-        for(int i=0; i<parameters.length;i++){
-            parameterValuePairList.add(new ParameterValuePair(parameters[i],args[i]));
+        for (int i = 0; i < parameters.length; i++) {
+            parameterValuePairList.add(new ParameterValuePair(parameters[i], args[i]));
         }
 
     }
@@ -74,25 +74,25 @@ public class HttpDefinitionSolver implements IDefinitionSolver{
         String basicPath = AnnotationUtil.getAnnotationValue(target, RestController.class);
 
         // 查看当前的方法体的调用方式是什么
-        RequestMethod requestMethod = AnnotationUtil.getAnnotationValue(method, RequestMapping.class,"method");
+        RequestMethod requestMethod = AnnotationUtil.getAnnotationValue(method, RequestMapping.class, "method");
 
         // 当前方法的调用地址是什么
-        String requestPath = AnnotationUtil.getAnnotationValue(method, RequestMapping.class,"value");
+        String requestPath = AnnotationUtil.getAnnotationValue(method, RequestMapping.class, "value");
 
         // 检验是否有路径参数
         // 检验@requestParam
         List<String> requestParams = new ArrayList<>();
-        for(ParameterValuePair parameterValuePair : parameterValuePairList){
+        for (ParameterValuePair parameterValuePair : parameterValuePairList) {
             String key = AnnotationUtil.getAnnotationValue(parameterValuePair.getParameter(), RequestParam.class);
             String value = String.valueOf(parameterValuePair.getObj());
-            if(key != null){
-                requestParams.add(String.format("%s=%s",key,value));
+            if (key != null) {
+                requestParams.add(String.format("%s=%s", key, value));
             }
         }
 
         String url = basicPath + requestPath;
-        if(requestParams.size()>0){
-            url = url + "?" + String.join("&",requestParams);
+        if (requestParams.size() > 0) {
+            url = url + "?" + String.join("&", requestParams);
         }
 
         // 存储值

@@ -20,7 +20,7 @@ public class FileUtil {
 
     /**
      * 读取文件，可以读到jar内的文件
-     * */
+     */
     public static String readFile(String fileName) {
         InputStream fin = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);
         InputStreamReader reader = new InputStreamReader(fin);
@@ -29,11 +29,11 @@ public class FileUtil {
         StringBuffer buffer = null;
         try {
             buffer = new StringBuffer();
-            while((strTmp = buffReader.readLine())!=null){
+            while ((strTmp = buffReader.readLine()) != null) {
                 buffer.append(strTmp).append("\n");
             }
             buffReader.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return buffer.toString();
@@ -197,8 +197,8 @@ public class FileUtil {
      */
     public static final String getFileContent(String path) {
         String filecontent = "";
-        if(!path.startsWith("/")){
-            path = FileUtil.class.getResource("/").getPath()+path;
+        if (!path.startsWith("/")) {
+            path = FileUtil.class.getResource("/").getPath() + path;
         }
         try {
             File f = new File(path);
@@ -221,9 +221,9 @@ public class FileUtil {
         return filecontent;
     }
 
-    public static final void gennerateFile(String filePath,String fileContent){
+    public static final void gennerateFile(String filePath, String fileContent) {
         File file = new File(filePath);
-        if(file.exists()){
+        if (file.exists()) {
             file.delete();
         } else {
             file.getParentFile().mkdirs();
@@ -240,20 +240,20 @@ public class FileUtil {
 
     public static String decideTmpFolder() {
         String folderOld = System.getProperty("java.io.tmpdir");
-        if(folderOld.endsWith("/")){
+        if (folderOld.endsWith("/")) {
             return folderOld;
-        }else{
-            return folderOld+"/";
+        } else {
+            return folderOld + "/";
         }
     }
 
-    public static String decideTempUsableFolder(){
-        return decideTmpFolder()+"use_"+System.currentTimeMillis()+"/";
+    public static String decideTempUsableFolder() {
+        return decideTmpFolder() + "use_" + System.currentTimeMillis() + "/";
     }
 
     public static void mkdir(String workFolder) {
         File file = new File(workFolder);
-        if(file.exists()){
+        if (file.exists()) {
             file.delete();
         } else {
             file.mkdir();
@@ -262,23 +262,23 @@ public class FileUtil {
 
     /**
      * 清空这个文件夹下所有文件
-     *
+     * <p>
      * 如果这个文件夹不存在则创造
-     * */
-    public static boolean cleanFolder(String fileFolder){
+     */
+    public static boolean cleanFolder(String fileFolder) {
 
 
         File file = new File(fileFolder);
 
-        if(!file.exists()){
+        if (!file.exists()) {
             return false;
         }
 
-        if(!file.isDirectory()){
-            throw  new RuntimeException("传入参数不为文件夹");
+        if (!file.isDirectory()) {
+            throw new RuntimeException("传入参数不为文件夹");
         }
 
-        if(file.exists()){
+        if (file.exists()) {
             Arrays.stream(Objects.requireNonNull(file.listFiles())).forEach(File::delete);
         } else {
             file.mkdirs();
@@ -288,21 +288,21 @@ public class FileUtil {
 
     /**
      * 检测String代表的文件是否存在
-     * */
-    public static boolean isFileExist(String filePath){
+     */
+    public static boolean isFileExist(String filePath) {
         return new File(filePath).exists();
     }
 
 
     /**
      * 递归删除一个文件夹
-     * */
+     */
     public static void deleteDir(File file) {
-        if(file.isFile()) {
+        if (file.isFile()) {
             file.delete();
         } else {
             File[] files = file.listFiles();
-            if(files == null) {
+            if (files == null) {
                 file.delete();
             } else {
                 for (int i = 0; i < files.length; i++) {
@@ -328,7 +328,7 @@ public class FileUtil {
     /**
      * Read an input stream into a byte[]
      */
-    public  static final byte[] stream2Byte(InputStream is) throws IOException {
+    public static final byte[] stream2Byte(InputStream is) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int len = 0;
         byte[] b = new byte[1024];
@@ -342,7 +342,7 @@ public class FileUtil {
     /**
      * InputStream 转为 byte
      */
-    public  static final byte[] inputStream2Byte(InputStream inStream) throws Exception {
+    public static final byte[] inputStream2Byte(InputStream inStream) throws Exception {
         int count = 0;
         while (count == 0) {
             count = inStream.available();
@@ -354,17 +354,18 @@ public class FileUtil {
 
     /**
      * byte 转为 InputStream
+     *
      * @return InputStream
      * @throws Exception
      */
-    public  static final InputStream byte2InputStream(byte[] b) throws Exception {
+    public static final InputStream byte2InputStream(byte[] b) throws Exception {
         return new ByteArrayInputStream(b);
     }
 
     /**
      * 将流另存为文件
      */
-    public  static final void streamSaveAsFile(InputStream is, File outfile) {
+    public static final void streamSaveAsFile(InputStream is, File outfile) {
         try (FileOutputStream fos = new FileOutputStream(outfile)) {
             byte[] buffer = new byte[1024];
             int len;
@@ -449,10 +450,10 @@ public class FileUtil {
         try (FileInputStream in = new FileInputStream(file)) {
             Long filelength = file.length();
             byte[] filecontent = new byte[filelength.intValue()];
-            if(in.read(filecontent)>0){
+            if (in.read(filecontent) > 0) {
                 return new String(filecontent);
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;

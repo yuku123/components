@@ -1,7 +1,6 @@
 package com.zifang.util.core.io;
 
 
-
 import com.zifang.util.core.util.CheckUtil;
 import com.zifang.util.core.io.ss.FileUtil;
 

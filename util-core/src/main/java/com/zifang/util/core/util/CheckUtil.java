@@ -18,7 +18,7 @@ public final class CheckUtil {
      * @param format 时间格式
      * @return 是否符合
      */
-    public  static final boolean isDate(String date, String format) {
+    public static final boolean isDate(String date, String format) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(format);
             sdf.parse(date);

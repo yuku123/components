@@ -5,67 +5,67 @@ import java.util.List;
 
 /**
  * class的标准信息载体
- * */
-public class ClassInfo{
+ */
+public class ClassInfo {
 
     /**
      * 标记当前classInfo是否为接口
-     *
+     * <p>
      * true : 是接口
      * false : 不是接口
-     * */
+     */
     private Boolean interfaceType;
 
     /**
      * 当前类名
-     * */
+     */
     private String simpleClassName;
 
     /**
      * 当前包名
-     * */
+     */
     private String packageName;
 
     /**
      * 父类
-     * */
+     */
     private ClassInfo superClass;
 
     /**
      * 只是单纯记录类名
-     * */
+     */
     private List<String> imports = new ArrayList<>(); // 默认为空;
 
     /**
      * block注释
-     * */
+     */
     private List<String> comments = new ArrayList<>(); // 类注释
 
     /**
      * 接口集合
-     * */
+     */
     private List<ClassInfo> interfaces = new ArrayList<>(); // 默认为空
 
     /**
      * 类的域集合
-     * */
+     */
     private List<FieldInfo> fields = new ArrayList<>(); // 默认为空
 
     /**
      * 类的所有方法
-     * */
+     */
     private List<MethodInfo> methods = new ArrayList<>(); // 默认为空
 
     /**
      * 标记当前类的modifier 决定是否为public
-     * */
+     */
     private int modifiers;
 
     /**
      * 全类路径名字
-     * */
-    public String getName(){
-        return packageName+"."+simpleClassName;
+     */
+    public String getName() {
+        return packageName + "." + simpleClassName;
     }
 
     public void appendFields(List<FieldInfo> fieldInfos) {
@@ -100,14 +100,14 @@ public class ClassInfo{
 
     /**
      * 将一个运行态class 直接解析转化为ClassInfo
-     * */
-    public static ClassInfo parser(Class clazz){
+     */
+    public static ClassInfo parser(Class clazz) {
         return null; // @todo
     }
 
     /**
      * 最小闭环构造器
-     * */
+     */
     public static ClassInfo build(
             Boolean interfaceType,
             Integer modifiers,
@@ -117,7 +117,7 @@ public class ClassInfo{
             ClassInfo superClass,
             List<ClassInfo> interfaces,
             List<FieldInfo> fieldInfos,
-            List<MethodInfo> methodInfos){
+            List<MethodInfo> methodInfos) {
         ClassInfo classInfo = new ClassInfo();
         classInfo.setInterfaceType(interfaceType);
         classInfo.setModifiers(modifiers);
@@ -213,25 +213,25 @@ public class ClassInfo{
     }
 
     private void checkInterface() {
-        if(interfaces == null){
+        if (interfaces == null) {
             throw new RuntimeException("当前interfaceList为null");
         }
     }
 
     private void checkMethod() {
-        if(methods == null){
+        if (methods == null) {
             throw new RuntimeException("当前methodList为null");
         }
     }
 
-    private void checkImports(){
-        if(imports == null){
+    private void checkImports() {
+        if (imports == null) {
             throw new RuntimeException("当前importList为null");
         }
     }
 
     private void checkField() {
-        if(fields == null){
+        if (fields == null) {
             throw new RuntimeException("当前fieldList为null");
         }
     }

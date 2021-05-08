@@ -19,13 +19,16 @@
       "HADOOP_USER_NAME": "piday"
     }
   },
-  "workflowNodeList":[
+  "workflowNodeList": [
     {
       "nodeId": "start",
       "serviceUnit": "engine.service.empty",
       "connector": {
         "pre": [],
-        "post": ["input1","input2"]
+        "post": [
+          "input1",
+          "input2"
+        ]
       }
     },
     {
@@ -33,13 +36,17 @@
       "name": "input1",
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
-      "properties":{
-        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input1.csv",
-        "tempName":"input1"
+      "properties": {
+        "localFile": "/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input1.csv",
+        "tempName": "input1"
       },
       "connector": {
-        "pre": ["start"],
-        "post": ["join1"]
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "join1"
+        ]
       }
     },
     {
@@ -47,13 +54,17 @@
       "name": "input2",
       "type": "engine.nodeType.resource",
       "serviceUnit": "engine.service.resourceHandler",
-      "properties":{
-        "localFile":"/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input2.csv",
-        "tempName":"input2"
+      "properties": {
+        "localFile": "/Users/zifang/workplace/idea_workplace/components/util-workflow/src/test/resources/input2.csv",
+        "tempName": "input2"
       },
       "connector": {
-        "pre": ["start"],
-        "post": ["join1"]
+        "pre": [
+          "start"
+        ],
+        "post": [
+          "join1"
+        ]
       }
     },
     {
@@ -61,13 +72,17 @@
       "name": "join_input1_input2",
       "type": "engine.nodeType.connectors",
       "serviceUnit": "engine.service.joinHandler",
-      "properties":{
-        "sql":"select input1.*,input2.score from input1 inner join input2 on input1.userId = input2.userId"
+      "properties": {
+        "sql": "select input1.*,input2.score from input1 inner join input2 on input1.userId = input2.userId"
       },
-
       "connector": {
-        "pre": ["input1","input2"],
-        "post": ["changeColumnName"]
+        "pre": [
+          "input1",
+          "input2"
+        ],
+        "post": [
+          "changeColumnName"
+        ]
       }
     },
     {
@@ -75,12 +90,13 @@
       "name": "changeColumnName",
       "type": "engine.nodeType.connectors",
       "serviceUnit": "engine.service.changeColumn",
-      "properties":{
-        "name":"changedName"
+      "properties": {
+        "name": "changedName"
       },
-
       "connector": {
-        "pre": ["join1"],
+        "pre": [
+          "join1"
+        ],
         "post": []
       }
     }

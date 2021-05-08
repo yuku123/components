@@ -22,9 +22,8 @@ import com.google.common.base.Joiner.MapJoiner;
 
 /**
  * 连接器Joiner.join(Iterable<?> parts)
- * 
+ * <p>
  * joiner实例总是不可变的，线程安全，建议定义为static final常量。
- * 
  */
 public class Joiner_Study {
     String str1 = "a ";
@@ -56,7 +55,6 @@ public class Joiner_Study {
 
     /**
      * appendTo拼接StringBuffer需捕获IOException，拼接StringBuilder则不需要.
-     * 
      */
     @Test
     public void otherTest() {
@@ -86,11 +84,10 @@ public class Joiner_Study {
 
     /**
      * MapJoiner遍历map比传统遍历map.entrySet()慢很多（but百万级别数据拼接在1s以内，so常规程序可以忽略这点性能差距）。
-     * 
+     * <p>
      * Joiner遍历List在百万级别以上时比传统方式更高效。
-     * 
+     * <p>
      * Joiner优势：代码更优雅（null；末尾的分隔符）。
-     * 
      */
     @Test
     public void performanceCompare() {

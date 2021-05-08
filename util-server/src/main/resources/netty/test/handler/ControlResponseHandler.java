@@ -36,12 +36,12 @@ public class ControlResponseHandler extends SimpleChannelInboundHandler<ControlR
         //以屏幕的尺寸创建个矩形
         Rectangle screenRect = new Rectangle(d);
         //截图（截取整个屏幕图片）
-        BufferedImage bufferedImage =  robot.createScreenCapture(screenRect);
+        BufferedImage bufferedImage = robot.createScreenCapture(screenRect);
         //imageResponsePacket.setBufferedImage(bufferedImage);
 //
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
-            ImageIO.write(bufferedImage,"png",out);
+            ImageIO.write(bufferedImage, "png", out);
         } catch (IOException e) {
             e.printStackTrace();
         }

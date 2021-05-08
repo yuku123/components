@@ -21,7 +21,7 @@ import com.google.common.collect.TreeRangeSet;
 
 /**
  * RangeSet<C extends Comparable>、RangeMap
- * 
+ *
  * @author zxiaofan
  */
 public class Range_Study {
@@ -57,9 +57,9 @@ public class Range_Study {
 
     /**
      * RangeMap描述了”不相交的、非空的区间”到特定值的映射。和RangeSet不同，RangeMap不会合并相邻的映射，即便相邻的区间映射到相同的值.
-     * 
+     * <p>
      * put、remove即在原区间加入（覆盖）、移除部分区间。
-     * 
+     * <p>
      * RangeMap没有提供complement()、contains()、rangeContaining()以及encloses()方法,但支持交集subRangeMap。
      */
     @Test

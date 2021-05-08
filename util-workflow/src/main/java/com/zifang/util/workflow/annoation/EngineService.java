@@ -8,5 +8,6 @@ import java.lang.annotation.*;
 @Documented
 public @interface EngineService {
     String name();
+
     String engine() default "spark";
 }

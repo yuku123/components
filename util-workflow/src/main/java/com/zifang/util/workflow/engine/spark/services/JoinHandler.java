@@ -13,15 +13,15 @@ public class JoinHandler extends AbstractSparkEngineService {
 
     @Override
     public void defaultHandler() {
-        Map<String,String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
+        Map<String, String> properties = GsonUtil.changeToSubClass(invokeParameter, HashMap.class);
 
-        try{
+        try {
             dataset = sparkContextInstance.getSqlContext().sql(properties.get("sql"));
             dataset.show();
-            for(ExecutableWorkflowNode executableWorkflowNodePost : executableWorkflowNode.getPost()){
+            for (ExecutableWorkflowNode executableWorkflowNodePost : executableWorkflowNode.getPost()) {
                 executableWorkflowNodePost.setDatasetPre(dataset);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

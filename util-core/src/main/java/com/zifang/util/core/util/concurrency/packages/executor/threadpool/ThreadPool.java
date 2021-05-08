@@ -43,14 +43,14 @@ public class ThreadPool {
         }
     }
 
-    public Runnable takeTask(){
+    public Runnable takeTask() {
         synchronized (taskList) {
             System.out.println(Thread.currentThread().getName() + "is running");
 
             if (taskList.isEmpty()) {
                 return null;
             } else {
-                System.out.println("is empty?"+taskList.isEmpty());
+                System.out.println("is empty?" + taskList.isEmpty());
                 return taskList.remove(0);
             }
         }

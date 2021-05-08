@@ -48,8 +48,8 @@ public enum ResultCode {
     PARAM_VALID_ERROR(HttpServletResponse.SC_BAD_REQUEST, "Parameter Validation Error") {
     };
 
-//    @JsonValue
+    //    @JsonValue
     final int code;
 
     final String msg;
-    }
+}

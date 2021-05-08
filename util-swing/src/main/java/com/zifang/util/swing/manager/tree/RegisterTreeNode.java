@@ -10,7 +10,7 @@ public class RegisterTreeNode {
 
     private List<TreeNode> treeNodes = new ArrayList<>();
 
-    public RegisterTreeNode register(TreeNode treeNode){
+    public RegisterTreeNode register(TreeNode treeNode) {
         treeNodes.add(treeNode);
         return this;
     }

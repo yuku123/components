@@ -3,7 +3,7 @@ package com.zifang.util.core.lang.tuples;
 import lombok.Data;
 
 @Data
-public class Triplet<A,B,C> extends Pair<A,B>{
+public class Triplet<A, B, C> extends Pair<A, B> {
 
     protected C c;
 

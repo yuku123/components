@@ -32,8 +32,8 @@ public class PackageScanner {
      * @return 该包下的类集合
      *
      * */
-    public static Set<Class<?>> searchClasses(String packageName){
-        return searchClasses(packageName,null);
+    public static Set<Class<?>> searchClasses(String packageName) {
+        return searchClasses(packageName, null);
     }
 
     /***
@@ -45,11 +45,11 @@ public class PackageScanner {
      * @return 该包下的类集合
      *
      * */
-    public static Set<Class<?>> searchClasses(String packageName, Predicate<Class<?>> predicate){
+    public static Set<Class<?>> searchClasses(String packageName, Predicate<Class<?>> predicate) {
         Set<Class<?>> set = search(packageName);
-        if(predicate == null){
+        if (predicate == null) {
             return set;
-        }else{
+        } else {
             return set.stream().filter(predicate).collect(Collectors.toSet());
         }
     }
@@ -79,12 +79,12 @@ public class PackageScanner {
                             }
                         }
                     }
-                }else if(FILE.equalsIgnoreCase(protocol)){
+                } else if (FILE.equalsIgnoreCase(protocol)) {
                     Set<Class<?>> set = searchFromFile(packageName);
                     classes.addAll(set);
                 }
             }
-        }catch (ClassNotFoundException | IOException e){
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
         return classes;
@@ -94,30 +94,30 @@ public class PackageScanner {
         String classpath = defaultClassPath;
         String basePackPath = packageName.replace(".", File.separator);
         String searchPath = classpath + basePackPath;
-        return new ClassSearcher().doPath(new File(searchPath),packageName,true);
+        return new ClassSearcher().doPath(new File(searchPath), packageName, true);
     }
 
-    private static class ClassSearcher{
+    private static class ClassSearcher {
 
         private Set<Class<?>> classPaths = new HashSet<>();
 
-        private Set<Class<?>> doPath(File file,String packageName,boolean flag) {
+        private Set<Class<?>> doPath(File file, String packageName, boolean flag) {
 
             if (file.isDirectory()) {
                 File[] files = file.listFiles();
-                if(!flag){
-                    packageName = packageName+"."+file.getName();
+                if (!flag) {
+                    packageName = packageName + "." + file.getName();
                 }
 
                 assert files != null;
 
                 for (File f1 : files) {
-                    doPath(f1,packageName,false);
+                    doPath(f1, packageName, false);
                 }
             } else {
                 if (file.getName().endsWith(CLASS_SUFFIX)) {
                     try {
-                        Class<?> clazz = Class.forName(packageName + "."+ file.getName().substring(0,file.getName().lastIndexOf(".")));
+                        Class<?> clazz = Class.forName(packageName + "." + file.getName().substring(0, file.getName().lastIndexOf(".")));
                         classPaths.add(clazz);
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();

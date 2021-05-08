@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  * 根据 请求定义而产生请求
- * */
+ */
 public class HttpRequestProducer {
 
     private static CloseableHttpClient httpClient = HttpClientBuilder.create().build();
@@ -21,12 +21,12 @@ public class HttpRequestProducer {
     public Object produceRequest(HttpRequestDefinition httpRequestDefination) {
 
         try {
-            if(RequestMethod.GET == httpRequestDefination.getHttpRequestLine().getRequestMethod()){
+            if (RequestMethod.GET == httpRequestDefination.getHttpRequestLine().getRequestMethod()) {
                 return handleGetRequest(httpRequestDefination);
-            } else if(RequestMethod.POST == httpRequestDefination.getHttpRequestLine().getRequestMethod()){
+            } else if (RequestMethod.POST == httpRequestDefination.getHttpRequestLine().getRequestMethod()) {
                 return handlePostRequest(httpRequestDefination);
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -43,7 +43,8 @@ public class HttpRequestProducer {
 
     private Object handleGetRequest(HttpRequestDefinition httpRequestDefination) throws IOException {
         HttpGet httpGet = new HttpGet(httpRequestDefination.getHttpRequestLine().getUrl());
-        CloseableHttpResponse response = httpClient.execute(httpGet);;
+        CloseableHttpResponse response = httpClient.execute(httpGet);
+        ;
         return EntityUtils.toString(response.getEntity());
     }
 

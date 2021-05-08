@@ -14,6 +14,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 线程池管理器。
+ *
  * @author lijing
  * @since 2015/10/29
  */
@@ -56,6 +57,7 @@ public class ExecutorManager {
 
     /**
      * 构造函数。
+     *
      * @param threadPoolConfigUnitList 需要管理的线程池配置列表。
      */
     public ExecutorManager(List<ThreadPoolConfigUnit> threadPoolConfigUnitList) {
@@ -94,6 +96,7 @@ public class ExecutorManager {
     /**
      * 根据线程池类型，获取线程池大小。
      * cpu密集型任务的线程池容量为CPU核数+1，IO密集型任务的线程池容量为2 * CPU核数。
+     *
      * @param poolType 线程池类型。
      * @return 线程池大小。
      */
@@ -110,6 +113,7 @@ public class ExecutorManager {
 
     /**
      * 根据配置单元，生成线程池容量。
+     *
      * @param threadPoolConfigUnit 线程池配置单元。
      */
     private void generateThreadPoolSizeFromConfig(ThreadPoolConfigUnit threadPoolConfigUnit) {
@@ -124,6 +128,7 @@ public class ExecutorManager {
 
     /**
      * 获取处理缓存键任务的线程池。
+     *
      * @param poolName 线程池名称。
      * @return 获取缓存键任务执行线程池。
      */
@@ -133,6 +138,7 @@ public class ExecutorManager {
 
     /**
      * 获取监控管理器。
+     *
      * @return 监控管理器。
      */
     public MonitorManager getMonitorManager() {

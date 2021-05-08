@@ -7,16 +7,16 @@ import java.util.Map;
  * 对集合操作的封装
  *
  * @author zifang
- * */
+ */
 public class CollectionUtil {
 
     /**
-     *  判断集合是否为空
+     * 判断集合是否为空
      *
      * @param collection 参数
      * @return boolean
      */
-    public static boolean isEmptyCollection(Collection<?> collection){
+    public static boolean isEmptyCollection(Collection<?> collection) {
         return collection == null || collection.isEmpty();
     }
 
@@ -26,7 +26,7 @@ public class CollectionUtil {
      * @param collection 参数
      * @return boolean
      */
-    public static boolean isNotEmptyCollection(Collection<?> collection){
+    public static boolean isNotEmptyCollection(Collection<?> collection) {
         return collection != null && !collection.isEmpty();
     }
 
@@ -36,7 +36,7 @@ public class CollectionUtil {
      * @param map 参数
      * @return boolean
      */
-    public static boolean isNotEmptyMap(Map<?,?> map){
+    public static boolean isNotEmptyMap(Map<?, ?> map) {
         return map != null && !map.isEmpty();
     }
 
@@ -46,7 +46,7 @@ public class CollectionUtil {
      * @param map 参数
      * @return boolean
      */
-    public static boolean isEmptyMap(Map<?,?> map){
+    public static boolean isEmptyMap(Map<?, ?> map) {
         return map == null || map.isEmpty();
     }
 

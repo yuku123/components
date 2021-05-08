@@ -9,27 +9,27 @@ public class BitsTest {
 
     @Test
     public void multipleLess() {
-        assertEquals(Bits.multipleLess(3),2);
-        assertEquals(Bits.multipleLess(2),2);
+        assertEquals(Bits.multipleLess(3), 2);
+        assertEquals(Bits.multipleLess(2), 2);
     }
 
     @Test
     public void multipleMore() {
-        assertEquals(Bits.multipleMore(3),4);
-        assertEquals(Bits.multipleMore(4),4);
-        assertEquals(Bits.multipleMore(5),8);
+        assertEquals(Bits.multipleMore(3), 4);
+        assertEquals(Bits.multipleMore(4), 4);
+        assertEquals(Bits.multipleMore(5), 8);
     }
 
     @Test
     public void avg() {
-        assertEquals(Bits.avg(5,9),7);
-        assertEquals(Bits.avg(5,10),7);
+        assertEquals(Bits.avg(5, 9), 7);
+        assertEquals(Bits.avg(5, 10), 7);
     }
 
     @Test
     public void abs() {
-        assertEquals(Bits.abs(2),2);
-        assertEquals(Bits.abs(-2),2);
+        assertEquals(Bits.abs(2), 2);
+        assertEquals(Bits.abs(-2), 2);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class BitsTest {
 
     @Test
     public void mod() {
-        assertEquals(Bits.mod(12,5),2);
-        assertEquals(Bits.mod(11,2),1);
+        assertEquals(Bits.mod(12, 5), 2);
+        assertEquals(Bits.mod(11, 2), 1);
     }
 }

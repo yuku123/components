@@ -12,7 +12,7 @@ public class HttpRequestInvocationHandler implements InvocationHandler {
 
     private Class target; // 代理的接口类
 
-    public  HttpRequestInvocationHandler(Class requestInterface) {
+    public HttpRequestInvocationHandler(Class requestInterface) {
         this.target = requestInterface;
     }
 
@@ -20,11 +20,11 @@ public class HttpRequestInvocationHandler implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
         // 1 检查相关
-        check(proxy,method,args);
+        check(proxy, method, args);
 
         // 2 解释器
         HttpDefinitionSolver httpDefinitionSolver = new HttpDefinitionSolver();
-        httpDefinitionSolver.set(target,proxy,method,args); // 设入参数
+        httpDefinitionSolver.set(target, proxy, method, args); // 设入参数
         httpDefinitionSolver.solve();
 
         // 3 获得标准请求定义
@@ -39,7 +39,7 @@ public class HttpRequestInvocationHandler implements InvocationHandler {
 
     private void check(Object proxy, Method method, Object[] args) {
         // 1. class 必须继承为 RestController
-        if( !target.isAnnotationPresent(RestController.class)) {
+        if (!target.isAnnotationPresent(RestController.class)) {
             throw new RuntimeException(target.getName() + "类没有RestController注解");
         }
     }

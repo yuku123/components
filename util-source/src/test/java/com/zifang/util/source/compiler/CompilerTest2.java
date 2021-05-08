@@ -30,7 +30,7 @@ public class CompilerTest2 {
         );
 
         compileContext.initial(); // 编译上下文初始化
-        compileContext.addJavaObject(uri,javaFileObject); // 为编译上下增添编译单元
+        compileContext.addJavaObject(uri, javaFileObject); // 为编译上下增添编译单元
         compileContext.compile(); // 执行编译
 
         Class<?> klass = compileContext.load(qualifiedName); // 从编译上下文加载类

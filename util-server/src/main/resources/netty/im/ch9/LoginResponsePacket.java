@@ -30,7 +30,7 @@ public class LoginResponsePacket extends Packet {
         return LOGIN_RESPONSE;
     }
 
-    public void setVersion(Byte version){
+    public void setVersion(Byte version) {
         this.version = version;
     }
 }

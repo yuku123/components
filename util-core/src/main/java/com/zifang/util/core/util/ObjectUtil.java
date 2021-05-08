@@ -7,8 +7,7 @@ public class ObjectUtil {
     /**
      * 采用对象的序列化完成对象的深克隆
      *
-     * @param obj
-     * 			待克隆的对象
+     * @param obj 待克隆的对象
      * @return
      */
     @SuppressWarnings("unchecked")
@@ -36,11 +35,10 @@ public class ObjectUtil {
     /**
      * 利用序列化完成集合的深克隆
      *
-     * @param collection
-     * 					待克隆的集合
+     * @param collection 待克隆的集合
      * @return dd
      * @throws ClassNotFoundException dd
-     * @throws java.io.IOException dd
+     * @throws java.io.IOException    dd
      */
     @SuppressWarnings("unchecked")
     public static <T> Collection<T> deepCloneCollection(Collection<T> collection) throws ClassNotFoundException, IOException {

@@ -1,8 +1,9 @@
 package com.zifang.util.ql.scrept;
+
 /**
  * Token的类型
  */
-public enum TokenType{
+public enum TokenType {
     Plus,   // +
     Minus,  // -
     Star,   // *

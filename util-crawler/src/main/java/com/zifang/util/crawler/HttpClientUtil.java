@@ -9,8 +9,8 @@ public class HttpClientUtil {
     public static String TYPE_GET = "get";
     public static String TYPE_POST = "post";
 
-    public String sendGet(String url, String requestType,Map<String, String> parameters) {
-        String result="";
+    public String sendGet(String url, String requestType, Map<String, String> parameters) {
+        String result = "";
         BufferedReader in = null;// 读取响应输入流
         String params = getParameterStr(parameters);
         String full_url = url + "?" + params;
@@ -43,7 +43,7 @@ public class HttpClientUtil {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
                 if (in != null) {
                     in.close();
@@ -52,7 +52,7 @@ public class HttpClientUtil {
                 ex.printStackTrace();
             }
         }
-        return result ;
+        return result;
     }
 
     public String sendPost(String url, Map<String, String> parameters) {
@@ -123,7 +123,7 @@ public class HttpClientUtil {
             // 设置通用属性
             httpConn.setRequestProperty("Accept", "*/*");
             httpConn.setRequestProperty("Connection", "Keep-Alive");
-            httpConn.setRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
+            httpConn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
             httpConn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
             // 设置POST方式
             httpConn.setDoInput(true);
@@ -158,7 +158,7 @@ public class HttpClientUtil {
         return result;
     }
 
-    private String getParameterStr(Map<String, String> parameters){
+    private String getParameterStr(Map<String, String> parameters) {
         StringBuffer sb = new StringBuffer();// 存储参数
         String params = "";// 编码之后的参数
 

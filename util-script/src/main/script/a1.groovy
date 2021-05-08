@@ -17,7 +17,8 @@ class Person {
     String name
     Integer age
 }
-def person = new Person(name:"john",age:18)
+
+def person = new Person(name: "john", age: 18)
 /*
  * 双引号“”的内容和脚本语言处理有点像，如果字符中有$符号的话，则会表达式先求值
  */
@@ -91,16 +92,16 @@ assert str1.size() == 3
  * 循环
  */
 
-for (int i =0;i<5;i++ ) {
+for (int i = 0; i < 5; i++) {
     println i + "for 1"
 }
 
-for (i =0;i<5;i++ ) {
+for (i = 0; i < 5; i++) {
     println i + "for 2"
 }
 
-for (i in 4..8 ) {
-    println i-4 + "for 3"
+for (i in 4..8) {
+    println i - 4 + "for 3"
 }
 
 5.times {
@@ -112,7 +113,7 @@ for (i in 4..8 ) {
  *
  */
 def name
-def result =name != null?name :"name is error"
+def result = name != null ? name : "name is error"
 println result
 
 /*
@@ -120,13 +121,13 @@ println result
  */
 try {
     //      5/0
-}catch(Exception e) {
+} catch (Exception e) {
     print e
 }
 
 try {
 //     5/0
-}catch(anything) {
+} catch (anything) {
     print anything
 }
 

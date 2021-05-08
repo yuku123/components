@@ -21,24 +21,24 @@ public class CreatePdfTest {
         PDDocument document = new PDDocument();
 
         List<File> fileList = Arrays.asList(new File(imageFolder).listFiles());
-        fileList = fileList.stream().filter(e->!e.getName().startsWith("."))
-                .filter(e->!e.getName().equals("Thumbs.db"))
+        fileList = fileList.stream().filter(e -> !e.getName().startsWith("."))
+                .filter(e -> !e.getName().equals("Thumbs.db"))
                 .collect(Collectors.toList());
         fileList.sort(Comparator.naturalOrder());
-        for(File image : fileList){
+        for (File image : fileList) {
 
             // 创建图片
-            PDImageXObject pdImage = PDImageXObject.createFromFile(image.getAbsolutePath(),document);
+            PDImageXObject pdImage = PDImageXObject.createFromFile(image.getAbsolutePath(), document);
             int weight = pdImage.getWidth();
             int height = pdImage.getHeight();
 
             // 设置页大小
-            PDRectangle rectangle = new PDRectangle(weight,height);
+            PDRectangle rectangle = new PDRectangle(weight, height);
             PDPage page = new PDPage(rectangle);
 
             // 填充
             PDPageContentStream contents = new PDPageContentStream(document, page);
-            contents.drawImage(pdImage,0,0,weight,height);
+            contents.drawImage(pdImage, 0, 0, weight, height);
 
             // 添加到文档
             document.addPage(page);

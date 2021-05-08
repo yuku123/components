@@ -27,6 +27,7 @@ public class Cache {
     public synchronized static void put(String key, Object data) {
         Cache.put(key, data, 0);
     }
+
     /**
      * 添加缓存
      *
@@ -54,6 +55,7 @@ public class Cache {
             map.put(key, new Entity(data, null));
         }
     }
+
     /**
      * 读取缓存
      *
@@ -64,6 +66,7 @@ public class Cache {
         Entity entity = map.get(key);
         return entity == null ? null : entity.getValue();
     }
+
     /**
      * 读取缓存
      *
@@ -74,6 +77,7 @@ public class Cache {
     public synchronized static <T> T get(String key, Class<T> clazz) {
         return clazz.cast(Cache.get(key));
     }
+
     /**
      * 清除缓存
      *
@@ -89,6 +93,7 @@ public class Cache {
         if (future != null) future.cancel(true);
         return entity.getValue();
     }
+
     /**
      * 查询当前缓存的键值对数量
      *
@@ -97,6 +102,7 @@ public class Cache {
     public synchronized static int size() {
         return map.size();
     }
+
     /**
      * 缓存实体类
      */
@@ -105,10 +111,12 @@ public class Cache {
         private Object value;
         //定时器Future
         private Future future;
+
         public Entity(Object value, Future future) {
             this.value = value;
             this.future = future;
         }
+
         /**
          * 获取值
          *
@@ -117,6 +125,7 @@ public class Cache {
         public Object getValue() {
             return value;
         }
+
         /**
          * 获取Future对象
          *

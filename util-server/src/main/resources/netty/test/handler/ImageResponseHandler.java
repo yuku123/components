@@ -37,14 +37,15 @@ class Frame {
     JPanel jp = new JPanel();
     JLabel jLabel = new JLabel();
 
-    Frame(){
+    Frame() {
         jp.add(jLabel);
         jFrame.add(jp);
-        jFrame.setSize(new Dimension(500,500));
+        jFrame.setSize(new Dimension(500, 500));
         jFrame.setVisible(true);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    public void refresh(byte[] bufferedImage){
+
+    public void refresh(byte[] bufferedImage) {
         jLabel.setIcon(new ImageIcon(bufferedImage));
         jFrame.validate();
         jFrame.repaint();

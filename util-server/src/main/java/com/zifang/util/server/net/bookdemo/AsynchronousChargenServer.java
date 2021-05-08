@@ -1,10 +1,10 @@
 package com.zifang.util.server.net.bookdemo;
 
 public class AsynchronousChargenServer {
-    
-  public static int DEFAULT_PORT = 19;
-  
-  public static void main(String[] args) {
+
+    public static int DEFAULT_PORT = 19;
+
+    public static void main(String[] args) {
   
     /*int port;
     try {
@@ -65,5 +65,5 @@ public class AsynchronousChargenServer {
             }
             client.write(buffer);
     }*/
-  }
+    }
 }

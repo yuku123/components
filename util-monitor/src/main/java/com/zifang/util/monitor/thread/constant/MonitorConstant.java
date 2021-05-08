@@ -2,6 +2,7 @@ package com.zifang.util.monitor.thread.constant;
 
 /**
  * 监控模块相关常量。
+ *
  * @author lijing
  * @since 2015/11/27
  */

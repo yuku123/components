@@ -9,21 +9,21 @@ import java.util.List;
 
 /**
  * 提供对这个dataSet的全方位的统计量
- * */
+ */
 public class DataSetDiscription {
 
     private Dataset<Row> dataset;
 
-    public DataSetDiscription(Dataset<Row> dataset){
+    public DataSetDiscription(Dataset<Row> dataset) {
         this.dataset = dataset;
     }
 
     /**
      * 得到列名列表
-     * */
-    public List<String> getColumnList(){
+     */
+    public List<String> getColumnList() {
         List<String> columnList = new ArrayList<>();
-        for(StructField field :dataset.schema().fields()){
+        for (StructField field : dataset.schema().fields()) {
             columnList.add(field.name());
         }
         return columnList;

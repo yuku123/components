@@ -25,6 +25,7 @@ public class CharReader {
 
     /**
      * 返回 pos 下标处的字符，并返回
+     *
      * @return
      */
     public char peek() {
@@ -37,6 +38,7 @@ public class CharReader {
 
     /**
      * 返回 pos 下标处的字符，并将 pos + 1，最后返回字符
+     *
      * @return
      * @throws IOException
      */

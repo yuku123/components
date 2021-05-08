@@ -393,11 +393,11 @@ public final class FileUtil {
      */
     public final static boolean createFiles(String filePath) {
         File file = new File(filePath);
-        if(file.isDirectory()){
+        if (file.isDirectory()) {
             if (!file.exists()) {
                 return file.mkdirs();
             }
-        }else{
+        } else {
             File dir = file.getParentFile();
             if (!dir.exists()) {
                 if (dir.mkdirs()) {
@@ -431,13 +431,13 @@ public final class FileUtil {
     public final static boolean deleteDir(File file) {
         List<File> files = listFileAll(file);
 
-            for (File f : files) {
-                if (f.isDirectory()) {
-                    deleteDir(f);
-                } else {
-                    deleteFile(f);
-                }
+        for (File f : files) {
+            if (f.isDirectory()) {
+                deleteDir(f);
+            } else {
+                deleteFile(f);
             }
+        }
 
         return file.delete();
     }
@@ -477,14 +477,14 @@ public final class FileUtil {
             createPaths(targetPath);
         }
         File[] files = filePath.listFiles();
-            for (File file : files) {
-                String path = file.getName();
-                if (file.isDirectory()) {
-                    copyDir(file, targetPath + "/" + path);
-                } else {
-                    copy(file, targetPath + "/" + path);
-                }
+        for (File file : files) {
+            String path = file.getName();
+            if (file.isDirectory()) {
+                copyDir(file, targetPath + "/" + path);
+            } else {
+                copy(file, targetPath + "/" + path);
             }
+        }
 
     }
 
@@ -520,13 +520,13 @@ public final class FileUtil {
     public final static List<File> listFile(File path) {
         List<File> list = new ArrayList<>();
         File[] files = path.listFiles();
-            for (File file : files) {
-                if (file.isDirectory()) {
-                    list.addAll(listFile(file));
-                } else {
-                    list.add(file);
-                }
+        for (File file : files) {
+            if (file.isDirectory()) {
+                list.addAll(listFile(file));
+            } else {
+                list.add(file);
             }
+        }
 
         return list;
     }
@@ -541,13 +541,13 @@ public final class FileUtil {
     public final static List<File> listFile(File path, boolean child) {
         List<File> list = new ArrayList<>();
         File[] files = path.listFiles();
-            for (File file : files) {
-                if (child && file.isDirectory()) {
-                    list.addAll(listFile(file));
-                } else {
-                    list.add(file);
-                }
+        for (File file : files) {
+            if (child && file.isDirectory()) {
+                list.addAll(listFile(file));
+            } else {
+                list.add(file);
             }
+        }
 
         return list;
     }
@@ -561,12 +561,12 @@ public final class FileUtil {
     public final static List<File> listFileAll(File path) {
         List<File> list = new ArrayList<>();
         File[] files = path.listFiles();
-            for (File file : files) {
-                list.add(file);
-                if (file.isDirectory()) {
-                    list.addAll(listFileAll(file));
-                }
+        for (File file : files) {
+            list.add(file);
+            if (file.isDirectory()) {
+                list.addAll(listFileAll(file));
             }
+        }
 
         return list;
     }

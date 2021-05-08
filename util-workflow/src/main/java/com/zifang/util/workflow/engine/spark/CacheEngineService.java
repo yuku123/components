@@ -12,7 +12,7 @@ public class CacheEngineService {
         this.cacheEngine = cacheEngine;
     }
 
-    public void doCache(Dataset<Row> dataset,String cacheName){
+    public void doCache(Dataset<Row> dataset, String cacheName) {
         dataset.createOrReplaceTempView(cacheName);
     }
 }

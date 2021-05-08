@@ -6,10 +6,11 @@ public class Client {
 
     private Service service;
 
-    public Client(){}
+    public Client() {
+    }
 
     @Inject                                    //依赖注入必须的标注
-    public Client (Service service){
+    public Client(Service service) {
         System.out.println("This is constructor injector...");
         this.service = service;
     }
@@ -21,7 +22,7 @@ public class Client {
 //		this.service = service;
 //	}
 
-    public void sayHello(){
+    public void sayHello() {
         service.sayHello();
     }
 

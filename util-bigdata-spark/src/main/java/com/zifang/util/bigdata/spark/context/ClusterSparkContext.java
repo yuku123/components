@@ -6,7 +6,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SQLContext;
 import org.apache.spark.sql.SparkSession;
 
-public class ClusterSparkContext implements java.io.Serializable{
+public class ClusterSparkContext implements java.io.Serializable {
 
     private SparkConf sparkConf;
 
@@ -58,14 +58,14 @@ public class ClusterSparkContext implements java.io.Serializable{
         this.sparkSession = sparkSession;
     }
 
-    public ClusterSparkContext(){
+    public ClusterSparkContext() {
         sparkConf = new SparkConf();
         sparkConf.setMaster("spark://192.168.1.103:7077").setAppName("test");
-        sparkConf.set("spark.sql.warehouse.dir","hdfs://192.168.1.103:9000/user/hive/warehouse");
-        sparkConf.set("hive.metastore.uris","thrift://192.168.1.103:9083");
-        sparkConf.set("spark.executor.memory","2g");
-        sparkConf.set("spark.driver.maxResultSize","2g");
-        sparkConf.set("spark.cores.max","1");
+        sparkConf.set("spark.sql.warehouse.dir", "hdfs://192.168.1.103:9000/user/hive/warehouse");
+        sparkConf.set("hive.metastore.uris", "thrift://192.168.1.103:9083");
+        sparkConf.set("spark.executor.memory", "2g");
+        sparkConf.set("spark.driver.maxResultSize", "2g");
+        sparkConf.set("spark.cores.max", "1");
         sparkConf.setJars(new String[]{"/home/zifang/workplace/idea_workplace/components/util-bigdata/target/util-bigdata-1.0-SNAPSHOT.jar"});
         sparkSession = SparkSession.builder()
                 .config(sparkConf)

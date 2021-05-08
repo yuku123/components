@@ -18,10 +18,10 @@ public class LocalSparkContext {
 
     private SparkSession sparkSession;
 
-    public LocalSparkContext(){
+    public LocalSparkContext() {
         sparkConf = new SparkConf();
         sparkConf.setMaster("local[4]").setAppName("test");
-        
+
         sparkSession = SparkSession.builder()
                 .master("local[4]")
                 .appName("appName")

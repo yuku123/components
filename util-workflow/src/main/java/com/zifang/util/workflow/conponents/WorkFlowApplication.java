@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 
 /**
  * 整个处理流的应用
- * */
+ */
 public class WorkFlowApplication {
 
-    public static Map<Integer,WorkFlowApplicationContext> workFlowContextMap = new HashMap<>();
+    public static Map<Integer, WorkFlowApplicationContext> workFlowContextMap = new HashMap<>();
 
     public static ExecutorService threadPool = Executors.newFixedThreadPool(100);
 
@@ -25,10 +25,10 @@ public class WorkFlowApplication {
 
     /**
      * 通过一个workflowConfiguration 主动创造一个workflow的上下文
-     *
+     * <p>
      * return WorkFlowApplicationContextId
-     * */
-    public synchronized Integer createWorkflowContext(WorkflowConfiguration workflowConfiguration){
+     */
+    public synchronized Integer createWorkflowContext(WorkflowConfiguration workflowConfiguration) {
 
         //更新得到最新的Id值
         Integer currentWorkflowContextId = workflowContextId.incrementAndGet();
@@ -43,7 +43,7 @@ public class WorkFlowApplication {
         workFlowApplicationContext.initialByWorkflowConfigurationInstance(workflowConfiguration);
 
         //上下文进入内存缓存
-        workFlowContextMap.put(currentWorkflowContextId,workFlowApplicationContext);
+        workFlowContextMap.put(currentWorkflowContextId, workFlowApplicationContext);
 
         //返回上下文id
         return currentWorkflowContextId;
@@ -51,17 +51,17 @@ public class WorkFlowApplication {
 
     /**
      * 增加一个游离节点
-     *
+     * <p>
      * 参数需要提供全量
-     * */
-    public synchronized Boolean addSimpleWorkflowNode(Integer workFlowApplicationContextId,WorkflowNode workflowNode){
+     */
+    public synchronized Boolean addSimpleWorkflowNode(Integer workFlowApplicationContextId, WorkflowNode workflowNode) {
 
         //从共享上下文池内得到缓存
         WorkFlowApplicationContext workFlowApplicationContext = workFlowContextMap.get(workFlowApplicationContextId);
 
         //如果workflowNode传入已经有nodeId的情况下，就沿用
         //@TODO 需要检查nodeId是否冲撞，一般都应该是系统生成的nodeId,而不是让用户对nodeId进行赋值
-        String nodeId = workflowNode.getNodeId() == null?workFlowApplicationContext.produceNodeId():workflowNode.getNodeId();
+        String nodeId = workflowNode.getNodeId() == null ? workFlowApplicationContext.produceNodeId() : workflowNode.getNodeId();
 
         //上下文自行分配nodeID
         workflowNode.setNodeId(nodeId);
@@ -78,25 +78,25 @@ public class WorkFlowApplication {
         return true;
     }
 
-    public synchronized Boolean removeWorkflownNode(Integer workFlowApplicationContextId,String nodeId){
+    public synchronized Boolean removeWorkflownNode(Integer workFlowApplicationContextId, String nodeId) {
         //从共享上下文池内得到缓存
         WorkFlowApplicationContext workFlowApplicationContext = workFlowContextMap.get(workFlowApplicationContextId);
 
         //挑选出将要被移除的nodeId
         WorkflowNode workflowNodePrepareToRemove = null;
-        for(WorkflowNode workflowNode : workFlowApplicationContext.getWorkflowConfiguration().getWorkflowNodeList()){
-            if(nodeId.equals(workflowNode.getNodeId())){
+        for (WorkflowNode workflowNode : workFlowApplicationContext.getWorkflowConfiguration().getWorkflowNodeList()) {
+            if (nodeId.equals(workflowNode.getNodeId())) {
                 workflowNodePrepareToRemove = workflowNode;
                 break;
             }
         }
 
         //清理这个Id相关的连接信息
-        for(String preNodeId : workflowNodePrepareToRemove.getConnector().getPre()){
+        for (String preNodeId : workflowNodePrepareToRemove.getConnector().getPre()) {
             workFlowApplicationContext.getWorkflowNodeMap().get(preNodeId).getConnector().getPost().remove(nodeId);
         }
 
-        for(String postNodeId : workflowNodePrepareToRemove.getConnector().getPost()){
+        for (String postNodeId : workflowNodePrepareToRemove.getConnector().getPost()) {
             workFlowApplicationContext.getWorkflowNodeMap().get(postNodeId).getConnector().getPre().remove(nodeId);
         }
 
@@ -126,9 +126,8 @@ public class WorkFlowApplication {
 
     /**
      * 更新某一个节点的配置 配置包含 执行单元，执行单元所需参数，上下游连接情况
-     *
-     * */
-    public synchronized Boolean modifyWorkflowNodeConfiguration(Integer workFlowApplicationContextId,WorkflowNode workflowNode){
+     */
+    public synchronized Boolean modifyWorkflowNodeConfiguration(Integer workFlowApplicationContextId, WorkflowNode workflowNode) {
 
         //从共享上下文池内得到缓存
         WorkFlowApplicationContext workFlowApplicationContext = workFlowContextMap.get(workFlowApplicationContextId);
@@ -147,43 +146,43 @@ public class WorkFlowApplication {
 
     /**
      * 重置某个节点的状态，连带的所有的后续的节点全部回滚到初始状态
-     * */
-    public synchronized Boolean resetWorkflowNode(){
+     */
+    public synchronized Boolean resetWorkflowNode() {
         return null;
     }
 
     /***
      * 单步执行，执行到指定位置的node,中止
      * */
-    public synchronized Boolean startReferTo(){
+    public synchronized Boolean startReferTo() {
         return null;
     }
 
     /**
      * 强制这个上下文暂停，并返回状态
-     * */
-    public synchronized Boolean forcePause(){
+     */
+    public synchronized Boolean forcePause() {
         return null;
     }
 
     /**
      * 再重新启动这个 工作流的上下文
-     * */
-    public synchronized Boolean resume(){
+     */
+    public synchronized Boolean resume() {
         return null;
     }
 
     /**
      * 所有的上下文的状态情况
-     * */
-    public Boolean status(){
+     */
+    public Boolean status() {
         return null;
     }
 
     /**
      * 根据workflowContextId 得到对应的 WorkFlowApplicationContext
-     * */
-    public WorkFlowApplicationContext getWorkFlowApplicationContext(Integer workflowContextId){
+     */
+    public WorkFlowApplicationContext getWorkFlowApplicationContext(Integer workflowContextId) {
         return workFlowContextMap.get(workflowContextId);
     }
 

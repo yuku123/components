@@ -14,8 +14,8 @@ new Ordering<T>(){                   // 或者直接构建一个Ordering对象�
 }
 ```
 
-
 #### 实例方法(支持链式)
+
 com.google.common.collect.Ordering
 
 ```java   
