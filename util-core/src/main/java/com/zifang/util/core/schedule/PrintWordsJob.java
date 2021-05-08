@@ -1,4 +1,4 @@
-package com.zifang.util.timer;
+package com.zifang.util.core.schedule;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;

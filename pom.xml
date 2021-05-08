@@ -43,7 +43,6 @@
         <module>util-http</module>
         <module>util-math</module>
         <module>util-geo</module>
-        <module>util-timer</module>
         <module>util-ql</module>
         <!--特殊化功能-->
         <module>util-extra</module>
@@ -52,7 +51,6 @@
         <module>util-source</module>
         <module>util-bpmn</module>
         <module>util-video</module>
-        <module>util-github</module>
         <module>util-distribute</module>
 
     </modules>
@@ -405,7 +403,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.2.0</version>
                 <configuration>
                     <attach>true</attach>
                 </configuration>
