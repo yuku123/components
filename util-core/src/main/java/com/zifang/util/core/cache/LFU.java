@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LFU<k, v> {
+
     private final int capcity;
 
     private Map<k, v> cache = new HashMap<>();

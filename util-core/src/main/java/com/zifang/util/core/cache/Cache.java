@@ -17,6 +17,7 @@ public class Cache {
 
     //定时器线程池，用于清除过期缓存
     private final static ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
     /**
      * 添加缓存
      *
