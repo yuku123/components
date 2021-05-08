@@ -10,11 +10,11 @@ import java.text.SimpleDateFormat;
 
 /**
  * 转换工具类
- * <p>
+ *
  * 若待转换值为null或者出现异常，则使用默认值
  */
 @Slf4j
-public class ConvertMethodWrapper {
+public class BasicTypeConverter {
 
     //----byte,short,int,long,float,double,char,string---------//
 

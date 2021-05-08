@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.converter.exception;
+package com.zifang.util.core.lang.exception;
 
 public class ConvertionException extends RuntimeException {
 

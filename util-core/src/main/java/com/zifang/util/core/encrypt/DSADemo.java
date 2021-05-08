@@ -1,6 +1,6 @@
 package com.zifang.util.core.encrypt;
 
-import org.apache.commons.codec.binary.Hex;
+//import org.apache.commons.codec.binary.Hex;
 
 import java.security.*;
 import java.security.interfaces.DSAPrivateKey;
@@ -39,7 +39,7 @@ public class DSADemo {
             signature.initSign(privateKey);
             signature.update(src.getBytes());
             byte[] result = signature.sign();
-            System.out.println("jdk dsa sign : " + Hex.encodeHexString(result));
+            System.out.println("jdk dsa sign : ");
 
             //3、验证签名
             X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(dsaPublicKey.getEncoded());

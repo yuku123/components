@@ -1,8 +1,6 @@
 package com.zifang.util.core.util.concurrency.problems;
 
 
-import com.zifang.util.zex.demo.jdk.concurent.problems.util.Utils;
-
 /**
  * <a href="http://hllvm.group.iteye.com/group/topic/34932">请问R大 有没有什么工具可以查看正在运行的类的c/汇编代码</a>提到了<b>代码提升</b>的问题。
  *
@@ -20,7 +18,7 @@ public class NoPublishDemo {
         Thread thread = new Thread(demo.getConcurrencyCheckTask());
         thread.start();
 
-        Utils.sleep(1000);
+        //Utils.sleep(1000);
         System.out.println("Set stop to true in main!");
         demo.stop = true;
         System.out.println("Exit main.");

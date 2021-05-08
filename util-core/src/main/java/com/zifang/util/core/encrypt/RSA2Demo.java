@@ -1,7 +1,5 @@
 package com.zifang.util.core.encrypt;
 
-import org.apache.commons.codec.binary.Hex;
-
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -45,7 +43,7 @@ public class RSA2Demo {
             signature.initSign(privateKey);
             signature.update(src.getBytes());
             byte[] result = signature.sign();
-            System.out.println("jdk rsa sign : " + Hex.encodeHexString(result));
+            System.out.println("jdk rsa sign : ");
 
 
             //3、验证签名

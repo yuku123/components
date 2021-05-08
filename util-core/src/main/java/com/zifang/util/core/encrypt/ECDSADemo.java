@@ -1,6 +1,5 @@
 package com.zifang.util.core.encrypt;
 
-import org.apache.commons.codec.binary.Hex;
 
 import java.security.*;
 import java.security.interfaces.ECPrivateKey;
@@ -40,7 +39,7 @@ public class ECDSADemo {
             signature.initSign(privateKey);
             signature.update(src.getBytes());
             byte[] result = signature.sign();
-            System.out.println("jdk ecdsa sign : " + Hex.encodeHexString(result));
+            System.out.println("jdk ecdsa sign : ");
 
             //3、签名验证
             X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(ecPublicKey.getEncoded());
