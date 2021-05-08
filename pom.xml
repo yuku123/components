@@ -19,7 +19,7 @@
 
     <modules>
         <module>util-core</module>
-        <module>util-db</module>
+        <module>util-persist</module>
         <module>util-office</module>
         <module>util-script</module>
         <module>util-crawler</module>
@@ -37,37 +37,28 @@
         <module>util-robot</module>
         <module>util-ioc</module>
         <module>util-aop</module>
-        <module>util-io</module>
         <module>util-compile</module>
         <module>util-json</module>
         <module>util-zex</module>
         <module>util-http</module>
-        <module>util-concurrency</module>
-        <module>util-pool</module>
         <module>util-math</module>
-        <module>util-encrypt</module>
         <module>util-geo</module>
         <module>util-timer</module>
-        <module>util-xml</module>
         <module>util-ql</module>
         <!--特殊化功能-->
         <module>util-extra</module>
         <module>util-monitor</module>
         <module>util-devops</module>
         <module>util-source</module>
-        <module>util-serializer</module>
         <module>util-bpmn</module>
         <module>util-video</module>
-        <module>util-pdf</module>
         <module>util-github</module>
         <module>util-distribute</module>
 
     </modules>
 
     <dependencyManagement>
-
         <dependencies>
-
             <dependency>
                 <groupId>com.zifang</groupId>
                 <artifactId>util-core</artifactId>
@@ -83,7 +74,6 @@
                 <artifactId>util-cache</artifactId>
                 <version>${util.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.zifang</groupId>
                 <artifactId>util-aop</artifactId>
@@ -94,25 +84,21 @@
                 <artifactId>util-ioc</artifactId>
                 <version>${util.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.zifang</groupId>
                 <artifactId>util-io</artifactId>
                 <version>${util.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.zifang</groupId>
                 <artifactId>util-rpc</artifactId>
                 <version>${util.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.zifang</groupId>
                 <artifactId>util-monitor</artifactId>
                 <version>${util.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.zifang</groupId>
                 <artifactId>util-json</artifactId>
