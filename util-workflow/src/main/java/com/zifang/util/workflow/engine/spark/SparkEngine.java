@@ -1,15 +1,12 @@
 package com.zifang.util.workflow.engine.spark;
 
 import com.zifang.util.bigdata.spark.context.SparkContextInstance;
-import com.zifang.util.core.annoations.AnnotationUtil;
-import com.zifang.util.core.util.ClassUtil;
 import com.zifang.util.workflow.annoation.EngineService;
 import com.zifang.util.workflow.engine.interfaces.AbstractEngineService;
-import com.zifang.util.workflow.engine.spark.services.*;
+import com.zifang.util.workflow.engine.spark.services.ChangeColumnNameHandler;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class SparkEngine extends AbstractSparkEngine {
 
@@ -46,9 +43,7 @@ public class SparkEngine extends AbstractSparkEngine {
             AbstractSparkEngineService abstractSparkEngineService = (AbstractSparkEngineService) registeredEngineServiceMap.get(serviceUnit).newInstance();
             abstractSparkEngineService.setSparkContextInstance(sparkContextInstance);
             return abstractSparkEngineService;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
@@ -61,15 +56,15 @@ public class SparkEngine extends AbstractSparkEngine {
 
     @Override
     public void doInitial() {
-        sparkContextInstance = new SparkContextInstance(mode, properties);
-
-        //注册引擎方法
-        Set<Class<?>> classSet = ClassUtil.searchClasses(this.getClass().getPackage().getName(), e -> e.isAnnotationPresent(EngineService.class));
-
-        for (Class<?> clazz : classSet) {
-            String value = AnnotationUtil.getAnnotationValue(clazz, EngineService.class, "name");
-            register(value, (Class<? extends AbstractEngineService>) clazz);
-        }
+//        sparkContextInstance = new SparkContextInstance(mode, properties);
+//
+//        //注册引擎方法
+//        Set<Class<?>> classSet = ClassUtil.searchClasses(this.getClass().getPackage().getName(), e -> e.isAnnotationPresent(EngineService.class));
+//
+//        for (Class<?> clazz : classSet) {
+//            String value = AnnotationUtil.getAnnotationValue(clazz, EngineService.class, "name");
+//            register(value, (Class<? extends AbstractEngineService>) clazz);
+//        }
     }
 
     public static void main(String[] args) {

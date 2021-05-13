@@ -2,12 +2,12 @@ package com.zifang.util.aop.interceptor;
 
 
 import com.zifang.util.aop.aspects.Aspect;
-import com.zifang.util.core.util.ClassUtil;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 /**
  * JDK实现的动态代理切面
@@ -41,10 +41,9 @@ public class JdkInterceptor implements InvocationHandler, Serializable {
 
         // 开始前回调
         if (aspect.before(target, method, args)) {
-            ClassUtil.setAccessible(method);
-
+            method.setAccessible(true);
             try {
-                result = method.invoke(ClassUtil.isStatic(method) ? null : target, args);
+                result = method.invoke(Modifier.isStatic(method.getModifiers()) ? null : target, args);
             } catch (InvocationTargetException e) {
                 // 异常回调（只捕获业务代码导致的异常，而非反射导致的异常）
                 if (aspect.afterException(target, method, args, e.getTargetException())) {

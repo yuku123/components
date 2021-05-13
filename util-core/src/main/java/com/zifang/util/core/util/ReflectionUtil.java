@@ -8,7 +8,6 @@ import java.lang.reflect.*;
  */
 public class ReflectionUtil {
 
-
     /**
      * 通过反射, 获得定义 Class 时声明的父类的泛型参数的类型
      * 如: public EmployeeDao extends BaseDao<Employee, String>
@@ -73,18 +72,6 @@ public class ReflectionUtil {
 
         return null;
     }
-
-    /**
-     * 使 filed 变为可访问
-     *
-     * @param field
-     */
-    public static void makeAccessible(Field field) {
-        if (!Modifier.isPublic(field.getModifiers())) {
-            field.setAccessible(true);
-        }
-    }
-
     /**
      * 循环向上转型, 获取对象的 DeclaredField
      *
@@ -148,7 +135,7 @@ public class ReflectionUtil {
         if (field == null)
             throw new IllegalArgumentException("Could not find field [" + fieldName + "] on target [" + object + "]");
 
-        makeAccessible(field);
+        field.setAccessible(true);
 
         try {
             field.set(object, value);
@@ -170,7 +157,7 @@ public class ReflectionUtil {
         if (field == null)
             throw new IllegalArgumentException("Could not find field [" + fieldName + "] on target [" + object + "]");
 
-        makeAccessible(field);
+        field.setAccessible(true);
 
         Object result = null;
 

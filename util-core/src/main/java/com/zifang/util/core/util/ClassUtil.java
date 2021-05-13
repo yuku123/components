@@ -1,45 +1,19 @@
-// Copyright (c) 2003-present, Jodd Team (http://jodd.org)
-// All rights reserved.
-//
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are met:
-//
-// 1. Redistributions of source code must retain the above copyright notice,
-// this list of conditions and the following disclaimer.
-//
-// 2. Redistributions in binary form must reproduce the above copyright
-// notice, this list of conditions and the following disclaimer in the
-// documentation and/or other materials provided with the distribution.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGE.
-
 package com.zifang.util.core.util;
 
 import sun.misc.ProxyGenerator;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
-import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.stream.Collectors;
 
 public class ClassUtil {
 
@@ -54,6 +28,139 @@ public class ClassUtil {
     public static final String METHOD_IS_PREFIX = "is";
     public static final String METHOD_SET_PREFIX = "set";
 
+
+    /**
+     * 获取指定类的全部属性字段
+     *
+     * @param className    需要获取的类名
+     * @param extendsField 是否获取接口或父类中的公共属性
+     * @return 属性字段数组
+     */
+
+    /**
+     * 获取类中的公共属性
+     *
+     * @param className    需要获取的类名
+     * @param extendsField 是否获取接口或父类中的公共属性
+     * @return 属性字段数组
+     */
+
+    /**
+     * 获取指定类的全部属性字段
+     *
+     * @param className    需要获取的类名
+     * @param extendsField 是否获取接口或父类中的公共属性
+     * @return 属性字段数组
+     */
+
+    /**
+     * 获取类中定义的protected类型的属性字段
+     *
+     * @param className 需要获取的类名
+     * @return protected类型的属性字段数组
+     */
+    /**
+     * 获取类中定义的private类型的属性字段
+     *
+     * @param className 需要获取的类名
+     * @return private类型的属性字段数组
+     */
+    /**
+     * 获取对象的全部public类型方法
+     *
+     * @param className     需要获取的类名
+     * @param extendsMethod 是否获取继承来的方法
+     * @return 方法名数组
+     */
+    /**
+     * 获取对象的全部protected类型方法
+     *
+     * @param className     需要获取的类名
+     * @param extendsMethod 是否获取继承来的方法
+     * @return 方法名数组
+     */
+    /**
+     * 获取对象的全部private类型方法
+     *
+     * @param className 需要获取的类名
+     * @return 方法名数组
+     */
+    /**
+     * 获取对象的全部方法
+     *
+     * @param className     需要获取的类名
+     * @param extendsMethod 是否获取继承来的方法
+     * @return 方法名数组
+     */
+
+    /**
+     * 调用对象的setter方法
+     *
+     * @param obj   对象
+     * @param att   属性名
+     * @param value 属性值
+     * @param type  属性类型
+     */
+
+    /**
+     * 获取指定目录下所有的类名
+     *
+     * @param classPath class文件路径
+     * @param jarPath jar文件路径
+     */
+    /**
+     * 从项目文件获取某包下所有类
+     *
+     * @param filePath     文件路径
+     * @param childPackage 是否遍历子包
+     * @return 类的完整名称
+     */
+    /**
+     * 从jar获取某包下所有类
+     *
+     * @param jarPath jar文件路径
+     * @return 类的完整名称
+     */
+    /**
+     * 获取jar包中的非*.class外的全部资源文件名字
+     *
+     * @param jarPath jar文件路径
+     * @return 返回资源名称数组
+     */
+    /**
+     * 获取jar包中的非*.class外的全部的以suffix结尾的资源文件
+     *
+     * @param jarPath jar包的路径
+     * @param suffix  后缀名称
+     * @return 返回资源名称数组
+     */
+    /**
+     * 获取类加载器已经加载的类
+     * @param classLoader
+     * @return
+     * @throws NoSuchFieldException
+     * @throws IllegalAccessException
+     */
+    /**
+     * 获取一个类的父类
+     *
+     * @param className 需要获取的类
+     * @return 父类的名称
+     */
+    /**
+     * 获取一个雷的继承链
+     *
+     * @param className 需要获取的类
+     * @return 继承类名的数组
+     */
+    /**
+     * 获取一类实现的全部接口
+     *
+     * @param className         需要获取的类
+     * @param extendsInterfaces 话说getInterfaces能全部获取到才对，然而测试的时候父类的接口并没有
+     *                          因此就多除了这参数
+     * @return 实现接口名称的数组
+     */
 
     /**
      * 找到class下,只为public的，名为methodName的Method
@@ -362,88 +469,10 @@ public class ClassUtil {
         allFields.add(newField);
     }
 
-
-    /**
-     * 指定类是否为Public
-     *
-     * @param clazz 类
-     * @return 是否为public
-     */
-    public static boolean isPublic(Class<?> clazz) {
-        if (null == clazz) {
-            throw new NullPointerException("Class to provided is null.");
-        }
-        return Modifier.isPublic(clazz.getModifiers());
-    }
-
-    /**
-     * 指定方法是否为Public
-     *
-     * @param method 方法
-     * @return 是否为public
-     */
-    public static boolean isPublic(Method method) {
-        return Modifier.isPublic(method.getModifiers());
-    }
-
-    /**
-     * 指定类是否为非public
-     *
-     * @param clazz 类
-     * @return 是否为非public
-     */
-    public static boolean isNotPublic(Class<?> clazz) {
-        return !isPublic(clazz);
-    }
-
-    /**
-     * 指定方法是否为非public
-     *
-     * @param method 方法
-     * @return 是否为非public
-     */
-    public static boolean isNotPublic(Method method) {
-        return !isPublic(method);
-    }
-
-    /**
-     * 是否为静态方法
-     *
-     * @param method 方法
-     * @return 是否为静态方法
-     */
-    public static boolean isStatic(Method method) {
-        return Modifier.isStatic(method.getModifiers());
-    }
-
-    /**
-     * 设置方法为可访问
-     *
-     * @param method 方法
-     * @return 方法
-     */
-    public static Method setAccessible(Method method) {
-        if (null != method && !method.isAccessible()) {
-            method.setAccessible(true);
-        }
-        return method;
-    }
-
-    /**
-     * 是否为抽象类
-     *
-     * @param clazz 类
-     * @return 是否为抽象类
-     */
-    public static boolean isAbstract(Class<?> clazz) {
-        return Modifier.isAbstract(clazz.getModifiers());
-    }
-
     /**
      * 是否为标准的类<br>
      * 这个类必须：
      *
-     * <pre>
      * 1、非接口
      * 2、非抽象类
      * 3、非Enum枚举
@@ -458,7 +487,7 @@ public class ClassUtil {
     public static boolean isNormalClass(Class<?> clazz) {
         return null != clazz //
                 && !clazz.isInterface() //
-                && !isAbstract(clazz) //
+                && !Modifier.isAbstract(clazz.getModifiers()) //
                 && !clazz.isEnum() //
                 && !clazz.isArray() //
                 && !clazz.isAnnotation() //
@@ -466,21 +495,7 @@ public class ClassUtil {
                 && !clazz.isPrimitive();//
     }
 
-    /**
-     * 判断类是否为枚举类型
-     *
-     * @param clazz 类
-     * @return 是否为枚举类型
-     * @since 3.2.0
-     */
-    public static boolean isEnum(Class<?> clazz) {
-        return null != clazz && clazz.isEnum();
-    }
-
-
     // ---------------------------------------------------------------- supported methods
-
-
     public static Method[] getSupportedMethods(final Class clazz) {
         return getSupportedMethods(clazz, Object.class);
     }
@@ -1376,7 +1391,7 @@ public class ClassUtil {
     /**
      * 将class导出到文件目录上
      */
-    public static void saveClassFile(Class clazz) {
+    public static void saveClassFile(Class<?> clazz) {
         //生成class的字节数组，此处生成的class与proxy.newProxyInstance中生成的class除了代理类的名字不同，其它内容完全一致
         byte[] classFile = ProxyGenerator.generateProxyClass(clazz.getSimpleName(), clazz.getInterfaces());
         String path = clazz.getResource(".").getPath();

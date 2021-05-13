@@ -9,7 +9,6 @@ public class ReflectUtil {
 
         Type genericType = null;
 
-        System.out.println("a");
         // 递归接口
         Type[] types = base.getGenericInterfaces();
         for(Type type : types){
