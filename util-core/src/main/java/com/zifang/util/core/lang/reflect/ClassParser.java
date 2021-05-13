@@ -1,15 +1,15 @@
 package com.zifang.util.core.lang.reflect;
 
-import com.zifang.util.core.pattern.composite.leaf.ILeaf;
 import com.zifang.util.core.pattern.composite.leaf.LeafHelper;
 import com.zifang.util.core.pattern.composite.leaf.LeafWrapper;
-import com.zifang.util.core.pattern.composite.node.INode;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.stream.Collectors;
 
 /**
  * 类解析器 提供更加方便的信息抓取工具
@@ -21,59 +21,103 @@ public class ClassParser {
     /**
      * 解析器缓存
      */
-    private static Map<Class<?>, ClassParser> classParserCache = new LinkedHashMap<>();
+    private static final Map<Class<?>, ClassParser> classParserCache = new ConcurrentHashMap<>();
 
     /**
      * 类继承关系
      * */
-    private static Map<Class<?>, INode> classInheraNode = new LinkedHashMap<>();
+    private static final Map<Class<?>, LeafWrapper<Long,Long,ClassParserInfoWrapper>> classInheritableNode = new ConcurrentHashMap<>();
 
-    private ILeaf iLeaf;
 
     /**
      * 当前针对的解析的类
      * */
     private Class<?> clazz;
 
-    public ClassParser(Class<?> clazz, boolean forceRefreshCache) {
-        this.clazz = clazz;
-        doParser();
-    }
+    /**
+     * 解析过程使用的参变量
+     * */
+    private Long leafIndex;
 
+
+    /**
+     * @param clazz 需要解析的类
+     * @param forceRefreshCache 是否需要强制刷新缓存
+     */
+    public ClassParser(Class<?> clazz, boolean forceRefreshCache) {
+
+        this.clazz = clazz;
+
+        LeafWrapper<Long, Long, ClassParserInfoWrapper> leafWrapper = doParser();
+
+        if(forceRefreshCache){
+            classInheritableNode.put(clazz,leafWrapper);
+            classParserCache.put(clazz,this);
+        } else {
+            classInheritableNode.putIfAbsent(clazz,leafWrapper);
+            classParserCache.putIfAbsent(clazz,this);
+        }
+
+    }
 
     public ClassParser(Class<?> clazz) {
         this(clazz, false);
     }
 
     public List<Field> getCurrentPublicField() {
-        return null;
+        return getCurrentAllField().stream().filter(e-> Modifier.isPublic(e.getModifiers())).collect(Collectors.toList());
     }
 
     public List<Field> getCurrentProtectedField() {
-        return null;
+        return getCurrentAllField().stream().filter(e-> Modifier.isProtected(e.getModifiers())).collect(Collectors.toList());
     }
 
     public List<Field> getCurrentPrivateField() {
-        return null;
+        return getCurrentAllField().stream().filter(e-> Modifier.isPrivate(e.getModifiers())).collect(Collectors.toList());
     }
 
     public List<Field> getCurrentAllField() {
-        return null;
+        return Arrays.asList(clazz.getDeclaredFields());
     }
 
-    private long leafIndex = 0;
+    public List<Method> getCurrentProtectedMethod() {
+        return getCurrentAllMethod().stream().filter(e->Modifier.isProtected(e.getModifiers())).collect(Collectors.toList());
+    }
 
-    private void doParser() {
+    public List<Method> getCurrentPublicMethod() {
+        return getCurrentAllMethod().stream().filter(e->Modifier.isPublic(e.getModifiers())).collect(Collectors.toList());
+    }
+
+
+    public List<Method> getCurrentDefaultMethod() {
+        return getCurrentAllMethod().stream().filter(e->e.getModifiers() == 0).collect(Collectors.toList());
+    }
+
+
+
+    public List<Method> getCurrentPrivateMethod() {
+        return getCurrentAllMethod().stream().filter(e->Modifier.isPrivate(e.getModifiers())).collect(Collectors.toList());
+    }
+
+    public List<Method> getCurrentAllMethod() {
+        return Arrays.asList(clazz.getDeclaredMethods());
+    }
+
+
+    private LeafWrapper<Long, Long, ClassParserInfoWrapper> doParser() {
 
         List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> leafWrappers = loop(clazz,leafIndex);
 
-        iLeaf = LeafHelper.treeify(leafWrappers);
+        return  LeafHelper.treeify(leafWrappers);
     }
 
-    private List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> loop(Class clazz,long parentId) {
+    private List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> loop(Class clazz,Long parentId) {
 
         List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> leafWrappers = new ArrayList<>();
 
+        if(leafIndex == null){
+            leafIndex = 0L;
+        }
         long current = leafIndex;
         leafWrappers.add(LeafHelper.wrapper(current, parentId, new ClassParserInfoWrapper(clazz)));
 

@@ -52,19 +52,19 @@ public class LeafHelper {
     /**
      * 对一般化object 进行leaf的包装
      */
-    public static <A, B, C> LeafWrapper<A, B, C> wrapper(A currentId, B parentId, C bean) {
+    public static <ID, C> LeafWrapper<ID, ID, C> wrapper(ID currentId, ID parentId, C bean) {
         return new LeafWrapper<>(currentId, parentId, bean);
     }
 
     /**
      * 树化结点包装
      */
-    public static <A, B, C> LeafWrapper treeify(List<LeafWrapper<A, B, C>> leafWrappers) {
-        Map<A, LeafWrapper<A,B,C>> leafWrapperMap = leafWrappers.stream().collect(Collectors.toMap(LeafWrapper::getA, e -> e));
+    public static <ID, C> LeafWrapper<ID,ID,C> treeify(List<LeafWrapper<ID, ID, C>> leafWrappers) {
+        Map<ID, LeafWrapper<ID,ID,C>> leafWrapperMap = leafWrappers.stream().collect(Collectors.toMap(LeafWrapper::getA, e -> e));
 
-        LeafWrapper root = null;
-        for (LeafWrapper<A,B,C> leafWrapper : leafWrappers) {
-            LeafWrapper parent = leafWrapperMap.get(leafWrapper.getA());
+        LeafWrapper<ID,ID,C> root = null;
+        for (LeafWrapper<ID,ID,C> leafWrapper : leafWrappers) {
+            LeafWrapper parent = leafWrapperMap.get(leafWrapper.getB());
             if (parent == null) {
                 root = leafWrapper;
             } else {
