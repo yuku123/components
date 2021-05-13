@@ -2,6 +2,11 @@ package com.zifang.util.core.util;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+
 @Slf4j
 public class ClassLoaderUtil {
 
@@ -29,5 +34,19 @@ public class ClassLoaderUtil {
             e.printStackTrace();
         }
         return theClass;
+    }
+
+    public static List<Class> getLoaderClass(ClassLoader classLoader) throws NoSuchFieldException, IllegalAccessException {
+        Class cla = classLoader.getClass();
+        while (cla != ClassLoader.class)
+            cla = cla.getSuperclass();
+        Field field = cla.getDeclaredField("classes");
+        field.setAccessible(true);
+        Vector v = (Vector) field.get(classLoader);
+        List<Class> result = new ArrayList<>();
+        for (int i = 0; i < v.size(); i++) {
+            result.add((Class)v.get(i));
+        }
+        return result;
     }
 }

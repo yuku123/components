@@ -8,10 +8,6 @@
 //import java.io.File;
 //import java.io.FileNotFoundException;
 //import java.io.IOException;
-//import java.lang.reflect.Field;
-//import java.lang.reflect.InvocationTargetException;
-//import java.lang.reflect.Method;
-//import java.lang.reflect.Modifier;
 //import java.net.MalformedURLException;
 //import java.net.URI;
 //import java.net.URISyntaxException;
@@ -26,175 +22,6 @@
 // */
 //@Slf4j
 //public final class ClassHelper {
-//
-//
-//    public final static String[] getField(String className, boolean extendsField) {
-//        Class classz = loadClass(className);
-//        Field[] fields = classz.getFields();
-//        Set<String> set = new HashSet<>();
-//        if (fields != null) {
-//            for (Field f : fields) {
-//                set.add(f.getName());
-//            }
-//        }
-//        if (extendsField) {
-//            Field[] fieldz = classz.getDeclaredFields();
-//            if (fieldz != null) {
-//                for (Field f : fieldz) {
-//                    set.add(f.getName());
-//                }
-//            }
-//        }
-//        return set.toArray(new String[set.size()]);
-//    }
-//
-//
-//    public final static String[] getPublicField(String className, boolean extendsField) {
-//        Class classz = loadClass(className);
-//        Set<String> set = new HashSet<>();
-//        Field[] fields = classz.getDeclaredFields();
-//        if (fields != null) {
-//            for (Field f : fields) {
-//                String modifier = Modifier.toString(f.getModifiers());
-//                if (modifier.startsWith("public")) {
-//                    set.add(f.getName());
-//                }
-//            }
-//        }
-//        if (extendsField) {
-//            Field[] fieldz = classz.getFields();
-//            if (fieldz != null) {
-//                for (Field f : fieldz) {
-//                    set.add(f.getName());
-//                }
-//            }
-//        }
-//        return set.toArray(new String[set.size()]);
-//    }
-//
-//
-//    public final static String[] getProtectedField(String className) {
-//        Class classz = loadClass(className);
-//        Set<String> set = new HashSet<>();
-//        Field[] fields = classz.getDeclaredFields();
-//        if (fields != null) {
-//            for (Field f : fields) {
-//                String modifier = Modifier.toString(f.getModifiers());
-//                if (modifier.startsWith("protected")) {
-//                    set.add(f.getName());
-//                }
-//            }
-//        }
-//        return set.toArray(new String[set.size()]);
-//    }
-//
-//
-//    public final static String[] getPrivateField(String className) {
-//        Class classz = loadClass(className);
-//        Set<String> set = new HashSet<>();
-//        Field[] fields = classz.getDeclaredFields();
-//        if (fields != null) {
-//            for (Field f : fields) {
-//                String modifier = Modifier.toString(f.getModifiers());
-//                if (modifier.startsWith("private")) {
-//                    set.add(f.getName());
-//                }
-//            }
-//        }
-//        return set.toArray(new String[set.size()]);
-//    }
-//
-//
-//    public final static String[] getPublicMethod(String className, boolean extendsMethod) {
-//        Class classz = loadClass(className);
-//        Method[] methods;
-//        if (extendsMethod) {
-//            methods = classz.getMethods();
-//        } else {
-//            methods = classz.getDeclaredMethods();
-//        }
-//        Set<String> set = new HashSet<>();
-//        if (methods != null) {
-//            for (Method f : methods) {
-//                String modifier = Modifier.toString(f.getModifiers());
-//                if (modifier.startsWith("public")) {
-//                    set.add(f.getName());
-//                }
-//            }
-//        }
-//        return set.toArray(new String[set.size()]);
-//    }
-//
-//
-//
-//    public final static String[] getProtectedMethod(String className, boolean extendsMethod) {
-//        Class classz = loadClass(className);
-//        Method[] methods;
-//        if (extendsMethod) {
-//            methods = classz.getMethods();
-//        } else {
-//            methods = classz.getDeclaredMethods();
-//        }
-//        Set<String> set = new HashSet<>();
-//        if (methods != null) {
-//            for (Method f : methods) {
-//                String modifier = Modifier.toString(f.getModifiers());
-//                if (modifier.startsWith("protected")) {
-//                    set.add(f.getName());
-//                }
-//            }
-//        }
-//        return set.toArray(new String[set.size()]);
-//    }
-//
-//
-//    public final static String[] getPrivateMethod(String className) {
-//        Class classz = loadClass(className);
-//        Method[] methods = classz.getDeclaredMethods();
-//        Set<String> set = new HashSet<>();
-//        if (methods != null) {
-//            for (Method f : methods) {
-//                String modifier = Modifier.toString(f.getModifiers());
-//                if (modifier.startsWith("private")) {
-//                    set.add(f.getName());
-//                }
-//            }
-//        }
-//        return set.toArray(new String[set.size()]);
-//    }
-//
-//
-//    public final static String[] getMethod(String className, boolean extendsMethod) {
-//        Class classz = loadClass(className);
-//        Method[] methods;
-//        if (extendsMethod) {
-//            methods = classz.getMethods();
-//        } else {
-//            methods = classz.getDeclaredMethods();
-//        }
-//        Set<String> set = new HashSet<>();
-//        if (methods != null) {
-//            for (Method f : methods) {
-//                set.add(f.getName());
-//            }
-//        }
-//        return set.toArray(new String[set.size()]);
-//    }
-//
-//
-//
-//    public final static void setter(Object obj, String att, Object value, Class<?> type)
-//            throws InvocationTargetException, IllegalAccessException {
-//        try {
-//            String name = att.substring(0, 1).toUpperCase() + att.substring(1);
-//            Method met = obj.getClass().getMethod("set" + name, type);
-//            met.invoke(obj, value);
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//
 //
 //    /**
 //     * 获取指定目录下所有的类名
@@ -246,11 +73,6 @@
 //        }
 //        return myClassName;
 //    }
-//
-//
-//
-//
-//
 //    public final static List<String> getResourceNameByJar(String jarPath) {
 //        List<String> resource = new ArrayList<>();
 //        try (JarFile jarFile = new JarFile(jarPath)) {
@@ -286,29 +108,6 @@
 //        return resource;
 //    }
 //
-//
-//    public static List<Class> getLoaderClass(ClassLoader classLoader) throws NoSuchFieldException, IllegalAccessException {
-//        Class cla = classLoader.getClass();
-//        while (cla != ClassLoader.class)
-//            cla = cla.getSuperclass();
-//        Field field = cla.getDeclaredField("classes");
-//        field.setAccessible(true);
-//        Vector v = (Vector) field.get(classLoader);
-//        List<Class> result = new ArrayList<>();
-//        for (int i = 0; i < v.size(); i++) {
-//            result.add((Class)v.get(i));
-//        }
-//        return result;
-//    }
-//
-//
-//    public final static String getSuperClass(String className) {
-//        Class classz = loadClass(className);
-//        Class superclass = classz.getSuperclass();
-//        return superclass.getName();
-//    }
-//
-//
 //    public final static String[] getSuperClassChian(String className) {
 //        Class classz = loadClass(className);
 //        List<String> list = new ArrayList<>();
@@ -319,25 +118,6 @@
 //            list.addAll(Arrays.asList(getSuperClassChian(superName)));
 //        } else {
 //            list.add(superName);
-//        }
-//        return list.toArray(new String[list.size()]);
-//    }
-//
-//
-//    public final static String[] getInterfaces(String className, boolean extendsInterfaces) {
-//        Class classz = loadClass(className);
-//        List<String> list = new ArrayList<>();
-//        Class[] interfaces = classz.getInterfaces();
-//        if (interfaces != null) {
-//            for (Class inter : interfaces) {
-//                list.add(inter.getName());
-//            }
-//        }
-//        if (extendsInterfaces) {
-//            String[] superClass = getSuperClassChian(className);
-//            for (String c : superClass) {
-//                list.addAll(Arrays.asList(getInterfaces(c, false)));
-//            }
 //        }
 //        return list.toArray(new String[list.size()]);
 //    }
