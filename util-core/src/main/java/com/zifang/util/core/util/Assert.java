@@ -1,5 +1,8 @@
 package com.zifang.util.core.util;
 
+/**
+ * @author zifang
+ */
 public interface Assert {
     /**
      * 创建异常

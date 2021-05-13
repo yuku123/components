@@ -7,6 +7,9 @@ import java.util.List;
  */
 public interface INode {
 
+    /**
+     * @return
+     */
     List<INode> getConbinedNode();
 
 }

@@ -20,7 +20,7 @@ public class LeafTest {
                 .map(e -> LeafHelper.wrapper(e.getId(), e.getParentId(), e))
                 .collect(Collectors.toList()); // 转换结点
 
-        ILeaf tree = LeafHelper.solveLeafWrapperList(leafWrappers); // 生成树 获得根结点
+        ILeaf tree = LeafHelper.treeify(leafWrappers); // 生成树 获得根结点
 
         bfsVisit(tree, ""); // 广度优先
 

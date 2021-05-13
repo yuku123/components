@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 /**
  * 针对 叶子结点的操作
+ *
+ * @author zifang
  */
 public class LeafHelper {
 
@@ -20,8 +22,7 @@ public class LeafHelper {
             throw new NullPointerException();
         }
 
-        return leaves.stream().filter(ILeaf::isRoot)
-                .findFirst().orElse(null);
+        return leaves.stream().filter(ILeaf::isRoot).findFirst().orElse(null);
     }
 
     /**
@@ -33,8 +34,7 @@ public class LeafHelper {
             throw new NullPointerException();
         }
 
-        return leaves.stream()
-                .filter(ILeaf::isRoot).count() > 1;
+        return leaves.stream().filter(ILeaf::isRoot).count() > 1;
     }
 
     /**
@@ -57,24 +57,21 @@ public class LeafHelper {
     }
 
     /**
-     * 组织LeafWrapper的list,进行注入
+     * 树化结点包装
      */
-    public static <A, B, C> ILeaf solveLeafWrapperList(List<LeafWrapper<A, B, C>> leafWrappers) {
-        Map<A, LeafWrapper> leafWrapperMap = leafWrappers.stream()
-                .collect(Collectors.toMap(LeafWrapper::getA, LeafWrapper -> LeafWrapper));
+    public static <A, B, C> LeafWrapper treeify(List<LeafWrapper<A, B, C>> leafWrappers) {
+        Map<A, LeafWrapper<A,B,C>> leafWrapperMap = leafWrappers.stream().collect(Collectors.toMap(LeafWrapper::getA, e -> e));
 
         LeafWrapper root = null;
-        for (LeafWrapper leafWrapper : leafWrappers) {
-            ILeaf parent = leafWrapperMap.get(leafWrapper.getParentId());
+        for (LeafWrapper<A,B,C> leafWrapper : leafWrappers) {
+            LeafWrapper parent = leafWrapperMap.get(leafWrapper.getA());
             if (parent == null) {
                 root = leafWrapper;
             } else {
                 leafWrapper.setParent(leafWrapper);
                 parent.appendSubLeaf(leafWrapper);
             }
-
         }
-
         return root;
     }
 }

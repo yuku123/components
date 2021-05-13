@@ -9,8 +9,8 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Description:
- * 编码相关的封装类
+ * Description: 编码相关的封装类
+ * @author zifang
  */
 public final class Charsets {
 

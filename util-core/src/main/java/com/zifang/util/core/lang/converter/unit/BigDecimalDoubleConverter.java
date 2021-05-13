@@ -4,6 +4,9 @@ import com.zifang.util.core.lang.converter.Converter;
 
 import java.math.BigDecimal;
 
+/**
+ * @author zifang
+ */
 public class BigDecimalDoubleConverter implements Converter<BigDecimal, Double> {
 
     @Override

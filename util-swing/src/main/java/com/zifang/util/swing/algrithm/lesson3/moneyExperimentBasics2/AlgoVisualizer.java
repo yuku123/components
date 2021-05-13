@@ -1,6 +1,8 @@
 package com.zifang.util.swing.algrithm.lesson3.moneyExperimentBasics2;
 
 import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import java.util.Arrays;
 
 public class AlgoVisualizer {

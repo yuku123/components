@@ -5,6 +5,9 @@ import com.zifang.util.core.lang.tuples.Triplet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author zifang
+ */
 public class LeafWrapper<A, B, C> extends Triplet<A, B, C> implements ILeaf {
 
     private ILeaf parent;

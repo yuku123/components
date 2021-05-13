@@ -3,6 +3,9 @@ package com.zifang.util.core.lang.reflect;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+/**
+ * @author zifang
+ */
 public class ReflectUtil {
 
     public static Type getGenericInterfaceType(Class<?> base, Class<?> interfaceClazz) {

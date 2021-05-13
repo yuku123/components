@@ -38,14 +38,15 @@ public class ClassLoaderUtil {
 
     public static List<Class> getLoaderClass(ClassLoader classLoader) throws NoSuchFieldException, IllegalAccessException {
         Class cla = classLoader.getClass();
-        while (cla != ClassLoader.class)
+        while (cla != ClassLoader.class) {
             cla = cla.getSuperclass();
+        }
         Field field = cla.getDeclaredField("classes");
         field.setAccessible(true);
         Vector v = (Vector) field.get(classLoader);
         List<Class> result = new ArrayList<>();
-        for (int i = 0; i < v.size(); i++) {
-            result.add((Class) v.get(i));
+        for (Object o : v) {
+            result.add((Class) o);
         }
         return result;
     }
