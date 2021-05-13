@@ -9,7 +9,7 @@ import java.lang.reflect.Method;
 
 /**
  * 注解工具类
- *
+ * <p>
  * 快速获取注解对象、注解值等工具封装
  *
  * @author zifang
@@ -120,7 +120,7 @@ public class AnnotationUtil {
 
     /**
      * 获取注解类可以用来修饰哪些程序元素，如 TYPE, METHOD, CONSTRUCTOR, FIELD, PARAMETER 等
-     *
+     * <p>
      * 当没有标记target的场合，默认都修饰
      *
      * @param annotationType 注解类

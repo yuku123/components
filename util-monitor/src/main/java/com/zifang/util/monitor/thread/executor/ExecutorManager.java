@@ -2,7 +2,6 @@ package com.zifang.util.monitor.thread.executor;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.zifang.util.monitor.thread.MonitorManager;
-
 import com.zifang.util.monitor.thread.Monitorable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

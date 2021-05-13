@@ -8,14 +8,13 @@
  */
 package com.zifang.util.zex.guava.collect;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-import org.junit.Test;
-
 import com.google.common.collect.ConcurrentHashMultiset;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Multiset继承自JDK中的Collection接口，而不是Set接口，所以包含重复元素并没有违反原有的接口契约。

@@ -3,7 +3,6 @@ package com.zifang.util.monitor.thread.task;
 import com.alibaba.fastjson.JSONObject;
 import com.zifang.util.monitor.thread.Monitorable;
 import com.zifang.util.monitor.thread.Status;
-
 import com.zifang.util.monitor.thread.StatusLevel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

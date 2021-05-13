@@ -3,10 +3,6 @@ package com.zifang.util.core.lang;
 
 import com.zifang.util.core.util.StringUtil;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Random;
-
 
 /**
  * 提供位运算操作的工具类

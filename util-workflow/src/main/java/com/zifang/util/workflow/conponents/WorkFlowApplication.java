@@ -4,13 +4,10 @@ import com.zifang.util.workflow.config.WorkflowConfiguration;
 import com.zifang.util.workflow.config.WorkflowNode;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 /**
  * 整个处理流的应用

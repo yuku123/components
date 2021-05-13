@@ -1,7 +1,5 @@
 package com.zifang.util.core.util;
 
-import com.zifang.util.core.util.DateFormatUtil;
-
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;

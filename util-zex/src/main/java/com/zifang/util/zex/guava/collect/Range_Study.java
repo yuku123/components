@@ -8,16 +8,11 @@
  */
 package com.zifang.util.zex.guava.collect;
 
-import java.util.Map;
-import java.util.Set;
-
+import com.google.common.collect.*;
 import org.junit.Test;
 
-import com.google.common.collect.Range;
-import com.google.common.collect.RangeMap;
-import com.google.common.collect.RangeSet;
-import com.google.common.collect.TreeRangeMap;
-import com.google.common.collect.TreeRangeSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * RangeSet<C extends Comparable>、RangeMap

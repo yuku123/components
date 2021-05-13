@@ -8,14 +8,13 @@
  */
 package com.zifang.util.zex.guava.base;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.Test;
-
 import com.google.common.base.CaseFormat;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author zxiaofan

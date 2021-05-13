@@ -1,10 +1,6 @@
 package com.zifang.util.server.netty.test;
 
 import com.zifang.util.server.netty.im.ch9.*;
-import com.zifang.util.server.netty.test.packet.ControlRequestPacket;
-import com.zifang.util.server.netty.test.packet.ControlResponsePacket;
-import com.zifang.util.server.netty.test.packet.ImageRequestPacket;
-import com.zifang.util.server.netty.test.packet.ImageResponsePacket;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashMap;

@@ -1,7 +1,6 @@
 package com.zifang.util.server.net.bookdemo;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;

@@ -7,7 +7,7 @@ import org.junit.Test;
 public class ConvertRegisterTest {
 
     @Test
-    public void test0(){
+    public void test0() {
         ConvertRegister.registerConverter(BigDecimalDoubleConverter.class);
     }
 }

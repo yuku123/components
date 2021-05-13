@@ -2,8 +2,6 @@ package com.zifang.util.zex.interview.demo2;
 
 import com.zifang.util.aop.ProxyUtil;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 public class Test {

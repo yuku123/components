@@ -1,10 +1,10 @@
 package com.zifang.util.core.beans;
 
+import junit.framework.TestCase;
+
 import java.beans.PropertyEditorSupport;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import junit.framework.TestCase;
 
 public class TestPropertyEditorSupport extends TestCase {
 

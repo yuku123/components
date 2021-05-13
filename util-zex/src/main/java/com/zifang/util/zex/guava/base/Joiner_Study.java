@@ -8,17 +8,16 @@
  */
 package com.zifang.util.zex.guava.base;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Joiner.MapJoiner;
+import org.junit.Test;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.junit.Test;
-
-import com.google.common.base.Joiner;
-import com.google.common.base.Joiner.MapJoiner;
 
 /**
  * 连接器Joiner.join(Iterable<?> parts)

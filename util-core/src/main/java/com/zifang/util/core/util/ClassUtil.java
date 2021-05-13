@@ -12,7 +12,10 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.jar.JarFile;
 
 public class ClassUtil {
@@ -225,7 +228,7 @@ public class ClassUtil {
     /**
      * 是否为标准的类<br>
      * 这个类必须：
-     *
+     * <p>
      * 1、非接口
      * 2、非抽象类
      * 3、非Enum枚举
@@ -396,7 +399,6 @@ public class ClassUtil {
         }
         return false;
     }
-
 
 
     // ---------------------------------------------------------------- misc

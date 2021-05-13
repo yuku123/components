@@ -2,9 +2,8 @@ package com.zifang.util.swing.algrithm.lesson2.b;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.*;
-
-import java.lang.InterruptedException;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 public class AlgoVisHelper {
 

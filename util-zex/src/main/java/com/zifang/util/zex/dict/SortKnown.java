@@ -1,7 +1,6 @@
 package com.zifang.util.zex.dict;
 
 import com.zifang.util.core.util.FileUtil;
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import java.util.*;

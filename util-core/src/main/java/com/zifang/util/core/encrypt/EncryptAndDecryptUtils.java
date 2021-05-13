@@ -30,9 +30,9 @@ public class EncryptAndDecryptUtils {
      * SHA加密
      *
      * @param value 待加密字符
+     * @return 密文
      * @author : chenssy
      * @date : 2016年5月20日 下午4:59:42
-     * @return 密文
      */
     public static String shaEncrypt(String value) {
         String result = null;

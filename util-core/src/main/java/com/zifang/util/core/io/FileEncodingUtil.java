@@ -1,8 +1,8 @@
 package com.zifang.util.core.io;
 
 
-import com.zifang.util.core.util.CheckUtil;
 import com.zifang.util.core.io.ss.FileUtil;
+import com.zifang.util.core.util.CheckUtil;
 
 import java.io.*;
 import java.nio.charset.Charset;

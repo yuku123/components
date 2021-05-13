@@ -45,7 +45,7 @@ public class ClassLoaderUtil {
         Vector v = (Vector) field.get(classLoader);
         List<Class> result = new ArrayList<>();
         for (int i = 0; i < v.size(); i++) {
-            result.add((Class)v.get(i));
+            result.add((Class) v.get(i));
         }
         return result;
     }

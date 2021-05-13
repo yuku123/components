@@ -1,6 +1,6 @@
 package com.zifang.util.swing.algrithm.lesson2.a;
 
-import java.awt.Point;
+import java.awt.*;
 
 public class Circle {
 

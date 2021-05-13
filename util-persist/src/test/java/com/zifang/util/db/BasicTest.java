@@ -1,12 +1,12 @@
 package com.zifang.util.db;
 
+import com.zifang.util.core.collections.Lists;
 import com.zifang.util.db.context.DataSourceContext;
 import com.zifang.util.db.context.PersistentContext;
 import com.zifang.util.db.entity1.User;
 import com.zifang.util.db.respository.RepositoryProxy;
 import com.zifang.util.db.transation.TransationManager;
 import org.junit.Test;
-import com.zifang.util.core.collections.Lists;
 
 import java.util.List;
 

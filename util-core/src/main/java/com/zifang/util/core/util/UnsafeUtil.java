@@ -1,4 +1,3 @@
-
 package com.zifang.util.core.util;
 
 import sun.misc.Unsafe;

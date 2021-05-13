@@ -2,9 +2,6 @@ package com.zifang.util.server.netty.test.handler;
 
 import com.zifang.util.core.demo.thirdpart.components.netty.test.Session;
 import com.zifang.util.core.demo.thirdpart.components.netty.test.SessionUtil;
-import com.zifang.util.core.demo.thirdpart.components.netty.test.packet.LoginRequestPacket;
-import com.zifang.util.core.demo.thirdpart.components.netty.test.packet.LoginResponsePacket;
-import com.zifang.util.core.demo.thirdpart.jar.json.GsonUtil;
 import com.zifang.util.praser.json.GsonUtil;
 import com.zifang.util.server.netty.test.packet.LoginRequestPacket;
 import com.zifang.util.server.netty.test.packet.LoginResponsePacket;

@@ -5,7 +5,8 @@ import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class AnalysisPdf {
     public static void main(String[] args) throws IOException {

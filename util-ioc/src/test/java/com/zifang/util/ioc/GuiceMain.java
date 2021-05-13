@@ -2,7 +2,6 @@ package com.zifang.util.ioc;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.Module;
 
 public class GuiceMain {
 

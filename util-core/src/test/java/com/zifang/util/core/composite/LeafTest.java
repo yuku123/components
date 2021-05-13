@@ -3,7 +3,6 @@ package com.zifang.util.core.composite;
 import com.zifang.util.core.pattern.composite.leaf.ILeaf;
 import com.zifang.util.core.pattern.composite.leaf.LeafHelper;
 import com.zifang.util.core.pattern.composite.leaf.LeafWrapper;
-import com.zifang.util.core.pattern.composite.leaf.Tree;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -8,11 +8,10 @@
  */
 package com.zifang.util.zex.guava.collect;
 
-import org.junit.Test;
-
 import com.google.common.collect.ClassToInstanceMap;
 import com.google.common.collect.ImmutableClassToInstanceMap;
 import com.google.common.collect.MutableClassToInstanceMap;
+import org.junit.Test;
 
 
 /**

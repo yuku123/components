@@ -8,17 +8,16 @@
  */
 package com.zifang.util.zex.guava.collect;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map.Entry;
-
-import org.junit.Test;
-
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multiset;
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map.Entry;
 
 /**
  * Multimap:get(key)==>Collection<>（可能为空集合（默认容量为3）但不会为null，asMap.get()可能返回null）

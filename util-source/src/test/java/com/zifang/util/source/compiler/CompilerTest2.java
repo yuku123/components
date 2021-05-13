@@ -1,11 +1,9 @@
 package com.zifang.util.source.compiler;
 
 import com.zifang.util.core.util.FileUtil;
-import com.zifang.util.source.compiler.CharSequenceJavaFileObject;
-import com.zifang.util.source.compiler.CompileContext;
-import com.zifang.util.source.compiler.CustomerCompileJavaFileManager;
 
-import javax.tools.*;
+import javax.tools.JavaFileObject;
+import javax.tools.StandardLocation;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 

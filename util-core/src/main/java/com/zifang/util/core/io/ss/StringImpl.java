@@ -1,8 +1,5 @@
 package com.zifang.util.core.io.ss;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-
 /**
  * 对比俩个字符串的相似度
  */

@@ -1,8 +1,5 @@
 package com.zifang.util.server.netty.test;
 
-import com.zifang.util.core.demo.thirdpart.components.netty.test.handler.ImageRequestHandler;
-import com.zifang.util.core.demo.thirdpart.components.netty.test.handler.LoginRequestHandler;
-import com.zifang.util.core.demo.thirdpart.components.netty.test.handler.MessageRequestHandler;
 import com.zifang.util.server.netty.im.ch9.LoginRequestHandler;
 import com.zifang.util.server.netty.test.handler.ImageRequestHandler;
 import com.zifang.util.server.netty.test.handler.MessageRequestHandler;

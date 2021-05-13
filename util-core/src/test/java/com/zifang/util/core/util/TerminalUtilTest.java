@@ -1,7 +1,5 @@
 package com.zifang.util.core.util;
 
-import org.junit.Test;
-
 import java.io.IOException;
 
 public class TerminalUtilTest {

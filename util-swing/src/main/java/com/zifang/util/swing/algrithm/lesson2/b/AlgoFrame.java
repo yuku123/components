@@ -1,11 +1,7 @@
 package com.zifang.util.swing.algrithm.lesson2.b;
 
-import java.awt.Graphics2D;
-import java.awt.Graphics;
-import java.awt.Dimension;
-import java.awt.RenderingHints;
-
 import javax.swing.*;
+import java.awt.*;
 
 public class AlgoFrame extends JFrame {
 

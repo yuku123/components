@@ -2,9 +2,6 @@ package com.zifang.util.core.util;
 
 import com.google.gson.Gson;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.List;
 import java.util.Map;
 
 /**

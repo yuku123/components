@@ -8,15 +8,10 @@
  */
 package com.zifang.util.zex.guava.collect;
 
-import java.util.List;
-
+import com.google.common.collect.*;
 import org.junit.Test;
 
-import com.google.common.collect.ArrayTable;
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Table;
-import com.google.common.collect.TreeBasedTable;
+import java.util.List;
 
 /**
  * @author zxiaofan

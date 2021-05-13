@@ -8,19 +8,18 @@
  */
 package com.zifang.util.zex.guava.collect;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-
-import com.zifang.util.zex.guava.util.GsonUtil;
-import org.junit.Test;
-
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
+import com.zifang.util.zex.guava.util.GsonUtil;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 
 
 /**

@@ -8,15 +8,14 @@
  */
 package com.zifang.util.zex.guava.collect;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.Test;
-
 import com.google.common.collect.BiMap;
 import com.google.common.collect.EnumBiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.ImmutableBiMap;
+import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * inverse()反转BiMap<K, V>的键值映射.inverse的map是一个视图，在这个反转后的map中的任何增删改操作都会影响原来的map。

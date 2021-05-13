@@ -2,7 +2,6 @@ package com.zifang.util.db.entity1;
 
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Table(name = "c")

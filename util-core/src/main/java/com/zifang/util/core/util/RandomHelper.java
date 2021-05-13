@@ -1,7 +1,9 @@
 package com.zifang.util.core.util;
 
 
-import java.util.*;
+import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * 随机相关的方法封装

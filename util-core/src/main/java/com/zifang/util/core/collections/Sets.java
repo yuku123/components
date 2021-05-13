@@ -1,6 +1,8 @@
 package com.zifang.util.core.collections;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 /**
  * @author zifang

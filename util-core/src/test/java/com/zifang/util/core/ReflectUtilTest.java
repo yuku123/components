@@ -9,10 +9,10 @@ import java.lang.reflect.Type;
 public class ReflectUtilTest {
 
     @Test
-    public void test0(){
-        Type type1 = ReflectUtil.getGenericInterfaceType(A.class,Converter.class);
-        Type type2 = ReflectUtil.getGenericInterfaceType(B.class,Converter.class);
-        Type type3 = ReflectUtil.getGenericInterfaceType(C.class,Converter.class);
+    public void test0() {
+        Type type1 = ReflectUtil.getGenericInterfaceType(A.class, Converter.class);
+        Type type2 = ReflectUtil.getGenericInterfaceType(B.class, Converter.class);
+        Type type3 = ReflectUtil.getGenericInterfaceType(C.class, Converter.class);
         assert type1 != null;
         assert type2 != null;
         assert type3 != null;
@@ -20,7 +20,7 @@ public class ReflectUtilTest {
 }
 
 
-class A implements Converter<Integer,Long> {
+class A implements Converter<Integer, Long> {
 
     @Override
     public Long to(Integer integer, Long aLong) {
@@ -45,6 +45,6 @@ class C implements D {
     }
 }
 
-interface D extends Converter<Integer,Long>{
+interface D extends Converter<Integer, Long> {
 
 }

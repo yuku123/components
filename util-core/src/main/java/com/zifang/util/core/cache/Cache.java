@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 简单的内存缓存工具类
+ *
+ * @author zifang
  */
 public class Cache {
 
@@ -87,10 +89,14 @@ public class Cache {
     public synchronized static Object remove(String key) {
         //清除原缓存数据
         Entity entity = map.remove(key);
-        if (entity == null) return null;
+        if (entity == null) {
+            return null;
+        }
         //清除原键值对定时器
         Future future = entity.getFuture();
-        if (future != null) future.cancel(true);
+        if (future != null) {
+            future.cancel(true);
+        }
         return entity.getValue();
     }
 

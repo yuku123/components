@@ -3,8 +3,6 @@ package com.zifang.util.swing.algrithm.lesson2.a;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-import java.lang.InterruptedException;
-
 public class AlgoVisHelper {
 
     private AlgoVisHelper() {
