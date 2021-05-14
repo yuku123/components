@@ -6,7 +6,7 @@ public class ClassParserTest {
 
     @Test
     public void test1(){
-        ClassParser classParser = new ClassParser(A.class);
+        ClassParser classParser = new ClassParserFactory().getInstance(A.class);
         assert classParser.getCurrentPublicField().size() == 1;
         assert classParser.getCurrentPrivateField().size() == 1;
         assert classParser.getCurrentProtectedField().size() == 1;

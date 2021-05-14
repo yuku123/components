@@ -6,9 +6,9 @@ import com.zifang.util.core.pattern.composite.leaf.LeafWrapper;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -19,49 +19,42 @@ import java.util.stream.Collectors;
 public class ClassParser {
 
     /**
-     * 解析器缓存
-     */
-    private static final Map<Class<?>, ClassParser> classParserCache = new ConcurrentHashMap<>();
-
-    /**
-     * 类继承关系
-     * */
-    private static final Map<Class<?>, LeafWrapper<Long,Long,ClassParserInfoWrapper>> classInheritableNode = new ConcurrentHashMap<>();
-
-
-    /**
      * 当前针对的解析的类
      * */
-    private Class<?> clazz;
+    private final Class<?> clazz;
 
     /**
      * 解析过程使用的参变量
      * */
     private Long leafIndex;
 
+    /**
+     * 解析class类
+     * */
+    private final LeafWrapper<Long, Long, ClassParserInfoWrapper> leafWrapper;
 
     /**
      * @param clazz 需要解析的类
-     * @param forceRefreshCache 是否需要强制刷新缓存
      */
-    public ClassParser(Class<?> clazz, boolean forceRefreshCache) {
+    public ClassParser(Class<?> clazz) {
 
         this.clazz = clazz;
 
-        LeafWrapper<Long, Long, ClassParserInfoWrapper> leafWrapper = doParser();
-
-        if(forceRefreshCache){
-            classInheritableNode.put(clazz,leafWrapper);
-            classParserCache.put(clazz,this);
-        } else {
-            classInheritableNode.putIfAbsent(clazz,leafWrapper);
-            classParserCache.putIfAbsent(clazz,this);
-        }
-
+        leafWrapper = doParser();
     }
 
-    public ClassParser(Class<?> clazz) {
-        this(clazz, false);
+    /**
+     * 是否是普通的类
+     * */
+    public boolean isNormalClass() {
+        return null != clazz //
+                && !clazz.isInterface() //
+                && !Modifier.isAbstract(clazz.getModifiers()) //
+                && !clazz.isEnum() //
+                && !clazz.isArray() //
+                && !clazz.isAnnotation() //
+                && !clazz.isSynthetic() //
+                && !clazz.isPrimitive();//
     }
 
     public List<Field> getCurrentPublicField() {
@@ -88,12 +81,9 @@ public class ClassParser {
         return getCurrentAllMethod().stream().filter(e->Modifier.isPublic(e.getModifiers())).collect(Collectors.toList());
     }
 
-
     public List<Method> getCurrentDefaultMethod() {
         return getCurrentAllMethod().stream().filter(e->e.getModifiers() == 0).collect(Collectors.toList());
     }
-
-
 
     public List<Method> getCurrentPrivateMethod() {
         return getCurrentAllMethod().stream().filter(e->Modifier.isPrivate(e.getModifiers())).collect(Collectors.toList());
@@ -121,7 +111,7 @@ public class ClassParser {
         long current = leafIndex;
         leafWrappers.add(LeafHelper.wrapper(current, parentId, new ClassParserInfoWrapper(clazz)));
 
-        for(Class interfaceItem : clazz.getInterfaces()){
+        for(Class<?> interfaceItem : clazz.getInterfaces()){
             ++leafIndex;
             leafWrappers.addAll(loop(interfaceItem,current));
         }

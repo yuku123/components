@@ -2,7 +2,7 @@ package com.zifang.util.aop;
 
 import com.zifang.util.aop.aspects.Aspect;
 import com.zifang.util.aop.proxy.ProxyFactory;
-import com.zifang.util.core.util.ClassUtil;
+import com.zifang.util.core.util.ClassLoaderUtil;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
@@ -66,7 +66,7 @@ public final class ProxyUtil {
      * @return 代理类
      */
     public static <T> T newProxyInstance(InvocationHandler invocationHandler, Class<?>... interfaces) {
-        return newProxyInstance(ClassUtil.getClassLoader(), invocationHandler, interfaces);
+        return newProxyInstance(ClassLoaderUtil.getContextClassLoader(), invocationHandler, interfaces);
     }
 
     /**
@@ -79,7 +79,7 @@ public final class ProxyUtil {
      */
     public static <T> T newProxyInstance(Class<? extends InvocationHandler> invocationHandler, Class<?>... interfaces) {
         try {
-            return newProxyInstance(ClassUtil.getClassLoader(), invocationHandler.newInstance(), interfaces);
+            return newProxyInstance(ClassLoaderUtil.getContextClassLoader(), invocationHandler.newInstance(), interfaces);
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }

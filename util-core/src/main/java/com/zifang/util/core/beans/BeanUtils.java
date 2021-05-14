@@ -19,9 +19,7 @@ public class BeanUtils {
 
     /**
      * 检测传入的Object是否为标准的Bean
-     * <p>
      * 规则:
-     * <p>
      * 1. Bean 应该具有默认构造函数（无参数）。
      * 2. Bean 应该提供 getter 和 setter 方法。
      * 3. 使用 getter 方法读取可读属性的值。

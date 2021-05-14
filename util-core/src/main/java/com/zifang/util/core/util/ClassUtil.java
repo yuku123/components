@@ -88,83 +88,6 @@ public class ClassUtil {
         }
         return false;
     }
-
-
-    /**
-     * Returns array of all methods that are accessible from given class.
-     *
-     * @see #getAccessibleMethods(Class, Class)
-     */
-    public static Method[] getAccessibleMethods(final Class clazz) {
-        return getAccessibleMethods(clazz, Object.class);
-    }
-
-    /**
-     * Returns array of all methods that are accessible from given class, upto limit
-     * (usually <code>Object.class</code>). Abstract methods are ignored.
-     */
-    public static Method[] getAccessibleMethods(Class clazz, final Class limit) {
-        Package topPackage = clazz.getPackage();
-        List<Method> methodList = new ArrayList<>();
-        int topPackageHash = topPackage == null ? 0 : topPackage.hashCode();
-        boolean top = true;
-        do {
-            if (clazz == null) {
-                break;
-            }
-            Method[] declaredMethods = clazz.getDeclaredMethods();
-            for (Method method : declaredMethods) {
-                if (Modifier.isVolatile(method.getModifiers())) {
-                    continue;
-                }
-//				if (Modifier.isAbstract(method.getModifiers())) {
-//					continue;
-//				}
-                if (top) {                // add all top declared methods
-                    methodList.add(method);
-                    continue;
-                }
-                int modifier = method.getModifiers();
-                if (Modifier.isPrivate(modifier)) {
-                    continue;                                        // ignore super private methods
-                }
-                if (Modifier.isAbstract(modifier)) {        // ignore super abstract methods
-                    continue;
-                }
-                if (Modifier.isPublic(modifier)) {
-                    addMethodIfNotExist(methodList, method);        // add super public methods
-                    continue;
-                }
-                if (Modifier.isProtected(modifier)) {
-                    addMethodIfNotExist(methodList, method);        // add super protected methods
-                    continue;
-                }
-                // add super default methods from the same package
-                Package pckg = method.getDeclaringClass().getPackage();
-                int pckgHash = pckg == null ? 0 : pckg.hashCode();
-                if (pckgHash == topPackageHash) {
-                    addMethodIfNotExist(methodList, method);
-                }
-            }
-            top = false;
-        } while ((clazz = clazz.getSuperclass()) != limit);
-
-        Method[] methods = new Method[methodList.size()];
-        for (int i = 0; i < methods.length; i++) {
-            methods[i] = methodList.get(i);
-        }
-        return methods;
-    }
-
-    private static void addMethodIfNotExist(final List<Method> allMethods, final Method newMethod) {
-        for (Method m : allMethods) {
-            if (compareSignatures(m, newMethod)) {
-                return;
-            }
-        }
-        allMethods.add(newMethod);
-    }
-
     // ---------------------------------------------------------------- accessible fields
 
 
@@ -381,41 +304,6 @@ public class ClassUtil {
         }
     }
 
-    // ---------------------------------------------------------------- is public
-
-    /**
-     * Returns <code>true</code> if class member is public.
-     */
-    public static boolean isPublic(final Member member) {
-        return Modifier.isPublic(member.getModifiers());
-    }
-
-    /**
-     * Returns <code>true</code> if class member is public and if its declaring class is also public.
-     */
-    public static boolean isPublicPublic(final Member member) {
-        if (Modifier.isPublic(member.getModifiers())) {
-            return Modifier.isPublic(member.getDeclaringClass().getModifiers());
-        }
-        return false;
-    }
-
-
-    // ---------------------------------------------------------------- misc
-
-    /**
-     * Returns <code>true</code> if the first member is accessible from second one.
-     */
-    public static boolean isAssignableFrom(final Member member1, final Member member2) {
-        return member1.getDeclaringClass().isAssignableFrom(member2.getDeclaringClass());
-    }
-
-    /**
-     * Returns <code>true</code> if method is user defined and not defined in <code>Object</code> class.
-     */
-    public static boolean isUserDefinedMethod(final Method method) {
-        return method.getDeclaringClass() != Object.class;
-    }
 
     // ---------------------------------------------------------------- generics
 
@@ -745,10 +633,6 @@ public class ClassUtil {
         } catch (Exception ignore) {
             return null;
         }
-    }
-
-    public static ClassLoader getClassLoader() {
-        return Thread.currentThread().getContextClassLoader();
     }
 
     // ---------------------------------------------------------------- caller

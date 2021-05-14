@@ -172,7 +172,7 @@ public class DateFormatUtil {
     /**
      * @param value
      * @return
-     * @desc:格式化是时间，采用默认格式（yyyy-MM-dd HH:mm:ss）
+     * @desc 格式化是时间，采用默认格式（yyyy-MM-dd HH:mm:ss）
      */
     public static String formatDate(String value) {
         return getFormat(DATE_FORMAT2).format(DateUtils.string2Date(value, DATE_FORMAT2));
