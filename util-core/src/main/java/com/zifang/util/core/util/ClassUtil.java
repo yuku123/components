@@ -1,5 +1,6 @@
 package com.zifang.util.core.util;
 
+import com.zifang.util.core.lang.ArraysUtil;
 import sun.misc.ProxyGenerator;
 
 import java.io.File;
@@ -489,7 +490,7 @@ public class ClassUtil {
     public static Type resolveVariable(final TypeVariable variable, final Class implClass) {
         final Class rawType = getRawType(implClass, null);
 
-        int index = com.zifang.util.core.util.ArraysUtil.indexOf(rawType.getTypeParameters(), variable);
+        int index = ArraysUtil.indexOf(rawType.getTypeParameters(), variable);
         if (index >= 0) {
             return variable;
         }

@@ -1,7 +1,7 @@
 package com.zifang.util.core.io.ss;
 
+import com.zifang.util.core.lang.regex.RegexUtil;
 import com.zifang.util.core.util.CheckUtil;
-import com.zifang.util.core.util.RegHepler;
 
 import java.io.*;
 import java.math.BigInteger;
@@ -669,7 +669,7 @@ public final class FileUtil {
                     list.addAll(searchFile(file, reg));
                 } else {
                     String Name = file.getName();
-                    if (RegHepler.isMatche(Name, reg)) {
+                    if (RegexUtil.isMatche(Name, reg)) {
                         list.add(file);
                     }
                 }

@@ -1,7 +1,6 @@
 package com.zifang.util.core.lang;
 
 import com.zifang.util.core.GlobalConstance;
-import com.zifang.util.core.util.StringUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;

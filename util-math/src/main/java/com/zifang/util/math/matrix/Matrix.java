@@ -1,7 +1,5 @@
 package com.zifang.util.math.matrix;
 
-import com.zifang.util.core.util.StringUtil;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

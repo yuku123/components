@@ -97,7 +97,7 @@ public final class CheckUtil {
      * @param map
      * @return
      */
-    public static final boolean valid(Map map) {
+    public static boolean valid(Map map) {
         return !(map == null || map.isEmpty());
     }
 
@@ -107,7 +107,7 @@ public final class CheckUtil {
      * @param maps 需要判断map
      * @return 是否全部有效
      */
-    public static final boolean valid(Map... maps) {
+    public static boolean valid(Map... maps) {
         for (Map m : maps) {
             if (!valid(m)) {
                 return false;

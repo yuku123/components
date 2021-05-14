@@ -13,7 +13,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
-import com.zifang.util.zex.guava.util.GsonUtil;
+import com.zifang.util.core.util.GsonUtil;
 import org.junit.Test;
 
 import java.util.ArrayList;

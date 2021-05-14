@@ -1,8 +1,7 @@
-package com.zifang.util.core.util;
+package com.zifang.util.core.lang;
 
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -72,8 +71,8 @@ public class ArraysUtil {
     }
 
     public static <T> T[] append(T[] buffer, T[] newElement) {
-        List<T> list = Arrays.asList(buffer);
-        list.addAll(Arrays.asList(newElement));
+        List<T> list = java.util.Arrays.asList(buffer);
+        list.addAll(java.util.Arrays.asList(newElement));
         return (T[]) list.toArray();
     }
 

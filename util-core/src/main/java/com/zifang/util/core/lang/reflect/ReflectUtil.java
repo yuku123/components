@@ -1,14 +1,15 @@
-package com.zifang.util.core.util;
+package com.zifang.util.core.lang.reflect;
 
 
 import com.zifang.util.core.cache.WeakHashMapCache;
+import com.zifang.util.core.lang.ArraysUtil;
+import com.zifang.util.core.util.ClassUtil;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -838,7 +839,7 @@ public class ReflectUtil {
         Class superClass = clazz.getSuperclass();   // 父类
 
         if (interfaces != null) {
-            implementInterfaces.addAll(Arrays.asList(interfaces)); // 当前增加
+            implementInterfaces.addAll(java.util.Arrays.asList(interfaces)); // 当前增加
             for (Class cl : interfaces) { // 递归当前直接接口
                 implementInterfaces.addAll(getAllInterfaces(cl));
             }

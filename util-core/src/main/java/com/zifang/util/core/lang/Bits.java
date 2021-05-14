@@ -1,9 +1,6 @@
 package com.zifang.util.core.lang;
 
 
-import com.zifang.util.core.util.StringUtil;
-
-
 /**
  * 提供位运算操作的工具类
  */

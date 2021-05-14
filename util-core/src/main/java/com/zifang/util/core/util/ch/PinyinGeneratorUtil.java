@@ -1,4 +1,4 @@
-package com.zifang.util.core.util;
+package com.zifang.util.core.util.ch;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
