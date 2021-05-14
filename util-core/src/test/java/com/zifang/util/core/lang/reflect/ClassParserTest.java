@@ -33,16 +33,6 @@ public class ClassParserTest {
     }
 
     @Test
-    public void test0() {
-        Type type1 = ReflectUtil.getGenericInterfaceType(A.class, Converter.class);
-        Type type2 = ReflectUtil.getGenericInterfaceType(B.class, Converter.class);
-        Type type3 = ReflectUtil.getGenericInterfaceType(C.class, Converter.class);
-        assert type1 != null;
-        assert type2 != null;
-        assert type3 != null;
-    }
-
-    @Test
     public void test3(){
         ClassParser a = new ClassParserFactory().getInstance(A.class);
         ClassParser b = new ClassParserFactory().getInstance(B.class);
