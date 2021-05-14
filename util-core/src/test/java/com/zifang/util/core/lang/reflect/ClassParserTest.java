@@ -6,21 +6,26 @@ public class ClassParserTest {
 
     @Test
     public void test1(){
-        ClassParser classParser = new ClassParserFactory().getInstance(A.class);
-        assert classParser.getCurrentPublicField().size() == 1;
-        assert classParser.getCurrentPrivateField().size() == 1;
-        assert classParser.getCurrentProtectedField().size() == 1;
-        assert classParser.getCurrentAllField().size() == 3;
+        ClassParser a = new ClassParserFactory().getInstance(A.class);
 
-        assert classParser.getCurrentAllMethod().size() == 4;
-        assert classParser.getCurrentPrivateMethod().size() == 1;
-        assert classParser.getCurrentProtectedMethod().size() == 1;
-        assert classParser.getCurrentPublicMethod().size() == 1;
-        assert classParser.getCurrentDefaultMethod().size() == 1;
+        assert a.getCurrentPublicField().size() == 1;
+        assert a.getCurrentPrivateField().size() == 1;
+        assert a.getCurrentProtectedField().size() == 1;
+        assert a.getCurrentAllField().size() == 3;
+
+        assert a.getCurrentAllMethod().size() == 4;
+        assert a.getCurrentPrivateMethod().size() == 1;
+        assert a.getCurrentProtectedMethod().size() == 1;
+        assert a.getCurrentPublicMethod().size() == 1;
+        assert a.getCurrentDefaultMethod().size() == 1;
+
+        assert a.isNormalClass();
     }
 
     @Test
     public void test2(){
+
+        ClassParser a = new ClassParserFactory().getInstance(A.class);
 
     }
 }
