@@ -1,6 +1,9 @@
 package com.zifang.util.core.lang.reflect;
 
+import com.zifang.util.core.lang.converter.Converter;
 import org.junit.Test;
+
+import java.lang.reflect.Type;
 
 public class ClassParserTest {
 
@@ -28,10 +31,39 @@ public class ClassParserTest {
         ClassParser a = new ClassParserFactory().getInstance(A.class);
 
     }
+
+    @Test
+    public void test0() {
+        Type type1 = ReflectUtil.getGenericInterfaceType(A.class, Converter.class);
+        Type type2 = ReflectUtil.getGenericInterfaceType(B.class, Converter.class);
+        Type type3 = ReflectUtil.getGenericInterfaceType(C.class, Converter.class);
+        assert type1 != null;
+        assert type2 != null;
+        assert type3 != null;
+    }
+
+    @Test
+    public void test3(){
+        ClassParser a = new ClassParserFactory().getInstance(A.class);
+        ClassParser b = new ClassParserFactory().getInstance(B.class);
+        ClassParser c = new ClassParserFactory().getInstance(C.class);
+        ClassParser d = new ClassParserFactory().getInstance(D.class);
+
+        Type type1 = a.getGenericType(Converter.class);
+        Type type2 = b.getGenericType(Converter.class);
+        Type type3 = c.getGenericType(Converter.class);
+        Type type4 = d.getGenericType(Converter.class);
+
+        assert type1 != null;
+        assert type2 == null;
+        assert type3 != null;
+        assert type4 != null;
+
+    }
 }
 
 
-class A extends AbstractA implements IA1,IA2{
+class A extends AbstractA implements IA1,IA2,Converter<Integer, Long>{
     private String a1;
     protected String a2;
     public String a3;
@@ -41,6 +73,8 @@ class A extends AbstractA implements IA1,IA2{
     protected void t3(){}
     void t4(){}
 
+    @Override
+    public Long to(Integer integer, Long aLong) { return null; }
 }
 
 interface IA1{}
@@ -48,7 +82,12 @@ interface IA1{}
 interface IA2 extends IA21{}
 
 interface IA21{}
-
 abstract class AbstractA extends B{}
-
 class B{}
+class BA extends A { @Override public Long to(Integer integer, Long aLong) {
+        return null;
+    }}
+class C implements D { @Override public Long to(Integer integer, Long aLong) {
+        return null;
+    }}
+interface D extends Converter<Integer, Long> {}

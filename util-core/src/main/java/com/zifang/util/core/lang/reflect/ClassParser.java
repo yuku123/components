@@ -1,11 +1,13 @@
 package com.zifang.util.core.lang.reflect;
 
+import com.zifang.util.core.pattern.composite.leaf.ILeaf;
 import com.zifang.util.core.pattern.composite.leaf.LeafHelper;
 import com.zifang.util.core.pattern.composite.leaf.LeafWrapper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -96,12 +98,12 @@ public class ClassParser {
 
     private LeafWrapper<Long, Long, ClassParserInfoWrapper> doParser() {
 
-        List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> leafWrappers = loop(clazz,leafIndex);
+        List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> leafWrappers = loop(clazz,null,leafIndex);
 
         return  LeafHelper.treeify(leafWrappers);
     }
 
-    private List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> loop(Class clazz,Long parentId) {
+    private List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> loop(Class<?> clazz,Type type,Long parentId) {
 
         List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> leafWrappers = new ArrayList<>();
 
@@ -109,16 +111,20 @@ public class ClassParser {
             leafIndex = 0L;
         }
         long current = leafIndex;
-        leafWrappers.add(LeafHelper.wrapper(current, parentId, new ClassParserInfoWrapper(clazz)));
+        ClassParserInfoWrapper classParserInfoWrapper = new ClassParserInfoWrapper();
+        classParserInfoWrapper.setClazz(clazz);
+        classParserInfoWrapper.setType(type);
 
-        for(Class<?> interfaceItem : clazz.getInterfaces()){
+        leafWrappers.add(LeafHelper.wrapper(current, parentId, classParserInfoWrapper));
+
+        for(int i =0; i < clazz.getInterfaces().length; i++){
             ++leafIndex;
-            leafWrappers.addAll(loop(interfaceItem,current));
+            leafWrappers.addAll(loop(clazz.getInterfaces()[i],clazz.getGenericInterfaces()[i],current));
         }
 
         if(clazz.getSuperclass() != null){
             ++leafIndex;
-            leafWrappers.addAll(loop(clazz.getSuperclass(),current));
+            leafWrappers.addAll(loop(clazz.getSuperclass(),clazz.getGenericSuperclass(),current));
         }
 
         return leafWrappers;
@@ -126,4 +132,23 @@ public class ClassParser {
     }
 
 
+    public Type getGenericType(Class<?> matchClassType) {
+        Type type = reGne(leafWrapper,matchClassType);
+        return type;
+    }
+
+    private Type reGne(LeafWrapper<Long, Long, ClassParserInfoWrapper> leafWrapper, Class<?> matchClassType) {
+        if(leafWrapper.getC().getClazz() == matchClassType){
+            return ((ClassParserInfoWrapper)((LeafWrapper)leafWrapper.getParentLeaf()).getC()).getType();
+        }
+        if(leafWrapper.getSubLeaves()!=null){
+            for(ILeaf iLeaf : leafWrapper.getSubLeaves()){
+                Type type =  reGne((LeafWrapper)iLeaf,matchClassType);
+                if(type != null){
+                    return type;
+                }
+            }
+        }
+        return null;
+    }
 }

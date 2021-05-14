@@ -32,7 +32,6 @@ public class LeafWrapper<A, B, C> extends Triplet<A, B, C> implements ILeaf {
         return getB();
     }
 
-
     public C getBean() {
         return getC();
     }
