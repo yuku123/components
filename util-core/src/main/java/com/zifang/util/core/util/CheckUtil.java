@@ -55,7 +55,7 @@ public final class CheckUtil {
     /**
      * 判断一个对象是否为空
      */
-    public static final boolean valid(Object obj) {
+    public static boolean valid(Object obj) {
         return !(null == obj);
     }
 

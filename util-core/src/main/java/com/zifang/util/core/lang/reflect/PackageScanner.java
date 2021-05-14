@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
  */
 public class PackageScanner {
 
-    private static String CLASS_SUFFIX = ".class";
-    private static String JAR = "jar";
-    private static String FILE = "file";
-    private static String defaultClassPath = ClassUtil.class.getResource("/").getPath();
+    private static final String CLASS_SUFFIX = ".class";
+    private static final String JAR = "jar";
+    private static final String FILE = "file";
+    private static final String defaultClassPath = ClassUtil.class.getResource("/").getPath();
 
     /***
      * 获得包下的所有类
@@ -55,9 +55,7 @@ public class PackageScanner {
     }
 
     private static Set<Class<?>> search(String packageName) {
-
         Set<Class<?>> classes = new HashSet<>();
-
         try {
             Enumeration<URL> urlEnumeration = Thread.currentThread().getContextClassLoader().getResources(packageName.replace(".", "/"));
             while (urlEnumeration.hasMoreElements()) {

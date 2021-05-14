@@ -104,7 +104,6 @@ public class ClassParser {
     }
 
     private List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> loop(Class<?> clazz,Type type,Long parentId) {
-
         List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> leafWrappers = new ArrayList<>();
 
         if(leafIndex == null){
@@ -126,15 +125,14 @@ public class ClassParser {
             ++leafIndex;
             leafWrappers.addAll(loop(clazz.getSuperclass(),clazz.getGenericSuperclass(),current));
         }
-
         return leafWrappers;
-
     }
 
-
+    /**
+     * 获得与目标类型一致的泛型type信息
+     * */
     public Type getGenericType(Class<?> matchClassType) {
-        Type type = reGne(leafWrapper,matchClassType);
-        return type;
+        return reGne(leafWrapper,matchClassType);
     }
 
     private Type reGne(LeafWrapper<Long, Long, ClassParserInfoWrapper> leafWrapper, Class<?> matchClassType) {

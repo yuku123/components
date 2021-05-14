@@ -20,11 +20,6 @@ public class MementoContext<T> {
      */
     private Integer pointer = -1;
 
-    // 备忘录上下文的构造器
-    public MementoContext() {
-
-    }
-
     /**
      * 保存当前状态
      */

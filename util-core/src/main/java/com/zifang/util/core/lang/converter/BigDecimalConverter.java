@@ -1,6 +1,6 @@
 package com.zifang.util.core.lang.converter;
 
-import com.zifang.util.core.lang.exception.ConvertionException;
+import com.zifang.util.core.lang.exception.ConversionException;
 
 import java.math.BigDecimal;
 
@@ -18,7 +18,7 @@ public class BigDecimalConverter implements IConverter<BigDecimal> {
         try {
             return new BigDecimal(value.toString().trim());
         } catch (NumberFormatException nfex) {
-            throw new ConvertionException(value, nfex);
+            throw new ConversionException(value, nfex);
         }
     }
 }
