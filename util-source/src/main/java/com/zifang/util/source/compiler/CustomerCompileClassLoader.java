@@ -1,7 +1,5 @@
 package com.zifang.util.source.compiler;
 
-import com.sun.istack.internal.Nullable;
-
 import javax.tools.JavaFileObject;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -34,7 +32,6 @@ public class CustomerCompileClassLoader extends ClassLoader {
         return super.findClass(name);
     }
 
-    @Nullable
     @Override
     public InputStream getResourceAsStream(String name) {
         if (name.endsWith(CLASS_EXTENSION)) {

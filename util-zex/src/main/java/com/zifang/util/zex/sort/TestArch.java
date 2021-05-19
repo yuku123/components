@@ -943,16 +943,4 @@ public class TestArch {
     public static void main(String[] args) {
         archUtils();
     }
-
-    public static class Test {
-
-        public static void main(String[] args) {
-            //        AbstractStorelessUnivariateStatistic
-            //        AbstractUnivariateStatistic
-            //        StorelessUnivariateStatistic
-
-
-            // UnivariateStatistic
-        }
-    }
 }

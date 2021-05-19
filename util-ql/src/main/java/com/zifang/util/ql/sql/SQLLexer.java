@@ -1,6 +1,7 @@
 package com.zifang.util.ql.sql;
 
-import com.zifang.util.compile.scrept.Token;
+
+import com.zifang.util.ql.scrept.Token;
 
 import java.io.CharArrayReader;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class SQLLexer {
 
     //保存解析出来的Token
     private List<Token> tokens = null;
+
 
     //当前正在解析的Token
     private SQLToken token = null;

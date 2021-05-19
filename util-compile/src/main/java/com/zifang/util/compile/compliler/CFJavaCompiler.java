@@ -2,8 +2,7 @@ package com.zifang.util.compile.compliler;
 
 
 import com.google.common.collect.Maps;
-import org.slf4j.log;
-import org.slf4j.logFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.tools.*;
 import java.io.StringWriter;
@@ -11,9 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 public class CFJavaCompiler {
-
-    private static final log log = logFactory.getlog(CFJavaCompiler.class);
 
     /**
      * 将javaCode 编译成为类

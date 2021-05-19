@@ -1,7 +1,7 @@
 package com.zifang.util.compile.compliler;
 
-import org.slf4j.log;
-import org.slf4j.logFactory;
+import lombok.extern.slf4j.Slf4j;
+
 
 import javax.tools.FileObject;
 import javax.tools.ForwardingJavaFileManager;
@@ -12,9 +12,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+@Slf4j
 public abstract class CFJavaFileManager extends ForwardingJavaFileManager {
-
-    private static final log log = logFactory.getlog(CFJavaFileManager.class);
 
     public Map<String, BytesJavaFileObject> getFileObjectHashMap() {
         return fileObjectHashMap;

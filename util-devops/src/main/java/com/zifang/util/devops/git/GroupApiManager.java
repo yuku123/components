@@ -1,7 +1,8 @@
 package com.zifang.util.devops.git;
 
 import org.apache.commons.codec.binary.Base64;
-import org.gitlab4j.api.GitLabApiException;
+import org.gitlab4j.api.*;
+import org.gitlab4j.api.models.*;
 
 import java.util.Arrays;
 import java.util.List;

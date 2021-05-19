@@ -61,18 +61,18 @@ public class Collections2_Study {
     public void filterTest() {
         Collection<UserBo> preBos = Collections2.filter(listUser, predicateName);
         Collection<UserBo> preBosNew = new ArrayList<>(Collections2.filter(listUser, predicateName)); // 新增数据不受规则限制
-        System.out.println(GsonUtil.toJson(preBos)); // 筛选出符合predicateName规则的数据
+        System.out.println(GsonUtil.objectToJsonStr(preBos)); // 筛选出符合predicateName规则的数据
         UserBo bo1 = new UserBo("nameD", 16);
         UserBo bo2 = new UserBo("nameAD", 16);
         // filter返回的 filterCollection仍然有predicate的特性
         // preBos.add(bo1); // IllegalArgumentException（bo1的name不符合规则）
         preBosNew.add(bo1);
         preBos.add(bo2);
-        System.out.println(GsonUtil.toJson(preBosNew)); // 成功新增不符合规则的nameD
-        System.out.println(GsonUtil.toJson(preBos)); // 新增nameAD
+        System.out.println(GsonUtil.objectToJsonStr(preBosNew)); // 成功新增不符合规则的nameD
+        System.out.println(GsonUtil.objectToJsonStr(preBos)); // 新增nameAD
         // 两谓语and或or
         Collection<UserBo> preNameAge = Collections2.filter(listUser, Predicates.and(predicateName, predicateAge));
-        System.out.println(GsonUtil.toJson(preNameAge)); // 仅输出nameAC(19)
+        System.out.println(GsonUtil.objectToJsonStr(preNameAge)); // 仅输出nameAC(19)
 
     }
 
@@ -82,7 +82,7 @@ public class Collections2_Study {
     @Test
     public void orderedPermutationsTest() {
         Collection<List<String>> listOrderd = Collections2.orderedPermutations(listStr);
-        System.out.println(GsonUtil.toJson(listOrderd)); // a>ab>abc
+        System.out.println(GsonUtil.objectToJsonStr(listOrderd)); // a>ab>abc
         Comparator<String> compare = new Comparator<String>() {
             @Override
             public int compare(String s1, String s2) {
@@ -91,7 +91,7 @@ public class Collections2_Study {
         };
         // 通过比较器定义排列顺序
         Collection<List<String>> listOrderd2 = Collections2.orderedPermutations(listStr, compare);
-        System.out.println(GsonUtil.toJson(listOrderd2)); // abc>ab>a
+        System.out.println(GsonUtil.objectToJsonStr(listOrderd2)); // abc>ab>a
     }
 
     /**
@@ -112,6 +112,6 @@ public class Collections2_Study {
             }
         };
         Collection<String> listTransform = Collections2.transform(listUser, function);
-        System.out.println(GsonUtil.toJson(listTransform));
+        System.out.println(GsonUtil.objectToJsonStr(listTransform));
     }
 }
