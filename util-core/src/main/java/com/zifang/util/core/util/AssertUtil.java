@@ -13,7 +13,7 @@ public class AssertUtil {
      * @param message
      */
     public static void notNull(Object object, String message) {
-        if (Condition.IS_NULL.test(object)) {
+        if (Conditions.IS_NULL.test(object)) {
             throw new IllegalArgumentException(message);
         }
     }

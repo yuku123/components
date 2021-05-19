@@ -10,7 +10,7 @@ import com.zifang.util.workflow.engine.interfaces.AbstractEngineService;
 import com.zifang.util.workflow.engine.interfaces.EngineFactory;
 import com.zifang.util.workflow.engine.spark.CacheEngineService;
 import lombok.Data;
-import org.apache.log4j.log;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.*;
@@ -21,9 +21,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 每个工作流的上下文，是工作引擎的工作子单元。工作引擎只负责发布命令，调度资源，调度任务相关功能
  */
 @Data
+@Slf4j
 public class WorkFlowApplicationContext {
-
-    private static log log = log.getlog(WorkFlowApplicationContext.class);
 
     private volatile AtomicInteger nodeId = new AtomicInteger(0);
 

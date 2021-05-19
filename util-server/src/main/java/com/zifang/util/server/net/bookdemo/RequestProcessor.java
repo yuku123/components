@@ -7,8 +7,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Date;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class RequestProcessor implements Runnable {
+    private static final Logger log = Logger.getLogger("RequestProcessor");
 
 
     private File rootDirectory;

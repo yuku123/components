@@ -29,14 +29,7 @@ public class Matrix {
      * 美化输出
      */
     public void format() {
-        Integer padding = analysisPadding();
-        for (List<Double> row : data) {
-            for (Double col : row) {
-                String paddingedCol = StringUtil.rightPad(String.valueOf(col), padding, ' ');
-                System.out.print(paddingedCol + " | ");
-            }
-            System.out.println();
-        }
+
     }
 
     private Integer analysisPadding() {

@@ -30,7 +30,7 @@ package com.zifang.util.core.util;
 import java.util.HashMap;
 import java.util.Map;
 
-abstract class HtmlEntities {
+public abstract class HtmlEntities {
     public static final Map<String, String> decodedEntities = new HashMap<String, String>() {
         {
             put("&AElig", "\u00C6");

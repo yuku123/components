@@ -12,11 +12,11 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
-import java.util.logging.log;
+import java.util.logging.Logger;
 
 public class SingleFileHTTPServer {
 
-    private static final log log = log.getlog("SingleFileHTTPServer");
+    private static final Logger log = Logger.getLogger("SingleFileHTTPServer");
 
     private final byte[] content;
     private final byte[] header;

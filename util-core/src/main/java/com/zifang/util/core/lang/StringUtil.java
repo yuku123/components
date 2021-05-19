@@ -74,39 +74,6 @@ public class StringUtil {
         }
         return (index < length && index >= 0) ? Optional.of(String.valueOf(value.charAt(index))) : Optional.empty();
     }
-
-    /**
-     * Returns an array with strings between start and end.
-     *
-     * @param value input
-     * @param start start
-     * @param end   end
-     * @return Array containing different parts between start and end.
-     */
-
-    public static String[] between(final String value, final String start, final String end) {
-        validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        validate(start, NULL_STRING_PREDICATE, () -> "'start' should be not null.");
-        validate(end, NULL_STRING_PREDICATE, () -> "'end' should be not null.");
-
-        String[] parts = value.split(end);
-        return ArraysUtil.stream(parts)
-                .filter(subPart -> subPart.contains(start))
-                .map(subPart -> subPart.substring(subPart.indexOf(start) + start.length()))
-                .toArray(String[]::new);
-    }
-
-    /**
-     * Returns a String array consisting of the characters in the String.
-     *
-     * @param value input
-     * @return character array
-     */
-    public static String[] chars(final String value) {
-        validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        return value.split("");
-    }
-
     /**
      * Replace consecutive whitespace characters with a single space.
      *
@@ -154,7 +121,7 @@ public class StringUtil {
      */
     public static boolean containsAll(final String value, final String[] needles) {
         validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        return ArraysUtil.stream(needles).allMatch(needle -> contains(value, needle, false));
+        return Arrays.stream(needles).allMatch(needle -> contains(value, needle, false));
     }
 
     /**
@@ -167,7 +134,7 @@ public class StringUtil {
      */
     public static boolean containsAll(final String value, final String[] needles, final boolean caseSensitive) {
         validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        return ArraysUtil.stream(needles).allMatch(needle -> contains(value, needle, caseSensitive));
+        return Arrays.stream(needles).allMatch(needle -> contains(value, needle, caseSensitive));
     }
 
     /**
@@ -191,7 +158,7 @@ public class StringUtil {
      */
     public static boolean containsAny(final String value, final String[] needles, final boolean caseSensitive) {
         validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        return ArraysUtil.stream(needles).anyMatch(needle -> contains(value, needle, caseSensitive));
+        return Arrays.stream(needles).anyMatch(needle -> contains(value, needle, caseSensitive));
     }
 
     /**
@@ -677,18 +644,7 @@ public class StringUtil {
         return joiner.toString() + value;
     }
 
-    /**
-     * Remove empty Strings from string array
-     *
-     * @param strings Array of String to be cleaned
-     * @return Array of String without empty Strings
-     */
-    public static String[] removeEmptyStrings(String[] strings) {
-        if (Objects.isNull(strings)) {
-            throw new IllegalArgumentException("Input array should not be null");
-        }
-        return ArraysUtil.stream(strings).filter(str -> str != null && !str.trim().isEmpty()).toArray(String[]::new);
-    }
+
 
     /**
      * Returns a new String with the prefix removed, if present. This is case sensitive.
@@ -930,7 +886,7 @@ public class StringUtil {
     public static String htmlDecode(final String encodedHtml) {
         validate(encodedHtml, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String[] entities = encodedHtml.split("&\\W+;");
-        return ArraysUtil.stream(entities).map(e -> HtmlEntities.decodedEntities.get(e)).collect(joining());
+        return Arrays.stream(entities).map(e -> HtmlEntities.decodedEntities.get(e)).collect(joining());
     }
 
     /**
@@ -946,23 +902,8 @@ public class StringUtil {
     }
 
     /**
-     * It returns a string with its characters in random order.
-     *
-     * @param value The input String
-     * @return The shuffled String
-     */
-    public static String shuffle(final String value) {
-        validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        String[] chars = chars(value);
-        Random random = new Random();
-        for (int i = 0; i < chars.length; i++) {
-            int r = random.nextInt(chars.length);
-            String tmp = chars[i];
-            chars[i] = chars[r];
-            chars[r] = tmp;
-        }
-        return Arrays.stream(chars).collect(joining());
-    }
+     * 乱排string
+     * */
 
     /**
      * Alias of substring method
@@ -1103,27 +1044,6 @@ public class StringUtil {
     }
 
     /**
-     * Join concatenates all the elements of the strings array into a single String. The separator string is placed between elements in the resulting string.
-     *
-     * @param strings   The input array to concatenate
-     * @param separator The separator to use
-     * @return Concatenated String
-     */
-    public static String join(final String[] strings, final String separator) throws IllegalArgumentException {
-        if (strings == null) {
-            throw new IllegalArgumentException("Input array 'strings' can't be null");
-        }
-        if (separator == null) {
-            throw new IllegalArgumentException("separator can't be null");
-        }
-        StringJoiner joiner = new StringJoiner(separator);
-        for (String el : strings) {
-            joiner.add(el);
-        }
-        return joiner.toString();
-    }
-
-    /**
      * Converts the first character of string to upper case and the remaining to lower case.
      *
      * @param input The string to capitalize
@@ -1200,17 +1120,6 @@ public class StringUtil {
         }
         return head(input).map(String::toUpperCase).map(h -> tail(input).map(t -> h + t).orElse(h)).get();
     }
-
-    /**
-     * Removes leading whitespace from string.
-     *
-     * @param input The string to trim.
-     * @return Returns the trimmed string.
-     */
-    public static Optional<String> trimStart(final String input) {
-        return Optional.ofNullable(input).filter(v -> !v.isEmpty()).map(Strman::leftTrim);
-    }
-
     /**
      * Removes leading characters from string.
      *
@@ -1226,31 +1135,13 @@ public class StringUtil {
     }
 
     /**
-     * Removes trailing whitespace from string.
-     *
-     * @param input The string to trim.
-     * @return Returns the trimmed string.
+     * 左边去除空字符串
+     * 右边去除空字符串
      */
-    public static Optional<String> trimEnd(final String input) {
-        return Optional.ofNullable(input).filter(v -> !v.isEmpty()).map(Strman::rightTrim);
-    }
+
 
     /**
-     * Removes trailing characters from string.
-     *
-     * @param input The string to trim.
-     * @param chars The characters to trim.
-     * @return Returns the trimmed string.
-     */
-    public static Optional<String> trimEnd(final String input, String... chars) {
-        return Optional.ofNullable(input).filter(v -> !v.isEmpty()).map(v -> {
-            String pattern = String.format("[%s]+$", join(chars, "\\"));
-            return v.replaceAll(pattern, "");
-        });
-    }
-
-    /**
-     * Counts the number of occurrences of each character in the string
+     * 统计一个字符串内的char:个数
      *
      * @param input The input string
      * @return A map containing the number of occurrences of each character in the string
@@ -1259,18 +1150,7 @@ public class StringUtil {
         if (isNullOrEmpty(input)) {
             return Collections.emptyMap();
         }
-
         return input.chars().mapToObj(c -> (char) c).collect(groupingBy(identity(), counting()));
-    }
-
-    /**
-     * Checks if string is empty.  This is a null safe check and will return true when string is null.
-     *
-     * @param input The input string
-     * @return true if input string is null or empty
-     */
-    public static boolean isBlank(String input) {
-        return input == null || input.isEmpty();
     }
 
     /**
@@ -1288,32 +1168,10 @@ public class StringUtil {
     }
 
     /**
-     * Aggregates the contents of n strings into a single list of tuples.
+     * 将有换行符的字符串 转化为list
      *
-     * @param inputs A list of strings.
-     * @return A list of strings if none of the strings in the input is null or empty.
-     * An empty list otherwise.
-     */
-    public static List<String> zip(String... inputs) {
-        if (inputs.length == 0) {
-            return Collections.emptyList();
-        }
-        OptionalInt min = ArraysUtil.stream(inputs).mapToInt(str -> str == null ? 0 : str.length()).min();
-        if (!min.isPresent()) {
-            return Collections.emptyList();
-        }
-        return IntStream.range(0, min.getAsInt())
-                .mapToObj(elementIndex -> ArraysUtil.stream(inputs)
-                        .map(input -> String.valueOf(input.charAt(elementIndex)))
-                        .collect(joining()))
-                .collect(toList());
-    }
-
-    /**
-     * Split lines to an array
-     *
-     * @param input The input String
-     * @return lines in an array
+     * @param input 被转化的字符串
+     * @return 以换行为单元切分的list
      */
     public static String[] lines(String input) {
         if (input == null) {
@@ -1415,7 +1273,7 @@ public class StringUtil {
         validate(input, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         // split into a word when we encounter a space, or an underscore, or a dash, or a switch from lower to upper case
         String[] words = words(input, "\\s|_|-|(?<=[a-z])(?=[A-Z])");
-        return ArraysUtil.stream(words).filter(w -> !w.trim().isEmpty())
+        return Arrays.stream(words).filter(w -> !w.trim().isEmpty())
                 .map(w -> upperFirst(w.toLowerCase())).collect(joining(" "));
     }
 
@@ -1884,11 +1742,11 @@ public class StringUtil {
      * @param pattern 分割字符串
      * @return 处理后的list
      */
-    public static List<String> parseString2List(String src, String pattern) {
+    public static List<String> splitStr(String src, String pattern) {
         List<String> list = new ArrayList<>();
         if (src != null) {
             String[] tt = src.split(pattern);
-            list.addAll(ArraysUtil.asList(tt));
+            list.addAll(Arrays.asList(tt));
         }
         return list;
     }
@@ -1904,32 +1762,5 @@ public class StringUtil {
         DecimalFormat df = new DecimalFormat(format);
         return df.format(f);
     }
-
-
-//	/**
-//	 * 全角字符变半角字符
-//	 *
-//	 * @param str 需要处理的字符串
-//	 * @return 处理后的字符串
-//	 */
-//	public static String full2Half(String str) {
-//		if (isEmpty(str)) {
-//			return "";
-//		}
-//		return BCConvert.qj2bj(str);
-//	}
-//
-//	/**
-//	 * 半角字符变全角字符
-//	 *
-//	 * @param str 需要处理的字符串
-//	 * @return 处理后的字符串
-//	 */
-//	public static String Half2Full(String str) {
-//		if (isEmpty(str)) {
-//			return "";
-//		}
-//		return BCConvert.bj2qj(str);
-//	}
 
 }

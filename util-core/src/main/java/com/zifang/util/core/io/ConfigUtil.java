@@ -1,7 +1,5 @@
-package com.zifang.util.core.util;
+package com.zifang.util.core.io;
 
-
-import com.zifang.util.zex.helper.ClassHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,18 +19,17 @@ public class ConfigUtil {
      */
     public static URL findAsResource(final String path) {
         URL url = null;
-
-        ClassLoader contextClassLoader = ClassHelper.getContextClassLoader();
+        ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
         if (contextClassLoader != null) {
             url = contextClassLoader.getResource(path);
         }
-        if (url != null)
+        if (url != null){
             return url;
-
+        }
         url = ConfigUtil.class.getClassLoader().getResource(path);
-        if (url != null)
+        if (url != null){
             return url;
-
+        }
         url = ClassLoader.getSystemClassLoader().getResource(path);
 
         return url;

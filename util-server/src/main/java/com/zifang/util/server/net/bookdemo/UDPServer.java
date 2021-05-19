@@ -6,13 +6,13 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.logging.Level;
-import java.util.logging.log;
+import java.util.logging.Logger;
 
 public abstract class UDPServer implements Runnable {
 
     private final int bufferSize; // in bytes
     private final int port;
-    private final log log = log.getlog(UDPServer.class.getCanonicalName());
+    private final Logger log = Logger.getLogger(UDPServer.class.getCanonicalName());
     private volatile boolean isShutDown = false;
 
     public UDPServer(int port, int bufferSize) {

@@ -1,9 +1,8 @@
 package com.zifang.util.core.lang;
 
-public class Defaults {
+import com.zifang.util.core.util.Conditions;
 
-    private Defaults() {
-    }
+public class Defaults {
 
     private static final Double DOUBLE_DEFAULT = 0d;
     private static final Float FLOAT_DEFAULT = 0f;
@@ -13,7 +12,7 @@ public class Defaults {
      */
     @SuppressWarnings("unchecked")
     public static <T> T defaultValue(Class<T> type) {
-        checkNotNull(type);
+        assert !Conditions.IS_NULL.test(type);
         if (type == boolean.class) {
             return (T) Boolean.FALSE;
         } else if (type == char.class) {
@@ -31,14 +30,14 @@ public class Defaults {
         } else if (type == double.class) {
             return (T) DOUBLE_DEFAULT;
         } else {
-            return null;
+            try {
+                return (T)type.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    public static <T> T checkNotNull(T reference) {
-        if (reference == null) {
-            throw new NullPointerException();
-        }
-        return reference;
+        return null;
     }
 }

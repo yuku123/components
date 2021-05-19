@@ -1,4 +1,4 @@
-package com.zifang.util.core.io;
+package com.zifang.util.core;
 
 public class Hello4 {
     public static void main(String[] args) {

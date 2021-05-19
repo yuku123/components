@@ -17,10 +17,7 @@ public class SortKnown {
 
     @Test
     public void showKnown() {
-
-
         Set<String> set = getKownSet();
-
         set.forEach(System.out::println);
     }
 

@@ -1,14 +1,11 @@
 package com.zifang.util.compile.compliler;
 
-
-import org.slf4j.log;
-import org.slf4j.logFactory;
-
 import javax.tools.StandardJavaFileManager;
+import java.util.logging.Logger;
 
 public class JavaFileManagerFactory {
 
-    private static final log log = logFactory.getlog(JavaFileManagerFactory.class);
+    private static final Logger log = Logger.getLogger(JavaFileManagerFactory.class.getName());
 
     public static CFJavaFileManager getJavaFileManager(StandardJavaFileManager standardManager) {
 //        Class clazz = JavaFileManagerFactory.class.getClassLoader().getClass();

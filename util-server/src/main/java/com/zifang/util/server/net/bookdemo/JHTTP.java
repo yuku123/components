@@ -7,10 +7,12 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JHTTP {
 
-    private static final log log = log.getlog(JHTTP.class.getCanonicalName());
+    private final static Logger log = Logger.getLogger(JHTTP.class.getCanonicalName());
+
     private static final int NUM_THREADS = 50;
     private static final String INDEX_FILE = "index.html";
 

@@ -10,13 +10,13 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
-import java.util.logging.log;
+import java.util.logging.Logger;
 
 public class LoggingDaytimeServer {
 
     public final static int PORT = 13;
-    private final static log auditlog = log.getlog("requests");
-    private final static log errorlog = log.getlog("errors");
+    private final static Logger auditlog = Logger.getLogger("requests");
+    private final static Logger errorlog = Logger.getLogger("errors");
 
     public static void main(String[] args) {
 

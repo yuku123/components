@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-abstract class Ascii {
+public abstract class Ascii {
     public static final Map<String, List<String>> ascii = new HashMap<String, List<String>>() {{
 
         put("0", Arrays.asList("°", "₀", "۰"));

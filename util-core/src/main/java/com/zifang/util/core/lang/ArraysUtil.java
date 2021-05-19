@@ -2,7 +2,9 @@ package com.zifang.util.core.lang;
 
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 数组相关的工具类
@@ -1279,6 +1281,19 @@ public class ArraysUtil {
             result[i] = String.valueOf(array[i]);
         }
         return result;
+    }
+
+    /**
+     * Remove empty Strings from string array
+     *
+     * @param strings Array of String to be cleaned
+     * @return Array of String without empty Strings
+     */
+    public static String[] removeEmptyStrings(String[] strings) {
+        if (Objects.isNull(strings)) {
+            throw new IllegalArgumentException("Input array should not be null");
+        }
+        return Arrays.stream(strings).filter(str -> str != null && !str.trim().isEmpty()).toArray(String[]::new);
     }
 
     /**

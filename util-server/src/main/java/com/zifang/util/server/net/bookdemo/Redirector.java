@@ -7,11 +7,11 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.log;
+import java.util.logging.Logger;
 
 public class Redirector {
 
-    private static final log log = log.getlog("Redirector");
+    private static final Logger log = Logger.getLogger("Redirector");
 
     private final int port;
     private final String newSite;
