@@ -1,4 +1,4 @@
-package com.zifang.util.compile.bytecode.jol;
+package com.zifang.util.compile.jol;
 
 import org.openjdk.jol.info.ClassLayout;
 import org.openjdk.jol.info.GraphLayout;
