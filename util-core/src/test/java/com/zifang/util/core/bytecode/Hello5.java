@@ -1,4 +1,4 @@
-package com.zifang.util.core;
+package com.zifang.util.core.bytecode;
 
 public class Hello5 implements java.io.Serializable {
 

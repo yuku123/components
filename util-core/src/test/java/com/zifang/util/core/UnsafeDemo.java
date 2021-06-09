@@ -1,4 +1,4 @@
-package com.zifang.util.core.test;
+package com.zifang.util.core;
 
 import com.zifang.util.core.util.UnsafeUtil;
 import org.junit.Test;

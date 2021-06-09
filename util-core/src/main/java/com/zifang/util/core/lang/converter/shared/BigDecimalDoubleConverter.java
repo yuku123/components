@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.converter.unit;
+package com.zifang.util.core.lang.converter.shared;
 
 import com.zifang.util.core.lang.converter.Converter;
 

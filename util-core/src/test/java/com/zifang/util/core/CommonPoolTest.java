@@ -1,4 +1,4 @@
-package com.zifang.util.core.pool.base;
+package com.zifang.util.core;
 
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;

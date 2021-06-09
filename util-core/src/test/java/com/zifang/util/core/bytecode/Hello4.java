@@ -1,4 +1,4 @@
-package com.zifang.util.core;
+package com.zifang.util.core.bytecode;
 
 public class Hello4 {
     public static void main(String[] args) {

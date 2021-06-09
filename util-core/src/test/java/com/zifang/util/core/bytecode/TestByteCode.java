@@ -1,4 +1,4 @@
-package com.zifang.util.core;
+package com.zifang.util.core.bytecode;
 
 import java.util.ArrayList;
 import java.util.List;
