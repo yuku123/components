@@ -1,7 +1,7 @@
 package com.zifang.util.core;
 
 import com.zifang.util.core.lang.converter.ConvertRegister;
-import com.zifang.util.core.lang.converter.unit.BigDecimalDoubleConverter;
+import com.zifang.util.core.lang.converter.shared.BigDecimalDoubleConverter;
 import org.junit.Test;
 
 public class ConvertRegisterTest {

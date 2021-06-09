@@ -31,7 +31,7 @@ public final class PropertiesUtil {
      * @param filePath 属性文件
      * @param key      需要读取的属性
      */
-    public final static String GetValueByKey(String filePath, String key) {
+    public final static String getValueByKey(String filePath, String key) {
         Properties pps = new Properties();
         try (InputStream in = new BufferedInputStream(new FileInputStream(filePath))) {
             pps.load(in);

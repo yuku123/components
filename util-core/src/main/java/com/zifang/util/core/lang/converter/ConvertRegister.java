@@ -24,7 +24,6 @@ public class ConvertRegister {
 
     public static void registerConverter(Class<? extends Converter<?, ?>> clazz) {
         // Pair<Class<?>,Class<?>> pair = new Pair<>(A,B);
-
         //Type type = ReflectUtil.getGenericInterfaceType(clazz, Converter.class);
         //Pair<Class<?>,Class<?>> pair = new Pair<>(parameters[0].getType(),parameters[1].getType());
         System.out.println();

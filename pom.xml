@@ -52,6 +52,7 @@
         <module>util-bpmn</module>
         <module>util-video</module>
         <module>util-distribute</module>
+        <module>util-leecode</module>
 
     </modules>
 
