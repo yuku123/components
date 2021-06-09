@@ -29,8 +29,6 @@ public class Sort04快排 {
     public static void main(String[] args) {
         int[] a = new int[]{4, 2, 6, 5, 1, 3, 10};
         func(a, 0, a.length - 1);
-
-
     }
 
 }

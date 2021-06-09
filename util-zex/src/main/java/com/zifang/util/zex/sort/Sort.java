@@ -2,8 +2,28 @@ package com.zifang.util.zex.sort;
 
 import java.util.Arrays;
 
-public class Sort02选择 {
-    public static void main(String[] args) {
+public class Sort {
+
+    /**
+     * 冒泡
+     */
+    public void sort1(){
+        int[] a = new int[]{4, 2, 6, 5, 1, 3};
+
+        for (int i = 0; i < a.length - 1; i++) {
+            for (int j = 0; j < a.length - i - 1; j++) {
+                int a1 = a[j];
+                int a2 = a[j + 1];
+                if (a1 > a2) {
+                    a[j + 1] = a1;
+                    a[j] = a2;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(a));
+    }
+    // 选择
+    public void sort2(){
         int[] a = new int[]{4, 2, 6, 5, 1, 3};
 
         for (int i = 0; i < a.length - 1; i++) {
