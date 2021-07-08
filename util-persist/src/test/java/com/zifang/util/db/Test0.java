@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Slf4j
@@ -36,9 +37,17 @@ public class Test0 {
 
         ResourceItemRepository resourceItemRepository = RepositoryProxy.proxy(ResourceItemRepository.class);
 
-        List<ResourceItem> resourceItems = resourceItemRepository.findByName("aa");
+        List<ResourceItem> r1 = resourceItemRepository.findByNameList("5e8888e8be7fff746fb26b5a",0);
+        List<Map<String,Object>> r2 = resourceItemRepository.findByNameListMap("5e8888e8be7fff746fb26b5a",0);
+        ResourceItem r3 = resourceItemRepository.findByNameBean("5e8888e8be7fff746fb26b5a",0);
+        Map<String,Object> r4 = resourceItemRepository.findByNameMap("5e8888e8be7fff746fb26b5a",0);
 
-        log.debug(GsonUtil.objectToJsonStr(resourceItems));
+        log.info(GsonUtil.objectToJsonStr(r1));
+        log.info(GsonUtil.objectToJsonStr(r2));
+        log.info(GsonUtil.objectToJsonStr(r3));
+        log.info(GsonUtil.objectToJsonStr(r4));
+
+        log.info("结束");
 
     }
 }

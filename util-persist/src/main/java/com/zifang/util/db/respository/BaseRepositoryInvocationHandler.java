@@ -5,11 +5,14 @@ import com.zifang.util.db.context.PersistentContext;
 import com.zifang.util.db.define.Param;
 import com.zifang.util.db.define.Select;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class BaseRepositoryInvocationHandler implements InvocationHandler {
 
@@ -26,21 +29,68 @@ public class BaseRepositoryInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        String prepare = method.getAnnotation(Select.class).value();
+
+        String sql = method.getAnnotation(Select.class).value();
         String name = ((Param)method.getParameterAnnotations()[0][0]).value();
 
-        String sql = "select * from resource_item where cms_id = '5e8888e8be7fff746fb26b5a'";
+        BoundSql b = boundSql(method,args);
+
         DataSourceContext dataSourceContext  = PersistentContext.fetchContext(PersistentContext.DEFAULT);
 
         Connection connection = dataSourceContext.getDatasourceFactory().newDatasource().getConnection();
-        PreparedStatement prepareStatement = connection.prepareStatement(sql);
+        PreparedStatement prepareStatement = connection.prepareStatement(b.getTransformSql());
+        for(Map.Entry<Integer,Object> entry : b.getIndexValueInsert().entrySet()){
+            prepareStatement.setObject(entry.getKey(),entry.getValue());
+        }
         ResultSet resultSet = prepareStatement.executeQuery();
-        while (resultSet.next()){
-            System.out.print(resultSet.getObject(1)+":");
-            System.out.println(resultSet.getObject(2));
 
+        ResultSetHandler resultSetHandler = new ResultSetHandler();
+        resultSetHandler.setTargetType(method.getGenericReturnType());
+        resultSetHandler.setResultSet(resultSet);
+
+        return resultSetHandler.solve();
+    }
+
+    private BoundSql boundSql(Method method, Object[] args) {
+        BoundSql boundSql = new BoundSql();
+
+        String sql = method.getAnnotation(Select.class).value();
+        String transformSQL = sql;
+
+        Map<Integer,String> indexName = new LinkedHashMap<>();
+        Map<Integer,Object> indexValue = new LinkedHashMap<>();
+
+        // 获得注解信息
+        Annotation[][] annotations = method.getParameterAnnotations();
+        for(int i= 0; i < annotations.length; i++){
+            for(int j= 0; j < annotations[i].length; j++){
+                if(annotations[i][j].annotationType() == Param.class){
+                    Map<Integer,String> map = new LinkedHashMap<>();
+                    indexName.put(i,((Param)annotations[i][j]).value());
+                }
+            }
         }
 
-        return null;
+        // 获得参数信息
+        for(int i = 0; i< args.length; i++){
+            indexValue.put(i,args[i]);
+        }
+
+        Map<Integer,Object> indexValueInsert = new LinkedHashMap<>();
+        int index = 1;
+        for(Map.Entry<Integer,String> entry :indexName.entrySet()){
+            if(transformSQL.indexOf(":"+entry.getValue())>0){
+                indexValueInsert.put(index++,indexValue.get(entry.getKey()));
+                transformSQL = transformSQL.replace(":"+entry.getValue(),"?");
+            }
+        }
+
+        boundSql.setOriginSql(sql);
+        boundSql.setTransformSql(transformSQL);
+        boundSql.setIndexName(indexName);
+        boundSql.setIndexValue(indexValue);
+        boundSql.setIndexValueInsert(indexValueInsert);
+
+        return boundSql;
     }
 }
