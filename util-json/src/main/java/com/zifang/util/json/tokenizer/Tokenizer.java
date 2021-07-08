@@ -4,9 +4,6 @@ import com.zifang.util.json.exception.JsonParseException;
 
 import java.io.IOException;
 
-/**
- * Created by code4wt on 17/5/10.
- */
 public class Tokenizer {
 
     private CharReader charReader;

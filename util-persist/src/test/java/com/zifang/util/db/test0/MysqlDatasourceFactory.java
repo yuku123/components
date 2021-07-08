@@ -1,4 +1,4 @@
-package com.zifang.util.db;
+package com.zifang.util.db.test0;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.zifang.util.db.context.DatasourceFactory;
@@ -15,10 +15,10 @@ public class MysqlDatasourceFactory implements DatasourceFactory {
             if (dataSource == null) {
                 dataSource = new DruidDataSource();
                 //设置连接参数
-                dataSource.setUrl("jdbc:mysql://localhost:3306/test?useSSL=false&autoReconnect=true");
+                dataSource.setUrl("jdbc:mysql://47.104.173.209:3308/micro?useSSL=false&autoReconnect=true");
                 dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-                dataSource.setUsername("root");
-                dataSource.setPassword("zxc123");
+                dataSource.setUsername("micro");
+                dataSource.setPassword("123456");
                 //配置初始化大小、最小、最大
                 dataSource.setInitialSize(20);
                 dataSource.setMinIdle(10);

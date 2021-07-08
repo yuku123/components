@@ -1,8 +1,5 @@
 package com.zifang.util.json.tokenizer;
 
-/**
- * Created by code4wt on 17/5/10.
- */
 public enum TokenType {
     BEGIN_OBJECT(1),
     END_OBJECT(2),

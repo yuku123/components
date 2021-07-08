@@ -1,6 +1,6 @@
 package com.zifang.util.db.context;
 
-import com.zifang.util.db.transation.TransationManager;
+import com.zifang.util.db.transation.TranslationManager;
 
 public class DataSourceContext {
 
@@ -8,7 +8,7 @@ public class DataSourceContext {
 
     private String scanPackageName;
 
-    private TransationManager transationManager;
+    private TranslationManager transactionManager;
 
 
     public DataSourceContext dataSourceFactory(DatasourceFactory datasourceFactory) {
@@ -21,8 +21,8 @@ public class DataSourceContext {
         return this;
     }
 
-    public DataSourceContext transationManager(TransationManager transationManager) {
-        this.transationManager = transationManager;
+    public DataSourceContext transationManager(TranslationManager transationManager) {
+        this.transactionManager = transationManager;
         return this;
     }
 }
