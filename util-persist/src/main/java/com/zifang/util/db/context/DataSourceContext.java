@@ -1,7 +1,9 @@
 package com.zifang.util.db.context;
 
 import com.zifang.util.db.transation.TranslationManager;
+import lombok.Data;
 
+@Data
 public class DataSourceContext {
 
     private DatasourceFactory datasourceFactory;

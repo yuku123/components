@@ -44,6 +44,7 @@
         <module>util-math</module>
         <module>util-geo</module>
         <module>util-ql</module>
+        <module>util-analysis</module>
         <!--特殊化功能-->
         <module>util-extra</module>
         <module>util-monitor</module>

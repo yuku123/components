@@ -17,6 +17,13 @@ public class PersistentContext {
      * */
     public static void registerDatasourceContext(String key,DataSourceContext dataSourceFactory) {
         assert key != null && !"".equals(key);
+        if(dataSourceContextMap.get(key) != null){
+            throw new RuntimeException("重复注册数据源上下文:key="+key);
+        }
         dataSourceContextMap.put(key,dataSourceFactory);
+    }
+
+    public static DataSourceContext fetchContext(String key) {
+        return dataSourceContextMap.get(key);
     }
 }
