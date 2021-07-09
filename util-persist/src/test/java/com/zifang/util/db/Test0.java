@@ -50,4 +50,10 @@ public class Test0 {
         log.info("结束");
 
     }
+
+    @Test
+    public void test1(){
+        ResourceItemRepository resourceItemRepository = RepositoryProxy.proxy(ResourceItemRepository.class);
+        resourceItemRepository.deleteAll();
+    }
 }

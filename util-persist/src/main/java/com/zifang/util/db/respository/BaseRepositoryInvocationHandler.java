@@ -29,26 +29,31 @@ public class BaseRepositoryInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        Class<?> clazz = method.getDeclaringClass();
+        if(clazz == CrudRepository.class){
 
-        String sql = method.getAnnotation(Select.class).value();
-        String name = ((Param)method.getParameterAnnotations()[0][0]).value();
+        } else {
+            String sql = method.getAnnotation(Select.class).value();
+            String name = ((Param)method.getParameterAnnotations()[0][0]).value();
 
-        BoundSql b = boundSql(method,args);
+            BoundSql b = boundSql(method,args);
 
-        DataSourceContext dataSourceContext  = PersistentContext.fetchContext(PersistentContext.DEFAULT);
+            DataSourceContext dataSourceContext  = PersistentContext.fetchContext(PersistentContext.DEFAULT);
 
-        Connection connection = dataSourceContext.getDatasourceFactory().newDatasource().getConnection();
-        PreparedStatement prepareStatement = connection.prepareStatement(b.getTransformSql());
-        for(Map.Entry<Integer,Object> entry : b.getIndexValueInsert().entrySet()){
-            prepareStatement.setObject(entry.getKey(),entry.getValue());
+            Connection connection = dataSourceContext.getDatasourceFactory().newDatasource().getConnection();
+            PreparedStatement prepareStatement = connection.prepareStatement(b.getTransformSql());
+            for(Map.Entry<Integer,Object> entry : b.getIndexValueInsert().entrySet()){
+                prepareStatement.setObject(entry.getKey(),entry.getValue());
+            }
+            ResultSet resultSet = prepareStatement.executeQuery();
+
+            ResultSetHandler resultSetHandler = new ResultSetHandler();
+            resultSetHandler.setTargetType(method.getGenericReturnType());
+            resultSetHandler.setResultSet(resultSet);
+
+            return resultSetHandler.solve();
         }
-        ResultSet resultSet = prepareStatement.executeQuery();
-
-        ResultSetHandler resultSetHandler = new ResultSetHandler();
-        resultSetHandler.setTargetType(method.getGenericReturnType());
-        resultSetHandler.setResultSet(resultSet);
-
-        return resultSetHandler.solve();
+        return null;
     }
 
     private BoundSql boundSql(Method method, Object[] args) {
