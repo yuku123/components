@@ -4,7 +4,8 @@ import com.zifang.util.aop.aspects.Aspect;
 
 import java.lang.reflect.Method;
 
-public class BaseRespositoryAspect implements Aspect {
+public class BaseRepositoryAspect implements Aspect {
+
 
     @Override
     public boolean before(Object target, Method method, Object[] args) {
