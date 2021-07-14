@@ -54,6 +54,12 @@ public class Test0 {
     @Test
     public void test1(){
         ResourceItemRepository resourceItemRepository = RepositoryProxy.proxy(ResourceItemRepository.class);
-        resourceItemRepository.deleteAll();
+
+        ResourceItem resourceItem = new ResourceItem();
+        resourceItem.setCmsId("xxxxx");
+        resourceItem.setShared(false);
+        resourceItemRepository.save(resourceItem);
+        resourceItemRepository.findById(resourceItem.getId());
+        resourceItemRepository.deleteById(resourceItem.getId());
     }
 }

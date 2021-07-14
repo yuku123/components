@@ -16,6 +16,10 @@ public class ConvertCaller {
     private Class<?> target;
 
     public Object to(Object o){
+        if(from == target){
+            return o;
+        }
+
         try {
             return method.invoke(caller,o, PrimitiveUtil.defaultValue(target));
         } catch (IllegalAccessException | InvocationTargetException e) {
@@ -25,6 +29,9 @@ public class ConvertCaller {
     }
 
     public Object to(Object o, Object defaultValue){
+        if(from == target){
+            return o;
+        }
         try {
             return method.invoke(caller,o, defaultValue);
         } catch (IllegalAccessException | InvocationTargetException e) {

@@ -1,5 +1,6 @@
 package com.zifang.util.db.respository;
 
+import com.zifang.util.core.lang.converter.Converter;
 import lombok.Data;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
@@ -63,8 +64,7 @@ public class ResultSetHandler {
             } else {
                 Class<?> clazz  = (Class<?>)targetType;
                 Map<String,Object> map = list.get(0);
-                Object o = transform(map,clazz);
-                return o;
+                return transform(map,clazz);
             }
         }
         return null;
@@ -91,7 +91,8 @@ public class ResultSetHandler {
             if(columnMap.get(entry.getKey())!= null){
                 Field field = columnMap.get(entry.getKey());
                 field.setAccessible(true);
-                field.set(o,entry.getValue());
+                Object target = Converter.caller(entry.getValue().getClass(), field.getType()).to(entry.getValue());
+                field.set(o,target);
             }
         }
         return o;
@@ -118,7 +119,6 @@ public class ResultSetHandler {
     private static boolean isUpperCase(char c) {
         return c >=65 && c <= 90;
     }
-
 
     private List<Map<String, Object>> fetch(ResultSet resultSet) throws SQLException {
         List<Map<String,Object>> li = new ArrayList<>();

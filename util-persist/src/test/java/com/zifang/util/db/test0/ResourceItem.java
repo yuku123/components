@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 @Data
 @Table(name = "resource_item")
 public class ResourceItem {
-    private int id;
+    private Long id;
     private String cmsId;
     private String type;
     private int ownerId;

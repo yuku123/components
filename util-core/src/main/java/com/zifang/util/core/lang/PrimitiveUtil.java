@@ -102,10 +102,9 @@ public class PrimitiveUtil {
      */
     public static Class<?> getPrimitiveWrapper(Class<?> clazz) {
         if (!isPrimitive(clazz)) {
-            String error = "the input class" + clazz.getName() + " is not Primitive Type";
-            log.error(error);
-            throw new RuntimeException(error);
+            return clazz;
+        } else {
+            return primitiveWrapperTypeList.get(primitiveTypeList.indexOf(clazz));
         }
-        return primitiveWrapperTypeList.get(primitiveTypeList.indexOf(clazz));
     }
 }

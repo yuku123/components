@@ -1,5 +1,6 @@
 package com.zifang.util.core.lang.converter;
 
+import com.zifang.util.core.lang.PrimitiveUtil;
 import com.zifang.util.core.lang.reflect.ClassParser;
 import com.zifang.util.core.lang.reflect.ClassParserFactory;
 import com.zifang.util.core.lang.tuples.Pair;
@@ -29,7 +30,7 @@ public class ConvertRegister {
     }
 
     public static Pair<Method,Object> find(Class<?> a, Class<?> b){
-        Method methodCustomer = registeredConverter.get(new Pair<Class<?>, Class<?>>(a,b));
+        Method methodCustomer = registeredConverter.get(new Pair<Class<?>, Class<?>>(PrimitiveUtil.getPrimitiveWrapper(a),b));
         if(methodCustomer != null){
             return new Pair<>(methodCustomer,caller.get(methodCustomer));
         } else {
