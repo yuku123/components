@@ -10,4 +10,17 @@ public class Pair<A, B> extends Unit<A> {
         super(a);
         this.b = b;
     }
+
+    @Override
+    public String toString(){
+        return a +":"+ b;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(this.toString().equals(o.toString())){
+            return true;
+        }
+        return false;
+    }
 }

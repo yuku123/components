@@ -1,9 +1,13 @@
 package com.zifang.util.core.lang.converter;
 
+import com.zifang.util.core.lang.reflect.ClassParser;
+import com.zifang.util.core.lang.reflect.ClassParserFactory;
 import com.zifang.util.core.lang.tuples.Pair;
+import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.lang.reflect.Type;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -11,8 +15,7 @@ public class ConvertRegister {
 
     private static Map<Method,Object> caller = new LinkedHashMap<>();
     private static final Map<Pair<Class<?>, Class<?>>, Method> registeredDefaultConverterMethod = new LinkedHashMap<>();
-
-    private static final Map<Pair<Class<?>, Class<?>>, Class<? extends IConverter<?, ?>>> registeredConverter = new LinkedHashMap<>();
+    private static final Map<Pair<Class<?>, Class<?>>, Method> registeredConverter = new LinkedHashMap<>();
 
     static {
         DefaultConverter defaultConverter = new DefaultConverter();
@@ -26,14 +29,33 @@ public class ConvertRegister {
     }
 
     public static Pair<Method,Object> find(Class<?> a, Class<?> b){
-        Method method = registeredDefaultConverterMethod.get(new Pair<Class<?>, Class<?>>(a,b));
-        if (method == null){
-            throw new RuntimeException("没有找到对应的转换器"+a.getName()+"->"+b.getName());
+        Method methodCustomer = registeredConverter.get(new Pair<Class<?>, Class<?>>(a,b));
+        if(methodCustomer != null){
+            return new Pair<>(methodCustomer,caller.get(methodCustomer));
+        } else {
+            Method method = registeredDefaultConverterMethod.get(new Pair<Class<?>, Class<?>>(a,b));
+            if (method == null){
+                throw new RuntimeException("没有找到对应的转换器"+a.getName()+"->"+b.getName());
+            }
+            return new Pair<>(method,caller.get(method));
         }
-        return new Pair<>(method,caller.get(method));
     }
 
     public static void registerConverter(Class<? extends IConverter<?, ?>> clazz) {
-        System.out.println();
+        try {
+            Object instance = clazz.newInstance();
+            ClassParser classParser = new ClassParserFactory().getInstance(clazz);
+            Type type = classParser.getGenericType(IConverter.class);
+            if(type instanceof ParameterizedTypeImpl){
+                ParameterizedTypeImpl parameterizedType = (ParameterizedTypeImpl)type;
+                Type[] types = parameterizedType.getActualTypeArguments();
+                Pair<Class<?>, Class<?>> pair = new Pair<>((Class<?>) types[0], (Class<?>) types[1]);
+                Method method = clazz.getDeclaredMethod("to",(Class<?>) types[0], (Class<?>) types[1]);
+                registeredConverter.put(pair,method);
+                caller.put(method,instance);
+            }
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
     }
 }

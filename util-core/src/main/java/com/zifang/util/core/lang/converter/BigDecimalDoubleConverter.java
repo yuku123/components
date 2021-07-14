@@ -8,9 +8,9 @@ import java.math.BigDecimal;
 public class BigDecimalDoubleConverter implements IConverter<BigDecimal, Double> {
 
     @Override
-    public Double to(BigDecimal bigDecimal, Double d) {
+    public Double to(BigDecimal bigDecimal, Double defaultValue) {
         if (bigDecimal == null) {
-            return d;
+            return defaultValue;
         } else {
             return bigDecimal.doubleValue();
         }
