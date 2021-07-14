@@ -9,8 +9,6 @@ public class Converter {
 
     private  static ConvertCaller defaultCaller = new ConvertCaller();
 
-
-
     public static ConvertCaller caller(Class<?> from, Class<?> target) {
         if(PrimitiveUtil.getPrimitiveWrapper(from) == PrimitiveUtil.getPrimitiveWrapper(target)){
             return defaultCaller;
