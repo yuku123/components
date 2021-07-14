@@ -1,6 +1,6 @@
 package com.zifang.util.core.lang.reflect;
 
-import com.zifang.util.core.lang.converter.Converter;
+import com.zifang.util.core.lang.converter.IConverter;
 import org.junit.Test;
 
 import java.lang.reflect.Type;
@@ -39,10 +39,10 @@ public class ClassParserTest {
         ClassParser c = new ClassParserFactory().getInstance(C.class);
         ClassParser d = new ClassParserFactory().getInstance(D.class);
 
-        Type type1 = a.getGenericType(Converter.class);
-        Type type2 = b.getGenericType(Converter.class);
-        Type type3 = c.getGenericType(Converter.class);
-        Type type4 = d.getGenericType(Converter.class);
+        Type type1 = a.getGenericType(IConverter.class);
+        Type type2 = b.getGenericType(IConverter.class);
+        Type type3 = c.getGenericType(IConverter.class);
+        Type type4 = d.getGenericType(IConverter.class);
 
         assert type1 != null;
         assert type2 == null;
@@ -53,7 +53,7 @@ public class ClassParserTest {
 }
 
 
-class A extends AbstractA implements IA1,IA2,Converter<Integer, Long>{
+class A extends AbstractA implements IA1,IA2, IConverter<Integer, Long> {
     private String a1;
     protected String a2;
     public String a3;
@@ -80,4 +80,4 @@ class BA extends A { @Override public Long to(Integer integer, Long aLong) {
 class C implements D { @Override public Long to(Integer integer, Long aLong) {
         return null;
     }}
-interface D extends Converter<Integer, Long> {}
+interface D extends IConverter<Integer, Long> {}
