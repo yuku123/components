@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.converter.shared;
+package com.zifang.util.core.lang.converter;
 
 /**
  * @author zifang

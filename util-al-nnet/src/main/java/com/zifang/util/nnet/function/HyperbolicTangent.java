@@ -3,7 +3,7 @@ package com.zifang.util.nnet.function;
 /**
  * 双曲正切函数
  */
-public class HyperblicTangent implements IActivationFunction {
+public class HyperbolicTangent implements IActivationFunction {
 
     /**
      * f(x) = (1-e^(-x)) / (1+e^(x))

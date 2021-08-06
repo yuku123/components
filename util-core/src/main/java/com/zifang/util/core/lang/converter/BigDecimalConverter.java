@@ -4,10 +4,10 @@ import com.zifang.util.core.lang.exception.ConversionException;
 
 import java.math.BigDecimal;
 
-public class BigDecimalConverter implements IConverter<BigDecimal> {
+public class BigDecimalConverter implements IConverter<BigDecimal,Object> {
 
     @Override
-    public BigDecimal convert(final Object value) {
+    public Object to(BigDecimal bigDecimal, Object value) {
         if (value == null) {
             return null;
         }

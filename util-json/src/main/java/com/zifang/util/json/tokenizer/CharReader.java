@@ -3,9 +3,6 @@ package com.zifang.util.json.tokenizer;
 import java.io.IOException;
 import java.io.Reader;
 
-/**
- * Created by code4wt on 17/5/11.
- */
 public class CharReader {
 
     private static final int BUFFER_SIZE = 1024;

@@ -3,7 +3,9 @@ package com.zifang.util.core.lang;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 处理基本类型与包装类型的工具类
@@ -12,6 +14,19 @@ import java.util.List;
  */
 @Slf4j
 public class PrimitiveUtil {
+
+    public static final Map<Class<?>,Object> primitiveTypeDefaults = new LinkedHashMap<Class<?>,Object>(){
+        {
+            put(Byte.class,(byte)0);
+            put(Short.class,(short)0);
+            put(Integer.class,0);
+            put(Character.class,'0');
+            put(Long.class,0L);
+            put(Float.class,0F);
+            put(Double.class,0D);
+            put(Boolean.class,false);
+        }
+    };
 
     /**
      * 原始类型的集合
@@ -44,6 +59,10 @@ public class PrimitiveUtil {
             add(Boolean.class);
         }
     };
+
+    public static Object defaultValue(Class<?> clazz){
+        return primitiveTypeDefaults.get(clazz);
+    }
 
     /**
      * 判断是否是基本类型
@@ -83,10 +102,9 @@ public class PrimitiveUtil {
      */
     public static Class<?> getPrimitiveWrapper(Class<?> clazz) {
         if (!isPrimitive(clazz)) {
-            String error = "the input class" + clazz.getName() + " is not Primitive Type";
-            log.error(error);
-            throw new RuntimeException(error);
+            return clazz;
+        } else {
+            return primitiveWrapperTypeList.get(primitiveTypeList.indexOf(clazz));
         }
-        return primitiveWrapperTypeList.get(primitiveTypeList.indexOf(clazz));
     }
 }
