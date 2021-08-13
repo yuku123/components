@@ -4,6 +4,7 @@ package com.zifang.util.core.pattern.command;
  * @author zifang
  */
 public abstract class AbstractCommand implements ICommand {
+
     @Override
     public void execute() {
         preExecute();
