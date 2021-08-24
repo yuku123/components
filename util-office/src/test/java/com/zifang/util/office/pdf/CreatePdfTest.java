@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 
 public class CreatePdfTest {
     public static void main(String[] args) throws IOException {
-        String output = "/Users/zifang/Downloads/风之圣痕-ignition-06.pdf";
-        String imageFolder = "/Users/zifang/Downloads/06";
+        String output = "/Users/zifang/Downloads/学习/新建文件夹/(一般コミック) [椎名高志] GS美神 極楽大作戦!! 第01巻.pdf";
+        String imageFolder = "/Users/zifang/Downloads/学习/新建文件夹/(一般コミック) [椎名高志] GS美神 極楽大作戦!! 第01巻";
 
         PDDocument document = new PDDocument();
 
