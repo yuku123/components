@@ -11,9 +11,6 @@ import java.nio.file.Paths;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by code4wt on 17/9/1.
- */
 public class JSONParserTest {
 
     @Test

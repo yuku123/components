@@ -6,6 +6,9 @@ import com.zifang.util.json.model.JsonObject;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author zifang
+ */
 public class BeautifyJsonUtils {
 
     private static final char SPACE_CHAR = ' ';
@@ -107,7 +110,6 @@ public class BeautifyJsonUtils {
         for (int i = 0; i < callDepth * INDENT_SIZE; i++) {
             sb.append(SPACE_CHAR);
         }
-
         return sb.toString();
     }
 }

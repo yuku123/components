@@ -14,7 +14,6 @@ public class Tokenizer {
         this.charReader = charReader;
         tokens = new TokenList();
         tokenize();
-
         return tokens;
     }
 
