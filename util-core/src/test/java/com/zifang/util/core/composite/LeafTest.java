@@ -1,8 +1,8 @@
 package com.zifang.util.core.composite;
 
-import com.zifang.util.core.pattern.composite.leaf.ILeaf;
-import com.zifang.util.core.pattern.composite.leaf.LeafHelper;
-import com.zifang.util.core.pattern.composite.leaf.LeafWrapper;
+import com.zifang.util.core.pattern.composite.define.ILeaf;
+import com.zifang.util.core.pattern.composite.LeafHelper;
+import com.zifang.util.core.pattern.composite.LeafWrapper;
 import org.junit.Test;
 
 import java.util.ArrayList;

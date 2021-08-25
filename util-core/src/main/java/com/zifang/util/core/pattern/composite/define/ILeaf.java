@@ -1,10 +1,12 @@
-package com.zifang.util.core.pattern.composite.leaf;
+package com.zifang.util.core.pattern.composite.define;
 
 import java.util.List;
 import java.util.Objects;
 
 /**
  * 叶子结点
+ *
+ * @author zifang
  */
 public interface ILeaf {
 
@@ -45,7 +47,8 @@ public interface ILeaf {
      * 描述当前这个树的情况
      */
     default String describe() {
-        return this.toString(); // Todo
+        // Todo
+        return this.toString();
     }
 
     /**

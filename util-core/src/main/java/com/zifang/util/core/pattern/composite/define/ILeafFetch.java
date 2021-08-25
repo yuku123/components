@@ -1,8 +1,14 @@
-package com.zifang.util.core.pattern.composite.leaf;
+package com.zifang.util.core.pattern.composite.define;
 
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * @author zifang
+ *
+ * @param <T> t
+ * @param <R> r
+ */
 public interface ILeafFetch<T,R>{
 
     /**

@@ -1,4 +1,4 @@
-package com.zifang.util.core.pattern.composite.node;
+package com.zifang.util.core.pattern.composite.define;
 
 import java.util.List;
 

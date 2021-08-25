@@ -1,8 +1,8 @@
 package com.zifang.util.core.lang.reflect;
 
-import com.zifang.util.core.pattern.composite.leaf.ILeaf;
-import com.zifang.util.core.pattern.composite.leaf.LeafHelper;
-import com.zifang.util.core.pattern.composite.leaf.LeafWrapper;
+import com.zifang.util.core.pattern.composite.define.ILeaf;
+import com.zifang.util.core.pattern.composite.LeafHelper;
+import com.zifang.util.core.pattern.composite.LeafWrapper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

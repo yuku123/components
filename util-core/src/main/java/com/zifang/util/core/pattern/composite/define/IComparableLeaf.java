@@ -1,4 +1,4 @@
-package com.zifang.util.core.pattern.composite.leaf;
+package com.zifang.util.core.pattern.composite.define;
 
 /**
  * @author zifang
