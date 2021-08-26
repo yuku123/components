@@ -3,10 +3,7 @@ package com.zifang.util.core.lang;
 import java.io.*;
 import java.util.Collection;
 
-/**
- * @author zifang
- */
-public class ObjectUtil {
+public class ObjectCloneUtil {
     /**
      * 采用对象的序列化完成对象的深克隆
      *

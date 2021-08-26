@@ -35,7 +35,6 @@
         <module>util-graph</module>
         <module>util-voice</module>
         <module>util-robot</module>
-        <module>util-ioc</module>
         <module>util-aop</module>
         <module>util-compile</module>
         <module>util-zex</module>

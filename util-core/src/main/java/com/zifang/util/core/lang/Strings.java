@@ -19,7 +19,7 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.*;
 import static java.util.stream.Collectors.joining;
 
-public class StringUtil {
+public class Strings {
 
     private static final Predicate<String> NULL_STRING_PREDICATE = Objects::isNull;
     private static final Supplier<String> NULL_STRING_MSG_SUPPLIER = () -> "'value' should be not null.";
@@ -985,7 +985,7 @@ public class StringUtil {
     public static String toStudlyCase(final String value) {
         validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String[] words = collapseWhitespace(value.trim()).split("\\s*(_|-|\\s)\\s*");
-        return Arrays.stream(words).filter(w -> !w.trim().isEmpty()).map(StringUtil::upperFirst).collect(joining());
+        return Arrays.stream(words).filter(w -> !w.trim().isEmpty()).map(Strings::upperFirst).collect(joining());
     }
 
     /**
@@ -1724,8 +1724,9 @@ public class StringUtil {
         String result = "";
         if (array != null) {
             for (String temp : array) {
-                if (temp != null && temp.trim().length() > 0)
+                if (temp != null && temp.trim().length() > 0) {
                     result += (temp + symbol);
+                }
             }
             if (result.length() > 1 && CheckUtil.valid(symbol)) {
                 result = result.substring(0, result.length() - symbol.length());

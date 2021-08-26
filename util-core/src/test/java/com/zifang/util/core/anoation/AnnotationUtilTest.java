@@ -1,6 +1,6 @@
 package com.zifang.util.core.anoation;
 
-import com.zifang.util.core.annoations.AnnotationUtil;
+import com.zifang.util.core.lang.annoations.AnnotationUtil;
 import org.junit.Assert;
 import org.junit.Test;
 

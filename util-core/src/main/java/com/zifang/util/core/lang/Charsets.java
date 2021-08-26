@@ -9,9 +9,10 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Description: 编码相关的封装类
+ *
  * @author zifang
  */
-public final class Charsets {
+public class Charsets {
 
 
     /**
@@ -68,8 +69,6 @@ public final class Charsets {
      *
      * @param str        待转换编码的字符串
      * @param newCharset 目标编码
-     * @return
-     * @throws UnsupportedEncodingException
      */
     public static String changeCharset(String str, String newCharset) throws UnsupportedEncodingException {
         if (str != null) {
@@ -94,9 +93,9 @@ public final class Charsets {
      * @param oldCharset 原编码
      * @param newCharset 目标编码
      * @return a
-     * @throws UnsupportedEncodingException
      */
-    public static String changeCharset(String str, String oldCharset,
+    public static String changeCharset(String str,
+                                       String oldCharset,
                                        String newCharset) throws UnsupportedEncodingException {
         if (str != null) {
             // 用旧的字符编码解码字符串。解码可能会出现异常。
@@ -114,7 +113,7 @@ public final class Charsets {
      * @return 转换完成字符串
      */
     public static String toGBKWithUTF8(String input) throws UnsupportedEncodingException {
-        if (StringUtil.isEmpty(input)) {
+        if (Strings.isEmpty(input)) {
             return "";
         } else {
             String s1;
@@ -130,7 +129,7 @@ public final class Charsets {
      * @return 转换完成字符串
      */
     public static String toUnicodeWithGBK(String input) throws UnsupportedEncodingException {
-        if (StringUtil.isEmpty(input)) {
+        if (Strings.isEmpty(input)) {
             return "";
         } else {
             String s1;

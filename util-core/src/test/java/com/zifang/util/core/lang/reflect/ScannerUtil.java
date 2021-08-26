@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Set;
 
-public class Scanner {
+public class ScannerUtil {
     @Test
     public void t() {
         Set<Class<?>> set = PackageScanner.searchClasses("com.google");

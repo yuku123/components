@@ -1,5 +1,8 @@
 package com.zifang.util.core.lang;
 
+/**
+ * @author zifang
+ */
 public class Longs {
 
     /**
@@ -8,8 +11,10 @@ public class Longs {
 
     public static long of(byte[] bytes) {
         long longa = 0;
-        for (int i = 0; i < bytes.length; i++)
-            longa += (long) ((bytes[i] & 0xff) << i * 8); // 移位和清零
+        for (int i = 0; i < bytes.length; i++) {
+            // 移位和清零
+            longa +=  ((long) (bytes[i] & 0xff) << i * 8);
+        }
 
         return longa;
     }

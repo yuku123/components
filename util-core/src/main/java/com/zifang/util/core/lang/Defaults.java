@@ -2,6 +2,9 @@ package com.zifang.util.core.lang;
 
 import com.zifang.util.core.util.Conditions;
 
+/**
+ * @author zifang
+ */
 public class Defaults {
 
     private static final Double DOUBLE_DEFAULT = 0d;
@@ -32,9 +35,7 @@ public class Defaults {
         } else {
             try {
                 return (T)type.newInstance();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
