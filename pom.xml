@@ -79,16 +79,6 @@
             </dependency>
             <dependency>
                 <groupId>com.zifang</groupId>
-                <artifactId>util-ioc</artifactId>
-                <version>${util.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zifang</groupId>
-                <artifactId>util-io</artifactId>
-                <version>${util.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zifang</groupId>
                 <artifactId>util-rpc</artifactId>
                 <version>${util.version}</version>
             </dependency>
