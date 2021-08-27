@@ -1,9 +1,10 @@
 package com.zifang.util.compile.bytecode.decode;
 
 
-import com.zifang.util.compile.bytecode.parser.util.ByteScanner;
-import com.zifang.util.compile.bytecode.parser.info.ClassFile;
 import com.zifang.util.compile.bytecode.ConstantPoolItemType;
+import com.zifang.util.compile.bytecode.parser.ByteCodeParser;
+import com.zifang.util.compile.bytecode.parser.info.ClassFile;
+import com.zifang.util.compile.bytecode.parser.util.ByteScanner;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,36 +22,6 @@ public class Decompile {
         this.scanner = new ByteScanner(inputStream);
         this.classFile = new ClassFile();
         methodAttributeHandler = new MethodAttributeHandler();
-    }
-
-    public static void main(String[] args) throws Exception {
-        Decompile decompiler = new Decompile();
-
-        // 魔数
-        decompiler.magic();
-
-        // 版本号
-        decompiler.version();
-
-        // 常量池
-        decompiler.constant();
-
-        // 访问标志
-        decompiler.accessFlags();
-
-        // 类索引
-        decompiler.thisClass();
-
-        // 父类索引
-        decompiler.superClass();
-
-        // 接口集合
-        decompiler.interfaces();
-
-        decompiler.fields();
-
-        decompiler.methods();
-        System.out.println(decompiler.classFile);
     }
 
     /**
@@ -330,5 +301,44 @@ public class Decompile {
 
             }
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        FileInputStream inputStream = new FileInputStream("/Users/zifang/workplace/idea_workplace/bytecode_resolver/src/main/java/com/jiangchunbo/decompiler/SimpleClass.class");
+        byte[] bytes = new byte[inputStream.available()];
+        inputStream.read(bytes);
+
+        ByteCodeParser byteCodeParser = new ByteCodeParser();
+        byteCodeParser.setBytes(bytes);
+        ClassFile classFile = byteCodeParser.solveClassFile();
+
+        Decompile decompiler = new Decompile();
+
+        // 魔数
+        decompiler.magic();
+
+        // 版本号
+        decompiler.version();
+
+        // 常量池
+        decompiler.constant();
+
+        // 访问标志
+        decompiler.accessFlags();
+
+        // 类索引
+        decompiler.thisClass();
+
+        // 父类索引
+        decompiler.superClass();
+
+        // 接口集合
+        decompiler.interfaces();
+
+        decompiler.fields();
+
+        decompiler.methods();
+        System.out.println(decompiler.classFile);
     }
 }
