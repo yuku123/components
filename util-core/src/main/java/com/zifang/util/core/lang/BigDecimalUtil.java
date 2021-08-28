@@ -175,7 +175,7 @@ public class BigDecimalUtil {
      */
     public static Integer bigDecimalToInteger(BigDecimal value) {
         if (value != null) {
-            return new Integer(value.intValue());
+            return value.intValue();
         }
         return null;
     }

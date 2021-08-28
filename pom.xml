@@ -35,10 +35,8 @@
         <module>util-graph</module>
         <module>util-voice</module>
         <module>util-robot</module>
-        <module>util-ioc</module>
         <module>util-aop</module>
         <module>util-compile</module>
-        <module>util-json</module>
         <module>util-zex</module>
         <module>util-http</module>
         <module>util-math</module>
@@ -77,16 +75,6 @@
             <dependency>
                 <groupId>com.zifang</groupId>
                 <artifactId>util-aop</artifactId>
-                <version>${util.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zifang</groupId>
-                <artifactId>util-ioc</artifactId>
-                <version>${util.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zifang</groupId>
-                <artifactId>util-io</artifactId>
                 <version>${util.version}</version>
             </dependency>
             <dependency>

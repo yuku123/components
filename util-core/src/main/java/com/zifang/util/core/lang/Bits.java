@@ -16,9 +16,9 @@ public class Bits {
             throw new NullPointerException();
         }
         if (number instanceof Integer) {
-            return StringUtil.leftPad(Integer.toBinaryString(number.intValue()), Integer.SIZE, '0');
+            return Strings.leftPad(Integer.toBinaryString(number.intValue()), Integer.SIZE, '0');
         } else if (number instanceof Long) {
-            return StringUtil.leftPad(Long.toBinaryString(number.longValue()), Long.SIZE, '0');
+            return Strings.leftPad(Long.toBinaryString(number.longValue()), Long.SIZE, '0');
         } else {
             return String.valueOf(number);
         }

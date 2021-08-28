@@ -1,6 +1,6 @@
 package com.zifang.util.http.helper;
 
-import com.zifang.util.core.annoations.AnnotationUtil;
+import com.zifang.util.core.lang.annoations.AnnotationUtil;
 import com.zifang.util.core.util.GsonUtil;
 import com.zifang.util.http.common.ParameterValuePair;
 import com.zifang.util.http.define.*;

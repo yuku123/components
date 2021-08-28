@@ -14,6 +14,7 @@ public class NetWorkMonitor {
      * 主机IP
      */
     public static String HOST_IP;
+
     /**
      * 主机名
      */
@@ -40,5 +41,4 @@ public class NetWorkMonitor {
             System.out.println("获取服务器IP出错");
         }
     }
-
 }

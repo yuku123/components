@@ -5,6 +5,8 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * 针对 char的一些操作方法 合集
+ *
+ * @author zifang
  */
 public class Chars {
 
