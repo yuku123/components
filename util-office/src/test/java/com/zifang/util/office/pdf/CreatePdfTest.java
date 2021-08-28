@@ -14,15 +14,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CreatePdfTest {
-    public static void main(String[] args) throws IOException {
-        String output = "/Users/zifang/Downloads/风之圣痕-ignition-06.pdf";
-        String imageFolder = "/Users/zifang/Downloads/06";
 
+    public static void transform(String output , String imageFolder) throws IOException {
         PDDocument document = new PDDocument();
 
         List<File> fileList = Arrays.asList(new File(imageFolder).listFiles());
         fileList = fileList.stream().filter(e -> !e.getName().startsWith("."))
-                .filter(e -> !e.getName().equals("Thumbs.db"))
+                .filter(e -> !e.getName().equals("Thumbs.db") && !e.getName().endsWith(".txt") && !e.getName().toLowerCase().endsWith(".url")
+                        && !e.getName().endsWith(".html"))
                 .collect(Collectors.toList());
         fileList.sort(Comparator.naturalOrder());
         for (File image : fileList) {
@@ -48,6 +47,29 @@ public class CreatePdfTest {
         document.save(output);
         document.close();
 
+    }
 
+    public static void main(String[] args) throws IOException {
+        String output = "/Volumes/zifang/工口/超电磁炮/(C78) [たくみなむち (たくみなむち)] 超電磁砲のまもりかた　上 (とある魔術の禁書目録) [無修正].pdf";
+        String imageFolder = "/Volumes/zifang/工口/超电磁炮/(C78) [たくみなむち (たくみなむち)] 超電磁砲のまもりかた　上 (とある魔術の禁書目録) [無修正]";
+        for(File file : new File("/Volumes/zifang/工口/COMIC").listFiles()){
+            if(file.isDirectory()){
+                String folder = file.getAbsolutePath();
+                String pdf = folder+".pdf";
+                try {
+                    transform(pdf, folder);
+                    deleteFolder(folder);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private static void deleteFolder(String folder) {
+        for(File file :new File(folder).listFiles()){
+            file.delete();
+        }
+        new File(folder).delete();
     }
 }
