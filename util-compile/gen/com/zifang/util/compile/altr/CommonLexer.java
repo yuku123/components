@@ -1,5 +1,5 @@
 // Generated from /Users/zifang/workplace/idea_workplace/components/util-compile/src/main/java/com/zifang/util/compile/altr/CommonLexer.g4 by ANTLR 4.9.1
-package com.zifang.util.compile.altr;
+package com.zifang.util.compile.source.altr;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

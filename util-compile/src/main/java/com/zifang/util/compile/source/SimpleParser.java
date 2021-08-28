@@ -1,11 +1,11 @@
-package com.zifang.util.compile;
+package com.zifang.util.compile.source;
 
-import com.zifang.util.compile.ast.ASTNode;
-import com.zifang.util.compile.ast.ASTNodeType;
-import com.zifang.util.compile.lexer.SimpleLexer;
-import com.zifang.util.compile.lexer.Token;
-import com.zifang.util.compile.lexer.TokenReader;
-import com.zifang.util.compile.lexer.TokenType;
+import com.zifang.util.compile.source.ast.ASTNode;
+import com.zifang.util.compile.source.ast.ASTNodeType;
+import com.zifang.util.compile.source.lexer.SimpleLexer;
+import com.zifang.util.compile.source.lexer.Token;
+import com.zifang.util.compile.source.lexer.TokenReader;
+import com.zifang.util.compile.source.lexer.TokenType;
 
 import java.util.ArrayList;
 import java.util.Collections;

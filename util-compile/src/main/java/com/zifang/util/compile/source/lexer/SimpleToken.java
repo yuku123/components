@@ -1,4 +1,4 @@
-package com.zifang.util.compile.lexer;
+package com.zifang.util.compile.source.lexer;
 
 /**
  * Token的一个简单实现。只有类型和文本值两个属性。

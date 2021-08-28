@@ -1,7 +1,7 @@
-package com.zifang.util.compile;
+package com.zifang.util.compile.source;
 
-import com.zifang.util.compile.ast.ASTNode;
-import com.zifang.util.compile.ast.ASTNodeType;
+import com.zifang.util.compile.source.ast.ASTNode;
+import com.zifang.util.compile.source.ast.ASTNodeType;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

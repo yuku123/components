@@ -1,4 +1,4 @@
-package com.zifang.util.compile.lexer;
+package com.zifang.util.compile.source.lexer;
 
 import java.util.List;
 
