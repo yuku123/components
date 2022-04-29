@@ -19,7 +19,7 @@
 
     <modules>
         <module>util-core</module>
-        <module>util-persist</module>
+        <module>util-db</module>
         <module>util-office</module>
         <module>util-script</module>
         <module>util-crawler</module>
@@ -52,6 +52,8 @@
         <module>util-video</module>
         <module>util-distribute</module>
         <module>util-leecode</module>
+        <module>util-schedule</module>
+        <module>util-bytecode</module>
 
     </modules>
 
