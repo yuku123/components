@@ -1,4 +1,4 @@
-package com.zifang.util.compile.bytecode.a.parser.info;
+package com.zifang.util.compile.bytecode.resolver.parser.struct;
 
 public interface AccessFlag {
 

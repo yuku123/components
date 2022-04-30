@@ -1,6 +1,5 @@
 package com.zifang.util.compile.bytecode.simple2.attribute;
 
-import cn.hutool.core.util.StrUtil;
 import com.zifang.util.compile.bytecode.simple2.ClassFile;
 import com.zifang.util.compile.bytecode.simple2.constantpool.AbstractConstantPool;
 import com.zifang.util.compile.bytecode.simple2.constantpool.ConstantPoolInfo;
@@ -43,6 +42,6 @@ public class ConstantValue extends AbstractAttribute{
         List<AbstractConstantPool> poolList = poolInfo.getPoolList();
         String name=poolList.get(nameIndex-1).toString();
         String value=poolList.get(valueIndex-1).toString();
-        return StrUtil.format("ConstantValue->attributeName:{},attributeLength:{},constantValue:{}",name,getAttributeLength().getValue(),value);
+        return String.format("ConstantValue->attributeName:%s,attributeLength:%s,constantValue:%s",name,getAttributeLength().getValue(),value);
     }
 }

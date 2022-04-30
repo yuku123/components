@@ -1,6 +1,6 @@
-package com.zifang.util.compile.bytecode.a.parser.util;
+package com.zifang.util.compile.bytecode.resolver.parser.util;
 
-import com.zifang.util.compile.bytecode.a.parser.info.Field;
+import com.zifang.util.compile.bytecode.resolver.parser.struct.Field;
 
 public class Descriptor {
 

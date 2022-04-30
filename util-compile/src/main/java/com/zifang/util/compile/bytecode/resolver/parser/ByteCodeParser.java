@@ -1,6 +1,6 @@
-package com.zifang.util.compile.bytecode.a.parser;
+package com.zifang.util.compile.bytecode.resolver.parser;
 
-import com.zifang.util.compile.bytecode.a.parser.info.ClassFile;
+import com.zifang.util.compile.bytecode.resolver.parser.struct.ClassFile;
 import lombok.Data;
 
 /**

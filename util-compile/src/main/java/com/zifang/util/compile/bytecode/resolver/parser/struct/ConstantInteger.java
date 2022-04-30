@@ -1,4 +1,4 @@
-package com.zifang.util.compile.bytecode.a.parser.info;
+package com.zifang.util.compile.bytecode.resolver.parser.struct;
 
 public class ConstantInteger extends ConstantPoolItem {
 
@@ -15,5 +15,4 @@ public class ConstantInteger extends ConstantPoolItem {
         result.append(value);
         return result.toString();
     }
-
 }

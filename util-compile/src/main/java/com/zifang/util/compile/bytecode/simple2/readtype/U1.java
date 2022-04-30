@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class U1 {
+
     public byte value;
 
     public U1(byte value) {

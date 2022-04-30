@@ -1,4 +1,4 @@
-package com.zifang.util.compile.bytecode.a.parser.info;
+package com.zifang.util.compile.bytecode.resolver.parser.struct;
 
 import lombok.Data;
 
@@ -15,15 +15,19 @@ public class ClassFile {
      * 魔术
      * */
     private int magic;
+
     private int minorVersion;
+
     private int majorVersion;
+
     private int accessFlags;
+
     /**
      * 常量池
      * */
     public List<? super ConstantPoolItem> items;
 
-    public ArrayList<Field> fields;
+    public List<Field> fields;
 
     public ClassFile() {
         items = new ArrayList<>();
@@ -31,16 +35,8 @@ public class ClassFile {
         items.add(new ConstantPoolItem(this, 0));
     }
 
-    public void addConstantUtf8(ClassFile classFile, int index, String value) {
-        items.add(new ConstantUtf8(classFile, index, value));
-    }
-
-    public void addConstantInteger(ClassFile classFile, int index, int value) {
-        items.add(new ConstantInteger(classFile, index, value));
-    }
-
-    public void addConstantFloat(ClassFile classFile, int index, float value) {
-        items.add(new ConstantFloat(classFile, index, value));
+    public void addConstantItem(ConstantPoolItem constantPoolItem){
+        items.add(constantPoolItem);
     }
 
     public void addConstantLong(ClassFile classFile, int index, long value) {
@@ -138,6 +134,10 @@ public class ClassFile {
         }
 
         return result.toString();
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }

@@ -10,8 +10,10 @@ import java.util.List;
  */
 
 public class MethodInfo {
+
     public U2 length;
-    public List<MethodTable> list=new ArrayList<MethodTable>();
+
+    public List<MethodTable> list = new ArrayList<MethodTable>();
 
     public MethodInfo(U2 length) {
         this.length = length;

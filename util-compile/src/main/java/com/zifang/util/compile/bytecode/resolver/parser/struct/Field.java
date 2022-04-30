@@ -1,4 +1,4 @@
-package com.zifang.util.compile.bytecode.a.parser.info;
+package com.zifang.util.compile.bytecode.resolver.parser.struct;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +14,6 @@ public class Field {
     int descriptorIndex;
 
     int attributesCount;
-
-
 
     private String getString(int nameIndex) {
         return null;

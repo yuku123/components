@@ -1,6 +1,8 @@
-package com.zifang.util.compile.bytecode.a.parser.info;
+package com.zifang.util.compile.bytecode.resolver.parser.struct;
 
 public class ConstantLong extends ConstantPoolItem {
+
+
 
     public ConstantLong(ClassFile classFile, int index, long value) {
         super(classFile, index);

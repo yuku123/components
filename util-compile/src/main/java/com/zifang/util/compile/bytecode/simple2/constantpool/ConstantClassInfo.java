@@ -13,7 +13,7 @@ public class ConstantClassInfo extends AbstractConstantPool{
     }
 
     public void read(InputStream inputStream) {
-        this.stringIndex=U2.read(inputStream);
+        this.stringIndex = U2.read(inputStream);
     }
 
     public U2 getStringIndex() {

@@ -1,4 +1,4 @@
-package com.zifang.util.compile.bytecode.a;
+package com.zifang.util.compile.bytecode.resolver;
 
 import javax.annotation.Resource;
 import javax.xml.bind.annotation.XmlElement;

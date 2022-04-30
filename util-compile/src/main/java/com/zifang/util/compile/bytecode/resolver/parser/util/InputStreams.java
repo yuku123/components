@@ -1,4 +1,4 @@
-package com.zifang.util.compile.bytecode.a.parser.util;
+package com.zifang.util.compile.bytecode.resolver.parser.util;
 
 import java.io.File;
 import java.io.FileInputStream;

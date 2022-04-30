@@ -1,150 +1,23 @@
 package com.zifang.util.compile.bytecode.resolver;
 
-
-import com.zifang.util.compile.bytecode.a.ConstantPoolItemType;
-import com.zifang.util.compile.bytecode.a.parser.ByteCodeParser;
-import com.zifang.util.compile.bytecode.a.parser.info.ClassFile;
-import com.zifang.util.compile.bytecode.a.parser.util.ByteScanner;
+import com.zifang.util.compile.bytecode.resolver.parser.struct.*;
+import com.zifang.util.compile.bytecode.resolver.parser.util.ByteScanner;
+import lombok.Data;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
-public class Decompile {
+/**
+ * @author zifang
+ */
+@Data
+public class ByteCodeParser {
 
-    private final ByteScanner scanner;
+    private ByteScanner scanner;
 
-    private final ClassFile classFile;
+    private ClassFile classFile;
 
-    private final MethodAttributeHandler methodAttributeHandler;
+    private MethodAttributeHandler methodAttributeHandler = new MethodAttributeHandler();
 
-    public Decompile() throws FileNotFoundException {
-        FileInputStream inputStream = new FileInputStream("/Users/zifang/workplace/idea_workplace/bytecode_resolver/src/main/java/com/jiangchunbo/decompiler/SimpleClass.class");
-        this.scanner = new ByteScanner(inputStream);
-        this.classFile = new ClassFile();
-        methodAttributeHandler = new MethodAttributeHandler();
-    }
-
-    /**
-     * 魔数由 4 个字节组成，十六进制为 0xCAFEBABE
-     */
-    public void magic() {
-        classFile.setMagic(this.scanner.readToInteger(4));
-    }
-
-    public void version() {
-        /*  */
-        classFile.setMinorVersion(this.scanner.readToInteger(2));
-        classFile.setMajorVersion(this.scanner.readToInteger(2));
-    }
-
-    public void constant() throws Exception {
-        int classFileCount = this.scanner.readToInteger(2);
-
-        for (int index = 1; index < classFileCount; ++index) {
-            switch (this.scanner.readToInteger(1)) {
-                case ConstantPoolItemType.UTF8: {
-                    int length = this.scanner.readToInteger(2);
-                    String value = this.scanner.readToString(length);
-                    classFile.addConstantUtf8(classFile, index, value);
-                    break;
-                }
-                case ConstantPoolItemType.INTEGER: {
-                    /* 按照高位在前存储的 int 值 */
-                    int intValue = this.scanner.readToInteger(4);
-                    classFile.addConstantInteger(classFile, index, intValue);
-                    break;
-                }
-                case ConstantPoolItemType.FLOAT: {
-                    float floatValue = Float.intBitsToFloat(this.scanner.readToInteger(4));
-                    classFile.addConstantFloat(classFile, index, floatValue);
-                    break;
-                }
-                case ConstantPoolItemType.LONG: {
-                    long longValue = this.scanner.readToLong();
-                    classFile.addConstantLong(classFile, index++, longValue);
-                    break;
-                }
-                case ConstantPoolItemType.DOUBLE: {
-                    double doubleValue = Double.longBitsToDouble(this.scanner.readToLong());
-                    classFile.addConstantDouble(classFile, index++, doubleValue);
-                    break;
-                }
-                case ConstantPoolItemType.CLASS: {
-                    int classIndex = this.scanner.readToInteger(2);
-                    classFile.addConstantClass(classFile, index, classIndex);
-
-                    break;
-                }
-                case ConstantPoolItemType.STRING: {
-                    int stringIndex = this.scanner.readToInteger(2);
-                    classFile.addConstantString(classFile, index, stringIndex);
-
-                    break;
-                }
-                case ConstantPoolItemType.FIELDREF: {
-                    int classIndex = this.scanner.readToInteger(2);
-                    int nameAndTypeIndex = this.scanner.readToInteger(2);
-                    classFile.addConstantFieldref(classFile, index, classIndex, nameAndTypeIndex);
-
-                    break;
-                }
-                case ConstantPoolItemType.METHODREF: {
-                    /* 指向声明方法的类描述符 CONSTANT_Class_Info 的索引项 */
-                    /* 指向名称及类型描述符 CONSTANT_NameAndType_Info 的索引项 */
-                    int classIndex = this.scanner.readToInteger(2);
-                    int nameAndTypeIndex = this.scanner.readToInteger(2);
-                    classFile.addConstantMethodref(classFile, index, classIndex, nameAndTypeIndex);
-
-                    break;
-                }
-                case ConstantPoolItemType.INTERFACE_METHODREF: {
-                    int classIndex = this.scanner.readToInteger(2);
-                    int nameAndTypeIndex = this.scanner.readToInteger(2);
-                    classFile.addConstantMethodref(classFile, index, classIndex, nameAndTypeIndex);
-
-                    break;
-                }
-                case ConstantPoolItemType.NAME_ANT_TYPE: {
-                    int nameIndex = this.scanner.readToInteger(2);
-                    int typeIndex = this.scanner.readToInteger(2);
-
-                    classFile.addConstantNameAndType(classFile, index, nameIndex, typeIndex);
-
-                    break;
-                }
-                case ConstantPoolItemType.METHOD_HANDLE: {
-                    int referenceKind = this.scanner.readToInteger(1);
-                    int descriptorIndex = this.scanner.readToInteger(2);
-                    classFile.addConstantNameAndType(classFile, index, referenceKind, descriptorIndex);
-
-                    break;
-                }
-                case ConstantPoolItemType.METHOD_TYPE: {
-                    int descriptorIndex = this.scanner.readToInteger(2);
-                    classFile.addConstantNameAndType(classFile, index, descriptorIndex, descriptorIndex);
-
-                    break;
-                }
-
-                case ConstantPoolItemType.INVOKE_DYNAMIC: {
-                    int referenceKind = this.scanner.readToInteger(2);
-                    int descriptorIndex = this.scanner.readToInteger(2);
-                    classFile.addConstantNameAndType(classFile, index, referenceKind, descriptorIndex);
-
-                    break;
-                }
-                default: {
-                    break;
-                }
-
-            }
-        }
-    }
-
-    public void accessFlags() throws Exception {
-        classFile.setAccessFlags(this.scanner.readToInteger(2));
-
-    }
 
     public void thisClass() throws Exception {
         int thisClassIndex = this.scanner.readToInteger(2);
@@ -303,42 +176,120 @@ public class Decompile {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    private ClassFile parser() throws Exception {
 
+        this.classFile = new ClassFile();
+
+        // 处理魔数
+        handleMagic();
+
+        // 处理版本号
+        handleVersion();
+
+        // 常量池
+        handleConstantPool();
+
+        // 访问标志
+        handleAccessFlags();
+
+        // 类索引
+        thisClass();
+
+        // 父类索引
+        superClass();
+
+        // 接口集合
+        interfaces();
+
+        fields();
+
+        methods();
+
+        return classFile;
+    }
+
+    private void handleVersion() {
+        classFile.setMinorVersion(scanner.readToInteger(2));
+        classFile.setMajorVersion(scanner.readToInteger(2));
+    }
+
+    private void handleMagic() {
+        classFile.setMagic(scanner.readToInteger(4));
+    }
+
+
+    public void handleConstantPool() {
+        int classFileCount = this.scanner.readToInteger(2);
+
+        for (int index = 1; index < classFileCount; ++index) {
+            int constantPoolItemType = this.scanner.readToInteger(1);
+            if(constantPoolItemType == ConstantPoolItemType.UTF8){
+                int length = this.scanner.readToInteger(2);
+                String value = this.scanner.readToString(length);
+                classFile.addConstantItem( new ConstantUtf8(classFile, index, value));
+            } else if(constantPoolItemType == ConstantPoolItemType.INTEGER){
+                int value = this.scanner.readToInteger(4);
+                classFile.addConstantItem(new ConstantInteger(classFile, index, value));
+            } else if(constantPoolItemType == ConstantPoolItemType.FLOAT){
+                float value = Float.intBitsToFloat(this.scanner.readToInteger(4));
+                classFile.addConstantItem(new ConstantFloat(classFile, index, value));
+            }else if(constantPoolItemType == ConstantPoolItemType.LONG){
+                long longValue = this.scanner.readToLong();
+                classFile.addConstantLong(classFile, index++, longValue);
+            }else if(constantPoolItemType == ConstantPoolItemType.DOUBLE){
+                double doubleValue = Double.longBitsToDouble(this.scanner.readToLong());
+                classFile.addConstantDouble(classFile, index++, doubleValue);
+            }else if(constantPoolItemType == ConstantPoolItemType.CLASS){
+                int classIndex = this.scanner.readToInteger(2);
+                classFile.addConstantClass(classFile, index, classIndex);
+            }else if(constantPoolItemType == ConstantPoolItemType.STRING){
+                int stringIndex = this.scanner.readToInteger(2);
+                classFile.addConstantString(classFile, index, stringIndex);
+            }else if(constantPoolItemType == ConstantPoolItemType.FIELD_REF){
+                int classIndex = this.scanner.readToInteger(2);
+                int nameAndTypeIndex = this.scanner.readToInteger(2);
+                classFile.addConstantFieldref(classFile, index, classIndex, nameAndTypeIndex);
+            }else if(constantPoolItemType == ConstantPoolItemType.METHOD_REF){
+                int classIndex = this.scanner.readToInteger(2);
+                int nameAndTypeIndex = this.scanner.readToInteger(2);
+                classFile.addConstantMethodref(classFile, index, classIndex, nameAndTypeIndex);
+            }else if(constantPoolItemType == ConstantPoolItemType.INTERFACE_METHOD_REF){
+                int classIndex = this.scanner.readToInteger(2);
+                int nameAndTypeIndex = this.scanner.readToInteger(2);
+                classFile.addConstantMethodref(classFile, index, classIndex, nameAndTypeIndex);
+            }else if(constantPoolItemType == ConstantPoolItemType.NAME_ANT_TYPE){
+                int nameIndex = this.scanner.readToInteger(2);
+                int typeIndex = this.scanner.readToInteger(2);
+                classFile.addConstantNameAndType(classFile, index, nameIndex, typeIndex);
+            }else if(constantPoolItemType == ConstantPoolItemType.METHOD_HANDLE){
+                int referenceKind = this.scanner.readToInteger(1);
+                int descriptorIndex = this.scanner.readToInteger(2);
+                classFile.addConstantNameAndType(classFile, index, referenceKind, descriptorIndex);
+            }else if(constantPoolItemType == ConstantPoolItemType.METHOD_TYPE){
+                int descriptorIndex = this.scanner.readToInteger(2);
+                classFile.addConstantNameAndType(classFile, index, descriptorIndex, descriptorIndex);
+            }else if(constantPoolItemType ==ConstantPoolItemType.INVOKE_DYNAMIC){
+                int referenceKind = this.scanner.readToInteger(2);
+                int descriptorIndex = this.scanner.readToInteger(2);
+                classFile.addConstantNameAndType(classFile, index, referenceKind, descriptorIndex);
+            }
+        }
+    }
+
+    public void handleAccessFlags() throws Exception {
+        classFile.setAccessFlags(this.scanner.readToInteger(2));
+    }
+
+    public static void main(String[] args) throws Exception {
         FileInputStream inputStream = new FileInputStream("/Users/zifang/workplace/idea_workplace/bytecode_resolver/src/main/java/com/jiangchunbo/decompiler/SimpleClass.class");
         byte[] bytes = new byte[inputStream.available()];
         inputStream.read(bytes);
 
+        ByteScanner scanner = new ByteScanner(inputStream);
         ByteCodeParser byteCodeParser = new ByteCodeParser();
-        byteCodeParser.setBytes(bytes);
-        ClassFile classFile = byteCodeParser.solveClassFile();
-
-        Decompile decompiler = new Decompile();
-
-        // 魔数
-        decompiler.magic();
-
-        // 版本号
-        decompiler.version();
-
-        // 常量池
-        decompiler.constant();
-
-        // 访问标志
-        decompiler.accessFlags();
-
-        // 类索引
-        decompiler.thisClass();
-
-        // 父类索引
-        decompiler.superClass();
-
-        // 接口集合
-        decompiler.interfaces();
-
-        decompiler.fields();
-
-        decompiler.methods();
-        System.out.println(decompiler.classFile);
+        byteCodeParser.setScanner(scanner);
+        ClassFile classFile = byteCodeParser.parser();
+        System.out.println(classFile);
     }
+
 }
