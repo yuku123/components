@@ -53,8 +53,6 @@
         <module>util-distribute</module>
         <module>util-leecode</module>
         <module>util-schedule</module>
-        <module>util-bytecode</module>
-
     </modules>
 
     <dependencyManagement>
