@@ -2,6 +2,9 @@ package com.zifang.util.core.lang.tuples;
 
 import lombok.Data;
 
+/**
+ * @author zifang
+ */
 @Data
 public class Ennead<A, B, C, D, E, F, G, H, I> extends Octet<A, B, C, D, E, F, G, H> {
     protected I i;

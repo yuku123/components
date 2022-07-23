@@ -2,6 +2,9 @@ package com.zifang.util.core.lang.tuples;
 
 import lombok.Data;
 
+/**
+ * @author zifang
+ */
 @Data
 public class Quintet<A, B, C, D, E> extends Quartet<A, B, C, D> {
     protected E e;

@@ -6,8 +6,11 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * 文件压缩、解压工具类。文件压缩格式为zip
+ *
+ * @author zifang
  */
 public class ZipUtil {
+
     /**
      * 文件后缀名
      */
@@ -49,16 +52,10 @@ public class ZipUtil {
         }
     }
 
-    /**
-     * @param out
-     * @param dir
-     * @author:zifang
-     * @date : 2019年5月24日 下午10:00:22
-     */
     private static void compressedFile(ZipOutputStream out, File file, String dir) {
         FileInputStream fis = null;
         try {
-            if (file.isDirectory()) {    //文件夹
+            if (file.isDirectory()) {
                 // 得到文件列表信息
                 File[] files = file.listFiles();
                 // 将文件夹添加到下一级打包目录
@@ -66,13 +63,11 @@ public class ZipUtil {
 
                 dir = dir.length() == 0 ? "" : dir + "/";
 
-                // 循环将文件夹中的文件打包
                 for (int i = 0; i < files.length; i++) {
-                    compressedFile(out, files[i], dir + files[i].getName()); // 递归处理
+                    compressedFile(out, files[i], dir + files[i].getName());
                 }
-            } else {    //如果是文件则打包处理
+            } else {
                 fis = new FileInputStream(file);
-
                 out.putNextEntry(new ZipEntry(dir));
                 // 进行写操作
                 int j = 0;
@@ -80,10 +75,7 @@ public class ZipUtil {
                 while ((j = fis.read(buffer)) > 0) {
                     out.write(buffer, 0, j);
                 }
-                // 关闭输入流
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

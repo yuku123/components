@@ -105,7 +105,6 @@ public class BeanUtils {
         } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-
     }
 
     /**

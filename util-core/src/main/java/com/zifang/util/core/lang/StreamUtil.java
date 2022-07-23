@@ -1,4 +1,4 @@
-package com.zifang.util.core.io;
+package com.zifang.util.core.lang;
 
 import java.util.Iterator;
 import java.util.stream.Stream;
@@ -8,8 +8,7 @@ import java.util.stream.StreamSupport;
 /**
  * 将Iterator类型的数据转化为流操作
  */
-public class StreamUtils {
-
+public class StreamUtil {
 
     /**
      * 转换 iterator 为串行流

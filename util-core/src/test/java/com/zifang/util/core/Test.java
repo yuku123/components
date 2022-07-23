@@ -1,4 +1,8 @@
-package com.zifang.util.core.parser.xml;
+package com.zifang.util.core;
+
+import com.zifang.util.core.parser.xml.ReqHeader;
+import com.zifang.util.core.parser.xml.SmsBody;
+import com.zifang.util.core.parser.xml.SmsDeliverReq;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
