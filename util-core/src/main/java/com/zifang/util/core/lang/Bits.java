@@ -94,4 +94,11 @@ public class Bits {
         n |= n >>> 16;
         return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
     }
+
+    /**
+     * 从byte里获取特定位数上的值
+     */
+    public static int at(int i, int k){
+        return 1; // todo
+    }
 }
