@@ -91,23 +91,22 @@ public class ZipUtil {
         }
     }
 
-    public static void zipFolder(String folder, String targetFolder, String zipFileName){
+    public static void zipFolder(String folder, String targetFolder, String zipFileName) {
 
         File zipFolder = new File(folder);
 
-        if(!zipFolder.isDirectory()){
-            throw new RuntimeException("folder："+folder +" is not a Folder");
+        if (!zipFolder.isDirectory()) {
+            throw new RuntimeException("folder：" + folder + " is not a Folder");
         }
 
-        if(!zipFolder.exists()){
-            throw new RuntimeException("folder："+folder +" is not Exist");
+        if (!zipFolder.exists()) {
+            throw new RuntimeException("folder：" + folder + " is not Exist");
         }
     }
 
 
     /**
      * 压缩文件
-     *
      */
     public static void zipFile(String srcFilePath, String destZipFilePath, String fileName) throws Exception {
         File file = new File(destZipFilePath);

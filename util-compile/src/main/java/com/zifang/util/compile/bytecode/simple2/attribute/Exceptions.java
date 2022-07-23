@@ -7,11 +7,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Exceptions extends AbstractAttribute{
+public class Exceptions extends AbstractAttribute {
     private U2 numberOfExceptions;//方法throw的异常数量;
-    private List<U2> exceptionIndexTable=new ArrayList<>(numberOfExceptions.value);//指向常量池中constant_class_table型常量的索引;
-
-
+    private List<U2> exceptionIndexTable = new ArrayList<>(numberOfExceptions.value);//指向常量池中constant_class_table型常量的索引;
 
 
     public Exceptions(U2 attributeNameIndex, U4 attributeLength) {

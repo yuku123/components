@@ -9,9 +9,9 @@ public class ConstantPoolInfo {
     private U2 poolSize;
     private List<AbstractConstantPool> poolList;
 
-    public ConstantPoolInfo(short poolSize){
-        this.poolSize=new U2(poolSize);
-        poolList=new ArrayList<AbstractConstantPool>(poolSize);
+    public ConstantPoolInfo(short poolSize) {
+        this.poolSize = new U2(poolSize);
+        poolList = new ArrayList<AbstractConstantPool>(poolSize);
     }
 
     public U2 getPoolSize() {

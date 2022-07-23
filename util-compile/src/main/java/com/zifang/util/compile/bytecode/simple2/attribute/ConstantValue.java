@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 常量描述,加了final的字段 在class解析后,会有这个属性
  */
-public class ConstantValue extends AbstractAttribute{
+public class ConstantValue extends AbstractAttribute {
     private U2 constantValueIndex;
 
     public ConstantValue(U2 attributeNameIndex, U4 attributeLength) {
@@ -29,9 +29,8 @@ public class ConstantValue extends AbstractAttribute{
     }
 
     public void read(InputStream inputStream) {
-        constantValueIndex=U2.read(inputStream);
+        constantValueIndex = U2.read(inputStream);
     }
-
 
 
     @Override
@@ -40,8 +39,8 @@ public class ConstantValue extends AbstractAttribute{
         short valueIndex = constantValueIndex.getValue();
         ConstantPoolInfo poolInfo = ClassFile.poolInfo;
         List<AbstractConstantPool> poolList = poolInfo.getPoolList();
-        String name=poolList.get(nameIndex-1).toString();
-        String value=poolList.get(valueIndex-1).toString();
-        return String.format("ConstantValue->attributeName:%s,attributeLength:%s,constantValue:%s",name,getAttributeLength().getValue(),value);
+        String name = poolList.get(nameIndex - 1).toString();
+        String value = poolList.get(valueIndex - 1).toString();
+        return String.format("ConstantValue->attributeName:%s,attributeLength:%s,constantValue:%s", name, getAttributeLength().getValue(), value);
     }
 }

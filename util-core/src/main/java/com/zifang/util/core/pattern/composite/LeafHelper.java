@@ -61,11 +61,11 @@ public class LeafHelper {
     /**
      * 树化结点包装
      */
-    public static <ID, C> LeafWrapper<ID,ID,C> treeify(List<LeafWrapper<ID, ID, C>> leafWrappers) {
-        Map<ID, LeafWrapper<ID,ID,C>> leafWrapperMap = leafWrappers.stream().collect(Collectors.toMap(LeafWrapper::getA, e -> e));
+    public static <ID, C> LeafWrapper<ID, ID, C> treeify(List<LeafWrapper<ID, ID, C>> leafWrappers) {
+        Map<ID, LeafWrapper<ID, ID, C>> leafWrapperMap = leafWrappers.stream().collect(Collectors.toMap(LeafWrapper::getA, e -> e));
 
-        LeafWrapper<ID,ID,C> root = null;
-        for (LeafWrapper<ID,ID,C> leafWrapper : leafWrappers) {
+        LeafWrapper<ID, ID, C> root = null;
+        for (LeafWrapper<ID, ID, C> leafWrapper : leafWrappers) {
             LeafWrapper parent = leafWrapperMap.get(leafWrapper.getB());
             if (parent == null) {
                 root = leafWrapper;

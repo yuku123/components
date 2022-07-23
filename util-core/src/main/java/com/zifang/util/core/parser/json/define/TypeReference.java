@@ -3,7 +3,7 @@ package com.zifang.util.core.parser.json.define;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public class TypeReference<T>{
+public class TypeReference<T> {
 
     private final Type type;
 

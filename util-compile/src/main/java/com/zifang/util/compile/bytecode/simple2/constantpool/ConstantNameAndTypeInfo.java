@@ -4,7 +4,7 @@ import com.zifang.util.compile.bytecode.simple2.readtype.U2;
 
 import java.io.InputStream;
 
-public class ConstantNameAndTypeInfo extends AbstractConstantPool{
+public class ConstantNameAndTypeInfo extends AbstractConstantPool {
     private U2 nameIndex;
     private U2 descriptorIndex;
 
@@ -14,8 +14,8 @@ public class ConstantNameAndTypeInfo extends AbstractConstantPool{
     }
 
     public void read(InputStream inputStream) {
-        this.nameIndex=U2.read(inputStream);
-        this.descriptorIndex=U2.read(inputStream);
+        this.nameIndex = U2.read(inputStream);
+        this.descriptorIndex = U2.read(inputStream);
     }
 
     public U2 getNameIndex() {

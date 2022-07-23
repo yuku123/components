@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class CreatePdfTest {
 
-    public static void transform(String output , String imageFolder) throws IOException {
+    public static void transform(String output, String imageFolder) throws IOException {
         PDDocument document = new PDDocument();
 
         List<File> fileList = Arrays.asList(new File(imageFolder).listFiles());
@@ -52,14 +52,14 @@ public class CreatePdfTest {
     public static void main(String[] args) throws IOException {
         String output = "/Volumes/zifang/工口/超电磁炮/(C78) [たくみなむち (たくみなむち)] 超電磁砲のまもりかた　上 (とある魔術の禁書目録) [無修正].pdf";
         String imageFolder = "/Volumes/zifang/工口/超电磁炮/(C78) [たくみなむち (たくみなむち)] 超電磁砲のまもりかた　上 (とある魔術の禁書目録) [無修正]";
-        for(File file : new File("/Volumes/zifang/工口/COMIC").listFiles()){
-            if(file.isDirectory()){
+        for (File file : new File("/Volumes/zifang/工口/COMIC").listFiles()) {
+            if (file.isDirectory()) {
                 String folder = file.getAbsolutePath();
-                String pdf = folder+".pdf";
+                String pdf = folder + ".pdf";
                 try {
                     transform(pdf, folder);
                     deleteFolder(folder);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -67,7 +67,7 @@ public class CreatePdfTest {
     }
 
     private static void deleteFolder(String folder) {
-        for(File file :new File(folder).listFiles()){
+        for (File file : new File(folder).listFiles()) {
             file.delete();
         }
         new File(folder).delete();

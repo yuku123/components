@@ -13,9 +13,9 @@ public class JsonUtil {
 
     public static <T> String toJson(T t) {
 
-        if(t.getClass().isAssignableFrom(List.class)){
+        if (t.getClass().isAssignableFrom(List.class)) {
             return solveList(t);
-        } else if(t.getClass().isAssignableFrom(Map.class)){
+        } else if (t.getClass().isAssignableFrom(Map.class)) {
             return solveMap(t);
         } else {
             return solveObject(t);
@@ -34,7 +34,7 @@ public class JsonUtil {
         return null;
     }
 
-    
+
     public static <T> T fromJson(String jsonStr, TypeReference<?> clazz) {
         T t = null;
 //        try {
@@ -47,7 +47,8 @@ public class JsonUtil {
 
     public static void main(String[] args) {
         List<String> c = new ArrayList<>();
-        fromJson("",new TypeReference<List<String>>(){});
+        fromJson("", new TypeReference<List<String>>() {
+        });
         c.getClass();
     }
 }

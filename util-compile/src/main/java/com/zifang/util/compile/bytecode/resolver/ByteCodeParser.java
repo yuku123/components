@@ -1,6 +1,9 @@
 package com.zifang.util.compile.bytecode.resolver;
 
-import com.zifang.util.compile.bytecode.resolver.parser.struct.*;
+import com.zifang.util.compile.bytecode.resolver.parser.struct.ClassFile;
+import com.zifang.util.compile.bytecode.resolver.parser.struct.ConstantFloat;
+import com.zifang.util.compile.bytecode.resolver.parser.struct.ConstantInteger;
+import com.zifang.util.compile.bytecode.resolver.parser.struct.ConstantUtf8;
 import com.zifang.util.compile.bytecode.resolver.parser.util.ByteScanner;
 import lombok.Data;
 
@@ -122,7 +125,7 @@ public class ByteCodeParser {
     }
 
     private class MethodAttributeHandler {
-        
+
         public void handleCode() {
             int maxStack = scanner.readToInteger(2); // 最大栈
             int maxLocals = scanner.readToInteger(2); // 最大本地变量
@@ -223,52 +226,52 @@ public class ByteCodeParser {
 
         for (int index = 1; index < classFileCount; ++index) {
             int constantPoolItemType = this.scanner.readToInteger(1);
-            if(constantPoolItemType == ConstantPoolItemType.UTF8){
+            if (constantPoolItemType == ConstantPoolItemType.UTF8) {
                 int length = this.scanner.readToInteger(2);
                 String value = this.scanner.readToString(length);
-                classFile.addConstantItem( new ConstantUtf8(classFile, index, value));
-            } else if(constantPoolItemType == ConstantPoolItemType.INTEGER){
+                classFile.addConstantItem(new ConstantUtf8(classFile, index, value));
+            } else if (constantPoolItemType == ConstantPoolItemType.INTEGER) {
                 int value = this.scanner.readToInteger(4);
                 classFile.addConstantItem(new ConstantInteger(classFile, index, value));
-            } else if(constantPoolItemType == ConstantPoolItemType.FLOAT){
+            } else if (constantPoolItemType == ConstantPoolItemType.FLOAT) {
                 float value = Float.intBitsToFloat(this.scanner.readToInteger(4));
                 classFile.addConstantItem(new ConstantFloat(classFile, index, value));
-            }else if(constantPoolItemType == ConstantPoolItemType.LONG){
+            } else if (constantPoolItemType == ConstantPoolItemType.LONG) {
                 long longValue = this.scanner.readToLong();
                 classFile.addConstantLong(classFile, index++, longValue);
-            }else if(constantPoolItemType == ConstantPoolItemType.DOUBLE){
+            } else if (constantPoolItemType == ConstantPoolItemType.DOUBLE) {
                 double doubleValue = Double.longBitsToDouble(this.scanner.readToLong());
                 classFile.addConstantDouble(classFile, index++, doubleValue);
-            }else if(constantPoolItemType == ConstantPoolItemType.CLASS){
+            } else if (constantPoolItemType == ConstantPoolItemType.CLASS) {
                 int classIndex = this.scanner.readToInteger(2);
                 classFile.addConstantClass(classFile, index, classIndex);
-            }else if(constantPoolItemType == ConstantPoolItemType.STRING){
+            } else if (constantPoolItemType == ConstantPoolItemType.STRING) {
                 int stringIndex = this.scanner.readToInteger(2);
                 classFile.addConstantString(classFile, index, stringIndex);
-            }else if(constantPoolItemType == ConstantPoolItemType.FIELD_REF){
+            } else if (constantPoolItemType == ConstantPoolItemType.FIELD_REF) {
                 int classIndex = this.scanner.readToInteger(2);
                 int nameAndTypeIndex = this.scanner.readToInteger(2);
                 classFile.addConstantFieldref(classFile, index, classIndex, nameAndTypeIndex);
-            }else if(constantPoolItemType == ConstantPoolItemType.METHOD_REF){
+            } else if (constantPoolItemType == ConstantPoolItemType.METHOD_REF) {
                 int classIndex = this.scanner.readToInteger(2);
                 int nameAndTypeIndex = this.scanner.readToInteger(2);
                 classFile.addConstantMethodref(classFile, index, classIndex, nameAndTypeIndex);
-            }else if(constantPoolItemType == ConstantPoolItemType.INTERFACE_METHOD_REF){
+            } else if (constantPoolItemType == ConstantPoolItemType.INTERFACE_METHOD_REF) {
                 int classIndex = this.scanner.readToInteger(2);
                 int nameAndTypeIndex = this.scanner.readToInteger(2);
                 classFile.addConstantMethodref(classFile, index, classIndex, nameAndTypeIndex);
-            }else if(constantPoolItemType == ConstantPoolItemType.NAME_ANT_TYPE){
+            } else if (constantPoolItemType == ConstantPoolItemType.NAME_ANT_TYPE) {
                 int nameIndex = this.scanner.readToInteger(2);
                 int typeIndex = this.scanner.readToInteger(2);
                 classFile.addConstantNameAndType(classFile, index, nameIndex, typeIndex);
-            }else if(constantPoolItemType == ConstantPoolItemType.METHOD_HANDLE){
+            } else if (constantPoolItemType == ConstantPoolItemType.METHOD_HANDLE) {
                 int referenceKind = this.scanner.readToInteger(1);
                 int descriptorIndex = this.scanner.readToInteger(2);
                 classFile.addConstantNameAndType(classFile, index, referenceKind, descriptorIndex);
-            }else if(constantPoolItemType == ConstantPoolItemType.METHOD_TYPE){
+            } else if (constantPoolItemType == ConstantPoolItemType.METHOD_TYPE) {
                 int descriptorIndex = this.scanner.readToInteger(2);
                 classFile.addConstantNameAndType(classFile, index, descriptorIndex, descriptorIndex);
-            }else if(constantPoolItemType ==ConstantPoolItemType.INVOKE_DYNAMIC){
+            } else if (constantPoolItemType == ConstantPoolItemType.INVOKE_DYNAMIC) {
                 int referenceKind = this.scanner.readToInteger(2);
                 int descriptorIndex = this.scanner.readToInteger(2);
                 classFile.addConstantNameAndType(classFile, index, referenceKind, descriptorIndex);

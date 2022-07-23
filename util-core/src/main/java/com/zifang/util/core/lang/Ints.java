@@ -2,6 +2,7 @@ package com.zifang.util.core.lang;
 
 /**
  * 针对int相关的所有帮助方法合集
+ *
  * @author zifang
  */
 public class Ints {

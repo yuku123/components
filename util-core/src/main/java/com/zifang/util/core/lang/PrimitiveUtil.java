@@ -15,16 +15,16 @@ import java.util.Map;
 @Slf4j
 public class PrimitiveUtil {
 
-    public static final Map<Class<?>,Object> primitiveTypeDefaults = new LinkedHashMap<Class<?>,Object>(){
+    public static final Map<Class<?>, Object> primitiveTypeDefaults = new LinkedHashMap<Class<?>, Object>() {
         {
-            put(Byte.class,(byte)0);
-            put(Short.class,(short)0);
-            put(Integer.class,0);
-            put(Character.class,'0');
-            put(Long.class,0L);
-            put(Float.class,0F);
-            put(Double.class,0D);
-            put(Boolean.class,false);
+            put(Byte.class, (byte) 0);
+            put(Short.class, (short) 0);
+            put(Integer.class, 0);
+            put(Character.class, '0');
+            put(Long.class, 0L);
+            put(Float.class, 0F);
+            put(Double.class, 0D);
+            put(Boolean.class, false);
         }
     };
 
@@ -60,7 +60,7 @@ public class PrimitiveUtil {
         }
     };
 
-    public static Object defaultValue(Class<?> clazz){
+    public static Object defaultValue(Class<?> clazz) {
         return primitiveTypeDefaults.get(clazz);
     }
 

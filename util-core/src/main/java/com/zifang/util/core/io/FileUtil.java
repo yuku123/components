@@ -15,12 +15,6 @@ import java.util.List;
  * 文件相关的工具类
  */
 public class FileUtil {
-    /**
-     * 私有构造方法，防止类的实例化，因为工具类不需要实例化。
-     */
-    private FileUtil() {
-
-    }
 
     /**
      * 修改文件的最后访问时间。
@@ -932,10 +926,10 @@ public class FileUtil {
     public void deleteAll(String dirpath) {
         File path = new File(dirpath);
         try {
-            if (!path.exists())
+            if (!path.exists()) {
                 return;// 目录不存在退出
-            if (path.isFile()) // 如果是文件删除
-            {
+            }
+            if (path.isFile()) {
                 path.delete();
                 return;
             }
@@ -996,8 +990,7 @@ public class FileUtil {
      * @param isOverWrite 是否覆盖
      * @throws IOException
      */
-    private static void copySimpleFile(File inputFile, File outputFile,
-                                       boolean isOverWrite) throws IOException {
+    private static void copySimpleFile(File inputFile, File outputFile, boolean isOverWrite) throws IOException {
         if (outputFile.exists()) {
             if (isOverWrite) {        //可以覆盖
                 if (!outputFile.delete()) {
@@ -1078,7 +1071,6 @@ public class FileUtil {
     public boolean renameDir(String oldPath, String newPath) {
         File oldFile = new File(oldPath);// 文件或目录
         File newFile = new File(newPath);// 文件或目录
-
         return oldFile.renameTo(newFile);// 重命名
     }
 }

@@ -7,9 +7,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocalVariableTable extends AbstractAttribute{
+public class LocalVariableTable extends AbstractAttribute {
     private U2 localVariableTableLength;//局部变量槽的数量
-    private List<LocalVariableInfo> localVariableTable=new ArrayList<>();//局部变量表的详细信息
+    private List<LocalVariableInfo> localVariableTable = new ArrayList<>();//局部变量表的详细信息
 
 
     public LocalVariableTable(U2 attributeNameIndex, U4 attributeLength) {
@@ -18,17 +18,17 @@ public class LocalVariableTable extends AbstractAttribute{
 
     @Override
     public void read(InputStream inputStream) {
-        localVariableTableLength=U2.read(inputStream);
+        localVariableTableLength = U2.read(inputStream);
         short value = localVariableTableLength.value;
-        while (value>0){
-            LocalVariableInfo localVariableInfo=new LocalVariableInfo(U2.read(inputStream),U2.read(inputStream),U2.read(inputStream)
-            ,U2.read(inputStream),U2.read(inputStream));
+        while (value > 0) {
+            LocalVariableInfo localVariableInfo = new LocalVariableInfo(U2.read(inputStream), U2.read(inputStream), U2.read(inputStream)
+                    , U2.read(inputStream), U2.read(inputStream));
             localVariableTable.add(localVariableInfo);
             value--;
         }
     }
 
-    public class LocalVariableInfo{
+    public class LocalVariableInfo {
         private U2 startPc;//开始行号
         private U2 length;//偏移量   startPc+length 就是这个局部变量的作用范围
         private U2 nameIndex;  //名字

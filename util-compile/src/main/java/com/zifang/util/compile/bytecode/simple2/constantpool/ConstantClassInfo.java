@@ -4,7 +4,7 @@ import com.zifang.util.compile.bytecode.simple2.readtype.U2;
 
 import java.io.InputStream;
 
-public class ConstantClassInfo extends AbstractConstantPool{
+public class ConstantClassInfo extends AbstractConstantPool {
 
     private U2 stringIndex;
 

@@ -2,7 +2,7 @@ package com.zifang.util.core.parser.json.define;
 
 /**
  * @author zifang
- *
+ * <p>
  * json解析器接口
  */
 public interface IJsonParser {

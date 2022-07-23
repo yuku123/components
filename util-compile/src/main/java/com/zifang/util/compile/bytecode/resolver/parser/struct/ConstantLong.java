@@ -3,7 +3,6 @@ package com.zifang.util.compile.bytecode.resolver.parser.struct;
 public class ConstantLong extends ConstantPoolItem {
 
 
-
     public ConstantLong(ClassFile classFile, int index, long value) {
         super(classFile, index);
         this.value = String.valueOf(value);

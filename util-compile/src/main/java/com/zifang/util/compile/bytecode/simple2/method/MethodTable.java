@@ -13,23 +13,25 @@ public class MethodTable {
     private U2 nameIndex;
     private U2 descriptorIndex;
     private U2 attributesCount;
-    private List<AbstractAttribute> attributesInfo=new ArrayList<>();
+    private List<AbstractAttribute> attributesInfo = new ArrayList<>();
 
     public MethodTable(InputStream stream) {
-        accessFlags=U2.read(stream);
-        nameIndex=U2.read(stream);
-        descriptorIndex=U2.read(stream);
-        attributesCount=U2.read(stream);
+        accessFlags = U2.read(stream);
+        nameIndex = U2.read(stream);
+        descriptorIndex = U2.read(stream);
+        attributesCount = U2.read(stream);
         short count = attributesCount.value;//field的属性
         for (int i = 0; i < count; i++) {
             parseFieldAttribute(stream);
         }
     }
+
     //解析字段表属性
-    public void parseFieldAttribute(InputStream inputStream){
+    public void parseFieldAttribute(InputStream inputStream) {
         AbstractAttribute attributeTable = AttributeFactory.getAttributeTable(inputStream);
         attributesInfo.add(attributeTable);
     }
+
     public U2 getAccessFlags() {
         return accessFlags;
     }

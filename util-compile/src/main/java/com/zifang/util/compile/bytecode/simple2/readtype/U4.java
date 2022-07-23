@@ -9,9 +9,9 @@ public class U4 {
     public int value;
     public byte[] bytes;
 
-    public U4(int value,byte[] bytes) {
+    public U4(int value, byte[] bytes) {
         this.value = value;
-        this.bytes=bytes;
+        this.bytes = bytes;
     }
 
     public static U4 read(InputStream inputStream) {
@@ -25,11 +25,11 @@ public class U4 {
         //4字节数据转成int类型数据需要做的位运算转换.
         for (int i = 0; i < 4; i++) {
             value <<= 8;
-            int temp=bytes[i] & 0xFF;
-            value = value|temp;        //想保持二进制补码的一致性。进行 & 运算； & 运算是: 两个为1则为1；
-                                       // | 运算：有一个为1 则为1；
+            int temp = bytes[i] & 0xFF;
+            value = value | temp;        //想保持二进制补码的一致性。进行 & 运算； & 运算是: 两个为1则为1；
+            // | 运算：有一个为1 则为1；
         }
-        U4 u4 = new U4(value,bytes);
+        U4 u4 = new U4(value, bytes);
         return u4;
     }
 

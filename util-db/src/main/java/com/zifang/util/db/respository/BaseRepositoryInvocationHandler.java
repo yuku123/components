@@ -30,20 +30,20 @@ public class BaseRepositoryInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Class<?> clazz = method.getDeclaringClass();
-        if(clazz == CrudRepository.class){
+        if (clazz == CrudRepository.class) {
 
         } else {
             String sql = method.getAnnotation(Select.class).value();
-            String name = ((Param)method.getParameterAnnotations()[0][0]).value();
+            String name = ((Param) method.getParameterAnnotations()[0][0]).value();
 
-            BoundSql b = boundSql(method,args);
+            BoundSql b = boundSql(method, args);
 
-            DataSourceContext dataSourceContext  = PersistentContext.fetchContext(PersistentContext.DEFAULT);
+            DataSourceContext dataSourceContext = PersistentContext.fetchContext(PersistentContext.DEFAULT);
 
             Connection connection = dataSourceContext.getDatasourceFactory().newDatasource().getConnection();
             PreparedStatement prepareStatement = connection.prepareStatement(b.getTransformSql());
-            for(Map.Entry<Integer,Object> entry : b.getIndexValueInsert().entrySet()){
-                prepareStatement.setObject(entry.getKey(),entry.getValue());
+            for (Map.Entry<Integer, Object> entry : b.getIndexValueInsert().entrySet()) {
+                prepareStatement.setObject(entry.getKey(), entry.getValue());
             }
             ResultSet resultSet = prepareStatement.executeQuery();
 
@@ -62,31 +62,31 @@ public class BaseRepositoryInvocationHandler implements InvocationHandler {
         String sql = method.getAnnotation(Select.class).value();
         String transformSQL = sql;
 
-        Map<Integer,String> indexName = new LinkedHashMap<>();
-        Map<Integer,Object> indexValue = new LinkedHashMap<>();
+        Map<Integer, String> indexName = new LinkedHashMap<>();
+        Map<Integer, Object> indexValue = new LinkedHashMap<>();
 
         // 获得注解信息
         Annotation[][] annotations = method.getParameterAnnotations();
-        for(int i= 0; i < annotations.length; i++){
-            for(int j= 0; j < annotations[i].length; j++){
-                if(annotations[i][j].annotationType() == Param.class){
-                    Map<Integer,String> map = new LinkedHashMap<>();
-                    indexName.put(i,((Param)annotations[i][j]).value());
+        for (int i = 0; i < annotations.length; i++) {
+            for (int j = 0; j < annotations[i].length; j++) {
+                if (annotations[i][j].annotationType() == Param.class) {
+                    Map<Integer, String> map = new LinkedHashMap<>();
+                    indexName.put(i, ((Param) annotations[i][j]).value());
                 }
             }
         }
 
         // 获得参数信息
-        for(int i = 0; i< args.length; i++){
-            indexValue.put(i,args[i]);
+        for (int i = 0; i < args.length; i++) {
+            indexValue.put(i, args[i]);
         }
 
-        Map<Integer,Object> indexValueInsert = new LinkedHashMap<>();
+        Map<Integer, Object> indexValueInsert = new LinkedHashMap<>();
         int index = 1;
-        for(Map.Entry<Integer,String> entry :indexName.entrySet()){
-            if(transformSQL.indexOf(":"+entry.getValue())>0){
-                indexValueInsert.put(index++,indexValue.get(entry.getKey()));
-                transformSQL = transformSQL.replace(":"+entry.getValue(),"?");
+        for (Map.Entry<Integer, String> entry : indexName.entrySet()) {
+            if (transformSQL.indexOf(":" + entry.getValue()) > 0) {
+                indexValueInsert.put(index++, indexValue.get(entry.getKey()));
+                transformSQL = transformSQL.replace(":" + entry.getValue(), "?");
             }
         }
 

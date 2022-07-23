@@ -1,9 +1,11 @@
 #!/bin/bash
 user='a'
 
-case $user in 
+case $user in
 a | b)
-	echo "welcome";;
+  echo "welcome"
+  ;;
 testing)
-  echo "sle";;
+  echo "sle"
+  ;;
 esac

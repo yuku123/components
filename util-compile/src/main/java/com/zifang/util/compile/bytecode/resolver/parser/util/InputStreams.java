@@ -5,13 +5,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class InputStreams {
-	
-	public static FileInputStream fileInputStream(File file) {
-		try {
-			return new FileInputStream(file);
-		} catch (FileNotFoundException e) {
-			throw new RuntimeException(e);
-		}
-	} 
+
+    public static FileInputStream fileInputStream(File file) {
+        try {
+            return new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

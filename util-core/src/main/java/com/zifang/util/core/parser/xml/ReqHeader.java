@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 /**
  * 请求头对象
+ *
  * @author xuejiangtao
  * Jul 25, 2013 9:33:57 PM
  */
@@ -28,7 +29,7 @@ public class ReqHeader {
         return sysId;
     }
 
-    @XmlElement(name="SYSID")
+    @XmlElement(name = "SYSID")
     public void setSysId(String sysId) {
         this.sysId = sysId;
     }
@@ -37,7 +38,7 @@ public class ReqHeader {
         return authCode;
     }
 
-    @XmlElement(name="AUTHCODE")
+    @XmlElement(name = "AUTHCODE")
     public void setAuthCode(String authCode) {
         this.authCode = authCode;
     }
@@ -46,11 +47,10 @@ public class ReqHeader {
         return reqNo;
     }
 
-    @XmlElement(name="REQNO")
+    @XmlElement(name = "REQNO")
     public void setReqNo(String reqNo) {
         this.reqNo = reqNo;
     }
-
 
 
 }

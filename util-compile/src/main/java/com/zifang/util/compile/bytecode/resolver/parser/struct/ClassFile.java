@@ -13,7 +13,7 @@ public class ClassFile {
 
     /**
      * 魔术
-     * */
+     */
     private int magic;
 
     private int minorVersion;
@@ -24,7 +24,7 @@ public class ClassFile {
 
     /**
      * 常量池
-     * */
+     */
     public List<? super ConstantPoolItem> items;
 
     public List<Field> fields;
@@ -35,7 +35,7 @@ public class ClassFile {
         items.add(new ConstantPoolItem(this, 0));
     }
 
-    public void addConstantItem(ConstantPoolItem constantPoolItem){
+    public void addConstantItem(ConstantPoolItem constantPoolItem) {
         items.add(constantPoolItem);
     }
 

@@ -20,7 +20,7 @@ import java.util.Map;
 public class Test0 {
 
     @Before
-    public void init(){
+    public void init() {
 
         // 数据库上下文
         DataSourceContext dataSourceContext = new DataSourceContext()
@@ -37,10 +37,10 @@ public class Test0 {
 
         ResourceItemRepository resourceItemRepository = RepositoryProxy.proxy(ResourceItemRepository.class);
 
-        List<ResourceItem> r1 = resourceItemRepository.findByNameList("5e8888e8be7fff746fb26b5a",0);
-        List<Map<String,Object>> r2 = resourceItemRepository.findByNameListMap("5e8888e8be7fff746fb26b5a",0);
-        ResourceItem r3 = resourceItemRepository.findByNameBean("5e8888e8be7fff746fb26b5a",0);
-        Map<String,Object> r4 = resourceItemRepository.findByNameMap("5e8888e8be7fff746fb26b5a",0);
+        List<ResourceItem> r1 = resourceItemRepository.findByNameList("5e8888e8be7fff746fb26b5a", 0);
+        List<Map<String, Object>> r2 = resourceItemRepository.findByNameListMap("5e8888e8be7fff746fb26b5a", 0);
+        ResourceItem r3 = resourceItemRepository.findByNameBean("5e8888e8be7fff746fb26b5a", 0);
+        Map<String, Object> r4 = resourceItemRepository.findByNameMap("5e8888e8be7fff746fb26b5a", 0);
 
         log.info(GsonUtil.objectToJsonStr(r1));
         log.info(GsonUtil.objectToJsonStr(r2));
@@ -52,7 +52,7 @@ public class Test0 {
     }
 
     @Test
-    public void test1(){
+    public void test1() {
         ResourceItemRepository resourceItemRepository = RepositoryProxy.proxy(ResourceItemRepository.class);
 
         ResourceItem resourceItem = new ResourceItem();

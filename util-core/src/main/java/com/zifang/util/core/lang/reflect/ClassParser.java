@@ -1,8 +1,8 @@
 package com.zifang.util.core.lang.reflect;
 
-import com.zifang.util.core.pattern.composite.define.ILeaf;
 import com.zifang.util.core.pattern.composite.LeafHelper;
 import com.zifang.util.core.pattern.composite.LeafWrapper;
+import com.zifang.util.core.pattern.composite.define.ILeaf;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -22,17 +22,17 @@ public class ClassParser {
 
     /**
      * 当前针对的解析的类
-     * */
+     */
     private final Class<?> clazz;
 
     /**
      * 解析过程使用的参变量
-     * */
+     */
     private Long leafIndex;
 
     /**
      * 解析class类
-     * */
+     */
     private final LeafWrapper<Long, Long, ClassParserInfoWrapper> leafWrapper;
 
     /**
@@ -47,7 +47,7 @@ public class ClassParser {
 
     /**
      * 是否是普通的类
-     * */
+     */
     public boolean isNormalClass() {
         return null != clazz //
                 && !clazz.isInterface() //
@@ -60,15 +60,15 @@ public class ClassParser {
     }
 
     public List<Field> getCurrentPublicField() {
-        return getCurrentAllField().stream().filter(e-> Modifier.isPublic(e.getModifiers())).collect(Collectors.toList());
+        return getCurrentAllField().stream().filter(e -> Modifier.isPublic(e.getModifiers())).collect(Collectors.toList());
     }
 
     public List<Field> getCurrentProtectedField() {
-        return getCurrentAllField().stream().filter(e-> Modifier.isProtected(e.getModifiers())).collect(Collectors.toList());
+        return getCurrentAllField().stream().filter(e -> Modifier.isProtected(e.getModifiers())).collect(Collectors.toList());
     }
 
     public List<Field> getCurrentPrivateField() {
-        return getCurrentAllField().stream().filter(e-> Modifier.isPrivate(e.getModifiers())).collect(Collectors.toList());
+        return getCurrentAllField().stream().filter(e -> Modifier.isPrivate(e.getModifiers())).collect(Collectors.toList());
     }
 
     public List<Field> getCurrentAllField() {
@@ -76,19 +76,19 @@ public class ClassParser {
     }
 
     public List<Method> getCurrentProtectedMethod() {
-        return getCurrentAllMethod().stream().filter(e->Modifier.isProtected(e.getModifiers())).collect(Collectors.toList());
+        return getCurrentAllMethod().stream().filter(e -> Modifier.isProtected(e.getModifiers())).collect(Collectors.toList());
     }
 
     public List<Method> getCurrentPublicMethod() {
-        return getCurrentAllMethod().stream().filter(e->Modifier.isPublic(e.getModifiers())).collect(Collectors.toList());
+        return getCurrentAllMethod().stream().filter(e -> Modifier.isPublic(e.getModifiers())).collect(Collectors.toList());
     }
 
     public List<Method> getCurrentDefaultMethod() {
-        return getCurrentAllMethod().stream().filter(e->e.getModifiers() == 0).collect(Collectors.toList());
+        return getCurrentAllMethod().stream().filter(e -> e.getModifiers() == 0).collect(Collectors.toList());
     }
 
     public List<Method> getCurrentPrivateMethod() {
-        return getCurrentAllMethod().stream().filter(e->Modifier.isPrivate(e.getModifiers())).collect(Collectors.toList());
+        return getCurrentAllMethod().stream().filter(e -> Modifier.isPrivate(e.getModifiers())).collect(Collectors.toList());
     }
 
     public List<Method> getCurrentAllMethod() {
@@ -98,15 +98,15 @@ public class ClassParser {
 
     private LeafWrapper<Long, Long, ClassParserInfoWrapper> doParser() {
 
-        List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> leafWrappers = loop(clazz,null,leafIndex);
+        List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> leafWrappers = loop(clazz, null, leafIndex);
 
-        return  LeafHelper.treeify(leafWrappers);
+        return LeafHelper.treeify(leafWrappers);
     }
 
-    private List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> loop(Class<?> clazz,Type type,Long parentId) {
+    private List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> loop(Class<?> clazz, Type type, Long parentId) {
         List<LeafWrapper<Long, Long, ClassParserInfoWrapper>> leafWrappers = new ArrayList<>();
 
-        if(leafIndex == null){
+        if (leafIndex == null) {
             leafIndex = 0L;
         }
         long current = leafIndex;
@@ -116,33 +116,33 @@ public class ClassParser {
 
         leafWrappers.add(LeafHelper.wrapper(current, parentId, classParserInfoWrapper));
 
-        for(int i =0; i < clazz.getInterfaces().length; i++){
+        for (int i = 0; i < clazz.getInterfaces().length; i++) {
             ++leafIndex;
-            leafWrappers.addAll(loop(clazz.getInterfaces()[i],clazz.getGenericInterfaces()[i],current));
+            leafWrappers.addAll(loop(clazz.getInterfaces()[i], clazz.getGenericInterfaces()[i], current));
         }
 
-        if(clazz.getSuperclass() != null){
+        if (clazz.getSuperclass() != null) {
             ++leafIndex;
-            leafWrappers.addAll(loop(clazz.getSuperclass(),clazz.getGenericSuperclass(),current));
+            leafWrappers.addAll(loop(clazz.getSuperclass(), clazz.getGenericSuperclass(), current));
         }
         return leafWrappers;
     }
 
     /**
      * 获得与目标类型一致的泛型type信息
-     * */
+     */
     public Type getGenericType(Class<?> matchClassType) {
-        return reGne(leafWrapper,matchClassType);
+        return reGne(leafWrapper, matchClassType);
     }
 
     private Type reGne(LeafWrapper<Long, Long, ClassParserInfoWrapper> leafWrapper, Class<?> matchClassType) {
-        if(leafWrapper.getC().getClazz() == matchClassType){
-            return ((ClassParserInfoWrapper)((LeafWrapper)leafWrapper.getParentLeaf()).getC()).getType();
+        if (leafWrapper.getC().getClazz() == matchClassType) {
+            return ((ClassParserInfoWrapper) ((LeafWrapper) leafWrapper.getParentLeaf()).getC()).getType();
         }
-        if(leafWrapper.getSubLeaves()!=null){
-            for(ILeaf iLeaf : leafWrapper.getSubLeaves()){
-                Type type =  reGne((LeafWrapper)iLeaf,matchClassType);
-                if(type != null){
+        if (leafWrapper.getSubLeaves() != null) {
+            for (ILeaf iLeaf : leafWrapper.getSubLeaves()) {
+                Type type = reGne((LeafWrapper) iLeaf, matchClassType);
+                if (type != null) {
                     return type;
                 }
             }

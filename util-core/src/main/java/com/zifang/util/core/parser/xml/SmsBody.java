@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 /**
  * 请求内容
+ *
  * @author xuejiangtao
  * Jul 25, 2013 9:34:16 PM
  */
@@ -31,7 +32,7 @@ public class SmsBody {
         return content;
     }
 
-    @XmlElement(name="CONTENT")
+    @XmlElement(name = "CONTENT")
     public void setContent(String content) {
         this.content = content;
     }
@@ -40,7 +41,7 @@ public class SmsBody {
         return sourceAddr;
     }
 
-    @XmlElement(name="SOURCEADDR")
+    @XmlElement(name = "SOURCEADDR")
     public void setSourceAddr(String sourceAddr) {
         this.sourceAddr = sourceAddr;
     }
@@ -49,11 +50,10 @@ public class SmsBody {
         return destAddr;
     }
 
-    @XmlElement(name="DESTADDR")
+    @XmlElement(name = "DESTADDR")
     public void setDestAddr(String destAddr) {
         this.destAddr = destAddr;
     }
-
 
 
 }

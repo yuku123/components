@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
-public class Utf8Info extends AbstractConstantPool{
+public class Utf8Info extends AbstractConstantPool {
 
     private short length;
     private byte[] bytes;
     private String bytesValue;
 
-    public Utf8Info(byte tag){
+    public Utf8Info(byte tag) {
         super(tag);
     }
 

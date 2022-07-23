@@ -4,7 +4,7 @@ import com.zifang.util.compile.bytecode.simple2.readtype.U8;
 
 import java.io.InputStream;
 
-public class ConstantLongInfo extends AbstractConstantPool{
+public class ConstantLongInfo extends AbstractConstantPool {
     private U8 bytes;
 
 
@@ -13,7 +13,7 @@ public class ConstantLongInfo extends AbstractConstantPool{
     }
 
     public void read(InputStream inputStream) {
-        this.bytes=U8.read(inputStream);
+        this.bytes = U8.read(inputStream);
     }
 
     public U8 getBytes() {

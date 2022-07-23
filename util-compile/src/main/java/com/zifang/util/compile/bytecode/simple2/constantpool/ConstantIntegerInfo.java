@@ -4,7 +4,7 @@ import com.zifang.util.compile.bytecode.simple2.readtype.U4;
 
 import java.io.InputStream;
 
-public class ConstantIntegerInfo extends AbstractConstantPool{
+public class ConstantIntegerInfo extends AbstractConstantPool {
 
     private U4 bytes;
 

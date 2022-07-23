@@ -14,7 +14,7 @@ public class ByteCodeParser {
     private ClassFile classFile;
 
     public ClassFile solveClassFile() {
-        if(classFile != null){
+        if (classFile != null) {
             return classFile;
         } else {
             classFile = new ClassFile();

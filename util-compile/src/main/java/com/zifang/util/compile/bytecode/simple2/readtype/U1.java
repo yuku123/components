@@ -11,14 +11,14 @@ public class U1 {
         this.value = value;
     }
 
-    public static U1 read(InputStream stream){
-        byte[] bytes=new byte[1];
+    public static U1 read(InputStream stream) {
+        byte[] bytes = new byte[1];
         try {
             stream.read(bytes);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        U1 u1=new U1(bytes[0]);
+        U1 u1 = new U1(bytes[0]);
         return u1;
     }
 

@@ -4,7 +4,7 @@ import com.zifang.util.compile.bytecode.simple2.readtype.U4;
 
 import java.io.InputStream;
 
-public class ConstantFloatInfo extends AbstractConstantPool{
+public class ConstantFloatInfo extends AbstractConstantPool {
     private U4 bytes;
 
 
@@ -13,7 +13,7 @@ public class ConstantFloatInfo extends AbstractConstantPool{
     }
 
     public void read(InputStream inputStream) {
-        this.bytes=U4.read(inputStream);
+        this.bytes = U4.read(inputStream);
     }
 
     public U4 getBytes() {

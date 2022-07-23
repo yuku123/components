@@ -21,76 +21,76 @@ public class Test {
 
     public static void main(String[] args) throws IOException {
         File file = new File("com/jtfu/file/TestClassParse1.class");
-        FileInputStream stream=new FileInputStream(file);
-        com.zifang.util.compile.bytecode.simple2.ClassFile.magic=U4.read(stream);//魔数
-        com.zifang.util.compile.bytecode.simple2.ClassFile.minorVersion= U2.read(stream);//主版本号
-        com.zifang.util.compile.bytecode.simple2.ClassFile.majorVersion=U2.read(stream);//次版本号
-        com.zifang.util.compile.bytecode.simple2.ClassFile.constantPoolSize=U2.read(stream);//常量池大小
+        FileInputStream stream = new FileInputStream(file);
+        com.zifang.util.compile.bytecode.simple2.ClassFile.magic = U4.read(stream);//魔数
+        com.zifang.util.compile.bytecode.simple2.ClassFile.minorVersion = U2.read(stream);//主版本号
+        com.zifang.util.compile.bytecode.simple2.ClassFile.majorVersion = U2.read(stream);//次版本号
+        com.zifang.util.compile.bytecode.simple2.ClassFile.constantPoolSize = U2.read(stream);//常量池大小
         short pollSize = com.zifang.util.compile.bytecode.simple2.ClassFile.constantPoolSize.value;
-        System.err.println(String.format("常量池大小为:{}",pollSize));
+        System.err.println(String.format("常量池大小为:{}", pollSize));
         //解析常量池
         ConstantPoolInfo poolInfo = parseConstantPool(stream, (short) (pollSize - 1));
-        com.zifang.util.compile.bytecode.simple2.ClassFile.poolInfo=poolInfo;
-        int index=1;
+        com.zifang.util.compile.bytecode.simple2.ClassFile.poolInfo = poolInfo;
+        int index = 1;
         for (AbstractConstantPool abstractConstantPool : poolInfo.getPoolList()) {
-            System.err.println(String.format("常量池[{}]:{}",index,abstractConstantPool));
+            System.err.println(String.format("常量池[{}]:{}", index, abstractConstantPool));
             index++;
         }
         //解析访问标志
-        com.zifang.util.compile.bytecode.simple2.ClassFile.accessFlag=U2.read(stream);
+        com.zifang.util.compile.bytecode.simple2.ClassFile.accessFlag = U2.read(stream);
         //解析类索引,父类索引,接口索引(对于接口索引集合，
         // 入口的第一项u2类型的数据为接口计数器（interfaces_count），表示索引表的容量。
         // 如果该类没有实现任何接口，则该计数器值为0，后面接口的索引表不再占用任何字节。)
-        com.zifang.util.compile.bytecode.simple2.ClassFile.classIndex=U2.read(stream);
-        com.zifang.util.compile.bytecode.simple2.ClassFile.superClassIndex=U2.read(stream);
-        com.zifang.util.compile.bytecode.simple2.ClassFile.interfaceIndex=parseInterface(stream);
+        com.zifang.util.compile.bytecode.simple2.ClassFile.classIndex = U2.read(stream);
+        com.zifang.util.compile.bytecode.simple2.ClassFile.superClassIndex = U2.read(stream);
+        com.zifang.util.compile.bytecode.simple2.ClassFile.interfaceIndex = parseInterface(stream);
         //字段表集合
-        com.zifang.util.compile.bytecode.simple2.ClassFile.fieldInfo=parseFieldInfo(stream);
+        com.zifang.util.compile.bytecode.simple2.ClassFile.fieldInfo = parseFieldInfo(stream);
         //方法表
-        com.zifang.util.compile.bytecode.simple2.ClassFile.methodInfo=parseMethodInfo(stream);
+        com.zifang.util.compile.bytecode.simple2.ClassFile.methodInfo = parseMethodInfo(stream);
         /**
          * 字段表集合, 方法表集合打断点对照常量池看
          */
     }
 
 
-    public static FieldInfo parseFieldInfo(InputStream stream){
-        FieldInfo fieldInfo=new FieldInfo(U2.read(stream));
+    public static FieldInfo parseFieldInfo(InputStream stream) {
+        FieldInfo fieldInfo = new FieldInfo(U2.read(stream));
         short value = fieldInfo.length.value;
         for (int i = 0; i < value; i++) {
-            FieldTable fieldTable=new FieldTable(stream);
+            FieldTable fieldTable = new FieldTable(stream);
             fieldInfo.list.add(fieldTable);
         }
         return fieldInfo;
     }
 
-    public static MethodInfo parseMethodInfo(InputStream stream){
-        MethodInfo methodInfo=new MethodInfo(U2.read(stream));
+    public static MethodInfo parseMethodInfo(InputStream stream) {
+        MethodInfo methodInfo = new MethodInfo(U2.read(stream));
         short value = methodInfo.length.value;
         for (int i = 0; i < value; i++) {
-            MethodTable methodTable=new MethodTable(stream);
+            MethodTable methodTable = new MethodTable(stream);
             methodInfo.list.add(methodTable);
         }
         return methodInfo;
     }
 
-    public static InterfaceIndex parseInterface(InputStream stream){
-        InterfaceIndex interfaceIndex=new InterfaceIndex(stream);
+    public static InterfaceIndex parseInterface(InputStream stream) {
+        InterfaceIndex interfaceIndex = new InterfaceIndex(stream);
         short value = interfaceIndex.length.value;//实现接口的数量
         for (int i = 0; i < value; i++) {
-                U2 u2=U2.read(stream);//接口的索引位置
-                Interface in=new Interface(u2);
-                interfaceIndex.list.add(in);
+            U2 u2 = U2.read(stream);//接口的索引位置
+            Interface in = new Interface(u2);
+            interfaceIndex.list.add(in);
         }
         return interfaceIndex;
     }
 
 
-    public static ConstantPoolInfo parseConstantPool(InputStream stream,short pollSize){
+    public static ConstantPoolInfo parseConstantPool(InputStream stream, short pollSize) {
         ConstantPoolInfo poolInfo = new ConstantPoolInfo(pollSize);
 
         for (int i = 0; i < pollSize; i++) {
-            U1 tag=U1.read(stream);
+            U1 tag = U1.read(stream);
             AbstractConstantPool poll = newConstantPoolInfo(tag, stream);
             poolInfo.getPoolList().add(poll);
         }

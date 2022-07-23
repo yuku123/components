@@ -8,16 +8,15 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Code extends AbstractAttribute{
+public class Code extends AbstractAttribute {
     private U2 maxStack;//最大操作数栈深度
     private U2 maxLocals;//最大的局部变量表
     private U4 codeLength;//字节码指令的长度
-    private List<U1> code=new ArrayList<>();//字节码指令
+    private List<U1> code = new ArrayList<>();//字节码指令
     private U2 exceptionTableLength;//异常表长度
-    private List<ExceptionInfo> exceptionTable=new ArrayList<>();//异常表详细信息
+    private List<ExceptionInfo> exceptionTable = new ArrayList<>();//异常表详细信息
     private U2 attributesCount;//属性的数量
-    private List<AbstractAttribute> attributes=new ArrayList<>();//Code的属性列表
-
+    private List<AbstractAttribute> attributes = new ArrayList<>();//Code的属性列表
 
 
     public Code(U2 attributeNameIndex, U4 attributeLength) {
@@ -26,24 +25,24 @@ public class Code extends AbstractAttribute{
 
     @Override
     public void read(InputStream inputStream) {
-        maxStack=U2.read(inputStream);
-        maxLocals=U2.read(inputStream);
-        codeLength=U4.read(inputStream);
+        maxStack = U2.read(inputStream);
+        maxLocals = U2.read(inputStream);
+        codeLength = U4.read(inputStream);
         int value = codeLength.value;
-        while (value>0){
+        while (value > 0) {
             code.add(U1.read(inputStream));
             value--;
         }
-        exceptionTableLength=U2.read(inputStream);
+        exceptionTableLength = U2.read(inputStream);
         short exLength = exceptionTableLength.value;
-        while (exLength>0){
-            ExceptionInfo exceptionInfo=new ExceptionInfo(U2.read(inputStream),U2.read(inputStream),U2.read(inputStream),U2.read(inputStream));
+        while (exLength > 0) {
+            ExceptionInfo exceptionInfo = new ExceptionInfo(U2.read(inputStream), U2.read(inputStream), U2.read(inputStream), U2.read(inputStream));
             exceptionTable.add(exceptionInfo);
             exLength--;
         }
-        attributesCount=U2.read(inputStream);
+        attributesCount = U2.read(inputStream);
         short attrCount = attributesCount.value;
-        while (attrCount>0){
+        while (attrCount > 0) {
             AbstractAttribute attributeTable = AttributeFactory.getAttributeTable(inputStream);
             attributes.add(attributeTable);
             attrCount--;
@@ -95,6 +94,7 @@ public class Code extends AbstractAttribute{
             this.catchPc = catchPc;
         }
     }
+
     public U2 getMaxStack() {
         return maxStack;
     }

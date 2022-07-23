@@ -11,18 +11,18 @@ import java.util.HashMap;
 import java.util.List;
 
 public class AttributeFactory {
-    private static final HashMap<String,AbstractAttribute> attrMap=new HashMap<String, AbstractAttribute>(29);
+    private static final HashMap<String, AbstractAttribute> attrMap = new HashMap<String, AbstractAttribute>(29);
 
 
-    public static AbstractAttribute getAttributeTable(InputStream inputStream){
-        U2 attributeNameIndex=U2.read(inputStream);
-        U4 attributeLength=U4.read(inputStream);
+    public static AbstractAttribute getAttributeTable(InputStream inputStream) {
+        U2 attributeNameIndex = U2.read(inputStream);
+        U4 attributeLength = U4.read(inputStream);
         short constantIndex = attributeNameIndex.getValue();
         List<AbstractConstantPool> poolList = ClassFile.poolInfo.getPoolList();
-        Utf8Info utf8Info = (Utf8Info) poolList.get(constantIndex-1);
+        Utf8Info utf8Info = (Utf8Info) poolList.get(constantIndex - 1);
         String key = utf8Info.getValue();
 
-        switch (key){
+        switch (key) {
             case "ConstantValue":
                 //字段表--描述final修饰的属性
                 ConstantValue constantValue = new ConstantValue(attributeNameIndex, attributeLength);
@@ -30,7 +30,7 @@ public class AttributeFactory {
                 return constantValue;
             case "Code":
                 //方法表--java代码编译成的字节码指令
-                Code code=new Code(attributeNameIndex,attributeLength);
+                Code code = new Code(attributeNameIndex, attributeLength);
                 code.read(inputStream);
                 return code;
             case "Deprecate":
@@ -47,12 +47,12 @@ public class AttributeFactory {
                 break;
             case "LineNumberTable":
                 //Code属性--java源码的行号与字节码指令的对应关系
-                LineNumberTable lineNumberTable=new LineNumberTable(attributeNameIndex, attributeLength);
+                LineNumberTable lineNumberTable = new LineNumberTable(attributeNameIndex, attributeLength);
                 lineNumberTable.read(inputStream);
                 return lineNumberTable;
             case "LocalVariableTable":
                 //Code属性--方法的局部变量表描述
-                LocalVariableTable localVariableTable=new LocalVariableTable(attributeNameIndex, attributeLength);
+                LocalVariableTable localVariableTable = new LocalVariableTable(attributeNameIndex, attributeLength);
                 localVariableTable.read(inputStream);
                 return localVariableTable;
             case "StackMapTable":

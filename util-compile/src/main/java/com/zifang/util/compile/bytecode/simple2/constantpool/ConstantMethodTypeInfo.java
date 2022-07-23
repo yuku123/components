@@ -4,7 +4,7 @@ import com.zifang.util.compile.bytecode.simple2.readtype.U2;
 
 import java.io.InputStream;
 
-public class ConstantMethodTypeInfo extends AbstractConstantPool{
+public class ConstantMethodTypeInfo extends AbstractConstantPool {
 
     private U2 descriptorIndex;
 
@@ -14,7 +14,7 @@ public class ConstantMethodTypeInfo extends AbstractConstantPool{
     }
 
     public void read(InputStream inputStream) {
-        this.descriptorIndex=U2.read(inputStream);
+        this.descriptorIndex = U2.read(inputStream);
     }
 
     public U2 getDescriptorIndex() {

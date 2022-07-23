@@ -20,6 +20,7 @@ public class Test {
     /**
      * XML转换为javabean
      * Jul 25, 2013 9:39:05 PM xuejiangtao添加此方法
+     *
      * @param <T>
      * @param xml
      * @param t
@@ -37,6 +38,7 @@ public class Test {
     /**
      * javabean转换为XML
      * Jul 25, 2013 9:39:09 PM xuejiangtao添加此方法
+     *
      * @return
      * @throws JAXBException
      * @throws FileNotFoundException
@@ -53,6 +55,7 @@ public class Test {
 
     /**
      * Jul 24, 2013 10:12:39 PM xuejiangtao添加此方法
+     *
      * @param args
      * @throws JAXBException
      * @throws FileNotFoundException

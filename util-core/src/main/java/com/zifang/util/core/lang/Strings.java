@@ -17,7 +17,6 @@ import java.util.stream.Stream;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.*;
-import static java.util.stream.Collectors.joining;
 
 public class Strings {
 
@@ -74,6 +73,7 @@ public class Strings {
         }
         return (index < length && index >= 0) ? Optional.of(String.valueOf(value.charAt(index))) : Optional.empty();
     }
+
     /**
      * Replace consecutive whitespace characters with a single space.
      *
@@ -645,7 +645,6 @@ public class Strings {
     }
 
 
-
     /**
      * Returns a new String with the prefix removed, if present. This is case sensitive.
      *
@@ -1120,6 +1119,7 @@ public class Strings {
         }
         return head(input).map(String::toUpperCase).map(h -> tail(input).map(t -> h + t).orElse(h)).get();
     }
+
     /**
      * Removes leading characters from string.
      *
