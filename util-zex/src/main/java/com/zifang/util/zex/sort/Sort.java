@@ -7,7 +7,7 @@ public class Sort {
     /**
      * 冒泡
      */
-    public void sort1(){
+    public void sort1() {
         int[] a = new int[]{4, 2, 6, 5, 1, 3};
 
         for (int i = 0; i < a.length - 1; i++) {
@@ -22,8 +22,9 @@ public class Sort {
         }
         System.out.println(Arrays.toString(a));
     }
+
     // 选择
-    public void sort2(){
+    public void sort2() {
         int[] a = new int[]{4, 2, 6, 5, 1, 3};
 
         for (int i = 0; i < a.length - 1; i++) {

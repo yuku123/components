@@ -9,6 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * @author zifang
+ */
 @Data
 public class Unit<A> {
     protected A a;

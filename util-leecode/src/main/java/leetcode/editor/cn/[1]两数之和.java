@@ -45,32 +45,34 @@
 // 👍 11173 👎 0
 
 package leetcode.editor.cn;
+
 /**
  * @date: 2021-05-24 15:04:36
  * @description: 两数之和
  * @version: JDK 1.8
  */
-class TwoSum{
-   public static void main(String[] args) {
-     Solution solution = new TwoSum().new Solution();
-     System.out.println(solution);
-   }
-   class Solution {
-       public int[] twoSum(int[] nums, int target) {
-           int a = 0;
-           int b = 0;
-           for(int i=0;i<nums.length;i++){
-               int now = nums[i];
-               int less = target - now;
-               for(int j=0;j<nums.length;j++){
-                   if(nums[j]==less&&i!=j){
-                       b = j;
-                       a = i;
-                       break;
-                   }
-               }
-           }
-           return new int[]{a,b};
-       }
-   }
+class TwoSum {
+    public static void main(String[] args) {
+        Solution solution = new TwoSum().new Solution();
+        System.out.println(solution);
+    }
+
+    class Solution {
+        public int[] twoSum(int[] nums, int target) {
+            int a = 0;
+            int b = 0;
+            for (int i = 0; i < nums.length; i++) {
+                int now = nums[i];
+                int less = target - now;
+                for (int j = 0; j < nums.length; j++) {
+                    if (nums[j] == less && i != j) {
+                        b = j;
+                        a = i;
+                        break;
+                    }
+                }
+            }
+            return new int[]{a, b};
+        }
+    }
 }

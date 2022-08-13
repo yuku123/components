@@ -4,7 +4,7 @@ import com.zifang.util.core.lang.exception.ConversionException;
 
 import java.math.BigDecimal;
 
-public class BigDecimalConverter implements IConverter<BigDecimal,Object> {
+public class BigDecimalConverter implements IConverter<BigDecimal, Object> {
 
     @Override
     public Object to(BigDecimal bigDecimal, Object value) {

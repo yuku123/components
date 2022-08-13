@@ -13,6 +13,7 @@ public class CryptoHelper {
     private static final Charset charset = Charset.forName("UTF-8");
 
     private static final String UTF8 = "UTF-8";
+
     /**
      * BASE64解密
      *

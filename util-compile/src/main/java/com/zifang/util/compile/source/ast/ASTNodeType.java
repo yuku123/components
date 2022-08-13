@@ -3,7 +3,7 @@ package com.zifang.util.compile.source.ast;
 /**
  * AST节点的类型。
  */
-public enum ASTNodeType{
+public enum ASTNodeType {
     Programm,           //程序入口，根节点
 
     IntDeclaration,     //整型变量声明

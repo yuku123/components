@@ -13,7 +13,7 @@ public class Longs {
         long longa = 0;
         for (int i = 0; i < bytes.length; i++) {
             // 移位和清零
-            longa +=  ((long) (bytes[i] & 0xff) << i * 8);
+            longa += ((long) (bytes[i] & 0xff) << i * 8);
         }
 
         return longa;

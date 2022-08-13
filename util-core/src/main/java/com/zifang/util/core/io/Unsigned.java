@@ -61,8 +61,7 @@ public class Unsigned {
 
     // ---------------------------------------------------
 
-    public static void main(String[] argv)
-            throws Exception {
+    public static void main(String[] argv) throws Exception {
         ByteBuffer buffer = ByteBuffer.allocate(20);
 
         buffer.clear();

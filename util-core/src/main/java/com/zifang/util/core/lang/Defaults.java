@@ -34,7 +34,7 @@ public class Defaults {
             return (T) DOUBLE_DEFAULT;
         } else {
             try {
-                return (T)type.newInstance();
+                return (T) type.newInstance();
             } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }

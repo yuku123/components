@@ -287,7 +287,6 @@ public class RandomUtil {
 //    }
 
 
-
     /**
      * 获取定长的随机数，包含大小写、数字
      *

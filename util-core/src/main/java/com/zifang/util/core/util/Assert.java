@@ -1,5 +1,7 @@
 package com.zifang.util.core.util;
 
+import com.zifang.util.core.lang.exception.BaseException;
+
 /**
  * @author zifang
  */
@@ -46,6 +48,3 @@ public interface Assert {
     }
 }
 
-class BaseException extends RuntimeException {
-
-}

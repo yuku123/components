@@ -28,7 +28,6 @@ public class Lists {
         return Arrays.asList(content.split(splitor));
     }
 
-
     /**
      * 将迭代器的数据转换为List
      *

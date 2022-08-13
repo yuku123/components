@@ -15,7 +15,7 @@ import java.util.List;
  * 一个简单的语法解析器。
  * 能够解析简单的表达式、变量声明和初始化语句、赋值语句。
  * 它支持的语法规则为：
- *
+ * <p>
  * programm -> intDeclare | expressionStatement | assignmentStatement
  * intDeclare -> 'int' Id ( = additive) ';'
  * expressionStatement -> addtive ';'
@@ -33,7 +33,7 @@ public class SimpleParser {
 
         try {
             script = "int age = 45+2; age= 20; age+10*2;";
-            System.out.println("解析："+script);
+            System.out.println("解析：" + script);
             tree = parser.parse(script);
             parser.dumpAST(tree, "");
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class SimpleParser {
         //测试异常语法
         try {
             script = "2+3+;";
-            System.out.println("解析："+script);
+            System.out.println("解析：" + script);
             tree = parser.parse(script);
             parser.dumpAST(tree, "");
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class SimpleParser {
         //测试异常语法
         try {
             script = "2+3*;";
-            System.out.println("解析："+script);
+            System.out.println("解析：" + script);
             tree = parser.parse(script);
             parser.dumpAST(tree, "");
         } catch (Exception e) {
@@ -66,6 +66,7 @@ public class SimpleParser {
 
     /**
      * 解析脚本
+     *
      * @param script
      * @return
      * @throws Exception
@@ -79,6 +80,7 @@ public class SimpleParser {
 
     /**
      * AST的根节点，解析的入口。
+     *
      * @return
      * @throws Exception
      */
@@ -108,6 +110,7 @@ public class SimpleParser {
 
     /**
      * 表达式语句，即表达式后面跟个分号。
+     *
      * @return
      * @throws Exception
      */
@@ -128,6 +131,7 @@ public class SimpleParser {
 
     /**
      * 赋值语句，如age = 10*2;
+     *
      * @return
      * @throws Exception
      */
@@ -143,8 +147,7 @@ public class SimpleParser {
                 SimpleASTNode child = additive(tokens);
                 if (child == null) {    //出错，等号右面没有一个合法的表达式
                     throw new Exception("invalide assignment statement, expecting an expression");
-                }
-                else{
+                } else {
                     node.addChild(child);   //添加子节点
                     token = tokens.peek();  //预读，看看后面是不是分号
                     if (token != null && token.getType() == TokenType.SemiColon) {
@@ -154,8 +157,7 @@ public class SimpleParser {
                         throw new Exception("invalid statement, expecting semicolon");
                     }
                 }
-            }
-            else {
+            } else {
                 tokens.unread();            //回溯，吐出之前消化掉的标识符
                 node = null;
             }
@@ -185,8 +187,7 @@ public class SimpleParser {
                     SimpleASTNode child = additive(tokens);
                     if (child == null) {
                         throw new Exception("invalide variable initialization, expecting an expression");
-                    }
-                    else{
+                    } else {
                         node.addChild(child);
                     }
                 }
@@ -208,6 +209,7 @@ public class SimpleParser {
 
     /**
      * 加法表达式
+     *
      * @return
      * @throws Exception
      */
@@ -220,12 +222,12 @@ public class SimpleParser {
                 if (token != null && (token.getType() == TokenType.Plus || token.getType() == TokenType.Minus)) {
                     token = tokens.read();              //读出加号
                     SimpleASTNode child2 = multiplicative(tokens);  //计算下级节点
-                    if (child2 !=null) {
+                    if (child2 != null) {
                         node = new SimpleASTNode(ASTNodeType.Additive, token.getText());
                         node.addChild(child1);              //注意，新节点在顶层，保证正确的结合性
                         node.addChild(child2);
                         child1 = node;
-                    }else{
+                    } else {
                         throw new Exception("invalid additive expression, expecting the right part.");
                     }
                 } else {
@@ -238,6 +240,7 @@ public class SimpleParser {
 
     /**
      * 乘法表达式
+     *
      * @return
      * @throws Exception
      */
@@ -255,7 +258,7 @@ public class SimpleParser {
                     node.addChild(child1);
                     node.addChild(child2);
                     child1 = node;
-                }else{
+                } else {
                     throw new Exception("invalid multiplicative expression, expecting the right part.");
                 }
             } else {
@@ -268,6 +271,7 @@ public class SimpleParser {
 
     /**
      * 基础表达式
+     *
      * @return
      * @throws Exception
      */
@@ -344,6 +348,7 @@ public class SimpleParser {
 
     /**
      * 打印输出AST的树状结构
+     *
      * @param node
      * @param indent 缩进字符，由tab组成，每一级多一个tab
      */

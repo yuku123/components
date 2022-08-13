@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * @author zifang
+ */
 public class IOUtil {
 
     public static final int EOF = -1;

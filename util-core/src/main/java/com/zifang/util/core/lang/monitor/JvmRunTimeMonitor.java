@@ -37,7 +37,6 @@ public class JvmRunTimeMonitor {
     }
 
 
-
     /**
      * 获取JVM内存总量
      */

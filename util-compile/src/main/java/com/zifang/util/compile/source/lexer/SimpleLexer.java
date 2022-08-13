@@ -68,6 +68,7 @@ public class SimpleLexer {
      * 有限状态机进入初始状态。
      * 这个初始状态其实并不做停留，它马上进入其他状态。
      * 开始解析的时候，进入初始状态；某个Token解析完毕，也进入初始状态，在这里把Token记下来，然后建立一个新的Token。
+     *
      * @param ch
      * @return
      */
@@ -138,6 +139,7 @@ public class SimpleLexer {
     /**
      * 解析字符串，形成Token。
      * 这是一个有限状态自动机，在不同的状态中迁移。
+     *
      * @param code
      * @return
      */
@@ -153,80 +155,75 @@ public class SimpleLexer {
             while ((ich = reader.read()) != -1) {
                 ch = (char) ich;
                 switch (state) {
-                case Initial:
-                    state = initToken(ch);          //重新确定后续状态
-                    break;
-                case Id:
-                    if (isAlpha(ch) || isDigit(ch)) {
-                        tokenText.append(ch);       //保持标识符状态
-                    } else {
-                        state = initToken(ch);      //退出标识符状态，并保存Token
-                    }
-                    break;
-                case GT:
-                    if (ch == '=') {
-                        token.type = TokenType.GE;  //转换成GE
-                        state = DfaState.GE;
-                        tokenText.append(ch);
-                    } else {
-                        state = initToken(ch);      //退出GT状态，并保存Token
-                    }
-                    break;
-                case GE:
-                case Assignment:
-                case Plus:
-                case Minus:
-                case Star:
-                case Slash:
-                case SemiColon:
-                case LeftParen:
-                case RightParen:
-                    state = initToken(ch);          //退出当前状态，并保存Token
-                    break;
-                case IntLiteral:
-                    if (isDigit(ch)) {
-                        tokenText.append(ch);       //继续保持在数字字面量状态
-                    } else {
-                        state = initToken(ch);      //退出当前状态，并保存Token
-                    }
-                    break;
-                case Id_int1:
-                    if (ch == 'n') {
-                        state = DfaState.Id_int2;
-                        tokenText.append(ch);
-                    }
-                    else if (isDigit(ch) || isAlpha(ch)){
-                        state = DfaState.Id;    //切换回Id状态
-                        tokenText.append(ch);
-                    }
-                    else {
-                        state = initToken(ch);
-                    }
-                    break;
-                case Id_int2:
-                    if (ch == 't') {
-                        state = DfaState.Id_int3;
-                        tokenText.append(ch);
-                    }
-                    else if (isDigit(ch) || isAlpha(ch)){
-                        state = DfaState.Id;    //切换回id状态
-                        tokenText.append(ch);
-                    }
-                    else {
-                        state = initToken(ch);
-                    }
-                    break;
-                case Id_int3:
-                    if (isBlank(ch)) {
-                        token.type = TokenType.Int;
-                        state = initToken(ch);
-                    }
-                    else{
-                        state = DfaState.Id;    //切换回Id状态
-                        tokenText.append(ch);
-                    }
-                    break;
-                default:
+                    case Initial:
+                        state = initToken(ch);          //重新确定后续状态
+                        break;
+                    case Id:
+                        if (isAlpha(ch) || isDigit(ch)) {
+                            tokenText.append(ch);       //保持标识符状态
+                        } else {
+                            state = initToken(ch);      //退出标识符状态，并保存Token
+                        }
+                        break;
+                    case GT:
+                        if (ch == '=') {
+                            token.type = TokenType.GE;  //转换成GE
+                            state = DfaState.GE;
+                            tokenText.append(ch);
+                        } else {
+                            state = initToken(ch);      //退出GT状态，并保存Token
+                        }
+                        break;
+                    case GE:
+                    case Assignment:
+                    case Plus:
+                    case Minus:
+                    case Star:
+                    case Slash:
+                    case SemiColon:
+                    case LeftParen:
+                    case RightParen:
+                        state = initToken(ch);          //退出当前状态，并保存Token
+                        break;
+                    case IntLiteral:
+                        if (isDigit(ch)) {
+                            tokenText.append(ch);       //继续保持在数字字面量状态
+                        } else {
+                            state = initToken(ch);      //退出当前状态，并保存Token
+                        }
+                        break;
+                    case Id_int1:
+                        if (ch == 'n') {
+                            state = DfaState.Id_int2;
+                            tokenText.append(ch);
+                        } else if (isDigit(ch) || isAlpha(ch)) {
+                            state = DfaState.Id;    //切换回Id状态
+                            tokenText.append(ch);
+                        } else {
+                            state = initToken(ch);
+                        }
+                        break;
+                    case Id_int2:
+                        if (ch == 't') {
+                            state = DfaState.Id_int3;
+                            tokenText.append(ch);
+                        } else if (isDigit(ch) || isAlpha(ch)) {
+                            state = DfaState.Id;    //切换回id状态
+                            tokenText.append(ch);
+                        } else {
+                            state = initToken(ch);
+                        }
+                        break;
+                    case Id_int3:
+                        if (isBlank(ch)) {
+                            token.type = TokenType.Int;
+                            state = initToken(ch);
+                        } else {
+                            state = DfaState.Id;    //切换回Id状态
+                            tokenText.append(ch);
+                        }
+                        break;
+                    default:
 
                 }
 
@@ -244,13 +241,14 @@ public class SimpleLexer {
 
     /**
      * 打印所有的Token
+     *
      * @param tokenReader
      */
-    public static void dump(SimpleTokenReader tokenReader){
+    public static void dump(SimpleTokenReader tokenReader) {
         System.out.println("text\ttype");
         Token token = null;
-        while ((token= tokenReader.read())!=null){
-            System.out.println(token.getText()+"\t\t"+token.getType());
+        while ((token = tokenReader.read()) != null) {
+            System.out.println(token.getText() + "\t\t" + token.getType());
         }
     }
 

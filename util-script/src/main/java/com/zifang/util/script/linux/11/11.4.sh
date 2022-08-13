@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ## 使用变量
 
 ### 环境变量
@@ -23,17 +22,13 @@ echo "命令\$a所取到的值为 $a"
 echo "\n"
 b=a
 echo "b=a 之后的\$b为 $b"
-b=$a 
+b=$a
 echo "b=\$a 之后的\$b 为 $b"
 
 ### 命令替换
 echo "\n"
-a=`date`
-echo "a=`date`赋值之后，执行date命令，然后给a，那么a的值为 $a"
+a=$(date)
+echo "a=$(date)赋值之后，执行date命令，然后给a，那么a的值为 $a"
 echo "使用\$()命令同样能得到以上的结果：b=\$(date)"
 b=$(date)
 echo "b的值为 $b"
-
-
-
-

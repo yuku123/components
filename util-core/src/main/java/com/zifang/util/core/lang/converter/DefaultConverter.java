@@ -725,7 +725,7 @@ public class DefaultConverter {
         return null;
     }
 
-    public Boolean to(Boolean value, Boolean defaultValue){
+    public Boolean to(Boolean value, Boolean defaultValue) {
         log.info("to(Boolean value, Boolean defaultValue)");
         if (value == null) {
             return defaultValue;

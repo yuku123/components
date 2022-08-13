@@ -5,19 +5,14 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-/**
- * 请求对象
- * @author xuejiangtao
- * Jul 25, 2013 9:34:26 PM
- */
-@XmlRootElement(name="SMSDELIVERREQ")
+@XmlRootElement(name = "SMSDELIVERREQ")
 public class SmsDeliverReq {
 
     private ReqHeader reqHeader;
 
     private List<SmsBody> smsBodys;
 
-    @XmlElement(name="REQHEADER")
+    @XmlElement(name = "REQHEADER")
     public ReqHeader getReqHeader() {
         return reqHeader;
     }
@@ -26,8 +21,8 @@ public class SmsDeliverReq {
         this.reqHeader = reqHeader;
     }
 
-    @XmlElementWrapper(name="SMSBODYS")
-    @XmlElement(name="SMSBODY")
+    @XmlElementWrapper(name = "SMSBODYS")
+    @XmlElement(name = "SMSBODY")
     public List<SmsBody> getSmsBodys() {
         return smsBodys;
     }

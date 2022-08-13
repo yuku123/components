@@ -2,6 +2,9 @@ package com.zifang.util.core.lang.tuples;
 
 import lombok.Data;
 
+/**
+ * @author zifang
+ */
 @Data
 public class Decade<A, B, C, D, E, F, G, H, I, J> extends Ennead<A, B, C, D, E, F, G, H, I> {
     protected J j;

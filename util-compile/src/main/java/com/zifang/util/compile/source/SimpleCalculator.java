@@ -10,19 +10,20 @@ import com.zifang.util.compile.source.lexer.TokenType;
 
 /**
  * 实现一个计算器，但计算的结合性是有问题的。因为它使用了下面的语法规则：
- *
+ * <p>
  * additive -> multiplicative | multiplicative + additive
  * multiplicative -> primary | primary * multiplicative
- *
+ * <p>
  * 递归项在右边，会自然的对应右结合。我们真正需要的是左结合。
  */
 public class SimpleCalculator {
 
     /**
      * 执行脚本，并打印输出AST和求值过程。
+     *
      * @param script
      */
-    public void evaluate(String script){
+    public void evaluate(String script) {
         try {
             ASTNode tree = parse(script);
 
@@ -36,6 +37,7 @@ public class SimpleCalculator {
 
     /**
      * 解析脚本，并返回根节点
+     *
      * @param code
      * @return
      * @throws Exception
@@ -51,45 +53,46 @@ public class SimpleCalculator {
 
     /**
      * 对某个AST节点求值，并打印求值过程。
+     *
      * @param node
-     * @param indent  打印输出时的缩进量，用tab控制
+     * @param indent 打印输出时的缩进量，用tab控制
      * @return
      */
     private int evaluate(ASTNode node, String indent) {
         int result = 0;
         System.out.println(indent + "Calculating: " + node.getType());
         switch (node.getType()) {
-        case Programm:
-            for (ASTNode child : node.getChildren()) {
-                result = evaluate(child, indent + "\t");
-            }
-            break;
-        case Additive:
-            ASTNode child1 = node.getChildren().get(0);
-            int value1 = evaluate(child1, indent + "\t");
-            ASTNode child2 = node.getChildren().get(1);
-            int value2 = evaluate(child2, indent + "\t");
-            if (node.getText().equals("+")) {
-                result = value1 + value2;
-            } else {
-                result = value1 - value2;
-            }
-            break;
-        case Multiplicative:
-            child1 = node.getChildren().get(0);
-            value1 = evaluate(child1, indent + "\t");
-            child2 = node.getChildren().get(1);
-            value2 = evaluate(child2, indent + "\t");
-            if (node.getText().equals("*")) {
-                result = value1 * value2;
-            } else {
-                result = value1 / value2;
-            }
-            break;
-        case IntLiteral:
-            result = Integer.valueOf(node.getText()).intValue();
-            break;
-        default:
+            case Programm:
+                for (ASTNode child : node.getChildren()) {
+                    result = evaluate(child, indent + "\t");
+                }
+                break;
+            case Additive:
+                ASTNode child1 = node.getChildren().get(0);
+                int value1 = evaluate(child1, indent + "\t");
+                ASTNode child2 = node.getChildren().get(1);
+                int value2 = evaluate(child2, indent + "\t");
+                if (node.getText().equals("+")) {
+                    result = value1 + value2;
+                } else {
+                    result = value1 - value2;
+                }
+                break;
+            case Multiplicative:
+                child1 = node.getChildren().get(0);
+                value1 = evaluate(child1, indent + "\t");
+                child2 = node.getChildren().get(1);
+                value2 = evaluate(child2, indent + "\t");
+                if (node.getText().equals("*")) {
+                    result = value1 * value2;
+                } else {
+                    result = value1 / value2;
+                }
+                break;
+            case IntLiteral:
+                result = Integer.valueOf(node.getText()).intValue();
+                break;
+            default:
         }
         System.out.println(indent + "Result: " + result);
         return result;
@@ -97,6 +100,7 @@ public class SimpleCalculator {
 
     /**
      * 语法解析：根节点
+     *
      * @return
      * @throws Exception
      */
@@ -134,8 +138,7 @@ public class SimpleCalculator {
                     SimpleASTNode child = additive(tokens);  //匹配一个表达式
                     if (child == null) {
                         throw new Exception("invalide variable initialization, expecting an expression");
-                    }
-                    else{
+                    } else {
                         node.addChild(child);
                     }
                 }
@@ -157,6 +160,7 @@ public class SimpleCalculator {
 
     /**
      * 语法解析：加法表达式
+     *
      * @return
      * @throws Exception
      */
@@ -183,6 +187,7 @@ public class SimpleCalculator {
 
     /**
      * 语法解析：乘法表达式
+     *
      * @return
      * @throws Exception
      */
@@ -209,6 +214,7 @@ public class SimpleCalculator {
 
     /**
      * 语法解析：基础表达式
+     *
      * @return
      * @throws Exception
      */
@@ -243,6 +249,7 @@ public class SimpleCalculator {
 
     /**
      * 打印输出AST的树状结构
+     *
      * @param node
      * @param indent 缩进字符，由tab组成，每一级多一个tab
      */
@@ -263,9 +270,8 @@ public class SimpleCalculator {
         TokenReader tokens = lexer.tokenize(script);
         try {
             SimpleASTNode node = calculator.intDeclare(tokens);
-            calculator.dumpAST(node,"");
-        }
-        catch (Exception e){
+            calculator.dumpAST(node, "");
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 

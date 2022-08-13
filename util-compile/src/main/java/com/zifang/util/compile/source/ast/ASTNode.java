@@ -6,7 +6,7 @@ import java.util.List;
  * AST的节点。
  * 属性包括AST的类型、文本值、下级子节点和父节点
  */
-public interface ASTNode{
+public interface ASTNode {
     //父节点
     public ASTNode getParent();
 

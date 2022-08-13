@@ -1,13 +1,18 @@
 package com.zifang.util.core.io;
 
 import java.io.*;
+import java.util.Enumeration;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 /**
  * 文件压缩、解压工具类。文件压缩格式为zip
+ *
+ * @author zifang
  */
 public class ZipUtil {
+
     /**
      * 文件后缀名
      */
@@ -49,16 +54,10 @@ public class ZipUtil {
         }
     }
 
-    /**
-     * @param out
-     * @param dir
-     * @author:zifang
-     * @date : 2019年5月24日 下午10:00:22
-     */
     private static void compressedFile(ZipOutputStream out, File file, String dir) {
         FileInputStream fis = null;
         try {
-            if (file.isDirectory()) {    //文件夹
+            if (file.isDirectory()) {
                 // 得到文件列表信息
                 File[] files = file.listFiles();
                 // 将文件夹添加到下一级打包目录
@@ -66,13 +65,11 @@ public class ZipUtil {
 
                 dir = dir.length() == 0 ? "" : dir + "/";
 
-                // 循环将文件夹中的文件打包
                 for (int i = 0; i < files.length; i++) {
-                    compressedFile(out, files[i], dir + files[i].getName()); // 递归处理
+                    compressedFile(out, files[i], dir + files[i].getName());
                 }
-            } else {    //如果是文件则打包处理
+            } else {
                 fis = new FileInputStream(file);
-
                 out.putNextEntry(new ZipEntry(dir));
                 // 进行写操作
                 int j = 0;
@@ -80,10 +77,7 @@ public class ZipUtil {
                 while ((j = fis.read(buffer)) > 0) {
                     out.write(buffer, 0, j);
                 }
-                // 关闭输入流
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -94,6 +88,73 @@ public class ZipUtil {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public static void zipFolder(String folder, String targetFolder, String zipFileName) {
+
+        File zipFolder = new File(folder);
+
+        if (!zipFolder.isDirectory()) {
+            throw new RuntimeException("folder：" + folder + " is not a Folder");
+        }
+
+        if (!zipFolder.exists()) {
+            throw new RuntimeException("folder：" + folder + " is not Exist");
+        }
+    }
+
+
+    /**
+     * 压缩文件
+     */
+    public static void zipFile(String srcFilePath, String destZipFilePath, String fileName) throws Exception {
+        File file = new File(destZipFilePath);
+        int leng = 0;
+        byte[] b = new byte[1024];
+        // 压缩
+        ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(file));
+
+        // 被压缩的文件
+        FileInputStream fis = new FileInputStream(srcFilePath);
+        // 在压缩包中的路径
+        ZipEntry z1 = new ZipEntry(fileName);
+        zos.putNextEntry(z1);
+
+        while ((leng = fis.read(b)) != -1) {
+            zos.write(b, 0, leng);
+        }
+        zos.close();
+        fis.close();
+    }
+
+    public static void unZip(String fileName, String unZipDir) throws Exception {
+        // 先判断目标文件夹是否存在，如果不存在则新建，如果父目录不存在也新建
+        File f = new File(unZipDir);
+        if (!f.exists()) {
+            f.mkdirs();
+        }
+        BufferedOutputStream dest = null;
+        BufferedInputStream is = null;
+        ZipEntry entry;
+        ZipFile zipfile = new ZipFile(fileName);
+        Enumeration e = zipfile.entries();
+        while (e.hasMoreElements()) {
+            entry = (ZipEntry) e.nextElement();
+            // System.out.println("Extracting: " + entry);
+            is = new BufferedInputStream(zipfile.getInputStream(entry));
+            int count;
+            byte[] data = new byte[1024];
+            FileOutputStream fos = new FileOutputStream(unZipDir + "/"
+                    + entry.getName());
+            // System.out.println("entry.getName(): " + entry.getName());
+            dest = new BufferedOutputStream(fos, 1024);
+            while ((count = is.read(data, 0, 1024)) != -1) {
+                dest.write(data, 0, count);
+            }
+            dest.flush();
+            dest.close();
+            is.close();
         }
     }
 }

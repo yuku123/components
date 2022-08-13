@@ -15,25 +15,25 @@ public class ConvertCaller {
     private Class<?> from;
     private Class<?> target;
 
-    public Object to(Object o){
-        if(from == target){
+    public Object to(Object o) {
+        if (from == target) {
             return o;
         }
 
         try {
-            return method.invoke(caller,o, PrimitiveUtil.defaultValue(target));
+            return method.invoke(caller, o, PrimitiveUtil.defaultValue(target));
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Object to(Object o, Object defaultValue){
-        if(from == target){
+    public Object to(Object o, Object defaultValue) {
+        if (from == target) {
             return o;
         }
         try {
-            return method.invoke(caller,o, defaultValue);
+            return method.invoke(caller, o, defaultValue);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

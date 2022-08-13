@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DefaultConverter2 {
 
-    class IntegerLongConverter implements IConverter<Integer,Long>{
+    class IntegerLongConverter implements IConverter<Integer, Long> {
         @Override
         public Long to(Integer value, Long defaultValue) {
             log.info("call Long to(Integer value, Long defaultValue");

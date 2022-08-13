@@ -27,7 +27,6 @@ public class Bits {
     /**
      * 判断是偶数
      */
-
     public static boolean isOdd(int i) {
         return (abs(i) & 1) == 0;
     }
@@ -52,7 +51,6 @@ public class Bits {
     public static boolean isPowFrom2(int x) {
         return ((x & (x - 1)) == 0) && (x != 0);
     }
-
 
     /**
      * 求绝对值
@@ -80,7 +78,7 @@ public class Bits {
         n |= n >> 1;
         n |= n >> 2;
         n |= n >> 4;
-        n |= n >> 8; // 整型一般是 32 位，上面我是假设 8 位。
+        n |= n >> 8;
         return (n + 1) >> 1;
     }
 
@@ -95,5 +93,12 @@ public class Bits {
         n |= n >>> 8;
         n |= n >>> 16;
         return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+    }
+
+    /**
+     * 从byte里获取特定位数上的值
+     */
+    public static int at(int i, int k) {
+        return 1; // todo
     }
 }

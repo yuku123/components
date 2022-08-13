@@ -2,6 +2,9 @@ package com.zifang.util.core.lang.tuples;
 
 import lombok.Data;
 
+/**
+ * @author zifang
+ */
 @Data
 public class Octet<A, B, C, D, E, F, G, H> extends Septet<A, B, C, D, E, F, G> {
 
