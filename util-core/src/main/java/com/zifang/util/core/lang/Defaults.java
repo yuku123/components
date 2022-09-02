@@ -13,7 +13,6 @@ public class Defaults {
     /**
      * 获得默认的值
      */
-    @SuppressWarnings("unchecked")
     public static <T> T defaultValue(Class<T> type) {
         assert !Conditions.IS_NULL.test(type);
         if (type == boolean.class) {

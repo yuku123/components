@@ -10,8 +10,13 @@ import java.util.stream.Collectors;
  *
  * @author zifang
  */
-public class VennUtil {
+public class CollectionUtil {
 
+    /**
+     * @param collection
+     * @param <E>
+     * @return
+     */
     public static <E> Collection<E> union(Collection<E>... collection) {
         Collection<E> base = new ArrayList<>();
         for (Collection<E> collectionElement : collection) {

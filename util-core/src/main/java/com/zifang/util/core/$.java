@@ -3,7 +3,7 @@ package com.zifang.util.core;
 /**
  * @author zifang
  */
-public class GlobalConstance {
+public class $ {
 
     /**
      * 7位ASCII字符，也叫作ISO646-US、Unicode字符集的基本拉丁块

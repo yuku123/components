@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.*;
 
-public class Strings {
+public class StringUtil {
 
     private static final Predicate<String> NULL_STRING_PREDICATE = Objects::isNull;
     private static final Supplier<String> NULL_STRING_MSG_SUPPLIER = () -> "'value' should be not null.";
@@ -984,7 +984,7 @@ public class Strings {
     public static String toStudlyCase(final String value) {
         validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String[] words = collapseWhitespace(value.trim()).split("\\s*(_|-|\\s)\\s*");
-        return Arrays.stream(words).filter(w -> !w.trim().isEmpty()).map(Strings::upperFirst).collect(joining());
+        return Arrays.stream(words).filter(w -> !w.trim().isEmpty()).map(StringUtil::upperFirst).collect(joining());
     }
 
     /**
