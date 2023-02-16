@@ -1,6 +1,6 @@
 package com.zifang.util.core.lang;
 
-import com.zifang.util.core.$;
+import com.zifang.util.core.common.$;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
@@ -13,7 +13,6 @@ import java.nio.charset.StandardCharsets;
  * @author zifang
  */
 public class Charsets {
-
 
     /**
      * 将字符编码转换成US-ASCII码

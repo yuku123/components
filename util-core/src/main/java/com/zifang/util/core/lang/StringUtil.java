@@ -1,5 +1,6 @@
 package com.zifang.util.core.lang;
 
+import com.zifang.util.core.common.constant.CommonConstant;
 import com.zifang.util.core.util.Ascii;
 import com.zifang.util.core.util.CheckUtil;
 import com.zifang.util.core.util.HtmlEntities;
@@ -1764,4 +1765,8 @@ public class StringUtil {
         return df.format(f);
     }
 
+    public static boolean isFormat(String message) {
+        Matcher matcher = CommonConstant.FORMAT_PATTERN.matcher(message);
+        return matcher.find();
+    }
 }

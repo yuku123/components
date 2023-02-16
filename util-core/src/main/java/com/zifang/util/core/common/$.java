@@ -1,4 +1,4 @@
-package com.zifang.util.core;
+package com.zifang.util.core.common;
 
 /**
  * @author zifang
