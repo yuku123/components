@@ -1,4 +1,4 @@
-package com.zifang.util.core.sql;
+package com.zifang.util.core.jdbc;
 
 /**
  * @author zifang
