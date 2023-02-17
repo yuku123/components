@@ -1,20 +1,37 @@
-package com.zifang.util.workflow.engine.spark.services.interceptor;
+package com.zifang.util.core;
 
+import com.zifang.util.core.pattern.aop.ProxyUtil;
 import com.zifang.util.core.pattern.aop.aspects.Aspect;
-import com.zifang.util.workflow.annoation.EngineServiceInterceptor;
+import org.junit.Test;
 
 import java.lang.reflect.Method;
 
-@EngineServiceInterceptor
-public class CacheInterceptor implements Aspect {
+
+public class ProxyUtilTest {
+
+    @Test
+    public void proxy() {
+        A a = ProxyUtil.proxy(new A(), new CustomerAspect());
+        a.ex();
+    }
+}
+
+class A {
+    public void ex() {
+        System.out.println("this is ex");
+    }
+}
+
+class CustomerAspect implements Aspect {
+
     @Override
     public boolean before(Object target, Method method, Object[] args) {
-        return false;
+        System.out.println("before");
+        return true;
     }
 
     @Override
     public boolean after(Object target, Method method, Object[] args, Object returnVal) {
-
         return false;
     }
 

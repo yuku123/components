@@ -1,6 +1,6 @@
 package com.zifang.util.http;
 
-import com.zifang.util.aop.ProxyUtil;
+import com.zifang.util.core.pattern.aop.ProxyUtil;
 
 /**
  * 针对请求接口的代理
