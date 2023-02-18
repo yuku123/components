@@ -21,7 +21,7 @@
         <module>util-core</module>
         <module>util-office</module>
         <module>util-media</module>
-        <module>util-script</module>
+        <module>util-expression</module>
         <module>util-crawler</module>
         <module>util-workflow</module>
         <module>util-visualization</module>
@@ -30,14 +30,11 @@
         <module>util-bigdata-spark</module>
         <module>util-bigdata-hadoop</module>
         <module>util-jdbc</module>
-        <module>util-robot</module>
         <module>util-compile</module>
         <module>util-zex</module>
         <module>util-http</module>
         <module>util-math</module>
-        <module>util-ql</module>
         <module>util-ai</module>
-        <module>util-analysis</module>
         <module>util-extra</module>
         <module>util-monitor</module>
         <module>util-devops</module>
