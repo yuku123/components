@@ -15,7 +15,7 @@ public class C {
 //    }
 
     public static void main(String[] args) {
-        System.out.println(LocalDateTime.of(1996,8,1,0,0,0).plusDays(10000));
+        System.out.println(LocalDateTime.of(1996, 8, 1, 0, 0, 0).plusDays(10000));
     }
 
 }

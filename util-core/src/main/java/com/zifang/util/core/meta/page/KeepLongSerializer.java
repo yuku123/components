@@ -18,16 +18,16 @@ import java.io.IOException;
 @JacksonStdImpl
 public class KeepLongSerializer extends NumberSerializers.Base<Object> {
 
-  private static final long serialVersionUID = -1194198701939237302L;
+    private static final long serialVersionUID = -1194198701939237302L;
 
-  public KeepLongSerializer() {
-    super(Long.class, NumberType.LONG, "number");
-  }
+    public KeepLongSerializer() {
+        super(Long.class, NumberType.LONG, "number");
+    }
 
-  @Override
-  public void serialize(Object value, JsonGenerator gen, SerializerProvider provider)
-      throws IOException {
-    gen.writeNumber((Long) value);
-  }
+    @Override
+    public void serialize(Object value, JsonGenerator gen, SerializerProvider provider)
+            throws IOException {
+        gen.writeNumber((Long) value);
+    }
 
 }

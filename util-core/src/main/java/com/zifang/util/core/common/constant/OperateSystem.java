@@ -9,55 +9,55 @@ import java.util.Arrays;
  * @version: JDK 1.8
  */
 public enum OperateSystem {
-  /*
-  detail
-   */
-  WINDOWS("Windows", "windows"),
-  MAC("Mac", "mac"),
-  UNIX("Unix", "x11"),
-  LINUX("Linux", "linux"),
-  ANDROID("Android", "android"),
-  IPHONE("IPhone", "iphone"),
-  UNKNOWN("UnKnown", "unKnown");
+    /*
+    detail
+     */
+    WINDOWS("Windows", "windows"),
+    MAC("Mac", "mac"),
+    UNIX("Unix", "x11"),
+    LINUX("Linux", "linux"),
+    ANDROID("Android", "android"),
+    IPHONE("IPhone", "iphone"),
+    UNKNOWN("UnKnown", "unKnown");
 
-  private final String system;
+    private final String system;
 
-  private final String lowerSystem;
+    private final String lowerSystem;
 
-  private static final OperateSystem LOCAL_OPERATE_SYSTEM;
+    private static final OperateSystem LOCAL_OPERATE_SYSTEM;
 
-  static {
-    LOCAL_OPERATE_SYSTEM = getOperateSystem(System.getProperty("os.name"));
-  }
+    static {
+        LOCAL_OPERATE_SYSTEM = getOperateSystem(System.getProperty("os.name"));
+    }
 
-  OperateSystem(String system, String lowerSystem) {
-    this.system = system;
-    this.lowerSystem = lowerSystem;
-  }
+    OperateSystem(String system, String lowerSystem) {
+        this.system = system;
+        this.lowerSystem = lowerSystem;
+    }
 
-  public String getSystem() {
-    return system;
-  }
+    public String getSystem() {
+        return system;
+    }
 
-  public String getLowerSystem() {
-    return lowerSystem;
-  }
+    public String getLowerSystem() {
+        return lowerSystem;
+    }
 
-  public static OperateSystem getOperateSystem(String info) {
-    return Arrays.stream(OperateSystem.values())
-        .filter(system -> info.toLowerCase().contains(system.getLowerSystem()))
-        .findFirst()
-        .orElse(OperateSystem.UNKNOWN);
-  }
+    public static OperateSystem getOperateSystem(String info) {
+        return Arrays.stream(OperateSystem.values())
+                .filter(system -> info.toLowerCase().contains(system.getLowerSystem()))
+                .findFirst()
+                .orElse(OperateSystem.UNKNOWN);
+    }
 
-  public static OperateSystem getLocalOperateSystem() {
-    return LOCAL_OPERATE_SYSTEM;
-  }
+    public static OperateSystem getLocalOperateSystem() {
+        return LOCAL_OPERATE_SYSTEM;
+    }
 
-  public static boolean isLocalMachine() {
-    OperateSystem operateSystem = OperateSystem.getLocalOperateSystem();
-    // 只在windows和mac时匹配, 认为这两种是开发的本地机器
-    return MAC.equals(operateSystem) || WINDOWS.equals(operateSystem);
-  }
+    public static boolean isLocalMachine() {
+        OperateSystem operateSystem = OperateSystem.getLocalOperateSystem();
+        // 只在windows和mac时匹配, 认为这两种是开发的本地机器
+        return MAC.equals(operateSystem) || WINDOWS.equals(operateSystem);
+    }
 
 }
