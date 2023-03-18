@@ -21,8 +21,6 @@ public class NumberGennerator {
 
         return null;
     }
-
-
     public static void main(String[] args) throws IOException {
 
         // 生成素数列表
