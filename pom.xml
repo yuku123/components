@@ -19,37 +19,26 @@
 
     <modules>
         <module>util-core</module>
-        <module>util-db</module>
         <module>util-office</module>
-        <module>util-script</module>
+        <module>util-media</module>
+        <module>util-expression</module>
         <module>util-crawler</module>
         <module>util-workflow</module>
-        <module>util-server</module>
-        <module>util-swing</module>
+        <module>util-visualization</module>
         <module>util-web</module>
         <module>util-rpc</module>
-        <module>util-al-inheritance</module>
-        <module>util-al-nnet</module>
         <module>util-bigdata-spark</module>
         <module>util-bigdata-hadoop</module>
-        <module>util-graph</module>
-        <module>util-voice</module>
-        <module>util-robot</module>
-        <module>util-aop</module>
+        <module>util-jdbc</module>
         <module>util-compile</module>
         <module>util-zex</module>
         <module>util-http</module>
         <module>util-math</module>
-        <module>util-geo</module>
-        <module>util-ql</module>
-        <module>util-analysis</module>
-        <!--特殊化功能-->
+        <module>util-ai</module>
         <module>util-extra</module>
         <module>util-monitor</module>
         <module>util-devops</module>
         <module>util-source</module>
-        <module>util-bpmn</module>
-        <module>util-video</module>
         <module>util-distribute</module>
         <module>util-leecode</module>
         <module>util-schedule</module>

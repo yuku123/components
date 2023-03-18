@@ -18,7 +18,6 @@ public class ArraysUtil {
         return elements;
     }
 
-
     /**
      * 合并多个数组变为一个数组
      */

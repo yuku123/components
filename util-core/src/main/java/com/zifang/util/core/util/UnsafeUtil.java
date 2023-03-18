@@ -4,6 +4,9 @@ import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 
+/**
+ * @author zifang
+ */
 public class UnsafeUtil {
 
     private static final Unsafe UNSAFE;
