@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
  * @author zifang
  */
 public class PinyinGeneratorUtil {
+
     /**
      * 生成中文拼音全称
      *

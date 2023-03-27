@@ -5,10 +5,10 @@
 //import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 //import com.github.javaparser.ast.body.MethodDeclaration;
 //import com.github.javaparser.ast.type.ClassOrInterfaceType;
-//import com.zifang.util.core.beans.classinfo.ClassInfo;
-//import com.zifang.util.core.beans.classinfo.FieldInfo;
-//import com.zifang.util.core.beans.classinfo.MethodInfo;
-//import com.zifang.util.core.beans.classinfo.MethodParameterPair;
+//import com.zifang.util.core.lang.beans.classinfo.ClassInfo;
+//import com.zifang.util.core.lang.beans.classinfo.FieldInfo;
+//import com.zifang.util.core.lang.beans.classinfo.MethodInfo;
+//import com.zifang.util.core.lang.beans.classinfo.MethodParameterPair;
 //import com.zifang.util.core.lang.object.component.*;
 //
 //import java.util.Optional;

@@ -8,9 +8,9 @@
 //import com.github.javaparser.ast.expr.NameExpr;
 //import com.github.javaparser.ast.stmt.BlockStmt;
 //import com.github.javaparser.ast.stmt.ReturnStmt;
-//import com.zifang.util.core.beans.classinfo.FieldInfo;
-//import com.zifang.util.core.beans.classinfo.MethodInfo;
-//import com.zifang.util.core.beans.classinfo.MethodParameterPair;
+//import com.zifang.util.core.lang.beans.classinfo.FieldInfo;
+//import com.zifang.util.core.lang.beans.classinfo.MethodInfo;
+//import com.zifang.util.core.lang.beans.classinfo.MethodParameterPair;
 //
 //import static com.github.javaparser.ast.Modifier.Keyword.PUBLIC;
 //

@@ -32,8 +32,8 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Ascii {
-    public static final Map<String, List<String>> ascii = new HashMap<String, List<String>>() {{
 
+    public static final Map<String, List<String>> ascii = new HashMap<String, List<String>>() {{
         put("0", Arrays.asList("°", "₀", "۰"));
         put("1", Arrays.asList("¹", "₁", "۱"));
         put("2", Arrays.asList("²", "₂", "۲"));

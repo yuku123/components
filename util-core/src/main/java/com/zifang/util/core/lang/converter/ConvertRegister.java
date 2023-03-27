@@ -3,7 +3,7 @@ package com.zifang.util.core.lang.converter;
 import com.zifang.util.core.lang.PrimitiveUtil;
 import com.zifang.util.core.lang.reflect.ClassParser;
 import com.zifang.util.core.lang.reflect.ClassParserFactory;
-import com.zifang.util.core.lang.tuples.Pair;
+import com.zifang.util.core.lang.beans.tuples.Pair;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 import java.lang.reflect.Method;

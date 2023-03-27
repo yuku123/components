@@ -1,6 +1,6 @@
 package com.zifang.util.http.common;
 
-import com.zifang.util.core.lang.tuples.Pair;
+import com.zifang.util.core.lang.beans.tuples.Pair;
 
 import java.lang.reflect.Parameter;
 

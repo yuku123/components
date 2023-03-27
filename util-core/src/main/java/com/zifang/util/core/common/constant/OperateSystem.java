@@ -9,9 +9,7 @@ import java.util.Arrays;
  * @version: JDK 1.8
  */
 public enum OperateSystem {
-    /*
-    detail
-     */
+
     WINDOWS("Windows", "windows"),
     MAC("Mac", "mac"),
     UNIX("Unix", "x11"),
