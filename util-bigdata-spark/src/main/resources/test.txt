@@ -1,4 +1,0 @@
-a,b,c,d
-aaaa,dsds,fdfd,grfr
-bbbb,grgr,grgr,grgr
-rreferf,frefre,ferfre,erfer
