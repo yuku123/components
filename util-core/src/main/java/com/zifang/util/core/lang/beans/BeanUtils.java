@@ -143,7 +143,6 @@ public class BeanUtils {
      * 拆解bean 可以很方便得到bean的一些参数
      * */
 
-
     /**
      * 判断自己定义的而非继承的属性pro是否存在
      *
@@ -166,8 +165,4 @@ public class BeanUtils {
      * @param srcBean  源Bean
      * @param destBean 目标Bean
      */
-
-    public static void main(String[] args) {
-        
-    }
 }

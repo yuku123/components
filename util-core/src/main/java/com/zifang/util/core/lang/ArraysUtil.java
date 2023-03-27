@@ -8,6 +8,8 @@ import java.util.Objects;
 
 /**
  * 数组相关的工具类
+ *
+ * @author zifang
  */
 public class ArraysUtil {
 
