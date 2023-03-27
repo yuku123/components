@@ -27,8 +27,6 @@
         <module>util-visualization</module>
         <module>util-web</module>
         <module>util-rpc</module>
-        <module>util-bigdata-spark</module>
-        <module>util-bigdata-hadoop</module>
         <module>util-jdbc</module>
         <module>util-compile</module>
         <module>util-zex</module>

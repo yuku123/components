@@ -54,8 +54,6 @@ public class Test {
     }
 
     /**
-     * Jul 24, 2013 10:12:39 PM xuejiangtao添加此方法
-     *
      * @param args
      * @throws JAXBException
      * @throws FileNotFoundException
