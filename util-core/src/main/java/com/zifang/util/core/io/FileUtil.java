@@ -3,10 +3,14 @@ package com.zifang.util.core.io;
 //import com.zifang.util.core.util.DateUtils;
 //import com.zifang.util.core.util.RandomUtil;
 
+import com.zifang.util.core.util.CheckUtil;
+
 import java.io.*;
 import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.UnsupportedCharsetException;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +19,149 @@ import java.util.List;
  * 文件相关的工具类
  */
 public class FileUtil {
+
+    /**
+     * 把指定文件或目录转换成指定的编码
+     *
+     * @param fileName        要转换的文件
+     * @param fromCharsetName 源文件的编码
+     * @param toCharsetName   要转换的编码
+     */
+    public static void convert(String fileName, String fromCharsetName, String toCharsetName) {
+        convert(new File(fileName), fromCharsetName, toCharsetName, null);
+    }
+
+    /**
+     * 把指定文件或目录转换成指定的编码
+     *
+     * @param file            要转换的文件或目录
+     * @param fromCharsetName 源文件的编码
+     * @param toCharsetName   要转换的编码
+     */
+    public static void convert(File file, String fromCharsetName, String toCharsetName) {
+        convert(file, fromCharsetName, toCharsetName, null);
+    }
+
+    /**
+     * 把指定文件或目录转换成指定的编码
+     *
+     * @param fileName        要转换的文件或目录
+     * @param fromCharsetName 源文件的编码
+     * @param toCharsetName   要转换的编码
+     * @param filter          文件名过滤器
+     */
+    public static void convert(String fileName, String fromCharsetName, String toCharsetName, FilenameFilter filter) {
+        convert(new File(fileName), fromCharsetName, toCharsetName, filter);
+    }
+
+    /**
+     * 把指定文件或目录转换成指定的编码
+     *
+     * @param file            要转换的文件或目录
+     * @param fromCharsetName 源文件的编码
+     * @param toCharsetName   要转换的编码
+     * @param filter          文件名过滤器
+     */
+    public static void convert(File file, String fromCharsetName, String toCharsetName, FilenameFilter filter) {
+        if (file.isDirectory()) {
+            List<File> list = CheckUtil.valid(filter) ? com.zifang.util.core.io.ss.FileUtil.listFileFilter(file, filter) :
+                    com.zifang.util.core.io.ss.FileUtil.listFile(file);
+            if (CheckUtil.valid(list)) {
+                for (File f : list) {
+                    convert(f, fromCharsetName, toCharsetName, filter);
+                }
+            }
+        } else {
+            if (filter == null || filter.accept(file.getParentFile(), file.getName())) {
+                String fileContent = getFileContentFromCharset(file, fromCharsetName);
+                saveFile2Charset(file, toCharsetName, fileContent);
+            }
+        }
+    }
+
+    /**
+     * 以指定编码方式读取文件，返回文件内容
+     *
+     * @param file            要转换的文件
+     * @param fromCharsetName 源文件的编码
+     */
+    public static String getFileContentFromCharset(File file, String fromCharsetName) {
+        String str = "";
+        if (!Charset.isSupported(fromCharsetName)) {
+            throw new UnsupportedCharsetException(fromCharsetName);
+        }
+        try (InputStream inputStream = new FileInputStream(file);
+             InputStreamReader reader = new InputStreamReader(inputStream, fromCharsetName)
+        ) {
+            char[] chs = new char[(int) file.length()];
+            reader.read(chs);
+            str = new String(chs).trim();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+
+    /**
+     * 以指定编码方式写文本文件，存在会覆盖
+     *
+     * @param file          要写入的文件
+     * @param toCharsetName 要转换的编码
+     * @param content       文件内容
+     */
+    public static void saveFile2Charset(File file, String toCharsetName, String content) {
+        if (!Charset.isSupported(toCharsetName)) {
+            throw new UnsupportedCharsetException(toCharsetName);
+        }
+        try (
+                OutputStream outputStream = new FileOutputStream(file);
+                OutputStreamWriter outWrite = new OutputStreamWriter(outputStream, toCharsetName)
+        ) {
+            outWrite.write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 文件重命名
+     *
+     * @param oldPath 老文件
+     * @param newPath 新文件
+     */
+    public boolean dirRename(String oldPath, String newPath) {
+        File oldFile = new File(oldPath);// 文件或目录
+        File newFile = new File(newPath);// 文件或目录
+        return oldFile.renameTo(newFile);// 重命名
+    }
+
+    /**
+     * 递归创建文件夹
+     *
+     * @param file 由目录创建的file对象
+     * @throws FileNotFoundException
+     */
+    public static void mkDir(File file) throws FileNotFoundException {
+        if (file == null) {
+            throw new FileNotFoundException();
+        }
+
+        if (file.getParentFile().exists()) {
+            if (file.exists()) { // 目录存在, 则直接返回
+                return;
+            }
+
+            if (!file.mkdir()) { // 不存在, 则创建
+                throw new FileNotFoundException();
+            }
+        } else {
+            mkDir(file.getParentFile()); // 创建父目录
+            if (!file.exists() && !file.mkdir()) {
+                throw new FileNotFoundException();
+            }
+        }
+    }
+
 
     /**
      * 修改文件的最后访问时间。
@@ -1062,15 +1209,13 @@ public class FileUtil {
         return file.substring(extIndex + 1);
     }
 
-    /**
-     * 文件重命名
-     *
-     * @param oldPath 老文件
-     * @param newPath 新文件
-     */
-    public boolean renameDir(String oldPath, String newPath) {
-        File oldFile = new File(oldPath);// 文件或目录
-        File newFile = new File(newPath);// 文件或目录
-        return oldFile.renameTo(newFile);// 重命名
+
+
+    public static void main(String[] args) throws IOException {
+        String s = "/Users/zifang/workplace/idea_workplace/components/util-workflow/src/main/java/workflow.json";
+
+        String json = FileUtil.getFileContent(s);
+        System.out.println(json);
+
     }
 }

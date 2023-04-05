@@ -8,8 +8,6 @@ import java.nio.charset.Charset;
 
 /**
  * 写文件工具类
- * <p/>
- * Created by yihui on 2017/5/17.
  */
 public class FileWriteUtil {
 
