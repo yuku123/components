@@ -1,11 +1,5 @@
 package com.zifang.util.core.common.constant;
 
-/**
- * @author: Ares
- * @time: 2021-12-26 17:27:08
- * @description: string constant
- * @version: JDK 1.8
- */
 public interface StringConstant {
 
     String ZERO = "0";

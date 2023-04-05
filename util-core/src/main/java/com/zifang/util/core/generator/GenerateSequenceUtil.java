@@ -1,4 +1,4 @@
-package com.zifang.util.extra.generator;
+package com.zifang.util.core.generator;
 
 import java.text.*;
 import java.util.Calendar;

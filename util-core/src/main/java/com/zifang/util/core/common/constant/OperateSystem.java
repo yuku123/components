@@ -2,12 +2,6 @@ package com.zifang.util.core.common.constant;
 
 import java.util.Arrays;
 
-/**
- * @author: Ares
- * @time: 2021-08-09 15:02
- * @description: 操作系统常量
- * @version: JDK 1.8
- */
 public enum OperateSystem {
 
     WINDOWS("Windows", "windows"),

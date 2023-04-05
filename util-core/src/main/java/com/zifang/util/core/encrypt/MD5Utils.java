@@ -5,9 +5,6 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * MD5加密
- *
- * @Author:chenssy
- * @date:2016年4月9日
  */
 class MD5Utils {
     protected final static String MD5_KEY = "MD5";

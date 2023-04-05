@@ -1,11 +1,5 @@
 package com.zifang.util.core.common.constant;
 
-/**
- * @author: Ares
- * @time: 2022-02-07 16:51:53
- * @description: validation constant
- * @version: JDK 1.8
- */
 public interface ScriptConstant {
 
     /**

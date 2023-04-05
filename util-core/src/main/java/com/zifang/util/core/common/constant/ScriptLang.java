@@ -1,11 +1,5 @@
 package com.zifang.util.core.common.constant;
 
-/**
- * @author: Ares
- * @time: 2022-08-02 10:50:18
- * @description: 脚本语言
- * @version: JDK 1.8
- */
 public enum ScriptLang {
     /**
      * detail
