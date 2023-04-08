@@ -1,8 +1,6 @@
 package com.zifang.util.workflow.engine.spark;
 
-import com.zifang.util.workflow.annoation.EngineService;
 import com.zifang.util.workflow.engine.interfaces.AbstractEngineService;
-import com.zifang.util.workflow.engine.spark.services.ChangeColumnNameHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,6 +65,6 @@ public class SparkEngine extends AbstractSparkEngine {
     }
 
     public static void main(String[] args) {
-        System.out.println(ChangeColumnNameHandler.class.isAnnotationPresent(EngineService.class));
+//        System.out.println(ChangeColumnNameHandler.class.isAnnotationPresent(EngineService.class));
     }
 }
