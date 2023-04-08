@@ -4,10 +4,6 @@ import com.zifang.util.compile.bytecode.decompile.bean.*;
 import com.zifang.util.compile.bytecode.decompile.bean.attribute.*;
 import com.zifang.util.compile.bytecode.decompile.bean.constant.*;
 import com.zifang.util.compile.bytecode.decompile.utils.Hex;
-import org.example.bean.*;
-import org.example.bean.attribute.*;
-import org.example.bean.constant.*;
-
 import java.util.*;
 import java.util.Map.Entry;
 

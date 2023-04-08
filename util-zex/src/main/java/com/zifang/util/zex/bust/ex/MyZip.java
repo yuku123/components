@@ -8,15 +8,13 @@ import java.util.zip.ZipOutputStream;
 
 public class MyZip { // 创建类
     private void zip(String zipFileName, File inputFile) throws Exception {
-        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(
-                zipFileName)); // 创建ZipOutputStream类对象
+        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipFileName)); // 创建ZipOutputStream类对象
         zip(out, inputFile, ""); // 调用方法
         System.out.println("压缩中…"); // 输出信息
         out.close(); // 将流关闭
     }
 
-    private void zip(ZipOutputStream out, File f, String base)
-            throws Exception { // 方法重载
+    private void zip(ZipOutputStream out, File f, String base) throws Exception { // 方法重载
         if (f.isDirectory()) { // 测试此抽象路径名表示的文件是否是一个目录
             File[] fl = f.listFiles(); // 获取路径数组
             out.putNextEntry(new ZipEntry(base + "/")); // 写入此目录的entry
