@@ -1,16 +1,16 @@
 package com.zifang.util.compile;
 
-import com.zifang.util.compile.bytecode.simple2.ClassFile;
-import com.zifang.util.compile.bytecode.simple2.constantpool.*;
-import com.zifang.util.compile.bytecode.simple2.field.FieldInfo;
-import com.zifang.util.compile.bytecode.simple2.field.FieldTable;
-import com.zifang.util.compile.bytecode.simple2.inter.Interface;
-import com.zifang.util.compile.bytecode.simple2.inter.InterfaceIndex;
-import com.zifang.util.compile.bytecode.simple2.method.MethodInfo;
-import com.zifang.util.compile.bytecode.simple2.method.MethodTable;
-import com.zifang.util.compile.bytecode.simple2.readtype.U1;
-import com.zifang.util.compile.bytecode.simple2.readtype.U2;
-import com.zifang.util.compile.bytecode.simple2.readtype.U4;
+import com.zifang.util.compile.bytecode.resolver2.ClassFile;
+import com.zifang.util.compile.bytecode.resolver2.constantpool.*;
+import com.zifang.util.compile.bytecode.resolver2.field.FieldInfo;
+import com.zifang.util.compile.bytecode.resolver2.field.FieldTable;
+import com.zifang.util.compile.bytecode.resolver2.inter.Interface;
+import com.zifang.util.compile.bytecode.resolver2.inter.InterfaceIndex;
+import com.zifang.util.compile.bytecode.resolver2.method.MethodInfo;
+import com.zifang.util.compile.bytecode.resolver2.method.MethodTable;
+import com.zifang.util.compile.bytecode.resolver2.readtype.U1;
+import com.zifang.util.compile.bytecode.resolver2.readtype.U2;
+import com.zifang.util.compile.bytecode.resolver2.readtype.U4;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
