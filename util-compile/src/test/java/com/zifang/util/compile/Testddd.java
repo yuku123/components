@@ -1,5 +1,6 @@
-package com.zifang.util.compile.bytecode.simple2;
+package com.zifang.util.compile;
 
+import com.zifang.util.compile.bytecode.simple2.ClassFile;
 import com.zifang.util.compile.bytecode.simple2.constantpool.*;
 import com.zifang.util.compile.bytecode.simple2.field.FieldInfo;
 import com.zifang.util.compile.bytecode.simple2.field.FieldTable;
@@ -10,44 +11,46 @@ import com.zifang.util.compile.bytecode.simple2.method.MethodTable;
 import com.zifang.util.compile.bytecode.simple2.readtype.U1;
 import com.zifang.util.compile.bytecode.simple2.readtype.U2;
 import com.zifang.util.compile.bytecode.simple2.readtype.U4;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 
-public class Test {
+@Slf4j
+public class Testddd {
 
-    public static void main(String[] args) throws IOException {
-        File file = new File("com/jtfu/file/TestClassParse1.class");
-        FileInputStream stream = new FileInputStream(file);
-        com.zifang.util.compile.bytecode.simple2.ClassFile.magic = U4.read(stream);//魔数
-        com.zifang.util.compile.bytecode.simple2.ClassFile.minorVersion = U2.read(stream);//主版本号
-        com.zifang.util.compile.bytecode.simple2.ClassFile.majorVersion = U2.read(stream);//次版本号
-        com.zifang.util.compile.bytecode.simple2.ClassFile.constantPoolSize = U2.read(stream);//常量池大小
-        short pollSize = com.zifang.util.compile.bytecode.simple2.ClassFile.constantPoolSize.value;
-        System.err.println(String.format("常量池大小为:{}", pollSize));
+    @Test
+    public void sss() throws FileNotFoundException {
+        File file = new File("/Users/zifang/workplace/idea_workplace/components/util-compile/target/classes/com/zifang/util/compile/bytecode/simple2/file/TestClassParse1.class");
+
+        FileInputStream stream=new FileInputStream(file);
+        ClassFile.magic=U4.read(stream);//魔数
+        ClassFile.minorVersion= U2.read(stream);//主版本号
+        ClassFile.majorVersion=U2.read(stream);//次版本号
+        ClassFile.constantPoolSize=U2.read(stream);//常量池大小
+        short pollSize = ClassFile.constantPoolSize.value;
+        log.info("常量池大小为:{}", pollSize);
         //解析常量池
         ConstantPoolInfo poolInfo = parseConstantPool(stream, (short) (pollSize - 1));
-        com.zifang.util.compile.bytecode.simple2.ClassFile.poolInfo = poolInfo;
-        int index = 1;
+        ClassFile.poolInfo=poolInfo;
+        int index=1;
         for (AbstractConstantPool abstractConstantPool : poolInfo.getPoolList()) {
-            System.err.println(String.format("常量池[{}]:{}", index, abstractConstantPool));
+            log.info("常量池[{}]:{}",index,abstractConstantPool);
             index++;
         }
         //解析访问标志
-        com.zifang.util.compile.bytecode.simple2.ClassFile.accessFlag = U2.read(stream);
+        ClassFile.accessFlag=U2.read(stream);
         //解析类索引,父类索引,接口索引(对于接口索引集合，
         // 入口的第一项u2类型的数据为接口计数器（interfaces_count），表示索引表的容量。
         // 如果该类没有实现任何接口，则该计数器值为0，后面接口的索引表不再占用任何字节。)
-        com.zifang.util.compile.bytecode.simple2.ClassFile.classIndex = U2.read(stream);
-        com.zifang.util.compile.bytecode.simple2.ClassFile.superClassIndex = U2.read(stream);
-        com.zifang.util.compile.bytecode.simple2.ClassFile.interfaceIndex = parseInterface(stream);
+        ClassFile.classIndex=U2.read(stream);
+        ClassFile.superClassIndex=U2.read(stream);
+        ClassFile.interfaceIndex=parseInterface(stream);
         //字段表集合
-        com.zifang.util.compile.bytecode.simple2.ClassFile.fieldInfo = parseFieldInfo(stream);
+        ClassFile.fieldInfo=parseFieldInfo(stream);
         //方法表
-        com.zifang.util.compile.bytecode.simple2.ClassFile.methodInfo = parseMethodInfo(stream);
+        ClassFile.methodInfo=parseMethodInfo(stream);
         /**
          * 字段表集合, 方法表集合打断点对照常量池看
          */

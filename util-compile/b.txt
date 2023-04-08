@@ -1,0 +1,14 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.zifang:util-compile >-----------------------
+[INFO] Building util-compile 1.0.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ util-compile ---
+Downloading from public-plugin: http://mvn.seenew.info/repository/prod-public/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.pom
+Downloading from alimaven: http://maven.aliyun.com/nexus/content/groups/public/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.pom
+Progress (1): 2.3/4.2 kBProgress (1): 4.2 kB                        Downloaded from alimaven: http://maven.aliyun.com/nexus/content/groups/public/org/apache/maven/reporting/maven-reporting-impl/2.0.5/maven-reporting-impl-2.0.5.pom (4.2 kB at 4.2 kB/s)
+Downloading from public-plugin: http://mvn.seenew.info/repository/prod-public/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.pom
+Downloading from alimaven: http://maven.aliyun.com/nexus/content/groups/public/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.pom
+Progress (1): 2.3/5.9 kBProgress (1): 5.1/5.9 kBProgress (1): 5.9 kB                        Downloaded from alimaven: http://maven.aliyun.com/nexus/content/groups/public/org/apache/maven/shared/maven-doxia-tools/1.0.2/maven-doxia-tools-1.0.2.pom (5.9 kB at 10 kB/s)
+Downloading from public-plugin: http://mvn.seenew.info/repository/prod-public/org/codehaus/plexus/plexus-archiver/2.3/plexus-archiver-2.3.pom

@@ -4,8 +4,6 @@ import com.zifang.util.workflow.config.ExecutableWorkflowNode;
 import com.zifang.util.workflow.conponents.WorkFlowApplicationContext;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
 
 @Setter
 @Getter
@@ -24,7 +22,7 @@ public abstract class AbstractEngineService {
     /**
      * 一个service只会包裹一个dataset
      */
-    protected Dataset<Row> dataset;
+//    protected Dataset<Row> dataset;
 
     /**
      * 执行引擎服务的执行

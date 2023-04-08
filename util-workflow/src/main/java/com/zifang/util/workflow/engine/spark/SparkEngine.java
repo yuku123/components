@@ -1,6 +1,5 @@
 package com.zifang.util.workflow.engine.spark;
 
-import com.zifang.util.bigdata.spark.context.SparkContextInstance;
 import com.zifang.util.workflow.annoation.EngineService;
 import com.zifang.util.workflow.engine.interfaces.AbstractEngineService;
 import com.zifang.util.workflow.engine.spark.services.ChangeColumnNameHandler;
@@ -10,7 +9,7 @@ import java.util.Map;
 
 public class SparkEngine extends AbstractSparkEngine {
 
-    private SparkContextInstance sparkContextInstance;
+//    private SparkContextInstance sparkContextInstance;
 
 //    {
 //            put("engine.service.empty",EmptyHandler.class);
@@ -39,13 +38,13 @@ public class SparkEngine extends AbstractSparkEngine {
 
     @Override
     public AbstractEngineService getRegisteredEngineService(String serviceUnit) {
-        try {
-            AbstractSparkEngineService abstractSparkEngineService = (AbstractSparkEngineService) registeredEngineServiceMap.get(serviceUnit).newInstance();
-            abstractSparkEngineService.setSparkContextInstance(sparkContextInstance);
-            return abstractSparkEngineService;
-        } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            AbstractSparkEngineService abstractSparkEngineService = (AbstractSparkEngineService) registeredEngineServiceMap.get(serviceUnit).newInstance();
+//            abstractSparkEngineService.setSparkContextInstance(sparkContextInstance);
+//            return abstractSparkEngineService;
+//        } catch (InstantiationException | IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
         return null;
     }
 

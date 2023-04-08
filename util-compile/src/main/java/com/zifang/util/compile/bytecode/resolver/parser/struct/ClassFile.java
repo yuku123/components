@@ -35,6 +35,17 @@ public class ClassFile {
         items.add(new ConstantPoolItem(this, 0));
     }
 
+    public void addConstantInteger(ClassFile classFile, int index, int value) {
+        items.add(new ConstantInteger(classFile, index, value));
+    }
+
+    public void addConstantFloat(ClassFile classFile, int index, float value) {
+        items.add(new ConstantFloat(classFile, index, value));
+    }
+
+    public void addConstantUtf8(ClassFile classFile, int index, String value) {
+        items.add(new ConstantUtf8(classFile, index, value));
+    }
     public void addConstantItem(ConstantPoolItem constantPoolItem) {
         items.add(constantPoolItem);
     }
