@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang;
+package com.zifang.util.core.util;
 
 
 import java.lang.reflect.Array;

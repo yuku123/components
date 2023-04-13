@@ -1,6 +1,6 @@
 package com.zifang.util.core.cache;
 
-public class Test {
+public class CacheTest {
 
     @org.junit.Test
     public void test001(){

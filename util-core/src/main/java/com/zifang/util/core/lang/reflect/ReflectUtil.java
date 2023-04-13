@@ -2,7 +2,7 @@ package com.zifang.util.core.lang.reflect;
 
 
 import com.zifang.util.core.cache.WeakHashMapCache;
-import com.zifang.util.core.lang.ArraysUtil;
+import com.zifang.util.core.util.ArraysUtil;
 import com.zifang.util.core.util.ClassUtil;
 
 import java.lang.reflect.AccessibleObject;

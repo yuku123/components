@@ -1,9 +1,6 @@
-package com.zifang.util.core.lang;
+package com.zifang.util.core.util;
 
 import com.zifang.util.core.common.constant.CommonConstant;
-import com.zifang.util.core.util.Ascii;
-import com.zifang.util.core.util.CheckUtil;
-import com.zifang.util.core.util.HtmlEntities;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;

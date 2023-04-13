@@ -1,7 +1,7 @@
 package com.zifang.util.core.lang.primitive;
 
 import com.zifang.util.core.common.$;
-import com.zifang.util.core.lang.StringUtil;
+import com.zifang.util.core.util.StringUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;

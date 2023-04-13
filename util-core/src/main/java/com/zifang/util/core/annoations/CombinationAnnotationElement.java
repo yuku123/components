@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.annoations;
+package com.zifang.util.core.annoations;
 
 import com.zifang.util.core.collection.Sets;
 
