@@ -5,14 +5,8 @@ package com.zifang.util.core.cache;
  *
  * @author zifang
  */
-public class CacheClient {
+public interface CacheClient {
+    Object get(String key);
 
-    private String a;
-
-    public void put() {
-    }
-
-    public void get() {
-    }
-
+    void set(String key, Object value);
 }
