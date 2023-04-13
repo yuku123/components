@@ -3,7 +3,7 @@ package com.zifang.util.core;
 /**
  * @author zifang
  */
-public class Constance {
+public class Const {
 
     /**
      * false with byte type
