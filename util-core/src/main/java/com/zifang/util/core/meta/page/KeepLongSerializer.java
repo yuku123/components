@@ -8,13 +8,6 @@ import com.fasterxml.jackson.databind.ser.std.NumberSerializers;
 
 import java.io.IOException;
 
-/**
- * @author: Ares
- * @time: 2021-06-15 16:09:00
- * @description: keep long still origin serializer not string serializer
- * @version: JDK 1.8
- * @see com.fasterxml.jackson.databind.ser.std.NumberSerializers.LongSerializer
- */
 @JacksonStdImpl
 public class KeepLongSerializer extends NumberSerializers.Base<Object> {
 

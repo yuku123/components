@@ -6,22 +6,9 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 
-/**
- * Test copying between channels.
- * <p>
- * Created and tested: Dec 31, 2001
- * Revised for NIO book, April 2002
- *
- * @author Ron Hitchens (ron@ronsoft.com)
- * @version $Id: ChannelCopy.java,v 1.4 2002/04/21 05:10:56 ron Exp $
- */
-public class ChannelCopy {
-    /**
-     * This code copies data from stdin to stdout.  Like the 'cat'
-     * command, but without any useful options.
-     */
-    public static void main(String[] argv)
-            throws IOException {
+public class ChannelUtil {
+
+    public static void main(String[] argv) throws IOException {
         ReadableByteChannel source = Channels.newChannel(System.in);
         WritableByteChannel dest = Channels.newChannel(System.out);
 
@@ -73,9 +60,7 @@ public class ChannelCopy {
      * No post-loop cleanup is needed because the buffer will be empty
      * when the loop is exited.
      */
-    private static void channelCopy2(ReadableByteChannel src,
-                                     WritableByteChannel dest)
-            throws IOException {
+    private static void channelCopy2(ReadableByteChannel src, WritableByteChannel dest) throws IOException {
         ByteBuffer buffer = ByteBuffer.allocateDirect(16 * 1024);
 
         while (src.read(buffer) != -1) {

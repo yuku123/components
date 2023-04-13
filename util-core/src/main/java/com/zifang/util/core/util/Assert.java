@@ -1,18 +1,20 @@
 package com.zifang.util.core.util;
 
+
 import com.zifang.util.core.lang.exception.BaseException;
 
 /**
- * @author zifang
+ * 断言 的工具类
  */
-public interface Assert {
+public class Assert {
+
     /**
      * 创建异常
      *
      * @param args
      * @return
      */
-    BaseException newException(Object... args);
+    BaseException newException(Object... args){return null;}
 
     /**
      * 创建异常
@@ -21,14 +23,14 @@ public interface Assert {
      * @param args
      * @return
      */
-    BaseException newException(Throwable t, Object... args);
+    BaseException newException(Throwable t, Object... args){return null;}
 
     /**
      * <p>断言对象<code>obj</code>非空。如果对象<code>obj</code>为空，则抛出异常
      *
      * @param obj 待判断对象
      */
-    default void assertNotNull(Object obj) {
+    public void assertNotNull(Object obj) {
         if (obj == null) {
             throw newException(obj);
         }
@@ -41,10 +43,21 @@ public interface Assert {
      * @param obj  待判断对象
      * @param args message占位符对应的参数列表
      */
-    default void assertNotNull(Object obj, Object... args) {
+    public void assertNotNull(Object obj, Object... args) {
         if (obj == null) {
             throw newException(args);
         }
     }
-}
 
+    /**
+     * 判断对象是否为空
+     *
+     * @param object
+     * @param message
+     */
+    public static void notNull(Object object, String message) {
+        if (Conditions.IS_NULL.test(object)) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+}

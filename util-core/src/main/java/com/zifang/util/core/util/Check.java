@@ -9,7 +9,7 @@ import java.util.Map;
  * 提供一些对象有效性校验的方法
  */
 @SuppressWarnings("rawtypes")
-public final class CheckUtil {
+public final class Check {
 
     /**
      * 判断字符串是否是符合指定格式的时间
@@ -18,7 +18,7 @@ public final class CheckUtil {
      * @param format 时间格式
      * @return 是否符合
      */
-    public static final boolean isDate(String date, String format) {
+    public static boolean isDate(String date, String format) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(format);
             sdf.parse(date);
@@ -32,7 +32,7 @@ public final class CheckUtil {
     /**
      * 判断字符串有效性
      */
-    public static final boolean valid(String src) {
+    public static boolean valid(String src) {
         return !(src == null || "".equals(src.trim()));
     }
 
@@ -42,7 +42,7 @@ public final class CheckUtil {
      * @param src
      * @return
      */
-    public static final boolean valid(String[] src) {
+    public static boolean valid(String[] src) {
         for (String s : src) {
             if (!valid(s)) {
                 return false;
@@ -65,14 +65,14 @@ public final class CheckUtil {
      * @param objs
      * @return
      */
-    public static final boolean valid(Object[] objs) {
+    public static boolean valid(Object[] objs) {
         return objs != null && objs.length != 0;
     }
 
     /**
      * 判断集合的有效性
      */
-    public static final boolean valid(Collection col) {
+    public static boolean valid(Collection col) {
         return !(col == null || col.isEmpty());
     }
 
@@ -82,7 +82,7 @@ public final class CheckUtil {
      * @param cols
      * @return
      */
-    public static final boolean valid(Collection... cols) {
+    public static boolean valid(Collection... cols) {
         for (Collection c : cols) {
             if (!valid(c)) {
                 return false;

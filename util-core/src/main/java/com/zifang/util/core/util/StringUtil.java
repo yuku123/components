@@ -1,6 +1,6 @@
 package com.zifang.util.core.util;
 
-import com.zifang.util.core.common.constant.CommonConstant;
+import com.zifang.util.core.Patterns;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
@@ -1726,7 +1726,7 @@ public class StringUtil {
                     result += (temp + symbol);
                 }
             }
-            if (result.length() > 1 && CheckUtil.valid(symbol)) {
+            if (result.length() > 1 && Check.valid(symbol)) {
                 result = result.substring(0, result.length() - symbol.length());
             }
         }
@@ -1763,7 +1763,7 @@ public class StringUtil {
     }
 
     public static boolean isFormat(String message) {
-        Matcher matcher = CommonConstant.FORMAT_PATTERN.matcher(message);
+        Matcher matcher = Patterns.FORMAT_PATTERN.matcher(message);
         return matcher.find();
     }
 }

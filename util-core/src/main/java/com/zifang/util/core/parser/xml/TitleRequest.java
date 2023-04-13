@@ -1,4 +1,4 @@
-package com.zifang.util.core.io.parser.xml;
+package com.zifang.util.core.parser.xml;
 
 import lombok.Data;
 
