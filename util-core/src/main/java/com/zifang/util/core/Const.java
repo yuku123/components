@@ -28,7 +28,6 @@ public class Const {
     int CHINESE_CHARACTER_START = 0x4e00;
 
 
-
     /**
      * 7位ASCII字符，也叫作ISO646-US、Unicode字符集的基本拉丁块
      */

@@ -14,7 +14,9 @@ public class Assert {
      * @param args
      * @return
      */
-    BaseException newException(Object... args){return null;}
+    BaseException newException(Object... args) {
+        return null;
+    }
 
     /**
      * 创建异常
@@ -23,7 +25,9 @@ public class Assert {
      * @param args
      * @return
      */
-    BaseException newException(Throwable t, Object... args){return null;}
+    BaseException newException(Throwable t, Object... args) {
+        return null;
+    }
 
     /**
      * <p>断言对象<code>obj</code>非空。如果对象<code>obj</code>为空，则抛出异常

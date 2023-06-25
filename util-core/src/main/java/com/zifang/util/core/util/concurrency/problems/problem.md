@@ -8,11 +8,14 @@ fucking-java-concurrency
 
 - 可以观察到的实际现象 :see_no_evil: 比 说说的并发原则 :speak_no_evil: 更直观更可信。
 - `Java`语言标准库支持线程，语言本身（如`GC`）以及应用（服务器端`The Server side`）中会重度使用多线程。
-- 并发程度设计在分析和实现中，复杂度大大增加。 如果不系统理解和充分分析并发逻辑，随意写代码，这样的程序用 **『碰巧』** 能运行出正确结果 来形容一点都不为过。
+- 并发程度设计在分析和实现中，复杂度大大增加。 如果不系统理解和充分分析并发逻辑，随意写代码，这样的程序用 **『碰巧』**
+  能运行出正确结果 来形容一点都不为过。
 
-这里的Demo没有给出解释和讨论，并且都是入门级的 :neckbeard: ，更多了解请参见[一些并发的问题讨论和资料](#一些并发的问题讨论和资料)。
+这里的Demo没有给出解释和讨论，并且都是入门级的 :neckbeard:
+，更多了解请参见[一些并发的问题讨论和资料](#一些并发的问题讨论和资料)。
 
-你在开发中碰到的并发问题的例子，欢迎提供（[提交Issue](https://github.com/oldratlee/fucking-java-concurrency/issues))和分享（[Fork后提交代码](https://github.com/oldratlee/fucking-java-concurrency/fork)）！ :
+你在开发中碰到的并发问题的例子，欢迎提供（[提交Issue](https://github.com/oldratlee/fucking-java-concurrency/issues))
+和分享（[Fork后提交代码](https://github.com/oldratlee/fucking-java-concurrency/fork)）！ :
 kissing_heart:
 
 --------------------------------------------------------------------------------
@@ -168,7 +171,8 @@ mvn compile exec:java -Dexec.mainClass=com.oldratlee.fucking.concurrency.WrongCo
 
 常看到在易变域上的同步代码，并且写的同学会很自然觉得这样是安全和正确的。      
 \#
-问题分析见文章链接：[在易变域上的同步](http://www.ibm.com/developerworks/cn/java/j-concurrencybugpatterns/#N100DA)，对应的英文文章：[Synchronization
+问题分析见文章链接：[在易变域上的同步](http://www.ibm.com/developerworks/cn/java/j-concurrencybugpatterns/#N100DA)
+，对应的英文文章：[Synchronization
 on mutable fields](http://www.ibm.com/developerworks/library/j-concurrencybugpatterns/#N100E7)    
 Demo类[`com.oldratlee.fucking.concurrency.SynchronizationOnMutableFieldDemo`](src/main/java/com/oldratlee/fucking/concurrency/SynchronizationOnMutableFieldDemo.java)
 。
@@ -191,7 +195,8 @@ mvn compile exec:java -Dexec.mainClass=com.oldratlee.fucking.concurrency.Synchro
 -------------------------
 
 \#
-问题分析见文章链接：[对称锁死锁](http://www.ibm.com/developerworks/cn/java/j-concurrencybugpatterns/#N101B4)，对应的英文文章：[Synchronization
+问题分析见文章链接：[对称锁死锁](http://www.ibm.com/developerworks/cn/java/j-concurrencybugpatterns/#N101B4)
+，对应的英文文章：[Synchronization
 on mutable fields](http://www.ibm.com/developerworks/library/j-concurrencybugpatterns/#N101C1)    
 Demo类[`com.oldratlee.fucking.concurrency.SymmetricLockDeadlockDemo`](src/main/java/com/oldratlee/fucking/concurrency/SymmetricLockDeadlockDemo.java)
 。

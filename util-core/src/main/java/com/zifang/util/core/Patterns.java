@@ -7,5 +7,5 @@ import static com.zifang.util.core.common.constant.StringConstant.FORMAT_SPECIFI
 
 public class Patterns {
     public static Pattern FORMAT_PATTERN = Pattern.compile(FORMAT_SPECIFIER);
-    public static  Pattern FLOATING_POINT_NUMBER_PATTERN = Pattern.compile(FLOATING_POINT_NUMBER_FORMAT);
+    public static Pattern FLOATING_POINT_NUMBER_PATTERN = Pattern.compile(FLOATING_POINT_NUMBER_FORMAT);
 }

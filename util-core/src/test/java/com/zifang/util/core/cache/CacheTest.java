@@ -3,7 +3,7 @@ package com.zifang.util.core.cache;
 public class CacheTest {
 
     @org.junit.Test
-    public void test001(){
+    public void test001() {
 
         // 缓存提供者
         CacheProvider cacheProvider = new MemoryCacheProvider();
@@ -15,7 +15,7 @@ public class CacheTest {
         // 缓存终端
         CacheClient cacheClient = cacheClientBuilder.build();
 
-        cacheClient.set("a","b");
+        cacheClient.set("a", "b");
         Object o = cacheClient.get("a");
     }
 }

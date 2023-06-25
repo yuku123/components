@@ -1,6 +1,6 @@
 package com.zifang.util.zex.bust.ex;
 
-public class CloneableTest implements Cloneable{
+public class CloneableTest implements Cloneable {
     public String name;
 
     @Override
@@ -12,7 +12,7 @@ public class CloneableTest implements Cloneable{
         CloneableTest cloneableTest = new CloneableTest();
         cloneableTest.name = "吃饭";
 
-        CloneableTest cloneableTest1 = (CloneableTest)cloneableTest.clone();
+        CloneableTest cloneableTest1 = (CloneableTest) cloneableTest.clone();
         System.out.println(cloneableTest1.name);
     }
 }

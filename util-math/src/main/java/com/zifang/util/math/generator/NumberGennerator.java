@@ -7,6 +7,7 @@ import java.io.IOException;
 
 /**
  * 数据生成器
+ *
  * @author zifang
  */
 public class NumberGennerator {
@@ -21,6 +22,7 @@ public class NumberGennerator {
 
         return null;
     }
+
     public static void main(String[] args) throws IOException {
 
         // 生成素数列表

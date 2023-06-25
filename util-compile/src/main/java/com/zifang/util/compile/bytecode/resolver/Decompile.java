@@ -279,7 +279,7 @@ public class Decompile {
 
 
     private class MethodAttributeHandler {
-        
+
         public void handleCode() {
             int maxStack = scanner.readToInteger(2); // 最大栈
             int maxLocals = scanner.readToInteger(2); // 最大本地变量

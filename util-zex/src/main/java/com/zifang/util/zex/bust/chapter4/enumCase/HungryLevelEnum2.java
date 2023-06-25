@@ -6,7 +6,8 @@ public enum HungryLevelEnum2 {
     HUNGRY_LEVEL_3("十成饱");
 
     private String description;
-    HungryLevelEnum2(String description){
+
+    HungryLevelEnum2(String description) {
         this.description = description;
     }
 

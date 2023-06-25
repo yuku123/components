@@ -1,6 +1,6 @@
 package com.zifang.util.core.cache;
 
-public class DefaultCacheClient implements CacheClient{
+public class DefaultCacheClient implements CacheClient {
 
     private CacheProvider cacheProvider;
 

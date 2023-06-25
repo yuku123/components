@@ -30,7 +30,7 @@ public class SocketTest002 {
         // 监听指定的端口
         ServerSocket server = new ServerSocket(50000);
         // accept方法将会阻塞当前进程，知道连接真的到了
-        while(true){
+        while (true) {
             Socket socket = server.accept();
             new Thread(() -> {
                 try {
@@ -40,13 +40,13 @@ public class SocketTest002 {
                     byte[] bytes = new byte[1024];
                     int len;
                     while ((len = inputStream.read(bytes)) != -1) {
-                        System.out.print(new String(bytes, 0, len,"UTF-8"));
+                        System.out.print(new String(bytes, 0, len, "UTF-8"));
                     }
                     // 输入流关闭
                     inputStream.close();
                     // 关闭socket
                     socket.close();
-                } catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }).start();

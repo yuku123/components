@@ -20,7 +20,7 @@ public class MyZip { // 创建类
             out.putNextEntry(new ZipEntry(base + "/")); // 写入此目录的entry
             base = base.length() == 0 ? "" : base + "/"; // 判断参数是否为空
             for (int i = 0; i < fl.length; i++) { // 循环遍历数组中文件
-                zip(out, fl[i],  fl[i].toString());
+                zip(out, fl[i], fl[i].toString());
             }
         } else {
             out.putNextEntry(new ZipEntry(base)); // 创建新的进入点

@@ -41,10 +41,9 @@ public class FileUtil {
     public static void copyFileWithChannel(File source, File target) {
         try (
                 FileInputStream inStream = new FileInputStream(source);
-             FileOutputStream outStream = new FileOutputStream(target);
-             FileChannel in = inStream.getChannel();
-             FileChannel out = outStream.getChannel())
-        {
+                FileOutputStream outStream = new FileOutputStream(target);
+                FileChannel in = inStream.getChannel();
+                FileChannel out = outStream.getChannel()) {
             in.transferTo(0, in.size(), out);
         } catch (IOException e) {
             e.printStackTrace();

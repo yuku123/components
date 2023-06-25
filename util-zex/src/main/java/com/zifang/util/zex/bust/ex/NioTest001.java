@@ -12,14 +12,14 @@ public class NioTest001 {
     //·mark（标记）
     // 0≤mark≤position≤limit≤capacity
     @Test
-    public void test001(){
-        byte[] byteArray = new byte[] { 1, 2, 3 };
-        short[] shortArray = new short[] { 1, 2, 3, 4 };
-        int[] intArray = new int[] { 1, 2, 3, 4, 5 };
-        long[] longArray = new long[] { 1, 2, 3, 4, 5, 6 };
-        float[] floatArray = new float[] { 1, 2, 3, 4, 5, 6, 7 };
-        double[] doubleArray = new double[] { 1, 2, 3, 4, 5, 6, 7, 8 };
-        char[] charArray = new char[] { 'a', 'b', 'c', 'd' };
+    public void test001() {
+        byte[] byteArray = new byte[]{1, 2, 3};
+        short[] shortArray = new short[]{1, 2, 3, 4};
+        int[] intArray = new int[]{1, 2, 3, 4, 5};
+        long[] longArray = new long[]{1, 2, 3, 4, 5, 6};
+        float[] floatArray = new float[]{1, 2, 3, 4, 5, 6, 7};
+        double[] doubleArray = new double[]{1, 2, 3, 4, 5, 6, 7, 8};
+        char[] charArray = new char[]{'a', 'b', 'c', 'd'};
         ByteBuffer bytebuffer = ByteBuffer.wrap(byteArray);
         ShortBuffer shortBuffer = ShortBuffer.wrap(shortArray);
         IntBuffer intBuffer = IntBuffer.wrap(intArray);

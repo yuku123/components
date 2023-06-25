@@ -6,10 +6,10 @@ public class NoVisibility {
 
     private static int number;
 
-    private static void test1(){
-        new Thread (){
+    private static void test1() {
+        new Thread() {
             @Override
-            public  void run(){
+            public void run() {
                 try {
                     Thread.sleep(1000L);
                 } catch (InterruptedException e) {
@@ -19,7 +19,7 @@ public class NoVisibility {
             }
         }.start();
 
-        while (n1 == 0){
+        while (n1 == 0) {
         }
     }
 

@@ -9,12 +9,12 @@ public class WriteFile {
         try {
             String filePath = "/Users/zifang/workplace/idea_workplace/JavaBust/src/main/resources/test_out.txt";
             //创建字节输入流
-            fout=new FileOutputStream(filePath);
+            fout = new FileOutputStream(filePath);
             fout.write("第一行".getBytes());
             fout.write("第二行".getBytes());
             fout.write("第三行".getBytes());
             fout.flush();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         } finally {
             fout.close();

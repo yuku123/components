@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class NotifyTest {
     @Test
-    public void test1(){
+    public void test1() {
         Object lock = new Object();
         new Thread(new Runnable() {
             @Override
@@ -37,7 +37,8 @@ public class NotifyTest {
                     }
                     System.out.println("线程B将要运行lock.notify()方法进行通知");
                     lock.notify();
-                    while (true){}
+                    while (true) {
+                    }
                 }
             }
         }).start();

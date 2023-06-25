@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Enums {
 
-     interface EnumCollectors<T>{
-         List<T> getList();
-     }
+    interface EnumCollectors<T> {
+        List<T> getList();
+    }
 
     @Data
     public static class OperateSystem implements EnumCollectors<OperateSystem> {
@@ -34,6 +34,7 @@ public class Enums {
                     .findFirst()
                     .orElse(UnKnown);
         }
+
         @Override
         public List<OperateSystem> getList() {
             return null;

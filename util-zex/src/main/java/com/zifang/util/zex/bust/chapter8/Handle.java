@@ -3,9 +3,9 @@ package com.zifang.util.zex.bust.chapter8;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Handle{
+public class Handle {
     public static void main(String[] args) {
-        List<? extends Number> numberList = new ArrayList<Integer>(){
+        List<? extends Number> numberList = new ArrayList<Integer>() {
             {
                 add(1);
                 add(2);

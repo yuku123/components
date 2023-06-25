@@ -2,10 +2,10 @@ package com.zifang.util.zex.bust.charpter12;
 
 public class RecordExample1 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        new Thread(()->{
-            while (true){
+        new Thread(() -> {
+            while (true) {
                 int a = 1;
                 int b = 2;
 
@@ -15,7 +15,7 @@ public class RecordExample1 {
                 } catch (Exception e) {
 
                 } finally {
-                    if(a==2){
+                    if (a == 2) {
                         System.out.println("a = " + a);
                     }
                 }

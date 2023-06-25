@@ -34,6 +34,7 @@ public class FalseSharingExample implements Runnable {
             longs[arrayIndex].value = 0L;
         }
     }
+
     public static void main(final String[] args) throws Exception {
         for (int i = 1; i < 10; i++) {
             System.gc();
