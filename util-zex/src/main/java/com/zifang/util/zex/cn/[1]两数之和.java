@@ -44,7 +44,7 @@
 //lexity? Related Topics 数组 哈希表 
 // 👍 11173 👎 0
 
-package leetcode.editor.cn;
+package com.zifang.util.zex.cn;
 
 /**
  * @date: 2021-05-24 15:04:36
