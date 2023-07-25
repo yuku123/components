@@ -1,26 +1,33 @@
 package com.zifang.util.zex.bust.chapter4.case3;
 
-class Human{
+class Human {
     String sex;
     String age;
+
     {
         int a = 2;
         sex = "sex";
     }
+
     {
         sex = "dd";
     }
+
     {
         sex = "dd";
     }
-    Human(String sex, String age){
+
+    Human(String sex, String age) {
         this.sex = sex;
         this.age = age;
     }
-    Human(String sex){
+
+    Human(String sex) {
         this.sex = sex;
     }
-    Human(){ }
+
+    Human() {
+    }
 
     public static void main(String[] args) {
         Human human = new Human();

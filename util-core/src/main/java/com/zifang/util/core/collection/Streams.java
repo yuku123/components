@@ -12,7 +12,6 @@ import java.util.stream.StreamSupport;
  */
 public class Streams {
 
-
     /**
      * 转换 iterator 为串行流
      */

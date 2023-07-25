@@ -46,6 +46,7 @@ public class ClassFile {
     public void addConstantUtf8(ClassFile classFile, int index, String value) {
         items.add(new ConstantUtf8(classFile, index, value));
     }
+
     public void addConstantItem(ConstantPoolItem constantPoolItem) {
         items.add(constantPoolItem);
     }

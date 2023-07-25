@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!-- 项目名称 -->
-    <property name="projectname" value="testapollo" />
+    <property name="projectname" value="testapollo"/>
     <!-- 日志存放路径 -->
-    <property name="log.path" value="/app/${projectname}}/logs" />
+    <property name="log.path" value="/app/${projectname}}/logs"/>
     <!-- 日志输出格式 -->
-    <property name="log.pattern" value="%d{yyy-MM-dd HH:mm:ss.SSS} [%X{X-B3-TraceId:-},%X{X-B3-SpanId:-}] [%thread] %-5level %logger{20} - [%method,%line] - %msg%n" />
+    <property name="log.pattern"
+              value="%d{yyy-MM-dd HH:mm:ss.SSS} [%X{X-B3-TraceId:-},%X{X-B3-SpanId:-}] [%thread] %-5level %logger{20} - [%method,%line] - %msg%n"/>
 
     <!-- 控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -61,18 +62,18 @@
 
 
     <!-- 系统模块日志级别控制  -->
-    <logger name="com.loop" level="info" />
+    <logger name="com.loop" level="info"/>
     <!-- Spring日志级别控制  -->
-    <logger name="org.springframework" level="warn" />
+    <logger name="org.springframework" level="warn"/>
 
     <root level="info">
-        <appender-ref ref="console" />
+        <appender-ref ref="console"/>
     </root>
 
     <!--系统操作日志-->
     <root level="info">
-        <appender-ref ref="file_info" />
-        <appender-ref ref="file_error" />
+        <appender-ref ref="file_info"/>
+        <appender-ref ref="file_error"/>
     </root>
 
 </configuration>

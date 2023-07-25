@@ -21,7 +21,7 @@ public class SerializableTest {
         oos.close();
 
         //从文件内反序列化
-        ObjectInputStream ois  = new ObjectInputStream(new FileInputStream(new File("tempFile")));
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("tempFile")));
         User newUser = (User) ois.readObject();
         System.out.println(newUser);
     }

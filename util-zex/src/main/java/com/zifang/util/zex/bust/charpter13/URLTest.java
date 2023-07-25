@@ -43,7 +43,7 @@ public class URLTest {
     public void client() throws IOException {
         ServerSocket server = new ServerSocket(50000);
         Socket socket = null;
-        while (true ){
+        while (true) {
             socket = server.accept();
             OutputStream outputStream = socket.getOutputStream();
             InputStream inputStream = socket.getInputStream();
@@ -75,24 +75,25 @@ public class URLTest {
         byte[] bytes = new byte[1024];
         int len;
         while ((len = inputStream.read(bytes)) != -1) {
-            System.out.print(new String(bytes, 0, len,"UTF-8"));
+            System.out.print(new String(bytes, 0, len, "UTF-8"));
         }
     }
+
     public static void writeOutStream(OutputStream outputStream) throws IOException {
 
         String content = "HTTP/1.1 200 OK\r\n" +
-                "content-Type: application/json\r\n"+
+                "content-Type: application/json\r\n" +
                 "Server: Apache\r\n" +
                 "\r\n" +
                 "{\"a\":\"吃饭\"}";
-        int i = 0 ;
+        int i = 0;
         outputStream.write(content.getBytes());
         outputStream.flush();
         outputStream.close();
     }
 
     @Test
-    public void test3(){
+    public void test3() {
         try {
             URL url = new URL("http://127.0.0.1:50000");
             URLConnection connection = url.openConnection();

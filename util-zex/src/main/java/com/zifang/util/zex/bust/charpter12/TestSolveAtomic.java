@@ -8,8 +8,7 @@ import java.lang.reflect.Field;
  * 解决原子性问题，保留可见性
  *
  * @author zifang
- *
- * */
+ */
 public class TestSolveAtomic {
 
     public long count = 0;
@@ -17,6 +16,7 @@ public class TestSolveAtomic {
     private static long valueOffset;
 
     private static Unsafe unsafe;
+
     static {
         try {
             Field f = Unsafe.class.getDeclaredField("theUnsafe");
@@ -30,8 +30,8 @@ public class TestSolveAtomic {
 
     private void add10K() {
         int idx = 0;
-        while(idx++ < 10000) {
-            while (!unsafe.compareAndSwapLong(this,valueOffset ,count,count+1)){
+        while (idx++ < 10000) {
+            while (!unsafe.compareAndSwapLong(this, valueOffset, count, count + 1)) {
                 continue;
             }
             //count += 1;
@@ -40,10 +40,10 @@ public class TestSolveAtomic {
 
     public static void main(String[] args) throws InterruptedException {
         TestSolveAtomic test = new TestSolveAtomic();
-        Thread th1 = new Thread(()->{
+        Thread th1 = new Thread(() -> {
             test.add10K();
         });
-        Thread th2 = new Thread(()->{
+        Thread th2 = new Thread(() -> {
             test.add10K();
         });
         // 启动两个线程

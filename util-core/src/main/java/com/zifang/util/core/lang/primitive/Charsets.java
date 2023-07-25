@@ -1,7 +1,7 @@
 package com.zifang.util.core.lang.primitive;
 
-import com.zifang.util.core.common.$;
-import com.zifang.util.core.lang.StringUtil;
+import com.zifang.util.core.Const;
+import com.zifang.util.core.util.StringUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
@@ -19,49 +19,49 @@ public class Charsets {
      * 将字符编码转换成US-ASCII码
      */
     public static String toASCII(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, $.US_ASCII);
+        return changeCharset(str, Const.US_ASCII);
     }
 
     /**
      * 将字符编码转换成ISO-8859-1码
      */
     public static String toISO_8859_1(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, $.ISO_8859_1);
+        return changeCharset(str, Const.ISO_8859_1);
     }
 
     /**
      * 将字符编码转换成UTF-8码
      */
     public static String toUTF_8(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, $.UTF_8);
+        return changeCharset(str, Const.UTF_8);
     }
 
     /**
      * 将字符编码转换成UTF-16BE码
      */
     public static String toUTF_16BE(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, $.UTF_16BE);
+        return changeCharset(str, Const.UTF_16BE);
     }
 
     /**
      * 将字符编码转换成UTF-16LE码
      */
     public static String toUTF_16LE(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, $.UTF_16LE);
+        return changeCharset(str, Const.UTF_16LE);
     }
 
     /**
      * 将字符编码转换成UTF-16码
      */
     public static String toUTF_16(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, $.UTF_16);
+        return changeCharset(str, Const.UTF_16);
     }
 
     /**
      * 将字符编码转换成GBK码
      */
     public static String toGBK(String str) throws UnsupportedEncodingException {
-        return changeCharset(str, $.GBK);
+        return changeCharset(str, Const.GBK);
     }
 
     /**
@@ -117,7 +117,7 @@ public class Charsets {
             return "";
         } else {
             String s1;
-            s1 = new String(input.getBytes(StandardCharsets.ISO_8859_1), $.GBK);
+            s1 = new String(input.getBytes(StandardCharsets.ISO_8859_1), Const.GBK);
             return s1;
         }
     }
@@ -133,7 +133,7 @@ public class Charsets {
             return "";
         } else {
             String s1;
-            s1 = new String(input.getBytes($.GBK), StandardCharsets.ISO_8859_1);
+            s1 = new String(input.getBytes(Const.GBK), StandardCharsets.ISO_8859_1);
             return s1;
         }
     }

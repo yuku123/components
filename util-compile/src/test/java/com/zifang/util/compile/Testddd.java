@@ -24,33 +24,33 @@ public class Testddd {
     public void sss() throws FileNotFoundException {
         File file = new File("/Users/zifang/workplace/idea_workplace/components/util-compile/target/classes/com/zifang/util/compile/bytecode/simple2/file/TestClassParse1.class");
 
-        FileInputStream stream=new FileInputStream(file);
-        ClassFile.magic=U4.read(stream);//魔数
-        ClassFile.minorVersion= U2.read(stream);//主版本号
-        ClassFile.majorVersion=U2.read(stream);//次版本号
-        ClassFile.constantPoolSize=U2.read(stream);//常量池大小
+        FileInputStream stream = new FileInputStream(file);
+        ClassFile.magic = U4.read(stream);//魔数
+        ClassFile.minorVersion = U2.read(stream);//主版本号
+        ClassFile.majorVersion = U2.read(stream);//次版本号
+        ClassFile.constantPoolSize = U2.read(stream);//常量池大小
         short pollSize = ClassFile.constantPoolSize.value;
         log.info("常量池大小为:{}", pollSize);
         //解析常量池
         ConstantPoolInfo poolInfo = parseConstantPool(stream, (short) (pollSize - 1));
-        ClassFile.poolInfo=poolInfo;
-        int index=1;
+        ClassFile.poolInfo = poolInfo;
+        int index = 1;
         for (AbstractConstantPool abstractConstantPool : poolInfo.getPoolList()) {
-            log.info("常量池[{}]:{}",index,abstractConstantPool);
+            log.info("常量池[{}]:{}", index, abstractConstantPool);
             index++;
         }
         //解析访问标志
-        ClassFile.accessFlag=U2.read(stream);
+        ClassFile.accessFlag = U2.read(stream);
         //解析类索引,父类索引,接口索引(对于接口索引集合，
         // 入口的第一项u2类型的数据为接口计数器（interfaces_count），表示索引表的容量。
         // 如果该类没有实现任何接口，则该计数器值为0，后面接口的索引表不再占用任何字节。)
-        ClassFile.classIndex=U2.read(stream);
-        ClassFile.superClassIndex=U2.read(stream);
-        ClassFile.interfaceIndex=parseInterface(stream);
+        ClassFile.classIndex = U2.read(stream);
+        ClassFile.superClassIndex = U2.read(stream);
+        ClassFile.interfaceIndex = parseInterface(stream);
         //字段表集合
-        ClassFile.fieldInfo=parseFieldInfo(stream);
+        ClassFile.fieldInfo = parseFieldInfo(stream);
         //方法表
-        ClassFile.methodInfo=parseMethodInfo(stream);
+        ClassFile.methodInfo = parseMethodInfo(stream);
         /**
          * 字段表集合, 方法表集合打断点对照常量池看
          */

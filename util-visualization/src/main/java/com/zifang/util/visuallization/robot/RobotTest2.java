@@ -4,13 +4,6 @@ package com.zifang.util.visuallization.robot;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-/*******************************************************************************
- *
- *           Revision History at the end of file.
- *
- *           Copyright 2018 AcconSys All rights reserved.
- ******************************************************************************/
-
 public class RobotTest2 {
 
     private static Robot robot;

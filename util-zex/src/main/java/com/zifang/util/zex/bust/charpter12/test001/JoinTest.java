@@ -4,21 +4,21 @@ import org.junit.Test;
 
 public class JoinTest {
     @Test
-    public void test0(){
-        Thread th1 = new Thread(()->{
+    public void test0() {
+        Thread th1 = new Thread(() -> {
             try {
                 System.out.println("第一个线程开始");
                 Thread.sleep(1000);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             System.out.println("第一个线程结束");
         });
-        Thread th2 = new Thread(()->{
+        Thread th2 = new Thread(() -> {
             try {
                 System.out.println("第二个线程开始");
                 Thread.sleep(1000);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             System.out.println("第二个线程结束");
@@ -40,22 +40,23 @@ public class JoinTest {
             e.printStackTrace();
         }
     }
+
     @Test
-    public void test1(){
-        Thread th1 = new Thread(()->{
+    public void test1() {
+        Thread th1 = new Thread(() -> {
             try {
                 System.out.println("第一个线程开始");
                 Thread.sleep(1000);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             System.out.println("第一个线程结束");
         });
-        Thread th2 = new Thread(()->{
+        Thread th2 = new Thread(() -> {
             try {
                 System.out.println("第二个线程开始");
                 Thread.sleep(1000);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             System.out.println("第二个线程结束");

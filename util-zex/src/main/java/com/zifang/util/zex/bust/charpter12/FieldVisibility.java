@@ -22,7 +22,7 @@ public class FieldVisibility {
 
         while (true) {
             FieldVisibility test = new FieldVisibility();
-            new Thread(()->{
+            new Thread(() -> {
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {
@@ -32,7 +32,7 @@ public class FieldVisibility {
                 test.change();
             }).start();
 
-            new Thread(()->{
+            new Thread(() -> {
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) {

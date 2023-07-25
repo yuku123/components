@@ -77,7 +77,7 @@ public class SecureOrderTaker {
                 }
             }
         } catch (IOException | KeyManagementException | KeyStoreException | NoSuchAlgorithmException
-                | CertificateException | UnrecoverableKeyException ex) {
+                 | CertificateException | UnrecoverableKeyException ex) {
             ex.printStackTrace();
         }
     }

@@ -221,6 +221,24 @@ public class RecursiveActionDemo {
  * 虽然ForkJoinPool类是设计用来执行ForkJoinTask对象的，但也可以直接用来执行Runnable和Callable对象。当然，
  * 也可以使用ForkJoinTask类的adapt()方法来接收一个Callable对象或者一个Runnable对象，
  * 然后将之转化为一个ForkJoinTask对象，然后再去执行。
+ * <p>
+ * ForkJoinPool类还提供了以下方法用于执行任务。 execute
+ * (Runnabletask)：这是本范例中使用的execute()方法的另一种版本。这个方法发送一个Runnable任务给ForkJoinPool类。
+ * 需要注意的是，使用Runnable对象时ForkJoinPool类就不采用工作窃取算法（Work-StealingAlgorithm），
+ * ForkJoinPool类仅在使用ForkJoinTask类时才采用工作窃取算法。 invoke(ForkJoinTask
+ * <T>task)：正如范例所示，ForkJoinPool类的execute()方法是异步调用的，而ForkJoinPool类的invoke()
+ * 方法则是同步调用的。这个方法直到传递进来的任务执行结束后才会返回。
+ * 也可以使用在ExecutorService类中声明的invokeAll()和invokeAny()方法，这些方法接收Callable对象作为参数。
+ * 使用Callable对象时ForkJoinPool类就不采用工作窃取算法（Work-StealingAlgorithm），因此，
+ * 最好使用执行器来执行Callable对象。 ForkJoinTask类也包含了在范例中所使用的invokeAll()方法的其他版本，这些版本如下。
+ * invokeAll(ForkJoinTask<?>…
+ * tasks)：这个版本的方法接收一个可变的参数列表，可以传递尽可能多的ForkJoinTask对象给这个方法作为参数。
+ * invokeAll(Collection
+ * <T>tasks)：这个版本的方法接受一个泛型类型T的对象集合（比如，ArrayList对象、LinkedList对象或者TreeSet对象）。
+ * 这个泛型类型T必须是ForkJoinTask类或者它的子类。
+ * 虽然ForkJoinPool类是设计用来执行ForkJoinTask对象的，但也可以直接用来执行Runnable和Callable对象。当然，
+ * 也可以使用ForkJoinTask类的adapt()方法来接收一个Callable对象或者一个Runnable对象，
+ * 然后将之转化为一个ForkJoinTask对象，然后再去执行。
  */
 
 /**

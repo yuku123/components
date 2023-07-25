@@ -18,17 +18,18 @@ public class NioChannelTest001 {
 
     public static String host = "127.0.0.1";
     private static int port = 50000;
+
     @Test
     public void server() throws IOException {
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
         ServerSocket serverSocket = serverSocketChannel.socket();
-        serverSocket.bind(new InetSocketAddress(host,port));
+        serverSocket.bind(new InetSocketAddress(host, port));
         Socket socket = serverSocket.accept();
         InputStream inputStream = socket.getInputStream();
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         char[] charArray = new char[1024];
         int readLength = inputStreamReader.read(charArray);
-        while (readLength != -1){
+        while (readLength != -1) {
             String newString = new String(charArray, 0, readLength);
             System.out.println(newString);
             readLength = inputStreamReader.read(charArray);
@@ -39,6 +40,7 @@ public class NioChannelTest001 {
         serverSocket.close();
         serverSocketChannel.close();
     }
+
     @Test
     public void client() throws IOException {
         // 服务端IP地址和端口，与服务端建立连接

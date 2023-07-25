@@ -1,7 +1,7 @@
 package com.zifang.util.core.meta;
 
 import com.zifang.util.core.common.constant.SymbolConstant;
-import com.zifang.util.core.lang.StringUtil;
+import com.zifang.util.core.util.StringUtil;
 import com.zifang.util.core.lang.exception.BaseException;
 
 import java.io.Serializable;

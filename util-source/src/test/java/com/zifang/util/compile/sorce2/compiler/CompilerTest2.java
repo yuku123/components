@@ -1,6 +1,6 @@
 package com.zifang.util.compile.sorce2.compiler;
 
-import com.zifang.util.core.util.FileUtil;
+import com.zifang.util.core.io.FileUtil;
 
 import javax.tools.JavaFileObject;
 import javax.tools.StandardLocation;

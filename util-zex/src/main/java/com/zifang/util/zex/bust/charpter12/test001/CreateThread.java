@@ -70,7 +70,7 @@ public class CreateThread {
                 System.out.println("线程执行结束_" + System.currentTimeMillis());
             }
         };
-        new Thread(runnable){
+        new Thread(runnable) {
             @Override
             public void run() {
                 System.out.println("吃饭吃饭吃饭吃饭");
@@ -104,14 +104,14 @@ public class CreateThread {
         System.out.println("main开始睡眠_" + System.currentTimeMillis());
         Thread.sleep(2000);
         System.out.println("main结束睡眠_" + System.currentTimeMillis());
-        System.out.println("futureTask计算得到的数据为："+futureTask.get());
+        System.out.println("futureTask计算得到的数据为：" + futureTask.get());
     }
 
     public static void main(String[] args) {
-        Thread thread = new Thread(){
+        Thread thread = new Thread() {
             @Override
             public void run() {
-                while (true){
+                while (true) {
                     System.out.print("");
                 }
             }

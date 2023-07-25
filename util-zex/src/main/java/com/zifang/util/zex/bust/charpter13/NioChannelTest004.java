@@ -17,10 +17,11 @@ public class NioChannelTest004 {
 
     public static String host = "127.0.0.1";
     private static int port = 50000;
+
     @Test
     public void server() throws IOException {
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-        serverSocketChannel.bind(new InetSocketAddress(host,port));
+        serverSocketChannel.bind(new InetSocketAddress(host, port));
         serverSocketChannel.configureBlocking(false);
         SocketChannel socketChannel = serverSocketChannel.accept();
         ByteBuffer buteBuffer = ByteBuffer.allocate(10);
@@ -34,6 +35,7 @@ public class NioChannelTest004 {
         socketChannel.close();
         serverSocketChannel.close();
     }
+
     @Test
     public void client() throws IOException {
         // 服务端IP地址和端口，与服务端建立连接

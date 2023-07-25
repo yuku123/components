@@ -1,5 +1,3 @@
-
-
 /*
  * Print方法 print println 后面必须跟参数 否则会抛groovy.lang.MissingPropertyException
  */

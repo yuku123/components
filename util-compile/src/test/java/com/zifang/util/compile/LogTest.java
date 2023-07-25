@@ -6,7 +6,7 @@ import org.junit.Test;
 @Slf4j
 public class LogTest {
     @Test
-    public void aaa (){
+    public void aaa() {
         log.info("INFOXXXXX");
         log.debug("debug XXXXX");
 

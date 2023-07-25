@@ -1,6 +1,5 @@
 package com.zifang.util.core.util;
 
-import com.zifang.util.core.lang.ArraysUtil;
 import sun.misc.ProxyGenerator;
 
 import java.io.File;

@@ -22,16 +22,17 @@ public class NioChannelTest005 {
     public void serverTest001() throws IOException {
         Selector selector = Selector.open();
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-        serverSocketChannel.bind(new InetSocketAddress(host,port));
+        serverSocketChannel.bind(new InetSocketAddress(host, port));
         serverSocketChannel.configureBlocking(false);
         SelectionKey selectionKey = serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
     }
+
     @Test
     public void server() throws IOException {
         Selector selector = Selector.open();
 
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-        serverSocketChannel.bind(new InetSocketAddress(host,port));
+        serverSocketChannel.bind(new InetSocketAddress(host, port));
         serverSocketChannel.configureBlocking(false);
 
         SelectionKey selectionKey = serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
@@ -48,6 +49,7 @@ public class NioChannelTest005 {
         socketChannel.close();
         serverSocketChannel.close();
     }
+
     @Test
     public void client() throws IOException {
         // 服务端IP地址和端口，与服务端建立连接

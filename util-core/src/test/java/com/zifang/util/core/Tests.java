@@ -1,8 +1,8 @@
 package com.zifang.util.core;
 
-import com.zifang.util.core.io.parser.xml.TitleRequest;
-import com.zifang.util.core.io.parser.xml.XmlBeanUtil;
-import com.zifang.util.core.util.FileUtil;
+import com.zifang.util.core.io.FileUtil;
+import com.zifang.util.core.parser.xml.TitleRequest;
+import com.zifang.util.core.parser.xml.XmlBeanUtil;
 import com.zifang.util.core.util.GsonUtil;
 import org.junit.Test;
 

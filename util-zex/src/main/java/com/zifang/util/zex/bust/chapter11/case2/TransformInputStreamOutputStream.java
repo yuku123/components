@@ -12,7 +12,7 @@ public class TransformInputStreamOutputStream {
         //out写的时候，每次写1024个字节，如果in有2048个字节数，则读2048/1024=2次
         byte[] buffer = new byte[1024];
         int len;
-        while ((len = in.read(buffer)) > 0){
+        while ((len = in.read(buffer)) > 0) {
             out.write(buffer, 0, len);
         }
     }

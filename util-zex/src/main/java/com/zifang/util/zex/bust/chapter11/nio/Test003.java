@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class Test003 {
     @Test
-    public void test0(){
+    public void test0() {
 
     }
 }

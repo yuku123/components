@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Handle2 {
     public static void main(String[] args) {
-        List<? super Integer> numberList = new ArrayList<Integer>(){
+        List<? super Integer> numberList = new ArrayList<Integer>() {
             {
                 add(1);
                 add(2);
