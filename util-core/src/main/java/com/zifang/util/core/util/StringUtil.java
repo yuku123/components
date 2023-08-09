@@ -1,6 +1,6 @@
 package com.zifang.util.core.util;
 
-import com.zifang.util.core.Patterns;
+import com.zifang.util.core.common.Patterns;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;

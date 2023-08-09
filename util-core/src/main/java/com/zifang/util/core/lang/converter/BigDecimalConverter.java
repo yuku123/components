@@ -1,6 +1,6 @@
 package com.zifang.util.core.lang.converter;
 
-import com.zifang.util.core.lang.exception.ConversionException;
+import com.zifang.util.core.exception.ConversionException;
 
 import java.math.BigDecimal;
 

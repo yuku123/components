@@ -1,6 +1,6 @@
 package com.zifang.util.core.lang.primitive;
 
-import com.zifang.util.core.Const;
+import com.zifang.util.core.common.constant.Const;
 import com.zifang.util.core.util.StringUtil;
 
 import java.io.ByteArrayOutputStream;

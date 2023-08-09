@@ -27,6 +27,37 @@ public class AnnotationUtil {
             ElementType.PACKAGE
     };
 
+
+    /**
+     * 是否会保存到 Javadoc 文档中
+     *
+     * @param annotationType 注解类
+     * @return 是否会保存到 Javadoc 文档中
+     */
+    public static boolean isDocumented(Class<? extends Annotation> annotationType) {
+        return annotationType.isAnnotationPresent(Documented.class);
+    }
+
+    /**
+     * 是否可以被继承，默认为 false
+     *
+     * @param annotationType 注解类
+     * @return 是否会保存到 Javadoc 文档中
+     */
+    public static boolean isInherited(Class<? extends Annotation> annotationType) {
+        return annotationType.isAnnotationPresent(Inherited.class);
+    }
+
+    /**
+     * 检查是否实现了这个注解
+     *
+     * @param annotationClass  注解类型
+     * @param annotatedElement 需要判断的元素
+     */
+    public static boolean hasAnnotationOn(Class<? extends Annotation> annotationClass, final AnnotatedElement annotatedElement) {
+        return annotatedElement.isAnnotationPresent(annotationClass);
+    }
+
     /**
      * 将指定的被注解的元素转换为组合注解元素
      *

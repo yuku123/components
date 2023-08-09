@@ -36,7 +36,6 @@ public class CombinationAnnotationElement implements AnnotatedElement, Serializa
      */
     private Map<Class<? extends Annotation>, Annotation> annotationMap;
 
-
     /**
      * 直接注解类型与注解对象对应表
      */

@@ -1,7 +1,7 @@
 package com.zifang.util.core.util;
 
 
-import com.zifang.util.core.lang.exception.BaseException;
+import com.zifang.util.core.exception.BaseException;
 
 /**
  * 断言 的工具类
