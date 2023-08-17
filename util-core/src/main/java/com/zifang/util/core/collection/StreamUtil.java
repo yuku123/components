@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang;
+package com.zifang.util.core.collection;
 
 import java.util.Iterator;
 import java.util.stream.Stream;

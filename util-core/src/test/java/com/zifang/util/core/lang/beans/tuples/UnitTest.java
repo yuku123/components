@@ -1,6 +1,7 @@
 package com.zifang.util.core.lang.beans.tuples;
 
 
+import com.zifang.util.core.lang.tuples.Pair;
 import org.junit.Test;
 
 public class UnitTest {

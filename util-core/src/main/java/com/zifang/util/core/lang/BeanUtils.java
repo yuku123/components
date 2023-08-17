@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.beans;
+package com.zifang.util.core.lang;
 
 import com.zifang.util.core.util.ClassUtil;
 

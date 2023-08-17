@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.beans.tuples;
+package com.zifang.util.core.lang.tuples;
 
 import lombok.Data;
 

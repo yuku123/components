@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang;
+package com.zifang.util.core.system;
 
 import java.util.Scanner;
 import java.util.function.Function;

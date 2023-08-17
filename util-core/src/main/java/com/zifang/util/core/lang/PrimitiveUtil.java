@@ -60,6 +60,9 @@ public class PrimitiveUtil {
         }
     };
 
+    /**
+     * 获得默认基础值
+     */
     public static Object defaultValue(Class<?> clazz) {
         return primitiveTypeDefaults.get(clazz);
     }

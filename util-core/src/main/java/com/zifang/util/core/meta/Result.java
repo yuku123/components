@@ -136,13 +136,6 @@ public class Result<T> implements Serializable {
         return this;
     }
 
-    /**
-     * @description: build message
-     * @description: 构造信息
-     * @time: 2021-12-21 16:48:42
-     * @params: [statusMessage, params] original status message, params  原始状态信息, 参数
-     * @return: java.lang.String new status message 构造后的信息
-     */
     public static String buildMessage(String statusMessage, Object... params) {
         StringBuilder message = new StringBuilder();
         boolean isFormat = Boolean.FALSE;
@@ -180,8 +173,6 @@ public class Result<T> implements Serializable {
 
     @Override
     public String toString() {
-        return "Result{" + "data=" + data + ", success=" + success + ", code=" + code + ", message='"
-                + message + '\'' + '}';
+        return "Result{" + "data=" + data + ", success=" + success + ", code=" + code + ", message='" + message + '\'' + '}';
     }
-
 }

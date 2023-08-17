@@ -7,7 +7,7 @@ package com.zifang.util.zex.bust.chapter1.case2;
 
 /**
  * 但是一般为了美观，文档注释内部换行的话前面会再放个*
- * */
+ */
 public class HelloWord {
 
     public static void main(String[] args) {

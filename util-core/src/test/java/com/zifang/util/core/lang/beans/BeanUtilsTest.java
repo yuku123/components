@@ -1,5 +1,6 @@
 package com.zifang.util.core.lang.beans;
 
+import com.zifang.util.core.lang.BeanUtils;
 import lombok.Data;
 import org.junit.Assert;
 import org.junit.Test;

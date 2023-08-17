@@ -1,7 +1,7 @@
-package com.zifang.util.core.lang.beans.tuples;
+package com.zifang.util.core.lang.tuples;
 
 
-import com.zifang.util.core.lang.beans.BeanUtils;
+import com.zifang.util.core.lang.BeanUtils;
 import lombok.Data;
 
 import java.beans.IntrospectionException;

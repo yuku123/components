@@ -1,6 +1,6 @@
 package com.zifang.util.core;
 
-import com.zifang.util.core.lang.converter.BigDecimalDoubleConverter;
+import com.zifang.util.core.lang.converter.converters.BigDecimalDoubleConverter;
 import com.zifang.util.core.lang.converter.ConvertRegister;
 import com.zifang.util.core.lang.converter.Converter;
 import org.junit.Test;
