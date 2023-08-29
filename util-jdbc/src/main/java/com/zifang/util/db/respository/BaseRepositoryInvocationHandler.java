@@ -1,7 +1,7 @@
 package com.zifang.util.db.respository;
 
 import com.zifang.util.db.context.DataSourceContext;
-import com.zifang.util.db.context.PersistentContext;
+import com.zifang.util.db.context.DatasourceHolder;
 import com.zifang.util.db.define.Param;
 import com.zifang.util.db.define.Select;
 
@@ -38,7 +38,7 @@ public class BaseRepositoryInvocationHandler implements InvocationHandler {
 
             BoundSql b = boundSql(method, args);
 
-            DataSourceContext dataSourceContext = PersistentContext.fetchContext(PersistentContext.DEFAULT);
+            DataSourceContext dataSourceContext = DatasourceHolder.fetchContext(DatasourceHolder.DEFAULT);
 
             Connection connection = dataSourceContext.getDatasourceFactory().newDatasource().getConnection();
             PreparedStatement prepareStatement = connection.prepareStatement(b.getTransformSql());

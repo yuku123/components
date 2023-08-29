@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 
 
 public class Unsigned {
+
     public static short getUnsignedByte(ByteBuffer bb) {
         return ((short) (bb.get() & 0xff));
     }

@@ -34,9 +34,6 @@ public class FileUtil {
 
     /**
      * 利用FileChannel直接实现文件的对拷,对于大文件速度特别明显
-     *
-     * @param source
-     * @param target
      */
     public static void copyFileWithChannel(File source, File target) {
         try (
@@ -51,10 +48,7 @@ public class FileUtil {
     }
 
     /**
-     * 使用FileChannel+Buffer实现文件的读取拷贝是一种极佳的方案
-     *
-     * @param source
-     * @param target
+     * 使用FileChannel+Buffer实现文件的读取拷贝
      */
     public static void copyFileWithBuffer(File source, File target) {
         try (
@@ -76,9 +70,6 @@ public class FileUtil {
 
     /**
      * 利用Buffer实现文件的读取拷贝
-     *
-     * @param source
-     * @param target
      */
     public static void customBufferBufferedStreamCopy(File source, File target) {
         try (

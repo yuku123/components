@@ -20,7 +20,7 @@ public class Unit<A> {
         this.a = a;
     }
 
-    protected Map<String, Object> toMap() {
+    public Map<String, Object> toMap() {
         try {
             return BeanUtils.beanToMap(this);
         } catch (IllegalAccessException | IntrospectionException | InvocationTargetException e) {

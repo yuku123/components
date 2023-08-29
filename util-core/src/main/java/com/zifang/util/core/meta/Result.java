@@ -4,7 +4,7 @@ import com.zifang.util.core.common.constant.SymbolConstant;
 import com.zifang.util.core.common.status.BaseStatusCode;
 import com.zifang.util.core.common.status.StatusCode;
 import com.zifang.util.core.util.StringUtil;
-import com.zifang.util.core.exception.BaseException;
+import com.zifang.util.core.lang.exception.BaseException;
 
 import java.io.Serializable;
 

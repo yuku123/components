@@ -14,8 +14,6 @@ public class ConfigUtil {
 
     /**
      * 获取配置文件资源
-     *
-     * @return
      */
     public static URL findAsResource(final String path) {
         URL url = null;
