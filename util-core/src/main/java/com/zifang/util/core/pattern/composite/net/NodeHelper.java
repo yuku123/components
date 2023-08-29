@@ -1,4 +1,4 @@
-package com.zifang.util.core.pattern.composite;
+package com.zifang.util.core.pattern.composite.net;
 
 /**
  * 针对网状结点的处理帮助类

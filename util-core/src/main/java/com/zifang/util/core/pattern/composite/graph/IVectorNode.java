@@ -1,4 +1,6 @@
-package com.zifang.util.core.pattern.composite.define;
+package com.zifang.util.core.pattern.composite.graph;
+
+import com.zifang.util.core.pattern.composite.define.INode;
 
 import java.util.List;
 

@@ -1,6 +1,4 @@
-package com.zifang.util.core.pattern.composite;
-
-import com.zifang.util.core.pattern.composite.define.ILeaf;
+package com.zifang.util.core.pattern.composite.tree;
 
 import java.util.List;
 import java.util.Map;

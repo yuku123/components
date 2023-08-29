@@ -1,4 +1,4 @@
-package com.zifang.util.core.pattern.composite.define;
+package com.zifang.util.core.pattern.composite.tree;
 
 import java.util.List;
 import java.util.Objects;

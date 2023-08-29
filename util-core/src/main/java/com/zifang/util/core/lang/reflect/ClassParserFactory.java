@@ -1,6 +1,6 @@
 package com.zifang.util.core.lang.reflect;
 
-import com.zifang.util.core.pattern.composite.LeafWrapper;
+import com.zifang.util.core.pattern.composite.tree.LeafWrapper;
 import com.zifang.util.core.pattern.factory.IFactory;
 
 import java.util.Map;

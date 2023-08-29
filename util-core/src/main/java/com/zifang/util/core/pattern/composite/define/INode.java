@@ -10,6 +10,16 @@ import java.util.List;
 public interface INode {
 
     /**
+     * 获得群描述
+     */
+    String getName();
+
+    /**
+     * 群id
+     * */
+    String getId();
+
+    /**
      * @return 列表
      */
     List<INode> getConbinedNode();
