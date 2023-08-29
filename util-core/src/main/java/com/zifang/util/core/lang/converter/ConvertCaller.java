@@ -7,21 +7,21 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 @Data
-public class ConvertCaller {
+public class ConvertCaller<T> {
 
     private Method method;
     private Object caller;
 
     private Class<?> from;
-    private Class<?> target;
+    private Class<T> target;
 
-    public Object to(Object o) {
+    public <T> T to(Object o) {
         if (from == target) {
-            return o;
+            return (T)o;
         }
 
         try {
-            return method.invoke(caller, o, PrimitiveUtil.defaultValue(target));
+            return (T)method.invoke(caller, o, PrimitiveUtil.defaultValue(target));
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

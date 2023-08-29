@@ -9,11 +9,11 @@ public class Converter {
 
     private static ConvertCaller defaultCaller = new ConvertCaller();
 
-    public static ConvertCaller caller(Class<?> from, Class<?> target) {
+    public static <T> ConvertCaller<T> caller(Class<?> from, Class<T> target) {
         if (PrimitiveUtil.getPrimitiveWrapper(from) == PrimitiveUtil.getPrimitiveWrapper(target)) {
             return defaultCaller;
         }
-        ConvertCaller convertCaller = new ConvertCaller();
+        ConvertCaller<T> convertCaller = new ConvertCaller<>();
         Pair<Method, Object> pair = ConvertRegister.find(
                 PrimitiveUtil.getPrimitiveWrapper(from),
                 PrimitiveUtil.getPrimitiveWrapper(target)

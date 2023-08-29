@@ -56,7 +56,6 @@ public class FileTypeImpl {
      *
      * @param file
      * @return fileType
-     * @author:[shixing_11@sina.com]
      */
     public final static String getFileType(File file) {
         String filetype = null;
