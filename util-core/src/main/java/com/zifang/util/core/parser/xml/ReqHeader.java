@@ -4,9 +4,6 @@ import javax.xml.bind.annotation.XmlElement;
 
 /**
  * 请求头对象
- *
- * @author xuejiangtao
- * Jul 25, 2013 9:33:57 PM
  */
 public class ReqHeader {
 

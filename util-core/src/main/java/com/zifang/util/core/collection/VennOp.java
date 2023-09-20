@@ -57,7 +57,4 @@ public class VennOp<E> {
 //        long left = 1;
 //        long
     }
-
-
-
 }

@@ -44,17 +44,14 @@ public class CommonPoolTest {
         final GenericObjectPool<Resource> pool = new GenericObjectPool<Resource>(factory, poolConfig);
 
         for (int i = 0; i < 40; i++) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Resource resource = pool.borrowObject();// 注意，如果对象池没有空余的对象，那么这里会block，可以设置block的超时时间
-                        System.out.println(resource);
-                        Thread.sleep(1000);
-                        pool.returnObject(resource);// 申请的资源用完了记得归还，不然其他人要申请时可能就没有资源用了
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+            new Thread(() -> {
+                try {
+                    Resource resource = pool.borrowObject();// 注意，如果对象池没有空余的对象，那么这里会block，可以设置block的超时时间
+                    System.out.println(resource);
+                    Thread.sleep(1000);
+                    pool.returnObject(resource);// 申请的资源用完了记得归还，不然其他人要申请时可能就没有资源用了
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }).start();
         }

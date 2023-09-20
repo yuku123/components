@@ -1,4 +1,4 @@
-package com.zifang.util.web.response;
+package com.zifang.util.core.meta;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

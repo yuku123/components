@@ -720,9 +720,6 @@ public class RegexUtil {
 
     /**
      * 判断字段是否为身份证 符合返回ture
-     *
-     * @param str
-     * @return boolean
      */
     public static boolean isIdCard(String str) {
         if (StrisNull(str)) {
@@ -733,14 +730,10 @@ public class RegexUtil {
         } else {
             return false;
         }
-
     }
 
     /**
      * 判断字段是否为邮编 符合返回ture
-     *
-     * @param str
-     * @return boolean
      */
     public static boolean isCode(String str) {
         return Regular(str, CODE);
@@ -748,9 +741,6 @@ public class RegexUtil {
 
     /**
      * 判断字符串是不是全部是英文字母
-     *
-     * @param str
-     * @return boolean
      */
     public static boolean isEnglish(String str) {
         return Regular(str, STR_ENG);
@@ -758,9 +748,6 @@ public class RegexUtil {
 
     /**
      * 判断字符串是不是全部是英文字母+数字
-     *
-     * @param str
-     * @return boolean
      */
     public static boolean isENG_NUM(String str) {
         return Regular(str, STR_ENG_NUM);
