@@ -6,7 +6,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 
-
 /**
  * AES加解密
  */

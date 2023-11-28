@@ -5,10 +5,7 @@ import com.zifang.util.core.cache.WeakHashMapCache;
 import com.zifang.util.core.util.ArraysUtil;
 import com.zifang.util.core.util.ClassUtil;
 
-import java.lang.reflect.AccessibleObject;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -851,6 +848,37 @@ public class ReflectUtil {
         }
 
         return implementInterfaces;
+    }
+
+
+    public static Type getGenericInterfaceType(Class<?> base, Class<?> interfaceClazz) {
+
+        Type genericType = null;
+
+        // 递归接口
+        Type[] types = base.getGenericInterfaces();
+        for (Type type : types) {
+            if (type instanceof Class) {
+                genericType = getGenericInterfaceType((Class<?>) type, interfaceClazz);
+            } else if (type instanceof ParameterizedType) {
+                ParameterizedType parameterizedType = (ParameterizedType) type;
+                Class<?> parameterizedTypeRawType = (Class<?>) parameterizedType.getRawType();
+                if (parameterizedTypeRawType == interfaceClazz) {
+                    genericType = type;
+                } else {
+                    getGenericInterfaceType(parameterizedTypeRawType, interfaceClazz);
+                }
+            }
+        }
+
+        // 递归父类
+        if (genericType == null) {
+            Class<?> clazz = base.getSuperclass();
+            if (clazz != null && clazz != Object.class) {
+                genericType = getGenericInterfaceType(base.getSuperclass(), interfaceClazz);
+            }
+        }
+        return genericType;
     }
 
 }
