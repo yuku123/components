@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-
 /**
  * 将Iterator类型的数据转化为流操作
  *

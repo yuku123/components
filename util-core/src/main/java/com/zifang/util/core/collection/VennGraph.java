@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-
 /**
  * 描述两个集合之间的内容关系
  */
-public class VennOp<E> {
+public class VennGraph<E> {
 
     private Collection<E> empty = new ArrayList<>();
 
     private Collection<E> c1 = null;
     private Collection<E> c2 = null;
 
-    public VennOp(Collection<E> c1, Collection<E> c2) {
+    public VennGraph(Collection<E> c1, Collection<E> c2) {
         this.c1 = c1;
         this.c2 = c2;
     }
@@ -29,7 +28,7 @@ public class VennOp<E> {
         c.addAll(c1.stream().distinct().collect(Collectors.toList()));
         c.addAll(c2.stream().distinct().collect(Collectors.toList()));
 
-        return c;
+        return c.stream().distinct().collect(Collectors.toList());
     }
 
     public Integer unionCount() {
@@ -40,10 +39,32 @@ public class VennOp<E> {
      * 交集 c1 n c2
      */
     public Collection<E> intersection() {
+        Collection<E> all = union();
+        Collection<E> r = new ArrayList<>();
+        for(E e : all){
+            if(c1.contains(e) && c2.contains(e)){
+                r.add(e);
+            }
+        }
+        return r;
+    }
+
+    /**
+     * 交集 c1 n ( c1 n c2 )
+     */
+    public Collection<E> intersectionLeft() {
         Collection<E> dc1 = c1.stream().distinct().collect(Collectors.toList());
-        Collection<E> dc2 = c2.stream().distinct().collect(Collectors.toList());
-        dc1.removeAll(dc2);
+        dc1.removeAll(intersection());
         return dc1;
+    }
+
+    /**
+     * 交集 c2 n ( c1 n c2 )
+     */
+    public Collection<E> intersectionRight() {
+        Collection<E> dc2 = c2.stream().distinct().collect(Collectors.toList());
+        dc2.removeAll(intersection());
+        return dc2;
     }
 
     /**
