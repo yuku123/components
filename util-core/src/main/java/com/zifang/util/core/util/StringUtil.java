@@ -1,6 +1,7 @@
 package com.zifang.util.core.util;
 
 import com.zifang.util.core.common.Patterns;
+import com.zifang.util.core.lang.validator.Checker;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
@@ -1726,7 +1727,7 @@ public class StringUtil {
                     result += (temp + symbol);
                 }
             }
-            if (result.length() > 1 && Check.valid(symbol)) {
+            if (result.length() > 1 && Checker.valid(symbol)) {
                 result = result.substring(0, result.length() - symbol.length());
             }
         }

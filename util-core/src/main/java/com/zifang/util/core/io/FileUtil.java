@@ -5,7 +5,7 @@ package com.zifang.util.core.io;
 
 import com.zifang.util.core.io.ss.FileTypeImpl;
 import com.zifang.util.core.lang.regex.RegexUtil;
-import com.zifang.util.core.util.Check;
+import com.zifang.util.core.lang.validator.Checker;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
@@ -152,8 +152,8 @@ public class FileUtil {
      */
     public static void convert(File file, String fromCharsetName, String toCharsetName, FilenameFilter filter) {
         if (file.isDirectory()) {
-            List<File> list = Check.valid(filter) ? listFileFilter(file, filter) : listFile(file);
-            if (Check.valid(list)) {
+            List<File> list = Checker.valid(filter) ? listFileFilter(file, filter) : listFile(file);
+            if (Checker.valid(list)) {
                 for (File f : list) {
                     convert(f, fromCharsetName, toCharsetName, filter);
                 }
@@ -1780,7 +1780,7 @@ public class FileUtil {
     public final static List<File> listFileFilter(File path, FilenameFilter filter) {
         List<File> list = new ArrayList<>();
         File[] files = path.listFiles();
-        if (Check.valid(files)) {
+        if (Checker.valid(files)) {
             for (File file : files) {
                 if (file.isDirectory()) {
                     list.addAll(listFileFilter(file, filter));
@@ -1812,7 +1812,7 @@ public class FileUtil {
         */
         List<File> list = new ArrayList<File>();
         File[] files = dirPath.listFiles();
-        if (Check.valid(files)) {
+        if (Checker.valid(files)) {
             for (File file : files) {
                 if (file.isDirectory()) {
                     list.addAll(listFileFilter(file, postfixs));
@@ -1837,7 +1837,7 @@ public class FileUtil {
     public final static List<File> searchFile(File dirPath, String fileName) {
         List<File> list = new ArrayList<>();
         File[] files = dirPath.listFiles();
-        if (Check.valid(files)) {
+        if (Checker.valid(files)) {
             for (File file : files) {
                 if (file.isDirectory()) {
                     list.addAll(searchFile(file, fileName));
@@ -1862,7 +1862,7 @@ public class FileUtil {
     public final static List<File> searchFileReg(File dirPath, String reg) {
         List<File> list = new ArrayList<>();
         File[] files = dirPath.listFiles();
-        if (Check.valid(files)) {
+        if (Checker.valid(files)) {
             for (File file : files) {
                 if (file.isDirectory()) {
                     list.addAll(searchFile(file, reg));

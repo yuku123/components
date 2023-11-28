@@ -3,10 +3,6 @@ package com.zifang.util.core.lang.exception;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-
-/**
- *
- */
 public class ExceptionUtil {
 
     /**

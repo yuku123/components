@@ -1,6 +1,7 @@
 package com.zifang.util.core.util;
 
 
+import com.zifang.util.core.lang.validator.Checker;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -95,7 +96,7 @@ public class CollectionUtil {
      * 求俩个集合的交集
      */
     public static <T> List<T> intersection(List<T> list1, List<T> list2) {
-        if (Check.valid(list1, list2)) {
+        if (Checker.valid(list1, list2)) {
             Set<T> set = new HashSet<>(list1);
             set.retainAll(list2);
             return new ArrayList<>(set);
@@ -112,7 +113,7 @@ public class CollectionUtil {
      * @return 交集
      */
     public static <T> Set<T> intersection(Set<T> set1, Set<T> set2) {
-        if (Check.valid(set1, set2)) {
+        if (Checker.valid(set1, set2)) {
             List<T> list = new ArrayList<>(set1);
             list.retainAll(set2);
             return new HashSet<>(list);
@@ -129,7 +130,7 @@ public class CollectionUtil {
      * @return 交集
      */
     public static <T> Queue<T> intersection(Queue<T> queue1, Queue<T> queue2) {
-        if (Check.valid(queue1, queue2)) {
+        if (Checker.valid(queue1, queue2)) {
             Set<T> set = new HashSet<>(queue1);
             set.retainAll(queue2);
             return new LinkedList<>(set);
@@ -148,7 +149,7 @@ public class CollectionUtil {
      */
     public static <K, V> Map<K, V> intersection(Map<K, V> map1, Map<K, V> map2) {
         Map<K, V> map = new HashMap<>(map1.size());
-        if (Check.valid(map1, map2)) {
+        if (Checker.valid(map1, map2)) {
             Set<K> setkey1 = new HashSet<>(map1.keySet());
             Set<K> setkey2 = new HashSet<>(map2.keySet());
             setkey1.retainAll(setkey2);
@@ -217,7 +218,7 @@ public class CollectionUtil {
      */
     public static <T> List<T> subtract(List<T> list1, List<T> list2) {
         List<T> list = new ArrayList<>(list1.size() + list2.size());
-        if (Check.valid(list1)) {
+        if (Checker.valid(list1)) {
             list.addAll(list1);
             list.removeAll(list2);
         }
@@ -234,7 +235,7 @@ public class CollectionUtil {
      */
     public static <T> Set<T> subtract(Set<T> set1, Set<T> set2) {
         Set<T> set = new HashSet<>(set1.size() + set2.size());
-        if (Check.valid(set1)) {
+        if (Checker.valid(set1)) {
             set.addAll(set1);
             set.removeAll(set2);
         }
@@ -251,7 +252,7 @@ public class CollectionUtil {
      */
     public static <T> Queue<T> subtract(Queue<T> queue1, Queue<T> queue2) {
         Queue<T> queue = new LinkedList<>();
-        if (Check.valid(queue1)) {
+        if (Checker.valid(queue1)) {
             queue.addAll(queue1);
             queue.removeAll(queue2);
         }
@@ -269,7 +270,7 @@ public class CollectionUtil {
      */
     public static <K, V> Map<K, V> subtract(Map<K, V> map1, Map<K, V> map2) {
         Map<K, V> map = new HashMap<>(map1.size() + map2.size());
-        if (Check.valid(map1, map2)) {
+        if (Checker.valid(map1, map2)) {
             Set<K> setkey1 = new HashSet<>(map1.keySet());
             Set<K> setkey2 = new HashSet<>(map2.keySet());
             for (K k : setkey2) {

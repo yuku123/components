@@ -5,6 +5,7 @@ package com.zifang.util.core.common.status;
  */
 
 public enum BaseStatusCode implements StatusCode {
+
     OK(200, "success"),
     UN_LOGIN(401, "未登录"),
     TOO_MANY_REQUESTS(429, "太多请求"),
@@ -16,7 +17,6 @@ public enum BaseStatusCode implements StatusCode {
 
     private final int code;
     private final String message;
-
 
     BaseStatusCode(int code, String message) {
         this.code = code;

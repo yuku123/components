@@ -1,13 +1,12 @@
-package com.zifang.util.core.lang.exception;
+package com.zifang.util.core.lang.validator;
 
 
 import com.zifang.util.core.common.status.StatusCode;
+import com.zifang.util.core.lang.exception.BusinessException;
+import com.zifang.util.core.lang.exception.ParamValidateStatusCode;
 import com.zifang.util.core.util.StringUtil;
 
-/**
- * 盾牌，用来防御
- **/
-public class Shield {
+public class Validator {
 
     /**
      * 防御，为true成功

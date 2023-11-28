@@ -12,34 +12,19 @@ import java.util.stream.StreamSupport;
  */
 public class Streams {
 
-    /**
-     * 转换 iterator 为串行流
-     */
-    public static <T> Stream<T> streamOf(final Iterator<T> iterator) {
+    public static <T> Stream<T> streamOf(Iterator<T> iterator) {
         return StreamSupport.stream(((Iterable<T>) () -> iterator).spliterator(), false);
     }
 
-    /**
-     * Converts interable to a non-parallel stream.
-     */
-    public static <T> Stream<T> streamOf(final Iterable<T> iterable) {
+    public static <T> Stream<T> streamOf(Iterable<T> iterable) {
         return StreamSupport.stream(iterable.spliterator(), false);
     }
 
-    /**
-     * Wraps an iterator as a stream.
-     */
     public static <T> Stream<T> parallelStreamOf(final Iterator<T> iterator) {
         return StreamSupport.stream(((Iterable<T>) () -> iterator).spliterator(), true);
     }
 
-    /**
-     * Wraps an iterator as a stream.
-     */
     public static <T> Stream<T> parallelStreamOf(final Iterable<T> iterable) {
         return StreamSupport.stream(iterable.spliterator(), true);
     }
-
-
-
 }

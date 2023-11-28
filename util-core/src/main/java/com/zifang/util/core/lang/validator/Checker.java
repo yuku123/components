@@ -1,4 +1,4 @@
-package com.zifang.util.core.util;
+package com.zifang.util.core.lang.validator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,7 +9,7 @@ import java.util.Map;
  * 提供一些对象有效性校验的方法
  */
 @SuppressWarnings("rawtypes")
-public final class Check {
+public final class Checker {
 
     /**
      * 判断字符串是否是符合指定格式的时间
