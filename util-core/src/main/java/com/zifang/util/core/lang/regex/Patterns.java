@@ -1,11 +1,13 @@
-package com.zifang.util.core.common;
+package com.zifang.util.core.lang.regex;
 
 import java.util.regex.Pattern;
 
-import static com.zifang.util.core.common.constant.StringConstant.FLOATING_POINT_NUMBER_FORMAT;
-import static com.zifang.util.core.common.constant.StringConstant.FORMAT_SPECIFIER;
 
 public class Patterns {
+
+    public static String FORMAT_SPECIFIER = "%(\\d+\\$)?([-#+ 0,(<]*)?(\\d+)?(\\.\\d+)?([tT])?([a-zA-Z%])";
+    public static String FLOATING_POINT_NUMBER_FORMAT = "^[-\\+]?[.\\d]*$";
+
     public static Pattern FORMAT_PATTERN = Pattern.compile(FORMAT_SPECIFIER);
     public static Pattern FLOATING_POINT_NUMBER_PATTERN = Pattern.compile(FLOATING_POINT_NUMBER_FORMAT);
 }

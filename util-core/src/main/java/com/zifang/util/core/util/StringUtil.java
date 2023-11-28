@@ -1,6 +1,6 @@
 package com.zifang.util.core.util;
 
-import com.zifang.util.core.common.Patterns;
+import com.zifang.util.core.lang.regex.Patterns;
 import com.zifang.util.core.lang.validator.Checker;
 
 import java.math.BigDecimal;
