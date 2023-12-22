@@ -1,6 +1,7 @@
 package com.zifang.util.db.respository;
 
-import com.zifang.util.core.pattern.aop.ProxyUtil;
+
+import com.zifang.util.proxy.ProxyUtil;
 
 public class RepositoryProxy {
 

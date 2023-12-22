@@ -7,10 +7,10 @@
     <groupId>com.zifang</groupId>
     <artifactId>util-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <util.version>1.0.0</util.version>
+        <util.version>1.0.0-SNAPSHOT</util.version>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <compile.version>8</compile.version>
@@ -38,6 +38,7 @@
         <module>util-source</module>
         <module>util-distribute</module>
         <module>util-schedule</module>
+        <module>util-proxy</module>
     </modules>
 
     <dependencyManagement>
@@ -123,6 +124,12 @@
             <dependency>
                 <groupId>com.zifang</groupId>
                 <artifactId>util-serializer</artifactId>
+                <version>${util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zifang</groupId>
+                <artifactId>util-proxy</artifactId>
                 <version>${util.version}</version>
             </dependency>
 

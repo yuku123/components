@@ -3,7 +3,7 @@
         <!--执行引擎，为多种处理模式做扩展点-->
         <executor-engine>engine.mode.spark</executor-engine>
         <property>
-            <aa>cc</aa>
+            <com.zifang.util.proxy.aa>cc</com.zifang.util.proxy.aa>
             <bb>dd</bb>
         </property>
     </configurations>
@@ -16,8 +16,8 @@
             <type>engine.nodeType.resource</type>
             <service-unit>engine.service.resourceHandler</service-unit>
             <parameter>
-                <hdfs>/user/a/a/aa.csv</hdfs>
-                <local>/home/zifang/aa.csv</local>
+                <hdfs>/user/a/a/com.zifang.util.proxy.aa.csv</hdfs>
+                <local>/home/zifang/com.zifang.util.proxy.aa.csv</local>
                 <hive>css.aaa</hive>
             </parameter>
         </node>
@@ -30,7 +30,7 @@
             如果发现参数不是服务组件需要的,就会报错-->
             <parameter>
                 <pair>
-                    <master>aa</master>
+                    <master>com.zifang.util.proxy.aa</master>
                     <refer>bb</refer>
                 </pair>
                 <pair>

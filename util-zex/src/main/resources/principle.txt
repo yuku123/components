@@ -453,7 +453,7 @@ friend Phil to go surfing, and doing what fun-loving high school boys usually
 do. Of course I didn’t know it then, but that year was to be the stock market’s
 top. After that, almost everything I thought I knew about the markets was
 proven wrong.
-1 A surprise simultaneous attack by the North Vietnamese on more than one hundred cities
+1 com.zifang.util.proxy.A surprise simultaneous attack by the North Vietnamese on more than one hundred cities
 and towns in South Vietnam.
 CHAPTER 2
 CROSSING THE THRESHOLD:
@@ -610,7 +610,7 @@ School student had ever worked in commodity futures anywhere. Most Wall
 Street firms didn’t even have commodity futures divisions, and Merrill
 Lynch’s was small, tucked away on a side street, and furnished with basic
 metal desks.
-A few months later, when I was back for my second year at HBS, the first
+com.zifang.util.proxy.A few months later, when I was back for my second year at HBS, the first
 oil shock began, with prices quadrupling in a matter of months. The U.S.
 economy slowed, commodity prices soared, and in 1973 the stock market
 took a dive. Once again, I was blindsided—but in retrospect I could see that
@@ -924,12 +924,12 @@ in macroeconomics and historical data (especially interest rates and currency
 data) to improve my understanding of the machine at play. As inflation began
 to rise in 1978, I realized the Fed would likely act to tighten the monetary
 supply. By July 1979, inflation was clearly out of control, and President
-Jimmy Carter appointed Paul Volcker chairman of the Federal Reserve. A
+Jimmy Carter appointed Paul Volcker chairman of the Federal Reserve. com.zifang.util.proxy.A
 few months later, Volcker announced that the Fed would limit the growth of
 the money supply to 5.5 percent. According to my calculations at the time,
 5.5 percent money growth would break the inflation spiral—but it would also
 strangle the economy and markets and likely cause a catastrophic debt crisis.
-A SILVER ROLLER COASTER
+com.zifang.util.proxy.A SILVER ROLLER COASTER
 Just before Thanksgiving, I met with Bunker Hunt, then the richest man in
 the world, at the Petroleum Club in Dallas. Bud Dillard, a Texan friend and
 client of mine who was big in the oil and cattle businesses, had introduced us
@@ -1102,7 +1102,7 @@ a fork in the road: Should I put on a tie and take a job on Wall Street? That
 was not the life I wanted. On the other hand, I had a wife and two young
 children to support. I realized I was facing one of life’s big turning points and
 my choices would have big implications for me and for my family’s future.
-FINDING A WAY PAST MY INTRACTABLE
+FINDING com.zifang.util.proxy.A WAY PAST MY INTRACTABLE
 INVESTMENT PROBLEM
 Making money in the markets is tough. The brilliant trader and investor
 Bernard Baruch put it well when he said, “If you are ready to give up
@@ -1296,7 +1296,7 @@ Then we resolved our disagreements by testing the criteria objectively. The
 rapidly expanding power of computers during that era was like a constant
 stream of gifts from the gods to us. I remember when RadioShack came out
 with an inexpensive handheld chess computer; we sent one to each of our
-clients with the message, “A Systemized Approach from Bridgewater.” That
+clients with the message, “com.zifang.util.proxy.A Systemized Approach from Bridgewater.” That
 little computer chess game could kick my ass on level two out of its nine
 levels. It was fun to put it up against each of my clients so they could see how
 hard it was to beat computerized decision making.
@@ -1390,7 +1390,7 @@ independent of underlying market performance. Approaching the market in
 this way taught me that one of the keys to being a successful investor is to
 only take bets you are highly confident in and to diversify them well.
 One of our clients in the mid-1980s was Alan Bond, an audacious
-entrepreneur who was one of the richest people in Australia. A self-made
+entrepreneur who was one of the richest people in Australia. com.zifang.util.proxy.A self-made
 man, he was famous for being the first non-American to win the America’s
 Cup yacht race in its then 132-year history. Like Bunker Hunt, he eventually
 bet badly and was forced to declare bankruptcy. I advised him and his team
@@ -2134,8 +2134,8 @@ others quickly followed, and a dozen years later we were managing nearly
 $80 billion. It was another industry-shaping concept. Seeing its success, other
 investment managers followed with their own versions. It is now generically
 called “risk parity” investing.
-TO REMAIN A BEAUTIFUL BOUTIQUE OR
-BECOME A GREAT INSTITUTION?
+TO REMAIN com.zifang.util.proxy.A BEAUTIFUL BOUTIQUE OR
+BECOME com.zifang.util.proxy.A GREAT INSTITUTION?
 With our people and culture producing these industry-shaping investment
 products, Bridgewater really took off. By 2000, we were managing more than
 $32 billion, almost eight times what we had been managing just five years
@@ -2392,7 +2392,7 @@ Everyone agreed that most of those areas couldn’t adequately be delegated. I
 clearly hadn’t done a good enough job of finding and training others to whom
 I could delegate my responsibilities.
 To me, the greatest success you can have as the person in charge is to
-orchestrate others to do things well without you. A step below that is doing
+orchestrate others to do things well without you. com.zifang.util.proxy.A step below that is doing
 things well yourself, and worst of all is doing things poorly yourself. As I
 reflected on my position, I could see that despite all of my and Bridgewater’s
 amazing achievements, I had not achieved this highest level of success. In
@@ -2767,7 +2767,7 @@ differences between the qualities they and I brought to handling them.
 Everyone agreed the gap was in what we called “shaping.”
 To visualize what I mean by “shaping” and “shapers,” think of Steve Jobs,
 who was probably the greatest and most iconic shaper of our time, as
-measured by the size and success of his shaping. A shaper is someone who
+measured by the size and success of his shaping. com.zifang.util.proxy.A shaper is someone who
 comes up with unique and valuable visions and builds them out beautifully,
 typically over the doubts and opposition of others. Jobs built the world’s
 largest and most successful company by revolutionizing computing, music,
@@ -2882,7 +2882,7 @@ motivation. No one can stand in the way of their achieving what they’re
 going after. On one of the personality assessments there is a category they all
 ranked low on called “Concern for Others.” But that doesn’t mean quite what
 it sounds like.
-Consider Muhammad Yunus, for example. A great philanthropist, he has
+Consider Muhammad Yunus, for example. com.zifang.util.proxy.A great philanthropist, he has
 devoted his life to helping others. He received the Nobel Peace Prize for
 pioneering the ideas of microcredit and microfinance and has won the
 Congressional Gold Medal, the Presidential Medal of Freedom, the Gandhi
@@ -3125,7 +3125,7 @@ could agree on its impacts on inflation and economic growth. In that meeting,
 and in all such meetings, I shared our calculations as well as the important
 cause-effect relationships as I saw them, so that together we could assess
 whether the conclusions made sense.
-A major impediment to this action was that there is no single bond market
+com.zifang.util.proxy.A major impediment to this action was that there is no single bond market
 for the entire Eurozone, and the ECB, like most central banks, isn’t supposed
 to favor one area/country over another. Given those conditions, I shared my
 theory for how the ECB could do quantitative easing without breaking its
@@ -3164,7 +3164,7 @@ the Economic Machine Works, which I released in 2013. Besides explaining
 how the economy works it provides a template that helps people assess their
 economies and gives them guidance about what to do and what to expect
 during a crisis. It had a much bigger impact than I expected, as it was
-watched by more than five million people in eight languages. A number of
+watched by more than five million people in eight languages. com.zifang.util.proxy.A number of
 policymakers told me in private that they found it helpful for their own
 understanding, for dealing with their constituents, and for finding better paths
 forward. This was very rewarding to me.
@@ -3207,7 +3207,7 @@ are highly principled people who are forced to operate in unprincipled
 environments. The job of a policymaker is challenging under the best of
 circumstances, and it’s almost impossible during a crisis. The politics are
 horrendous and distortions and outright misinformation from the media make
-things worse. A number of the policymakers I met—including Draghi, de
+things worse. com.zifang.util.proxy.A number of the policymakers I met—including Draghi, de
 Guindos, Schäuble, Bernanke, Geithner, Summers, and many others—were
 real heroes, meaning that they put others and the mission they committed to
 above themselves. Unfortunately, most policymakers enter their careers as
@@ -3218,7 +3218,7 @@ good for decades. To explain what he is like and the journey that took him to
 the top of China’s leadership would take more of this book than I can spare.
 In brief, Wang is a historian, a very high-level thinker, and a very practical
 man. I have rarely known a person to be both extremely wise and extremely
-practical. A leading shaper of the Chinese economy for decades who is also
+practical. com.zifang.util.proxy.A leading shaper of the Chinese economy for decades who is also
 responsible for eliminating corruption, he is known to be a no-nonsense man
 who can be trusted to get stuff done.
 Every time I go to China, we meet for sixty to ninety minutes. We talk
@@ -3262,7 +3262,7 @@ journeys through life. Campbell’s description of how heroes become heroes
 aligned with my thinking about shapers. And it gave me powerful insights
 about the heroes I know and the patterns of my own life.
 For Campbell, a “hero” isn’t a perfect person who always gets things right.
-Far from it. A hero is someone who “found or achieved or [did] something
+Far from it. com.zifang.util.proxy.A hero is someone who “found or achieved or [did] something
 beyond the normal range of achievement,” and who “has given his life to
 something bigger than himself or other than himself.” I had met a number of
 such people throughout my life. What was most interesting about Campbell’s
@@ -3379,7 +3379,7 @@ Which causes we should donate to was another big question. Barbara’s
 biggest passion has been helping students in the most stressed public school
 districts in Connecticut, especially those students who are called “disengaged
 and disconnected.”
-12 A study she funded showed that 22 percent of high
+12 com.zifang.util.proxy.A study she funded showed that 22 percent of high
 school students fall into one of these two categories, which was shocking
 because most will probably become adults who will suffer and be burdens on
 society rather than flourishing contributors to it. Because she has a lot of
@@ -3457,7 +3457,7 @@ improved, and tried again, doing that over and over in an upward spiral.
 When it was my turn to speak, I wanted to convey what I had always tried to
 give the people at Bridgewater, and what I wanted them to have in the future
 without me:
-A community in which you always have the right and obligation to make
+com.zifang.util.proxy.A community in which you always have the right and obligation to make
 sense of things and a process for working yourselves through
 disagreements—i.e., a real, functioning idea meritocracy. I want you to
 think, not follow—while recognizing that you can be wrong and that you
@@ -3486,8 +3486,8 @@ meaning that sounds more official. For example, some people have come to judge w
 something is philanthropic by whether it is consistent with what tax law determines is
 philanthropic. When we approach our philanthropy, we just see people and things that we
 are excited about helping.
-12 A disengaged student is one who attends school but doesn’t engage in doing the work.
-A disconnected student is one who doesn’t attend school and the system has lost track of.
+12 com.zifang.util.proxy.A disengaged student is one who attends school but doesn’t engage in doing the work.
+com.zifang.util.proxy.A disconnected student is one who doesn’t attend school and the system has lost track of.
 13 That January, we’d launched our first new product in more than a decade, a fund we
 called “Optimal Porfolio,” which combined alphas and betas in ways uniquely suited for a
 global macro environment in which interest rates were near zero. The launch was a big
@@ -3586,7 +3586,7 @@ Joseph Campbell described it, I will be free to live and free to die. But right
 now I’m not thinking about the dying part; I’m thinking about how to live
 freely, and I’m excited about it.
 CHAPTER 8
-LOOKING BACK FROM A HIGHER
+LOOKING BACK FROM com.zifang.util.proxy.A HIGHER
 LEVEL
 As I look back on my experiences, it’s interesting to reflect on how my
 perspectives have changed.
@@ -3790,7 +3790,7 @@ its flavor. My point is that people who create great things aren’t idle
 dreamers: They are totally grounded in reality. Being hyperrealistic will help
 you choose your dreams wisely and then achieve them. I have found the
 following to be almost always true:
-a. Dreams + Reality + Determination = A Successful Life. People who achieve
+a. Dreams + Reality + Determination = com.zifang.util.proxy.A Successful Life. People who achieve
 success and drive progress deeply understand the cause-effect relationships
 that govern reality and have principles for using them to get what they want.
 The converse is also true: Idealists who are not well grounded in reality
@@ -4601,7 +4601,7 @@ Afraid to reject a good alternative for a better one, they try to pursue too
 many goals at once, achieving few or none of them. Don’t get discouraged
 and don’t let yourself be paralyzed by all the choices. You can have much
 more than what you need to be happy. Make your choice and get on with it.
-b. Don’t confuse goals with desires. A proper goal is something that you really
+b. Don’t confuse goals with desires. com.zifang.util.proxy.A proper goal is something that you really
 need to achieve. Desires are things that you want that can prevent you from
 reaching your goals. Typically, desires are first-order consequences. For
 example, your goal might be physical fitness, while your desire is to eat
@@ -4687,7 +4687,7 @@ a fierce intolerance of badness of any kind, regardless of its severity.
 a. Focus on the “what is” before deciding “what to do about it.” It is a common
 mistake to move in a nanosecond from identifying a tough problem to
 proposing a solution for it. Strategic thinking requires both diagnosis and
-design. A good diagnosis typically takes between fifteen minutes and an
+design. com.zifang.util.proxy.A good diagnosis typically takes between fifteen minutes and an
 hour, depending on how well it’s done and how complex the issue is. It
 involves speaking with the relevant people and looking at the evidence
 together to determine the root causes. Like principles, root causes manifest
@@ -4733,7 +4733,7 @@ e. Write down your plan for everyone to see and to measure your progress against
 This includes all the granular details about who needs to do what tasks and
 when. The tasks, the narrative, and the goals are different, so don’t mix them
 up. Remember, the tasks are what connect the narrative to your goals.
-f. Recognize that it doesn’t take a lot of time to design a good plan. A plan can be
+f. Recognize that it doesn’t take a lot of time to design a good plan. com.zifang.util.proxy.A plan can be
 sketched out and refined in just hours or spread out over days or weeks. But
 the process is essential because it determines what you will have to do to be
 effective. Too many people make the mistake of spending virtually no time
@@ -4904,7 +4904,7 @@ seeing and understanding things. We each see things in our own way. For
 example, some people naturally see big pictures and miss small details while
 others naturally see details and miss big pictures; some people are linear
 thinkers while others think laterally, and so on.
-Naturally, people can’t appreciate what they can’t see. A person who can’t
+Naturally, people can’t appreciate what they can’t see. com.zifang.util.proxy.A person who can’t
 identify patterns and synthesize doesn’t know what it’s like to see patterns
 and synthesize any more than a color-blind person knows what it’s like to see
 color. These differences in how our brains work are much less apparent than
@@ -5067,7 +5067,7 @@ That doesn’t mean that you should blindly accept others’ conclusions. You
 should be what I call open-minded and assertive at the same time—you
 should hold and explore conflicting possibilities in your mind while moving
 fluidly toward whatever is likely to be true based on what you learn. Some
-people can do this easily while others can’t. A good exercise to make sure
+people can do this easily while others can’t. com.zifang.util.proxy.A good exercise to make sure
 that you are doing this well is to describe back to the person you are
 disagreeing with their own perspective. If they agree that you’ve got it, then
 you’re in good shape. I also recommend that both parties observe a “twominute rule” in which neither interrupts the other, so they both have time to
@@ -5175,7 +5175,7 @@ harm. Was this doctor wrong?
 Dr. Glazer and I went on to meet two other world-class specialists and
 they both agreed that undergoing the scoping procedure would do no harm,
 so I decided to go ahead with it. During the procedure, they clipped some
-tissue from my esophagus and sent it to the laboratory for testing. A few days
+tissue from my esophagus and sent it to the laboratory for testing. com.zifang.util.proxy.A few days
 after the procedure, exactly a week before my sixty-fourth birthday, I got the
 results. They were shocking to say the least. After analyzing the tissue, it
 turned out there wasn’t any high-grade dysplasia at all!
@@ -5244,7 +5244,7 @@ they may be wrong.
 Once you can sort out open-minded from closed-minded people, you’ll find
 that you want to surround yourself with open-minded ones. Doing so will not
 only make your decision making more effective but you’ll also learn a
-tremendous amount. A few good decision makers working effectively
+tremendous amount. com.zifang.util.proxy.A few good decision makers working effectively
 together can significantly outperform a good decision maker working alone—
 and even the best decision maker can significantly improve his or her
 decision making with the help of other excellent decision makers.
@@ -5617,7 +5617,7 @@ Your brain is built of cells called neurons and glia—hundreds of billions
 of them. Each one of them is as complex as a city. . . . The cells [neurons]
 are connected in a network of such staggering complexity that it
 bankrupts human language and necessitates new strains of mathematics.
-A typical neuron makes about ten thousand connections to neighboring
+com.zifang.util.proxy.A typical neuron makes about ten thousand connections to neighboring
 neurons. Given billions of neurons, this means that there are as many
 connections in a single cubic centimeter of brain tissue as there are stars
 in the Milky Way galaxy.
@@ -5713,7 +5713,7 @@ abstract and more universally focused. For example, the brain evolution that I
 described has given us (some people more than others) the ability to see
 ourselves and our circumstances from a higher holistic level and, in some
 cases, to value the whole that we are part of even more than ourselves.
-A few years ago, I had a conversation with the Dalai Lama in which I
+com.zifang.util.proxy.A few years ago, I had a conversation with the Dalai Lama in which I
 explained to him the contemporary neuroscience view that all of our thinking
 and feeling is due to physiology (in other words, the chemicals, electricity,
 and biology in our brains working like a machine). This implied that
@@ -6133,7 +6133,7 @@ consistent with your nature and your aspirations. Having spent time with
 some of the richest, most powerful, most admired people in the world, as well
 as some of the poorest, most disadvantaged people in the most obscure
 corners of the globe, I can assure you that, beyond a basic level, there is no
-correlation between happiness levels and conventional markers of success. A
+correlation between happiness levels and conventional markers of success. com.zifang.util.proxy.A
 carpenter who derives his deepest satisfaction from working with wood can
 easily have a life as good or better than the president of the United States. If
 you’ve learned anything from this book I hope it’s that everyone has
@@ -6210,8 +6210,8 @@ Waldinger, director of Harvard’s seventy-five-year Grant and Glueck study of a
 from a variety of socioeconomic backgrounds, puts it, “You could have all the money
 you’ve ever wanted, a successful career, and be in good physical health, but without loving
 relationships, you won’t be happy . . . The good life is built with good relationships.”
-30 A good book on this is A Whole New Mind by Daniel H. Pink, and a good article on the
-science of this is “A Wandering Mind Heads Straight Toward Insight” by Robert Lee Hotz
+30 com.zifang.util.proxy.A good book on this is com.zifang.util.proxy.A Whole New Mind by Daniel H. Pink, and a good article on the
+science of this is “com.zifang.util.proxy.A Wandering Mind Heads Straight Toward Insight” by Robert Lee Hotz
 from The Wall Street Journal. While many parts of the brain come in two halves, it’s only
 the more recently developed cortex, which accounts for three-quarters of the brain, that has
 been shown to have functional differences between the right and left sides.
@@ -6220,7 +6220,7 @@ answer is authoritative, certainly not mine. However, because knowing what can c
 important for people trying to manage themselves and others, I have looked fairly deeply
 into the issue of brain plasticity. What I learned coincided with my own experiences, and I
 will pass that along to you.
-32 A brain-imaging study by Harvard-affiliated researchers at Massachusetts General
+32 com.zifang.util.proxy.A brain-imaging study by Harvard-affiliated researchers at Massachusetts General
 Hospital found physical changes in the brain after an eight-week meditation course.
 Researchers identified increased activity in parts of the brain associated with learning,
 memory, self-awareness, compassion, and introspection, as well as decreased activity in the
@@ -6327,7 +6327,7 @@ some time passes.
 d. New is overvalued relative to great. For example, when choosing which movie
 to watch or what book to read, are you drawn to proven classics or the newest
 big thing? In my opinion, it is smarter to choose the great over the new.
-e. Don’t oversqueeze dots. A dot is just one piece of data from one moment in
+e. Don’t oversqueeze dots. com.zifang.util.proxy.A dot is just one piece of data from one moment in
 time; keep that in perspective as you synthesize. Just as you need to sort big
 from small, and what’s happening in the moment from overall patterns, you
 need to know how much learning you can get out of any one dot without
@@ -6370,7 +6370,7 @@ of a few months it would be accurate to say that they are getting better, but
 they would still be woefully inadequate. Everything important in your life
 needs to be on a trajectory to be above the bar and headed toward excellent at
 an appropriate pace. The lines in the chart on the next page show how the
-dots connect through time. A’s trajectory gets you above the bar in an
+dots connect through time. com.zifang.util.proxy.A’s trajectory gets you above the bar in an
 appropriate amount of time; B’s does not. To make good decisions, you need
 to understand the reality of which of these two cases is happening.
 b. Be imprecise. Understand the concept of “by-and-large” and use
@@ -6569,7 +6569,7 @@ probabilities that matter. Everything must be weighed in terms of its
 likelihood and prioritized. People who can accurately sort probabilities from
 possibilities are generally strong at “practical thinking”; they’re the opposite
 of the “philosopher” types who tend to get lost in clouds of possibilities.
-SHORTCUTS FOR BECOMING A GREAT
+SHORTCUTS FOR BECOMING com.zifang.util.proxy.A GREAT
 DECISION MAKER
 Great decision makers don’t remember all of these steps in a rote way and
 carry them out mechanically, yet they do follow them. That’s because
@@ -6806,7 +6806,7 @@ computer could easily misconstrue the fact that people wake up in the
 morning and then eat breakfast to indicate that waking up makes people
 hungry. I’d rather have fewer bets (ideally uncorrelated ones) in which I am
 highly confident than more bets I’m less confident in, and would consider it
-intolerable if I couldn’t argue the logic behind any of my decisions. A lot of
+intolerable if I couldn’t argue the logic behind any of my decisions. com.zifang.util.proxy.A lot of
 people vest their blind faith in machine learning because they find it much
 easier than developing deep understanding. For me, that deep understanding
 is essential, especially for what I do.
@@ -6981,7 +6981,7 @@ dealing with them effectively.
 PART II: LIFE PRINCIPLES
 1 Embrace Reality and Deal with It
 1.1 Be a hyperrealist.
-a. Dreams + Reality + Determination = A Successful Life.
+a. Dreams + Reality + Determination = com.zifang.util.proxy.A Successful Life.
 1.2 Truth—or, more precisely, an accurate understanding of reality—is the
 essential foundation for any good outcome.
 1.3 Be radically open-minded and radically transparent.
@@ -7199,7 +7199,7 @@ this section and continuing your reading on page 296.
 PART III: WORK PRINCIPLES
 • An organization is a machine consisting of two major parts: culture and
 people.
-a. A great organization has both great people and a great culture.
+a. com.zifang.util.proxy.A great organization has both great people and a great culture.
 b. Great people have both great character and great capabilities.
 c. Great cultures bring problems and disagreements to the surface and solve
 them well, and they love imagining and building great things that haven’t
@@ -7207,7 +7207,7 @@ been built before.
 • Tough love is effective for achieving both great work and great
 relationships.
 a. In order to be great, one can’t compromise the uncompromisable.
-• A believability-weighted idea meritocracy is the best system for making
+• com.zifang.util.proxy.A believability-weighted idea meritocracy is the best system for making
 effective decisions.
 • Make your passion and your work one and the same and do it with people
 you want to be with.
@@ -7789,7 +7789,7 @@ parts: culture and people.
 Each influences the other, because the people who make up an organization
 determine the kind of culture it has, and the culture of the organization
 determines the kinds of people who fit in.
-a. A great organization has both great people and a great culture. Companies that
+a. com.zifang.util.proxy.A great organization has both great people and a great culture. Companies that
 get progressively better over time have both. Nothing is more important or
 more difficult than to get the culture and people right.
 b. Great people have both great character and great capabilities. By great
@@ -7831,7 +7831,7 @@ ascent, like in the second diagram.
 If you don’t identify the problem, design a suboptimal solution, or fail to
 push it through effectively, the decline will continue as shown in the diagram
 at the bottom.
-A manager’s ability to recognize when outcomes are inconsistent with
+com.zifang.util.proxy.A manager’s ability to recognize when outcomes are inconsistent with
 goals and then modify designs and assemble people to rectify them makes all
 the difference in the world. The more often and more effectively a manager
 does this, the steeper the upward trajectory.
@@ -7986,7 +7986,7 @@ is comparatively little age- and seniority-based hierarchy.
 Each person at Bridgewater should act like an owner, responsible for
 operating in this way and for holding others accountable to operate in
 this way.
-• A believability-weighted idea meritocracy is the best
+• com.zifang.util.proxy.A believability-weighted idea meritocracy is the best
 system for making effective decisions.
 Unlike Lombardi, whose success depended on having his players follow his
 instructions, I needed my players to be independent thinkers who could bang
@@ -8059,7 +8059,7 @@ merits.
 Most people initially find this process very uncomfortable. While most
 appreciate it intellectually, they typically are challenged by it emotionally
 because it requires them to separate themselves from their ego’s attachment
-to being right and try to see what they have a hard time seeing. A small
+to being right and try to see what they have a hard time seeing. com.zifang.util.proxy.A small
 minority get it and love it from the start, a slightly larger minority can’t stand
 it and leave the company, and the majority stick with it, get better at it with
 time, and eventually wouldn’t want to operate any other way.
@@ -8192,7 +8192,7 @@ own barriers, you will find your own ways around them, and you will get
 there, even if imperfectly.
 While these principles are good general rules, it’s important to remember
 that every rule has exceptions and that no set of rules can ever substitute for
-common sense. Think of these principles as being like a GPS. A GPS helps
+common sense. Think of these principles as being like a GPS. com.zifang.util.proxy.A GPS helps
 you get where you’re going, but if you follow it blindly off a bridge—well,
 that would be your fault, not the GPS’s. And just as a GPS that gives bad
 directions can be fixed by updating its software, it’s important to raise and
@@ -8282,7 +8282,7 @@ Since disagreements sometimes remain even after decisions are made, one
 also needs principles for resolving them that are clearly communicated,
 consistently adhered to, and universally recognized as fair. I go over these in
 Chapter Six.
-MAKE YOUR IDEA MERITOCRACY WORK IN A
+MAKE YOUR IDEA MERITOCRACY WORK IN com.zifang.util.proxy.A
 WAY THAT SUITS YOU
 While all of what you read here may seem challenging and complicated in
 practice, if you believe as I do that there is no better way to make decisions
@@ -9119,7 +9119,7 @@ For example, this email was sent to me by someone who worked for me
 after a meeting with clients. All the senior people at Bridgewater, including
 me, are routinely criticized and judged by our subordinates.
 From: Jim H
-To: Ray; Lionel K; Greg J; Randal S; David A
+To: Ray; Lionel K; Greg J; Randal S; David com.zifang.util.proxy.A
 Subject: Feedback on ABC Meeting . . .
 Ray- you deserve a “D-” for your performance today in the ABC meeting
 and everyone that was in the room that saw you agrees on that harsh
@@ -9143,7 +9143,7 @@ feedback she gave Greg. Greg disagreed, asserting that he was simply
 reminding the employee of relevant principles and her responsibilities to
 either adhere to them or openly question them. The two sought to get in sync
 through a series of emails, and when that didn’t work, they raised their
-disagreement to the Management Committee. A case based on the meeting in
+disagreement to the Management Committee. com.zifang.util.proxy.A case based on the meeting in
 question was sent to the entire company so everyone could judge for
 themselves who was right and who was wrong. It was a good learning
 exercise that Greg and the senior manager appreciated. We used it to reflect
@@ -9272,7 +9272,7 @@ conversation should be deferred. Pausing a few hours or even a few days in
 cases where decisions do not have to be made immediately is sometimes the
 best approach.
 h. Making suggestions and questioning are not the same as criticizing, so don’t treat
-them as if they are. A person making suggestions may not have concluded that
+them as if they are. com.zifang.util.proxy.A person making suggestions may not have concluded that
 a mistake will be made—they could just be making doubly sure that the
 person they’re talking to has taken all the risks into consideration. Asking
 questions to make sure that someone hasn’t overlooked something isn’t the
@@ -9312,7 +9312,7 @@ d. Lead the discussion by being assertive and open-minded. Reconciling different
 points of view can be difficult and time-consuming. It is up to the meeting
 leader to balance conflicting perspectives, push through impasses, and decide
 how to spend time wisely.
-A common question I get is: What happens when someone inexperienced
+com.zifang.util.proxy.A common question I get is: What happens when someone inexperienced
 offers an opinion? If you’re running the conversation, you should be
 weighing the potential cost in the time that it takes to explore their opinion
 versus the potential gain in being able to assess their thinking and gain a
@@ -9392,7 +9392,7 @@ All great creative collaboration should feel the same way. Combining your
 different skills like different instruments, improvising creatively, and at the
 same time subordinating yourself to the goals of the group leads to playing
 great music together. But it’s important to keep in mind what number of
-collaborators will play well together: A talented duo can improvise
+collaborators will play well together: com.zifang.util.proxy.A talented duo can improvise
 beautifully, as can a trio or quartet. But gather ten musicians and no matter
 how talented they are, it’s probably going to be too many unless they’re
 carefully orchestrated.
@@ -9424,7 +9424,7 @@ relationship is worth preserving.
 There are all kinds of different people in the world, many of whom value
 different kinds of things. If you find you can’t get in sync with someone on
 shared values, you should consider whether that person is worth keeping in
-your life. A lack of common values will lead to a lot of pain and other
+your life. com.zifang.util.proxy.A lack of common values will lead to a lot of pain and other
 harmful consequences and may ultimately drive you apart. It might be better
 to head all that off as soon as you see it coming.
 5 Believability Weight Your
@@ -9501,7 +9501,7 @@ In this case, we took a believability-weighted vote, with the qualities
 chosen being both subject-matter expertise and ability to synthesize. Using
 the Dot Collector, it became clear that those with greater believability
 believed Draghi would defy Germany and print money, so that is what we
-went with. A few days later, European policymakers announced a sweeping
+went with. com.zifang.util.proxy.A few days later, European policymakers announced a sweeping
 plan to buy unlimited quantities of government bonds, so we got it right.
 While the believability-weighted answer isn’t always the best answer, we
 have found that it is more likely to be right than either the boss’s answer or
@@ -9585,7 +9585,7 @@ sing, it doesn’t take a lot of time. Sometimes a person only has to sing a few
 bars for you to hear how well they can sing. Reasoning is the same—it often
 doesn’t take a lot of time to figure out if someone can do it.
 f. Everyone should be up-front in expressing how confident they are in their thoughts.
-A suggestion should be called a suggestion; a firmly held conviction should
+com.zifang.util.proxy.A suggestion should be called a suggestion; a firmly held conviction should
 be presented as such—particularly if it’s coming from someone with a strong
 track record in the area in question.
 5.3 Think about whether you are playing the role of
@@ -9880,7 +9880,7 @@ should take a believability-weighted vote.
 6.4 Once a decision is made, everyone should get
 behind it even though individuals may still
 disagree.
-A decision-making group in which those who don’t get what they want
+com.zifang.util.proxy.A decision-making group in which those who don’t get what they want
 continue to fight rather than work for what the group has decided is destined
 to fail—you can see this happening all the time in companies, organizations,
 and even political systems and nations. I’m not saying that people should
@@ -9978,7 +9978,7 @@ TO GET THE PEOPLE
 RIGHT . . .
 While we talked about an organization’s culture in the last section, its people
 are even more important because they can change the culture for better or for
-worse. A culture and its people are symbiotic—the culture attracts certain
+worse. com.zifang.util.proxy.A culture and its people are symbiotic—the culture attracts certain
 kinds of people and the people in turn either reinforce or evolve the culture
 based on their values and what they’re like. If you choose the right people
 with the right values and remain in sync with them, you will play beautiful
@@ -10159,7 +10159,7 @@ standards of fairness. Most important, they must be able to put their egos
 aside and assess themselves candidly.
 Whether you choose to look for these same traits or others, the most
 important thing you can do is understand that hiring is a high-risk gamble that
-needs to be approached deliberately. A lot of time, effort, and resources go
+needs to be approached deliberately. com.zifang.util.proxy.A lot of time, effort, and resources go
 into hiring and developing new employees before it’s clear whether or not
 they are good fits. Months or even years and countless dollars can be wasted
 in training and retraining. Some of those costs are intangible, including loss
@@ -10332,7 +10332,7 @@ documented evidence, and ask for past reviews from their bosses,
 subordinates, and peers. As much as possible, you want to get a clear and
 objective picture of the path that they have chosen for themselves and how
 they have evolved along the way. I’ve seen plenty of people who claimed to
-be successful elsewhere operate ineffectively at Bridgewater. A closer look
+be successful elsewhere operate ineffectively at Bridgewater. com.zifang.util.proxy.A closer look
 often revealed that they were either not as successful as they portrayed
 themselves or they got credit for others’ accomplishments.
 b. Recognize that performance in school doesn’t tell you much about whether a
@@ -10496,7 +10496,7 @@ developed were built to do just that, providing us with an unbiased picture of
 people and their performance independent of the biases of any one manager.
 This data is essential in cases where a manager and a report are out of sync
 on an assessment and others are called in to resolve the dispute.
-A few years ago, one of our employees was serving in a trial role as a
+com.zifang.util.proxy.A few years ago, one of our employees was serving in a trial role as a
 department head. The prior department head had left the firm, and Greg, who
 was then CEO, was assessing whether this employee, who had previously
 been a deputy, had the right abilities to step into the role. The employee
@@ -10581,7 +10581,7 @@ can do is to get in sync with them, exploring how they are doing things and
 why.
 d. Recognize that experience creates internalized learning that book learning can’t
 replace. There are huge differences between memory-based book learning and
-hands-on, internalized learning. A medical student who has learned to
+hands-on, internalized learning. com.zifang.util.proxy.A medical student who has learned to
 perform an operation in a medical school class has not learned it in the same
 way as a doctor who has already conducted several operations. People who
 excel at book learning tend to call up from memory what they have learned in
@@ -10611,7 +10611,7 @@ b. Put your compliments and criticisms in perspective. It helps to clarify wheth
 the weakness or mistake under discussion is indicative of a trainee’s total
 evaluation. One day I told one of our new research people what a good job I
 thought he was doing and how strong his thinking was. It was a very positive
-initial evaluation. A few days later I heard him chatting away at length about
+initial evaluation. com.zifang.util.proxy.A few days later I heard him chatting away at length about
 stuff that wasn’t related to work, so I warned him about the cost to his and
 our development if he regularly wasted time. Afterward I learned that he
 thought he was on the brink of being fired. My comment about his need for
@@ -10684,14 +10684,14 @@ can help you form a more complete picture of what the person is like, as well
 as examine what they did.
 b. Squeeze the dots. Every observation of a person potentially tells you
 something valuable about how they operate. As I explained earlier, I call
-these observations “dots.” A dot is a piece of data that’s paired with your
+these observations “dots.” com.zifang.util.proxy.A dot is a piece of data that’s paired with your
 inference about what it means—a judgment about what someone might have
 decided, said, or thought. Most of the time we make these inferences and
 judgments implicitly and keep them to ourselves, but I believe that if they are
 collected systematically and put into perspective over time, they can be
 extremely valuable when it’s time to step back and synthesize the picture of a
 person.
-c. Don’t oversqueeze a dot. Remember: A dot is just a dot; what matters is how
+c. Don’t oversqueeze a dot. Remember: com.zifang.util.proxy.A dot is just a dot; what matters is how
 they add up. Think of each individual dot as an at-bat in baseball. Even great
 hitters are going to strike out many times, and it would be foolish to evaluate
 them based on one trip to the plate. That’s why stats like on-base percentage
@@ -10699,7 +10699,7 @@ and batting average exist.
 In other words, any one event has many different possible explanations,
 whereas a pattern of behavior can tell you a lot about root causes. The
 number of observations needed to detect a pattern largely depends on how
-well you get in sync after each observation. A quality discussion of how and
+well you get in sync after each observation. com.zifang.util.proxy.A quality discussion of how and
 why a person behaved a certain way should help you understand the larger
 picture.
 d. Use evaluation tools such as performance surveys, metrics, and formal reviews to
@@ -10769,7 +10769,7 @@ feedback should be constant, reviews are typically periodic; their purpose is
 to bring together the accumulated evidence of what a person is like as it
 pertains to their job performance. If the constant feedback is done well, it will
 become like a constant review as the bits and pieces will add up to the whole.
-A review should contain few surprises, because you should continuously be
+com.zifang.util.proxy.A review should contain few surprises, because you should continuously be
 striving to make sense of how the person is doing their job. If you think their
 job is being done badly, you should have been probing to identify and
 address the root causes of their underperformance on a case-by-case basis.
@@ -10786,7 +10786,7 @@ many responsibilities) or fit/abilities problems. If the problems are due to the
 person’s inabilities, these inabilities are either because of the person’s innate
 weaknesses in doing that job (e.g., someone who’s five foot two probably
 shouldn’t be a center on the basketball team) or because of inadequate
-training. A good review, and getting in sync throughout the year, should get
+training. com.zifang.util.proxy.A good review, and getting in sync throughout the year, should get
 at these things. Make sure to make your assessment relative to the absolute
 bar, not just the progress over time. What matters most is not just outcomes
 but how responsibilities were handled. The goal of a review is to be clear
@@ -10875,7 +10875,7 @@ look at how well someone does what they do and the outcomes they produce
 over time.
 a. If someone is doing their job poorly, consider whether it is due to inadequate
 learning or inadequate ability. Think of people’s performance as being made up
-of two things: learning and ability, as shown on page 437. A weakness that is
+of two things: learning and ability, as shown on page 437. com.zifang.util.proxy.A weakness that is
 due to a lack of experience or training can be fixed, while a weakness that is
 due to a lack of ability can’t be. Failing to distinguish between these causes is
 a common mistake among managers, because managers are often reluctant to
@@ -10905,7 +10905,7 @@ this understanding.
 b. It should take you no more than a year to learn what a person is like and whether
 they are a click for their job. You should be able to roughly assess someone’s
 abilities after six to twelve months of close contact, numerous tests, and
-getting in sync. A more confident assessment will probably take about
+getting in sync. com.zifang.util.proxy.A more confident assessment will probably take about
 eighteen months. This timeline will of course depend on the job, the person,
 the amount of contact with them, and how well you get in sync.
 c. Continue assessing people throughout their tenure. As you get to know your
@@ -10956,7 +10956,7 @@ be held hostage to anyone; there is always someone else. Never compromise
 your standards or let yourself be squeezed.
 b. Be willing to “shoot the people you love.” It is very difficult to fire people you
 care about. Cutting someone that you have a meaningful relationship with but
-who isn’t an A player in their job is difficult because ending good
+who isn’t an com.zifang.util.proxy.A player in their job is difficult because ending good
 relationships is hard, but it is necessary for the long-term excellence of the
 company. You may have a need for the work they’re doing (even if it’s not
 excellent) and find it hard to make a change. But they will pollute the
@@ -11169,7 +11169,7 @@ you need. Instead start with the most important questions and imagine the
 metrics that will answer them.
 Remember that any single metric can mislead; you need enough evidence
 to establish patterns. And of course the information that goes into the metrics
-must be assessed for accuracy. A reluctance to be critical can be detected by
+must be assessed for accuracy. com.zifang.util.proxy.A reluctance to be critical can be detected by
 looking at the average grade each grader gives; those giving higher average
 grades might be easy graders and vice versa. Similarly helpful are “forced
 rankings,” in which people must rank co-worker performance from best to
@@ -11502,7 +11502,7 @@ people in an idea meritocracy, it is essential that one always appeal to their
 reason rather than their base emotions.
 The most effective leaders work to 1) open-mindedly seek out the best
 answers and 2) bring others along as part of that discovery process. That is
-how learning and getting in sync occurs. A truly great leader is appropriately
+how learning and getting in sync occurs. com.zifang.util.proxy.A truly great leader is appropriately
 uncertain but well equipped to deal with that uncertainty through openminded exploration. All else being equal, I think the kind of leader who looks
 and acts like a skilled ninja will beat the kind of leader who looks and acts
 like a muscular action hero every time.
@@ -11600,13 +11600,13 @@ provide a synthesis up-front of how XYZ is going overall and, if needed, will
 support it by accounting for the tasks that were done to achieve it. People
 who see the tasks and lose sight of the goals will just describe the tasks that
 were done.
-e. Watch out for the unfocused and unproductive “theoretical should.” A
+e. Watch out for the unfocused and unproductive “theoretical should.” com.zifang.util.proxy.A
 “theoretical should” occurs when people assume that others or themselves
 should be able to do something when they don’t actually know whether they
 can (as in “Sally should be able to do X, Y, Z”). Remember that to really
 accomplish things you need believable Responsible Parties who have a track
 record of success in the relevant area.
-A similar problem occurs when people discuss how to solve a problem by
+com.zifang.util.proxy.A similar problem occurs when people discuss how to solve a problem by
 saying something vague and depersonalized like “We should do X, Y, Z.” It
 is important to identify who these people are by name rather than with a
 vague “we,” and to recognize that it is their responsibility to determine what
@@ -11833,7 +11833,7 @@ What are the most common reasons for failing to diagnose well?
 The most common mistake I see people make is dealing with their
 problems as one-offs rather than using them to diagnose how their machine is
 working so that they can improve it. They move on to fix problems without
-getting at their root causes, which is a recipe for continued failure. A
+getting at their root causes, which is a recipe for continued failure. com.zifang.util.proxy.A
 thorough and accurate diagnosis, while more time-consuming, will pay huge
 dividends in the future.
 The second most common mistake people make is to depersonalize the
@@ -11853,7 +11853,7 @@ out what had gone wrong. I started with my mental map of how things
 should’ve gone—based on the machine I’d built—and asked the new
 managers to describe what had actually happened. Bad outcomes don’t just
 happen; they occur because specific people make, or fail to make, specific
-decisions. A good diagnosis always gets to the level of determining what it is
+decisions. com.zifang.util.proxy.A good diagnosis always gets to the level of determining what it is
 about those people that led to the bad outcomes. This can be uncomfortable
 but if someone isn’t suited for a job, they need to be moved out of it so that
 the same mistakes won’t keep occurring. Of course, nobody is perfect;
@@ -12012,7 +12012,7 @@ can make the occasional error and if that’s the case, then it can be forgiven,
 but when a problem is attributable to a person, you have to ask why they
 made the mistake—and you have to be as accurate in diagnosing a fault in a
 person as you would be if he or she were a piece of equipment.
-A root cause discovery process might proceed like this:
+com.zifang.util.proxy.A root cause discovery process might proceed like this:
 The problem was due to bad programming.
 Why was there bad programming?
 Because Harry programmed it badly.
@@ -12058,12 +12058,12 @@ you’ll have a hard time getting out of it.
 12.4 Use the following “drill-down” technique to gain
 an 80/20 understanding of a department or
 sub-department that is having problems.
-A drill-down is a process that allows you to gain an understanding of the root
+com.zifang.util.proxy.A drill-down is a process that allows you to gain an understanding of the root
 causes of the biggest problems in a department or area so you can design a
 plan to make the area excellent. Drill-downs are not diagnoses, but a form of
 broad and deep probing. They’re not intended to uncover the causes of every
 problem: only the 20 or so percent of causes that produce 80 percent of the
-suboptimal effects. A drill-down takes place in two steps and is then followed
+suboptimal effects. com.zifang.util.proxy.A drill-down takes place in two steps and is then followed
 by design and execution steps. If done well, the two drill-down steps can be
 done in about four hours. It is very important that the steps be done separately
 and independently, so as not to go in too many directions at once. Let me take
@@ -12236,7 +12236,7 @@ understanding of what you’re designing for. Either literally or vicariously
 into the workflow of the area you’re looking at to gain a better understanding
 of what it is that you are dealing with. As you design, you’ll be able to apply
 what you’ve learned, and revise the machine appropriately as a result.
-b. Visualize alternative machines and their outcomes, and then choose. A good
+b. Visualize alternative machines and their outcomes, and then choose. com.zifang.util.proxy.A good
 designer is able to visualize the machine and its outcomes in various
 iterations. First they imagine how Harry, Larry, and Sally can operate in
 various ways with various tools and different incentives and penalties; then
@@ -12305,7 +12305,7 @@ standards. Without strong oversight, there is potential for inadequate quality
 control, inadequate training, and inadequate appreciation of excellent work.
 Never just trust people to do their jobs well.
 c. Make sure the people at the top of each pyramid have the skills and focus to
-manage their direct reports and a deep understanding of their jobs. A few years
+manage their direct reports and a deep understanding of their jobs. com.zifang.util.proxy.A few years
 ago, someone at Bridgewater proposed that our facilities group (the people
 who take care of the building and grounds, food service, office supplies, etc.)
 should begin to report to our head of technology because of the overlap in the
@@ -12331,7 +12331,7 @@ should be the diagnoser, the imaginative designer should craft the plan to
 make the improvements, and the reliable taskmaster should make sure the
 plan gets executed. Of course, some people can do more than one of these
 things—generally people do two or three well. Virtually nobody can do them
-all well. A team should consist of people with all of these abilities and they
+all well. com.zifang.util.proxy.A team should consist of people with all of these abilities and they
 should know who is responsible for which steps.
 e. Don’t build the organization to fit the people. Managers will often take the
 people who work in their organization as a given and try to make the
@@ -12483,9 +12483,9 @@ their jobs well—it’s intended to help good people perform better, not to hel
 failing people reach the bar. If you’re trying to guardrail someone who is
 missing the core abilities required for their job, you should probably just fire
 them and look for someone else who will be a better click.
-A good guardrail typically takes the form of a team member whose
+com.zifang.util.proxy.A good guardrail typically takes the form of a team member whose
 strengths compensate for the weaknesses of the team member who needs to
-be guardrailed. A good guardrailing relationship should be firm without being
+be guardrailed. com.zifang.util.proxy.A good guardrailing relationship should be firm without being
 overly rigid. Ideally, it should work like two people dancing—they’re
 literally pushing against each other, but with a lot of mutual give-and-take.
 Of course, having someone in a job who needs to be guardrailed is not as
@@ -12547,7 +12547,7 @@ with hinges and how it fits into the bigger picture of the house.
 13.9 Have good controls so that you are not exposed
 to the dishonesty of others.
 Don’t assume that people are operating in your interest rather than their own.
-A higher percentage of the population than you might imagine will cheat if
+com.zifang.util.proxy.A higher percentage of the population than you might imagine will cheat if
 given the opportunity. When offered the choice of being fair with you or
 taking more for themselves, most people will take more for themselves. Even
 a tiny amount of cheating is intolerable, so your happiness and success will
@@ -13009,7 +13009,7 @@ partnership.
 All these principles, rules, and checks and balances won’t be worth much if
 you don’t have capable people in positions of power who instinctually want
 to operate for the good of the community based on the agreed-upon
-principles. A company’s leaders must have wisdom, competence, and the
+principles. com.zifang.util.proxy.A company’s leaders must have wisdom, competence, and the
 ability to have close, cooperative, and effective working relationships
 characterized by both thoughtful disagreement and commitment to following
 through with whatever the idea-meritocratic process decides.
@@ -13336,7 +13336,7 @@ they also provide effective metrics of performance, as they allow you to
 measure the numbers and types of problems coming up (and identify the
 people who are contributing to them and fixing them).
 The Issue Log is a good example of a tool that changed habits and
-perceptions. A common challenge people had at first was openly pointing out
+perceptions. com.zifang.util.proxy.A common challenge people had at first was openly pointing out
 mistakes, because some people instinctively viewed pointing out mistakes as
 hurtful to the people who made them. Once they got used to doing this, they
 realized the benefit of it and they got in the good habit of doing it. Now most
@@ -13449,13 +13449,13 @@ BIBLIOGRAPHY
 Aamodt, Sandra, and Sam Wang. Welcome to Your Brain: Why You Lose Your Car Keys
 but Never Forget How to Drive and Other Puzzles of Everyday Life. New York:
 Bloomsbury Publishing, 2009.
-Beauregard, Mario, and Denyse O’Leary. The Spiritual Brain: A Neuroscientist’s Case for
+Beauregard, Mario, and Denyse O’Leary. The Spiritual Brain: com.zifang.util.proxy.A Neuroscientist’s Case for
 the Existence of the Soul. San Francisco: HarperOne, 2007.
 Campbell, Joseph. The Hero with a Thousand Faces. Princeton: Princeton University
 Press, 1949.
 Dalai Lama XIV. Beyond Religion: Ethics for a Whole World. Boston: Houghton Mifflin
 Harcourt, 2011.
-Dawkins, Richard. River Out of Eden: A Darwinian View of Life. New York: Basic Books,
+Dawkins, Richard. River Out of Eden: com.zifang.util.proxy.A Darwinian View of Life. New York: Basic Books,
 1995.
 Duhigg, Charles. The Power of Habit: Why We Do What We Do in Life and Business. New
 York: Random House, 2012.
@@ -13487,7 +13487,7 @@ Newberg, Andrew, MD, and Mark Robert Waldman. The Spiritual Brain: Science and
 Religious Experience. Chantilly, VA: The Great Courses Teaching Company, 2012.
 Norden, Jeanette. Understanding the Brain. Chantilly, VA: The Great Courses Teaching
 Company, 2007.
-Pink, Daniel H. A Whole New Mind: Why Right-Brainers Will Rule the Future. New York:
+Pink, Daniel H. com.zifang.util.proxy.A Whole New Mind: Why Right-Brainers Will Rule the Future. New York:
 Riverhead Books, 2005.
 Plekhanov, G. V. On the Role of the Individual in History. Honolulu: University Press of
 the Pacific, 2003. (Original work published 1898)
@@ -13498,16 +13498,16 @@ Introduction to the Enneagram, Revised and Expanded. New York: Mariner Books,
 2003.
 Rosenthal, Norman E, MD. The Gift of Adversity: The Unexpected Benefits of Life’s
 Dif iculties, Setbacks, and Imperfections. New York: TarcherPerigee, 2013.
-Taylor, Jill Bolte. My Stroke of Insight: A Brain Scientist’s Personal Journey. New York:
+Taylor, Jill Bolte. My Stroke of Insight: com.zifang.util.proxy.A Brain Scientist’s Personal Journey. New York:
 Penguin Books, 2009.
-Thomson, J. Anderson, with Clare Aukofer. Why We Believe in God(s): A Concise Guide
+Thomson, J. Anderson, with Clare Aukofer. Why We Believe in God(s): com.zifang.util.proxy.A Concise Guide
 to the Science of Faith. Charlottesville: Pitchstone Publishing, 2011.
 Tokoro, M., and K. Mogi, eds. Creativity and the Brain. Singapore: World Scientific
 Publishing, 2007.
 Wilson, Edward O. The Meaning of Human Existence. New York: Liveright Publishing
 Corporation, 2014.
 INDEX
-A note about the index: The pages referenced in this index refer to the page numbers in
+com.zifang.util.proxy.A note about the index: The pages referenced in this index refer to the page numbers in
 the print edition. Clicking on a page number will take you to the ebook location that
 corresponds to the beginning of that page in the print edition. For a comprehensive list of
 locations of any word or phrase, use your reading system’s search function.

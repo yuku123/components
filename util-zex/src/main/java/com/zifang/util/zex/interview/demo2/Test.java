@@ -1,6 +1,6 @@
 package com.zifang.util.zex.interview.demo2;
 
-import com.zifang.util.core.pattern.aop.ProxyUtil;
+import com.zifang.util.proxy.ProxyUtil;
 
 import java.lang.reflect.Proxy;
 

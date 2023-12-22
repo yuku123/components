@@ -2,38 +2,38 @@ grammar SqlDsl;
 
 @header{package com.antlr.mysql.query;}
 
-AS                              : A S;
+AS                              : com.zifang.util.proxy.A S;
 SELECT                       : S E L E C T;
 FROM                        : F R O M;
-TABLE                        : T A B L E;
-MAX                         : M A X;
+TABLE                        : T com.zifang.util.proxy.A B L E;
+MAX                         : M com.zifang.util.proxy.A X;
 SUM                         : S U M;
-AVG                          : A V G;
+AVG                          : com.zifang.util.proxy.A V G;
 MIN                          : M I N;
 COUNT                     : C O U N T;
-ALL                            : A L L;
+ALL                            : com.zifang.util.proxy.A L L;
 DISTINCT                  : D I S T I N C T;
 WHERE                     : W H E R E;
 GROUP                    : G R O U P;
 BY                             : B Y ;
 ORDER                     : O R D E R;
-HAVING                   : H A V I N G;
+HAVING                   : H com.zifang.util.proxy.A V I N G;
 NOT                          : N O T;
 IS                               :  I S ;
 TRUE                         : T R U E;
-FALSE                        : F A L S E;
+FALSE                        : F com.zifang.util.proxy.A L S E;
 UNKNOWN               : U N K N O W N;
  BETWEEN                  : B E T W E E N;
- AND                           :  A N D;
+ AND                           :  com.zifang.util.proxy.A N D;
  IN                                :   I N;
  NULL                           : N U L L;
  OR                             : O R ;
- ASC                          : A S C;
+ ASC                          : com.zifang.util.proxy.A S C;
  DESC                       : D E S C;
  LIMIT                      : L I M I T ;
  OFFSET                    : O F F S E T;
 
-fragment A      : [aA];
+fragment com.zifang.util.proxy.A      : [aA];
 fragment B      : [bB];
 fragment C      : [cC];
 fragment D      : [dD];
@@ -64,7 +64,7 @@ fragment DEC_DIGIT:                  [0-9];
 fragment LETTER:                         [a-zA-Z];
 
 
-ID:    ( 'A'..'Z' | 'a'..'z' | '_' | '$') ( 'A'..'Z' | 'a'..'z' | '_' | '$' | '0'..'9' )*;
+ID:    ( 'com.zifang.util.proxy.A'..'Z' | 'a'..'z' | '_' | '$') ( 'com.zifang.util.proxy.A'..'Z' | 'a'..'z' | '_' | '$' | '0'..'9' )*;
 TEXT_STRING :    (  '\'' ( ('\\' '\\') | ('\'' '\'') | ('\\' '\'') | ~('\'') )* '\''  );
 ID_LITERAL:   '*'|('@'|'_'|LETTER)(LETTER|DEC_DIGIT|'_')*;
 REVERSE_QUOTE_ID :   '`' ~'`'+ '`';
