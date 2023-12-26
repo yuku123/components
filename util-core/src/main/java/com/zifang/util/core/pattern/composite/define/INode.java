@@ -16,7 +16,7 @@ public interface INode {
 
     /**
      * 群id
-     * */
+     */
     String getId();
 
     /**

@@ -2,7 +2,7 @@ package com.zifang.util.core.pattern.composite.define;
 
 import java.util.List;
 
-public class AbstractNode implements INode{
+public class AbstractNode implements INode {
 
     protected String id;
 

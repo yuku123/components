@@ -2,7 +2,7 @@ package com.zifang.util.core.pattern.composite.define;
 
 import java.util.Collection;
 
-public abstract class AbstractCluster implements ICluster{
+public abstract class AbstractCluster implements ICluster {
 
     @Override
     public String getName() {

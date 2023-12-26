@@ -9,10 +9,8 @@ import java.util.stream.Collectors;
  */
 public class VennGraph<E> {
 
-    private Collection<E> empty = new ArrayList<>();
-
-    private Collection<E> c1 = null;
-    private Collection<E> c2 = null;
+    private final Collection<E> c1;
+    private final Collection<E> c2;
 
     public VennGraph(Collection<E> c1, Collection<E> c2) {
         this.c1 = c1;
@@ -41,8 +39,8 @@ public class VennGraph<E> {
     public Collection<E> intersection() {
         Collection<E> all = union();
         Collection<E> r = new ArrayList<>();
-        for(E e : all){
-            if(c1.contains(e) && c2.contains(e)){
+        for (E e : all) {
+            if (c1.contains(e) && c2.contains(e)) {
                 r.add(e);
             }
         }

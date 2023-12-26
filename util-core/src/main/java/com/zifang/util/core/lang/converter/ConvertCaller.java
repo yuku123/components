@@ -17,11 +17,11 @@ public class ConvertCaller<T> {
 
     public <T> T to(Object o) {
         if (from == target) {
-            return (T)o;
+            return (T) o;
         }
 
         try {
-            return (T)method.invoke(caller, o, PrimitiveUtil.defaultValue(target));
+            return (T) method.invoke(caller, o, PrimitiveUtil.defaultValue(target));
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

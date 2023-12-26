@@ -5,23 +5,23 @@ import java.lang.reflect.Method;
 
 public class DynamicBeanHelper {
 
-    public static DynamicBean parser(Class<?> clazz){
+    public static DynamicBean parser(Class<?> clazz) {
         return null;
     }
 
-    public static DynamicField parser(Field field){
+    public static DynamicField parser(Field field) {
         return null;
     }
 
-    public static DynamicField parser(Method method){
+    public static DynamicField parser(Method method) {
         return null;
     }
 
-    public static Class<?> parser(DynamicBean dynamicBean){
+    public static Class<?> parser(DynamicBean dynamicBean) {
         return null;
     }
 
-    public static String parserAsCode(DynamicBean dynamicBean){
+    public static String parserAsCode(DynamicBean dynamicBean) {
         return null;
     }
 }

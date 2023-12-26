@@ -11,11 +11,11 @@ public interface ICluster {
 
     /**
      * 群id
-     * */
+     */
     String getId();
 
     /**
      * 群下成员
-     * */
+     */
     Collection<INode> members();
 }

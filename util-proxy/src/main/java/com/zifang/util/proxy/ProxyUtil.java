@@ -1,8 +1,8 @@
 package com.zifang.util.proxy;
 
+import com.zifang.util.core.util.ClassLoaderUtil;
 import com.zifang.util.proxy.aspects.Aspect;
 import com.zifang.util.proxy.proxy.ProxyFactory;
-import com.zifang.util.core.util.ClassLoaderUtil;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
