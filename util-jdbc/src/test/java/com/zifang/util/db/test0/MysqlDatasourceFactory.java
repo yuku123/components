@@ -10,7 +10,8 @@ public class MysqlDatasourceFactory implements DatasourceFactory {
     private DruidDataSource dataSource = null;
 
     @Override
-    public DataSource newDatasource() {
+    public DataSource getDatasource() {
+
         try {
             if (dataSource == null) {
                 dataSource = new DruidDataSource();

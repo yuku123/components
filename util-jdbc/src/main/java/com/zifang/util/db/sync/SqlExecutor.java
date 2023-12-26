@@ -28,6 +28,10 @@ public class SqlExecutor {
 
     private DataSource dataSource;
 
+    public SqlExecutor(DataSource dataSource){
+        this.dataSource = dataSource;
+    }
+
     private static Map<String, DataSource> dataSourceCache = new LinkedHashMap<>();
 
     public List<DataSourceTableDTO> fetchTableInfo(String schemaMark) {

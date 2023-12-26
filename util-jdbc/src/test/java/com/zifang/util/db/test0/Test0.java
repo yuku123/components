@@ -2,7 +2,7 @@ package com.zifang.util.db.test0;
 
 import com.zifang.util.core.util.GsonUtil;
 import com.zifang.util.db.context.DataSourceContext;
-import com.zifang.util.db.context.DatasourceHolder;
+import com.zifang.util.db.context.DatasourceContextManager;
 import com.zifang.util.db.respository.RepositoryProxy;
 import com.zifang.util.db.transation.TranslationManager;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class Test0 {
                 .dataSourceFactory(new MysqlDatasourceFactory());
 
         // 注册数据库信息
-        DatasourceHolder.register(DatasourceHolder.DEFAULT, dataSourceContext);
+        DatasourceContextManager.register(DatasourceContextManager.DEFAULT, dataSourceContext);
     }
 
     @Test

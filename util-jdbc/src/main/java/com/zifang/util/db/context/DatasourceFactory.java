@@ -2,8 +2,8 @@ package com.zifang.util.db.context;
 
 import javax.sql.DataSource;
 
-public interface DatasourceFactory {
+public interface DatasourceFactory{
 
-    DataSource newDatasource();
+    DataSource getDatasource();
 
 }

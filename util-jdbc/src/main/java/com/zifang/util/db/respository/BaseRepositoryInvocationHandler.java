@@ -1,9 +1,10 @@
 package com.zifang.util.db.respository;
 
 import com.zifang.util.db.context.DataSourceContext;
-import com.zifang.util.db.context.DatasourceHolder;
+import com.zifang.util.db.context.DatasourceContextManager;
 import com.zifang.util.db.define.Param;
 import com.zifang.util.db.define.Select;
+import com.zifang.util.db.sync.SqlExecutor;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
@@ -16,15 +17,18 @@ import java.util.Map;
 
 public class BaseRepositoryInvocationHandler implements InvocationHandler {
 
-    private Class targetClass;
+    private final Class<?> targetClass;
 
-    public BaseRepositoryInvocationHandler(Class clazz) {
+    private SqlExecutor sqlExecutor;
+
+    public BaseRepositoryInvocationHandler(Class<?> clazz) {
         this.targetClass = clazz;
         solve(targetClass);
     }
 
-    private void solve(Class targetClass) {
-
+    private void solve(Class<?> clazz) {
+        DataSourceContext dataSourceContext = DatasourceContextManager.fetchContext(DatasourceContextManager.DEFAULT);
+        sqlExecutor = new SqlExecutor(dataSourceContext.getDatasourceFactory().getDatasource());
     }
 
     @Override
@@ -38,9 +42,9 @@ public class BaseRepositoryInvocationHandler implements InvocationHandler {
 
             BoundSql b = boundSql(method, args);
 
-            DataSourceContext dataSourceContext = DatasourceHolder.fetchContext(DatasourceHolder.DEFAULT);
+            DataSourceContext dataSourceContext = DatasourceContextManager.fetchContext(DatasourceContextManager.DEFAULT);
 
-            Connection connection = dataSourceContext.getDatasourceFactory().newDatasource().getConnection();
+            Connection connection = dataSourceContext.getDatasourceFactory().getDatasource().getConnection();
             PreparedStatement prepareStatement = connection.prepareStatement(b.getTransformSql());
             for (Map.Entry<Integer, Object> entry : b.getIndexValueInsert().entrySet()) {
                 prepareStatement.setObject(entry.getKey(), entry.getValue());
