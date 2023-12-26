@@ -27,7 +27,6 @@
         <module>util-visualization</module>
         <module>util-rpc</module>
         <module>util-jdbc</module>
-        <module>util-compile</module>
         <module>util-zex</module>
         <module>util-http</module>
         <module>util-math</module>

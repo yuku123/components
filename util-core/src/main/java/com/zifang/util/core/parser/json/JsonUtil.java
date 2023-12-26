@@ -2,7 +2,7 @@ package com.zifang.util.core.parser.json;
 
 import com.zifang.util.core.parser.json.define.TypeReference;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -45,10 +45,14 @@ public class JsonUtil {
         return t;
     }
 
-    public static void main(String[] args) {
-        List<String> c = new ArrayList<>();
-        fromJson("", new TypeReference<List<String>>() {
-        });
-        c.getClass();
+    public static void main(String[] args) throws IOException {
+//        List<String> c = new ArrayList<>();
+//        fromJson("", new TypeReference<List<String>>() {
+//        });
+//        c.getClass();
+
+        JSONParser jsonParser = new JSONParser();
+        Object o = jsonParser.fromJSON("{\"a\":1}");
+        System.out.println();
     }
 }
