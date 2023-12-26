@@ -1,4 +1,4 @@
-package com.zifang.util.core.pattern.dynamic;
+package com.zifang.util.proxy.dynamic;
 
 import lombok.Data;
 

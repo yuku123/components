@@ -1,4 +1,4 @@
-package com.zifang.util.core.pattern.dynamic;
+package com.zifang.util.proxy.dynamic;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

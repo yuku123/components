@@ -21,7 +21,7 @@ public class DataSourceManager {
 
     private static Map<String, DataSource>  dataSourceMap = new HashMap<>();
 
-    public static DataSource registerDataSource(String name, String datasourceUrl, String port, String schemaMark, String username, String password) {
+    public static DataSource registerDataSource(String name, String datasourceUrl, Integer port, String schemaMark, String username, String password) {
 
         if (name == null || datasourceUrl == null || username == null) {
             throw new RuntimeException("必要参数不能为空,name=" + name + " datasourceUrl=" + datasourceUrl + " username=" + username);
