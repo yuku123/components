@@ -12,7 +12,7 @@ public interface IVectorNode extends INode {
     List<IVectorNode> getInputVectorNode();
 
     @Override
-    List<INode> getConbinedNode();
+    List<INode> getCombinedNode();
 
 
     List<IVectorNode> getOutputVectorNode();

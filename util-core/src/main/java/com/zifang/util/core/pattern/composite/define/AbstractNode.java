@@ -19,7 +19,7 @@ public class AbstractNode implements INode {
     }
 
     @Override
-    public List<INode> getConbinedNode() {
+    public List<INode> getCombinedNode() {
         return null;
     }
 }

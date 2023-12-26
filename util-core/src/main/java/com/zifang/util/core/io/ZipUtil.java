@@ -145,8 +145,7 @@ public class ZipUtil {
             is = new BufferedInputStream(zipfile.getInputStream(entry));
             int count;
             byte[] data = new byte[1024];
-            FileOutputStream fos = new FileOutputStream(unZipDir + "/"
-                    + entry.getName());
+            FileOutputStream fos = new FileOutputStream(unZipDir + "/" + entry.getName());
             // System.out.println("entry.getName(): " + entry.getName());
             dest = new BufferedOutputStream(fos, 1024);
             while ((count = is.read(data, 0, 1024)) != -1) {

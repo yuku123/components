@@ -8,12 +8,17 @@ import java.util.List;
  * @author zifang
  */
 @Data
-public class DynamicBean {
+public class DynamicClass {
+
+    /**
+     * 实现的接口类
+     */
+    private List<DynamicClass> implementClasses;
 
     /**
      * 继承的bean
      */
-    private DynamicBean inheritedBean;
+    private DynamicClass extendClass;
 
     /**
      * 动态bean字段

@@ -40,8 +40,7 @@ public class IOUtil {
         return (int) count;
     }
 
-    public static long copyLarge(final InputStream input, final OutputStream output)
-            throws IOException {
+    public static long copyLarge(final InputStream input, final OutputStream output) throws IOException {
 
         byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
         long count = 0;

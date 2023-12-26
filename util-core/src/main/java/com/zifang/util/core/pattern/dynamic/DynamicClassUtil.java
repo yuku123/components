@@ -3,9 +3,9 @@ package com.zifang.util.core.pattern.dynamic;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-public class DynamicBeanHelper {
+public class DynamicClassUtil {
 
-    public static DynamicBean parser(Class<?> clazz) {
+    public static DynamicClass parser(Class<?> clazz) {
         return null;
     }
 
@@ -17,11 +17,11 @@ public class DynamicBeanHelper {
         return null;
     }
 
-    public static Class<?> parser(DynamicBean dynamicBean) {
+    public static Class<?> parser(DynamicClass dynamicClass) {
         return null;
     }
 
-    public static String parserAsCode(DynamicBean dynamicBean) {
+    public static String parserAsCode(DynamicClass dynamicBean) {
         return null;
     }
 }

@@ -22,5 +22,5 @@ public interface INode {
     /**
      * @return 列表
      */
-    List<INode> getConbinedNode();
+    List<INode> getCombinedNode();
 }
