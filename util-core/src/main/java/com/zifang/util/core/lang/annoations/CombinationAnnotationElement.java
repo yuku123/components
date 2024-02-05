@@ -1,7 +1,7 @@
 package com.zifang.util.core.lang.annoations;
 
-import com.sun.istack.internal.NotNull;
 import com.zifang.util.core.lang.collection.Sets;
+import lombok.NonNull;
 
 import java.io.Serializable;
 import java.lang.annotation.*;
@@ -51,13 +51,12 @@ public class CombinationAnnotationElement implements AnnotatedElement, Serializa
     }
 
     @Override
-    public boolean isAnnotationPresent(@NotNull Class<? extends Annotation> annotationClass) {
+    public boolean isAnnotationPresent(@NonNull Class<? extends Annotation> annotationClass) {
         return annotationMap.containsKey(annotationClass);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public <T extends Annotation> T getAnnotation(@NotNull Class<T> annotationClass) {
+    public <T extends Annotation> T getAnnotation(@NonNull Class<T> annotationClass) {
         Annotation annotation = annotationMap.get(annotationClass);
         return (annotation == null) ? null : (T) annotation;
     }

@@ -1,4 +1,4 @@
-package com.zifang.util.math.generator;
+package com.zifang.util.pandas.generator;
 
 import java.io.BufferedWriter;
 import java.io.File;

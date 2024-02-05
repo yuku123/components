@@ -19,6 +19,7 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.9</version>
         </dependency>
+
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
@@ -29,7 +30,6 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.54</version>
         </dependency>
 
 
@@ -63,7 +63,6 @@
             <artifactId>util-proxy</artifactId>
         </dependency>
 
-        <!--测试-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
