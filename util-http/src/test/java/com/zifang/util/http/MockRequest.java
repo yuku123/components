@@ -5,7 +5,6 @@ import com.zifang.util.http.define.*;
 @RestController("http://localhost:8011/test")
 public interface MockRequest {
 
-
     @RequestMapping(value = "/test1", method = RequestMethod.GET)
     String test1(@RequestParam("name") String name, @RequestParam("password") String password);
 
@@ -24,8 +23,3 @@ public interface MockRequest {
 
 }
 
-@lombok.Data
-class Data {
-    String name;
-    String pw;
-}

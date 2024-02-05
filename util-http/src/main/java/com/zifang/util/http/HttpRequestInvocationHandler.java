@@ -10,7 +10,8 @@ import java.lang.reflect.Method;
 
 public class HttpRequestInvocationHandler implements InvocationHandler {
 
-    private Class target; // 代理的接口类
+    // 代理的接口类
+    private final Class<?> target;
 
     public HttpRequestInvocationHandler(Class requestInterface) {
         this.target = requestInterface;

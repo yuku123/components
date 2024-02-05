@@ -1,6 +1,6 @@
 package com.zifang.util.core.lang.primitive;
 
-import com.zifang.util.core.util.Conditions;
+import com.zifang.util.core.lang.validator.Conditions;
 
 /**
  * @author zifang

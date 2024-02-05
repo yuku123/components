@@ -1,5 +1,6 @@
 package com.zifang.util.core.collection;
 
+import com.zifang.util.core.lang.collection.Venn;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -11,13 +12,13 @@ public class VennOpTest {
         List<String> l1 = Arrays.asList("0", "1", "2", "3", "3");
         List<String> l2 = Arrays.asList("2", "3", "4", "4");
 
-        VennGraph<String> vennGraph = new VennGraph<>(l1, l2);
+        Venn<String> venn = new Venn<>(l1, l2);
 
-        assert vennGraph.unionCount() == 5;
-        assert vennGraph.union().size() == 5;
-        assert vennGraph.intersection().size() == 2;
-        assert vennGraph.intersectionCount() == 2;
-        assert vennGraph.intersectionLeft().size() == 2;
-        assert vennGraph.intersectionRight().size() == 1;
+        assert venn.unionCount() == 5;
+        assert venn.union().size() == 5;
+        assert venn.intersection().size() == 2;
+        assert venn.intersectionCount() == 2;
+        assert venn.intersectionLeft().size() == 2;
+        assert venn.intersectionRight().size() == 1;
     }
 }

@@ -1,6 +1,6 @@
 package com.zifang.util.db.sync;
 
-import com.zifang.util.core.common.status.BaseStatusCode;
+import com.zifang.util.core.meta.BaseStatusCode;
 import com.zifang.util.core.lang.exception.BusinessException;
 import com.zifang.util.db.sync.meta.DataSourceTableColumnDTO;
 import com.zifang.util.db.sync.meta.DataSourceTableDTO;

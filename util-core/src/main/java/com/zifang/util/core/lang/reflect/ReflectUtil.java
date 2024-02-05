@@ -1,9 +1,8 @@
 package com.zifang.util.core.lang.reflect;
 
 
-import com.zifang.util.core.cache.WeakHashMapCache;
-import com.zifang.util.core.util.ArraysUtil;
-import com.zifang.util.core.util.ClassUtil;
+import com.zifang.util.core.pattern.cache.WeakHashMapCache;
+import com.zifang.util.core.lang.collection.ArraysUtil;
 
 import java.lang.reflect.*;
 import java.util.ArrayList;
@@ -18,10 +17,13 @@ public class ReflectUtil {
      * 构造对象缓存
      */
     private static final WeakHashMapCache<Class<?>, Constructor<?>[]> CONSTRUCTORS_CACHE = new WeakHashMapCache<>();
+
     /**
      * 字段缓存
      */
+
     private static final WeakHashMapCache<Class<?>, Field[]> FIELDS_CACHE = new WeakHashMapCache<>();
+
     /**
      * 方法缓存
      */

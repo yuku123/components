@@ -1,7 +1,7 @@
 package com.zifang.util.core.lang.tuples;
 
 
-import com.zifang.util.core.lang.BeanUtils;
+import com.zifang.util.core.lang.BeanUtil;
 import lombok.Data;
 
 import java.beans.IntrospectionException;
@@ -22,7 +22,7 @@ public class Unit<A> {
 
     public Map<String, Object> toMap() {
         try {
-            return BeanUtils.beanToMap(this);
+            return BeanUtil.beanToMap(this);
         } catch (IllegalAccessException | IntrospectionException | InvocationTargetException e) {
             e.printStackTrace();
         }

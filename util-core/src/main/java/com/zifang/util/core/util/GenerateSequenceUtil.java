@@ -9,6 +9,7 @@ import java.util.Calendar;
  * 时间精确到秒，ID最大值为99999且循环使用
  */
 public class GenerateSequenceUtil {
+
     private static final FieldPosition HELPER_POSITION = new FieldPosition(0);
 
     /**

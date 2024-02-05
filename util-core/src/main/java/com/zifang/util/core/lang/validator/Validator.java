@@ -1,10 +1,10 @@
 package com.zifang.util.core.lang.validator;
 
 
-import com.zifang.util.core.common.status.StatusCode;
+import com.zifang.util.core.meta.StatusCode;
 import com.zifang.util.core.lang.exception.BusinessException;
 import com.zifang.util.core.lang.exception.ParamValidateStatusCode;
-import com.zifang.util.core.util.StringUtil;
+import com.zifang.util.core.lang.StringUtil;
 
 public class Validator {
 

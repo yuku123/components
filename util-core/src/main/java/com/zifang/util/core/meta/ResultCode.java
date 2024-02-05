@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 @Getter
 @AllArgsConstructor
 public enum ResultCode {
+
     SUCCESS(HttpServletResponse.SC_OK, "Operation is Successful") {
     },
 

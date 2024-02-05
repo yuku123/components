@@ -1,6 +1,6 @@
 package com.zifang.util.proxy;
 
-import com.zifang.util.core.util.ClassUtil;
+import com.zifang.util.core.lang.reflect.ClassUtil;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

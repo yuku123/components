@@ -1,6 +1,6 @@
 package com.zifang.util.core.lang.exception;
 
-import com.zifang.util.core.common.status.StatusCode;
+import com.zifang.util.core.meta.StatusCode;
 
 public class NoPrintBusinessException extends BaseException {
 

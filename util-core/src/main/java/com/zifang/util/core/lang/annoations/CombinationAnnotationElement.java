@@ -1,6 +1,7 @@
 package com.zifang.util.core.lang.annoations;
 
-import com.zifang.util.core.collection.Sets;
+import com.sun.istack.internal.NotNull;
+import com.zifang.util.core.lang.collection.Sets;
 
 import java.io.Serializable;
 import java.lang.annotation.*;
@@ -16,6 +17,7 @@ import java.util.*;
  * @author zifang
  */
 public class CombinationAnnotationElement implements AnnotatedElement, Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -42,8 +44,6 @@ public class CombinationAnnotationElement implements AnnotatedElement, Serializa
     private Map<Class<? extends Annotation>, Annotation> declaredAnnotationMap;
 
     /**
-     * 构造
-     *
      * @param element 需要解析注解的元素：可以是Class、Method、Field、Constructor、ReflectPermission
      */
     public CombinationAnnotationElement(AnnotatedElement element) {
@@ -51,13 +51,13 @@ public class CombinationAnnotationElement implements AnnotatedElement, Serializa
     }
 
     @Override
-    public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass) {
+    public boolean isAnnotationPresent(@NotNull Class<? extends Annotation> annotationClass) {
         return annotationMap.containsKey(annotationClass);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T extends Annotation> T getAnnotation(Class<T> annotationClass) {
+    public <T extends Annotation> T getAnnotation(@NotNull Class<T> annotationClass) {
         Annotation annotation = annotationMap.get(annotationClass);
         return (annotation == null) ? null : (T) annotation;
     }

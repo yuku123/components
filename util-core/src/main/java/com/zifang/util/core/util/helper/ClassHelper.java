@@ -2,7 +2,7 @@
 //
 //
 //import com.zifang.util.core.util.AssertUtil;
-//import com.zifang.util.core.util.ClassLoaderUtil;
+//import com.zifang.util.core.lang.reflect.ClassLoaderUtil;
 //import lombok.extern.slf4j.Slf4j;
 //
 //import java.io.File;
@@ -16,29 +16,25 @@
 //import java.util.jar.JarEntry;
 //import java.util.jar.JarFile;
 //
-///**
-// * <h6>Description:<h6>
-// * <p>Java Class与反射相关的一些工具类</p>
-// */
 //@Slf4j
 //public final class ClassHelper {
 //
-//    /**
-//     * 获取指定目录下所有的类名
-//     *
-//     * @param classPath class文件路径
-//     * @param jarPath jar文件路径
-//     */
-////    public final static List<String> getClassName(String classPath, String jarPath) {
-////        List<String> fileNames = new ArrayList<>();
-////        List<File> jarList = FileHelper.listFileSuffix(new File(jarPath), "jar");
-////        for(File file:jarList){
-////            fileNames.addAll(getClassNameByJar(file.getAbsolutePath()));
-////        }
-////        //fileNames.addAll(getClassNameByFile(classPath,true));
-////
-////        return fileNames;
-////    }
+////    /**
+////     * 获取指定目录下所有的类名
+////     *
+////     * @param classPath class文件路径
+////     * @param jarPath jar文件路径
+////     */
+//////    public final static List<String> getClassName(String classPath, String jarPath) {
+//////        List<String> fileNames = new ArrayList<>();
+//////        List<File> jarList = FileHelper.listFileSuffix(new File(jarPath), "jar");
+//////        for(File file:jarList){
+//////            fileNames.addAll(getClassNameByJar(file.getAbsolutePath()));
+//////        }
+//////        //fileNames.addAll(getClassNameByFile(classPath,true));
+//////
+//////        return fileNames;
+//////    }
 //
 //
 //    public final static List<String> getClassNameByFile(String filePath, boolean childPackage) {
@@ -73,6 +69,8 @@
 //        }
 //        return myClassName;
 //    }
+//
+//
 //    public final static List<String> getResourceNameByJar(String jarPath) {
 //        List<String> resource = new ArrayList<>();
 //        try (JarFile jarFile = new JarFile(jarPath)) {
@@ -165,7 +163,6 @@
 //            }
 //        }
 //    }
-//
 //
 //    public static URI toURI(URL url) throws URISyntaxException {
 //        return toURI(url.toString());

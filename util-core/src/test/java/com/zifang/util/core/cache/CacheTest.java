@@ -1,5 +1,6 @@
 package com.zifang.util.core.cache;
 
+import com.zifang.util.core.pattern.cache.*;
 import org.junit.Test;
 
 import java.util.concurrent.ExecutionException;

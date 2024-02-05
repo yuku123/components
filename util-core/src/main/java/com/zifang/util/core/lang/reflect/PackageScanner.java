@@ -1,7 +1,5 @@
 package com.zifang.util.core.lang.reflect;
 
-import com.zifang.util.core.util.ClassUtil;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.JarURLConnection;

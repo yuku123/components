@@ -1,7 +1,7 @@
 package com.zifang.util.core.io;
 
 //import com.zifang.util.core.util.DateUtils;
-//import com.zifang.util.core.util.RandomUtil;
+//import com.zifang.util.core.lang.RandomUtil;
 
 import com.zifang.util.core.io.ss.FileTypeImpl;
 import com.zifang.util.core.lang.regex.RegexUtil;
