@@ -1,4 +1,4 @@
-package com.zifang.util.expression.command;
+package com.zifang.util.expression.instruction;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -1,28 +1,65 @@
 package com.zifang.util.pandas.num;
 
+import com.zifang.util.core.lang.collection.ArraysUtil;
+
 public class Num {
 
     private Object array;
 
     public Num(Object array){
+        if(!array.getClass().isArray()){
+            throw new RuntimeException("param is not A array");
+        }
         this.array = array;
     }
 
     /**
-     * 查看有多少个轴
-     * # 一维数组就是一行
-     * # 二维数组是多个一维数组
-     * # 三维数组是多个二维数组
+     * 表达数组的维度
      */
     public int nDim() {
-        return 0;
+        String arrayClassRefNameTemp = array.getClass().getName();
+        int dim = 0;
+        while (true){
+            if(arrayClassRefNameTemp.startsWith("[")){
+                dim = dim +1;
+                arrayClassRefNameTemp = arrayClassRefNameTemp.substring(1,arrayClassRefNameTemp.length() -1);
+            } else {
+                break;
+            }
+        }
+        return dim;
     }
 
+
+//    /** 捕获最终维度数据 */
+//    public Object[] slice(){
+//
+//    }
+
     /**
-     * 数组的维度，对于n行m列的数组，shape为(n,m)
+     * 数组的维度，对于n行m列的数组 -> (n1,n2,n3,m)
      * */
-    public int shape() {
-        return 0;
+    public Integer[] shape() {
+        Integer[] shape = new Integer[nDim()];
+
+        Object[] current = null;
+        for(int i = 0; i < shape.length;i++){
+
+            if(i == 0){
+                current = (Object[]) array;
+            } else if(i <= shape.length -1){
+                for(Object sub : current){
+                    if(sub != null){
+                        current = (Object[]) sub;
+                        break;
+                    }
+                }
+            }
+
+            shape[i] = current.length;
+
+        }
+        return shape;
     }
 
 
@@ -30,7 +67,26 @@ public class Num {
      * 总共的元素的个数
      * */
     public int size() {
-        return 0;
+        int dim = nDim();
+        Object[] current = new Object[]{};
+        for(int i = 0; i < dim; i++){
+            Object[] temp = new Object[]{};
+            if(i == 0){
+                temp = (Object[]) array;
+            } else {
+                for(int j = 0; j < current.length; j++){
+                    Object o = current[j];
+                    if(o.getClass().isArray()){
+                        Object[] os = (Object[])o;
+                        temp = ArraysUtil.join(temp, os);
+                    }else {
+                        temp = ArraysUtil.join(temp, new Object[]{o});
+                    }
+                }
+            }
+            current = temp;
+        }
+        return current.length;
     }
 
     /**

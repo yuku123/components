@@ -2,7 +2,7 @@ package com.zifang.util.pandas.num;
 
 import java.util.List;
 
-public class NumUtil {
+public class Nums {
 
     public static final NumRandom random = new NumRandom();
 
@@ -63,11 +63,6 @@ public class NumUtil {
     }
 
     public void vsplit(){
-
-    }
-
-
-    public static void main(String[] args) {
 
     }
 }

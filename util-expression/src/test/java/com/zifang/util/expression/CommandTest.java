@@ -1,8 +1,8 @@
 package com.zifang.util.expression;
 
-import com.zifang.util.expression.command.CommandExecutor;
-import com.zifang.util.expression.command.Instruction;
-import com.zifang.util.expression.command.OperatorStack;
+import com.zifang.util.expression.instruction.CommandExecutor;
+import com.zifang.util.expression.instruction.Instruction;
+import com.zifang.util.expression.instruction.OperatorStack;
 import org.junit.Test;
 
 import java.util.ArrayList;

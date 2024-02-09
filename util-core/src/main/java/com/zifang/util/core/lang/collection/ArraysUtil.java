@@ -1309,9 +1309,6 @@ public class ArraysUtil {
 
     /**
      * 判断数组是否 不为空
-     *
-     * @param array
-     * @return boolean
      */
     public static <T> boolean isNotEmptyArray(T[] array) {
         return array != null && array.length > 0;
