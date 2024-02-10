@@ -57,9 +57,12 @@ public class Nums {
         return null;
     }
 
-    // # 创建数组且用0填充
+    // #
     // print(np.zeros((3,5),dtype=np.int)) # dtype可以将元素变成整数
-    public static Num zeros(Object[] shapes, DType dType){
+    /**
+     * 创建数组且用0填充
+     * */
+    public static Num zeros(Integer[] shapes, DType dType){
         return null;
     }
 
