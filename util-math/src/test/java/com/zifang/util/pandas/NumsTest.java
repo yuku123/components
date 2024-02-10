@@ -16,4 +16,6 @@ public class NumsTest {
         assert ArraysUtil.isDeeplyEqual(new Object[]{3,2,2},num.shape());
         assert num.size() == 8;
     }
+
+
 }

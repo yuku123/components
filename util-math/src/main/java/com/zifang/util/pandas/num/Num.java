@@ -2,9 +2,12 @@ package com.zifang.util.pandas.num;
 
 import com.zifang.util.core.lang.collection.ArraysUtil;
 
+import java.util.Arrays;
+
 public class Num {
 
     private Object array;
+    private DType dType;
 
     public Num(Object array){
         if(!array.getClass().isArray()){
@@ -29,12 +32,6 @@ public class Num {
         }
         return dim;
     }
-
-
-//    /** 捕获最终维度数据 */
-//    public Object[] slice(){
-//
-//    }
 
     /**
      * 数组的维度，对于n行m列的数组 -> (n1,n2,n3,m)
@@ -92,8 +89,8 @@ public class Num {
     /**
      * ar的类型，数值的数据类型
      * */
-    public void dType(){
-
+    public DType dType(){
+        return dType;
     }
 
     /**
@@ -104,7 +101,7 @@ public class Num {
     }
 
     // resize在数值不一致时会进行调整，不用像reshape一样数据数量严格对应
-    public void reshape(int x, int y, int c){
+    public void reshape(int ... r){
 
     }
 
@@ -164,6 +161,6 @@ public class Num {
 
     @Override
     public String toString(){
-        return null;
+        return Arrays.deepToString((Object[])array);
     }
 }
