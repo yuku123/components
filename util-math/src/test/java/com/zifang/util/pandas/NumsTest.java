@@ -22,6 +22,7 @@ public class NumsTest {
     public void test2(){
         Num num = Nums.zeros(new Integer[]{2,2},null);
         System.out.println(num);
+        System.out.println();
     }
 
 
