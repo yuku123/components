@@ -27,9 +27,7 @@ public class ChannelUtil {
      * may result in data copying, but minimizes system calls.  It also
      * requires a cleanup loop to make sure all the data gets sent.
      */
-    private static void channelCopy1(ReadableByteChannel src,
-                                     WritableByteChannel dest)
-            throws IOException {
+    private static void channelCopy1(ReadableByteChannel src, WritableByteChannel dest) throws IOException {
         ByteBuffer buffer = ByteBuffer.allocateDirect(16 * 1024);
 
         while (src.read(buffer) != -1) {

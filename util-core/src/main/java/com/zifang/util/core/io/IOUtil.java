@@ -1,9 +1,8 @@
 package com.zifang.util.core.io;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import com.zifang.util.core.lang.StringUtil;
+
+import java.io.*;
 
 /**
  * @author zifang
@@ -14,23 +13,87 @@ public class IOUtil {
 
     private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
 
-    public static byte[] read(InputStream inputStream) throws IOException {
-        try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int num = inputStream.read(buffer);
-            while (num != -1) {
-                baos.write(buffer, 0, num);
-                num = inputStream.read(buffer);
+    public static String read(InputStream in, String charsetName) throws IOException {
+        FastByteArrayOutputStream out = read(in);
+        return StringUtil.isBlank(charsetName) ? out.toString() : out.toString(charsetName);
+    }
+
+
+    /**
+     * 从流中读取内容，读到输出流中，读取完毕后并不关闭流
+     *
+     * @param in 输入流
+     * @return 输出流
+     */
+    public static FastByteArrayOutputStream read(InputStream in) throws IOException {
+        return read(in, true);
+    }
+
+    /**
+     * 从流中读取内容，读到输出流中，读取完毕后并不关闭流
+     *
+     * @param in      输入流
+     * @param isClose 读取完毕后是否关闭流
+     * @return 输出流
+     * @since 5.5.3
+     */
+    public static FastByteArrayOutputStream read(InputStream in, boolean isClose) throws IOException {
+        final FastByteArrayOutputStream out;
+        if(in instanceof FileInputStream){
+            // 文件流的长度是可预见的，此时直接读取效率更高
+            try {
+                out = new FastByteArrayOutputStream(in.available());
+            } catch (IOException e) {
+                throw e;
             }
-            baos.flush();
-            return baos.toByteArray();
+        } else{
+            out = new FastByteArrayOutputStream();
+        }
+        try {
+            copy(in, out);
         } finally {
-            if (inputStream != null) {
-                inputStream.close();
+            if (isClose) {
+                close(in);
+            }
+        }
+        return out;
+    }
+
+    /**
+     * 关闭<br>
+     * 关闭失败不会抛出异常
+     *
+     * @param closeable 被关闭的对象
+     */
+    public static void close(Closeable closeable) {
+        if (null != closeable) {
+            try {
+                closeable.close();
+            } catch (Exception e) {
+                // 静默关闭
             }
         }
     }
+
+//
+//    public static byte[] read(InputStream inputStream) throws IOException {
+//        try {
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            byte[] buffer = new byte[1024];
+//            int num = inputStream.read(buffer);
+//            while (num != -1) {
+//                baos.write(buffer, 0, num);
+//                num = inputStream.read(buffer);
+//            }
+//            baos.flush();
+//            return baos.toByteArray();
+//        } finally {
+//            if (inputStream != null) {
+//                inputStream.close();
+//            }
+//        }
+//    }
+
 
     public static int copy(final InputStream input, final OutputStream output) throws IOException {
         final long count = copyLarge(input, output);

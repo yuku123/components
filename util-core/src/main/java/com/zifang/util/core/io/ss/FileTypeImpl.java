@@ -50,14 +50,7 @@ public class FileTypeImpl {
         FILE_TYPE_MAP.put("mid", "4D546864");  //MIDI (mid)
     }
 
-    /**
-     * Created on 2010-7-1
-     * <p>Discription:[getFileByFile,获取文件类型,包括图片,若格式不是已配置的,则返回null]</p>
-     *
-     * @param file
-     * @return fileType
-     */
-    public final static String getFileType(File file) {
+    public static String getFileType(File file) {
         String filetype = null;
         byte[] b = new byte[50];
         try (
@@ -72,15 +65,7 @@ public class FileTypeImpl {
         return filetype;
     }
 
-    /**
-     * Created on 2010-7-1
-     * <p>Discription:[getFileTypeByStream]</p>
-     *
-     * @param b
-     * @return fileType
-     * @author:[shixing_11@sina.com]
-     */
-    public final static String getFileTypeByStream(byte[] b) {
+    public static String getFileTypeByStream(byte[] b) {
         String filetypeHex = String.valueOf(getFileHexString(b));
         Iterator<Map.Entry<String, String>> entryiterator = FILE_TYPE_MAP.entrySet().iterator();
         while (entryiterator.hasNext()) {
@@ -101,7 +86,7 @@ public class FileTypeImpl {
      * @return fileTypeHex
      * @author:[shixing_11@sina.com]
      */
-    public final static String getFileHexString(byte[] b) {
+    public static String getFileHexString(byte[] b) {
         StringBuilder stringBuilder = new StringBuilder();
         if (b == null || b.length <= 0) {
             return null;

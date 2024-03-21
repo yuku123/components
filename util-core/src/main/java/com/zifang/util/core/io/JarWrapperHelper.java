@@ -1,4 +1,4 @@
-package com.zifang.util.core.io.jar;
+package com.zifang.util.core.io;
 
 //import org.apache.commons.io.IOUtils;
 //import org.springframework.util.FileCopyUtils;

@@ -17,21 +17,15 @@ public final class PropertiesUtil {
 
     /**
      * 从系统属性文件中获取相应的值
-     *
-     * @param key key
-     * @return 返回value
      */
-    public final static String key(String key) {
+    public static String key(String key) {
         return System.getProperty(key);
     }
 
     /**
      * 根据Key读取Value
-     *
-     * @param filePath 属性文件
-     * @param key      需要读取的属性
      */
-    public final static String getValueByKey(String filePath, String key) {
+    public static String getValueByKey(String filePath, String key) {
         Properties pps = new Properties();
         try (InputStream in = new BufferedInputStream(new FileInputStream(filePath))) {
             pps.load(in);
@@ -57,7 +51,7 @@ public final class PropertiesUtil {
 //        }
 //    }
 
-    public final static Map<String, String> properties(InputStream in) {
+    public static Map<String, String> properties(InputStream in) {
         Map<String, String> map = new HashMap<>();
         Properties pps = new Properties();
         try {
@@ -76,11 +70,8 @@ public final class PropertiesUtil {
 
     /**
      * 读取Properties的全部信息
-     *
-     * @param filePath 读取的属性文件
-     * @return 返回所有的属性 key:valu
      */
-    public final static Map<String, String> GetAllProperties(String filePath) throws IOException {
+    public static Map<String, String> GetAllProperties(String filePath) throws IOException {
         Map<String, String> map = new HashMap<>();
         Properties pps = new Properties();
         try (InputStream in = new BufferedInputStream(new FileInputStream(filePath))) {
@@ -93,12 +84,8 @@ public final class PropertiesUtil {
 
     /**
      * 写入Properties信息
-     *
-     * @param filePath 写入的属性文件
-     * @param pKey     属性名称
-     * @param pValue   属性值
      */
-    public final static void WriteProperties(String filePath, String pKey, String pValue) throws IOException {
+    public static void WriteProperties(String filePath, String pKey, String pValue) throws IOException {
         Properties props = new Properties();
 
         props.load(new FileInputStream(filePath));

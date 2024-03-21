@@ -1,8 +1,5 @@
 package com.zifang.util.core.io;
 
-//import com.zifang.util.core.util.DateUtils;
-//import com.zifang.util.core.lang.RandomUtil;
-
 import com.zifang.util.core.io.ss.FileTypeImpl;
 import com.zifang.util.core.lang.regex.RegexUtil;
 import com.zifang.util.core.lang.validator.Checker;
@@ -728,6 +725,25 @@ public class FileUtil {
             }
         }
         return true;
+    }
+
+    public static String readString(URL url, String charset) throws  IOException{
+        if (url == null) {
+            throw new NullPointerException("Empty url provided!");
+        }
+
+        InputStream in = null;
+        try {
+            in = url.openStream();
+            byte[] b = new byte[in.available()];
+            in.read(b);
+            return new String(b);
+//            return IOUtil.read(in, charset);
+        } catch (IOException e) {
+            throw e;
+        } finally {
+            IOUtil.close(in);
+        }
     }
 
     /**
@@ -2651,13 +2667,5 @@ public class FileUtil {
             }
         }
         return list;
-    }
-
-    public static void main(String[] args) throws IOException {
-        String s = "/Users/zifang/workplace/idea_workplace/components/util-workflow/src/main/java/workflow.json";
-
-        String json = FileUtil.getFileContent(s);
-        System.out.println(json);
-
     }
 }

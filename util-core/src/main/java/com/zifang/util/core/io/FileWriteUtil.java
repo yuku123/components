@@ -16,7 +16,6 @@ public class FileWriteUtil {
         WRITER
     }
 
-
     private Object output;
 
     private WriteType currentType;

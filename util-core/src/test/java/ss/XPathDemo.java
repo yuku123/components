@@ -1,4 +1,4 @@
-package com.zifang.util.core.io.xpath;
+package ss;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -12,6 +12,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 public class XPathDemo {
+
     private static Document doc;
     private static XPath xpath;
 

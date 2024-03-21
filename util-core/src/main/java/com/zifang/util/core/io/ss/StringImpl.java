@@ -4,6 +4,7 @@ package com.zifang.util.core.io.ss;
  * 对比俩个字符串的相似度
  */
 public class StringImpl {
+
     //第一种实现方式
     private static String longestCommonSubstring(String strA, String strB) {
         char[] chars_strA = strA.toCharArray();

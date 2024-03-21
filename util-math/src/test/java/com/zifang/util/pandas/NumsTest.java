@@ -1,6 +1,6 @@
 package com.zifang.util.pandas;
 
-import com.zifang.util.core.lang.collection.ArraysUtil;
+import com.zifang.util.core.lang.ArraysUtil;
 import com.zifang.util.pandas.num.Num;
 import com.zifang.util.pandas.num.Nums;
 import org.junit.Test;

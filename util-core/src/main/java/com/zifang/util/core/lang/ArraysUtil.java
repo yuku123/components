@@ -1,4 +1,4 @@
-package com.zifang.util.core.lang.collection;
+package com.zifang.util.core.lang;
 
 
 import java.lang.reflect.Array;
@@ -1299,9 +1299,6 @@ public class ArraysUtil {
 
     /**
      * 判断数组是否 为空
-     *
-     * @param array
-     * @return boolean
      */
     private static <T> boolean isEmptyArray(T[] array) {
         return array == null || array.length == 0;
