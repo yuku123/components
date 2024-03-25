@@ -1,11 +1,15 @@
-package js;
+package com.zifang.util.expression;
+
+import org.junit.Test;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-public class Test {
-    public static void main(String[] args) throws ScriptException {
+public class Tests {
+
+    @Test
+    public void test001() throws ScriptException {
         ScriptEngine engine = new ScriptEngineManager().getEngineByExtension("js");
         engine.eval("a= 1+1");
         System.out.println(engine.get("a"));
