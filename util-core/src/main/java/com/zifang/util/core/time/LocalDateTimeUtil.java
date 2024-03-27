@@ -118,7 +118,7 @@ public class LocalDateTimeUtil {
      * @param: [localDateTime]
      * @return: List<LocalDateTime>
      * @author: ctt
-     * @date:  2022/1/14 下午4:02
+     * @date: 2022/1/14 下午4:02
      */
     public static List<LocalDateTime> getLastWeekTimeInterval(LocalDateTime localDateTime) {
         List<LocalDateTime> list = new ArrayList<>();
@@ -135,7 +135,7 @@ public class LocalDateTimeUtil {
      * @param: [localDateTime]
      * @return: List<LocalDateTime>
      * @author: ctt
-     * @date:  2022/1/14 下午4:02
+     * @date: 2022/1/14 下午4:02
      */
     public static List<LocalDateTime> getWeekTimeInterval(LocalDateTime localDateTime) {
         List<LocalDateTime> list = new ArrayList<>();
@@ -161,17 +161,17 @@ public class LocalDateTimeUtil {
      * @param: [localDateTime]
      * @return: List<LocalDateTime>
      * @author: ctt
-     * @date:  2022/1/14 下午4:02
+     * @date: 2022/1/14 下午4:02
      */
     public static List<LocalDateTime> getLastMonthTimeInterval(LocalDateTime localDateTime) {
         List<LocalDateTime> list = new ArrayList<>();
         LocalDateTime firstDay = null;
         LocalDateTime lastDay = null;
-        if(localDateTime.getMonthValue() == 1){
-            firstDay = LocalDateTime.of(localDateTime.getYear() -1, 12, 1, 0, 0, 0);
+        if (localDateTime.getMonthValue() == 1) {
+            firstDay = LocalDateTime.of(localDateTime.getYear() - 1, 12, 1, 0, 0, 0);
             lastDay = firstDay.with(TemporalAdjusters.lastDayOfMonth()).withHour(23).withMinute(59).withSecond(59);
         } else {
-            firstDay = LocalDateTime.of(localDateTime.getYear(), localDateTime.getMonthValue() - 1, 1, 0,0, 0);
+            firstDay = LocalDateTime.of(localDateTime.getYear(), localDateTime.getMonthValue() - 1, 1, 0, 0, 0);
             lastDay = firstDay.with(TemporalAdjusters.lastDayOfMonth()).withHour(23).withMinute(59).withSecond(59);
         }
         list.add(firstDay);

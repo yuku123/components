@@ -60,7 +60,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 
     public void writeTo(OutputStream out) throws IOException {
         final int index = buffer.index();
-        if(index < 0){
+        if (index < 0) {
             // 无数据写出
             return;
         }
@@ -79,6 +79,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 
     /**
      * 转为Byte数组
+     *
      * @return Byte数组
      */
     public byte[] toByteArray() {
@@ -93,6 +94,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 
     /**
      * 转为字符串
+     *
      * @param charsetName 编码
      * @return 字符串
      */
@@ -103,6 +105,7 @@ public class FastByteArrayOutputStream extends OutputStream {
 
     /**
      * 转为字符串
+     *
      * @param charset 编码,null表示默认编码
      * @return 字符串
      */

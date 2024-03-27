@@ -3,7 +3,6 @@ package com.zifang.util.core.lang;
 import com.zifang.util.core.constant.Ascii;
 import com.zifang.util.core.constant.HtmlEntities;
 import com.zifang.util.core.lang.regex.Patterns;
-import com.zifang.util.core.lang.validator.Checker;
 import com.zifang.util.core.lang.validator.Validator;
 
 import java.math.BigDecimal;
@@ -25,6 +24,7 @@ public class StringUtil {
     private static final Predicate<String> NULL_STRING_PREDICATE = Objects::isNull;
     private static final Supplier<String> NULL_STRING_MSG_SUPPLIER = () -> "'value' should be not null.";
     private static final String[] EMPTY_ARRAY = new String[0];
+    private static final char SEPARATOR = '_';
 
 
     public static boolean isBlank(String str) {
@@ -36,13 +36,56 @@ public class StringUtil {
         }
 
         for (int i = 0; i < length; i++) {
-            // 只要有一个非空字符即为非空字符串
-            if (false == CharUtil.isBlankChar(str.charAt(i))) {
+            if (!CharUtil.isBlankChar(str.charAt(i))) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    /**
+     * 判断字符串是否全部都为小写
+     */
+    public static boolean isAllLowerCase(String value) {
+        if (value == null || "".equals(value)) {
+            return false;
+        }
+        for (int i = 0; i < value.length(); i++) {
+            if (!Character.isLowerCase(value.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 判断字符串是否全部大写
+     */
+    public static boolean isAllUpperCase(String value) {
+        if (value == null || "".equals(value)) {
+            return false;
+        }
+        for (int i = 0; i < value.length(); i++) {
+            if (!Character.isUpperCase(value.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 判断字符串是否为空
+     */
+    public static boolean isEmpty(CharSequence cs) {
+        return cs == null || cs.length() == 0;
+    }
+
+    /**
+     * 判断字符串是否不为空
+     */
+    public static boolean isNotEmptyString(String string) {
+        return string != null && string.length() > 0;
     }
 
     /**
@@ -95,7 +138,7 @@ public class StringUtil {
         return containsAny(value, needles, false);
     }
 
-    public static boolean containsAny(final String value, final String[] needles, final boolean caseSensitive) {
+    public static boolean containsAny(String value, String[] needles, boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return Arrays.stream(needles).anyMatch(needle -> contains(value, needle, caseSensitive));
     }
@@ -107,7 +150,7 @@ public class StringUtil {
         return countSubstr(value, subStr, true, false);
     }
 
-    public static long countSubstr(final String value, final String subStr, final boolean caseSensitive, boolean allowOverlapping) {
+    public static long countSubstr(String value, String subStr, boolean caseSensitive, boolean allowOverlapping) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return countSubstr(caseSensitive ? value : value.toLowerCase(), caseSensitive ? subStr : subStr.toLowerCase(),
                 allowOverlapping, 0L);
@@ -118,13 +161,13 @@ public class StringUtil {
         return endsWith(value, search, value.length(), true);
     }
 
-    public static boolean endsWith(final String value, final String search, final boolean caseSensitive) {
+    public static boolean endsWith(String value, String search, boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return endsWith(value, search, value.length(), caseSensitive);
     }
 
-    public static boolean endsWith(final String value, final String search, final int position,
-                                   final boolean caseSensitive) {
+    public static boolean endsWith(String value, String search, int position,
+                                   boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         int remainingLength = position - search.length();
         if (caseSensitive) {
@@ -133,11 +176,11 @@ public class StringUtil {
         return value.toLowerCase().indexOf(search.toLowerCase(), remainingLength) > -1;
     }
 
-    public static String ensureLeft(final String value, final String prefix) {
+    public static String ensureLeft(String value, String prefix) {
         return ensureLeft(value, prefix, true);
     }
 
-    public static String ensureLeft(final String value, final String prefix, final boolean caseSensitive) {
+    public static String ensureLeft(String value, String prefix, boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (caseSensitive) {
             return value.startsWith(prefix) ? value : prefix + value;
@@ -147,11 +190,11 @@ public class StringUtil {
         return _value.startsWith(_prefix) ? value : prefix + value;
     }
 
-    public static String ensureRight(final String value, final String suffix) {
+    public static String ensureRight(String value, String suffix) {
         return ensureRight(value, suffix, true);
     }
 
-    public static String ensureRight(final String value, final String suffix, boolean caseSensitive) {
+    public static String ensureRight(String value, String suffix, boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return endsWith(value, suffix, caseSensitive) ? value : append(value, suffix);
     }
@@ -161,52 +204,38 @@ public class StringUtil {
         return new String(Base64.getDecoder().decode(value), StandardCharsets.UTF_8);
     }
 
-    public static String base64Encode(final String value) {
+    public static String base64Encode(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8));
     }
 
-    /**
-     * Convert binary unicode (16 digits) string to string chars
-     *
-     * @param value The value to decode
-     * @return The decoded String
-     */
-    public static String binDecode(final String value) {
+    public static String binDecode(String value) {
         return decode(value, 16, 2);
     }
 
-    /**
-     * Convert string chars to binary unicode (16 digits)
-     *
-     * @param value The value to encode
-     * @return String in binary format
-     */
-    public static String binEncode(final String value) {
+    public static String binEncode(String value) {
         return encode(value, 16, 2);
     }
 
-    /**
-     * Convert decimal unicode (5 digits) string to string chars
-     *
-     * @param value The value to decode
-     * @return decoded String
-     */
-    public static String decDecode(final String value) {
+    public static String decDecode(String value) {
         return decode(value, 5, 10);
     }
 
-    /**
-     * Convert string chars to decimal unicode (5 digits)
-     *
-     * @param value The value to encode
-     * @return Encoded value
-     */
-    public static String decEncode(final String value) {
+    public static String decEncode(String value) {
         return encode(value, 5, 10);
     }
 
+    public static String decode(String value, int digits, int radix) {
+        Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
+        return Arrays.stream(value.split("(?<=\\G.{" + digits + "})"))
+                .map(data -> String.valueOf(Character.toChars(Integer.parseInt(data, radix))))
+                .collect(joining());
+    }
 
+    public static String encode(String value, int digits, int radix) {
+        Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
+        return value.chars().mapToObj(ch -> leftPad(Integer.toString(ch, radix), "0", digits)).collect(joining());
+    }
 
     /**
      * Returns the first n chars of String
@@ -215,7 +244,7 @@ public class StringUtil {
      * @param n     Number of chars to return
      * @return The first n chars
      */
-    public static Optional<String> first(final String value, final int n) {
+    public static Optional<String> first(String value, int n) {
         return Optional.ofNullable(value).filter(v -> !v.isEmpty()).map(v -> v.substring(0, n));
     }
 
@@ -225,7 +254,7 @@ public class StringUtil {
      * @param value The input String
      * @return The first char
      */
-    public static Optional<String> head(final String value) {
+    public static Optional<String> head(String value) {
         return first(value, 1);
     }
 
@@ -236,7 +265,7 @@ public class StringUtil {
      * @param params Parameters to be described in the string
      * @return The formatted string
      */
-    public static String format(final String value, String... params) {
+    public static String format(String value, String... params) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         Pattern p = Pattern.compile("\\{(\\w+)}");
         Matcher m = p.matcher(value);
@@ -257,7 +286,7 @@ public class StringUtil {
      * @param value The value to decode
      * @return The decoded String
      */
-    public static String hexDecode(final String value) {
+    public static String hexDecode(String value) {
         return decode(value, 4, 16);
     }
 
@@ -267,7 +296,7 @@ public class StringUtil {
      * @param value The value to encode
      * @return String in hexadecimal format.
      */
-    public static String hexEncode(final String value) {
+    public static String hexEncode(String value) {
         return encode(value, 4, 16);
     }
 
@@ -281,7 +310,7 @@ public class StringUtil {
      * @param caseSensitive boolean to indicate whether search should be case sensitive
      * @return Returns position of first occurrence of needle.
      */
-    public static int indexOf(final String value, final String needle, int offset, boolean caseSensitive) {
+    public static int indexOf(String value, String needle, int offset, boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (caseSensitive) {
             return value.indexOf(needle, offset);
@@ -296,7 +325,7 @@ public class StringUtil {
      * @param second The second String
      * @return true if first and second are not equal false otherwise
      */
-    public static boolean unequal(final String first, final String second) {
+    public static boolean unequal(String first, String second) {
         return !Objects.equals(first, second);
     }
 
@@ -308,7 +337,7 @@ public class StringUtil {
      * @return true if first and second are not equal false otherwise
      * @deprecated use unequal instead
      */
-    public static boolean inequal(final String first, final String second) {
+    public static boolean inequal(String first, String second) {
         return !Objects.equals(first, second);
     }
 
@@ -320,7 +349,7 @@ public class StringUtil {
      * @param index  The index to insert substr
      * @return String with substr added
      */
-    public static String insert(final String value, final String substr, final int index) {
+    public static String insert(String value, String substr, int index) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         Validator.validate(substr, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (index > value.length()) {
@@ -335,7 +364,7 @@ public class StringUtil {
      * @param value The input String
      * @return true if String is uppercase false otherwise
      */
-    public static boolean isUpperCase(final String value) {
+    public static boolean isUpperCase(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         for (int i = 0; i < value.length(); i++) {
             if (Character.isLowerCase(value.charAt(i))) {
@@ -351,7 +380,7 @@ public class StringUtil {
      * @param value The input String
      * @return true if String is lowercase false otherwise
      */
-    public static boolean isLowerCase(final String value) {
+    public static boolean isLowerCase(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         for (int i = 0; i < value.length(); i++) {
             if (Character.isUpperCase(value.charAt(i))) {
@@ -368,7 +397,7 @@ public class StringUtil {
      * @param n     Number of chars to return
      * @return n Last characters
      */
-    public static String last(final String value, int n) {
+    public static String last(String value, int n) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (n > value.length()) {
             return value;
@@ -384,7 +413,7 @@ public class StringUtil {
      * @param length Length of the String we want
      * @return Padded String
      */
-    public static String leftPad(final String value, final String pad, final int length) {
+    public static String leftPad(String value, String pad, int length) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         Validator.validate(pad, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (value.length() > length) {
@@ -399,7 +428,7 @@ public class StringUtil {
      * @param value The input String
      * @return true if Object is a String false otherwise
      */
-    public static boolean isString(final Object value) {
+    public static boolean isString(Object value) {
         if (Objects.isNull(value)) {
             throw new IllegalArgumentException("value can't be null");
         }
@@ -414,7 +443,7 @@ public class StringUtil {
      * @param needle The search String
      * @return Return position of the last occurrence of 'needle'.
      */
-    public static int lastIndexOf(final String value, final String needle) {
+    public static int lastIndexOf(String value, String needle) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return lastIndexOf(value, needle, value.length(), true);
     }
@@ -428,7 +457,7 @@ public class StringUtil {
      * @param caseSensitive true or false
      * @return Return position of the last occurrence of 'needle'.
      */
-    public static int lastIndexOf(final String value, final String needle, boolean caseSensitive) {
+    public static int lastIndexOf(String value, String needle, boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return lastIndexOf(value, needle, value.length(), caseSensitive);
     }
@@ -443,8 +472,8 @@ public class StringUtil {
      * @param caseSensitive whether search should be case sensitive
      * @return Return position of the last occurrence of 'needle'.
      */
-    public static int lastIndexOf(final String value, final String needle, final int offset,
-                                  final boolean caseSensitive) {
+    public static int lastIndexOf(String value, String needle, int offset,
+                                  boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         Validator.validate(needle, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (caseSensitive) {
@@ -459,7 +488,7 @@ public class StringUtil {
      * @param value The input String
      * @return String without left border spaces
      */
-    public static String leftTrim(final String value) {
+    public static String leftTrim(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return value.replaceAll("^\\s+", "");
     }
@@ -470,7 +499,7 @@ public class StringUtil {
      * @param value The input String
      * @return Length of the String
      */
-    public static int length(final String value) {
+    public static int length(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return value.length();
     }
@@ -482,7 +511,7 @@ public class StringUtil {
      * @param prepends Strings to prepend
      * @return The prepended String
      */
-    public static String prepend(final String value, final String... prepends) {
+    public static String prepend(String value, String... prepends) {
         return prependArray(value, prepends);
     }
 
@@ -493,7 +522,7 @@ public class StringUtil {
      * @param prepends Strings to prepend
      * @return The prepended String
      */
-    public static String prependArray(final String value, final String[] prepends) {
+    public static String prependArray(String value, String[] prepends) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (prepends == null || prepends.length == 0) {
             return value;
@@ -513,7 +542,7 @@ public class StringUtil {
      * @param prefix String to remove on left
      * @return The String without prefix
      */
-    public static String removeLeft(final String value, final String prefix) {
+    public static String removeLeft(String value, String prefix) {
         return removeLeft(value, prefix, true);
     }
 
@@ -525,7 +554,7 @@ public class StringUtil {
      * @param caseSensitive ensure case sensitivity
      * @return The String without prefix
      */
-    public static String removeLeft(final String value, final String prefix, final boolean caseSensitive) {
+    public static String removeLeft(String value, String prefix, boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         Validator.validate(prefix, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (caseSensitive) {
@@ -540,7 +569,7 @@ public class StringUtil {
      * @param value The input String
      * @return String without non-word characters
      */
-    public static String removeNonWords(final String value) {
+    public static String removeNonWords(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return value.replaceAll("[^\\w]+", "");
     }
@@ -552,7 +581,7 @@ public class StringUtil {
      * @param suffix The suffix to remove
      * @return The String without suffix!
      */
-    public static String removeRight(final String value, final String suffix) {
+    public static String removeRight(String value, String suffix) {
         return removeRight(value, suffix, true);
     }
 
@@ -564,7 +593,7 @@ public class StringUtil {
      * @param caseSensitive whether search should be case sensitive or not
      * @return The String without suffix!
      */
-    public static String removeRight(final String value, final String suffix, final boolean caseSensitive) {
+    public static String removeRight(String value, String suffix, boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         Validator.validate(suffix, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return endsWith(value, suffix, caseSensitive) ? value
@@ -577,7 +606,7 @@ public class StringUtil {
      * @param value The input String
      * @return String without spaces
      */
-    public static String removeSpaces(final String value) {
+    public static String removeSpaces(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return value.replaceAll("\\s", "");
     }
@@ -589,7 +618,7 @@ public class StringUtil {
      * @param multiplier Number of repeats
      * @return The String repeated
      */
-    public static String repeat(final String value, final int multiplier) {
+    public static String repeat(String value, int multiplier) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return Stream.generate(() -> value).limit(multiplier).collect(joining());
     }
@@ -603,8 +632,7 @@ public class StringUtil {
      * @param caseSensitive whether search should be case sensitive or not
      * @return String replaced with 'newvalue'.
      */
-    public static String replace(final String value, final String search, final String newValue,
-                                 final boolean caseSensitive) {
+    public static String replace(String value, String search, String newValue, boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         Validator.validate(search, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (caseSensitive) {
@@ -614,16 +642,6 @@ public class StringUtil {
                 .replaceAll(Matcher.quoteReplacement(newValue));
     }
 
-    /**
-     * Reverse the input String
-     *
-     * @param value The input String
-     * @return Reversed String
-     */
-    public static String reverse(final String value) {
-        Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        return new StringBuilder(value).reverse().toString();
-    }
 
     /**
      * Returns a new string of a given length such that the ending of the string is padded.
@@ -633,7 +651,7 @@ public class StringUtil {
      * @param pad    Character to repeat
      * @return Right padded String
      */
-    public static String rightPad(final String value, String pad, final int length) {
+    public static String rightPad(String value, String pad, int length) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (value.length() > length) {
             return value;
@@ -647,7 +665,7 @@ public class StringUtil {
      * @param value The String
      * @return String without right boarders spaces.
      */
-    public static String rightTrim(final String value) {
+    public static String rightTrim(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return value.replaceAll("\\s+$", "");
     }
@@ -660,7 +678,7 @@ public class StringUtil {
      * @param filler String that will be added to the end of the return string. Example: '...'
      * @return The truncated String
      */
-    public static String safeTruncate(final String value, final int length, final String filler) {
+    public static String safeTruncate(String value, int length, String filler) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (length == 0) {
             return "";
@@ -684,24 +702,12 @@ public class StringUtil {
     }
 
     /**
-     * Alias to String split function. Defined only for completeness.
-     *
-     * @param value The input String
-     * @param regex The delimiting regular expression
-     * @return String Array
-     */
-    public static String[] split(final String value, final String regex) {
-        Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        return value.split(regex);
-    }
-
-    /**
      * Splits a String to words
      *
      * @param value The input String
      * @return Words Array
      */
-    public static String[] words(final String value) {
+    public static String[] words(String value) {
         return words(value, "\\s+");
     }
 
@@ -712,7 +718,7 @@ public class StringUtil {
      * @param delimiter delimiter for splitting input String
      * @return words array
      */
-    public static String[] words(final String value, final String delimiter) {
+    public static String[] words(String value, String delimiter) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return value.split(delimiter);
     }
@@ -726,7 +732,7 @@ public class StringUtil {
      * @param filler Value that will be added to the end of the return string. Example: '...'
      * @return String truncated unsafely.
      */
-    public static String truncate(final String value, final int length, final String filler) {
+    public static String truncate(String value, int length, String filler) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         if (length == 0) {
             return "";
@@ -743,7 +749,7 @@ public class StringUtil {
      * @param encodedHtml The encoded HTML
      * @return The decoded HTML
      */
-    public static String htmlDecode(final String encodedHtml) {
+    public static String htmlDecode(String encodedHtml) {
         Validator.validate(encodedHtml, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String[] entities = encodedHtml.split("&\\W+;");
         return Arrays.stream(entities).map(e -> HtmlEntities.decodedEntities.get(e)).collect(joining());
@@ -755,7 +761,7 @@ public class StringUtil {
      * @param html The HTML to encode
      * @return The encoded data
      */
-    public static String htmlEncode(final String html) {
+    public static String htmlEncode(String html) {
         Validator.validate(html, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return html.chars().mapToObj(c -> "\\u" + String.format("%04x", c).toUpperCase())
                 .map(HtmlEntities.encodedEntities::get).collect(joining());
@@ -773,7 +779,7 @@ public class StringUtil {
      * @param end   End of slice.
      * @return The String sliced!
      */
-    public static String slice(final String value, int begin, int end) {
+    public static String slice(String value, int begin, int end) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return value.substring(begin, end);
     }
@@ -784,7 +790,7 @@ public class StringUtil {
      * @param value The value to slugify
      * @return The slugified value
      */
-    public static String slugify(final String value) {
+    public static String slugify(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String transliterated = transliterate(collapseWhitespace(value.trim().toLowerCase()));
         return Arrays.stream(words(transliterated.replace("&", "-and-"), "\\W+")).collect(joining("-"));
@@ -796,7 +802,7 @@ public class StringUtil {
      * @param value The input String
      * @return String without non valid characters.
      */
-    public static String transliterate(final String value) {
+    public static String transliterate(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String result = value;
         Set<Map.Entry<String, List<String>>> entries = Ascii.ascii.entrySet();
@@ -816,7 +822,7 @@ public class StringUtil {
      * @param suffix suffix
      * @return The String with surround substrs!
      */
-    public static String surround(final String value, final String prefix, final String suffix) {
+    public static String surround(String value, String prefix, String suffix) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String _prefix = Optional.ofNullable(prefix).orElse("");
         return append(_prefix, value, Optional.ofNullable(suffix).orElse(_prefix));
@@ -828,7 +834,7 @@ public class StringUtil {
      * @param value The input String
      * @return String in camelCase.
      */
-    public static String toCamelCase(final String value) {
+    public static String toCamelCase(String value) {
         if (value == null || value.length() == 0) {
             return "";
         }
@@ -842,7 +848,7 @@ public class StringUtil {
      * @param value The input String
      * @return String in StudlyCaps.
      */
-    public static String toStudlyCase(final String value) {
+    public static String toStudlyCase(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String[] words = collapseWhitespace(value.trim()).split("\\s*(_|-|\\s)\\s*");
         return Arrays.stream(words).filter(w -> !w.trim().isEmpty()).map(StringUtil::upperFirst).collect(joining());
@@ -854,7 +860,7 @@ public class StringUtil {
      * @param value The input String
      * @return String tail
      */
-    public static Optional<String> tail(final String value) {
+    public static Optional<String> tail(String value) {
         return Optional.ofNullable(value).filter(v -> !v.isEmpty()).map(v -> last(v, v.length() - 1));
     }
 
@@ -865,7 +871,7 @@ public class StringUtil {
      * @param chr   string to use
      * @return String decamelized.
      */
-    public static String toDecamelize(final String value, final String chr) {
+    public static String toDecamelize(String value, String chr) {
         String camelCasedString = toCamelCase(value);
         String[] words = camelCasedString.split("(?=\\p{Upper})");
         return Arrays.stream(words).map(String::toLowerCase).collect(joining(Optional.ofNullable(chr).orElse(" ")));
@@ -877,7 +883,7 @@ public class StringUtil {
      * @param value The input String
      * @return String in kebab-case.
      */
-    public static String toKebabCase(final String value) {
+    public static String toKebabCase(String value) {
         return toDecamelize(value, "-");
     }
 
@@ -887,21 +893,10 @@ public class StringUtil {
      * @param value The input String
      * @return String in snake_case.
      */
-    public static String toSnakeCase(final String value) {
+    public static String toSnakeCase(String value) {
         return toDecamelize(value, "_");
     }
 
-    public static String decode(final String value, final int digits, final int radix) {
-        Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        return Arrays.stream(value.split("(?<=\\G.{" + digits + "})"))
-                .map(data -> String.valueOf(Character.toChars(Integer.parseInt(data, radix))))
-                .collect(joining());
-    }
-
-    public static String encode(final String value, final int digits, final int radix) {
-        Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        return value.chars().mapToObj(ch -> leftPad(Integer.toString(ch, radix), "0", digits)).collect(joining());
-    }
 
     /**
      * Converts the first character of string to upper case and the remaining to lower case.
@@ -909,7 +904,7 @@ public class StringUtil {
      * @param input The string to capitalize
      * @return The capitalized string
      */
-    public static String capitalize(final String input) throws IllegalArgumentException {
+    public static String capitalize(String input) throws IllegalArgumentException {
         if (input == null) {
             throw new IllegalArgumentException("input can't be null");
         }
@@ -925,7 +920,7 @@ public class StringUtil {
      * @param input The string to convert
      * @return The converted string
      */
-    public static String lowerFirst(final String input) throws IllegalArgumentException {
+    public static String lowerFirst(String input) throws IllegalArgumentException {
         if (input == null) {
             throw new IllegalArgumentException("input can't be null");
         }
@@ -943,7 +938,7 @@ public class StringUtil {
      * @param encloser String which encloses input String
      * @return true if enclosed false otherwise
      */
-    public static boolean isEnclosedBetween(final String input, final String encloser) {
+    public static boolean isEnclosedBetween(String input, String encloser) {
         return isEnclosedBetween(input, encloser, encloser);
     }
 
@@ -955,7 +950,7 @@ public class StringUtil {
      * @param rightEncloser String which encloses input String at the right end
      * @return true if enclosed false otherwise
      */
-    public static boolean isEnclosedBetween(final String input, final String leftEncloser, String rightEncloser) {
+    public static boolean isEnclosedBetween(String input, String leftEncloser, String rightEncloser) {
         if (input == null) {
             throw new IllegalArgumentException("input can't be null");
         }
@@ -988,9 +983,9 @@ public class StringUtil {
      * @param chars The characters to trim.
      * @return Returns the trimmed string.
      */
-    public static Optional<String> trimStart(final String input, String... chars) {
+    public static Optional<String> trimStart(String input, String... chars) {
         return Optional.ofNullable(input).filter(v -> !v.isEmpty()).map(v -> {
-            String pattern = String.format("^[%s]+", join(chars, "\\"));
+            String pattern = String.format("^[%s]+", String.join("\\", Arrays.asList(chars)));
             return v.replaceAll(pattern, "");
         });
     }
@@ -1020,7 +1015,7 @@ public class StringUtil {
      * @param input The input string
      * @return the input string in all lower case with underscores between words
      */
-    public static String underscored(final String input) {
+    public static String underscored(String input) {
         if (input == null || input.length() == 0) {
             return "";
         }
@@ -1057,7 +1052,7 @@ public class StringUtil {
      * @param input The input String
      * @return humanized version of String
      */
-    public static String humanize(final String input) {
+    public static String humanize(String input) {
         if (input == null || input.length() == 0) {
             return "";
         }
@@ -1130,7 +1125,7 @@ public class StringUtil {
      * @param input The input String
      * @return Start Case String
      */
-    public static String startCase(final String input) {
+    public static String startCase(String input) {
         Validator.validate(input, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         // split into a word when we encounter a space, or an underscore, or a dash, or a switch from lower to upper case
         String[] words = words(input, "\\s|_|-|(?<=[a-z])(?=[A-Z])");
@@ -1138,11 +1133,10 @@ public class StringUtil {
                 .map(w -> upperFirst(w.toLowerCase())).collect(joining(" "));
     }
 
-    public static String escapeRegExp(final String input) {
+    public static String escapeRegExp(String input) {
         Validator.validate(input, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         return input.replaceAll("[\\\\\\^\\$\\*\\+\\-\\?\\.\\|\\(\\)\\{\\}\\[\\]]", "\\\\$0");
     }
-
 
 
     private static long countSubstr(String value, String subStr, boolean allowOverlapping, long count) {
@@ -1215,10 +1209,6 @@ public class StringUtil {
                 return (new String(padding)).concat(str);
             }
         }
-    }
-
-    public static boolean isEmpty(CharSequence cs) {
-        return cs == null || cs.length() == 0;
     }
 
 
@@ -1296,65 +1286,7 @@ public class StringUtil {
 
 
     /**
-     * 判断字符串是否全部都为小写
-     *
-     * @param value 待判断的字符串
-     * @return
-     */
-    public static boolean isAllLowerCase(String value) {
-        if (value == null || "".equals(value)) {
-            return false;
-        }
-        for (int i = 0; i < value.length(); i++) {
-            if (Character.isLowerCase(value.charAt(i)) == false) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * 判断字符串是否全部大写
-     *
-     * @param value 待判断的字符串
-     * @return
-     */
-    public static boolean isAllUpperCase(String value) {
-        if (value == null || "".equals(value)) {
-            return false;
-        }
-        for (int i = 0; i < value.length(); i++) {
-            if (Character.isUpperCase(value.charAt(i)) == false) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * 判断字符串是否为空
-     *
-     * @param string
-     * @return boolean
-     */
-    public static boolean isEmptyString(String string) {
-        return string == null || string.length() == 0;
-    }
-
-    /**
-     * 判断字符串是否不为空
-     *
-     * @param string
-     * @return boolean
-     */
-    public static boolean isNotEmptyString(String string) {
-        return string != null && string.length() > 0;
-    }
-
-    /**
      * 页面中去除字符串中的空格、回车、换行符、制表符
-     *
-     * @param str 需要处理的字符串
      */
     public static String replaceBlank(String str) {
         if (str != null) {
@@ -1394,43 +1326,9 @@ public class StringUtil {
         return str.toString();
     }
 
-    /**
-     * 截取字符串左侧指定长度的字符串
-     *
-     * @param input 输入字符串
-     * @param count 截取长度
-     * @return 截取字符串
-     */
-    public static String left(String input, int count) {
-        if (isEmpty(input)) {
-            return "";
-        }
-        count = (count > input.length()) ? input.length() : count;
-        return input.substring(0, count);
-    }
-
-    /**
-     * 截取字符串右侧指定长度的字符串
-     *
-     * @param input 输入字符串
-     * @param count 截取长度
-     * @return 截取字符串
-     * Summary 其他编码的有待测试
-     */
-    public static String right(String input, int count) {
-        if (isEmpty(input)) {
-            return "";
-        }
-        count = (count > input.length()) ? input.length() : count;
-        return input.substring(input.length() - count);
-    }
 
     /**
      * 返回俩个字符串共同的前缀
-     *
-     * @param str1
-     * @param str2
-     * @return
      */
     public static String hasPrefix(String str1, String str2) {
         //@TODO-字符串方法实现
@@ -1439,10 +1337,6 @@ public class StringUtil {
 
     /**
      * 返回俩个字符串共同的后缀
-     *
-     * @param str1
-     * @param str2
-     * @return
      */
     public static String hasSuffix(String str1, String str2) {
         //TODO-字符串方法实现
@@ -1471,19 +1365,19 @@ public class StringUtil {
     /**
      * 下划线转驼峰命名
      */
-    public static String toUnderScoreCase(String s) {
-        if (s == null) {
+    public static String toUnderScoreCase(String str) {
+        if (str == null) {
             return null;
         }
         StringBuilder sb = new StringBuilder();
         boolean upperCase = false;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
 
             boolean nextUpperCase = true;
 
-            if (i < (s.length() - 1)) {
-                nextUpperCase = Character.isUpperCase(s.charAt(i + 1));
+            if (i < (str.length() - 1)) {
+                nextUpperCase = Character.isUpperCase(str.charAt(i + 1));
             }
 
             if ((i > 0) && Character.isUpperCase(c)) {
@@ -1501,70 +1395,13 @@ public class StringUtil {
         return sb.toString();
     }
 
-    /**
-     * 下划线
-     */
-    private static final char SEPARATOR = '_';
-
-    /**
-     * 判断是否是空字符串 null和"" 都返回 true
-     *
-     * @param str 判断的字符串
-     * @return 是否有效
-     */
-    public static boolean isEmpty(String str) {
-        return str == null || str.equals("");
-    }
 
     /**
      * 判断字符串不为空
-     *
-     * @param str
-     * @return
      */
     public static boolean isNotEmpty(String str) {
         return str != null && !"".equals(str);
     }
-
-    /**
-     * 把string array or list用给定的符号symbol连接成一个字符串
-     *
-     * @param array  需要处理的字符串数组
-     * @param symbol 链接的符号
-     * @return 处理后的字符串
-     */
-    public static String join(String[] array, String symbol) {
-        String result = "";
-        if (array != null) {
-            for (String temp : array) {
-                if (temp != null && temp.trim().length() > 0) {
-                    result += (temp + symbol);
-                }
-            }
-            if (result.length() > 1 && Checker.valid(symbol)) {
-                result = result.substring(0, result.length() - symbol.length());
-            }
-        }
-        return result;
-    }
-
-
-    /**
-     * 根据指定的字符把源字符串分割成一个list
-     *
-     * @param src     处理的字符串
-     * @param pattern 分割字符串
-     * @return 处理后的list
-     */
-    public static List<String> splitStr(String src, String pattern) {
-        List<String> list = new ArrayList<>();
-        if (src != null) {
-            String[] tt = src.split(pattern);
-            list.addAll(Arrays.asList(tt));
-        }
-        return list;
-    }
-
 
     /**
      * 格式化一个float
@@ -1581,6 +1418,4 @@ public class StringUtil {
         Matcher matcher = Patterns.FORMAT_PATTERN.matcher(message);
         return matcher.find();
     }
-
-
 }

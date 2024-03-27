@@ -1,7 +1,7 @@
 package com.zifang.util.db.sync;
 
-import com.zifang.util.core.meta.BaseStatusCode;
 import com.zifang.util.core.lang.exception.BusinessException;
+import com.zifang.util.core.meta.BaseStatusCode;
 import com.zifang.util.db.sync.meta.DataSourceTableColumnDTO;
 import com.zifang.util.db.sync.meta.DataSourceTableDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ public class SqlExecutor {
 
     private DataSource dataSource;
 
-    public SqlExecutor(DataSource dataSource){
+    public SqlExecutor(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -93,7 +93,7 @@ public class SqlExecutor {
         executeDML(dataSource, sql);
     }
 
-    public void createTableColumn(String tableName, String columnName, String columnType , String columnComment) throws RuntimeException {
+    public void createTableColumn(String tableName, String columnName, String columnType, String columnComment) throws RuntimeException {
         String sql = String.format("ALTER TABLE %s ADD %s %s comment '%s'",
                 tableName,
                 columnName,
@@ -103,7 +103,7 @@ public class SqlExecutor {
         executeDML(dataSource, sql);
     }
 
-    public void updateTableColumn(String tableName, String columnName, String targetColumnName, String targetColumnType , String targetColumnComment) throws RuntimeException {
+    public void updateTableColumn(String tableName, String columnName, String targetColumnName, String targetColumnType, String targetColumnComment) throws RuntimeException {
         String sql = String.format("ALTER TABLE %s change %s %s %s comment '%s'",
                 tableName,
                 columnName,

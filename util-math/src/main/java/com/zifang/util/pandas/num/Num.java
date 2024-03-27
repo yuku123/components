@@ -9,8 +9,8 @@ public class Num {
     private Object array;
     private DType dType;
 
-    public Num(Object array){
-        if(!array.getClass().isArray()){
+    public Num(Object array) {
+        if (!array.getClass().isArray()) {
             throw new RuntimeException("param is not A array");
         }
         this.array = array;
@@ -22,10 +22,10 @@ public class Num {
     public int nDim() {
         String arrayClassRefNameTemp = array.getClass().getName();
         int dim = 0;
-        while (true){
-            if(arrayClassRefNameTemp.startsWith("[")){
-                dim = dim +1;
-                arrayClassRefNameTemp = arrayClassRefNameTemp.substring(1,arrayClassRefNameTemp.length() -1);
+        while (true) {
+            if (arrayClassRefNameTemp.startsWith("[")) {
+                dim = dim + 1;
+                arrayClassRefNameTemp = arrayClassRefNameTemp.substring(1, arrayClassRefNameTemp.length() - 1);
             } else {
                 break;
             }
@@ -35,18 +35,18 @@ public class Num {
 
     /**
      * 数组的维度，对于n行m列的数组 -> (n1,n2,n3,m)
-     * */
+     */
     public Integer[] shape() {
         Integer[] shape = new Integer[nDim()];
 
         Object[] current = null;
-        for(int i = 0; i < shape.length;i++){
+        for (int i = 0; i < shape.length; i++) {
 
-            if(i == 0){
+            if (i == 0) {
                 current = (Object[]) array;
-            } else if(i <= shape.length -1){
-                for(Object sub : current){
-                    if(sub != null){
+            } else if (i <= shape.length - 1) {
+                for (Object sub : current) {
+                    if (sub != null) {
                         current = (Object[]) sub;
                         break;
                     }
@@ -62,21 +62,21 @@ public class Num {
 
     /**
      * 总共的元素的个数
-     * */
+     */
     public int size() {
         int dim = nDim();
         Object[] current = new Object[]{};
-        for(int i = 0; i < dim; i++){
+        for (int i = 0; i < dim; i++) {
             Object[] temp = new Object[]{};
-            if(i == 0){
+            if (i == 0) {
                 temp = (Object[]) array;
             } else {
-                for(int j = 0; j < current.length; j++){
+                for (int j = 0; j < current.length; j++) {
                     Object o = current[j];
-                    if(o.getClass().isArray()){
-                        Object[] os = (Object[])o;
+                    if (o.getClass().isArray()) {
+                        Object[] os = (Object[]) o;
                         temp = ArraysUtil.join(temp, os);
-                    }else {
+                    } else {
                         temp = ArraysUtil.join(temp, new Object[]{o});
                     }
                 }
@@ -88,34 +88,34 @@ public class Num {
 
     /**
      * ar的类型，数值的数据类型
-     * */
-    public DType dType(){
+     */
+    public DType dType() {
         return dType;
     }
 
     /**
      * 每个元素的字节大小
-     * */
-    public void itemSize(){
+     */
+    public void itemSize() {
 
     }
 
     // resize在数值不一致时会进行调整，不用像reshape一样数据数量严格对应
-    public void reshape(int ... r){
+    public void reshape(int... r) {
 
     }
 
     // resize在数值不一致时会进行调整，不用像reshape一样数据数量严格对应
-    public void resize(int x, int y, int c){
+    public void resize(int x, int y, int c) {
 
     }
 
-    public void copy(){
+    public void copy() {
 
     }
 
     // 数组类型转换 .astype()
-    public void asType(){
+    public void asType() {
 
     }
 
@@ -154,13 +154,15 @@ public class Num {
     // print(ar>5,type(ar>5)) # 可以得到一个布尔型的数组
     //print(ar[ar>5]) # 选取大于5的数值
 
-    /** 转置 */
-    public Num t(){
+    /**
+     * 转置
+     */
+    public Num t() {
         return null;
     }
 
     @Override
-    public String toString(){
-        return Arrays.deepToString((Object[])array);
+    public String toString() {
+        return Arrays.deepToString((Object[]) array);
     }
 }

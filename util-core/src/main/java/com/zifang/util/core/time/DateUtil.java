@@ -741,7 +741,6 @@ public class DateUtil {
     }
 
 
-
     //注意SimpleDateFormat不是线程安全的
     private static ThreadLocal<SimpleDateFormat> ThreadDateTime = new ThreadLocal<SimpleDateFormat>();
     private static ThreadLocal<SimpleDateFormat> ThreadDate = new ThreadLocal<SimpleDateFormat>();

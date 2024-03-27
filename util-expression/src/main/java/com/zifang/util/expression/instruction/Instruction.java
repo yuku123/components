@@ -9,7 +9,7 @@ public class Instruction {
 
     private Object[] params;
 
-    public static Instruction of(String instructionCode, Object[] params){
+    public static Instruction of(String instructionCode, Object[] params) {
         Instruction instruction = new Instruction();
         instruction.setInstructionCode(instructionCode);
         instruction.setParams(params);

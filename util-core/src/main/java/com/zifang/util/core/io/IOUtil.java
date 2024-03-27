@@ -39,14 +39,14 @@ public class IOUtil {
      */
     public static FastByteArrayOutputStream read(InputStream in, boolean isClose) throws IOException {
         final FastByteArrayOutputStream out;
-        if(in instanceof FileInputStream){
+        if (in instanceof FileInputStream) {
             // 文件流的长度是可预见的，此时直接读取效率更高
             try {
                 out = new FastByteArrayOutputStream(in.available());
             } catch (IOException e) {
                 throw e;
             }
-        } else{
+        } else {
             out = new FastByteArrayOutputStream();
         }
         try {

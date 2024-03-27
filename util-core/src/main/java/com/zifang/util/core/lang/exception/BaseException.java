@@ -1,7 +1,7 @@
 package com.zifang.util.core.lang.exception;
 
-import com.zifang.util.core.meta.StatusCode;
 import com.zifang.util.core.meta.Result;
+import com.zifang.util.core.meta.StatusCode;
 
 import static com.zifang.util.core.meta.Result.buildMessage;
 

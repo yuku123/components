@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CommandParser {
 
-    public static List<Instruction> parser(String express){
+    public static List<Instruction> parser(String express) {
         return null;
     }
 }

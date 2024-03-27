@@ -68,8 +68,8 @@ public class FastByteBuffer {
      * 向快速缓冲加入数据
      *
      * @param array 数据
-     * @param off 偏移量
-     * @param len 字节数
+     * @param off   偏移量
+     * @param len   字节数
      * @return 快速缓冲自身 @see FastByteBuffer
      */
     public FastByteBuffer append(byte[] array, int off, int len) {
@@ -112,7 +112,6 @@ public class FastByteBuffer {
      * 向快速缓冲加入数据
      *
      * @param array 数据
-     *
      * @return 快速缓冲自身 @see FastByteBuffer
      */
     public FastByteBuffer append(byte[] array) {
@@ -221,7 +220,7 @@ public class FastByteBuffer {
      * 返回快速缓冲中的数据
      *
      * @param start 逻辑起始位置
-     * @param len 逻辑字节长
+     * @param len   逻辑字节长
      * @return 快速缓冲中的数据
      */
     public byte[] toArray(int start, int len) {

@@ -5,7 +5,8 @@ import com.alibaba.druid.pool.DruidDataSource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DataSourceManager {
 
@@ -14,12 +15,12 @@ public class DataSourceManager {
     private static final String defaultJDBCParam = "useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL";
     private static final String jdbcUrl = "jdbc:mysql://%s:%d/%s?%s";
 
-    private final static  int DEFAULT_INITIAL_SIZE = 10;
-    private final static  int DEFAULT_MAX_ACTIVE_SIZE = 30;
-    private static  final String USE_INFORMATION_SCHEMA = "&useInformationSchema=true";
-    private static  final String DATASOURCE_URL_PREFIX = "spring.datasource.";
+    private final static int DEFAULT_INITIAL_SIZE = 10;
+    private final static int DEFAULT_MAX_ACTIVE_SIZE = 30;
+    private static final String USE_INFORMATION_SCHEMA = "&useInformationSchema=true";
+    private static final String DATASOURCE_URL_PREFIX = "spring.datasource.";
 
-    private static Map<String, DataSource>  dataSourceMap = new HashMap<>();
+    private static Map<String, DataSource> dataSourceMap = new HashMap<>();
 
     public static DataSource registerDataSource(String name, String datasourceUrl, Integer port, String schemaMark, String username, String password) {
 

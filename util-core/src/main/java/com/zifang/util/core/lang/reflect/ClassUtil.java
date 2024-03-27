@@ -873,7 +873,7 @@ public class ClassUtil {
             if (file.getName().endsWith(".class")) {
                 String childFilePath = file.getPath();
                 int index = filePath.replaceAll("\\\\", ".").length();
-                childFilePath = childFilePath.replaceAll("\\\\", ".").substring(index+1, childFilePath.length());
+                childFilePath = childFilePath.replaceAll("\\\\", ".").substring(index + 1, childFilePath.length());
                 myClassName.add(childFilePath);
             }
         }
@@ -953,7 +953,7 @@ public class ClassUtil {
      * 获取资源文件
      */
     public static File getFile(String resourceLocation) throws FileNotFoundException {
-        AssertUtil.notNull(resourceLocation,"Resource location must not be null");
+        AssertUtil.notNull(resourceLocation, "Resource location must not be null");
         if (resourceLocation.startsWith("classpath:")) {
             String path = resourceLocation.substring("classpath:".length());
             String description = "class path resource [" + path + "]";

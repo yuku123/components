@@ -727,7 +727,7 @@ public class FileUtil {
         return true;
     }
 
-    public static String readString(URL url, String charset) throws  IOException{
+    public static String readString(URL url, String charset) throws IOException {
         if (url == null) {
             throw new NullPointerException("Empty url provided!");
         }

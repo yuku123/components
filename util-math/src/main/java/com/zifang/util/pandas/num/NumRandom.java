@@ -5,11 +5,11 @@ public class NumRandom {
     /**
      * double 的一维列表
      */
-    public Num rand(int i){
+    public Num rand(int i) {
         return null;
     }
 
-    public Num normal(){
+    public Num normal() {
         return null;
     }
 }

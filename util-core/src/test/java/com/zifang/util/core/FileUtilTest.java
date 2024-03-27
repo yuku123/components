@@ -9,7 +9,7 @@ public class FileUtilTest {
 
     @Test
     public void test1() throws IOException {
-        String a = FileUtil.readString(FileUtil.class.getResource("/music.json"),"utf-8");
+        String a = FileUtil.readString(FileUtil.class.getResource("/music.json"), "utf-8");
         System.out.println(a);
     }
 }
