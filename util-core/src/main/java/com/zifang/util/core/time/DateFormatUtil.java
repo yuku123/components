@@ -156,7 +156,7 @@ public class DateFormatUtil {
      * @return
      */
     public static String formatDate(Date date, String format) {
-        return formatDate(DateUtils.date2String(date), format);
+        return formatDate(DateUtil.date2String(date), format);
     }
 
     /**
@@ -165,7 +165,7 @@ public class DateFormatUtil {
      * @desc:格式化是时间，采用默认格式（yyyy-MM-dd HH:mm:ss）
      */
     public static String formatDate(String value) {
-        return getFormat(DATE_FORMAT2).format(DateUtils.string2Date(value, DATE_FORMAT2));
+        return getFormat(DATE_FORMAT2).format(DateUtil.string2Date(value, DATE_FORMAT2));
     }
 
     /**
@@ -175,7 +175,7 @@ public class DateFormatUtil {
      * @return
      */
     public static String formatDate(Date value) {
-        return formatDate(DateUtils.date2String(value));
+        return formatDate(DateUtil.date2String(value));
     }
 
     /**

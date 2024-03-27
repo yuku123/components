@@ -6,6 +6,9 @@ import com.zifang.util.core.lang.exception.BusinessException;
 import com.zifang.util.core.lang.exception.ParamValidateStatusCode;
 import com.zifang.util.core.lang.StringUtil;
 
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
 public class Validator {
 
     /**
@@ -50,6 +53,11 @@ public class Validator {
         defenseIfTrue(ParamValidateStatusCode.PARAMETER_ERROR, parameter == null, msg, null);
     }
 
+    public static <T> void validate(T value, Predicate<T> predicate, final Supplier<String> supplier) {
+        if (predicate.test(value)) {
+            throw new IllegalArgumentException(supplier.get());
+        }
+    }
 
     /**
      * 入参不能为空 为空抛出参数错误异常
@@ -83,11 +91,9 @@ public class Validator {
      * @param param      入参
      */
     private static void defenseIfTrue(StatusCode statusCode, boolean isTrue, String msg, Object param) {
-        // 防御成功，返回
         if (!isTrue) {
             return;
         }
-        // 优化提示，直接将错误信息给出
         if (StringUtil.isNotEmpty(msg)) {
             throw new BusinessException(statusCode, msg);
         } else {

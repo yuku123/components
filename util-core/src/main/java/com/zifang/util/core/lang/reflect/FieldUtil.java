@@ -1,4 +1,4 @@
 package com.zifang.util.core.lang.reflect;
 
-public class FieldParser {
+public class FieldUtil {
 }

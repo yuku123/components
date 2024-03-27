@@ -196,10 +196,6 @@ public class IdcardUtil {
 
     /**
      * 将字符数组转为整型数组
-     *
-     * @param c
-     * @return
-     * @throws NumberFormatException
      */
     private static int[] converCharToInt(char[] c) throws NumberFormatException {
         int[] a = new int[c.length];

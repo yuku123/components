@@ -6,7 +6,7 @@ import com.zifang.util.core.lang.exception.BaseException;
 /**
  * 断言 的工具类
  */
-public class Assert {
+public class AssertUtil {
 
     BaseException newException(Object... args) {
         return null;

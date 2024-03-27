@@ -17,9 +17,6 @@ public class PinyinGeneratorUtil {
 
     /**
      * 生成中文拼音全称
-     *
-     * @param chinese
-     * @return
      */
     public static String transformToFullPinyin(String chinese) {
         // 用StringBuffer（字符串缓冲）来接收处理的数据
