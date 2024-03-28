@@ -8,59 +8,18 @@ import java.util.Date;
  * 日期格式化工具类
  */
 public class DateFormatUtil {
-    /**
-     * yyyy:年
-     */
+
     public static final String DATE_YEAR = "yyyy";
-
-    /**
-     * MM：月
-     */
     public static final String DATE_MONTH = "MM";
-
-    /**
-     * DD：日
-     */
     public static final String DATE_DAY = "dd";
-
-    /**
-     * HH：时
-     */
     public static final String DATE_HOUR = "HH";
-
-    /**
-     * mm：分
-     */
     public static final String DATE_MINUTE = "mm";
+    public static final String DATE_SECONDS = "ss";
 
-    /**
-     * ss：秒
-     */
-    public static final String DATE_SECONDES = "ss";
-
-    /**
-     * yyyy-MM-dd
-     */
     public static final String DATE_FORMAT1 = "yyyy-MM-dd";
-
-    /**
-     * yyyy-MM-dd hh:mm:ss
-     */
     public static final String DATE_FORMAT2 = "yyyy-MM-dd HH:mm:ss";
-
-    /**
-     * yyyy-MM-dd hh:mm:ss|SSS
-     */
     public static final String TIME_FORMAT_SSS = "yyyy-MM-dd HH:mm:ss|SSS";
-
-    /**
-     * yyyyMMdd
-     */
     public static final String DATE_NOFUll_FORMAT = "yyyyMMdd";
-
-    /**
-     * yyyyMMddhhmmss
-     */
     public static final String TIME_NOFUll_FORMAT = "yyyyMMddHHmmss";
 
     /**
@@ -148,42 +107,18 @@ public class DateFormatUtil {
         return date;
     }
 
-    /**
-     * 格式化日期
-     *
-     * @param date
-     * @param format
-     * @return
-     */
     public static String formatDate(Date date, String format) {
         return formatDate(DateUtil.date2String(date), format);
     }
 
-    /**
-     * @param value
-     * @return
-     * @desc:格式化是时间，采用默认格式（yyyy-MM-dd HH:mm:ss）
-     */
     public static String formatDate(String value) {
         return getFormat(DATE_FORMAT2).format(DateUtil.string2Date(value, DATE_FORMAT2));
     }
 
-    /**
-     * 格式化日期
-     *
-     * @param value
-     * @return
-     */
     public static String formatDate(Date value) {
         return formatDate(DateUtil.date2String(value));
     }
 
-    /**
-     * 获取日期显示格式，为空默认为yyyy-mm-dd HH:mm:ss
-     *
-     * @param format
-     * @return SimpleDateFormat
-     */
     protected static SimpleDateFormat getFormat(String format) {
         if (format == null || "".equals(format)) {
             format = DATE_FORMAT2;

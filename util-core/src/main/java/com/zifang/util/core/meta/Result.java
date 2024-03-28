@@ -139,12 +139,9 @@ public class Result<T> implements Serializable {
         boolean isFormat = Boolean.FALSE;
         if (null != statusMessage) {
             message.append(statusMessage);
-            // replace curly brace
-            // 替换花括号
             if (statusMessage.contains(SymbolConstant.CURLY_BRACE)) {
-                statusMessage = StringUtil.replace(statusMessage, SymbolConstant.CURLY_BRACE, "%s");
+                statusMessage = StringUtil.replace(statusMessage, SymbolConstant.CURLY_BRACE, "%s",false);
             }
-
             isFormat = StringUtil.isFormat(statusMessage);
 
             if (isFormat) {

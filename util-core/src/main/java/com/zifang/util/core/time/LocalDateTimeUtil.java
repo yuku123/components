@@ -24,9 +24,6 @@ public class LocalDateTimeUtil {
 
     /**
      * 时间戳转LocalDateTime
-     *
-     * @param timestamp 时间戳
-     * @return LocalDateTime
      */
     public static LocalDateTime timestampToLocalDateTime(long timestamp) {
         try {
@@ -41,9 +38,6 @@ public class LocalDateTimeUtil {
 
     /**
      * Date转LocalDateTime
-     *
-     * @param date Date
-     * @return LocalDateTime
      */
     public static LocalDateTime dateToLocalDateTime(Date date) {
         try {
@@ -77,7 +71,6 @@ public class LocalDateTimeUtil {
      * @param executeDate 1-31 or 周1-周日
      * @param executeTime 10:10:10
      * @param cycle       0-天 1-周 2-月
-     * @return
      */
     public static String buildCronString(String executeDate, String executeTime, Integer cycle) {
 
@@ -157,11 +150,7 @@ public class LocalDateTimeUtil {
     }
 
     /**
-     * @desc: 根据当前日期获得上月的日期区间
-     * @param: [localDateTime]
-     * @return: List<LocalDateTime>
-     * @author: ctt
-     * @date: 2022/1/14 下午4:02
+     * 根据当前日期获得上月的日期区间
      */
     public static List<LocalDateTime> getLastMonthTimeInterval(LocalDateTime localDateTime) {
         List<LocalDateTime> list = new ArrayList<>();

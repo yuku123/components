@@ -79,9 +79,5 @@ public class TimestampUtil {
         System.out.println(UUID.randomUUID());
         TimeZone timeZone = TimeZone.getDefault();
         System.out.println(timeZone.getDisplayName());
-        /**
-         * String[] strs=timeZone.getAvailableIDs(); for(String str:strs){
-         * System.out.println(str); }
-         */
     }
 }
