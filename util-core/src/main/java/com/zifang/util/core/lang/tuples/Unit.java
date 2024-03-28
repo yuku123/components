@@ -14,6 +14,7 @@ import java.util.Map;
  */
 @Data
 public class Unit<A> {
+
     protected A a;
 
     public Unit(A a) {

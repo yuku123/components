@@ -1,23 +1,15 @@
 //package com.zifang.util.core.util.helper;
 //
-//import com.zifang.util.zex.Opslab;
-//
 //import java.io.ByteArrayOutputStream;
-//import java.util.ArrayList;
-//import java.util.Collections;
-//import java.util.List;
-//
 ///**
 // * 常用类型转换
 // */
 //public final class ConvertHepler {
 //
-//
-//
 //    /**
 //     * 短整型与字节的转换
 //     */
-//    public static final  byte[] shortToByte(short number) {
+//    public static  byte[] shortToByte(short number) {
 //        int temp = number;
 //        byte[] b = new byte[2];
 //        for (int i = 0; i < b.length; i++) {
@@ -220,131 +212,5 @@
 //        return (byte) Opslab.HEX_CHAR_STR.indexOf(c);
 //    }
 //
-//
-//    /**
-//     * 对象转换为整数(转换parseInt(String.valueOf(obj)))
-//     * @param obj
-//     * @param defaultValue
-//     * @return
-//     */
-//    public static Integer toInteger(Object obj, Integer defaultValue) {
-//        if (obj == null) {
-//            return defaultValue;
-//        }
-//        try {
-//            return Integer.parseInt(String.valueOf(obj));
-//        }catch (NumberFormatException e){
-//            return defaultValue;
-//        }
-//
-//    }
-//
-//
-//    /**
-//     * 转换为Integer数组<br>
-//     *
-//     * @param split 分隔符
-//     * @param split 被转换的值
-//     * @return 结果
-//     */
-//    public static Integer[] toIntArray(String str, String split) {
-//        if (str == null || str.length() == 0) {
-//            return new Integer[]{};
-//        }
-//        String[] arr = str.split(split);
-//        final Integer[] ints = new Integer[arr.length];
-//        for (int i = 0; i < arr.length; i++) {
-//            final Integer v = Integer.parseInt(arr[i]);
-//            ints[i] = v;
-//        }
-//        return ints;
-//    }
-//
-//    /**
-//     * 转换为Integer列表<br>
-//     *
-//     * @param split 分隔符
-//     * @param split 被转换的值
-//     * @return 结果
-//     */
-//    public static List<Integer> toIntList(String str, String split) {
-//        List<Integer> list = new ArrayList<>();
-//        if (str == null || str.length() == 0) {
-//            return list;
-//        }
-//        String[] arr = str.split(split);
-//        for (String ss : arr) {
-//            list.add(Integer.parseInt(ss));
-//        }
-//        return list;
-//    }
-//
-//
-//    /**
-//     * 对象转换为长整数(转换parseLong(String.valueOf(obj)))
-//     * @param obj
-//     * @param defaultValue
-//     * @return
-//     */
-//    public static Long toInteger(Object obj, Long defaultValue) {
-//        if (obj == null) {
-//            return defaultValue;
-//        }
-//        try {
-//            return Long.parseLong(String.valueOf(obj));
-//        }catch (NumberFormatException e){
-//            return defaultValue;
-//        }
-//
-//    }
-//
-//
-//    /**
-//     * 转换为Long数组<br>
-//     *
-//     * @param split 是否忽略转换错误，忽略则给值null
-//     * @param str   被转换的值
-//     * @return 结果
-//     */
-//    public static Long[] toLongArray(String split, String str) {
-//        if (str == null || str.length() == 0) {
-//            return new Long[]{};
-//        }
-//        String[] arr = str.split(split);
-//        final Long[] longs = new Long[arr.length];
-//        for (int i = 0; i < arr.length; i++) {
-//            final Long v = Long.parseLong(arr[i]);
-//            longs[i] = v;
-//        }
-//        return longs;
-//    }
-//
-//    /**
-//     * 將字字符串分割成Long類型的列表
-//     *
-//     * @param str
-//     * @return
-//     */
-//    public static List<Long> toLongList(String str, String split) {
-//        List<Long> list = new ArrayList<>();
-//        String[] splits = str.split(split);
-//        for (String s : splits) {
-//            list.add(Long.parseLong(s));
-//        }
-//        return list;
-//    }
-//
-//
-//    /**
-//     * 将数组转换为list
-//     * @param array
-//     * @param <T>
-//     * @return
-//     */
-//    public static <T> List<T> arrayToList(T[] array){
-//        ArrayList<T> arrayList = new ArrayList<>(array.length);
-//        Collections.addAll(arrayList, array);
-//        return arrayList;
-//    }
 //
 //}

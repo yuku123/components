@@ -9,6 +9,5 @@ public interface StringConstant {
     String EMPTY = "";
     String[] EMPTY_ARRAY = new String[0];
     String DEFAULT = "default";
-
     String LINE_BREAK = "\n";
 }

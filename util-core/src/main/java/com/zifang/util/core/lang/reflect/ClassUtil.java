@@ -20,16 +20,15 @@ import static com.zifang.util.core.lang.reflect.ClassLoaderUtil.loadClass;
 @Slf4j
 public class ClassUtil {
 
-    private static final String CLASS_SUFFIX = ".class";
-    private static final String JAR = "jar";
-    private static final String FILE = "file";
-    private static final String defaultClassPath = ClassUtil.class.getResource("/").getPath();
+    private static String CLASS_SUFFIX = ".class";
+    private static String JAR = "jar";
+    private static String FILE = "file";
+    private static String defaultClassPath = ClassUtil.class.getResource("/").getPath();
+    public static Class[] EMPTY_CLASS_ARRAY = new Class[0];
 
-    public static final Class[] EMPTY_CLASS_ARRAY = new Class[0];
-
-    public static final String METHOD_GET_PREFIX = "get";
-    public static final String METHOD_IS_PREFIX = "is";
-    public static final String METHOD_SET_PREFIX = "set";
+    public static String METHOD_GET_PREFIX = "get";
+    public static String METHOD_IS_PREFIX = "is";
+    public static String METHOD_SET_PREFIX = "set";
 
     /**
      * 获取指定目录下所有的类名
@@ -72,14 +71,11 @@ public class ClassUtil {
      * @throws NoSuchFieldException
      * @throws IllegalAccessException
      */
+    
     /**
      * 判断typesTarget 是否都是 typesFrom的子类
-     *
-     * @param typesTarget
-     * @param typesFrom
-     * @return true:全量继承关系
      */
-    public static boolean isAllAssignableFrom(final Class<?>[] typesTarget, final Class<?>[] typesFrom) {
+    public static boolean isAllAssignableFrom(Class<?>[] typesTarget, Class<?>[] typesFrom) {
         if (typesTarget.length == typesFrom.length) {
             for (int i = 0; i < typesTarget.length; i++) {
                 if (!typesTarget[i].isAssignableFrom(typesFrom[i])) {
@@ -91,11 +87,11 @@ public class ClassUtil {
         return false;
     }
 
-    public static Field[] getAccessibleFields(final Class clazz) {
+    public static Field[] getAccessibleFields(Class clazz) {
         return getAccessibleFields(clazz, Object.class);
     }
 
-    public static Field[] getAccessibleFields(Class clazz, final Class limit) {
+    public static Field[] getAccessibleFields(Class clazz, Class limit) {
         Package topPackage = clazz.getPackage();
         List<Field> fieldList = new ArrayList<>();
         int topPackageHash = topPackage == null ? 0 : topPackage.hashCode();
@@ -139,7 +135,7 @@ public class ClassUtil {
         return fields;
     }
 
-    private static void addFieldIfNotExist(final List<Field> allFields, final Field newField) {
+    private static void addFieldIfNotExist(List<Field> allFields, Field newField) {
         for (Field f : allFields) {
             if (compareSignatures(f, newField)) {
                 return;
@@ -175,7 +171,7 @@ public class ClassUtil {
     }
 
     // ---------------------------------------------------------------- supported methods
-    public static Method[] getSupportedMethods(final Class clazz) {
+    public static Method[] getSupportedMethods(Class clazz) {
         return getSupportedMethods(clazz, Object.class);
     }
 
@@ -186,13 +182,13 @@ public class ClassUtil {
      * them methods defined by <code>java.lang.Object</code>. If limit is <code>null</code> then all
      * methods are returned.
      */
-    public static Method[] getSupportedMethods(final Class clazz, final Class limit) {
-        final ArrayList<Method> supportedMethods = new ArrayList<>();
+    public static Method[] getSupportedMethods(Class clazz, Class limit) {
+        ArrayList<Method> supportedMethods = new ArrayList<>();
         for (Class c = clazz; c != limit && c != null; c = c.getSuperclass()) {
-            final Method[] methods = c.getDeclaredMethods();
-            for (final Method method : methods) {
+            Method[] methods = c.getDeclaredMethods();
+            for (Method method : methods) {
                 boolean found = false;
-                for (final Method supportedMethod : supportedMethods) {
+                for (Method supportedMethod : supportedMethods) {
                     if (compareSignatures(method, supportedMethod)) {
                         found = true;
                         break;
@@ -207,17 +203,17 @@ public class ClassUtil {
     }
 
 
-    public static Field[] getSupportedFields(final Class clazz) {
+    public static Field[] getSupportedFields(Class clazz) {
         return getSupportedFields(clazz, Object.class);
     }
 
-    public static Field[] getSupportedFields(final Class clazz, final Class limit) {
-        final ArrayList<Field> supportedFields = new ArrayList<>();
+    public static Field[] getSupportedFields(Class clazz, Class limit) {
+        ArrayList<Field> supportedFields = new ArrayList<>();
         for (Class c = clazz; c != limit && c != null; c = c.getSuperclass()) {
-            final Field[] fields = c.getDeclaredFields();
-            for (final Field field : fields) {
+            Field[] fields = c.getDeclaredFields();
+            for (Field field : fields) {
                 boolean found = false;
-                for (final Field supportedField : supportedFields) {
+                for (Field supportedField : supportedFields) {
                     if (compareSignatures(field, supportedField)) {
                         found = true;
                         break;
@@ -237,7 +233,7 @@ public class ClassUtil {
     /**
      * Compares method declarations: signature and return types.
      */
-    public static boolean compareDeclarations(final Method first, final Method second) {
+    public static boolean compareDeclarations(Method first, Method second) {
         if (first.getReturnType() != second.getReturnType()) {
             return false;
         }
@@ -247,7 +243,7 @@ public class ClassUtil {
     /**
      * Compares method signatures: names and parameters.
      */
-    public static boolean compareSignatures(final Method first, final Method second) {
+    public static boolean compareSignatures(Method first, Method second) {
         if (!first.getName().equals(second.getName())) {
             return false;
         }
@@ -257,21 +253,21 @@ public class ClassUtil {
     /**
      * Compares constructor signatures: names and parameters.
      */
-    public static boolean compareSignatures(final Constructor first, final Constructor second) {
+    public static boolean compareSignatures(Constructor first, Constructor second) {
         if (!first.getName().equals(second.getName())) {
             return false;
         }
         return compareParameters(first.getParameterTypes(), second.getParameterTypes());
     }
 
-    public static boolean compareSignatures(final Field first, final Field second) {
+    public static boolean compareSignatures(Field first, Field second) {
         return first.getName().equals(second.getName());
     }
 
     /**
      * Compares classes, usually method or ctor parameters.
      */
-    public static boolean compareParameters(final Class[] first, final Class[] second) {
+    public static boolean compareParameters(Class[] first, Class[] second) {
         if (first.length != second.length) {
             return false;
         }
@@ -289,7 +285,7 @@ public class ClassUtil {
      * Suppress access check against a reflection object. SecurityException is silently ignored.
      * Checks first if the object is already accessible.
      */
-    public static void forceAccess(final AccessibleObject accObject) {
+    public static void forceAccess(AccessibleObject accObject) {
         try {
             if (System.getSecurityManager() == null)
                 accObject.setAccessible(true);
@@ -315,7 +311,7 @@ public class ClassUtil {
      *
      * @see #getComponentTypes(Type)
      */
-    public static Class getComponentType(final Type type, final int index) {
+    public static Class getComponentType(Type type, int index) {
         return getComponentType(type, null, index);
     }
 
@@ -329,7 +325,7 @@ public class ClassUtil {
      *
      * @see #getComponentTypes(Type, Class)
      */
-    public static Class getComponentType(final Type type, final Class implClass, int index) {
+    public static Class getComponentType(Type type, Class implClass, int index) {
         Class[] componentTypes = getComponentTypes(type, implClass);
         if (componentTypes == null) {
             return null;
@@ -349,7 +345,7 @@ public class ClassUtil {
     /**
      * @see #getComponentTypes(Type, Class)
      */
-    public static Class[] getComponentTypes(final Type type) {
+    public static Class[] getComponentTypes(Type type) {
         return getComponentTypes(type, null);
     }
 
@@ -365,7 +361,7 @@ public class ClassUtil {
      * <li>&lt;T extends MyClass&gt; T[]</li>
      * </ul>
      */
-    public static Class[] getComponentTypes(final Type type, final Class implClass) {
+    public static Class[] getComponentTypes(Type type, Class implClass) {
         if (type instanceof Class) {
             Class clazz = (Class) type;
             if (clazz.isArray()) {
@@ -404,7 +400,7 @@ public class ClassUtil {
      *
      * @see #getComponentTypes(Type)
      */
-    public static Class[] getGenericSupertypes(final Class type) {
+    public static Class[] getGenericSupertypes(Class type) {
         return getComponentTypes(type.getGenericSuperclass());
     }
 
@@ -413,7 +409,7 @@ public class ClassUtil {
      *
      * @see #getComponentType(Type, int)
      */
-    public static Class getGenericSupertype(final Class type, final int index) {
+    public static Class getGenericSupertype(Class type, int index) {
         return getComponentType(type.getGenericSuperclass(), index);
     }
 
@@ -426,7 +422,7 @@ public class ClassUtil {
      * @return the closest class representing the given <code>type</code>
      * @see #getRawType(Type, Class)
      */
-    public static Class getRawType(final Type type) {
+    public static Class getRawType(Type type) {
         return getRawType(type, null);
     }
 
@@ -436,7 +432,7 @@ public class ClassUtil {
      *
      * @see #resolveVariable(TypeVariable, Class)
      */
-    public static Class<?> getRawType(final Type type, final Class implClass) {
+    public static Class<?> getRawType(Type type, Class implClass) {
         if (type instanceof Class) {
             return (Class) type;
         }
@@ -460,8 +456,8 @@ public class ClassUtil {
             return Object.class;
         }
         if (type instanceof GenericArrayType) {
-            final Type genericComponentType = ((GenericArrayType) type).getGenericComponentType();
-            final Class<?> rawType = getRawType(genericComponentType, implClass);
+            Type genericComponentType = ((GenericArrayType) type).getGenericComponentType();
+            Class<?> rawType = getRawType(genericComponentType, implClass);
             // this is sort of stupid, but there seems no other way (consider don't creating new instances each time)...
             return Array.newInstance(rawType, 0).getClass();
         }
@@ -486,16 +482,16 @@ public class ClassUtil {
     /**
      * Resolves <code>TypeVariable</code> with given implementation class.
      */
-    public static Type resolveVariable(final TypeVariable variable, final Class implClass) {
-        final Class rawType = getRawType(implClass, null);
+    public static Type resolveVariable(TypeVariable variable, Class implClass) {
+        Class rawType = getRawType(implClass, null);
 
         int index = ArraysUtil.indexOf(rawType.getTypeParameters(), variable);
         if (index >= 0) {
             return variable;
         }
 
-        final Class[] interfaces = rawType.getInterfaces();
-        final Type[] genericInterfaces = rawType.getGenericInterfaces();
+        Class[] interfaces = rawType.getInterfaces();
+        Type[] genericInterfaces = rawType.getGenericInterfaces();
 
         for (int i = 0; i <= interfaces.length; i++) {
             Class rawInterface;
@@ -509,20 +505,20 @@ public class ClassUtil {
                 }
             }
 
-            final Type resolved = resolveVariable(variable, rawInterface);
+            Type resolved = resolveVariable(variable, rawInterface);
             if (resolved instanceof Class || resolved instanceof ParameterizedType) {
                 return resolved;
             }
 
             if (resolved instanceof TypeVariable) {
-                final TypeVariable typeVariable = (TypeVariable) resolved;
+                TypeVariable typeVariable = (TypeVariable) resolved;
                 index = ArraysUtil.indexOf(rawInterface.getTypeParameters(), typeVariable);
 
                 if (index < 0) {
                     throw new IllegalArgumentException("Invalid type variable:" + typeVariable);
                 }
 
-                final Type type = i < genericInterfaces.length ? genericInterfaces[i] : rawType.getGenericSuperclass();
+                Type type = i < genericInterfaces.length ? genericInterfaces[i] : rawType.getGenericSuperclass();
 
                 if (type instanceof Class) {
                     return Object.class;
@@ -548,16 +544,16 @@ public class ClassUtil {
      * <li><code>java.lang.reflect.GenericArrayType</code> - type for generic array (e.g. <code>T[]</code>, <code>T</code> - array type)</li>
      * </ul>
      */
-    public static String typeToString(final Type type) {
+    public static String typeToString(Type type) {
         StringBuilder sb = new StringBuilder();
         typeToString(sb, type, new HashSet<Type>());
         return sb.toString();
     }
 
-    private static void typeToString(final StringBuilder sb, final Type type, final Set<Type> visited) {
+    private static void typeToString(StringBuilder sb, Type type, Set<Type> visited) {
         if (type instanceof ParameterizedType) {
             ParameterizedType parameterizedType = (ParameterizedType) type;
-            final Class<?> rawType = (Class<?>) parameterizedType.getRawType();
+            Class<?> rawType = (Class<?>) parameterizedType.getRawType();
             sb.append(rawType.getName());
             boolean first = true;
             for (Type typeArg : parameterizedType.getActualTypeArguments()) {
@@ -578,7 +574,7 @@ public class ClassUtil {
             // - Lower and upper can't coexist: (for instance, this is not allowed: <? extends List<String> & super MyInterface>)
             // - Multiple bounds are not supported (for instance, this is not allowed: <? extends List<String> & MyInterface>)
 
-            final Type bound;
+            Type bound;
             if (wildcardType.getLowerBounds().length != 0) {
                 sb.append(" super ");
                 bound = wildcardType.getLowerBounds()[0];
@@ -626,7 +622,7 @@ public class ClassUtil {
      * Reads annotation value. Returns <code>null</code> on error
      * (e.g. when value name not found).
      */
-    public static Object readAnnotationValue(final Annotation annotation, final String name) {
+    public static Object readAnnotationValue(Annotation annotation, String name) {
         try {
             Method method = annotation.annotationType().getDeclaredMethod(name);
             return method.invoke(annotation);
@@ -638,7 +634,7 @@ public class ClassUtil {
     // ---------------------------------------------------------------- caller
 
     private static class ReflectUtilSecurityManager extends SecurityManager {
-        public Class getCallerClass(final int callStackDepth) {
+        public Class getCallerClass(int callStackDepth) {
             return getClassContext()[callStackDepth + 1];
         }
     }
@@ -716,7 +712,7 @@ public class ClassUtil {
      * the given object instance; or null if such immediate subclass cannot be
      * uniquely identified for the given object instance.
      */
-    public static Class<?> childClassOf(final Class<?> parentClass, final Object instance) {
+    public static Class<?> childClassOf(Class<?> parentClass, Object instance) {
 
         if (instance == null || instance == Object.class) {
             return null;
@@ -745,7 +741,7 @@ public class ClassUtil {
      * Returns the jar file from which the given class is loaded; or null
      * if no such jar file can be located.
      */
-    public static JarFile jarFileOf(final Class<?> klass) throws UnsupportedEncodingException {
+    public static JarFile jarFileOf(Class<?> klass) throws UnsupportedEncodingException {
         URL url = klass.getResource(
                 "/" + klass.getName().replace('.', '/') + ".class");
 
@@ -789,14 +785,14 @@ public class ClassUtil {
     /**
      * Resolves class file name from class name by replacing dot's with '/' separator.
      */
-    public static String convertClassNameToFileName(final String className) {
+    public static String convertClassNameToFileName(String className) {
         return className.replace('.', '/') + ".class";
     }
 
     /**
      * 得到类的短名
      */
-    public static String getShortClassName(final Class clazz) {
+    public static String getShortClassName(Class clazz) {
         return getShortClassName(clazz, 1);
     }
 
@@ -807,7 +803,7 @@ public class ClassUtil {
      * @param shortUpTo 截断到第几位
      * @return 处理之后的数据
      */
-    private static String getShortClassName(final Class clazz, final int shortUpTo) {
+    private static String getShortClassName(Class clazz, int shortUpTo) {
         return ""; // todo
     }
 
@@ -853,7 +849,7 @@ public class ClassUtil {
 //     * @param classPath class文件路径
 //     * @param jarPath jar文件路径
 //     */
-////    public final static List<String> getClassName(String classPath, String jarPath) {
+////    public static List<String> getClassName(String classPath, String jarPath) {
 ////        List<String> fileNames = new ArrayList<>();
 ////        List<File> jarList = FileHelper.listFileSuffix(new File(jarPath), "jar");
 ////        for(File file:jarList){
@@ -865,7 +861,7 @@ public class ClassUtil {
 ////    }
 
 
-    public final static List<String> getClassNameByFile(String filePath, boolean childPackage) {
+    public static List<String> getClassNameByFile(String filePath, boolean childPackage) {
         List<String> myClassName = new ArrayList<>();
         List<File> files = new ArrayList<>();
 //        List<File> files = FileUtil.listFile(filePath, childPackage);
@@ -881,7 +877,7 @@ public class ClassUtil {
     }
 
 
-    public final static List<String> getClassNameByJar(String jarPath) {
+    public static List<String> getClassNameByJar(String jarPath) {
         List<String> myClassName = new ArrayList<>();
         try (JarFile jarFile = new JarFile(jarPath)) {
             Enumeration<JarEntry> entrys = jarFile.entries();
@@ -900,7 +896,7 @@ public class ClassUtil {
     }
 
 //
-//    public final static List<String> getResourceNameByJar(String jarPath) {
+//    public static List<String> getResourceNameByJar(String jarPath) {
 //        List<String> resource = new ArrayList<>();
 //        try (JarFile jarFile = new JarFile(jarPath)) {
 //            Enumeration<JarEntry> entrys = jarFile.entries();
@@ -918,7 +914,7 @@ public class ClassUtil {
 //    }
 //
 //
-//    public final static List<String> getResourceNameByJar(String jarPath, String suffix) {
+//    public static List<String> getResourceNameByJar(String jarPath, String suffix) {
 //        List<String> resource = new ArrayList<>();
 //        try (JarFile jarFile = new JarFile(jarPath)) {
 //            Enumeration<JarEntry> entrys = jarFile.entries();
@@ -935,7 +931,7 @@ public class ClassUtil {
 //        return resource;
 //    }
 
-    public final static String[] getSuperClassChian(String className) {
+    public static String[] getSuperClassChian(String className) {
         Class classz = loadClass(className);
         List<String> list = new ArrayList<>();
         Class superclass = classz.getSuperclass();

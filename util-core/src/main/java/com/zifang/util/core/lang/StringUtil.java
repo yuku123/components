@@ -1,6 +1,6 @@
 package com.zifang.util.core.lang;
 
-import com.zifang.util.core.constant.Ascii;
+import com.zifang.util.core.constant.Const;
 import com.zifang.util.core.constant.HtmlEntities;
 import com.zifang.util.core.lang.regex.Patterns;
 import com.zifang.util.core.lang.validator.Validator;
@@ -805,7 +805,7 @@ public class StringUtil {
     public static String transliterate(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String result = value;
-        Set<Map.Entry<String, List<String>>> entries = Ascii.ascii.entrySet();
+        Set<Map.Entry<String, List<String>>> entries = Const.ascii.entrySet();
         for (Map.Entry<String, List<String>> entry : entries) {
             for (String ch : entry.getValue()) {
                 result = result.replace(ch, entry.getKey());

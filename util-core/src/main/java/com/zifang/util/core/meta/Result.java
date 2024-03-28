@@ -1,6 +1,6 @@
 package com.zifang.util.core.meta;
 
-import com.zifang.util.core.constant.SymbolConstant;
+import com.zifang.util.core.constant.Const;
 import com.zifang.util.core.lang.StringUtil;
 import com.zifang.util.core.lang.exception.BaseException;
 
@@ -139,8 +139,8 @@ public class Result<T> implements Serializable {
         boolean isFormat = Boolean.FALSE;
         if (null != statusMessage) {
             message.append(statusMessage);
-            if (statusMessage.contains(SymbolConstant.CURLY_BRACE)) {
-                statusMessage = StringUtil.replace(statusMessage, SymbolConstant.CURLY_BRACE, "%s",false);
+            if (statusMessage.contains(Const.Symbol.CURLY_BRACE)) {
+                statusMessage = StringUtil.replace(statusMessage, Const.Symbol.CURLY_BRACE, "%s",false);
             }
             isFormat = StringUtil.isFormat(statusMessage);
 
