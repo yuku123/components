@@ -15,11 +15,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class Collections {
 
-    /**
-     * @param collection
-     * @param <E>
-     * @return
-     */
     public static <E> Collection<E> union(Collection<E>... collection) {
         Collection<E> base = new ArrayList<>();
         for (Collection<E> collectionElement : collection) {
@@ -78,17 +73,13 @@ public class Collections {
 
     /**
      * 去除重复元素
-     *
-     * @param list 需要处理的list
-     * @param <T>  泛型方法
-     * @return 去重后的list
      */
     public static <T> List<T> removeDuplicate(List<T> list) {
         if (list == null || list.size() == 0) {
             log.error("list is empty or is null");
             return new ArrayList<>();
         }
-        return new ArrayList<>(new HashSet<>(list));
+        return list.stream().distinct().collect(Collectors.toList());
 
     }
 
@@ -106,13 +97,8 @@ public class Collections {
 
     /**
      * 求俩个集合的交集
-     *
-     * @param set1 集合
-     * @param set2 集合
-     * @param <T>  泛型
-     * @return 交集
      */
-    public static <T> Set<T> intersection(Set<T> set1, Set<T> set2) {
+    public static <T> Set<T> intersection(Collection<T> set1, Collection<T> set2) {
         if (Checker.valid(set1, set2)) {
             List<T> list = new ArrayList<>(set1);
             list.retainAll(set2);
@@ -122,30 +108,7 @@ public class Collections {
     }
 
     /**
-     * 求队列的交集
-     *
-     * @param queue1 队列
-     * @param queue2 队列
-     * @param <T>    泛型
-     * @return 交集
-     */
-    public static <T> Queue<T> intersection(Queue<T> queue1, Queue<T> queue2) {
-        if (Checker.valid(queue1, queue2)) {
-            Set<T> set = new HashSet<>(queue1);
-            set.retainAll(queue2);
-            return new LinkedList<>(set);
-        }
-        return new LinkedList<>();
-    }
-
-    /**
      * Map集合的交集只提供键的交集
-     *
-     * @param map1 map
-     * @param map2 map
-     * @param <K>  泛型
-     * @param <V>  泛型
-     * @return 交集
      */
     public static <K, V> Map<K, V> intersection(Map<K, V> map1, Map<K, V> map2) {
         Map<K, V> map = new HashMap<>(map1.size());
