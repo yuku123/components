@@ -10,14 +10,13 @@ public class Converter {
     private static ConvertCaller defaultCaller = new ConvertCaller();
 
     public static <T> ConvertCaller<T> caller(Class<?> from, Class<T> target) {
-        if (PrimitiveUtil.getPrimitiveWrapper(from) == PrimitiveUtil.getPrimitiveWrapper(target)) {
-            return defaultCaller;
-        }
+
+        Class<?> parsedFrom = PrimitiveUtil.isPrimitive(from)? PrimitiveUtil.getPrimitiveWrapper(from): from;
+        Class<?> parsedTarget = PrimitiveUtil.isPrimitive(target)? PrimitiveUtil.getPrimitiveWrapper(target): target;
+
+        Pair<Method, Object> pair = ConvertRegister.find(parsedFrom, parsedTarget);
+
         ConvertCaller<T> convertCaller = new ConvertCaller<>();
-        Pair<Method, Object> pair = ConvertRegister.find(
-                PrimitiveUtil.getPrimitiveWrapper(from),
-                PrimitiveUtil.getPrimitiveWrapper(target)
-        );
         convertCaller.setMethod(pair.getA());
         convertCaller.setCaller(pair.getB());
         convertCaller.setFrom(from);
@@ -27,6 +26,27 @@ public class Converter {
     }
 
     public static <T> T to(Object value, Class<T> clazz) {
-        return null;
+
+        Class<?> from = value.getClass();
+        Class<T> target = clazz;
+
+        Class<?> parsedFrom = PrimitiveUtil.isPrimitive(from)? PrimitiveUtil.getPrimitiveWrapper(from): from;
+        Class<?> parsedTarget = PrimitiveUtil.isPrimitive(target)? PrimitiveUtil.getPrimitiveWrapper(target): target;
+
+        Pair<Method, Object> pair = ConvertRegister.find(parsedFrom, parsedTarget);
+
+        ConvertCaller<T> convertCaller = new ConvertCaller<>();
+        convertCaller.setMethod(pair.getA());
+        convertCaller.setCaller(pair.getB());
+        convertCaller.setFrom(from);
+        convertCaller.setTarget(target);
+
+        try {
+            return (T) convertCaller.to(value, clazz.newInstance());
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

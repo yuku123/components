@@ -1,6 +1,5 @@
 package com.zifang.util.core.lang.converter;
 
-import com.zifang.util.core.lang.PrimitiveUtil;
 import com.zifang.util.core.lang.converter.converters.DefaultConverter;
 import com.zifang.util.core.lang.reflect.ClassParser;
 import com.zifang.util.core.lang.reflect.ClassParserFactory;
@@ -21,7 +20,7 @@ public class ConvertRegister {
 
     static {
         DefaultConverter defaultConverter = new DefaultConverter();
-        Method[] methods = defaultConverter.getClass().getDeclaredMethods();
+        Method[] methods = DefaultConverter.class.getDeclaredMethods();
         for (Method method : methods) {
             Parameter[] parameters = method.getParameters();
             Pair<Class<?>, Class<?>> pair = new Pair<>(parameters[0].getType(), parameters[1].getType());
@@ -32,16 +31,37 @@ public class ConvertRegister {
 
     public static Pair<Method, Object> find(Class<?> a, Class<?> b) {
 
-        Method methodCustomer = registeredConverter.get(new Pair<Class<?>, Class<?>>(PrimitiveUtil.getPrimitiveWrapper(a), b));
+        // 优先外部注入，需要精确匹配
+        Method methodCustomer = match(registeredConverter, a, b, true);
         if (methodCustomer != null) {
             return new Pair<>(methodCustomer, caller.get(methodCustomer));
         } else {
-            Method method = registeredDefaultConverterMethod.get(new Pair<Class<?>, Class<?>>(a, b));
+            Method method = match(registeredDefaultConverterMethod, a, b, false);
             if (method == null) {
                 throw new RuntimeException("没有找到对应的转换器" + a.getName() + "->" + b.getName());
             }
             return new Pair<>(method, caller.get(method));
         }
+    }
+
+    private static Method match(Map<Pair<Class<?>, Class<?>>, Method> registeredConverter, Class<?> a, Class<?> b, boolean extact) {
+
+        if(extact){
+            for(Map.Entry<Pair<Class<?>, Class<?>>, Method> entry : registeredConverter.entrySet()){
+                Pair<Class<?>, Class<?>> pair = entry.getKey();
+                if(pair.getA() == a && pair.getB() == b){
+                    return entry.getValue();
+                }
+            }
+        } else {
+            for(Map.Entry<Pair<Class<?>, Class<?>>, Method> entry : registeredConverter.entrySet()){
+                Pair<Class<?>, Class<?>> pair = entry.getKey();
+                if(pair.getA().isAssignableFrom(a) && pair.getB().isAssignableFrom(b)){
+                    return entry.getValue();
+                }
+            }
+        }
+        return null;
     }
 
     public static void registerConverter(Class<? extends IConverter<?, ?>> clazz) {
