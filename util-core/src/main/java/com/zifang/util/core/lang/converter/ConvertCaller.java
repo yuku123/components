@@ -15,15 +15,19 @@ public class ConvertCaller<T> {
     private Class<?> from;
     private Class<T> target;
 
-    public <T> T to(Object o) {
-        if (from == target) {
-            return (T) o;
-        }
-
+    public T to(Object o) {
+        Object defaultValue = null;
         try {
-            return (T) method.invoke(caller, o, PrimitiveUtil.defaultValue(target));
+            if(PrimitiveUtil.isGeneralType(target)){
+                defaultValue = target.newInstance();
+            } else {
+                defaultValue = PrimitiveUtil.defaultValue(target);
+            }
+            return (T) method.invoke(caller, o, defaultValue);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
         }
         return null;
     }

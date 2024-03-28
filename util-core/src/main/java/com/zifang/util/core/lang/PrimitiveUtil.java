@@ -68,7 +68,16 @@ public class PrimitiveUtil {
      * 获得默认基础值
      */
     public static Object defaultValue(Class<?> clazz) {
-        return primitiveTypeDefaults.get(clazz);
+
+        if(isPrimitive(clazz)){
+            return primitiveTypeDefaults.get(getPrimitiveWrapper(clazz));
+        }
+
+        if(isPrimitiveWrapper(clazz)){
+            return primitiveTypeDefaults.get(clazz);
+        }
+
+        return null;
     }
 
     /**
@@ -114,10 +123,15 @@ public class PrimitiveUtil {
      * 得到基本类型对应的包装类型
      */
     public static Class<?> getPrimitiveWrapper(Class<?> clazz) {
-        if (!isPrimitive(clazz)) {
+
+        if(isPrimitiveWrapper(clazz)){
             return clazz;
-        } else {
+        }
+
+        if(isPrimitive(clazz)){
             return primitiveWrapperTypeList.get(primitiveTypeList.indexOf(clazz));
+        } else {
+            return clazz;
         }
     }
 }
