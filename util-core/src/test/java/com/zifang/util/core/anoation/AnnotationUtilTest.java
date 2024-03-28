@@ -8,12 +8,9 @@ public class AnnotationUtilTest {
 
     @Test
     public void test1() {
-        Object value = AnnotationUtil.getAnnotationValue(WholeBase.class, ClassInfo.class);
-        Object className = AnnotationUtil.getAnnotationValue(WholeBase.class, ClassInfo.class, "className");
-        Object superInfo = AnnotationUtil.getAnnotationValue(WholeBase.class, SuperInfo.class, "superInfo");
-        Assert.assertEquals("default-class-value", value);
-        Assert.assertEquals("superInfo", superInfo);
-        Assert.assertEquals("test", className);
+        Assert.assertEquals("default-class-value", AnnotationUtil.getAnnotationValue(WholeBase.class, ClassInfo.class));
+        Assert.assertEquals("test", AnnotationUtil.getAnnotationValue(WholeBase.class, ClassInfo.class, "className"));
+        Assert.assertEquals("superInfo", AnnotationUtil.getAnnotationValue(WholeBase.class, SuperInfo.class, "superInfo"));
     }
 }
 

@@ -22,6 +22,11 @@ public class Converter {
         convertCaller.setCaller(pair.getB());
         convertCaller.setFrom(from);
         convertCaller.setTarget(target);
+
         return convertCaller;
+    }
+
+    public static <T> T to(Object value, Class<T> clazz) {
+        return null;
     }
 }

@@ -44,6 +44,10 @@ public class PrimitiveUtil {
         }
     };
 
+    public static void main(String[] args) {
+        primitiveTypeList.get(0).getName();
+    }
+
     /**
      * 封装类型的集合
      */
@@ -92,11 +96,17 @@ public class PrimitiveUtil {
      * 得到包装类对应的基本类型
      */
     public static Class<?> getPrimitive(Class<?> clazz) {
+
+        if(isPrimitive(clazz)){
+            return clazz;
+        }
+
         if (!isPrimitiveWrapper(clazz)) {
             String error = "the input class" + clazz.getName() + " is not wrapperType";
             log.error(error);
             throw new RuntimeException(error);
         }
+
         return primitiveTypeList.get(primitiveWrapperTypeList.indexOf(clazz));
     }
 

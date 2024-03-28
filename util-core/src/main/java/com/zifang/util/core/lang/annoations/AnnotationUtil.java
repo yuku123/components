@@ -53,7 +53,7 @@ public class AnnotationUtil {
      * @param annotationClass  注解类型
      * @param annotatedElement 需要判断的元素
      */
-    public static boolean hasAnnotationOn(Class<? extends Annotation> annotationClass, final AnnotatedElement annotatedElement) {
+    public static boolean hasAnnotationOn(Class<? extends Annotation> annotationClass, AnnotatedElement annotatedElement) {
         return annotatedElement.isAnnotationPresent(annotationClass);
     }
 
