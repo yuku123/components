@@ -2,9 +2,6 @@ package com.zifang.util.core.lang.exception;
 
 import com.zifang.util.core.meta.StatusCode;
 
-/**
- * 业务异常
- */
 public class BusinessException extends BaseException {
 
     private static final long serialVersionUID = 1646453246258984129L;

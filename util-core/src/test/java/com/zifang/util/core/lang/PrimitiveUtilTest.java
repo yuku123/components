@@ -66,7 +66,7 @@ public class PrimitiveUtilTest {
 
     @Test(expected = RuntimeException.class)
     public void getPrimitiveWrapperThrow() {
-        assertEquals(PrimitiveUtil.getPrimitiveWrapper(String.class), byte.class);
+        PrimitiveUtil.getPrimitiveWrapper(String.class);
     }
 
     @Test

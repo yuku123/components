@@ -9,12 +9,13 @@ public class BigDecimalConverter implements IConverter<BigDecimal, Object> {
 
     @Override
     public Object to(BigDecimal bigDecimal, Object value) {
+
         if (value == null) {
             return null;
         }
 
         if (value instanceof BigDecimal) {
-            return (BigDecimal) value;
+            return value;
         }
         try {
             return new BigDecimal(value.toString().trim());

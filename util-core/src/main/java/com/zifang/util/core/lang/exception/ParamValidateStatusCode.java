@@ -8,27 +8,19 @@ import com.zifang.util.core.meta.StatusCode;
  */
 public enum ParamValidateStatusCode implements StatusCode {
 
-    // 参数错误
     PARAMETER_ERROR(1, "{}");
 
-    ParamValidateStatusCode(Integer code, String message) {
+    ParamValidateStatusCode(int code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    /**
-     * 错误码
-     */
-    private final Integer code;
-
-    /**
-     * 错误消息
-     */
+    private final int code;
     private final String message;
 
     @Override
     public int getCode() {
-        return 1;
+        return code;
     }
 
     @Override

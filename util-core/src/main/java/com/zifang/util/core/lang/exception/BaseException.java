@@ -12,15 +12,8 @@ public class BaseException extends RuntimeException {
 
     private static final long serialVersionUID = 2059913032332171665L;
 
-    /**
-     * 错误
-     */
     private final StatusCode statusCode;
-
-    /**
-     * 错误信息
-     */
-    private String message;
+    private final String message;
 
     public BaseException(StatusCode statusCode) {
         super(statusCode.getMessage());
@@ -98,8 +91,6 @@ public class BaseException extends RuntimeException {
 
     @Override
     public String toString() {
-        return String
-                .format("BaseException[status:%s(%s),message:%s]", statusCode, statusCode.getCode(),
-                        message);
+        return String.format("BaseException[status:%s(%s),message:%s]", statusCode, statusCode.getCode(), message);
     }
 }

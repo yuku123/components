@@ -36,15 +36,6 @@ public class Converter {
     }
 
     public static <T> T to(Object value, Class<T> clazz) {
-
-        ConvertCaller<T> convertCaller = caller(value.getClass(), clazz);
-
-        try {
-            return (T) convertCaller.to(value, clazz.newInstance());
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        return caller(value.getClass(), clazz).to(value);
     }
 }

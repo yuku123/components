@@ -44,10 +44,6 @@ public class PrimitiveUtil {
         }
     };
 
-    public static void main(String[] args) {
-        primitiveTypeList.get(0).getName();
-    }
-
     /**
      * 封装类型的集合
      */

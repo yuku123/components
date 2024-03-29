@@ -20,12 +20,12 @@ public class ExceptionUtil {
             return str;
         }
         String[] arrs = str.split("\n");
-        StringBuffer sbuf = new StringBuffer();
-        sbuf.append(arrs[0] + "\n");
+        StringBuilder sbuf = new StringBuilder();
+        sbuf.append(arrs[0]).append("\n");
         for (int i = 0; i < arrs.length; i++) {
             String temp = arrs[i];
             if (temp != null && temp.indexOf(packageName) > 0) {
-                sbuf.append(temp + "\n");
+                sbuf.append(temp).append("\n");
             }
         }
         return sbuf.toString();
