@@ -41,7 +41,7 @@ public class Chars {
     /**
      * Converts char array into byte array by stripping the high byte of each character.
      */
-    public final static byte[] toSimpleByteArray(char[] carr) {
+    public  static byte[] toSimpleByteArray(char[] carr) {
         byte[] barr = new byte[carr.length];
         for (int i = 0; i < carr.length; i++) {
             barr[i] = (byte) carr[i];
@@ -54,7 +54,7 @@ public class Chars {
      *
      * @see #toSimpleByteArray(char[])
      */
-    public final static byte[] toSimpleByteArray(CharSequence charSequence) {
+    public  static byte[] toSimpleByteArray(CharSequence charSequence) {
         byte[] barr = new byte[charSequence.length()];
         for (int i = 0; i < barr.length; i++) {
             barr[i] = (byte) charSequence.charAt(i);
@@ -67,7 +67,7 @@ public class Chars {
     /**
      * Converts byte array to char array by simply extending bytes to chars.
      */
-    public final static char[] toSimpleCharArray(byte[] barr) {
+    public  static char[] toSimpleCharArray(byte[] barr) {
         char[] carr = new char[barr.length];
         for (int i = 0; i < barr.length; i++) {
             carr[i] = (char) (barr[i] & 0xFF);
@@ -78,7 +78,7 @@ public class Chars {
     /**
      * Returns ASCII value of a char. In case of overload, 0x3F is returned.
      */
-    public final static int toAscii(char c) {
+    public  static int toAscii(char c) {
         if (c <= 0xFF) {
             return c;
         } else {
@@ -89,7 +89,7 @@ public class Chars {
     /**
      * Converts char array into {@link #toAscii(char) ASCII} array.
      */
-    public final static byte[] toAsciiByteArray(char[] carr) {
+    public  static byte[] toAsciiByteArray(char[] carr) {
         byte[] barr = new byte[carr.length];
         for (int i = 0; i < carr.length; i++) {
             barr[i] = (byte) ((int) (carr[i] <= 0xFF ? carr[i] : 0x3F));
@@ -102,7 +102,7 @@ public class Chars {
     /**
      * Converts char sequence into ASCII byte array.
      */
-    public final static byte[] toAsciiByteArray(CharSequence charSequence) {
+    public  static byte[] toAsciiByteArray(CharSequence charSequence) {
         byte[] barr = new byte[charSequence.length()];
         for (int i = 0; i < barr.length; i++) {
             char c = charSequence.charAt(i);
@@ -114,7 +114,7 @@ public class Chars {
     /**
      * Converts char array into byte array by replacing each character with two bytes.
      */
-    public final static byte[] toRawByteArray(char[] carr) {
+    public  static byte[] toRawByteArray(char[] carr) {
         byte[] barr = new byte[carr.length << 1];
         for (int i = 0, bpos = 0; i < carr.length; i++) {
             char c = carr[i];
@@ -126,7 +126,7 @@ public class Chars {
 
     // ---------------------------------------------------------------- encoding
 
-    public final static char[] toRawCharArray(byte[] barr) {
+    public  static char[] toRawCharArray(byte[] barr) {
         int carrLen = barr.length >> 1;
         if (carrLen << 1 < barr.length) {
             carrLen++;
@@ -149,21 +149,21 @@ public class Chars {
     /**
      * Converts char array to byte array using default Jodd encoding.
      */
-    public final static byte[] toByteArray(char[] carr) throws UnsupportedEncodingException {
+    public  static byte[] toByteArray(char[] carr) throws UnsupportedEncodingException {
         return new String(carr).getBytes(StandardCharsets.UTF_8);
     }
 
     /**
      * Converts char array to byte array using provided encoding.
      */
-    public final static byte[] toByteArray(char[] carr, String charset) throws UnsupportedEncodingException {
+    public  static byte[] toByteArray(char[] carr, String charset) throws UnsupportedEncodingException {
         return new String(carr).getBytes(charset);
     }
 
     /**
      * Converts byte array of default Jodd encoding to char array.
      */
-    public final static char[] toCharArray(byte[] barr) throws UnsupportedEncodingException {
+    public  static char[] toCharArray(byte[] barr) throws UnsupportedEncodingException {
         return new String(barr, StandardCharsets.UTF_8).toCharArray();
     }
 
@@ -172,7 +172,7 @@ public class Chars {
     /**
      * Converts byte array of specific encoding to char array.
      */
-    public final static char[] toCharArray(byte[] barr, String charset) throws UnsupportedEncodingException {
+    public  static char[] toCharArray(byte[] barr, String charset) throws UnsupportedEncodingException {
         return new String(barr, charset).toCharArray();
     }
 
@@ -182,7 +182,7 @@ public class Chars {
      * @return <code>true</code> if characters match any character from given array,
      * otherwise <code>false</code>
      */
-    public final static boolean equalsOne(char c, char[] match) {
+    public  static boolean equalsOne(char c, char[] match) {
         for (char aMatch : match) {
             if (c == aMatch) {
                 return true;
@@ -197,7 +197,7 @@ public class Chars {
      *
      * @return index of matched character or -1
      */
-    public final static int findFirstEqual(char[] source, int index, char[] match) {
+    public  static int findFirstEqual(char[] source, int index, char[] match) {
         for (int i = index; i < source.length; i++) {
             if (equalsOne(source[i], match) == true) {
                 return i;
@@ -212,7 +212,7 @@ public class Chars {
      *
      * @return index of matched character or -1
      */
-    public final static int findFirstEqual(char[] source, int index, char match) {
+    public  static int findFirstEqual(char[] source, int index, char match) {
         for (int i = index; i < source.length; i++) {
             if (source[i] == match) {
                 return i;
@@ -227,7 +227,7 @@ public class Chars {
      *
      * @return index of matched character or -1
      */
-    public final static int findFirstDiff(char[] source, int index, char[] match) {
+    public  static int findFirstDiff(char[] source, int index, char[] match) {
         for (int i = index; i < source.length; i++) {
             if (equalsOne(source[i], match) == false) {
                 return i;
@@ -243,7 +243,7 @@ public class Chars {
      *
      * @return index of matched character or -1
      */
-    public final static int findFirstDiff(char[] source, int index, char match) {
+    public  static int findFirstDiff(char[] source, int index, char match) {
         for (int i = index; i < source.length; i++) {
             if (source[i] != match) {
                 return i;
@@ -256,7 +256,7 @@ public class Chars {
      * Returns <code>true</code> if character is a white space ({@code <= ' '}).
      * White space definition is taken from String class (see: <code>trim()</code>).
      */
-    public final static boolean isWhitespace(char c) {
+    public  static boolean isWhitespace(char c) {
         return c <= ' ';
     }
 
@@ -264,7 +264,7 @@ public class Chars {
      * Returns <code>true</code> if specified character is lowercase ASCII.
      * If user uses only ASCIIs, it is much much faster.
      */
-    public final static boolean isLowercaseAlpha(char c) {
+    public  static boolean isLowercaseAlpha(char c) {
         return (c >= 'a') && (c <= 'z');
     }
 
@@ -272,27 +272,27 @@ public class Chars {
      * Returns <code>true</code> if specified character is uppercase ASCII.
      * If user uses only ASCIIs, it is much much faster.
      */
-    public final static boolean isUppercaseAlpha(char c) {
+    public  static boolean isUppercaseAlpha(char c) {
         return (c >= 'A') && (c <= 'Z');
     }
 
-    public final static boolean isAlphaOrDigit(char c) {
+    public  static boolean isAlphaOrDigit(char c) {
         return isDigit(c) || isAlpha(c);
     }
 
-    public final static boolean isWordChar(char c) {
+    public  static boolean isWordChar(char c) {
         return isDigit(c) || isAlpha(c) || (c == '_');
     }
 
 
-    public final static boolean isPropertyNameChar(char c) {
+    public  static boolean isPropertyNameChar(char c) {
         return isDigit(c) || isAlpha(c) || (c == '_') || (c == '.') || (c == '[') || (c == ']');
     }
 
     /**
      * Indicates whether the given character is the hexadecimal digit.
      */
-    public final static boolean isHexDigit(char c) {
+    public  static boolean isHexDigit(char c) {
         return (c >= '0' && c <= '9') || ((c >= 'a') && (c <= 'f')) || ((c >= 'A') && (c <= 'F'));
     }
 
@@ -301,7 +301,7 @@ public class Chars {
      *
      * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986, appendix A</a>
      */
-    public final static boolean isGenericDelimiter(int c) {
+    public  static boolean isGenericDelimiter(int c) {
         switch (c) {
             case ':':
             case '/':
@@ -321,7 +321,7 @@ public class Chars {
      *
      * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986, appendix A</a>
      */
-    public final static boolean isSubDelimiter(int c) {
+    public  static boolean isSubDelimiter(int c) {
         switch (c) {
             case '!':
             case '$':
@@ -345,7 +345,7 @@ public class Chars {
      *
      * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986, appendix A</a>
      */
-    public final static boolean isReserved(char c) {
+    public  static boolean isReserved(char c) {
         return isGenericDelimiter(c) || isSubDelimiter(c);
     }
 
@@ -354,7 +354,7 @@ public class Chars {
      *
      * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986, appendix A</a>
      */
-    public final static boolean isUnreserved(char c) {
+    public  static boolean isUnreserved(char c) {
         return isAlpha(c) || isDigit(c) || c == '-' || c == '.' || c == '_' || c == '~';
     }
 
@@ -364,14 +364,14 @@ public class Chars {
      *
      * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986, appendix A</a>
      */
-    public final static boolean isPchar(char c) {
+    public  static boolean isPchar(char c) {
         return isUnreserved(c) || isSubDelimiter(c) || c == ':' || c == '@';
     }
 
     /**
      * Uppers lowercase ASCII char.
      */
-    public final static char toUpperAscii(char c) {
+    public  static char toUpperAscii(char c) {
         if (isLowercaseAlpha(c)) {
             c -= (char) 0x20;
         }
@@ -381,7 +381,7 @@ public class Chars {
     /**
      * Lowers uppercase ASCII char.
      */
-    public final static char toLowerAscii(char c) {
+    public static char toLowerAscii(char c) {
         if (isUppercaseAlpha(c)) {
             c += (char) 0x20;
         }

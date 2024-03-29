@@ -13,7 +13,6 @@ public class ConvertRegisterTest {
 
     @Test
     public void test001() {
-
         assert Converter.caller(Byte.class, Byte.class).to((byte) 1) == ((byte) 1);
         assert Converter.caller(Byte.class, Short.class).to((byte) 1) == ((short) 1);
         assert Converter.caller(Byte.class, Integer.class).to((byte)1) == 1;

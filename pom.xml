@@ -38,6 +38,7 @@
         <module>util-distribute</module>
         <module>util-schedule</module>
         <module>util-proxy</module>
+        <module>util-ch</module>
     </modules>
 
     <dependencyManagement>

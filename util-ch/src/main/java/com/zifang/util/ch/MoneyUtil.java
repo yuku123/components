@@ -1,4 +1,4 @@
-package com.zifang.util.core.util.ch;
+package com.zifang.util.ch;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

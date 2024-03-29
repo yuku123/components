@@ -13,7 +13,6 @@
     <version>${util.version}</version>
 
     <dependencies>
-
         <!--定时调度器-->
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
@@ -58,12 +57,6 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.belerweb</groupId>
-            <artifactId>pinyin4j</artifactId>
-            <version>2.5.1</version>
         </dependency>
 
         <dependency>
