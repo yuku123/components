@@ -26,54 +26,6 @@ public class StringUtil {
     private static final String[] EMPTY_ARRAY = new String[0];
     private static final char SEPARATOR = '_';
 
-
-    public static boolean isBlank(String str) {
-
-        int length;
-
-        if ((str == null) || ((length = str.length()) == 0)) {
-            return true;
-        }
-
-        for (int i = 0; i < length; i++) {
-            if (!CharUtil.isBlankChar(str.charAt(i))) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * 判断字符串是否全部都为小写
-     */
-    public static boolean isAllLowerCase(String value) {
-        if (value == null || "".equals(value)) {
-            return false;
-        }
-        for (int i = 0; i < value.length(); i++) {
-            if (!Character.isLowerCase(value.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * 判断字符串是否全部大写
-     */
-    public static boolean isAllUpperCase(String value) {
-        if (value == null || "".equals(value)) {
-            return false;
-        }
-        for (int i = 0; i < value.length(); i++) {
-            if (!Character.isUpperCase(value.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     /**
      * 判断字符串是否为空
      */
@@ -86,6 +38,57 @@ public class StringUtil {
      */
     public static boolean isNotEmptyString(String string) {
         return string != null && string.length() > 0;
+    }
+
+    public static boolean isNotEmpty(String str) {
+        return str != null && !"".equals(str);
+    }
+
+    public static boolean isBlank(String value) {
+        if (value == null || value.length() == 0) {
+            return true;
+        }
+        return forEachCharAllMatch(value, CharUtil::isBlankChar);
+    }
+
+    /** 判断字符串是否全部都为小写 */
+    public static boolean isAllLowerCase(String value) {
+        return forEachCharAllMatch(value, Character::isLowerCase);
+    }
+
+    /** 判断字符串是否全部大写 */
+    public static boolean isAllUpperCase(String value) {
+        return forEachCharAllMatch(value, Character::isUpperCase);
+    }
+
+    /**
+     * 如果任何一个字符满足谓词条件，则返回true；如果所有字符都不满足谓词条件，则返回false
+     */
+    public static boolean forEachCharAnyMatch(String value, Predicate<Character> predicate) {
+        if (value == null || value.length() == 0) {
+            return false;
+        }
+        for (int i = 0; i < value.length(); i++) {
+            if (predicate.test(value.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 如果所有字符满足谓词条件，则返回true；如果所有字符都不满足谓词条件，则返回false
+     */
+    public static boolean forEachCharAllMatch(String value, Predicate<Character> predicate) {
+        if (value == null || value.length() == 0) {
+            return false;
+        }
+        for (int i = 0; i < value.length(); i++) {
+            if (!predicate.test(value.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -166,8 +169,7 @@ public class StringUtil {
         return endsWith(value, search, value.length(), caseSensitive);
     }
 
-    public static boolean endsWith(String value, String search, int position,
-                                   boolean caseSensitive) {
+    public static boolean endsWith(String value, String search, int position, boolean caseSensitive) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         int remainingLength = position - search.length();
         if (caseSensitive) {
@@ -222,6 +224,7 @@ public class StringUtil {
     }
 
     public static String decEncode(String value) {
+        // char=[0,65536] , 5位可完全展示
         return encode(value, 5, 10);
     }
 
@@ -1228,9 +1231,6 @@ public class StringUtil {
 
     /**
      * 将半角的符号转换成全角符号.(即英文字符转中文字符)
-     *
-     * @param str 要转换的字符
-     * @return
      */
     public static String changeToFull(String str) {
         String source = "1234567890!@#$%^&*()abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_=+\\|[];:'\",<.>/?";
@@ -1393,14 +1393,6 @@ public class StringUtil {
         }
 
         return sb.toString();
-    }
-
-
-    /**
-     * 判断字符串不为空
-     */
-    public static boolean isNotEmpty(String str) {
-        return str != null && !"".equals(str);
     }
 
     /**

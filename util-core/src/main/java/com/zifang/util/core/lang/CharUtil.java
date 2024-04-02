@@ -2,29 +2,11 @@ package com.zifang.util.core.lang;
 
 public class CharUtil {
 
-    /**
-     * 字符常量：空格符 {@code ' '}
-     */
     char SPACE = ' ';
-    /**
-     * 字符常量：制表符 {@code '\t'}
-     */
     char TAB = '	';
-    /**
-     * 字符常量：点 {@code '.'}
-     */
     char DOT = '.';
-    /**
-     * 字符常量：斜杠 {@code '/'}
-     */
     char SLASH = '/';
-    /**
-     * 字符常量：反斜杠 {@code '\\'}
-     */
     char BACKSLASH = '\\';
-    /**
-     * 字符常量：回车符 {@code '\r'}
-     */
     char CR = '\r';
     /**
      * 字符常量：换行符 {@code '\n'}
@@ -288,12 +270,6 @@ public class CharUtil {
     /**
      * 是否空白符<br>
      * 空白符包括空格、制表符、全角空格和不间断空格<br>
-     *
-     * @param c 字符
-     * @return 是否空白符
-     * @see Character#isWhitespace(int)
-     * @see Character#isSpaceChar(int)
-     * @since 4.0.10
      */
     public static boolean isBlankChar(char c) {
         return isBlankChar((int) c);
@@ -302,12 +278,6 @@ public class CharUtil {
     /**
      * 是否空白符<br>
      * 空白符包括空格、制表符、全角空格和不间断空格<br>
-     *
-     * @param c 字符
-     * @return 是否空白符
-     * @see Character#isWhitespace(int)
-     * @see Character#isSpaceChar(int)
-     * @since 4.0.10
      */
     public static boolean isBlankChar(int c) {
         return Character.isWhitespace(c)
@@ -318,14 +288,9 @@ public class CharUtil {
     }
 
     /**
-     * 判断是否为emoji表情符<br>
-     *
-     * @param c 字符
-     * @return 是否为emoji
-     * @since 4.0.8
+     * 判断是否为emoji表情符
      */
     public static boolean isEmoji(char c) {
-        //noinspection ConstantConditions
         return false == ((c == 0x0) || //
                 (c == 0x9) || //
                 (c == 0xA) || //
@@ -337,12 +302,6 @@ public class CharUtil {
 
     /**
      * 比较两个字符是否相同
-     *
-     * @param c1         字符1
-     * @param c2         字符2
-     * @param ignoreCase 是否忽略大小写
-     * @return 是否相同
-     * @since 4.0.3
      */
     public static boolean equals(char c1, char c2, boolean ignoreCase) {
         if (ignoreCase) {
@@ -353,10 +312,6 @@ public class CharUtil {
 
     /**
      * 获取字符类型
-     *
-     * @param c 字符
-     * @return 字符类型
-     * @since 5.2.3
      */
     public static int getType(int c) {
         return Character.getType(c);

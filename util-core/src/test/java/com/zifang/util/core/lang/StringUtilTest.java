@@ -16,6 +16,7 @@ public class StringUtilTest {
 
     @Test
     public void isAllLowerCase() {
+
     }
 
     @Test
@@ -272,22 +273,27 @@ public class StringUtilTest {
 
     @Test
     public void rightPad() {
+        assert StringUtil.rightPad("2","0",2).equals("20");
+        assert StringUtil.rightPad("12","0",2).equals("12");
+        assert StringUtil.rightPad("012","0",2).equals("012");
     }
 
     @Test
     public void leftPad() {
-    }
-
-    @Test
-    public void testLeftPad() {
+        assert StringUtil.leftPad("2","0",2).equals("02");
+        assert StringUtil.leftPad("12","0",2).equals("12");
+        assert StringUtil.leftPad("012","0",2).equals("012");
     }
 
     @Test
     public void repeat() {
+        assert StringUtil.repeat("2",2).equals("22");
+        assert StringUtil.repeat("-2",2).equals("-2-2");
     }
 
     @Test
     public void changeToFull() {
+
     }
 
     @Test
@@ -340,5 +346,59 @@ public class StringUtilTest {
 
     @Test
     public void isFormat() {
+    }
+
+    @Test
+    public void testBase64Decode() {
+        assert StringUtil.base64Decode("aGVsbG8=").equals("hello");
+    }
+
+    @Test
+    public void testBase64Encode() {
+        assert StringUtil.base64Encode("hello").equals("aGVsbG8=");
+    }
+
+    @Test
+    public void testBinDecode() {
+
+        assert StringUtil.binEncode("hello").equals("0110100001100101011011000110110001101111");
+        assert StringUtil.binDecode("0110100001100101011011000110110001101111").equals("hello");
+
+
+        assert StringUtil.decEncode("hello").equals("0110100001100101011011000110110001101111");
+
+        assert StringUtil.hexDecode("0110100001100101011011000110110001101111").equals("hello");
+        assert StringUtil.decDecode("0110100001100101011011000110110001101111").equals("hello");
+    }
+
+    @Test
+    public void testBinEncode() {
+
+    }
+
+    @Test
+    public void testDecDecode() {
+
+
+    }
+
+    @Test
+    public void testDecEncode() {
+    }
+
+    @Test
+    public void testDecode() {
+    }
+
+    @Test
+    public void testEncode() {
+    }
+
+    @Test
+    public void testHexDecode() {
+    }
+
+    @Test
+    public void testHexEncode() {
     }
 }
