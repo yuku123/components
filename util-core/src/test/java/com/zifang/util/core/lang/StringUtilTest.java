@@ -5,10 +5,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StringUtilTest {
-
     @Test
     public void isBlank() {
-
+        assertTrue(StringUtil.isBlank(null));
+        assertTrue(StringUtil.isBlank(""));
+        assertTrue(StringUtil.isBlank("   "));
+        assertFalse(StringUtil.isBlank("Hello"));
+        assertFalse(StringUtil.isBlank(" Hello "));
     }
 
     @Test

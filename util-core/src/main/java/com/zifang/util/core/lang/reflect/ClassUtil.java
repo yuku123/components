@@ -32,10 +32,8 @@ public class ClassUtil {
 
     /**
      * 获取指定目录下所有的类名
-     *
-     * @param classPath class文件路径
-     * @param jarPath jar文件路径
      */
+
     /**
      * 从项目文件获取某包下所有类
      *
@@ -57,6 +55,8 @@ public class ClassUtil {
      * @param jarPath jar文件路径
      * @return 返回资源名称数组
      */
+
+
     /**
      * 获取jar包中的非*.class外的全部的以suffix结尾的资源文件
      *
