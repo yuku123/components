@@ -1,7 +1,7 @@
-package com.zifang.util.core.parser.json;
+package com.zifang.util.json;
 
-import com.zifang.util.core.parser.json.model.JsonArray;
-import com.zifang.util.core.parser.json.model.JsonObject;
+import com.zifang.util.json.model.JsonArray;
+import com.zifang.util.json.model.JsonObject;
 
 import java.util.List;
 import java.util.Map;

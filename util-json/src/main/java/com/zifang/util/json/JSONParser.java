@@ -1,10 +1,10 @@
-package com.zifang.util.core.parser.json;
+package com.zifang.util.json;
 
 
-import com.zifang.util.core.parser.json.parser.Parser;
-import com.zifang.util.core.parser.json.tokenizer.CharReader;
-import com.zifang.util.core.parser.json.tokenizer.TokenList;
-import com.zifang.util.core.parser.json.tokenizer.Tokenizer;
+import com.zifang.util.json.parser.Parser;
+import com.zifang.util.json.tokenizer.CharReader;
+import com.zifang.util.json.tokenizer.TokenList;
+import com.zifang.util.json.tokenizer.Tokenizer;
 
 import java.io.IOException;
 import java.io.StringReader;

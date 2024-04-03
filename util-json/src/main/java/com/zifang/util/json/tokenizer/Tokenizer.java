@@ -1,6 +1,6 @@
-package com.zifang.util.core.parser.json.tokenizer;
+package com.zifang.util.json.tokenizer;
 
-import com.zifang.util.core.parser.json.exception.JsonParseException;
+import com.zifang.util.json.exception.JsonParseException;
 
 import java.io.IOException;
 

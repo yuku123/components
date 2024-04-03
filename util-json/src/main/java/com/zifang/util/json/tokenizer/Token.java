@@ -1,4 +1,4 @@
-package com.zifang.util.core.parser.json.tokenizer;
+package com.zifang.util.json.tokenizer;
 
 public class Token {
 

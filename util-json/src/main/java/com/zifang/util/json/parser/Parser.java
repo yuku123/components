@@ -1,11 +1,11 @@
-package com.zifang.util.core.parser.json.parser;
+package com.zifang.util.json.parser;
 
-import com.zifang.util.core.parser.json.exception.JsonParseException;
-import com.zifang.util.core.parser.json.model.JsonArray;
-import com.zifang.util.core.parser.json.model.JsonObject;
-import com.zifang.util.core.parser.json.tokenizer.Token;
-import com.zifang.util.core.parser.json.tokenizer.TokenList;
-import com.zifang.util.core.parser.json.tokenizer.TokenType;
+import com.zifang.util.json.exception.JsonParseException;
+import com.zifang.util.json.model.JsonArray;
+import com.zifang.util.json.model.JsonObject;
+import com.zifang.util.json.tokenizer.Token;
+import com.zifang.util.json.tokenizer.TokenList;
+import com.zifang.util.json.tokenizer.TokenType;
 
 
 /**

@@ -1,7 +1,7 @@
-package com.zifang.util.core.parser.json.model;
+package com.zifang.util.json.model;
 
-import com.zifang.util.core.parser.json.BeautifyJsonUtils;
-import com.zifang.util.core.parser.json.exception.JsonTypeException;
+import com.zifang.util.json.BeautifyJsonUtils;
+import com.zifang.util.json.exception.JsonTypeException;
 
 import java.util.ArrayList;
 import java.util.Iterator;

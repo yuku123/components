@@ -40,6 +40,7 @@
         <module>util-proxy</module>
         <module>util-ch</module>
         <module>util-json</module>
+
     </modules>
 
     <dependencyManagement>

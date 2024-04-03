@@ -1,6 +1,6 @@
-package com.zifang.util.core.parser.json;
+package com.zifang.util.json;
 
-import com.zifang.util.core.parser.json.define.TypeReference;
+import com.zifang.util.json.define.TypeReference;
 
 import java.io.IOException;
 import java.util.List;

@@ -2,8 +2,8 @@ package com.zifang.util.core.code;
 
 
 import com.zifang.util.core.parser.json.JSONParser;
-import com.zifang.util.core.parser.json.model.JsonArray;
-import com.zifang.util.core.parser.json.model.JsonObject;
+import com.zifang.util.json.model.JsonArray;
+import com.zifang.util.json.model.JsonObject;
 import org.junit.Test;
 
 import java.nio.file.Files;

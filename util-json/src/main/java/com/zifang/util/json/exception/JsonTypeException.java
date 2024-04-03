@@ -1,4 +1,4 @@
-package com.zifang.util.core.parser.json.exception;
+package com.zifang.util.json.exception;
 
 /**
  * @author zifang

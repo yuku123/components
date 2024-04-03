@@ -1,4 +1,4 @@
-package com.zifang.util.core.parser.json.define;
+package com.zifang.util.json.define;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

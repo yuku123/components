@@ -1,4 +1,4 @@
-package com.zifang.util.core.parser.json.define;
+package com.zifang.util.json.define;
 
 /**
  * @author zifang
