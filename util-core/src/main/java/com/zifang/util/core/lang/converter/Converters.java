@@ -72,6 +72,25 @@ public class Converters {
         }
     }
 
+
+    public static <F,T> void registerConverter(IConverter<F, T> converter, Class<?> from, Class<?> target) {
+        Pair<Class<?>, Class<?>> pair = new Pair<>(from, target);
+
+        for(Method method : converter.getClass().getMethods()){
+            if(method.getName().equals("to")){
+                Parameter[] parameters = method.getParameters();
+                if(parameters.length == 2 && parameters[1].getType() != Class.class){
+                    ConvertCaller<F,T> convertCaller = new ConvertCaller<>();
+                    convertCaller.setFrom(pair.getA());
+                    convertCaller.setTarget(pair.getB());
+                    convertCaller.setMethod(method);
+                    convertCaller.setCaller(converter);
+                    converterCache.put(pair, convertCaller);
+                }
+            }
+        }
+    }
+
     public static <F,T> void registerConverter(IConverter<F, T> converter){
         try {
             ClassParser classParser = new ClassParserFactory().getInstance(converter.getClass());
@@ -97,6 +116,8 @@ public class Converters {
                 convertCaller.setCaller(converter);
 
                 converterCache.put(pair, convertCaller);
+            } else {
+                throw new RuntimeException("无法从当前转换器内捕获泛型信息，请检查是否传入lamda匿名内部类");
             }
         } catch (NoSuchMethodException e) {
             e.printStackTrace();

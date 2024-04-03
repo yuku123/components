@@ -2,7 +2,6 @@ package com.zifang.util.core;
 
 import com.zifang.util.core.lang.converter.Converters;
 import com.zifang.util.core.lang.converter.IConverter;
-import com.zifang.util.core.lang.converter.converters.StringIntegerConverter;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -98,7 +97,30 @@ public class ConvertRegisterTest {
         };
 
         Converters.registerConverter(converter);
-        Converters.registerConverter(StringIntegerConverter.class);
+
+        Map<String,String> m = new HashMap<>();
+        m.put("a","a");
+        m.put("b","b");
+
+        assert Converters.caller(Map.class, String.class).to(m).equals("a,b");
+    }
+
+    @Test
+    public void test004(){
+        IConverter<Map<String,String>, String> converter = (value, defaultValue) -> String.join(",",value.keySet());
+        Converters.registerConverter(converter);
+
+        Map<String,String> m = new HashMap<>();
+        m.put("a","a");
+        m.put("b","b");
+
+        assert Converters.caller(Map.class, String.class).to(m).equals("a,b");
+    }
+
+    @Test
+    public void test005(){
+        IConverter<Map<String,String>, String> converter = (value, defaultValue) -> String.join(",",value.keySet());
+        Converters.registerConverter(converter, Map.class, String.class);
 
         Map<String,String> m = new HashMap<>();
         m.put("a","a");
