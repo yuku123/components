@@ -39,6 +39,7 @@
         <module>util-schedule</module>
         <module>util-proxy</module>
         <module>util-ch</module>
+        <module>util-json</module>
     </modules>
 
     <dependencyManagement>
@@ -382,21 +383,6 @@
                     <source>${compile.version}</source>
                     <target>${compile.version}</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

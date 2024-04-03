@@ -9,14 +9,9 @@ import com.zifang.util.core.parser.json.tokenizer.Tokenizer;
 import java.io.IOException;
 import java.io.StringReader;
 
-/**
- * @author zifang
- * json解析器
- */
 public class JSONParser {
 
     private Tokenizer tokenizer = new Tokenizer();
-
     private Parser parser = new Parser();
 
     public Object fromJSON(String json) throws IOException {
