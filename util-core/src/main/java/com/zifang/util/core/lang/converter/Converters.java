@@ -11,69 +11,54 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Converters {
 
-    private static final Map<Method, Object> caller = new LinkedHashMap<>();
-
-    // 内部默认存在的转换器
-    private static final Map<Pair<Class<?>, Class<?>>, Method> registeredDefaultConverterMethod = new LinkedHashMap<>();
-    // 外部注入的转换器
-    private static final Map<Pair<Class<?>, Class<?>>, Method> registeredConverter = new LinkedHashMap<>();
-
-    private static final Map<Pair<Class<?>,Class<?>>, ConvertCaller<?,?>> convertCallerCache = new HashMap<>();
+    private static final Map<Pair<Class<?>,Class<?>>,IConverter<?,?>> converterCache = new HashMap<>();
 
     static {
         DefaultConverter<Object,Object> defaultConverter = new DefaultConverter<>();
-//        registerConverter(defaultConverter);
         Method[] methods = DefaultConverter.class.getDeclaredMethods();
         for (Method method : methods) {
             Parameter[] parameters = method.getParameters();
             Pair<Class<?>, Class<?>> pair = new Pair<>(parameters[0].getType(), parameters[1].getType());
-            registeredDefaultConverterMethod.put(pair, method);
-            caller.put(method, defaultConverter);
+
+            ConvertCaller<?, ?> iConverter = new ConvertCaller<>();
+            iConverter.setFrom(parameters[0].getType());
+            iConverter.setTarget(parameters[1].getType());
+            iConverter.setCaller(defaultConverter);
+            iConverter.setMethod(method);
+
+            converterCache.put(pair, iConverter);
         }
     }
 
 
     public static <F,T> IConverter<F,T> findConverter(Class<F> a, Class<T> b){
-        return null;
-    }
-    public static Pair<Method, Object> find(Class<?> a, Class<?> b) {
+        Pair<Class<?>, Class<?>> pair = new Pair<>(a, b);
 
-        // 优先外部注入，需要精确匹配
-        Method methodCustomer = match(registeredConverter, a, b, true);
-        if (methodCustomer != null) {
-            return new Pair<>(methodCustomer, caller.get(methodCustomer));
-        } else {
-            Method method = match(registeredDefaultConverterMethod, a, b, false);
-            if (method == null) {
-                throw new RuntimeException("没有找到对应的转换器" + a.getName() + "->" + b.getName());
-            }
-            return new Pair<>(method, caller.get(method));
+        // 直接寻找
+        if(converterCache.containsKey(pair)){
+            return (IConverter<F,T>)converterCache.get(pair);
         }
-    }
 
-    private static Method match(Map<Pair<Class<?>, Class<?>>, Method> registeredConverter, Class<?> a, Class<?> b, boolean extact) {
-
-        if(extact){
-            for(Map.Entry<Pair<Class<?>, Class<?>>, Method> entry : registeredConverter.entrySet()){
-                Pair<Class<?>, Class<?>> pair = entry.getKey();
-                if(pair.getA() == a && pair.getB() == b){
-                    return entry.getValue();
-                }
-            }
-        } else {
-            for(Map.Entry<Pair<Class<?>, Class<?>>, Method> entry : registeredConverter.entrySet()){
-                Pair<Class<?>, Class<?>> pair = entry.getKey();
-                if(pair.getA().isAssignableFrom(a) && pair.getB().isAssignableFrom(b)){
-                    return entry.getValue();
-                }
+        // 类型完全匹配
+        for(Map.Entry<Pair<Class<?>,Class<?>>,IConverter<?,?>> entry : converterCache.entrySet()){
+            if(entry.getKey().getA() == a && entry.getKey().getB() == b){
+                return (IConverter<F,T>)entry.getValue();
             }
         }
-        return null;
+
+        // 继承寻找
+        for(Map.Entry<Pair<Class<?>,Class<?>>,IConverter<?,?>> entry : converterCache.entrySet()){
+            if(entry.getKey().getA().isAssignableFrom(a) && entry.getKey().getB().isAssignableFrom(b)){
+                return (IConverter<F,T>)entry.getValue();
+            }
+        }
+
+        // todo 利用转换图能力进行转换
+        throw new RuntimeException("没有找到对应的转换器" + a.getName() + "->" + b.getName());
     }
 
     public static  <F,T> void registerConverter(Class<? extends IConverter<F,T>> clazz) {
@@ -94,8 +79,8 @@ public class Converters {
                 Type[] types = parameterizedType.getActualTypeArguments();
                 Pair<Class<?>, Class<?>> pair = new Pair<>((Class<?>) types[0], (Class<?>) types[1]);
                 Method method = converter.getClass().getDeclaredMethod("to", (Class<?>) types[0], (Class<?>) types[1]);
-                registeredConverter.put(pair, method);
-                caller.put(method, converter);
+//                registeredConverter.put(pair, method);
+//                caller.put(method, converter);
             }
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -110,21 +95,18 @@ public class Converters {
 
         Pair<Class<?>,Class<?>> pair = new Pair<>(parsedFrom, parsedTarget);
 
-        if(convertCallerCache.containsKey(pair)){
-            return (ConvertCaller<F,T>) convertCallerCache.get(pair);
+        if(converterCache.containsKey(pair)){
+            return (ConvertCaller<F,T>) converterCache.get(pair);
         } else {
+            // 有可能参数是父类的
+            ConvertCaller<F,T> convertCaller = (ConvertCaller<F,T>) findConverter(parsedFrom,parsedTarget);
+            ConvertCaller<F,T> copy = convertCaller.copy();
+            copy.setFrom(parsedFrom);
+            copy.setTarget(parsedTarget);
 
-            Pair<Method, Object> methodObjectPair = find(parsedFrom, parsedTarget);
+            converterCache.put(pair, copy);
 
-            ConvertCaller<F,T> convertCaller = new ConvertCaller<>();
-            convertCaller.setMethod(methodObjectPair.getA());
-            convertCaller.setCaller(methodObjectPair.getB());
-            convertCaller.setFrom(from);
-            convertCaller.setTarget(target);
-
-            convertCallerCache.put(pair, convertCaller);
-
-            return convertCaller;
+            return copy;
         }
     }
 

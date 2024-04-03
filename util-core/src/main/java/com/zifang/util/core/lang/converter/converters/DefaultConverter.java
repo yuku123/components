@@ -92,6 +92,9 @@ public class DefaultConverter<F,T> implements IConverter<F,T> {
     }
 
     public Number to(Number value, Number defaultValue) {
+        if(value == null){
+            return defaultValue;
+        }
         String type = PrimitiveUtil.getPrimitive(defaultValue.getClass()).getName();
         String methodName = type + "Value";
         try {

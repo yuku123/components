@@ -10,9 +10,6 @@ import java.util.Vector;
 @Slf4j
 public class ClassLoaderUtil {
 
-    /**
-     * 获取类加载器
-     */
     public static ClassLoader overrideClassLoader;
 
     public static ClassLoader getContextClassLoader() {
@@ -21,9 +18,6 @@ public class ClassLoaderUtil {
 
     /**
      * 加载指定的类
-     *
-     * @param className 需要加载的类
-     * @return 加载后的类
      */
     public static Class<?> loadClass(String className) {
         Class<?> theClass = null;

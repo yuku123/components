@@ -15,8 +15,8 @@ public class ConvertCaller<F, T> implements IConverter<F,T>{
     private Method method;
     private Object caller;
 
-    private Class<F> from;
-    private Class<T> target;
+    private Class<?> from;
+    private Class<?> target;
 
     public T to(F o) {
         Object defaultValue = null;
@@ -45,5 +45,14 @@ public class ConvertCaller<F, T> implements IConverter<F,T>{
             e.printStackTrace();
         }
         return null;
+    }
+
+    public ConvertCaller<F, T> copy() {
+        ConvertCaller<F, T> convertCaller = new ConvertCaller<>();
+        convertCaller.setMethod(method);
+        convertCaller.setCaller(caller);
+        convertCaller.setFrom(from);
+        convertCaller.setTarget(target);
+        return convertCaller;
     }
 }

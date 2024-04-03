@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 
 public class ConvertRegisterTest {
 
-
     @Test
     public void test001() {
         assert Converters.caller(Byte.class, Byte.class).to((byte) 1) == ((byte) 1);
