@@ -1,11 +1,12 @@
 package com.zifang.util.core;
 
 import com.zifang.util.core.lang.converter.Converters;
-import com.zifang.util.core.lang.converter.converters.BigDecimalDoubleConverter;
+import com.zifang.util.core.lang.converter.IConverter;
 import com.zifang.util.core.lang.converter.converters.StringIntegerConverter;
 import org.junit.Test;
 
-import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConvertRegisterTest {
 
@@ -56,42 +57,54 @@ public class ConvertRegisterTest {
         assert Converters.caller(Double.class, Character.class).to(1.0d) == (char)1;
         assert Converters.caller(Double.class, String.class).to(1.0d).equals("1.0");
 
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
+        assert Converters.caller(String.class, Byte.class).to( "1") == ((byte) 1);
+        assert Converters.caller(String.class, Short.class).to("1") == ((short) 1);
+        assert Converters.caller(String.class, Integer.class).to("1") == 1;
+        assert Converters.caller(String.class, Long.class).to( "1") == 1L;
+        assert Converters.caller(String.class, Float.class).to("1") == 1F;
+        assert Converters.caller(String.class, Double.class).to("1") == 1D;
+        assert Converters.caller(String.class, Character.class).to("1") == '1';
+        assert Converters.caller(String.class, String.class).to("1").equals("1");
 
-        assert Converters.caller(String.class, Integer.class).to("12").equals(12);
-        assert Converters.caller(Integer.class, Long.class).to(null).equals(0L);
-        assert Converters.caller(Integer.class, Long.class).to(null, 3L).equals(3L);
-        assert Converters.caller(Integer.class, Long.class).to(2).equals(2L);
-        assert Converters.caller(Integer.class, Long.class).to(2, 3L).equals(2L);
+        assert Converters.caller(Character.class, Byte.class).to('1') == ((byte) '1');
+        assert Converters.caller(Character.class, Short.class).to('1') == ((short) '1');
+        assert Converters.caller(Character.class, Integer.class).to('1') == (int)'1';
+        assert Converters.caller(Character.class, Long.class).to( '1') == (long)'1';
+        assert Converters.caller(Character.class, Float.class).to('1') == (float)'1';
+        assert Converters.caller(Character.class, Double.class).to('1') == (double)'1';
+        assert Converters.caller(Character.class, Character.class).to('1') == '1';
+        assert Converters.caller(Character.class, String.class).to('1').equals("1");
     }
 
     @Test
     public void test002(){
-        assert Converters.to("12", Integer.class).equals(12);
-        assert Converters.caller(BigDecimal.class, Double.class).to(new BigDecimal("1.0")).equals(1.0);
-        assert Converters.caller(Integer.class, Long.class).to(null).equals(0L);
-        assert Converters.caller(Integer.class, Long.class).to(null, 3L).equals(3L);
-        assert Converters.caller(Integer.class, Long.class).to(2).equals(2L);
-        assert Converters.caller(Integer.class, Long.class).to(2, 3L).equals(2L);
+        assert Converters.caller(Byte.class, Byte.class).to(null) == ((byte) 0);
+        assert Converters.caller(Byte.class, Short.class).to(null) == ((short) 0);
+        assert Converters.caller(Byte.class, Integer.class).to(null) == 0;
+        assert Converters.caller(Byte.class, Long.class).to(null) == 0L;
+        assert Converters.caller(Byte.class, Float.class).to(null) == 0F;
+        assert Converters.caller(Byte.class, Double.class).to(null) == 0D;
+        assert Converters.caller(Byte.class, Character.class).to(null) == '0';
+        assert Converters.caller(Byte.class, String.class).to(null).equals("");
     }
 
     @Test
     public void test003(){
-        Converters.registerConverter(BigDecimalDoubleConverter.class);
+        IConverter<Map<String,String>, String> converter = new IConverter<Map<String,String>, String>(){
+            @Override
+            public String to(Map<String,String> value, String defaultValue) {
+                return String.join(",",value.keySet());
+            }
+        };
+
+        Converters.registerConverter(converter);
         Converters.registerConverter(StringIntegerConverter.class);
 
-        assert Converters.caller(BigDecimal.class, Double.class).to(new BigDecimal("1.0")).equals(1.0);
+        Map<String,String> m = new HashMap<>();
+        m.put("a","a");
+        m.put("b","b");
+
+        assert Converters.caller(Map.class, String.class).to(m).equals("a,b");
     }
 
 }

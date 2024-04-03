@@ -26,6 +26,7 @@ public class ConvertCaller<F, T> implements IConverter<F,T>{
             } else {
                 defaultValue = PrimitiveUtil.defaultValue(target);
             }
+            method.setAccessible(true);
             return (T) method.invoke(caller, o, defaultValue);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();

@@ -57,8 +57,10 @@ public class Converters {
             }
         }
 
+
+//        return null;
         // todo 利用转换图能力进行转换
-        throw new RuntimeException("没有找到对应的转换器" + a.getName() + "->" + b.getName());
+         throw new RuntimeException("没有找到对应的转换器" + a.getName() + "->" + b.getName());
     }
 
     public static  <F,T> void registerConverter(Class<? extends IConverter<F,T>> clazz) {
@@ -77,10 +79,24 @@ public class Converters {
             if (type instanceof ParameterizedTypeImpl) {
                 ParameterizedTypeImpl parameterizedType = (ParameterizedTypeImpl) type;
                 Type[] types = parameterizedType.getActualTypeArguments();
-                Pair<Class<?>, Class<?>> pair = new Pair<>((Class<?>) types[0], (Class<?>) types[1]);
-                Method method = converter.getClass().getDeclaredMethod("to", (Class<?>) types[0], (Class<?>) types[1]);
-//                registeredConverter.put(pair, method);
-//                caller.put(method, converter);
+
+                Pair<Class<?>, Class<?>> pair = new Pair<>(
+                        types[0] instanceof Class? (Class<?>) types[0] : ((ParameterizedTypeImpl) types[0]).getRawType(),
+                        types[1] instanceof Class? (Class<?>) types[1] : ((ParameterizedTypeImpl) types[1]).getRawType()
+                );
+                Method method = converter.getClass().getDeclaredMethod(
+                        "to",
+                        pair.getA(),
+                        pair.getB()
+                );
+
+                ConvertCaller<F,T> convertCaller = new ConvertCaller<>();
+                convertCaller.setFrom(pair.getA());
+                convertCaller.setTarget(pair.getB());
+                convertCaller.setMethod(method);
+                convertCaller.setCaller(converter);
+
+                converterCache.put(pair, convertCaller);
             }
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
