@@ -361,44 +361,11 @@ public class StringUtilTest {
     @Test
     public void testBinDecode() {
 
-        assert StringUtil.binEncode("hello").equals("0110100001100101011011000110110001101111");
-        assert StringUtil.binDecode("0110100001100101011011000110110001101111").equals("hello");
+        assert StringUtil.binEncode("\0\1").equals("00000000000000000000000000000001");
+        assert StringUtil.binDecode("00000000000000000000000000000001").equals("\0\1");
+        assert StringUtil.decEncode("\0\1").equals("0000000001");
+        assert StringUtil.decDecode("0000000001").equals("\0\1");
+//      assert StringUtil.hexDecode("0110100001100101011011000110110001101111").equals("hello");
 
-
-        assert StringUtil.decEncode("hello").equals("0110100001100101011011000110110001101111");
-
-        assert StringUtil.hexDecode("0110100001100101011011000110110001101111").equals("hello");
-        assert StringUtil.decDecode("0110100001100101011011000110110001101111").equals("hello");
-    }
-
-    @Test
-    public void testBinEncode() {
-
-    }
-
-    @Test
-    public void testDecDecode() {
-
-
-    }
-
-    @Test
-    public void testDecEncode() {
-    }
-
-    @Test
-    public void testDecode() {
-    }
-
-    @Test
-    public void testEncode() {
-    }
-
-    @Test
-    public void testHexDecode() {
-    }
-
-    @Test
-    public void testHexEncode() {
     }
 }

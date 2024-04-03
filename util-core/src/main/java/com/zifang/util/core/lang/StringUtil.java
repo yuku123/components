@@ -219,6 +219,14 @@ public class StringUtil {
         return encode(value, 16, 2);
     }
 
+    public static String hexDecode(String value) {
+        return decode(value, 4, 16);
+    }
+
+    public static String hexEncode(String value) {
+        return encode(value, 4, 16);
+    }
+
     public static String decDecode(String value) {
         return decode(value, 5, 10);
     }
@@ -283,25 +291,6 @@ public class StringUtil {
         return result;
     }
 
-    /**
-     * Convert hexadecimal unicode (4 digits) string to string chars
-     *
-     * @param value The value to decode
-     * @return The decoded String
-     */
-    public static String hexDecode(String value) {
-        return decode(value, 4, 16);
-    }
-
-    /**
-     * Convert string chars to hexadecimal unicode (4 digits)
-     *
-     * @param value The value to encode
-     * @return String in hexadecimal format.
-     */
-    public static String hexEncode(String value) {
-        return encode(value, 4, 16);
-    }
 
     /**
      * The indexOf() method returns the index within the calling String of the first occurrence of the specified value, starting the search at fromIndex.
