@@ -27,9 +27,7 @@ public class ClassParserTest {
 
     @Test
     public void test2() {
-
         ClassParser a = new ClassParserFactory().getInstance(A.class);
-
     }
 
     @Test

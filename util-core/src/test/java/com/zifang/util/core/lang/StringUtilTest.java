@@ -351,10 +351,6 @@ public class StringUtilTest {
     @Test
     public void testBase64Decode() {
         assert StringUtil.base64Decode("aGVsbG8=").equals("hello");
-    }
-
-    @Test
-    public void testBase64Encode() {
         assert StringUtil.base64Encode("hello").equals("aGVsbG8=");
     }
 

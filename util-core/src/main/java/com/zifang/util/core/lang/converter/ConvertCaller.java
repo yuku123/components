@@ -6,16 +6,19 @@ import lombok.Data;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * 执行转换的句柄包装
+ */
 @Data
-public class ConvertCaller<T> {
+public class ConvertCaller<F, T> implements IConverter<F,T>{
 
     private Method method;
     private Object caller;
 
-    private Class<?> from;
+    private Class<F> from;
     private Class<T> target;
 
-    public T to(Object o) {
+    public T to(F o) {
         Object defaultValue = null;
         try {
             if(PrimitiveUtil.isGeneralType(target)){
@@ -32,12 +35,12 @@ public class ConvertCaller<T> {
         return null;
     }
 
-    public Object to(Object o, Object defaultValue) {
+    public T to(Object o, Object defaultValue) {
         if (from == target) {
-            return o;
+            return (T) o;
         }
         try {
-            return method.invoke(caller, o, defaultValue);
+            return (T) method.invoke(caller, o, defaultValue);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

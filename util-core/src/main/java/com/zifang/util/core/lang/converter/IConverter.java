@@ -2,6 +2,10 @@ package com.zifang.util.core.lang.converter;
 
 public interface IConverter<F, T> {
 
+    default T to(F value){
+        throw new RuntimeException("未实现");
+    }
+
     T to(F value, T defaultValue);
 
     default T to(F value, Class<T> clazz){

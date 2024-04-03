@@ -1,6 +1,6 @@
 package com.zifang.util.db.respository;
 
-import com.zifang.util.core.lang.converter.Converter;
+import com.zifang.util.core.lang.converter.Converters;
 import lombok.Data;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
@@ -91,7 +91,7 @@ public class ResultSetHandler {
             if (columnMap.get(entry.getKey()) != null) {
                 Field field = columnMap.get(entry.getKey());
                 field.setAccessible(true);
-                Object target = Converter.caller(entry.getValue().getClass(), field.getType()).to(entry.getValue());
+                Object target = Converters.caller(entry.getValue().getClass(), field.getType()).to(entry.getValue());
                 field.set(o, target);
             }
         }
