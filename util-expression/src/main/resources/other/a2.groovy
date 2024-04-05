@@ -1,3 +1,4 @@
+package other
 /**
  * Groovy容器
  */

@@ -10,7 +10,7 @@ public class Tests {
 
     @Test
     public void test001() throws ScriptException {
-        ScriptEngine engine = new ScriptEngineManager().getEngineByExtension("js");
+        ScriptEngine engine = new ScriptEngineManager().getEngineByExtension("other/js");
         engine.eval("a= 1+1");
         System.out.println(engine.get("a"));
     }

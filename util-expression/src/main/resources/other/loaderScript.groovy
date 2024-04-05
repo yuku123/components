@@ -1,3 +1,5 @@
+package other
+
 class LoaderScript {
 
     def createFile(String fileName) {

@@ -14,7 +14,7 @@ public class ScriptEngineDemo2 {
 
     public static void test1() {
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("other/js");
 
         List<String> list = new ArrayList<String>();
         list.add("cc");
@@ -35,7 +35,7 @@ public class ScriptEngineDemo2 {
      */
     public static void test2() {
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("other/js");
         try {
             String script = "var list = new java.spi.ArrayList();list.add(\"kafka0102\");print(list.get(0));";
             engine.eval(script);
@@ -54,7 +54,7 @@ public class ScriptEngineDemo2 {
      */
     public static void test3() {
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("other/js");
 
         try {
             StringWriter writer1 = new StringWriter();

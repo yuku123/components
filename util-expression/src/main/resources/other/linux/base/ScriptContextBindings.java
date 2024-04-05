@@ -8,7 +8,7 @@ import javax.script.*;
 public class ScriptContextBindings {
     public ScriptEngine getJavaScriptEngine() {
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("other/js");
         return engine;
     }
 

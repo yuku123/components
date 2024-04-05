@@ -57,7 +57,7 @@ public class ScriptEngineDemo {
      */
     public static void test2() {
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("other/js");
         String script = "print ('hello script')";
         try {
             engine.eval(script);
@@ -79,7 +79,7 @@ public class ScriptEngineDemo {
      */
     public static void test3() {
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("other/js");
         engine.put("a", 4);
         engine.put("b", 6);
         try {
@@ -100,7 +100,7 @@ public class ScriptEngineDemo {
      */
     public static void test4() {
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("other/js");
         try {
             engine.eval("function max_num(a,b){return (a>b)?a:b;}");
             Invocable invoke = (Invocable) engine;
@@ -127,7 +127,7 @@ public class ScriptEngineDemo {
      */
     public static void test41() {
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("other/js");
         try {
             engine.eval("function max_num(a,b){return (a>b)?a:b;}");
             Invocable invoke = (Invocable) engine;
@@ -148,7 +148,7 @@ public class ScriptEngineDemo {
      */
     public static void test5() {
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("other/js");
         try {
             String script = "var list = new java.spi.ArrayList();list.add(\"kafka0102\");print(list.get(0));";
             engine.eval(script);
@@ -166,7 +166,7 @@ public class ScriptEngineDemo {
      */
     public static void test6() {
         ScriptEngineManager manager = new ScriptEngineManager();
-        ScriptEngine engine = manager.getEngineByName("js");
+        ScriptEngine engine = manager.getEngineByName("other/js");
         try {
             Compilable compEngine = (Compilable) engine;
             CompiledScript script = compEngine.compile("function max_num(a,b){return (a>b)?a:b;}");

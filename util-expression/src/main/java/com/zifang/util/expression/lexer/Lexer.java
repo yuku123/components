@@ -5,7 +5,8 @@ package com.zifang.util.expression.lexer;
  */
 public interface Lexer {
 
-    public static void main(String[] args) {
+    void setInput(String input);
 
-    }
+
+
 }
