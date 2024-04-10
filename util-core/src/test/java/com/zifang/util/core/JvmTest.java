@@ -25,17 +25,21 @@ public class JvmTest {
             throw e;
         }
     }
-}
 
-class HeapOOM {
-    HeapOOM[] testlist = new HeapOOM[100000000];
-}
-
-class StackOverflow {
-    int stackLength = 1;
-
-    public void stackLeak() {
-        stackLength++;
-        stackLeak();
+    static class HeapOOM {
+        HeapOOM[] testlist = new HeapOOM[100000000];
     }
+
+    static class StackOverflow {
+        int stackLength = 1;
+
+        public void stackLeak() {
+            stackLength++;
+            stackLeak();
+        }
+    }
+
 }
+
+
+

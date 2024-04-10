@@ -16,12 +16,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.*;
 import java.util.Map.Entry;
 
-/**
- * Description: httpClient工具类
- *
- * @author JourWon
- * @date Created on 2018年4月19日
- */
 public class HttpClientUtils {
 
     // 编码格式。发送编码格式统一用UTF-8
@@ -33,43 +27,16 @@ public class HttpClientUtils {
     // 请求获取数据的超时时间(即响应时间)，单位毫秒。
     private static final int SOCKET_TIMEOUT = 6000;
 
-    /**
-     * 发送get请求；不带请求头和请求参数
-     *
-     * @param url 请求地址
-     * @return
-     * @throws Exception
-     */
     public static HttpClientResult doGet(String url) throws Exception {
         return doGet(url, null, null);
     }
 
-    /**
-     * 发送get请求；带请求参数
-     *
-     * @param url    请求地址
-     * @param params 请求参数集合
-     * @return
-     * @throws Exception
-     */
     public static HttpClientResult doGet(String url, Map<String, String> params) throws Exception {
         return doGet(url, null, params);
     }
 
-    /**
-     * 发送get请求；带请求头和请求参数
-     *
-     * @param url     请求地址
-     * @param headers 请求头集合
-     * @param params  请求参数集合
-     * @return
-     * @throws Exception
-     */
     public static HttpClientResult doGet(String url, Map<String, String> headers, Map<String, String> params) throws Exception {
-        // 创建httpClient对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
-
-        // 创建访问的地址
         URIBuilder uriBuilder = new URIBuilder(url);
         if (params != null) {
             Set<Entry<String, String>> entrySet = params.entrySet();

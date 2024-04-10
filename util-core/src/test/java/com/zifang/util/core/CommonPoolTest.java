@@ -9,6 +9,8 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.junit.Test;
 
 public class CommonPoolTest {
+
+
     @Test
     public void test1() {
         // 创建池对象工厂
@@ -56,47 +58,50 @@ public class CommonPoolTest {
             }).start();
         }
     }
-}
 
 
-class Resource {
+    static class Resource {
 
-    private static int id;
-    private int rid;
+        private static int id;
+        private int rid;
 
-    public Resource() {
-        synchronized (this) {
-            this.rid = id++;
+        public Resource() {
+            synchronized (this) {
+                this.rid = id++;
+            }
         }
+
+        public int getRid() {
+            return this.rid;
+        }
+
+        @Override
+        public String toString() {
+            return "id:" + this.rid;
+        }
+
     }
 
-    public int getRid() {
-        return this.rid;
-    }
 
-    @Override
-    public String toString() {
-        return "id:" + this.rid;
-    }
+    static class MyPoolableObjectFactory extends BasePooledObjectFactory<Resource> {
 
+        /**
+         * 创建一个对象实例
+         */
+        @Override
+        public Resource create() throws Exception {
+            return new Resource();
+        }
+
+        /**
+         * 包裹创建的对象实例，返回一个pooledobject
+         */
+        @Override
+        public PooledObject<Resource> wrap(Resource obj) {
+            return new DefaultPooledObject<Resource>(obj);
+        }
+
+    }
 }
 
-class MyPoolableObjectFactory extends BasePooledObjectFactory<Resource> {
 
-    /**
-     * 创建一个对象实例
-     */
-    @Override
-    public Resource create() throws Exception {
-        return new Resource();
-    }
-
-    /**
-     * 包裹创建的对象实例，返回一个pooledobject
-     */
-    @Override
-    public PooledObject<Resource> wrap(Resource obj) {
-        return new DefaultPooledObject<Resource>(obj);
-    }
-
-}
