@@ -1,12 +1,29 @@
-package com.zifang.util.zex.s;
+package com.zifang.util.zex;
 
-
+import org.junit.Test;
 import org.openjdk.jol.info.ClassLayout;
 
 import java.util.concurrent.TimeUnit;
 
-public class HeavyLockExample {
-    public static void main(String[] args) throws InterruptedException {
+public class LockTest {
+
+     static class BiasedLockExample{}
+     static class HeavyLockExample{}
+
+    @Test
+    public void test001() throws InterruptedException {
+        Thread.sleep(5000L);
+        BiasedLockExample example = new BiasedLockExample();
+        System.out.println("加锁之前");
+        System.out.println(ClassLayout.parseInstance(example).toPrintable());
+        synchronized (example) {
+            System.out.println("加锁之后");
+            System.out.println(ClassLayout.parseInstance(example).toPrintable());
+        }
+    }
+
+    @Test
+    public void test002() throws InterruptedException {
         HeavyLockExample heavy = new HeavyLockExample();
         System.out.println("加锁之前");
         System.out.println(ClassLayout.parseInstance(heavy).toPrintable());

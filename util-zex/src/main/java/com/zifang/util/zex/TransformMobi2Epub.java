@@ -2,7 +2,7 @@ package com.zifang.util.zex;
 
 import java.io.File;
 
-public class A {
+public class TransformMobi2Epub {
     public static void main(String[] args) {
         // cd /Applications/calibre.app/Contents/MacOS && ./ebook-convert a  b
         String command = "cd /Applications/calibre.app/Contents/MacOS && ./ebook-convert '%s' '%s' && rm -rf '%s'";
