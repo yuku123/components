@@ -91,7 +91,9 @@ public class ResultSetHandler {
             if (columnMap.get(entry.getKey()) != null) {
                 Field field = columnMap.get(entry.getKey());
                 field.setAccessible(true);
-                Object target = Converters.caller(entry.getValue().getClass(), field.getType()).to(entry.getValue());
+
+                Object target = Converters.to(entry.getValue(), field.getType());
+
                 field.set(o, target);
             }
         }
