@@ -1,7 +1,7 @@
-package com.zifang.util.core.code;
+package com.zifang.util.json.code;
 
 
-import com.zifang.util.core.parser.json.JSONParser;
+import com.zifang.util.json.JSONParser;
 import com.zifang.util.json.model.JsonArray;
 import com.zifang.util.json.model.JsonObject;
 import org.junit.Test;
