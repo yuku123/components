@@ -114,24 +114,9 @@ public final class ASEUtil {
         return null;
     }
 
-    /**
-     * 加密字符串
-     *
-     * @param secretKey
-     * @param Str
-     * @return
-     */
     public static String encrypt(String secretKey, String Str) {
         return Decode.str2HexStr(AESEncode(secretKey, Str));
     }
-
-    /**
-     * 解密字符串
-     *
-     * @param secretKey
-     * @param str
-     * @return
-     */
     public static String decode(String secretKey, String str) {
         return AESDncode(secretKey, Decode.hexStr2Str(str));
     }

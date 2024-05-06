@@ -1,6 +1,6 @@
 package com.zifang.util.core.meta;
 
-import com.zifang.util.core.constant.Const;
+import com.zifang.util.core.Const;
 import com.zifang.util.core.lang.StringUtil;
 import com.zifang.util.core.lang.exception.BaseException;
 
@@ -15,32 +15,12 @@ import java.io.Serializable;
 public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 1444605237688228650L;
-
-    /**
-     * 调用成功返回的对象
-     */
     private T data;
-
-    /**
-     * 调用是否成功
-     */
     private boolean success = Boolean.FALSE;
-
-    /**
-     * 错误码
-     */
     private int code = BaseStatusCode.OK.getCode();
-
-    /**
-     * 错误信息
-     */
     private String message;
 
-    /***
-     * 构造器私有
-     */
-    private Result() {
-    }
+    private Result() {}
 
     public static <T> Result<T> success() {
         Result<T> result = new Result<>();
