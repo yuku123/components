@@ -31,11 +31,6 @@ public class IOUtil {
 
     /**
      * 从流中读取内容，读到输出流中，读取完毕后并不关闭流
-     *
-     * @param in      输入流
-     * @param isClose 读取完毕后是否关闭流
-     * @return 输出流
-     * @since 5.5.3
      */
     public static FastByteArrayOutputStream read(InputStream in, boolean isClose) throws IOException {
         final FastByteArrayOutputStream out;
@@ -59,18 +54,12 @@ public class IOUtil {
         return out;
     }
 
-    /**
-     * 关闭<br>
-     * 关闭失败不会抛出异常
-     *
-     * @param closeable 被关闭的对象
-     */
     public static void close(Closeable closeable) {
         if (null != closeable) {
             try {
                 closeable.close();
             } catch (Exception e) {
-                // 静默关闭
+                e.printStackTrace();
             }
         }
     }
@@ -95,7 +84,7 @@ public class IOUtil {
 //    }
 
 
-    public static int copy(final InputStream input, final OutputStream output) throws IOException {
+    public static int copy(InputStream input, OutputStream output) throws IOException {
         final long count = copyLarge(input, output);
         if (count > Integer.MAX_VALUE) {
             return -1;
@@ -103,7 +92,7 @@ public class IOUtil {
         return (int) count;
     }
 
-    public static long copyLarge(final InputStream input, final OutputStream output) throws IOException {
+    public static long copyLarge(InputStream input, OutputStream output) throws IOException {
 
         byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
         long count = 0;

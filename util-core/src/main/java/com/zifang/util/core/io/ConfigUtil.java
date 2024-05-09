@@ -15,7 +15,7 @@ public class ConfigUtil {
     /**
      * 获取配置文件资源
      */
-    public static URL findAsResource(final String path) {
+    public static URL findAsResource(String path) {
         URL url = null;
         ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
         if (contextClassLoader != null) {
@@ -33,11 +33,7 @@ public class ConfigUtil {
         return url;
     }
 
-    /**
-     * @param path
-     * @return
-     */
-    public static String resourcePath(final String path) {
+    public static String resourcePath(String path) {
         URL asResource = findAsResource(path);
         return new File(asResource.getFile()).getPath();
     }
@@ -52,25 +48,11 @@ public class ConfigUtil {
         }
     }
 
-    /**
-     * 获取资源流
-     *
-     * @param path
-     * @return
-     * @throws IOException
-     */
     private static InputStream resourceStream(final String path) throws IOException {
         URL asResource = findAsResource(path);
         return asResource.openStream();
     }
 
-    /**
-     * 获取资源属性
-     *
-     * @param path
-     * @return
-     * @throws IOException
-     */
     public static Properties getConfigProperties(String path) throws IOException {
         Properties properties = new Properties();
         properties.load(resourceStream(path));

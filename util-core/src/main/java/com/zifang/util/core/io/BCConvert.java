@@ -1,4 +1,4 @@
-package com.zifang.util.core.io.ss;
+package com.zifang.util.core.io;
 
 /**
  * 提供对字符串的全角->半角，半角->全角转换
