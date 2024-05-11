@@ -1,6 +1,5 @@
 package com.zifang.util.core.lang;
 
-import com.zifang.util.core.Const;
 import com.zifang.util.core.lang.regex.Patterns;
 import com.zifang.util.core.lang.validator.Validator;
 
@@ -72,9 +71,6 @@ public class StringUtil {
         return true;
     }
 
-    /**
-     * 文本追加
-     */
     public static String append(String value, String... appends) {
 
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
@@ -755,23 +751,7 @@ public class StringUtil {
      */
     public static String slugify(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        String transliterated = transliterate(collapseWhitespace(value.trim().toLowerCase()));
-        return Arrays.stream(words(transliterated.replace("&", "-and-"), "\\W+")).collect(joining("-"));
-    }
-
-    /**
-     * Remove all non valid characters.
-     */
-    public static String transliterate(String value) {
-        Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        String result = value;
-        Set<Map.Entry<String, List<String>>> entries = Const.ascii.entrySet();
-        for (Map.Entry<String, List<String>> entry : entries) {
-            for (String ch : entry.getValue()) {
-                result = result.replace(ch, entry.getKey());
-            }
-        }
-        return result;
+        return Arrays.stream(words(value.replace("&", "-and-"), "\\W+")).collect(joining("-"));
     }
 
     public static String surround(String value, String prefix, String suffix) {
@@ -817,12 +797,6 @@ public class StringUtil {
         return Arrays.stream(words).map(String::toLowerCase).collect(joining(Optional.ofNullable(chr).orElse(" ")));
     }
 
-    /**
-     * Transform to kebab-case.
-     *
-     * @param value The input String
-     * @return String in kebab-case.
-     */
     public static String toKebabCase(String value) {
         return toDecamelize(value, "-");
     }
@@ -1330,17 +1304,6 @@ public class StringUtil {
         }
 
         return sb.toString();
-    }
-
-    /**
-     * 格式化一个float
-     *
-     * @param format 要格式化成的格式 such as #.00, #.#
-     * @return 格式化后的字符串
-     */
-    public static String formatDouble(double f, String format) {
-        DecimalFormat df = new DecimalFormat(format);
-        return df.format(f);
     }
 
     public static boolean isFormat(String message) {
