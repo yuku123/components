@@ -1,4 +1,4 @@
-package com.zifang.util.proxy.dynamic;
+package com.zifang.util.core.lang.dynamic;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -22,6 +22,10 @@ public class DynamicClassUtil {
     }
 
     public static String parserAsCode(DynamicClass dynamicBean) {
+        return null;
+    }
+
+    public static String generateClassSource(DynamicClass dynamicBean) {
         return null;
     }
 }
