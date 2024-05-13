@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * @author zifang
  */
-public class JsonUtil {
+public class JsonUtil{
 
     public static <T> String toJson(T t) {
 
