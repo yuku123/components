@@ -364,4 +364,12 @@ public class StringUtilTest {
 //      assert StringUtil.hexDecode("0110100001100101011011000110110001101111").equals("hello");
 
     }
+
+    @Test
+    public void aaaa() {
+
+        // 11011000  001111011  10111000  1001110
+        System.out.println(StringUtil.binEncode("\uD83D\uDC4E"));
+
+    }
 }

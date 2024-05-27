@@ -1,6 +1,5 @@
 package com.zifang.util.core.io;
 
-import com.zifang.util.core.io.ss.FileTypeImpl;
 import com.zifang.util.core.lang.regex.RegexUtil;
 import com.zifang.util.core.lang.validator.Checker;
 import lombok.extern.slf4j.Slf4j;
@@ -85,9 +84,6 @@ public class FileUtil {
 
     /**
      * 利用Buffer实现文件的读取拷贝
-     *
-     * @param source
-     * @param target
      */
     public static void customBufferStreamCopy(File source, File target) {
         try (

@@ -1,11 +1,12 @@
 package com.zifang.util.core.lang;
 
-import com.zifang.util.core.constant.Const;
-import com.zifang.util.core.constant.HtmlEntities;
 import com.zifang.util.core.lang.regex.Patterns;
 import com.zifang.util.core.lang.validator.Validator;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -26,44 +27,27 @@ public class StringUtil {
     private static final String[] EMPTY_ARRAY = new String[0];
     private static final char SEPARATOR = '_';
 
-    /**
-     * 判断字符串是否为空
-     */
     public static boolean isEmpty(CharSequence cs) {
         return cs == null || cs.length() == 0;
     }
-
-    /**
-     * 判断字符串是否不为空
-     */
     public static boolean isNotEmptyString(String string) {
         return string != null && string.length() > 0;
     }
-
     public static boolean isNotEmpty(String str) {
         return str != null && !"".equals(str);
     }
-
     public static boolean isBlank(String value) {
         if (value == null || value.length() == 0) {
             return true;
         }
         return forEachCharAllMatch(value, CharUtil::isBlankChar);
     }
-
-    /** 判断字符串是否全部都为小写 */
     public static boolean isAllLowerCase(String value) {
         return forEachCharAllMatch(value, Character::isLowerCase);
     }
-
-    /** 判断字符串是否全部大写 */
     public static boolean isAllUpperCase(String value) {
         return forEachCharAllMatch(value, Character::isUpperCase);
     }
-
-    /**
-     * 如果任何一个字符满足谓词条件，则返回true；如果所有字符都不满足谓词条件，则返回false
-     */
     public static boolean forEachCharAnyMatch(String value, Predicate<Character> predicate) {
         if (value == null || value.length() == 0) {
             return false;
@@ -75,10 +59,6 @@ public class StringUtil {
         }
         return false;
     }
-
-    /**
-     * 如果所有字符满足谓词条件，则返回true；如果所有字符都不满足谓词条件，则返回false
-     */
     public static boolean forEachCharAllMatch(String value, Predicate<Character> predicate) {
         if (value == null || value.length() == 0) {
             return false;
@@ -91,9 +71,6 @@ public class StringUtil {
         return true;
     }
 
-    /**
-     * 文本追加
-     */
     public static String append(String value, String... appends) {
 
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
@@ -155,8 +132,7 @@ public class StringUtil {
 
     public static long countSubstr(String value, String subStr, boolean caseSensitive, boolean allowOverlapping) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        return countSubstr(caseSensitive ? value : value.toLowerCase(), caseSensitive ? subStr : subStr.toLowerCase(),
-                allowOverlapping, 0L);
+        return countSubstr(caseSensitive ? value : value.toLowerCase(), caseSensitive ? subStr : subStr.toLowerCase(), allowOverlapping, 0L);
     }
 
     public static boolean endsWith(String value, String search) {
@@ -735,28 +711,22 @@ public class StringUtil {
         return append(value.substring(0, length - filler.length()), filler);
     }
 
-    /**
-     * Converts all HTML entities to applicable characters.
-     *
-     * @param encodedHtml The encoded HTML
-     * @return The decoded HTML
-     */
     public static String htmlDecode(String encodedHtml) {
         Validator.validate(encodedHtml, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        String[] entities = encodedHtml.split("&\\W+;");
-        return Arrays.stream(entities).map(e -> HtmlEntities.decodedEntities.get(e)).collect(joining());
+        try {
+            return URLDecoder.decode(encodedHtml,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    /**
-     * Convert all applicable characters to HTML entities.
-     *
-     * @param html The HTML to encode
-     * @return The encoded data
-     */
     public static String htmlEncode(String html) {
         Validator.validate(html, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        return html.chars().mapToObj(c -> "\\u" + String.format("%04x", c).toUpperCase())
-                .map(HtmlEntities.encodedEntities::get).collect(joining());
+        try {
+            return URLEncoder.encode(html,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -778,54 +748,18 @@ public class StringUtil {
 
     /**
      * Convert a String to a slug
-     *
-     * @param value The value to slugify
-     * @return The slugified value
      */
     public static String slugify(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        String transliterated = transliterate(collapseWhitespace(value.trim().toLowerCase()));
-        return Arrays.stream(words(transliterated.replace("&", "-and-"), "\\W+")).collect(joining("-"));
+        return Arrays.stream(words(value.replace("&", "-and-"), "\\W+")).collect(joining("-"));
     }
 
-    /**
-     * Remove all non valid characters.
-     *
-     * @param value The input String
-     * @return String without non valid characters.
-     */
-    public static String transliterate(String value) {
-        Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
-        String result = value;
-        Set<Map.Entry<String, List<String>>> entries = Const.ascii.entrySet();
-        for (Map.Entry<String, List<String>> entry : entries) {
-            for (String ch : entry.getValue()) {
-                result = result.replace(ch, entry.getKey());
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Surrounds a 'value' with the given 'prefix' and 'suffix'.
-     *
-     * @param value  The input String
-     * @param prefix prefix. If suffix is null then prefix is used
-     * @param suffix suffix
-     * @return The String with surround substrs!
-     */
     public static String surround(String value, String prefix, String suffix) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String _prefix = Optional.ofNullable(prefix).orElse("");
         return append(_prefix, value, Optional.ofNullable(suffix).orElse(_prefix));
     }
 
-    /**
-     * Transform to camelCase
-     *
-     * @param value The input String
-     * @return String in camelCase.
-     */
     public static String toCamelCase(String value) {
         if (value == null || value.length() == 0) {
             return "";
@@ -834,12 +768,6 @@ public class StringUtil {
         return str.substring(0, 1).toLowerCase() + str.substring(1);
     }
 
-    /**
-     * Transform to StudlyCaps.
-     *
-     * @param value The input String
-     * @return String in StudlyCaps.
-     */
     public static String toStudlyCase(String value) {
         Validator.validate(value, NULL_STRING_PREDICATE, NULL_STRING_MSG_SUPPLIER);
         String[] words = collapseWhitespace(value.trim()).split("\\s*(_|-|\\s)\\s*");
@@ -869,12 +797,6 @@ public class StringUtil {
         return Arrays.stream(words).map(String::toLowerCase).collect(joining(Optional.ofNullable(chr).orElse(" ")));
     }
 
-    /**
-     * Transform to kebab-case.
-     *
-     * @param value The input String
-     * @return String in kebab-case.
-     */
     public static String toKebabCase(String value) {
         return toDecamelize(value, "-");
     }
@@ -1382,17 +1304,6 @@ public class StringUtil {
         }
 
         return sb.toString();
-    }
-
-    /**
-     * 格式化一个float
-     *
-     * @param format 要格式化成的格式 such as #.00, #.#
-     * @return 格式化后的字符串
-     */
-    public static String formatDouble(double f, String format) {
-        DecimalFormat df = new DecimalFormat(format);
-        return df.format(f);
     }
 
     public static boolean isFormat(String message) {

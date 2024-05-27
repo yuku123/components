@@ -15,30 +15,10 @@ class AESUtils {
      */
     protected static final String KEY = "NOPO3nzMD3dndwS0MccuMeXCHgVlGOoYyFwLdS24Im2e7YyhB0wrUsyYf0";
 
-    /**
-     * AES解密
-     *
-     * @param encryptValue 待解密内容
-     * @param key          秘钥
-     * @return
-     * @throws Exception
-     * @author:chenssy
-     * @date : 2016年5月21日 上午9:48:12
-     */
     protected static String decrypt(String encryptValue, String key) throws Exception {
         return aesDecryptByBytes(base64Decode(encryptValue), key);
     }
 
-    /**
-     * AES加密
-     *
-     * @param value 待加密内容
-     * @param key   秘钥
-     * @return
-     * @throws Exception
-     * @author:chenssy
-     * @date : 2016年5月21日 上午9:48:42
-     */
     protected static String encrypt(String value, String key) throws Exception {
         return base64Encode(aesEncryptToBytes(value, key));
     }

@@ -2,14 +2,13 @@ package com.zifang.util.json;
 
 import com.zifang.util.json.define.TypeReference;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author zifang
  */
-public class JsonUtil {
+public class JsonUtil{
 
     public static <T> String toJson(T t) {
 
@@ -43,16 +42,5 @@ public class JsonUtil {
 //            e.printStackTrace();
 //        }
         return t;
-    }
-
-    public static void main(String[] args) throws IOException {
-//        List<String> c = new ArrayList<>();
-//        fromJson("", new TypeReference<List<String>>() {
-//        });
-//        c.getClass();
-
-        JSONParser jsonParser = new JSONParser();
-        Object o = jsonParser.fromJSON("{\"a\":1}");
-        System.out.println();
     }
 }

@@ -1,4 +1,4 @@
-package com.zifang.util.core.io.ss;
+package com.zifang.util.core.io;
 
 /**
  * 对比俩个字符串的相似度

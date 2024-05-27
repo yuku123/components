@@ -19,11 +19,8 @@ public final class Base32 {
 
     /**
      * 使用Base32进行编码
-     *
-     * @param bytes
-     * @return
      */
-    public final static String encode(final byte[] bytes) {
+    public static String encode(final byte[] bytes) {
         StringBuilder base32 = new StringBuilder((bytes.length * 8 + 4) / 5);
 
         int currByte, digit, i = 0;
@@ -78,12 +75,8 @@ public final class Base32 {
 
     /**
      * 用Base32进行解码
-     *
-     * @param base32
-     * @return
-     * @throws IllegalArgumentException
      */
-    public final static String decode(final String base32) throws IllegalArgumentException {
+    public static String decode(final String base32) throws IllegalArgumentException {
         switch (base32.length() % 8) {
             case 1:
             case 3:

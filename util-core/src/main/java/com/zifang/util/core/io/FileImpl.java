@@ -1,4 +1,4 @@
-package com.zifang.util.core.io.ss;//package com.zifang.util.zex.util.algorithmImpl;
+package com.zifang.util.core.io;//package com.zifang.util.zex.util.algorithmImpl;
 //
 //
 //import org.mozilla.intl.chardet.nsDetector;

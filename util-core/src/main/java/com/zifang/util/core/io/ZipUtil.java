@@ -13,16 +13,10 @@ import java.util.zip.ZipOutputStream;
  */
 public class ZipUtil {
 
-    /**
-     * 文件后缀名
-     */
     private static final String ZIP_FILE_SUFFIX = ".zip";
 
     /**
      * 压缩文件
-     *
-     * @param resourcePath 源文件
-     * @param targetPath   目的文件,保存文件路径
      */
     public static void zipFile(String resourcePath, String targetPath) {
         File resourcesFile = new File(resourcePath);

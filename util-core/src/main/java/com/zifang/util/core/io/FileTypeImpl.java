@@ -1,4 +1,4 @@
-package com.zifang.util.core.io.ss;
+package com.zifang.util.core.io;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -78,14 +78,6 @@ public class FileTypeImpl {
         return null;
     }
 
-    /**
-     * Created on 2010-7-1
-     * <p>Discription:[getFileHexString]</p>
-     *
-     * @param b
-     * @return fileTypeHex
-     * @author:[shixing_11@sina.com]
-     */
     public static String getFileHexString(byte[] b) {
         StringBuilder stringBuilder = new StringBuilder();
         if (b == null || b.length <= 0) {
