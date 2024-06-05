@@ -97,4 +97,8 @@ public class UnsafeUtil {
         return UNSAFE;
     }
 
+//    public static void main(String[] args) {
+//        String.valueOf('c').compareToIgnoreCase()
+//    }
+
 }
