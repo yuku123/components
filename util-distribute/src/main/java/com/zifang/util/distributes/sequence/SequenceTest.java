@@ -1,4 +1,4 @@
-package com.zifang.util.distributes.a;
+package com.zifang.util.distributes.sequence;
 
 
 import java.util.HashSet;
