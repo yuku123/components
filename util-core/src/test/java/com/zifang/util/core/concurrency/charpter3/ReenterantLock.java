@@ -4,7 +4,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ReenterantLock implements Runnable {
 
-    public static ReentrantLock lock = new ReentrantLock();//重入锁
+    public static ReentrantLock lock = new ReentrantLock(true);//重入锁
     public static int i = 0;
 
     @Override
@@ -28,9 +28,9 @@ public class ReenterantLock implements Runnable {
         Thread t2 = new Thread(reenterantLock);
         t2.setName("T2");
         t1.start();
-        t2.start();
-        t1.join();
-        t2.join();
+//        t2.start();
+//        t1.join();
+//        t2.join();
         System.out.println(i);
     }
 }
