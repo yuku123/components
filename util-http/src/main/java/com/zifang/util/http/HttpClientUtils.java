@@ -178,14 +178,6 @@ public class HttpClientUtils {
         }
     }
 
-    /**
-     * 发送delete请求；不带请求参数
-     *
-     * @param url    请求地址
-     * @param params 参数集合
-     * @return
-     * @throws Exception
-     */
     public static HttpClientResult doDelete(String url) throws Exception {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpDelete httpDelete = new HttpDelete(url);

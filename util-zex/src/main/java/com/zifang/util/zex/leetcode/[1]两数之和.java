@@ -46,7 +46,6 @@
 
 package com.zifang.util.zex.leetcode;
 
-
 class TwoSum {
 
     class Solution {
@@ -72,5 +71,4 @@ class TwoSum {
         Solution solution = new TwoSum().new Solution();
         System.out.println(solution);
     }
-
 }

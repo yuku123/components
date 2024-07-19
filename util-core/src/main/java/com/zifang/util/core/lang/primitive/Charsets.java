@@ -124,9 +124,6 @@ public class Charsets {
 
     /**
      * GBK转换成Unicode字符集
-     *
-     * @param input 待转换字符串
-     * @return 转换完成字符串
      */
     public static String toUnicodeWithGBK(String input) throws UnsupportedEncodingException {
         if (StringUtil.isEmpty(input)) {

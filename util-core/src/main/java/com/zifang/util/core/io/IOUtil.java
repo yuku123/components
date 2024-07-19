@@ -21,9 +21,6 @@ public class IOUtil {
 
     /**
      * 从流中读取内容，读到输出流中，读取完毕后并不关闭流
-     *
-     * @param in 输入流
-     * @return 输出流
      */
     public static FastByteArrayOutputStream read(InputStream in) throws IOException {
         return read(in, true);

@@ -20,11 +20,11 @@ import static com.zifang.util.core.lang.reflect.ClassLoaderUtil.loadClass;
 @Slf4j
 public class ClassUtil {
 
-    private static String CLASS_SUFFIX = ".class";
-    private static String JAR = "jar";
-    private static String FILE = "file";
-    private static String defaultClassPath = ClassUtil.class.getResource("/").getPath();
-    public static Class[] EMPTY_CLASS_ARRAY = new Class[0];
+    private static final String CLASS_SUFFIX = ".class";
+    private static final String JAR = "jar";
+    private static final String FILE = "file";
+    private static final String defaultClassPath = ClassUtil.class.getResource("/").getPath();
+    public static Class<?>[] EMPTY_CLASS_ARRAY = new Class<?>[0];
 
     public static String METHOD_GET_PREFIX = "get";
     public static String METHOD_IS_PREFIX = "is";
@@ -87,11 +87,11 @@ public class ClassUtil {
         return false;
     }
 
-    public static Field[] getAccessibleFields(Class clazz) {
+    public static Field[] getAccessibleFields(Class<?> clazz) {
         return getAccessibleFields(clazz, Object.class);
     }
 
-    public static Field[] getAccessibleFields(Class clazz, Class limit) {
+    public static Field[] getAccessibleFields(Class<?> clazz, Class<?> limit) {
         Package topPackage = clazz.getPackage();
         List<Field> fieldList = new ArrayList<>();
         int topPackageHash = topPackage == null ? 0 : topPackage.hashCode();

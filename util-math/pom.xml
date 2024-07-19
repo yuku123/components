@@ -18,6 +18,4 @@
             <artifactId>util-core</artifactId>
         </dependency>
     </dependencies>
-
-
 </project>

@@ -3,6 +3,8 @@ package com.zifang.util.zex;
 import org.junit.Test;
 import org.openjdk.jol.info.ClassLayout;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 public class LockTest {
@@ -44,5 +46,9 @@ public class LockTest {
             System.out.println("main线程来抢占锁");
             System.out.println(ClassLayout.parseInstance(heavy).toPrintable());
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println();
     }
 }

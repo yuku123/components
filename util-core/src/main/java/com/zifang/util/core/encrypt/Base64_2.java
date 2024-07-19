@@ -1,6 +1,7 @@
 package com.zifang.util.core.encrypt;
 
 import java.io.IOException;
+import java.util.Base64;
 
 public class Base64_2 {
 

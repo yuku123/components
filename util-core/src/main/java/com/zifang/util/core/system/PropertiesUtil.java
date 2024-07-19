@@ -9,9 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-/**
- * 提供一些常用的属性文件相关的方法
- */
 @Slf4j
 public final class PropertiesUtil {
 
