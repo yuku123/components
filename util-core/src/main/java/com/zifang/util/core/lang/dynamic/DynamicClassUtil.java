@@ -1,6 +1,7 @@
 package com.zifang.util.core.lang.dynamic;
 
-import com.c2f.tech.sj.editor.util.GsonUtil;
+
+import com.zifang.util.core.util.GsonUtil;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

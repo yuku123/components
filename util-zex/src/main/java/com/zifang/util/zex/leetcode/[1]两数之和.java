@@ -46,16 +46,8 @@
 
 package com.zifang.util.zex.leetcode;
 
-/**
- * @date: 2021-05-24 15:04:36
- * @description: 两数之和
- * @version: JDK 1.8
- */
+
 class TwoSum {
-    public static void main(String[] args) {
-        Solution solution = new TwoSum().new Solution();
-        System.out.println(solution);
-    }
 
     class Solution {
         public int[] twoSum(int[] nums, int target) {
@@ -75,4 +67,10 @@ class TwoSum {
             return new int[]{a, b};
         }
     }
+
+    public static void main(String[] args) {
+        Solution solution = new TwoSum().new Solution();
+        System.out.println(solution);
+    }
+
 }
