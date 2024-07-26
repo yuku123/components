@@ -1,4 +1,4 @@
-package com.zifang.util.zex.bust.chapter11.charpter13;
+package com.zifang.util.zex.bust.charpter13;
 
 import org.junit.Test;
 
@@ -9,18 +9,20 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.channels.ServerSocketChannel;
 
 /**
  * @author zifang
  */
-public class NioChannelTest000 {
+public class NioChannelTest001 {
 
     public static String host = "127.0.0.1";
     private static int port = 50000;
 
     @Test
     public void server() throws IOException {
-        ServerSocket serverSocket = new ServerSocket();
+        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
+        ServerSocket serverSocket = serverSocketChannel.socket();
         serverSocket.bind(new InetSocketAddress(host, port));
         Socket socket = serverSocket.accept();
         InputStream inputStream = socket.getInputStream();
@@ -36,6 +38,7 @@ public class NioChannelTest000 {
         inputStream.close();
         socket.close();
         serverSocket.close();
+        serverSocketChannel.close();
     }
 
     @Test
@@ -52,4 +55,6 @@ public class NioChannelTest000 {
         // 关闭连接
         socket.close();
     }
+
+
 }

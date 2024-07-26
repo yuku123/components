@@ -1,4 +1,4 @@
-package com.zifang.util.zex.bust.chapter11.charpter13;
+package com.zifang.util.zex.bust.charpter13;
 
 import org.junit.Test;
 
