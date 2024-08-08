@@ -34,6 +34,6 @@ public class AtomicTest {
         thread1.join();
         thread2.join();
         System.out.println(AtomicTest.i);
-        AtomicTest.i.
+//        AtomicTest.i.
     }
 }
