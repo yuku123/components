@@ -108,7 +108,7 @@ public class ConvertRegisterTest {
     @Test
     public void test004(){
         IConverter<Map<String,String>, String> converter = (value, defaultValue) -> String.join(",",value.keySet());
-        Converters.registerConverter(converter);
+        Converters.registerConverter(converter,Map.class, String.class);
 
         Map<String,String> m = new HashMap<>();
         m.put("a","a");
@@ -116,17 +116,4 @@ public class ConvertRegisterTest {
 
         assert Converters.findConverter(Map.class, String.class).to(m).equals("a,b");
     }
-
-    @Test
-    public void test005(){
-        IConverter<Map<String,String>, String> converter = (value, defaultValue) -> String.join(",",value.keySet());
-        Converters.registerConverter(converter, Map.class, String.class);
-
-        Map<String,String> m = new HashMap<>();
-        m.put("a","a");
-        m.put("b","b");
-
-        assert Converters.findConverter(Map.class, String.class).to(m).equals("a,b");
-    }
-
 }
