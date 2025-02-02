@@ -2,11 +2,11 @@ package com.zifang.util.workflow.engine.interfaces;
 
 import com.zifang.util.workflow.config.ExecutableWorkflowNode;
 import com.zifang.util.workflow.conponents.WorkFlowApplicationContext;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+@Data
 public abstract class AbstractEngineService {
 
     /**

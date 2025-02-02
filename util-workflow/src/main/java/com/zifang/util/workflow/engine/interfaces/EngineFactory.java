@@ -45,9 +45,7 @@ public class EngineFactory {
 
                 //加入缓存
                 engineCache.put(type, abstractEngine);
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }

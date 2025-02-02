@@ -188,8 +188,6 @@ public class Const {
 
     String ZERO = "0";
     String ONE = "1";
-//    String TRUE = "true";
-//    String FALSE = "false";
     String EMPTY = "";
     String[] EMPTY_ARRAY = new String[0];
     String DEFAULT = "default";
@@ -228,7 +226,6 @@ public class Const {
      * 业务插入
      */
     public final static String BUSINESS_INSERT = "INSERT";
-
 
     /**
      * 业务更新

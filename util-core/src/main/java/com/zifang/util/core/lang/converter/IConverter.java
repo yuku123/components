@@ -1,9 +1,15 @@
 package com.zifang.util.core.lang.converter;
 
+import com.zifang.util.core.lang.tuples.Pair;
+
 public interface IConverter<F, T> {
 
     default T to(F value){
         throw new RuntimeException("未实现");
+    }
+
+    default Pair<Class<?>, Class<?>> getPair(){
+        return null;
     }
 
     T to(F value, T defaultValue);
