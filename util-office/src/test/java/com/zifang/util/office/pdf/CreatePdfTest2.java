@@ -5,15 +5,17 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class CreatePdfTest {
+public class CreatePdfTest2 {
 
     public static void transform(String output, String imageFolder) throws IOException {
         PDDocument document = new PDDocument();
@@ -61,10 +63,76 @@ public class CreatePdfTest {
 
     }
 
+    @Test
+    public void test0(){
+
+        String baseFolder = "/Volumes/element/エロ/20200301";
+
+        doAnalysisFolder(baseFolder);
+    }
+
+    private void doAnalysisFolder(String baseFolder) {
+        File file = new File(baseFolder);
+        List<File> subFiles = Arrays.asList(Objects.requireNonNull(file.listFiles()));
+
+        subFiles = subFiles.stream().filter(e->!e.isHidden()).collect(Collectors.toList());
+        subFiles.sort(Comparator.naturalOrder());
+
+        List<File> folders = subFiles.stream().filter(File::isDirectory).collect(Collectors.toList());
+        List<File> files = subFiles.stream().filter(File::isFile).collect(Collectors.toList());
+
+        if(files.size() > 0){
+            // 处理文件
+            // 压缩当前文件夹下的image到一个pdf
+            String pdfTargetFilePath = file.getParent() + "/" + file.getName() + ".pdf";
+            List<File> successFile = PdfUtil.fillImages(
+                    pdfTargetFilePath,
+                    files,
+                    false
+            );
+
+            if(successFile.size() == 0){
+                if(new File(pdfTargetFilePath).length() < 1000){
+                     new File(pdfTargetFilePath).delete();
+                }
+            } else {
+                successFile.stream().forEach(e->{
+                    System.out.println("        compact file : " + e.getAbsolutePath());
+                });
+                successFile.stream().forEach(e->{
+                    System.out.println("            start deleting-file : " + e.getAbsolutePath());
+                    // e.delete();
+                    System.out.println("            after deleting-file : " + e.getAbsolutePath());
+                });
+            }
+        }
+
+        // 处理文件夹
+        for(File subFolder : folders){
+            // 如果没有文件则删除
+            if(Arrays.stream(subFolder.listFiles()).filter(e->!e.isHidden()).collect(Collectors.toList()).size() == 0){
+                subFolder.delete();
+                continue;
+            }
+
+            System.out.println("start analysis folder: " + subFolder);
+            doAnalysisFolder(subFolder.getAbsolutePath());
+
+            // 如果没有文件则删除
+            if(Arrays.stream(subFolder.listFiles()).filter(e->!e.isHidden()).collect(Collectors.toList()).size() == 0){
+                subFolder.delete();
+                continue;
+            }
+
+            System.out.println("end   analysis folder: " + subFolder);
+
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         String output = "/Volumes/zifang/工口/超电磁炮/(C78) [たくみなむち (たくみなむち)] 超電磁砲のまもりかた　上 (とある魔術の禁書目録) [無修正].pdf";
         String imageFolder = "/Volumes/zifang/工口/超电磁炮/(C78) [たくみなむち (たくみなむち)] 超電磁砲のまもりかた　上 (とある魔術の禁書目録) [無修正]";
-        for (File file : new File("/Volumes/element/エロ/Coser星之迟迟写真合集（2014-2019）/VOL.8 玫瑰月光包").listFiles()) {
+        for (File file : new File("/Volumes/element/エロ/Coser星之迟迟写真合集（2014-2019）").listFiles()) {
             if (file.isDirectory()) {
                 String folder = file.getAbsolutePath();
                 String pdf = folder + ".pdf";
