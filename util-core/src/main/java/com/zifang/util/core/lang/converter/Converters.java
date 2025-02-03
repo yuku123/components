@@ -34,8 +34,30 @@ public class Converters {
         }
     }
 
+    public static <F,T> IConverter<F,T> findConverter(Class<F> from, Class<T> target) {
 
-    public static <F,T> IConverter<F,T> findConverter(Class<F> a, Class<T> b){
+        // 获取原始类型
+        Class<?> parsedFrom = PrimitiveUtil.getPrimitiveWrapper(from);
+        Class<?> parsedTarget = PrimitiveUtil.getPrimitiveWrapper(target);
+
+        Pair<Class<?>,Class<?>> pair = new Pair<>(parsedFrom, parsedTarget);
+
+        if(converterCache.containsKey(pair)){
+            return (ConvertCaller<F,T>) converterCache.get(pair);
+        } else {
+            // 有可能参数是父类的
+            ConvertCaller<F,T> convertCaller = (ConvertCaller<F,T>) findConverter0(parsedFrom,parsedTarget);
+            ConvertCaller<F,T> copy = convertCaller.copy();
+            copy.setFrom(parsedFrom);
+            copy.setTarget(parsedTarget);
+
+            converterCache.put(pair, copy);
+
+            return copy;
+        }
+    }
+
+    private static <F,T> IConverter<F,T> findConverter0(Class<F> a, Class<T> b){
         Pair<Class<?>, Class<?>> pair = new Pair<>(a, b);
 
         // 直接寻找
@@ -63,7 +85,7 @@ public class Converters {
          throw new RuntimeException("没有找到对应的转换器" + a.getName() + "->" + b.getName());
     }
 
-    public static  <F,T> void registerConverter(Class<? extends IConverter<F,T>> clazz) {
+    public static <F,T> void registerConverter(Class<? extends IConverter<F,T>> clazz) {
         try {
             Object instance = clazz.newInstance();
             registerConverter((IConverter<F,T>)instance);
@@ -124,30 +146,9 @@ public class Converters {
         }
     }
 
-    public static <F,T> IConverter<F,T> caller(Class<F> from, Class<T> target) {
 
-        // 获取原始类型
-        Class<?> parsedFrom = PrimitiveUtil.getPrimitiveWrapper(from);
-        Class<?> parsedTarget = PrimitiveUtil.getPrimitiveWrapper(target);
-
-        Pair<Class<?>,Class<?>> pair = new Pair<>(parsedFrom, parsedTarget);
-
-        if(converterCache.containsKey(pair)){
-            return (ConvertCaller<F,T>) converterCache.get(pair);
-        } else {
-            // 有可能参数是父类的
-            ConvertCaller<F,T> convertCaller = (ConvertCaller<F,T>) findConverter(parsedFrom,parsedTarget);
-            ConvertCaller<F,T> copy = convertCaller.copy();
-            copy.setFrom(parsedFrom);
-            copy.setTarget(parsedTarget);
-
-            converterCache.put(pair, copy);
-
-            return copy;
-        }
-    }
 
     public static <F,T> T to(Object value, Class<T> clazz) {
-        return caller((Class<F>) value.getClass(), clazz).to((F)value);
+        return findConverter((Class<F>) value.getClass(), clazz).to((F)value);
     }
 }
