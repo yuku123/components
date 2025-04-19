@@ -57,6 +57,17 @@ public class TerminalUtil {
         return sb.toString();
     }
 
+    public static void runAndGetPrint(String command) throws IOException {
+        StringBuffer sb = new StringBuffer();
+        Process process = Runtime.getRuntime().exec(command);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            System.out.println(line);
+        }
+    }
+
+
     /**
      * @param command let os to execute the command and return the result of command
      *                if command do print something
