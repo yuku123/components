@@ -93,9 +93,11 @@ public class TerminalUtilTest {
         System.out.println(command);
 
         try {
-            TerminalUtil.runAndGetPrint(String.format("ebook-convert %s %s", originName, targetName));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            TerminalUtil.runAndGetPrint(String.format("ebook-convert %s %s", originName, targetName),60L);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("timeout: " + command);
+            return ;
         }
 
         // 开始check

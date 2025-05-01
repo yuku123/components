@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class TerminalUtil {
 
@@ -58,8 +59,26 @@ public class TerminalUtil {
     }
 
     public static void runAndGetPrint(String command) throws IOException {
-        StringBuffer sb = new StringBuffer();
         Process process = Runtime.getRuntime().exec(command);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            System.out.println(line);
+        }
+    }
+
+    public static void runAndGetPrint(String command, Long timeout) throws IOException {
+        Process process = Runtime.getRuntime().exec(command);
+        boolean pass = false;
+        try {
+            pass = process.waitFor(timeout, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        if(!pass){
+            throw new RuntimeException();
+        }
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
