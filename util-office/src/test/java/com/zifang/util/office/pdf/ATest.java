@@ -36,6 +36,23 @@ public class ATest {
             existedFiles.add(file.getName().replace(".azw3.azw3.pdf",""));
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         for(File file : new File(baseFolder).listFiles()){
             String fileName = file.getName().replace(".azw3","");
             if(existedFiles.contains(fileName)){
