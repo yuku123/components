@@ -9,6 +9,5 @@ import java.lang.annotation.*;
 @SuperInfo(superInfo = "superInfo")
 public @interface ClassInfo {
     String className();
-
     String value() default "default-class-value";
 }

@@ -7,6 +7,7 @@ import java.security.MessageDigest;
  * SHA(Secure Hash Algorithm)安全散列算法数字签名等密码学应用中重要的工具，
  */
 public class SHADemo {
+
     /***
      * SHA加密 生成40位SHA码
      *

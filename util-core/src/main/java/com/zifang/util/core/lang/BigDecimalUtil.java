@@ -11,19 +11,18 @@ public class BigDecimalUtil {
     /**
      * 默认保留位：2
      */
-    private static int DEFAULT_SCALE = 2;
+    private static final int DEFAULT_SCALE = 2;
 
     /**
      * 默认四舍五入规则为：向上舍入
      */
-    private static int DEFAULT_ROUND = BigDecimal.ROUND_HALF_UP;
+    private static final int DEFAULT_ROUND = BigDecimal.ROUND_HALF_UP;
 
     /**
      * 加法运算
      *
      * @param v1 加数
      * @param v2 被加数
-     * @return
      */
     public static String add(String v1, String v2) {
         BigDecimal b1 = new BigDecimal(v1);
@@ -38,7 +37,6 @@ public class BigDecimalUtil {
      * @param v1    除数
      * @param v2    被除数
      * @param scale 精确精度
-     * @return
      */
     public static String div(String v1, String v2, int scale, int round) {
         if (scale < 0) {
@@ -64,10 +62,6 @@ public class BigDecimalUtil {
      * v1 > v2 return 1<br>
      * v1 = v2 return 0<br>
      * v1 < v2 return -1
-     *
-     * @param v1 比较数
-     * @param v2 被比较数
-     * @return
      */
     public static int compareTo(String v1, String v2) {
         BigDecimal b1 = new BigDecimal(v1);
