@@ -26,7 +26,6 @@ public class StringUtil {
     private static final Supplier<String> NULL_STRING_MSG_SUPPLIER = () -> "'value' should be not null.";
     private static final String[] EMPTY_ARRAY = new String[0];
     private static final char SEPARATOR = '_';
-
     public static boolean isEmpty(CharSequence cs) {
         return cs == null || cs.length() == 0;
     }

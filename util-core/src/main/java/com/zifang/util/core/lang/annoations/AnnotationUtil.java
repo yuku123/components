@@ -125,8 +125,7 @@ public class AnnotationUtil {
         try {
             Method method = annotation.getClass().getMethod(propertyName);
             method.setAccessible(true);
-            T s = (T) method.invoke(annotation);
-            return s;
+            return (T) method.invoke(annotation);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }

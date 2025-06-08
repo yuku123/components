@@ -2,8 +2,11 @@ package com.zifang.util.core.util;
 
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.*;
 
 public class TerminalUtilTest {
@@ -21,9 +24,6 @@ public class TerminalUtilTest {
         // String baseFolder = "I:\\书籍合集\\13000本";
         String baseFolder = "I:\\书籍合集\\合集";
 
-
-
-
         doFolder(baseFolder, executor);
     }
 
@@ -32,7 +32,9 @@ public class TerminalUtilTest {
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
 //        String baseFolder = "I:\\书籍合集\\精排版";
-         String baseFolder = "I:\\书籍合集\\13000本";
+        // String baseFolder = "I:\\书籍合集\\13000本";
+        // String baseFolder = "I:\\书籍合集\\精排版";
+        String baseFolder = "/Volumes/Elements SE/书籍合集/精排版";
 
         for(File file : new File(baseFolder).listFiles()){
             if(file.isDirectory()){
@@ -51,8 +53,8 @@ public class TerminalUtilTest {
 
         // 创建一个单线程的线程池
         ExecutorService executor = Executors.newFixedThreadPool(10);
-
-        String baseFolder = "I:\\书籍合集\\【罗辑思维】1-5季书籍";
+        String baseFolder = "/Volumes/Elements SE/书籍合集/【罗辑思维】1-5季书籍";
+        // String baseFolder = "I:\\书籍合集\\【罗辑思维】1-5季书籍";
 
         doFolder(baseFolder, executor);
     }
@@ -93,11 +95,39 @@ public class TerminalUtilTest {
         String command = String.format("ebook-convert \"%s\" \"%s\"", originName, targetName);
         System.out.println(command);
 
+        Process process = null;
         try {
-            TerminalUtil.runAndGetPrint(String.format("ebook-convert %s %s", originName, targetName),60L);
+            // TerminalUtil.runAndGetPrint(command,60L);
+
+
+            ProcessBuilder processBuilder = new ProcessBuilder(
+                    "ebook-convert",
+                    originName,
+                    targetName
+            );
+
+            process = processBuilder.start();
+            boolean pass = false;
+            try {
+                pass = process.waitFor(60, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            if(!pass){
+                throw new RuntimeException();
+            }
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("timeout: " + command);
+            process.destroy();
             return ;
         }
 
