@@ -1,5 +1,6 @@
 package com.zifang.util.core.meta;
 
+import com.zifang.util.core.meta.page.ResultCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

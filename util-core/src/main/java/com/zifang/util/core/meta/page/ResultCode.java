@@ -1,4 +1,4 @@
-package com.zifang.util.core.meta;
+package com.zifang.util.core.meta.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

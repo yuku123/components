@@ -1,8 +1,10 @@
-package com.zifang.util.core.meta;
+package com.zifang.util.core.meta.page;
 
 import com.zifang.util.core.Const;
 import com.zifang.util.core.lang.StringUtil;
 import com.zifang.util.core.lang.exception.BaseException;
+import com.zifang.util.core.meta.BaseStatusCode;
+import com.zifang.util.core.meta.StatusCode;
 
 import java.io.Serializable;
 

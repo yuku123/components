@@ -1,19 +1,28 @@
-package com.zifang.util.core.lang.exception;
+package com.zifang.util.core.meta.exception;
 
-import com.zifang.util.core.meta.page.Result;
-import com.zifang.util.core.meta.StatusCode;
+import com.c2f.boot.base.meta.Result;
+import com.c2f.boot.base.meta.StatusCode;
 
-import static com.zifang.util.core.meta.page.Result.buildMessage;
+import static com.c2f.boot.base.meta.Result.buildMessage;
 
 /**
- * @author zifang
+ * 基础的异常类
+ *
+ * @author zhixiang.lwt on 2020/2/28.
  */
 public class BaseException extends RuntimeException {
 
     private static final long serialVersionUID = 2059913032332171665L;
 
+    /**
+     * 错误
+     */
     private final StatusCode statusCode;
-    private final String message;
+
+    /**
+     * 错误信息
+     */
+    private String message;
 
     public BaseException(StatusCode statusCode) {
         super(statusCode.getMessage());
@@ -91,6 +100,8 @@ public class BaseException extends RuntimeException {
 
     @Override
     public String toString() {
-        return String.format("BaseException[status:%s(%s),message:%s]", statusCode, statusCode.getCode(), message);
+        return String
+                .format("BaseException[status:%s(%s),message:%s]", statusCode, statusCode.getCode(),
+                        message);
     }
 }

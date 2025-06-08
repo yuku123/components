@@ -1,5 +1,7 @@
 package com.zifang.util.core.meta;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.stream.Collectors;
 /**
  * @author zifang
  */
+@Data
 public class SortField implements Serializable {
 
     private static final long serialVersionUID = -7342671270425244017L;
@@ -47,21 +50,5 @@ public class SortField implements Serializable {
 
     private static SortField build(String column, boolean asc) {
         return new SortField(column, asc);
-    }
-
-    public String getColumn() {
-        return column;
-    }
-
-    public void setColumn(String column) {
-        this.column = column;
-    }
-
-    public boolean isAsc() {
-        return asc;
-    }
-
-    public void setAsc(boolean asc) {
-        this.asc = asc;
     }
 }
