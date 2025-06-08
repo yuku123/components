@@ -31,6 +31,8 @@ public class TerminalUtilTest {
     public void test2_2() throws IOException {
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
+//        String baseFolder = "I:\\书籍合集\\精排版";
+        // String baseFolder = "I:\\书籍合集\\13000本";
         // String baseFolder = "I:\\书籍合集\\精排版";
         String baseFolder = "/Volumes/Elements SE/书籍合集/精排版";
 
