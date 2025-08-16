@@ -10,14 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>util-expression</artifactId>
-
+    <version>${util.version}</version>
 
     <properties>
         <file.encoding>UTF-8</file.encoding>
         <spring.version>4.2.2.RELEASE</spring.version>
         <groovy.version>2.3.6</groovy.version>
     </properties>
-
 
     <build>
         <plugins>

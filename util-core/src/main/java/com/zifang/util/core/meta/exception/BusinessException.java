@@ -1,6 +1,7 @@
 package com.zifang.util.core.meta.exception;
 
-import com.c2f.boot.base.meta.StatusCode;
+
+import com.zifang.util.core.meta.StatusCode;
 
 /**
  * 业务异常

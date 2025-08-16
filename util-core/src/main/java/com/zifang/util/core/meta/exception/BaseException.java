@@ -1,9 +1,10 @@
 package com.zifang.util.core.meta.exception;
 
-import com.c2f.boot.base.meta.Result;
-import com.c2f.boot.base.meta.StatusCode;
+import com.zifang.util.core.meta.StatusCode;
+import com.zifang.util.core.meta.Result;
 
-import static com.c2f.boot.base.meta.Result.buildMessage;
+import static com.zifang.util.core.meta.Result.buildMessage;
+
 
 /**
  * 基础的异常类

@@ -1,9 +1,9 @@
 package com.zifang.util.core.lang.exception;
 
-import com.zifang.util.core.meta.page.Result;
+import com.zifang.util.core.meta.Result;
 import com.zifang.util.core.meta.StatusCode;
 
-import static com.zifang.util.core.meta.page.Result.buildMessage;
+import static com.zifang.util.core.meta.Result.buildMessage;
 
 /**
  * @author zifang
