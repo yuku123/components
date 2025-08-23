@@ -11,6 +11,8 @@
     <version>${util.version}</version>
 
     <artifactId>util-crawler</artifactId>
+    <version>${util.version}</version>
+
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>

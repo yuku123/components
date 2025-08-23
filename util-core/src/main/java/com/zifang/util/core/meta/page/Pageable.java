@@ -1,7 +1,9 @@
-package com.zifang.util.core.meta;
+package com.zifang.util.core.meta.page;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.zifang.util.core.meta.KeepLongSerializer;
+import com.zifang.util.core.meta.SortField;
 
 import java.util.ArrayList;
 import java.util.Arrays;

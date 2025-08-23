@@ -11,14 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * @author lcj
- * @version 1.0
- * @description 生成缩略图和水印非常好用, 具体帮助文档 https://github.com/coobird/thumbnailator/wiki/Maven
- * 缩略图
- * 水印
- * 选择
- * 格式转换
- * @Create 2017-08-03
+ * 生成缩略图和水印非常好用, 具体帮助文档 https://github.com/coobird/thumbnailator/wiki/Maven
  */
 public class ThumbnailatorDmo {
     public static void main(String[] args) {

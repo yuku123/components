@@ -1,5 +1,6 @@
-package com.zifang.util.core.meta;
+package com.zifang.util.core.meta.page;
 
+import com.zifang.util.core.meta.BaseResponse;
 import lombok.*;
 
 

@@ -11,7 +11,16 @@
 
     <artifactId>util-rpc</artifactId>
     <version>${util.version}</version>
+<<<<<<< HEAD
 
+=======
+>>>>>>> f4937cb8d733ad64403b1a137b75e102e6446f6d
 
+    <dependencies>
+        <dependency>
+            <groupId>com.zifang</groupId>
+            <artifactId>util-core</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

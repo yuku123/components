@@ -10,6 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>util-monitor</artifactId>
+    <version>${util.version}</version>
+
     <dependencies>
         <dependency>
             <groupId>com.alibaba</groupId>

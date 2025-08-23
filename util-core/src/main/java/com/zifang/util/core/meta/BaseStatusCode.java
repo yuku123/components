@@ -3,9 +3,7 @@ package com.zifang.util.core.meta;
 /**
  * 基础的状态码定义
  */
-
 public enum BaseStatusCode implements StatusCode {
-
     OK(200, "success"),
     UN_LOGIN(401, "未登录"),
     TOO_MANY_REQUESTS(429, "太多请求"),
