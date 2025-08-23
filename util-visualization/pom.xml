@@ -12,7 +12,6 @@
 
 
     <artifactId>util-visualization</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
