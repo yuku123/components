@@ -12,6 +12,7 @@
     <artifactId>util-rpc</artifactId>
     <version>${util.version}</version>
 
+
     <dependencies>
         <dependency>
             <groupId>com.zifang</groupId>
