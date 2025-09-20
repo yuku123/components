@@ -53,8 +53,9 @@ public class TerminalUtilTest {
 
         // 创建一个单线程的线程池
         ExecutorService executor = Executors.newFixedThreadPool(10);
-        String baseFolder = "/Volumes/Elements SE/书籍合集/【罗辑思维】1-5季书籍";
+        String baseFolder = "/Volumes/zifang/漫画资源";
         // String baseFolder = "I:\\书籍合集\\【罗辑思维】1-5季书籍";
+//        String baseFolder = "/Volumes/Elements SE/书籍合集/【罗辑思维】1-5季书籍";
 
         doFolder(baseFolder, executor);
     }
