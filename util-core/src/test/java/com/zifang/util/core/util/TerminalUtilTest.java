@@ -20,26 +20,26 @@ public class TerminalUtilTest {
     @Test
     public void test2_1() throws IOException {
         ExecutorService executor = Executors.newFixedThreadPool(10);
-
-        // String baseFolder = "I:\\书籍合集\\13000本";
+         // String baseFolder = "I:\\书籍合集\\13000本";
         String baseFolder = "I:\\书籍合集\\合集";
 
         doFolder(baseFolder, executor);
     }
-
-    @Test
+     @Test
     public void test2_2() throws IOException {
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
 //        String baseFolder = "I:\\书籍合集\\精排版";
         // String baseFolder = "I:\\书籍合集\\13000本";
         // String baseFolder = "I:\\书籍合集\\精排版";
-        String baseFolder = "/Volumes/Elements SE/书籍合集/精排版";
+//        String baseFolder = "/Volumes/Elements SE/书籍合集/精排版";
+        String baseFolder = "I:\\vip\\C02-得道app\\9、得到电子书\\02_逻辑思维电子书";
+
 
         for(File file : new File(baseFolder).listFiles()){
             if(file.isDirectory()){
                  if(file.getName().contains(" ")){
-                     file.renameTo(new File(file.getParent() + "\\" + file.getName().replace(" ","_")));
+                     file.renameTo(new File(file.getParent() + "\\" + file.getName().replace(" ","_").replace("+","_")));
                  }
             }
         }
@@ -70,7 +70,7 @@ public class TerminalUtilTest {
 
                 file = preHandle(file);
 
-                if(file.getName().endsWith(".epub") || file.getName().endsWith(".mobi")){
+                if(file.getName().endsWith(".epub") || file.getName().endsWith(".mobi") || file.getName().endsWith("azw3")){
                     transAndSafeDelete(file);
                 }
             }
@@ -80,8 +80,8 @@ public class TerminalUtilTest {
     private File preHandle(File file) {
 
         if(file.isFile()){
-            if(file.getName().contains(" ")){
-                file.renameTo(new File(file.getParent() + "\\" + file.getName().replace(" ","_")));
+            if(file.getName().contains(" ") || file.getName().contains("+")){
+                file.renameTo(new File(file.getParent() + "\\" + file.getName().replace(" ","_").replace("+","_")));
             }
         }
 
@@ -95,6 +95,13 @@ public class TerminalUtilTest {
 
         String command = String.format("ebook-convert \"%s\" \"%s\"", originName, targetName);
         System.out.println(command);
+
+        // 开始前校验
+        File targetFile = new File(targetName);
+        if(targetFile.exists() && targetFile.length() > 1000){
+            new File(originName).delete();
+            return;
+        }
 
         Process process = null;
         try {
