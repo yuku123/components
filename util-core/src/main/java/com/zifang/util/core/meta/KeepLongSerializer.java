@@ -18,8 +18,7 @@ public class KeepLongSerializer extends NumberSerializers.Base<Object> {
     }
 
     @Override
-    public void serialize(Object value, JsonGenerator gen, SerializerProvider provider)
-            throws IOException {
+    public void serialize(Object value, JsonGenerator gen, SerializerProvider provider) throws IOException {
         gen.writeNumber((Long) value);
     }
 
