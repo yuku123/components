@@ -8,12 +8,11 @@ import java.util.UUID;
  * 随机数工具类
  */
 public class RandomUtil {
+    private static final String ALL_CHAR = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    public static final String ALLCHAR = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static final String LETTERCHAR = "abcdefghijkllmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static final String NUMBERCHAR = "0123456789";
 
-    private static final String ALL_CHAR = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String LETTER_CHAR = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String NUMBER_CHAR = "0123456789";
 
@@ -44,7 +43,7 @@ public class RandomUtil {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < length; i++) {
-            sb.append(ALLCHAR.charAt(random.nextInt(ALLCHAR.length())));
+            sb.append(ALL_CHAR.charAt(random.nextInt(ALL_CHAR.length())));
         }
         return sb.toString();
     }
@@ -56,7 +55,7 @@ public class RandomUtil {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < length; i++) {
-            sb.append(ALLCHAR.charAt(random.nextInt(LETTERCHAR.length())));
+            sb.append(ALL_CHAR.charAt(random.nextInt(LETTERCHAR.length())));
         }
         return sb.toString();
     }
