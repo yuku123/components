@@ -7,7 +7,7 @@ public class CharReader {
 
     private static final int BUFFER_SIZE = 1024;
 
-    private Reader reader;
+    private final Reader reader;
 
     private char[] buffer;
 

@@ -108,7 +108,8 @@ public class ConvertRegisterTest {
     @Test
     public void test004(){
         IConverter<Map<String,String>, String> converter = (value, defaultValue) -> String.join(",",value.keySet());
-        Converters.registerConverter(converter,Map.class, String.class);
+        Converters.registerConverter(converter, Map.class, String.class);
+//        Converters.registerConverter(converter);
 
         Map<String,String> m = new HashMap<>();
         m.put("a","a");
