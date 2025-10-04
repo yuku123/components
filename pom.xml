@@ -7,9 +7,10 @@
     <groupId>com.zifang</groupId>
     <artifactId>util-parent</artifactId>
     <packaging>pom</packaging>
-    <version>${util.version}</version>
+    <version>${util.pversion}</version>
 
     <properties>
+        <util.pversion>1.0.2-SNAPSHOT</util.pversion>
         <util.version>1.0.2-SNAPSHOT</util.version>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
