@@ -1,7 +1,5 @@
 package com.zifang.util.core.encrypt;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
@@ -107,7 +105,7 @@ public class HMAC {
      * @throws Exception
      */
     public static String encryptBase64(byte[] key) throws Exception {
-        return (new BASE64Encoder()).encodeBuffer(key);
+        return java.util.Base64.getEncoder().encodeToString(key);
     }
 
     /**
