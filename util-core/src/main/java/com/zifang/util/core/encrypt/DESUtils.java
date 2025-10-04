@@ -5,12 +5,10 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import java.security.SecureRandom;
+import java.util.Base64;
 
 /**
  * DES加解密工具类
- *
- * @Author:chenssy
- * @date:2016年5月20日 下午5:19:00
  */
 class DESUtils {
     /**
@@ -41,7 +39,7 @@ class DESUtils {
             Cipher cipher = Cipher.getInstance("DES");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, sr);
             // 加密，并把字节数组编码成字符串  
-            encryptedData = new sun.misc.BASE64Encoder().encode(cipher.doFinal(data.getBytes()));
+            encryptedData = new String(Base64.getEncoder().encode(cipher.doFinal(data.getBytes())));
         } catch (Exception e) {
             throw new RuntimeException("加密错误，错误信息：", e);
         }
@@ -71,7 +69,7 @@ class DESUtils {
             Cipher cipher = Cipher.getInstance("DES");
             cipher.init(Cipher.DECRYPT_MODE, secretKey, sr);
             // 把字符串解码为字节数组，并解密  
-            decryptedData = new String(cipher.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(cryptData)));
+            decryptedData = new String(cipher.doFinal(Base64.getDecoder().decode(cryptData)));
         } catch (Exception e) {
             throw new RuntimeException("解密错误，错误信息：", e);
         }

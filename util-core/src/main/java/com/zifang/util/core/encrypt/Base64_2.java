@@ -11,7 +11,7 @@ public class Base64_2 {
      * @return String
      */
     public static String encode(byte[] bstr) {
-        return new sun.misc.BASE64Encoder().encode(bstr);
+        return new String(Base64.getEncoder().encode(bstr));
     }
 
     /**
