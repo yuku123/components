@@ -371,6 +371,37 @@
                 <artifactId>pinyin4j</artifactId>
                 <version>2.5.0</version>
             </dependency>
+
+            <!-- JAXB API：提供 javax.xml.bind 相关注解 -->
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>2.3.1</version>
+            </dependency>
+
+            <!-- JAXB 实现：提供具体的 XML 绑定功能 -->
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>2.3.1</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!-- JAXB 核心工具类 -->
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-core</artifactId>
+                <version>2.3.1</version>
+            </dependency>
+
+            <!-- 激活 JAXB 注解处理器（可选，根据编译需求） -->
+            <dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>activation</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
