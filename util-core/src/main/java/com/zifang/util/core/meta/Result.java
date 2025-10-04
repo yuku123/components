@@ -13,13 +13,11 @@ import java.io.Serializable;
  * @param <T>
  */
 public class Result<T> implements Serializable {
-
     private static final long serialVersionUID = 1444605237688228650L;
     private T data;
     private boolean success = Boolean.FALSE;
     private int code = BaseStatusCode.OK.getCode();
     private String message;
-
     private Result() {}
 
     public static <T> Result<T> success() {
@@ -144,8 +142,6 @@ public class Result<T> implements Serializable {
 
         return message.toString();
     }
-
-
     @Override
     public String toString() {
         return "Result{" + "data=" + data + ", success=" + success + ", code=" + code + ", message='" + message + '\'' + '}';

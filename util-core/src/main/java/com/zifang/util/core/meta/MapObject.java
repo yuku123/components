@@ -3,12 +3,6 @@ package com.zifang.util.core.meta;
 import java.util.HashMap;
 import java.util.Optional;
 
-/**
- * @author: zifang
- * @time: 2021-12-05 19:56:00
- * @description: map object
- * @version: JDK 1.8
- */
 public class MapObject extends HashMap<String, Object> {
 
     private static final long serialVersionUID = 5070417008655524317L;

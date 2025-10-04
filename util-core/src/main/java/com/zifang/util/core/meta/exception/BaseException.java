@@ -8,8 +8,6 @@ import static com.zifang.util.core.meta.Result.buildMessage;
 
 /**
  * 基础的异常类
- *
- * @author zhixiang.lwt on 2020/2/28.
  */
 public class BaseException extends RuntimeException {
 
