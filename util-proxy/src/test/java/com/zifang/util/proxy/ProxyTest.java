@@ -23,8 +23,6 @@ public class ProxyTest {
         ClassUtil.saveClassFile(i.getClass());
         i.ex();
     }
-    // spring jdk、 cgilib
-
 }
 
 interface ina {

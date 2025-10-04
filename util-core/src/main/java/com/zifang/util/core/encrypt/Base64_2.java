@@ -1,6 +1,5 @@
 package com.zifang.util.core.encrypt;
 
-import java.io.IOException;
 import java.util.Base64;
 
 public class Base64_2 {
@@ -23,13 +22,7 @@ public class Base64_2 {
      */
     public static byte[] decode(String str) {
         byte[] bt = null;
-        try {
-            sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
-            bt = decoder.decodeBuffer(str);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        bt = Base64.getDecoder().decode(str);
         return bt;
     }
 
