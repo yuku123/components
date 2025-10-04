@@ -20,7 +20,7 @@ public class ProxyTest {
                 return returns;
             }
         });
-        ClassUtil.saveClassFile(i.getClass());
+//        ClassUtil.saveClassFile(i.getClass());
         i.ex();
     }
 }
