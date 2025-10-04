@@ -7,7 +7,7 @@
     <groupId>com.zifang</groupId>
     <artifactId>util-parent</artifactId>
     <packaging>pom</packaging>
-    <version>${util.version}</version>
+    <version>1.0.2-SNAPSHOT</version>
 
     <properties>
         <util.version>1.0.2-SNAPSHOT</util.version>
