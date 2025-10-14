@@ -19,6 +19,12 @@
             <groupId>com.zifang</groupId>
             <artifactId>util-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.66.Final</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 </project>
