@@ -2,6 +2,7 @@ package com.zifang.util.core.lang.validator;
 
 
 import com.zifang.util.core.lang.StringUtil;
+import com.zifang.util.core.lang.exception.BaseException;
 import com.zifang.util.core.lang.exception.BusinessException;
 import com.zifang.util.core.lang.exception.ParamValidateStatusCode;
 import com.zifang.util.core.meta.StatusCode;
@@ -79,6 +80,32 @@ public class Validator {
      */
     public static void requireIsNull(Object parameter, String msg, Object param) {
         defenseIfTrue(ParamValidateStatusCode.PARAMETER_ERROR, parameter != null, msg, param);
+    }
+
+    BaseException newException(Object... args) {
+        return null;
+    }
+
+    BaseException newException(Throwable t, Object... args) {
+        return null;
+    }
+
+    public void notNull(Object obj) {
+        if (obj == null) {
+            throw newException(obj);
+        }
+    }
+
+    public void notNull(Object obj, Object... args) {
+        if (obj == null) {
+            throw newException(args);
+        }
+    }
+
+    public static void notNull(Object object, String message) {
+        if (Conditions.IS_NULL.test(object)) {
+            throw new IllegalArgumentException(message);
+        }
     }
 
 

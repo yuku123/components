@@ -118,7 +118,9 @@ public class Result<T> implements Serializable {
         if (null != statusMessage) {
             message.append(statusMessage);
             if (statusMessage.contains(Const.Symbol.CURLY_BRACE)) {
-                statusMessage = StringUtil.replace(statusMessage, Const.Symbol.CURLY_BRACE, "%s",false);
+                statusMessage = StringUtil.replace(statusMessage,
+                        "\\{\\}",
+                         "%s",false);
             }
             isFormat = StringUtil.isFormat(statusMessage);
 

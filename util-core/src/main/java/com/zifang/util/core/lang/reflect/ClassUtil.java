@@ -1,7 +1,7 @@
 package com.zifang.util.core.lang.reflect;
 
 import com.zifang.util.core.lang.ArraysUtil;
-import com.zifang.util.core.lang.validator.AssertUtil;
+import com.zifang.util.core.lang.validator.Validator;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
@@ -948,7 +948,7 @@ public class ClassUtil {
      * 获取资源文件
      */
     public static File getFile(String resourceLocation) throws FileNotFoundException {
-        AssertUtil.notNull(resourceLocation, "Resource location must not be null");
+        Validator.notNull(resourceLocation, "Resource location must not be null");
         if (resourceLocation.startsWith("classpath:")) {
             String path = resourceLocation.substring("classpath:".length());
             String description = "class path resource [" + path + "]";
@@ -973,7 +973,7 @@ public class ClassUtil {
     }
 
     public static File getFile(URL resourceUrl, String description) throws FileNotFoundException {
-        AssertUtil.notNull(resourceUrl, "Resource URL must not be null");
+        Validator.notNull(resourceUrl, "Resource URL must not be null");
         if (!"file".equals(resourceUrl.getProtocol())) {
             throw new FileNotFoundException(description + " cannot be resolved to absolute file path because it does not reside in the file system: " + resourceUrl);
         } else {

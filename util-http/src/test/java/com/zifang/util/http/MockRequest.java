@@ -1,6 +1,6 @@
 package com.zifang.util.http;
 
-import com.zifang.util.http.define.*;
+import com.zifang.util.http.base.define.*;
 
 @RestController("http://localhost:8011/test")
 public interface MockRequest {

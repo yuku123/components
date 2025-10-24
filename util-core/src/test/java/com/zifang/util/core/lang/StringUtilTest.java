@@ -1,5 +1,6 @@
 package com.zifang.util.core.lang;
 
+import com.zifang.util.core.Const;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -302,6 +303,14 @@ public class StringUtilTest {
 
     @Test
     public void testToString() {
+    }
+    @Test
+    public void replaceTest(){
+
+        assert "%s".equals(StringUtil.replace("{}",
+                "\\{\\}",
+                "%s",false));
+
     }
 
     @Test

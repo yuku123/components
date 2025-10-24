@@ -7,9 +7,9 @@ import java.util.Map;
 
 /**
  * 提供一些对象有效性校验的方法
+ * 统一返回 校验错误/校验失败
  */
-@SuppressWarnings("rawtypes")
-public final class Checker {
+public class Checker {
 
     /**
      * 判断字符串是否是符合指定格式的时间
@@ -29,7 +29,7 @@ public final class Checker {
      * 判断字符串有效性
      */
     public static boolean valid(String src) {
-        return !(src == null || "".equals(src.trim()));
+        return !(src == null || src.trim().isEmpty());
     }
 
     /**
@@ -65,15 +65,15 @@ public final class Checker {
     /**
      * 判断集合的有效性
      */
-    public static boolean valid(Collection col) {
+    public static boolean valid(Collection<?> col) {
         return !(col == null || col.isEmpty());
     }
 
     /**
      * 判断一组集合是否有效
      */
-    public static boolean valid(Collection... cols) {
-        for (Collection c : cols) {
+    public static boolean valid(Collection<?>... cols) {
+        for (Collection<?> c : cols) {
             if (!valid(c)) {
                 return false;
             }
@@ -84,15 +84,15 @@ public final class Checker {
     /**
      * 判断map是否有效
      */
-    public static boolean valid(Map map) {
+    public static boolean valid(Map<?,?> map) {
         return !(map == null || map.isEmpty());
     }
 
     /**
      * 判断一组map是否有效
      */
-    public static boolean valid(Map... maps) {
-        for (Map m : maps) {
+    public static boolean valid(Map<?,?>... maps) {
+        for (Map<?,?> m : maps) {
             if (!valid(m)) {
                 return false;
             }

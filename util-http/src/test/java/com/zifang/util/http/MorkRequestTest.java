@@ -1,5 +1,6 @@
 package com.zifang.util.http;
 
+import com.zifang.util.http.client.HttpRequestProxy;
 import org.junit.Test;
 
 public class MorkRequestTest {
