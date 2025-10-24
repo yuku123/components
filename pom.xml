@@ -426,6 +426,23 @@
                 </configuration>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version> <!-- 使用最新稳定版 -->
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <!-- 绑定到Maven的"install"生命周期阶段 -->
+                        <phase>install</phase>
+                        <goals>
+                            <!-- 生成源码包并附加到构建结果中 -->
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 </project>

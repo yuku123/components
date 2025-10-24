@@ -1,4 +1,4 @@
-package com.zifang.util.http.base.helper;
+package com.zifang.util.http.base.pojo;
 
 import lombok.Data;
 

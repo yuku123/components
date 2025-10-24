@@ -1,6 +1,7 @@
 package com.zifang.util.http.base.helper;
 
 import com.zifang.util.http.base.define.RequestMethod;
+import com.zifang.util.http.base.pojo.HttpRequestDefinition;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -44,8 +45,6 @@ public class HttpRequestProducer {
     private Object handleGetRequest(HttpRequestDefinition httpRequestDefination) throws IOException {
         HttpGet httpGet = new HttpGet(httpRequestDefination.getHttpRequestLine().getUrl());
         CloseableHttpResponse response = httpClient.execute(httpGet);
-        ;
         return EntityUtils.toString(response.getEntity());
     }
-
 }

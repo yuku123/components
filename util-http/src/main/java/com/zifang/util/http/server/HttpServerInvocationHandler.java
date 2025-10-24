@@ -1,4 +1,4 @@
-package com.zifang.util.http.client;
+package com.zifang.util.http.server;
 
 import com.zifang.util.http.base.define.RestController;
 import com.zifang.util.http.base.helper.HttpDefinitionSolver;
@@ -8,12 +8,12 @@ import com.zifang.util.http.base.helper.HttpRequestProducer;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-public class HttpRequestInvocationHandler implements InvocationHandler {
+public class HttpServerInvocationHandler implements InvocationHandler {
 
     // 代理的接口类
     private final Class<?> target;
 
-    public HttpRequestInvocationHandler(Class<?> requestInterface) {
+    public HttpServerInvocationHandler(Class<?> requestInterface) {
         this.target = requestInterface;
     }
 

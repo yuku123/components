@@ -3,6 +3,10 @@ package com.zifang.util.http.base.helper;
 import com.zifang.util.core.lang.annoations.AnnotationUtil;
 import com.zifang.util.core.util.GsonUtil;
 import com.zifang.util.http.base.define.*;
+import com.zifang.util.http.base.pojo.HttpRequestBody;
+import com.zifang.util.http.base.pojo.HttpRequestDefinition;
+import com.zifang.util.http.base.pojo.HttpRequestLine;
+import lombok.Getter;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -20,14 +24,15 @@ public class HttpDefinitionSolver implements IDefinitionSolver {
 
     private Object[] args;
 
-    private Class target;
+    private Class<?> target;
 
     private List<ParameterValuePair> parameterValuePairList = new ArrayList<>();
 
     // 标准定义实例
+    @Getter
     private HttpRequestDefinition httpRequestDefinition = new HttpRequestDefinition();
 
-    public void set(Class target, Object proxy, Method method, Object[] args) {
+    public void set(Class<?> target, Object proxy, Method method, Object[] args) {
         this.target = target;
         this.proxy = proxy;
         this.method = method;
@@ -90,7 +95,7 @@ public class HttpDefinitionSolver implements IDefinitionSolver {
         }
 
         String url = basicPath + requestPath;
-        if (requestParams.size() > 0) {
+        if (!requestParams.isEmpty()) {
             url = url + "?" + String.join("&", requestParams);
         }
 
@@ -99,10 +104,5 @@ public class HttpDefinitionSolver implements IDefinitionSolver {
         httpRequestLine.setRequestMethod(requestMethod);
         // 设入值
         httpRequestDefinition.setHttpRequestLine(httpRequestLine);
-    }
-
-
-    public HttpRequestDefinition getHttpRequestDefinition() {
-        return this.httpRequestDefinition;
     }
 }
