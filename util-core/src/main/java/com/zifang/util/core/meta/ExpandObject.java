@@ -5,12 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * @author: zifang
- * @time: 2021-11-06 17:21:00
- * @description: expand object
- * @version: JDK 1.8
- */
 public class ExpandObject implements Serializable {
 
     private static final long serialVersionUID = -7925759494583339810L;

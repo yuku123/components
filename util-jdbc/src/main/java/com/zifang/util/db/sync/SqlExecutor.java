@@ -4,6 +4,7 @@ import com.zifang.util.core.lang.exception.BusinessException;
 import com.zifang.util.core.meta.BaseStatusCode;
 import com.zifang.util.db.sync.meta.DataSourceTableColumnDTO;
 import com.zifang.util.db.sync.meta.DataSourceTableDTO;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.MapListHandler;
@@ -24,15 +25,16 @@ import java.util.stream.Collectors;
  * @author zifang
  */
 @Slf4j
+@Data
 public class SqlExecutor {
 
-    private DataSource dataSource;
+    private static Map<String, DataSource> dataSourceCache = new LinkedHashMap<>();
+
+    private final DataSource dataSource;
 
     public SqlExecutor(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-    private static Map<String, DataSource> dataSourceCache = new LinkedHashMap<>();
 
     public List<DataSourceTableDTO> fetchTableInfo(String schemaMark) {
         List<DataSourceTableDTO> dataSourceTableDTOS = new ArrayList<>();
