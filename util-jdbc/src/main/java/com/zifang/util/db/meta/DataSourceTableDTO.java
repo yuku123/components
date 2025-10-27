@@ -1,4 +1,4 @@
-package com.zifang.util.db.sync.meta;
+package com.zifang.util.db.meta;
 
 import com.zifang.util.core.meta.Description;
 import lombok.Data;

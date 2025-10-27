@@ -2,8 +2,8 @@ package com.zifang.util.db.sync;
 
 import com.zifang.util.core.lang.exception.BusinessException;
 import com.zifang.util.core.meta.BaseStatusCode;
-import com.zifang.util.db.sync.meta.DataSourceTableColumnDTO;
-import com.zifang.util.db.sync.meta.DataSourceTableDTO;
+import com.zifang.util.db.meta.DataSourceTableColumnDTO;
+import com.zifang.util.db.meta.DataSourceTableDTO;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbutils.QueryRunner;
