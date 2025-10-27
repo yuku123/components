@@ -26,9 +26,6 @@ public class ${entityName} implements Serializable {
 <#if column.primaryKey?? && column.primaryKey>
     @TableId(type = IdType.AUTO)
 </#if>
-<#if column.columnName??>
-    @TableField("${column.columnName}")
-</#if>
     private ${column.javaType} ${column.javaFieldName};
 </#list>
 }
