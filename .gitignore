@@ -11,3 +11,4 @@
 *.iml
 *.jar
 */*.jar
+*.flattened-pom.xml
