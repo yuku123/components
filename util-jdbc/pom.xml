@@ -5,7 +5,7 @@
         <parent>
         <artifactId>util-parent</artifactId>
         <groupId>com.zifang</groupId>
-        <version>1.0.2-SNAPSHOT</version>
+        <version>${util.version}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>

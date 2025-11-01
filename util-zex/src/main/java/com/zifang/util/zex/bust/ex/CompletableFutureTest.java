@@ -1,9 +1,8 @@
-package com.zifang.util.core.concurrency;
+package com.zifang.util.zex.bust.ex;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
-public class A {
+public class CompletableFutureTest {
     public static void main(String[] args) {
         //任务1：洗水壶->烧开水
         CompletableFuture<Void> f1 =

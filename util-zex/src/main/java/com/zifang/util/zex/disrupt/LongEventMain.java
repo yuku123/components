@@ -1,4 +1,4 @@
-package com.zifang.util.core.concurrency.test;
+package com.zifang.util.zex.disrupt;
 
 import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.RingBuffer;

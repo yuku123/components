@@ -1,4 +1,4 @@
-package com.zifang.util.core.concurrency.test;
+package com.zifang.util.zex.disrupt;
 
 //代表数据的类
 public class LongEvent {
