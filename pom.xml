@@ -414,6 +414,7 @@
                 <configuration>
                     <source>${compile.version}</source>
                     <target>${compile.version}</target>
+                    <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
 
