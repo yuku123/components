@@ -9,10 +9,7 @@ import static com.zifang.util.core.Const.Symbol.MINUS;
 
 
 /**
- * @author: zifang
- * @time: 2020-05-14 15:59:00
- * @description: 网络操作工具类
- * @version: JDK 1.8
+ * 网络操作类
  */
 public class NetworkUtil {
 
@@ -22,9 +19,7 @@ public class NetworkUtil {
     public static final String DEFAULT_LOCALHOST = "127.0.0.1";
 
     /**
-     * @author: zifang
-     * @description: 获取mac地址
-     * @time: 2020/5/14 16:00
+     * 获取mac地址
      * @params: [macConnector] mac地址连接符
      * @return: java.lang.String 响应参数
      */
@@ -127,6 +122,69 @@ public class NetworkUtil {
                 + ((intIp & 0x00FFFFFF) >> 16) + "."
                 + ((intIp & 0x0000FFFF) >> 8) + "."
                 + (intIp & 0x000000FF);
+    }
+
+    /**
+     * 获取本地第一个有效IPv4地址（非回环、非禁用、非IPv6）
+     * @return 本地IP字符串，获取失败返回null
+     */
+    public static String getLocalIp() {
+        try {
+            // 遍历所有网络接口
+            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+            while (networkInterfaces.hasMoreElements()) {
+                NetworkInterface ni = networkInterfaces.nextElement();
+                // 过滤：未启用的接口、回环接口、虚拟接口（如Docker桥接）
+                if (!ni.isUp() || ni.isLoopback() || ni.isVirtual()) {
+                    continue;
+                }
+
+                // 遍历接口绑定的所有地址
+                Enumeration<InetAddress> inetAddresses = ni.getInetAddresses();
+                while (inetAddresses.hasMoreElements()) {
+                    InetAddress addr = inetAddresses.nextElement();
+                    // 过滤：IPv6地址、回环地址（127.0.0.1）
+                    if (addr instanceof Inet4Address && !addr.isLoopbackAddress()) {
+                        return addr.getHostAddress();
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+        // 若未找到有效IP，返回回环地址作为 fallback
+        return InetAddress.getLoopbackAddress().getHostAddress();
+    }
+
+    /**
+     * 获取所有本地有效IPv4地址
+     * @return 有效IP数组
+     */
+    public static String[] getAllLocalIps() throws UnknownHostException {
+        return java.util.stream.Stream.of(InetAddress.getAllByName(getLocalHostName()))
+                .filter(addr -> addr instanceof Inet4Address && !addr.isLoopbackAddress())
+                .map(InetAddress::getHostAddress)
+                .toArray(String[]::new);
+    }
+
+    /**
+     * 获取本地主机名
+     */
+    private static String getLocalHostName() {
+        try {
+            return InetAddress.getLocalHost().getHostName();
+        } catch (UnknownHostException e) {
+            return "localhost";
+        }
+    }
+
+    // 测试
+    public static void main(String[] args) throws UnknownHostException {
+        System.out.println("自定义NetUtil获取本地IP：" + NetworkUtil.getLocalIp());
+        System.out.println("所有本地有效IPv4：");
+        for (String ip : NetworkUtil.getAllLocalIps()) {
+            System.out.println("- " + ip);
+        }
     }
 
 }
