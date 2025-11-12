@@ -4,13 +4,19 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zifang.util.core.meta.BaseRequest;
 import com.zifang.util.core.meta.KeepLongSerializer;
 import com.zifang.util.core.meta.SortField;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * 分页请求
+ */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class PageRequest extends BaseRequest {
-
     private static final long serialVersionUID = -8059516751569851680L;
 
     @JsonSerialize(using = KeepLongSerializer.class)
@@ -18,44 +24,20 @@ public class PageRequest extends BaseRequest {
 
     @JsonSerialize(using = KeepLongSerializer.class)
     private Long size = 10L;
+
     private List<SortField> orders = new ArrayList<>();
 
-    public PageRequest() {
+    public static PageRequest of(Long current, Long size){
+        PageRequest pageRequest = new PageRequest();
+        pageRequest.setCurrent(current);
+        pageRequest.setSize(size);
+        return pageRequest;
     }
 
-    public PageRequest(Long current, Long size) {
-        this.size = size;
-        this.current = current;
-    }
-
-    public PageRequest(Long current, Long size, List<SortField> orders) {
-        this.size = size;
-        this.current = current;
-        this.orders = orders;
-    }
-
-    public Long getSize() {
-        return size;
-    }
-
-    public void setSize(Long size) {
-        this.size = size;
-    }
-
-    public Long getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(Long current) {
-        this.current = current;
-    }
-
-    public List<SortField> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<SortField> orders) {
-        this.orders = orders;
+    public static PageRequest of(Long current, Long size, List<SortField> orders){
+        PageRequest pageRequest = of(current, size);
+        pageRequest.setOrders(orders);
+        return pageRequest;
     }
 
     /**
@@ -67,10 +49,6 @@ public class PageRequest extends BaseRequest {
     public PageRequest addOrder(List<SortField> items) {
         orders.addAll(items);
         return this;
-    }
-
-    public List<SortField> orders() {
-        return getOrders();
     }
 
     /**
@@ -85,7 +63,6 @@ public class PageRequest extends BaseRequest {
             }
         }
     }
-
 
     /**
      * 查找 order 中正序排序的字段数组
