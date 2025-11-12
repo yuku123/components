@@ -12,3 +12,4 @@
 *.jar
 */*.jar
 *.flattened-pom.xml
+.flattened-pom.xml
