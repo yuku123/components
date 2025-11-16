@@ -4,17 +4,28 @@ import com.zifang.util.http.base.define.RestController;
 import com.zifang.util.http.base.helper.HttpDefinitionSolver;
 import com.zifang.util.http.base.pojo.HttpRequestDefinition;
 import com.zifang.util.http.base.helper.HttpRequestProducer;
+import lombok.Data;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.Map;
 
+@Data
 public class HttpRequestInvocationHandler implements InvocationHandler {
+
+    // 调用过程中需要的上下文参数
+    private Map<String,Object> contextParams;
 
     // 代理的接口类
     private final Class<?> target;
 
     public HttpRequestInvocationHandler(Class<?> requestInterface) {
         this.target = requestInterface;
+    }
+
+    public HttpRequestInvocationHandler(Class<?> requestInterface, Map<String,Object> contextParams) {
+        this.target = requestInterface;
+        this.contextParams = contextParams;
     }
 
     @Override
@@ -25,7 +36,7 @@ public class HttpRequestInvocationHandler implements InvocationHandler {
 
         // 2 解释器
         HttpDefinitionSolver httpDefinitionSolver = new HttpDefinitionSolver();
-        httpDefinitionSolver.set(target, proxy, method, args); // 设入参数
+        httpDefinitionSolver.set(target, proxy, method, args, contextParams); // 设入参数
         httpDefinitionSolver.solve();
 
         // 3 获得标准请求定义

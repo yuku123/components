@@ -7,5 +7,7 @@ import lombok.Data;
  */
 @Data
 public class HttpRequestBody {
+
     private byte[] body;
+
 }
