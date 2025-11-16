@@ -4,6 +4,9 @@ import com.zifang.util.http.base.define.RestController;
 import com.zifang.util.http.base.helper.HttpDefinitionSolver;
 import com.zifang.util.http.base.pojo.HttpRequestDefinition;
 import com.zifang.util.http.base.helper.HttpRequestProducer;
+import com.zifang.util.json.JsonUtil;
+import com.zifang.util.core.util.GsonUtil;
+import com.zifang.util.json.define.TypeReference;
 import lombok.Data;
 
 import java.lang.reflect.InvocationHandler;
@@ -44,7 +47,8 @@ public class HttpRequestInvocationHandler implements InvocationHandler {
 
         // 4 产生请求
         HttpRequestProducer httpRequestProducer = new HttpRequestProducer();
-        return httpRequestProducer.produceRequest(httpRequestDefinition);
+        Object response = httpRequestProducer.produceRequest(httpRequestDefinition);
+        return GsonUtil.jsonStrToObject(String.valueOf(response), method.getGenericReturnType());
 
     }
 
