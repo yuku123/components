@@ -334,7 +334,7 @@ public class CollectionUtil {
         if (isEmpty(map)) {
             return null;
         }
-        return StringUtil2.parseString(map.get(key));
+        return StringUtil.parseString(map.get(key));
     }
 
     public static <K, V> Byte parseByteValue(Map<K, V> map, K key) {

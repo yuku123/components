@@ -164,7 +164,7 @@ public class DateUtil {
                 localDateTime.atZone(ZoneId.systemDefault()).toInstant().getEpochSecond() * 1_000_000;
         if (dateTimes.length > 1) {
             int microsecond = Integer.parseInt(
-                    StringUtil2.rightPadWithOver(dateTimes[1], DATABASE_PRECISION, "0"));
+                    StringUtil.rightPadWithOver(dateTimes[1], DATABASE_PRECISION, "0"));
             result += microsecond;
         }
 
@@ -187,7 +187,7 @@ public class DateUtil {
                 DATE_FORMAT_WHIFFLETREE_SECOND_FORMATTER);
         if (dateTimes.length > 1) {
             int microsecond = Integer.parseInt(
-                    StringUtil2.rightPadWithOver(dateTimes[1], DATABASE_PRECISION, "0"));
+                    StringUtil.rightPadWithOver(dateTimes[1], DATABASE_PRECISION, "0"));
             localDateTime = localDateTime.plusNanos(microsecond * 1_000L);
         }
 
@@ -209,7 +209,7 @@ public class DateUtil {
         LocalTime localTime = LocalTime.parse(time, DATE_FORMAT_TIME_FORMATTER);
         if (dateTimes.length > 1) {
             int microsecond = Integer.parseInt(
-                    StringUtil2.rightPadWithOver(dateTimes[1], DATABASE_PRECISION, "0"));
+                    StringUtil.rightPadWithOver(dateTimes[1], DATABASE_PRECISION, "0"));
             localTime = localTime.plusNanos(microsecond * 1_000L);
         }
 

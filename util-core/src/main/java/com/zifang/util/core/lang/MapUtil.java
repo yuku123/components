@@ -98,7 +98,7 @@ public class MapUtil {
         if (isEmpty(map)) {
             return null;
         }
-        return StringUtil2.parseString(map.get(key));
+        return StringUtil.parseString(map.get(key));
     }
 
     public static <K, V> Byte parseByteValue(Map<K, V> map, K key) {
@@ -165,7 +165,7 @@ public class MapUtil {
         map.forEach((key, value) -> {
             String newKey;
             if (key.contains(search)) {
-                newKey = StringUtil2.replace(key, search, replace);
+                newKey = StringUtil.replace(key, search, replace);
             } else {
                 newKey = key;
             }

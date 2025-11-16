@@ -281,9 +281,9 @@ public class StringUtilTest {
 
     @Test
     public void leftPad() {
-        assert StringUtil.leftPad("2","0",2).equals("02");
-        assert StringUtil.leftPad("12","0",2).equals("12");
-        assert StringUtil.leftPad("012","0",2).equals("012");
+        assert StringUtil.leftPad("2",2,"0").equals("02");
+        assert StringUtil.leftPad("12",2,"0").equals("12");
+        assert StringUtil.leftPad("012",2,"0").equals("012");
     }
 
     @Test

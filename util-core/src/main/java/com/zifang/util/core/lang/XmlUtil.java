@@ -15,13 +15,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
-/**
- * @author: zifang
- * @time: 2022-04-12 10:33:12
- * @description: xml util
- * @version: JDK 1.8
- */
 public class XmlUtil {
 
     public static final String INVALID_REGEX = "[\\x00-\\x08\\x0b-\\x0c\\x0e-\\x1f]";
@@ -34,13 +27,6 @@ public class XmlUtil {
         namespaceAware = isNamespaceAware;
     }
 
-    /**
-     * @author: zifang
-     * @description: XML格式字符串转换为Map
-     * @time: 2022-04-12 10:35:23
-     * @params: [xmlStr] in XML格式字符串
-     * @return: java.util.Map<java.lang.String, java.lang.Object> out 出参
-     */
     public static Map<String, Object> xmlToMap(String xmlStr) {
         return xmlToMap(xmlStr, new HashMap<>());
     }
@@ -113,7 +99,7 @@ public class XmlUtil {
     }
 
     private static Node appendText(Document doc, Node node, CharSequence text) {
-        return node.appendChild(doc.createTextNode(StringUtil2.str(text)));
+        return node.appendChild(doc.createTextNode(StringUtil.str(text)));
     }
 
     public static Element appendChild(Node node, String tagName) {
@@ -184,11 +170,11 @@ public class XmlUtil {
      * @return: org.w3c.dom.Document out 出参
      */
     public static Document parseXml(String xmlStr) {
-        if (StringUtil2.isBlank(xmlStr)) {
+        if (StringUtil.isBlank(xmlStr)) {
             throw new IllegalArgumentException("Xml content string is empty");
         }
         xmlStr = cleanInvalid(xmlStr);
-        return readXml(StringUtil2.getReader(xmlStr));
+        return readXml(StringUtil.getReader(xmlStr));
     }
 
     public static Document readXml(Reader reader) {
@@ -216,7 +202,7 @@ public class XmlUtil {
 
     public static DocumentBuilderFactory createDocumentBuilderFactory() {
         final DocumentBuilderFactory factory;
-        if (StringUtil2.isNotEmpty(DEFAULT_DOCUMENT_BUILDER_FACTORY)) {
+        if (StringUtil.isNotEmpty(DEFAULT_DOCUMENT_BUILDER_FACTORY)) {
             factory = DocumentBuilderFactory.newInstance(DEFAULT_DOCUMENT_BUILDER_FACTORY, null);
         } else {
             factory = DocumentBuilderFactory.newInstance();

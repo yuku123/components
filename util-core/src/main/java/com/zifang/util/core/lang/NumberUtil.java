@@ -6,7 +6,7 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.Objects;
 
-import static com.zifang.util.core.lang.StringUtil2.isEmpty;
+import static com.zifang.util.core.lang.StringUtil.isEmpty;
 import static com.zifang.util.core.lang.regex.Patterns.FLOATING_POINT_NUMBER_PATTERN;
 
 public class NumberUtil {
@@ -646,7 +646,7 @@ public class NumberUtil {
         if (str == null) {
             return null;
         }
-        if (StringUtil2.isBlank(str)) {
+        if (StringUtil.isBlank(str)) {
             throw new NumberFormatException("A blank string is not a valid number");
         }
         // need to deal with all possible hex prefixes here
@@ -1000,7 +1000,7 @@ public class NumberUtil {
             return null;
         }
         // handle JDK1.3.1 bug where "" throws IndexOutOfBoundsException
-        if (StringUtil2.isBlank(str)) {
+        if (StringUtil.isBlank(str)) {
             throw new NumberFormatException("A blank string is not a valid number");
         }
         return new BigDecimal(str);
@@ -1534,7 +1534,7 @@ public class NumberUtil {
      * @return {@code true} if str contains only Unicode numeric
      */
     public static boolean isDigits(final String str) {
-        return StringUtil2.isNumeric(str);
+        return StringUtil.isNumeric(str);
     }
 
     /**
@@ -1572,7 +1572,7 @@ public class NumberUtil {
         // deal with any possible sign up front
         final int start = chars[0] == '-' || chars[0] == '+' ? 1 : 0;
         // leading 0, skip if is a decimal number
-        if (sz > start + 1 && chars[start] == '0' && !StringUtil2.contains(str, '.')) {
+        if (sz > start + 1 && chars[start] == '0' && !StringUtil.contains(str, '.')) {
             if (chars[start + 1] == 'x' || chars[start + 1] == 'X') { // leading 0x/0X
                 int i = start + 2;
                 if (i == sz) {
