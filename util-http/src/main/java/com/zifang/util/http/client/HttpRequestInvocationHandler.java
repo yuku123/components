@@ -4,9 +4,7 @@ import com.zifang.util.http.base.define.RestController;
 import com.zifang.util.http.base.helper.HttpDefinitionSolver;
 import com.zifang.util.http.base.pojo.HttpRequestDefinition;
 import com.zifang.util.http.base.helper.HttpRequestProducer;
-import com.zifang.util.json.JsonUtil;
 import com.zifang.util.core.util.GsonUtil;
-import com.zifang.util.json.define.TypeReference;
 import lombok.Data;
 
 import java.lang.reflect.InvocationHandler;
