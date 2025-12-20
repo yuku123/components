@@ -8,9 +8,8 @@ package com.zifang.util.core.encrypt;
  */
 public class CaesarDemo {
     public static void main(String[] args) throws Exception {
-        String s = args[0];
-        s = "1234567890abcd";
-        int key = Integer.parseInt(args[1]);
+        String s = "1234567890abcd";
+        int key = Integer.parseInt("2");
         String es = "";
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
