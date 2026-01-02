@@ -25,7 +25,6 @@ public class HttpUtil {
         return "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
     }
 
-
     // 编码格式。发送编码格式统一用UTF-8
     private static final String ENCODING = "UTF-8";
 
