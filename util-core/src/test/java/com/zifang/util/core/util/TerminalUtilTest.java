@@ -33,7 +33,7 @@ public class TerminalUtilTest {
         // String baseFolder = "I:\\书籍合集\\13000本";
         // String baseFolder = "I:\\书籍合集\\精排版";
 //        String baseFolder = "/Volumes/Elements SE/书籍合集/精排版";
-        String baseFolder = "I:\\vip\\C02-得道app\\9、得到电子书\\02_逻辑思维电子书";
+        String baseFolder = "Z:\\temp\\workplace";
 
 
         for(File file : new File(baseFolder).listFiles()){

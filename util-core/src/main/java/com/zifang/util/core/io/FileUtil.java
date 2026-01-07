@@ -742,6 +742,30 @@ public class FileUtil {
         }
     }
 
+    public static final String getFileContent(File f) throws IOException {
+
+        String filecontent = "";
+        try {
+            if (f.exists()) {
+                FileReader fr = new FileReader(f.getAbsolutePath());
+                BufferedReader br = new BufferedReader(fr); //建立BufferedReader对象，并实例化为br
+                String line = br.readLine(); //从文件读取一行字符串
+                //判断读取到的字符串是否不为空
+                while (line != null) {
+                    filecontent += line + "\n";
+                    line = br.readLine(); //从文件中继续读取一行数据
+                }
+                br.close(); //关闭BufferedReader对象
+                fr.close(); //关闭文件
+            }
+
+        } catch (IOException e) {
+            throw e;
+        }
+        return filecontent;
+    }
+
+
     /**
      * 读取文件的内容
      * 读取指定文件的内容
@@ -2376,6 +2400,7 @@ public class FileUtil {
         }
         return false;
     }
+
 
     /**
      * 写文件

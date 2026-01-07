@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONPath;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.zifang.util.core.io.FileUtil;
+import com.zifang.util.core.lang.DateUtil;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -15,72 +16,66 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DedaoC {
-
+public class DedaoE {
 
     public static String base = "D:\\workplace\\dedao";
+
+    public static String baseTaget = "D:\\workplace\\dedao_target";
     @Test
     public void test() throws IOException {
 
-        int page = 0;
-        int pageSize = 100;
-        while(true){
-            List<Map<String,Object>> books = getBooks(page, pageSize);
-            System.out.println("开始获取第"+page+"页数据");
-            if(books != null && books.size() > 0){
-                page = page +1;
-            } else{
-                break;
-            }
+        File[] files = new File(base).listFiles();
 
-            for(Map<String,Object> book : books){
-                try {
+        for(File file :files){
+            try {
+                String content = FileUtil.getFileContent(file);
+                Map<String, Object> stringObjectMap = JSON.parseObject(content);
+                String timeStamp = JSONPath.read(content, "$.bookDetail.c.article.PublishTime").toString();
+                String raw = JSONPath.read(content, "$.bookDetail.c.content").toString();
+                List<Map<String,Object>> rawMap = (List<Map<String,Object>>)JSON.parse(raw);
 
-                    String aliasId = null;
-                    if(book.get("alias_id") == null || String.valueOf(book.get("alias_id")).equals("")){
-                        aliasId = ((List)book.get("odob_alias_list")).get(0).toString();
-                    } else {
-                        aliasId = book.get("alias_id").toString();
-                    }
+                LocalDateTime localDateTime = DateUtil.timestampToLocalDateTime(Long.parseLong(timeStamp) * 1000);
 
+                String year = localDateTime.getYear()+"";
+                String month = localDateTime.getMonthValue()+"";
 
-                    // 获得听书的描述信息
-                    Map<String,Object> bookDescribeInfo = getBookDescribeInfo(aliasId);
-
-                    String dd_article_token = bookDescribeInfo.get("dd_article_token").toString();
-                    String urlEncode = URLEncoder.encode(dd_article_token, "utf-8");
-                    Map<String, Object> bookDetail = getBookDetail(urlEncode);
-
-                    String booName = String.valueOf(book.get("name")).split("\\|")[0].replace("《","").replace("》","")
-                            .replace("：","")
-                            .replace(".","_")
-                            .replace("?","？")
-                            .replace(" ","")
-                            .replace("<","_")
-                            .replace(">","_");
-                    Map<String,Object> context = new HashMap<>();
-                    context.put("book",book);
-                    context.put("bookDescribeInfo",bookDescribeInfo);
-                    context.put("bookDetail",bookDetail);
-
-                    FileUtil.write(new File(base+"\\"+booName+".json"), JSON.toJSONString(context, SerializerFeature.PrettyFormat),"utf-8");
-                    System.out.println("----开始写出+"+booName );
-                }catch (Exception e){
-                    e.printStackTrace();
+                String targetFolder = baseTaget+"\\"+year+"\\"+year+"-"+month;
+                File targetFolderFile = new File(targetFolder);
+                if(!targetFolderFile.exists()){
+                    targetFolderFile.mkdirs();
                 }
+
+                String mdContent = "";
+                mdContent = mdContent+"---\n" +
+                        "title: " + stringObjectMap.get("title") + "\n" +
+                        "date: " + DateUtil.format(new Date(), DateUtil.DATE_FORMAT_WHIFFLETREE_SECOND) + "\n" +
+                        "tags: " + stringObjectMap.get("tags") + "\n" +
+                        "---\n";
+                for(Map<String,Object> item : rawMap){
+                    if(item.containsKey("text")){
+                        mdContent = mdContent+item.get("text").toString() + "\n";
+                    }
+                }
+
+                File targetFile = new File(targetFolder+"\\"+file.getName().replace(".json","")+".md");
+                FileUtil.write(targetFile, mdContent,"utf-8");
+            }catch (Exception E){
+                System.out.println(file.getName());
             }
+
+
         }
     }
 
     private Map<String, Object> getBookDetail(String urlEncode) throws IOException {
-        HttpGet httpGet = new HttpGet("https://www.dedao.cn/pc/odob/pc/audio/article/get?token="+urlEncode+"&is_new=1");
+        HttpGet httpGet = new HttpGet("https://www.dedao.cn/pc/odob/pc/audio/article/get?token="+urlEncode);
         CloseableHttpResponse response = httpClient.execute(httpGet);
         String res = EntityUtils.toString(response.getEntity());
         Map<String,Object> ress = (Map<String, Object>) JSON.parse(res.toString());
