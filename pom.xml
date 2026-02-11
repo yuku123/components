@@ -39,7 +39,7 @@
         <module>util-proxy</module>
         <module>util-ch</module>
         <module>util-json</module>
-
+        <module>util-llm</module>
     </modules>
 
     <dependencyManagement>
@@ -229,6 +229,12 @@
 
             <dependency>
                 <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.10</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>1.2.39</version>
             </dependency>
@@ -239,11 +245,6 @@
                 <version>1.6.1</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>1.1.10</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.google.inject</groupId>
@@ -330,6 +331,7 @@
                 <version>3.4.0</version>
                 <scope>compile</scope>
             </dependency>
+
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
@@ -348,6 +350,7 @@
                 <version>3.6</version>
                 <scope>compile</scope>
             </dependency>
+
             <dependency>
                 <groupId>com.belerweb</groupId>
                 <artifactId>pinyin4j</artifactId>
@@ -382,7 +385,6 @@
                 <artifactId>activation</artifactId>
                 <version>1.1.1</version>
             </dependency>
-
 
         </dependencies>
     </dependencyManagement>
