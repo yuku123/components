@@ -6,10 +6,12 @@
     <parent>
         <groupId>com.zifang</groupId>
         <artifactId>util-parent</artifactId>
-        <version>1.0.2-SNAPSHOT</version>
+        <version>${util.version}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>util-llm</artifactId>
+    <version>${util.version}</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
