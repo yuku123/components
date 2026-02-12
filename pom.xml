@@ -35,7 +35,6 @@
         <module>util-devops</module>
         <module>util-source</module>
         <module>util-distribute</module>
-        <module>util-schedule</module>
         <module>util-proxy</module>
         <module>util-ch</module>
         <module>util-json</module>
