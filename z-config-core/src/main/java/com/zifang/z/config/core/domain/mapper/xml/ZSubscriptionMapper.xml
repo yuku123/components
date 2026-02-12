@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zifang.z.config.core.domain.mapper.ZSubscriptionMapper">
+
+    <!-- 基础结果集映射 -->
+    <resultMap id="BaseResultMap" type="com.zifang.z.config.core.domain.entity.ZSubscription">
+                <id column="id" property="id" />
+                <result column="consumer_instance_id" property="consumerInstanceId" />
+                <result column="consumer_ip" property="consumerIp" />
+                <result column="consumer_port" property="consumerPort" />
+                <result column="subscribe_service_id" property="subscribeServiceId" />
+                <result column="subscribe_namespace" property="subscribeNamespace" />
+                <result column="subscribe_cluster" property="subscribeCluster" />
+                <result column="subscribe_time" property="subscribeTime" />
+                <result column="unsubscribe_time" property="unsubscribeTime" />
+                <result column="status" property="status" />
+                <result column="metadata" property="metadata" />
+                <result column="gmt_create" property="gmtCreate" />
+                <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 基础查询字段 -->
+    <sql id="Base_Column_List">
+            id,
+            consumer_instance_id,
+            consumer_ip,
+            consumer_port,
+            subscribe_service_id,
+            subscribe_namespace,
+            subscribe_cluster,
+            subscribe_time,
+            unsubscribe_time,
+            status,
+            metadata,
+            gmt_create,
+            gmt_modified
+    </sql>
+
+    <!-- 新增语句 -->
+    <insert id="insert" parameterType="com.zifang.z.config.core.domain.entity.ZSubscription">
+        INSERT INTO z_subscription (
+                consumer_instance_id,
+                consumer_ip,
+                consumer_port,
+                subscribe_service_id,
+                subscribe_namespace,
+                subscribe_cluster,
+                subscribe_time,
+                unsubscribe_time,
+                status,
+                metadata,
+                gmt_create,
+                gmt_modified
+        ) VALUES (
+                consumerInstanceId,
+                consumerIp,
+                consumerPort,
+                subscribeServiceId,
+                subscribeNamespace,
+                subscribeCluster,
+                subscribeTime,
+                unsubscribeTime,
+                status,
+                metadata,
+                gmtCreate,
+                gmtModified
+        )
+    </insert>
+
+    <!-- 根据ID查询 -->
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM z_subscription
+        WHERE
+                id = id
+    </select>
+
+    <!-- 更新语句 -->
+    <update id="updateById" parameterType="com.zifang.z.config.core.domain.entity.ZSubscription">
+        UPDATE z_subscription
+        SET
+                consumer_instance_id = consumerInstanceId,
+                consumer_ip = consumerIp,
+                consumer_port = consumerPort,
+                subscribe_service_id = subscribeServiceId,
+                subscribe_namespace = subscribeNamespace,
+                subscribe_cluster = subscribeCluster,
+                subscribe_time = subscribeTime,
+                unsubscribe_time = unsubscribeTime,
+                status = status,
+                metadata = metadata,
+                gmt_create = gmtCreate,
+                gmt_modified = gmtModified
+        WHERE
+                id = id
+    </update>
+
+    <!-- 删除语句 -->
+    <delete id="deleteById">
+        DELETE FROM z_subscription
+        WHERE
+                id = id
+    </delete>
+
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zifang.z.config.core.domain.mapper.ZRolesMapper">
+
+    <!-- 基础结果集映射 -->
+    <resultMap id="BaseResultMap" type="com.zifang.z.config.core.domain.entity.ZRoles">
+                <id column="username" property="username" />
+                <id column="role" property="role" />
+    </resultMap>
+
+    <!-- 基础查询字段 -->
+    <sql id="Base_Column_List">
+            username,
+            role
+    </sql>
+
+    <!-- 新增语句 -->
+    <insert id="insert" parameterType="com.zifang.z.config.core.domain.entity.ZRoles">
+        INSERT INTO z_roles (
+        ) VALUES (
+        )
+    </insert>
+
+    <!-- 根据ID查询 -->
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM z_roles
+        WHERE
+                username = username
+                role = role
+    </select>
+
+    <!-- 更新语句 -->
+    <update id="updateById" parameterType="com.zifang.z.config.core.domain.entity.ZRoles">
+        UPDATE z_roles
+        SET
+        WHERE
+                username = username
+                role = role
+    </update>
+
+    <!-- 删除语句 -->
+    <delete id="deleteById">
+        DELETE FROM z_roles
+        WHERE
+                username = username
+                role = role
+    </delete>
+
+</mapper>

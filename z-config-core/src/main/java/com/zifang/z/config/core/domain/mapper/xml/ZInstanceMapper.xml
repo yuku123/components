@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zifang.z.config.core.domain.mapper.ZInstanceMapper">
+
+    <!-- 基础结果集映射 -->
+    <resultMap id="BaseResultMap" type="com.zifang.z.config.core.domain.entity.ZInstance">
+                <id column="id" property="id" />
+                <result column="service_id" property="serviceId" />
+                <result column="instance_id" property="instanceId" />
+                <result column="ip" property="ip" />
+                <result column="port" property="port" />
+                <result column="weight" property="weight" />
+                <result column="healthy" property="healthy" />
+                <result column="enabled" property="enabled" />
+                <result column="ephemeral" property="ephemeral" />
+                <result column="cluster_name" property="clusterName" />
+                <result column="metadata" property="metadata" />
+                <result column="gmt_create" property="gmtCreate" />
+                <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 基础查询字段 -->
+    <sql id="Base_Column_List">
+            id,
+            service_id,
+            instance_id,
+            ip,
+            port,
+            weight,
+            healthy,
+            enabled,
+            ephemeral,
+            cluster_name,
+            metadata,
+            gmt_create,
+            gmt_modified
+    </sql>
+
+    <!-- 新增语句 -->
+    <insert id="insert" parameterType="com.zifang.z.config.core.domain.entity.ZInstance">
+        INSERT INTO z_instance (
+                service_id,
+                instance_id,
+                ip,
+                port,
+                weight,
+                healthy,
+                enabled,
+                ephemeral,
+                cluster_name,
+                metadata,
+                gmt_create,
+                gmt_modified
+        ) VALUES (
+                serviceId,
+                instanceId,
+                ip,
+                port,
+                weight,
+                healthy,
+                enabled,
+                ephemeral,
+                clusterName,
+                metadata,
+                gmtCreate,
+                gmtModified
+        )
+    </insert>
+
+    <!-- 根据ID查询 -->
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM z_instance
+        WHERE
+                id = id
+    </select>
+
+    <!-- 更新语句 -->
+    <update id="updateById" parameterType="com.zifang.z.config.core.domain.entity.ZInstance">
+        UPDATE z_instance
+        SET
+                service_id = serviceId,
+                instance_id = instanceId,
+                ip = ip,
+                port = port,
+                weight = weight,
+                healthy = healthy,
+                enabled = enabled,
+                ephemeral = ephemeral,
+                cluster_name = clusterName,
+                metadata = metadata,
+                gmt_create = gmtCreate,
+                gmt_modified = gmtModified
+        WHERE
+                id = id
+    </update>
+
+    <!-- 删除语句 -->
+    <delete id="deleteById">
+        DELETE FROM z_instance
+        WHERE
+                id = id
+    </delete>
+
+</mapper>

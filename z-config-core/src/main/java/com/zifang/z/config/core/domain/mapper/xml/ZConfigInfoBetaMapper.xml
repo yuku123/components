@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zifang.z.config.core.domain.mapper.ZConfigInfoBetaMapper">
+
+    <!-- 基础结果集映射 -->
+    <resultMap id="BaseResultMap" type="com.zifang.z.config.core.domain.entity.ZConfigInfoBeta">
+                <id column="id" property="id" />
+                <result column="data_id" property="dataId" />
+                <result column="group" property="group" />
+                <result column="app_name" property="appName" />
+                <result column="content" property="content" />
+                <result column="beta_ips" property="betaIps" />
+                <result column="md5" property="md5" />
+                <result column="gmt_create" property="gmtCreate" />
+                <result column="gmt_modified" property="gmtModified" />
+                <result column="src_user" property="srcUser" />
+                <result column="src_ip" property="srcIp" />
+                <result column="namespace" property="namespace" />
+    </resultMap>
+
+    <!-- 基础查询字段 -->
+    <sql id="Base_Column_List">
+            id,
+            data_id,
+            group,
+            app_name,
+            content,
+            beta_ips,
+            md5,
+            gmt_create,
+            gmt_modified,
+            src_user,
+            src_ip,
+            namespace
+    </sql>
+
+    <!-- 新增语句 -->
+    <insert id="insert" parameterType="com.zifang.z.config.core.domain.entity.ZConfigInfoBeta">
+        INSERT INTO z_config_info_beta (
+                data_id,
+                group,
+                app_name,
+                content,
+                beta_ips,
+                md5,
+                gmt_create,
+                gmt_modified,
+                src_user,
+                src_ip,
+                namespace
+        ) VALUES (
+                dataId,
+                group,
+                appName,
+                content,
+                betaIps,
+                md5,
+                gmtCreate,
+                gmtModified,
+                srcUser,
+                srcIp,
+                namespace
+        )
+    </insert>
+
+    <!-- 根据ID查询 -->
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM z_config_info_beta
+        WHERE
+                id = id
+    </select>
+
+    <!-- 更新语句 -->
+    <update id="updateById" parameterType="com.zifang.z.config.core.domain.entity.ZConfigInfoBeta">
+        UPDATE z_config_info_beta
+        SET
+                data_id = dataId,
+                group = group,
+                app_name = appName,
+                content = content,
+                beta_ips = betaIps,
+                md5 = md5,
+                gmt_create = gmtCreate,
+                gmt_modified = gmtModified,
+                src_user = srcUser,
+                src_ip = srcIp,
+                namespace = namespace
+        WHERE
+                id = id
+    </update>
+
+    <!-- 删除语句 -->
+    <delete id="deleteById">
+        DELETE FROM z_config_info_beta
+        WHERE
+                id = id
+    </delete>
+
+</mapper>

@@ -54,6 +54,10 @@ public class Result<T> implements Serializable {
         return new Result<T>().code(code).message(message);
     }
 
+    public static <T> Result<T> fail(String message) {
+        return error(BaseStatusCode.FAIL, message);
+    }
+
     public T getData() {
         return data;
     }
