@@ -1,6 +1,6 @@
 import { Component, useEffect, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { AppLayout } from '../../../../_shared/z-frontend-common-local/dist/z-frontend-common.es.js'
+import { AppLayout } from '@yuku123/z-frontend-common'
 import { menuItems, routeTable, HomePage, LoginPage } from './pages-manifest'
 import { Result, Button } from 'antd'
 
