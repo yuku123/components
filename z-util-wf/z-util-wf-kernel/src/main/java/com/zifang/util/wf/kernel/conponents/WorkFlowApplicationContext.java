@@ -1,6 +1,6 @@
 package com.zifang.util.wf.kernel.conponents;
 import com.zifang.util.core.io.FileUtil;
-import com.zifang.util.core.util.GsonUtil;
+import com.zifang.util.json.JsonUtil;
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -301,7 +301,7 @@ public class WorkFlowApplicationContext {
 
         try {
             String json = FileUtil.getFileContent(filePath);
-            workflowConfiguration = GsonUtil.jsonStrToObject(json, WorkflowConfiguration.class);
+            workflowConfiguration = JsonUtil.fromJson(json, WorkflowConfiguration.class);
         } catch (IOException e) {
             log.error("解析文件出现问题:" + this.filePath);
             e.printStackTrace();
@@ -323,7 +323,7 @@ public class WorkFlowApplicationContext {
      * * @param json String类型参数
      */
     public void initialByJsonStream(String json) {
-        workflowConfiguration = GsonUtil.jsonStrToObject(json, WorkflowConfiguration.class);
+        workflowConfiguration = JsonUtil.fromJson(json, WorkflowConfiguration.class);
         initial();
     }
 

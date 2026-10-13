@@ -1,12 +1,16 @@
 package com.zifang.util.http.client;
 
-import com.zifang.util.core.util.GsonUtil;
+import com.zifang.util.json.JsonUtil;
 import com.zifang.util.http.base.define.RestController;
 import com.zifang.util.http.base.helper.HttpDefinitionSolver;
 import com.zifang.util.http.base.pojo.HttpRequestDefinition;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -99,14 +103,34 @@ public class HttpRequestInvocationHandler implements InvocationHandler {
         if (method.getGenericReturnType() == String.class) {
             // 如果是 JSON 字符串（以 " 开头和结尾），去除引号
             if (jsonStr != null && jsonStr.startsWith("\"") && jsonStr.endsWith("\"") && jsonStr.length() >= 2) {
-                return GsonUtil.jsonStrToObject(jsonStr, String.class);
+                return JsonUtil.fromJson(jsonStr, String.class);
             }
             return jsonStr;
         }
 
         // 非 String 类型才做 JSON 反序列化
-        return GsonUtil.jsonStrToObject(jsonStr, method.getGenericReturnType());
+        return toReturnValue(jsonStr, method.getGenericReturnType());
 
+    }
+
+    /**
+     * 按方法返回类型反序列化响应体。
+     * <p>
+     * 泛型返回类型（如 {@code List<Foo>}、{@code Map<String,Foo>}）不在 Class 分支内，
+     * 目前只能解成 JsonObject 原样交回，由调用方强转——这是既有行为，本次搬家未改。
+     */
+    private Object toReturnValue(String jsonStr, Type returnType) {
+        if (!(returnType instanceof Class)) {
+            return JsonUtil.parseObject(jsonStr);
+        }
+        Class<?> clazz = (Class<?>) returnType;
+        if (clazz == Map.class || clazz == HashMap.class) {
+            return JsonUtil.parseObject(jsonStr);
+        }
+        if (clazz == List.class || clazz == ArrayList.class) {
+            return JsonUtil.parseArray(jsonStr);
+        }
+        return JsonUtil.fromJson(jsonStr, clazz);
     }
 
     private void check(Object proxy, Method method, Object[] args) {

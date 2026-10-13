@@ -22,10 +22,16 @@
             <version>${revision}</version>
         </dependency>
 
-        <!-- AnnotationUtil / GsonUtil / Pair：解析注解与序列化请求体 -->
+        <!-- AnnotationUtil / Pair：解析注解；JsonUtil：序列化请求体 -->
         <dependency>
             <groupId>io.github.yuku123</groupId>
             <artifactId>z-util-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.github.yuku123</groupId>
+            <artifactId>z-util-parser-json</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
     </dependencies>
 </project>

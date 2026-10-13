@@ -1,6 +1,6 @@
 package com.zifang.util.db.test0;
 
-import com.zifang.util.core.util.GsonUtil;
+import com.zifang.util.json.JsonUtil;
 import com.zifang.util.db.context.DataSourceContext;
 import com.zifang.util.db.context.DatasourceContextManager;
 import com.zifang.util.db.respository.RepositoryProxy;
@@ -63,10 +63,10 @@ public class Test0 {
         ResourceItem r3 = resourceItemRepository.findByNameBean("5e8888e8be7fff746fb26b5a", 0);
         Map<String, Object> r4 = resourceItemRepository.findByNameMap("5e8888e8be7fff746fb26b5a", 0);
 
-        log.info(GsonUtil.objectToJsonStr(r1));
-        log.info(GsonUtil.objectToJsonStr(r2));
-        log.info(GsonUtil.objectToJsonStr(r3));
-        log.info(GsonUtil.objectToJsonStr(r4));
+        log.info(JsonUtil.toJson(r1));
+        log.info(JsonUtil.toJson(r2));
+        log.info(JsonUtil.toJson(r3));
+        log.info(JsonUtil.toJson(r4));
 
         log.info("结束");
 

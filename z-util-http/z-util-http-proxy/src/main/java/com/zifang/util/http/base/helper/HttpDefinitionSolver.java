@@ -1,7 +1,7 @@
 package com.zifang.util.http.base.helper;
 
 import com.zifang.util.core.lang.annoations.AnnotationUtil;
-import com.zifang.util.core.util.GsonUtil;
+import com.zifang.util.json.JsonUtil;
 import com.zifang.util.http.base.define.*;
 import com.zifang.util.http.base.pojo.HttpRequestBody;
 import com.zifang.util.http.base.pojo.HttpRequestDefinition;
@@ -89,7 +89,7 @@ public class HttpDefinitionSolver implements IDefinitionSolver {
         HttpRequestBody httpRequestBody = new HttpRequestBody();
         for (ParameterValuePair parameterValuePair : parameterValuePairList) {
             if (parameterValuePair.getParameter().isAnnotationPresent(RequestBody.class)) {
-                byte[] bytes = GsonUtil.objectToJsonStr(parameterValuePair.getObj()).getBytes();
+                byte[] bytes = JsonUtil.toJson(parameterValuePair.getObj()).getBytes();
                 httpRequestBody.setBody(bytes);
             }
         }
