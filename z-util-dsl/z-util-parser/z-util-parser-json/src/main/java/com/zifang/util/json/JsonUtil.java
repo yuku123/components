@@ -796,6 +796,11 @@ public class JsonUtil {
     private static <T> T convertValue(Object parsed, java.lang.reflect.Type targetType) {
         if (parsed == null) return null;
 
+        // 目标类型就是 Object（Map<String,Object> 的值、Object 字段）时原样返回。
+        // 缺这一句，嵌套对象会掉进下面的 POJO 分支被 deserializePojo(Object.class) 重新造一遍，
+        // 结果是一个内容全丢的空 Object —— Map<String,Object> 读嵌套结构时必踩。
+        if (targetType == Object.class) return (T) parsed;
+
         // java.time（JSR-310）：与 toJson 的 java.time 分支配对，保证 ISO-8601 能读回来。
         // 缺这一分支时 parsed(String) 会一路落到末尾的 return (T) parsed，
         // 随后 field.set(String) 抛 IllegalArgumentException，报错还指向"值格式不对"，很难查。

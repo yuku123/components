@@ -53,8 +53,11 @@ public class ExpressionEvaluator {
     private static Object doCompare(Object a, String op, Object b) {
         if (a == null && b == null) return "=".equals(op) || "==".equals(op) ? Boolean.TRUE : Boolean.FALSE;
         if (a == null || b == null) return "!=".equals(op) || "<>".equals(op) ? Boolean.TRUE : Boolean.FALSE;
-        if ("=".equals(op) || "==".equals(op)) return Objects.equals(a, b) ? Boolean.TRUE : Boolean.FALSE;
-        if ("<>".equals(op) || "!=".equals(op)) return !Objects.equals(a, b) ? Boolean.TRUE : Boolean.FALSE;
+        if ("=".equals(op) || "==".equals(op)) return equalsValue(a, b) ? Boolean.TRUE : Boolean.FALSE;
+        if ("<>".equals(op) || "!=".equals(op)) return !equalsValue(a, b) ? Boolean.TRUE : Boolean.FALSE;
+        if ("REGEXP".equals(op)) {
+            return a != null && b != null && Pattern.matches(b.toString(), a.toString()) ? Boolean.TRUE : Boolean.FALSE;
+        }
         try {
             double av = toDoubleStatic(a), bv = toDoubleStatic(b);
             switch (op) {
@@ -92,6 +95,38 @@ public class ExpressionEvaluator {
     private static boolean matchLikeStatic(String text, String pattern) {
         String regex = pattern.replace(".", "\\.").replace("%", ".*").replace("_", ".");
         return Pattern.matches(regex, text);
+    }
+
+    /**
+     * 相等判定。两侧都能当数字读时按数值比，否则退回到 {@link Objects#equals}。
+     * <p>
+     * 不能直接用 {@code Objects.equals}：事实里的 Integer 与字面量解析出的 Long
+     * 用 equals 永远判不等（{@code Integer(3).equals(Long(3)) == false}），
+     * 而 {@code <} {@code >} 这些算子本来就走数值比较，两边口径必须一致。
+     */
+    private static boolean equalsValue(Object a, Object b) {
+        if (isNumeric(a) && isNumeric(b)) {
+            return toDoubleStatic(a) == toDoubleStatic(b);
+        }
+        return Objects.equals(a, b);
+    }
+
+    private static boolean isNumeric(Object v) {
+        if (v instanceof Number) {
+            return true;
+        }
+        if (v instanceof Boolean) {
+            return false;
+        }
+        if (v == null) {
+            return false;
+        }
+        try {
+            Double.parseDouble(v.toString());
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -151,6 +186,51 @@ public class ExpressionEvaluator {
     }
 
     /**
+     * 编译产物：表达式文本 + 已解析的 AST。
+     * <p>
+     * {@link #evaluate(String, Map)} 每次调用都重新词法+语法分析。
+     * 表达式固定、只在行数据上变化的场景（规则引擎热路径、报表列求值）
+     * 应先 {@link #compile(String)} 一次，再对不同 row 反复 {@link #evaluate(Compiled, Map)}。
+     */
+    public static final class Compiled {
+        private final String expression;
+        private final Node ast;
+
+        private Compiled(String expression, Node ast) {
+            this.expression = expression;
+            this.ast = ast;
+        }
+
+        public String expression() {
+            return expression;
+        }
+
+        public Set<String> columns() {
+            Set<String> cols = new HashSet<>();
+            collectColumns(ast, cols);
+            return cols;
+        }
+    }
+
+    /**
+     * 预编译表达式，返回可对不同 row 反复求值的产物。
+     *
+     * @throws SqlException 表达式非法
+     */
+    public Compiled compile(String expr) {
+        return new Compiled(expr, parse(expr));
+    }
+
+    /**
+     * 用预编译产物做行级求值。
+     *
+     * @throws SqlException 求值失败（如函数参数非法）
+     */
+    public Object evaluate(Compiled compiled, Map<String, Object> row) {
+        return eval(compiled.ast, row);
+    }
+
+    /**
      * 提取列引用。
      */
     public Set<String> extractColumns(String expr) {
@@ -201,7 +281,7 @@ public class ExpressionEvaluator {
         return false;
     }
 
-    private void collectColumns(Node n, Set<String> cols) {
+    private static void collectColumns(Node n, Set<String> cols) {
         if (n == null) return;
         if (n instanceof ColNode) cols.add(((ColNode) n).name);
         else if (n instanceof FuncNode) for (Node arg : ((FuncNode) n).args) collectColumns(arg, cols);
@@ -333,7 +413,7 @@ public class ExpressionEvaluator {
      */
     static class CompareNode extends Node {
         final Node left, right;
-        final String op; // = <> != < > <= >= LIKE
+        final String op; // = <> != < > <= >= LIKE REGEXP
 
         CompareNode(Node l, String o, Node r) {
             this.left = l;
@@ -573,7 +653,10 @@ public class ExpressionEvaluator {
             if (word.equals("AND")) return new Token(TokenType.OP, "AND", 3);
             if (word.equals("OR")) return new Token(TokenType.OP, "OR", 2);
             if (word.equals("NOT")) return new Token(TokenType.OP, "NOT", 5);
-            if (word.equals("LIKE")) return new Token(TokenType.OP, "LIKE", 6);
+            // LIKE / REGEXP 必须与 = <> < > <= >= 同为比较级（7），
+            // 否则 parseComparison 收不到它们，整条表达式会退化成只返回左操作数。
+            if (word.equals("LIKE")) return new Token(TokenType.OP, "LIKE", 7);
+            if (word.equals("REGEXP")) return new Token(TokenType.OP, "REGEXP", 7);
             if (word.equals("AS")) return new Token(TokenType.OP, "AS", 6);
             int peek = pos;
             while (peek < s.length() && Character.isWhitespace(s.charAt(peek))) peek++;
