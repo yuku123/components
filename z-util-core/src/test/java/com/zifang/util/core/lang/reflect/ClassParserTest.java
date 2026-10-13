@@ -1,6 +1,7 @@
 package com.zifang.util.core.lang.reflect;
 
-import com.zifang.util.core.lang.converter.IConverter;
+import com.zifang.util.core.lang.converter.ConvertContext;
+import com.zifang.util.core.lang.converter.Converter;
 import org.junit.Test;
 
 import java.lang.reflect.Type;
@@ -18,7 +19,7 @@ interface IA2 extends IA21 {
 interface IA21 {
 }
 
-interface D extends IConverter<Integer, Long> {
+interface D extends Converter<Integer, Long> {
 }
 
 /**
@@ -66,10 +67,10 @@ public class ClassParserTest {
         ClassParser c = new ClassParserFactory().getInstance(C.class);
         ClassParser d = new ClassParserFactory().getInstance(D.class);
 
-        Type type1 = a.getGenericType(IConverter.class);
-        Type type2 = b.getGenericType(IConverter.class);
-        Type type3 = c.getGenericType(IConverter.class);
-        Type type4 = d.getGenericType(IConverter.class);
+        Type type1 = a.getGenericType(Converter.class);
+        Type type2 = b.getGenericType(Converter.class);
+        Type type3 = c.getGenericType(Converter.class);
+        Type type4 = d.getGenericType(Converter.class);
 
         assert type1 != null;
         assert type2 == null;
@@ -79,7 +80,7 @@ public class ClassParserTest {
     }
 }
 
-class A extends AbstractA implements IA1, IA2, IConverter<Integer, Long> {
+class A extends AbstractA implements IA1, IA2, Converter<Integer, Long> {
     public String a3;
     protected String a2;
     private String a1;
@@ -104,12 +105,13 @@ class A extends AbstractA implements IA1, IA2, IConverter<Integer, Long> {
 
     @Override
     /**
-     * to方法。
-     *      * @param integer int类型参数
-     * @param aLong long类型参数
-     * @return long类型返回值
+     * convert方法。
+     *
+     * @param integer Integer类型参数
+     * @param context ConvertContext类型参数
+     * @return Long类型返回值
      */
-    public Long to(Integer integer, Long aLong) {
+    public Long convert(Integer integer, ConvertContext context) {
         return null;
     }
 }
@@ -123,12 +125,13 @@ class B {
 class BA extends A {
     @Override
     /**
-     * to方法。
-     *      * @param integer int类型参数
-     * @param aLong long类型参数
-     * @return long类型返回值
+     * convert方法。
+     *
+     * @param integer Integer类型参数
+     * @param context ConvertContext类型参数
+     * @return Long类型返回值
      */
-    public Long to(Integer integer, Long aLong) {
+    public Long convert(Integer integer, ConvertContext context) {
         return null;
     }
 }
@@ -136,12 +139,13 @@ class BA extends A {
 class C implements D {
     @Override
     /**
-     * to方法。
-     *      * @param integer int类型参数
-     * @param aLong long类型参数
-     * @return long类型返回值
+     * convert方法。
+     *
+     * @param integer Integer类型参数
+     * @param context ConvertContext类型参数
+     * @return Long类型返回值
      */
-    public Long to(Integer integer, Long aLong) {
+    public Long convert(Integer integer, ConvertContext context) {
         return null;
     }
 }
