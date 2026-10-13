@@ -1,4 +1,4 @@
-package com.zifang.util.core.parser.property;
+package com.zifang.util.core.util;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -7,13 +7,13 @@ import java.nio.file.Path;
 import java.util.Properties;
 
 /**
- * 属性文件解析器。
+ * 属性文件读写工具类。
  * <p>
  * 提供读取和解析 .properties 文件的功能。
  *
  * @author zifang
  */
-public class PropertyParser {
+public class PropertyUtil {
 
     /**
      * 从输入流加载属性。
@@ -60,7 +60,7 @@ public class PropertyParser {
      * @throws IOException 读取异常
      */
     public static Properties loadFromClasspath(String resource) throws IOException {
-        InputStream is = PropertyParser.class.getClassLoader().getResourceAsStream(resource);
+        InputStream is = PropertyUtil.class.getClassLoader().getResourceAsStream(resource);
         if (is == null) {
             throw new IOException("Resource not found: " + resource);
         }
