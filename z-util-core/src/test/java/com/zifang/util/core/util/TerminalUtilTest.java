@@ -2,172 +2,104 @@ package com.zifang.util.core.util;
 
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.Collections;
+
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
- * TerminalUtilTest类。
+ * TerminalUtil 测试。
+ * <p>
+ * 全部用例走 /bin/sh 与 POSIX 小工具，macOS 与 Linux 通用，不依赖个人目录。
  */
 public class TerminalUtilTest {
 
+    private static final long LARGE_OUTPUT_BYTES = 512 * 1024;
 
     @Test
-    /**
-     * test1方法。
-     */
-    public void test1() throws IOException {
-        System.out.println(TerminalUtil.runAndGetReturn("python3 /home/zifang/workplace/idea_workplace/aa.py 1 2"));
-    }
+    public void execCapturesStdoutAndExitCode() throws Exception {
+        TerminalUtil.Result result = TerminalUtil.exec(
+                Arrays.asList("sh", "-c", "echo hello; echo world"));
 
-    @Test
-    /**
-     * test2_1方法。
-     */
-    public void test2_1() throws IOException {
-        ExecutorService executor = Executors.newFixedThreadPool(10);
-        // String baseFolder = "I:\\书籍合集\\13000本";
-        String baseFolder = "I:\\书籍合集\\合集";
-
-        doFolder(baseFolder, executor);
+        assertEquals(0, result.exitCode());
+        assertEquals("hello\nworld\n", result.stdout());
+        assertEquals("", result.stderr());
     }
 
     @Test
-    /**
-     * test2_2方法。
-     */
-    public void test2_2() throws IOException {
-        ExecutorService executor = Executors.newFixedThreadPool(10);
+    public void execKeepsNonZeroExitCode() throws Exception {
+        TerminalUtil.Result result = TerminalUtil.exec(Arrays.asList("sh", "-c", "exit 3"));
 
-//        String baseFolder = "I:\\书籍合集\\精排版";
-        // String baseFolder = "I:\\书籍合集\\13000本";
-        // String baseFolder = "I:\\书籍合集\\精排版";
-//        String baseFolder = "/Volumes/Elements SE/书籍合集/精排版";
-        String baseFolder = "Z:\\temp\\workplace";
-
-
-        File[] files = new File(baseFolder).listFiles();
-        if (files != null) {
-            for (File file : files) {
-                if (file.isDirectory()) {
-                    if (file.getName().contains(" ")) {
-                        file.renameTo(new File(file.getParent() + "\\" + file.getName().replace(" ", "_").replace("+", "_")));
-                    }
-                }
-            }
-        }
-
-        doFolder(baseFolder, executor);
+        assertEquals(3, result.exitCode());
     }
 
     @Test
+    public void execCapturesStderrSeparately() throws Exception {
+        TerminalUtil.Result result = TerminalUtil.exec(
+                Arrays.asList("sh", "-c", "echo to-out; echo to-err 1>&2; exit 1"));
+
+        assertEquals(1, result.exitCode());
+        assertEquals("to-out\n", result.stdout());
+        assertEquals("to-err\n", result.stderr());
+    }
+
     /**
-     * test2方法。
+     * 回归：旧实现只读 stdout，stderr 无人消费时子进程写满管道即永久阻塞。
      */
-    public void test2() throws IOException {
+    @Test(timeout = 60000)
+    public void execDoesNotDeadlockOnLargeStdoutAndStderr() throws Exception {
+        TerminalUtil.Result result = TerminalUtil.exec(Arrays.asList(
+                "sh", "-c",
+                "head -c " + LARGE_OUTPUT_BYTES + " /dev/zero | tr '\\0' 'a'"
+                        + "; head -c " + LARGE_OUTPUT_BYTES + " /dev/zero | tr '\\0' 'b' 1>&2"));
 
-
-        // 创建一个单线程的线程池
-        ExecutorService executor = Executors.newFixedThreadPool(10);
-        String baseFolder = "/Volumes/zifang/漫画资源";
-        // String baseFolder = "I:\\书籍合集\\【罗辑思维】1-5季书籍";
-//        String baseFolder = "/Volumes/Elements SE/书籍合集/【罗辑思维】1-5季书籍";
-
-        doFolder(baseFolder, executor);
+        assertEquals(LARGE_OUTPUT_BYTES, result.stdout().trim().length());
+        assertEquals(LARGE_OUTPUT_BYTES, result.stderr().trim().length());
     }
 
-    private void doFolder(String baseFolder, ExecutorService executor) {
-        File[] files = new File(baseFolder).listFiles();
-        if (files == null) {
-            return;
-        }
-        for (File file : files) {
+    @Test
+    public void execPassesArgumentsWithoutShellSplitting() throws Exception {
+        TerminalUtil.Result result = TerminalUtil.exec(
+                Arrays.asList("echo", "a b", "c"));
 
-            if (file.isDirectory()) {
-                doFolder(file.getAbsolutePath(), executor);
-            } else {
-
-                file = preHandle(file);
-
-                if (file.getName().endsWith(".epub") || file.getName().endsWith(".mobi") || file.getName().endsWith("azw3")) {
-                    transAndSafeDelete(file);
-                }
-            }
-        }
+        assertEquals("a b c\n", result.stdout());
     }
 
-    private File preHandle(File file) {
+    @Test
+    public void execReadsUtf8Output() throws Exception {
+        TerminalUtil.Result result = TerminalUtil.exec(Arrays.asList("echo", "中文路径/测试"));
 
-        if (file.isFile()) {
-            if (file.getName().contains(" ") || file.getName().contains("+")) {
-                file.renameTo(new File(file.getParent() + "\\" + file.getName().replace(" ", "_").replace("+", "_")));
-            }
-        }
-
-        return file;
+        assertEquals("中文路径/测试\n", result.stdout());
     }
 
-    private void transAndSafeDelete(File file) {
-        String originName = file.getAbsolutePath();
-        String targetName = file.getAbsolutePath().substring(0, originName.lastIndexOf(".")) + ".pdf";
-
-
-        String command = String.format("ebook-convert \"%s\" \"%s\"", originName, targetName);
-        System.out.println(command);
-
-        // 开始前校验
-        File targetFile = new File(targetName);
-        if (targetFile.exists() && targetFile.length() > 1000) {
-            new File(originName).delete();
-            return;
-        }
-
-        Process process = null;
+    @Test
+    public void execKillsProcessOnTimeout() throws Exception {
+        long start = System.nanoTime();
         try {
-            // TerminalUtil.runAndGetPrint(command,60L);
-
-
-            ProcessBuilder processBuilder = new ProcessBuilder(
-                    "ebook-convert",
-                    originName,
-                    targetName
-            );
-
-            process = processBuilder.start();
-            boolean pass = false;
-            try {
-                pass = process.waitFor(60, TimeUnit.SECONDS);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            if (!pass) {
-                throw new RuntimeException();
-            }
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("timeout: " + command);
-            process.destroy();
-            return;
+            TerminalUtil.exec(Arrays.asList("sleep", "30"), Duration.ofMillis(500));
+            fail("超时应当抛 TimeoutException");
+        } catch (TerminalUtil.TimeoutException e) {
+            assertTrue("异常信息应指明是哪条命令超时: " + e.getMessage(),
+                    e.getMessage().contains("sleep"));
         }
-
-        // 开始check
-        File file1 = new File(targetName);
-        if (file1.exists() && file1.length() > 1000) {
-            new File(originName).delete();
-        }
+        long elapsedMs = (System.nanoTime() - start) / 1_000_000;
+        assertTrue("应尽快返回而非等满 30 秒，实际 " + elapsedMs + "ms", elapsedMs < 10000);
     }
 
+    @Test
+    public void execThrowsIoExceptionWhenCommandMissing() {
+        try {
+            TerminalUtil.exec(Collections.singletonList("no-such-command-xyz-abc"));
+            fail("命令不存在应当抛 IOException");
+        } catch (IOException expected) {
+            // 预期
+        } catch (InterruptedException e) {
+            throw new AssertionError(e);
+        }
+    }
 }
