@@ -71,7 +71,14 @@
              （expr-sql 八项消费方反馈）先占下中央槽位（2026-10-04T17:38Z PUBLISHED），而中央
              版本不可覆盖 ⇒ 只能另发新版。核对凭据：repo1 的 z-util-parser-json-1.0.18-sources.jar
              里 BeautifyJsonUtils 无 escape、JsonUtil 比 main 少 200 行。 -->
-        <revision>1.0.22</revision>
+        <!-- 1.0.23：JsonUtil.convertValue 补 `if (targetType == Object.class) return (T) parsed;`。
+             缺这一句，fromJson(..., TypeReference<Map<String,Object>>) 读嵌套对象时，嵌套值会掉进
+             POJO 分支被 deserializePojo(Object.class) 重新造一遍，返回一个内容全丢的空 Object。
+             z-util-parser-json 自带 116 个测试完全覆盖不到该路径。已发布的 1.0.22 不含此修复
+             （javap -c 反汇编 Central 的 1.0.22：convertValue 开头只有 null / java-time /
+             JsonObject 三个分支，无 Object.class 短路）。z-opc 经 z-boot 1.1.0 BOM 解析到
+             z-util-parser-json 1.0.19，故须发此版并由 z-opc 抬版本才收口。 -->
+        <revision>1.0.23</revision>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <!-- compile.version 自留：Maven 的标准键叫 maven.compiler.source/target，本仓不借那两个名字，
