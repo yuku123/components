@@ -29,7 +29,6 @@ import java.io.Writer;
  * </ul>
  *
  * @author zifang
- * @see XmlBeanUtil z-util-core 中原有的 JAXB 版本
  */
 public final class XmlBinding {
 
