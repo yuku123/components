@@ -91,9 +91,8 @@
         <javax.mail.version>1.6.2</javax.mail.version>
         <!-- 刻意留 3.1.0：Servlet 3.1 的 API 面是本仓编译底线，升 4.0.1 只是跟着容器走。 -->
         <servlet.version>3.1.0</servlet.version>
-        <jaxb.version>2.3.1</jaxb.version>
-        <jaxb.impl.version>2.3.9</jaxb.impl.version>
-        <jaxb.core.version>2.3.0.1</jaxb.core.version>
+        <!-- jaxb.version / jaxb.impl.version / jaxb.core.version 已删（2026-10-13）：
+             本仓全域零 javax.xml.bind，XML Bean 绑定由自研 z-util-parser-xml 承担。 -->
         <druid.version>1.2.28</druid.version>
         <guava.version>33.6.0-jre</guava.version>
         <cglib.version>3.3.0</cglib.version>
@@ -539,27 +538,6 @@
                 <version>${netty.version}</version>
             </dependency>
 
-            <!-- JAXB API：提供 javax.xml.bind 相关注解 -->
-            <dependency>
-                <groupId>javax.xml.bind</groupId>
-                <artifactId>jaxb-api</artifactId>
-                <version>${jaxb.version}</version>
-            </dependency>
-
-            <!-- JAXB 实现：提供具体的 XML 绑定功能 -->
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-impl</artifactId>
-                <version>${jaxb.impl.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-
-            <!-- JAXB 核心工具类 -->
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-core</artifactId>
-                <version>${jaxb.core.version}</version>
-            </dependency>
 
             <!-- Mail (迁移自已弃用的 javax.mail:mail 1.4.7，修复 CVE-2007-4566 / CVE-2019-10086 等历史漏洞) -->
             <dependency>

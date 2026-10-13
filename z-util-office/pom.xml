@@ -42,11 +42,8 @@
              （2026-10-02 更正：core 的 log4j-slf4j2-impl 已降 test 域，「经 core 传递带」不再成立；
              运行期绑定由消费方应用自备，这是库件的正确形状。本模块测试零 slf4j 使用，无需 test 域自给。） -->
 
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <scope>compile</scope>
-        </dependency>
+        <!-- jaxb-api 已删（2026-10-13）：唯一使用点 U.hexToBytes 的 HexBinaryAdapter
+             换成自写十六进制解码，本模块全域零 javax.xml.bind。 -->
 
     </dependencies>
 

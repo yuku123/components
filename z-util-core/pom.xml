@@ -64,18 +64,10 @@
             <version>${revision}</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-core</artifactId>
-        </dependency>
+        <!-- javax.xml.bind 三件（jaxb-api / jaxb-impl / jaxb-core）已删（2026-10-13）：
+             唯一使用点是 parser/xml 下的 JAXB 门面与 XmlUtil.beanToXml/xmlToBean，
+             前者已退场、后者移交 z-util-parser-xml 的自研 XmlBinding。
+             这三个 EOL 依赖原先会被推进 223 个引用本模块的 pom 的 classpath。 -->
 
         <dependency>
             <groupId>com.sun.mail</groupId>

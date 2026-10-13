@@ -174,7 +174,7 @@ z-util/
 | 字节码 | ASM 9.7（`z-util-bc` 内字面钉 + 根 DM 地板）、cglib 3.3.0、javassist 3.32.0-GA、javaparser 3.28.2、jol-core 0.17 |
 | 运维 | github-api 1.330（根 DM）、JGit 5.13.4 + gitlab4j-api 5.2.0（`z-util-devops` 内字面钉）、Docker CLI/HTTP、Nexus REST |
 | 模块内字面版本钉（现状） | 实测仍有 15 处非 `${revision}` 的第三方字面 `<version>`：pinyin4j 2.5.1（ch）、luaj-jse 3.0.1（expr-lua）、snakeyaml 2.2（parser-yaml）、mysql-connector-j 8.2.0 / javax.persistence-api 2.2 / mybatis 3.5.16 / h2 2.2.224（jdbc）、asm 9.7（proxy）、jgit 5.13.4 / gitlab4j-api 5.2.0（devops）、kryo 5.5.0 / jmh 1.37 ×2（serialize-benchmarks）、junit 4.13.2（serialize-it）；expr-groovy 走 `${groovy.version}` |
-| Java EE 口径 | `javax.inject 1`、`javax.annotation 1.3.2`、`javax.servlet-api 3.1.0`、`validation 2.0.1.Final`、`javax.mail 1.6.2`、JAXB 2.3.x |
+| Java EE 口径 | `javax.inject 1`、`javax.annotation 1.3.2`、`javax.servlet-api 3.1.0`、`validation 2.0.1.Final`、`javax.mail 1.6.2`（JAXB 已于 2026-10-13 全域退场，XML Bean 绑定走自研 `z-util-parser-xml`） |
 | 构建 | Maven + flatten-maven-plugin（CI-friendly `${revision}`）；`.env` / `.gnupg` 已被 `.gitignore` 排除 |
 
 ---

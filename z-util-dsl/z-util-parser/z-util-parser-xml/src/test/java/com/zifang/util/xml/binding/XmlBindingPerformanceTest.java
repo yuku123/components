@@ -1,18 +1,14 @@
 package com.zifang.util.xml.binding;
 
-import com.zifang.util.core.parser.xml.ReqHeader;
-import com.zifang.util.core.parser.xml.SmsBody;
-import com.zifang.util.core.parser.xml.SmsDeliverReq;
+import com.zifang.util.xml.binding.fixture.ReqHeader;
+import com.zifang.util.xml.binding.fixture.SmsBody;
+import com.zifang.util.xml.binding.fixture.SmsDeliverReq;
 import com.zifang.util.xml.binding.annotation.XmlElement;
 import com.zifang.util.xml.binding.annotation.XmlElementWrapper;
 import com.zifang.util.xml.binding.annotation.XmlRootElement;
 
 import org.junit.Test;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,8 +17,8 @@ import static org.junit.Assert.*;
 /**
  * XmlBinding 性能基准测试。
  * <p>
- * 对比自研 XmlBinding 与标准 JAXB 的序列化/反序列化耗时，
- * 验证自研方案在实际业务场景下的性能表现。
+ * 覆盖小对象、大批量对象与嵌套列表三种形态的序列化/反序列化耗时，
+ * 并校验 round-trip 的字段一致性。JAXB 已全域退场，此处不再有对照组。
  */
 public class XmlBindingPerformanceTest {
 
@@ -81,7 +77,7 @@ public class XmlBindingPerformanceTest {
     }
 
     /**
-     * 构造简单 bean（仅用于自研方案测试，JAXB 对比使用 SmsDeliverReq）
+     * 构造自研注解的简单 bean（嵌套列表形态）
      */
     @XmlRootElement(name = "SimpleItem")
     public static class SimpleItem {
@@ -125,7 +121,7 @@ public class XmlBindingPerformanceTest {
     // ==================== 性能测试 ====================
 
     /**
-     * 性能基准：序列化性能对比
+     * 性能基准：序列化
      */
     @Test
     public void testSerializationPerformance() throws Exception {
@@ -135,14 +131,12 @@ public class XmlBindingPerformanceTest {
         // 预热
         for (int i = 0; i < 100; i++) {
             XmlBinding.toXml(typical);
-            marshalWithJaxb(typical);
         }
 
         int warmup = 100;
         int iterations = 1000;
 
         // === 小对象序列化 ===
-        // 自研方案
         long start = System.nanoTime();
         for (int i = 0; i < iterations; i++) {
             XmlBinding.toXml(typical);
@@ -150,16 +144,7 @@ public class XmlBindingPerformanceTest {
         long selfSmall = System.nanoTime() - start;
         String selfSmallXml = XmlBinding.toXml(typical);
 
-        // JAXB
-        start = System.nanoTime();
-        for (int i = 0; i < iterations; i++) {
-            marshalWithJaxb(typical);
-        }
-        long jaxbSmall = System.nanoTime() - start;
-        String jaxbSmallXml = marshalWithJaxb(typical);
-
         // === 大对象序列化 ===
-        // 自研方案
         start = System.nanoTime();
         for (int i = 0; i < warmup; i++) {
             XmlBinding.toXml(large);
@@ -170,18 +155,7 @@ public class XmlBindingPerformanceTest {
         }
         long selfLarge = System.nanoTime() - selfLargeStart;
 
-        // JAXB
-        start = System.nanoTime();
-        for (int i = 0; i < warmup; i++) {
-            marshalWithJaxb(large);
-        }
-        long jaxbLargeStart = System.nanoTime();
-        for (int i = 0; i < iterations; i++) {
-            marshalWithJaxb(large);
-        }
-        long jaxbLarge = System.nanoTime() - jaxbLargeStart;
-
-        // === 简单 bean 序列化（仅自研方案，因为 ItemList 使用自研注解，JAXB 不支持）===
+        // === 嵌套列表序列化 ===
         ItemList list = new ItemList();
         List<SimpleItem> items = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
@@ -196,10 +170,10 @@ public class XmlBindingPerformanceTest {
         long selfSimple = System.nanoTime() - start;
 
         // 输出结果
-        System.out.println("=== 序列化性能对比 (" + iterations + " 次) ===");
-        printResult("小对象 SmsDeliverReq (2条)", selfSmall, jaxbSmall);
-        printResult("大对象 SmsDeliverReq (100条)", selfLarge, jaxbLarge);
-        System.out.printf("  %-30s 自研: %8.2fms (无JAXB对照，自研注解) %n", "嵌套列表 ItemList (50项)", selfSimple / 1_000_000.0);
+        System.out.println("=== 序列化性能 (" + iterations + " 次) ===");
+        printResult("小对象 SmsDeliverReq (2条)", selfSmall);
+        printResult("大对象 SmsDeliverReq (100条)", selfLarge);
+        printResult("嵌套列表 ItemList (50项)", selfSimple);
 
         // 功能性验证
         assertTrue("输出应包含根元素", selfSmallXml.contains("<SMSDELIVERREQ>"));
@@ -208,15 +182,15 @@ public class XmlBindingPerformanceTest {
     }
 
     /**
-     * 性能基准：反序列化性能对比
+     * 性能基准：反序列化
      */
     @Test
     public void testDeserializationPerformance() throws Exception {
         SmsDeliverReq typical = buildTypicalSms();
         SmsDeliverReq large = buildLargeSms();
 
-        String typicalXml = marshalWithJaxb(typical);
-        String largeXml = marshalWithJaxb(large);
+        String typicalXml = XmlBinding.toXml(typical);
+        String largeXml = XmlBinding.toXml(large);
 
         ItemList list = new ItemList();
         List<SimpleItem> items = new ArrayList<>();
@@ -229,7 +203,6 @@ public class XmlBindingPerformanceTest {
         // 预热
         for (int i = 0; i < 100; i++) {
             XmlBinding.fromXml(typicalXml, SmsDeliverReq.class);
-            unmarshalWithJaxb(typicalXml, SmsDeliverReq.class);
         }
 
         int iterations = 1000;
@@ -242,12 +215,6 @@ public class XmlBindingPerformanceTest {
         }
         long selfSmall = System.nanoTime() - start;
 
-        start = System.nanoTime();
-        for (int i = 0; i < iterations; i++) {
-            unmarshalWithJaxb(typicalXml, SmsDeliverReq.class);
-        }
-        long jaxbSmall = System.nanoTime() - start;
-
         // === 大对象反序列化 ===
         start = System.nanoTime();
         for (int i = 0; i < warmup; i++) {
@@ -259,17 +226,7 @@ public class XmlBindingPerformanceTest {
         }
         long selfLarge = System.nanoTime() - selfLargeStart;
 
-        start = System.nanoTime();
-        for (int i = 0; i < warmup; i++) {
-            unmarshalWithJaxb(largeXml, SmsDeliverReq.class);
-        }
-        long jaxbLargeStart = System.nanoTime();
-        for (int i = 0; i < iterations; i++) {
-            unmarshalWithJaxb(largeXml, SmsDeliverReq.class);
-        }
-        long jaxbLarge = System.nanoTime() - jaxbLargeStart;
-
-        // === 嵌套列表反序列化（仅自研方案）===
+        // === 嵌套列表反序列化 ===
         start = System.nanoTime();
         for (int i = 0; i < warmup; i++) {
             XmlBinding.fromXml(listXml, ItemList.class);
@@ -280,10 +237,10 @@ public class XmlBindingPerformanceTest {
         }
         long selfList = System.nanoTime() - selfListStart;
 
-        System.out.println("\n=== 反序列化性能对比 (" + iterations + " 次) ===");
-        printResult("小对象 SmsDeliverReq (2条)", selfSmall, jaxbSmall);
-        printResult("大对象 SmsDeliverReq (100条)", selfLarge, jaxbLarge);
-        System.out.printf("  %-30s 自研: %8.2fms%n", "嵌套列表 ItemList (50项, 仅自研)", selfList / 1_000_000.0);
+        System.out.println("\n=== 反序列化性能 (" + iterations + " 次) ===");
+        printResult("小对象 SmsDeliverReq (2条)", selfSmall);
+        printResult("大对象 SmsDeliverReq (100条)", selfLarge);
+        printResult("嵌套列表 ItemList (50项)", selfList);
 
         // 功能验证
         SmsDeliverReq parsed = XmlBinding.fromXml(typicalXml, SmsDeliverReq.class);
@@ -325,44 +282,9 @@ public class XmlBindingPerformanceTest {
         System.out.println("所有字段完全一致: PASS");
     }
 
-    // ==================== JAXB 辅助方法 ====================
+    // ==================== 辅助方法 ====================
 
-    @SuppressWarnings("unchecked")
-    private <T> String marshalWithJaxb(T obj) {
-        try {
-            JAXBContext context = JAXBContext.newInstance(obj.getClass());
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.FALSE);
-            marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
-            StringWriter sw = new StringWriter();
-            marshaller.marshal(obj, sw);
-            return sw.toString();
-        } catch (Exception e) {
-            throw new RuntimeException("JAXB marshal failed", e);
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    private <T> T unmarshalWithJaxb(String xml, Class<T> clazz) {
-        try {
-            JAXBContext context = JAXBContext.newInstance(clazz);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            return (T) unmarshaller.unmarshal(new java.io.StringReader(xml));
-        } catch (Exception e) {
-            throw new RuntimeException("JAXB unmarshal failed", e);
-        }
-    }
-
-    private void printResult(String label, long selfNanos, long jaxbNanos) {
-        double selfMs = selfNanos / 1_000_000.0;
-        double jaxbMs = jaxbNanos / 1_000_000.0;
-        double ratio = (double) selfNanos / jaxbNanos;
-        String faster = selfNanos <= jaxbNanos ? "自研更快" : "JAXB更快";
-        double speedup = selfNanos <= jaxbNanos
-                ? (1.0 / ratio - 1.0) * 100
-                : (ratio - 1.0) * 100;
-
-        System.out.printf("  %-30s 自研: %8.2fms | JAXB: %8.2fms | 比值: %.2fx | %s %.1f%%%n",
-                label, selfMs, jaxbMs, ratio, faster, speedup);
+    private void printResult(String label, long nanos) {
+        System.out.printf("  %-30s %8.2fms%n", label, nanos / 1_000_000.0);
     }
 }

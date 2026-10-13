@@ -1,7 +1,7 @@
-package com.zifang.util.core.parser.xml;
+package com.zifang.util.xml.binding.fixture;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import com.zifang.util.xml.binding.annotation.XmlRootElement;
+import com.zifang.util.xml.binding.annotation.XmlType;
 import java.util.List;
 
 /**

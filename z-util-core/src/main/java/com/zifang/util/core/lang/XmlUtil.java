@@ -6,16 +6,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.Reader;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -24,8 +18,9 @@ import java.util.Map;
 /**
  * XML 处理工具类。
  * <p>
- * 提供 XML 字符串与 DOM Document 之间转换、Map 与 XML 互转、
- * JavaBean 与 XML 互转（基于 JAXB，JDK 11+ 需自行引入 javax.xml.bind:jaxb-api）等功能。
+ * 提供 XML 字符串与 DOM Document 之间转换、Map 与 XML 互转等功能。
+ * <p>
+ * JavaBean 与 XML 互转由 z-util-dsl 的 z-util-parser-xml 承担（自研 XmlBinding，零 JAXB 依赖）。
  *
  * @author zifang
  * @see Document
@@ -391,51 +386,4 @@ public class XmlUtil {
         return createDocumentBuilder().newDocument();
     }
 
-    /**
-     * beanToXml方法。
-     * 将 JavaBean 序列化为格式化的 XML 字符串（基于 JAXB）。
-     *
-     * @param bean Object类型参数，待序列化对象，其类需可被 JAXB 识别（建议标注 @XmlRootElement）
-     * @return static String类型返回值，格式化 XML 字符串；bean 为 null 时返回 null
-     * @throws RuntimeException 序列化失败时抛出
-     */
-    public static String beanToXml(Object bean) {
-        if (bean == null) {
-            return null;
-        }
-        try {
-            JAXBContext context = JAXBContext.newInstance(bean.getClass());
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            StringWriter writer = new StringWriter();
-            marshaller.marshal(bean, writer);
-            return writer.toString();
-        } catch (JAXBException e) {
-            throw new RuntimeException("bean to xml error", e);
-        }
-    }
-
-    /**
-     * xmlToBean方法。
-     * 将 XML 字符串反序列化为指定类型的对象（基于 JAXB）。
-     *
-     * @param xmlStr String类型参数，XML 字符串，根元素需与目标类型匹配（建议目标类标注 @XmlRootElement）
-     * @param clazz  Class类型参数，目标类型
-     * @param <T>    目标类型
-     * @return static T类型返回值，反序列化对象；xmlStr 或 clazz 为 null 时返回 null
-     * @throws RuntimeException 反序列化失败时抛出
-     */
-    @SuppressWarnings("unchecked")
-    public static <T> T xmlToBean(String xmlStr, Class<T> clazz) {
-        if (xmlStr == null || clazz == null) {
-            return null;
-        }
-        try {
-            JAXBContext context = JAXBContext.newInstance(clazz);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
-            return (T) unmarshaller.unmarshal(new StringReader(xmlStr));
-        } catch (JAXBException e) {
-            throw new RuntimeException("xml to bean error", e);
-        }
-    }
 }

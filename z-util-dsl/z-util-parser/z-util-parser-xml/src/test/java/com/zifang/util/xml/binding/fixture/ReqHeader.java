@@ -1,6 +1,6 @@
-package com.zifang.util.core.parser.xml;
+package com.zifang.util.xml.binding.fixture;
 
-import javax.xml.bind.annotation.XmlElement;
+import com.zifang.util.xml.binding.annotation.XmlElement;
 
 /**
  * 请求头对象

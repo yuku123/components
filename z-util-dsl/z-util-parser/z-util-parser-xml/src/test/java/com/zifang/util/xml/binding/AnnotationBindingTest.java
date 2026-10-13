@@ -1,9 +1,9 @@
 package com.zifang.util.xml.binding;
 
-import com.zifang.util.core.parser.xml.ReqHeader;
-import com.zifang.util.core.parser.xml.SmsBody;
-import com.zifang.util.core.parser.xml.SmsDeliverReq;
-import com.zifang.util.core.parser.xml.TitleRequest;
+import com.zifang.util.xml.binding.fixture.ReqHeader;
+import com.zifang.util.xml.binding.fixture.SmsBody;
+import com.zifang.util.xml.binding.fixture.SmsDeliverReq;
+import com.zifang.util.xml.binding.fixture.TitleRequest;
 
 import org.junit.Test;
 
@@ -13,12 +13,13 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * XmlBinding 与现有 JAXB 注解 bean 的兼容性测试。
+ * XmlBinding 注解驱动的序列化/反序列化测试。
  * <p>
- * 验证 XmlBinding 能正确读取 javax.xml.bind.annotation 注解，
- * 并与原有 XmlBeanUtil / XmlTransformer 产生等价结果。
+ * 用真实业务报文结构（SMS 下发请求、标题请求）覆盖 {@code @XmlRootElement} /
+ * {@code @XmlElement} / {@code @XmlElementWrapper} / {@code @XmlType(propOrder)}
+ * 四类注解的 toXml、fromXml 与 round-trip。
  */
-public class JaxbCompatTest {
+public class AnnotationBindingTest {
 
     // ==================== 辅助方法 ====================
 

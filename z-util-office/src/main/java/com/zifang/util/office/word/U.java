@@ -5,7 +5,6 @@ import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.*;
 
-import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -297,8 +296,19 @@ public class U {
      * @return 转换后的字节数组
      */
     public static byte[] hexToBytes(String hexString) {
-        HexBinaryAdapter adapter = new HexBinaryAdapter();
-        byte[] bytes = adapter.unmarshal(hexString);
+        int len = hexString.length();
+        if ((len & 1) != 0) {
+            throw new IllegalArgumentException("hex string must have even length: " + hexString);
+        }
+        byte[] bytes = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            int hi = Character.digit(hexString.charAt(i), 16);
+            int lo = Character.digit(hexString.charAt(i + 1), 16);
+            if (hi < 0 || lo < 0) {
+                throw new IllegalArgumentException("illegal hex string: " + hexString);
+            }
+            bytes[i / 2] = (byte) ((hi << 4) + lo);
+        }
         return bytes;
     }
 

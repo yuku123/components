@@ -19,13 +19,11 @@ import java.io.Writer;
  *   SmsDeliverReq req = XmlBinding.fromXml(xml, SmsDeliverReq.class);
  * </pre>
  * <p>
- * 支持的 JAXB 注解（通过反射读取，无需 jaxb-api 编译依赖）：
+ * 支持的注解：
  * <ul>
- *   <li>{@code @XmlRootElement(name=...)}</li>
- *   <li>{@code @XmlElement(name=...)}</li>
- *   <li>{@code @XmlElementWrapper(name=...)}</li>
- *   <li>{@code @XmlType(propOrder=...)}</li>
- *   <li>{@code @XmlAttribute(name=...)}</li>
+ *   <li>{@code com.zifang.util.xml.binding.annotation.*}（本仓自研，推荐）</li>
+ *   <li>{@code javax.xml.bind.annotation.*}（仅当消费方 classpath 上恰好有 jaxb 时，
+ *       按类名反射读取，本模块不引入该依赖）</li>
  * </ul>
  *
  * @author zifang
