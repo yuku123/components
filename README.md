@@ -59,7 +59,7 @@ IoC/AOP/代理、二进制序列化、监控、Office、图像、数学与 ML，
 | `z-util-ch` | jar | 中文工具：拼音/身份证/金额/星期 | `PinyinGeneratorUtil`、`IdcardUtil`、`MoneyUtil`、`NumberChineseUtil`、`WeekUtil` |
 | `z-util-strategy` | jar | 决策引擎（2026-10-13）：决策包快照 + 灰度分流 + 试运行影子 + 对照组 + 可解释 trace；规则是对象化条件表达，内部编译成 DSL 交给 `z-util-expr-sql` 求值 | `DecisionEngine`（current/candidate 双槽 + `AtomicReference` 原子切换）、`DecisionPackage`（不可变快照 + 版本 + `RunMode` DRAFT/TRIAL/ACTIVE）、`DecisionResult`（`decision` + `shadow` + `effectiveOutcome`）、`TrafficPolicy`（稳定哈希分流）、`ControlPolicy`（对照组放行）、`DecisionMetrics.InMemory`；`rule.Rule`/`Condition`/`Conditions`/`Effect`/`MatchSpec`/`RuleEvaluator`；`loader.DecisionPackageLoader`（Java builder + JSON/YAML，条件支持 DSL 文本与结构化两种写法）。设计见 `_doc/001_arch/strategy-engine.md` |
 | `z-util-sensitive` | jar | 敏感识别引擎（2026-10-13）：敏感词 DFA + PII 校验位 + 脱敏，零第三方依赖 | `SensitiveDetector`（词库热更新走 volatile 换引用）、`DfaMatcher`（构建后不可变、多线程共享）、`WordDictionary`/`WordEntry`、`SensitiveResult`（带区间，可 `mask`）、`MaskStyle`/`MaskUtil`；`pii.IdCardRule`（GB11643 校验位）/`BankCardRule`（Luhn）/`MobileRule`/`EmailRule`/`IpRule`/`UrlRule`。选型与不做什么见 `_doc/001_arch/sensitive-detect-engine.md` |
-| `z-util-cli` | jar | POSIX/GNU/Basic/Default 命令行解析 + OptionGroup + HelpFormatter | `CLI`、`CommandLine`、`CommandLineParser`、`BasicParser`/`GnuParser`/`DefaultParser`、`help.HelpFormatter` |
+| `z-util-cli` | jar | 命令行解析（Default）+ OptionGroup + HelpFormatter | `CLI`、`CommandLine`、`CommandLineParser`、`DefaultParser`、`help.HelpFormatter` |
 | `z-util-pattern` | **pom 聚合** | GoF + 行为模式 + 校验原语聚合件（`z-util-pattern-chain`/`-command`/`-composite`/`-event`/`-factory`/`-ioc`/`-memento`/`-pool`/`-register`/`-spi`/`-state`/`-stream`/`-strategy`/`-template`/`-visitor`/`-builder`/`-cache`/`-validation` 等子件各自成坐标） | validation 面：`annotation.NotNull`/`Length`/`Pattern`/`Range`/`Email` 与同名 `*Validator`（2026-10-02 自 `z-util-validation` 降级收编，零内部依赖） |
 | `z-util-pattern-cache` | jar | **进程内**缓存：TTL + LRU / W-TinyLFU + builder + 装饰器（2026-10-02 自 `z-util-cache` 收编进 pattern 家族） | `MemoryCache`、`WTinyLfuCache`、`BoundedCache`/`LruNode`、`LoadingCache`/`LoadingMemoryCache`/`CacheLoader`、`CacheBuilder`、`CacheManager`、`MeteredCache`、`TransactionalCache`、`CountMinSketch`、`Expiry`、`RemovalListener`（无 Redis/远端后端） |
 | `z-util-ioc` | jar | 轻量 IoC 容器（Guice 形接口 + JSR-330 注解）+ AOP 集成 | `Injector`/`Module`/`Scopes`、`binder.Binder`/`DefaultBinder`/`ConstantBindingBuilder`、`context.ClassPathApplicationContext`、`core.DefaultBeanRegistry`/`BeanDefinition`、`inject.*`、`aop.AopModule`/`AopProxyPostProcessor`/`ClassMatcher` |
@@ -135,7 +135,7 @@ Object doc = mem.shape(spec);          // spec 就是 JSON 树；new ObjEngine(s
 ```
 z-util/
 ├── pom.xml                # 根聚合 POM：无 parent，<revision> 统一版本，DM 自供全部第三方+自家构件版本
-├── z-util-core/           # 基础库（23 个包：lang/io/jwt/encrypt/pattern/ratelimit/resilience/meta/schedule/...）
+├── z-util-core/           # 基础库（22 个包：lang/io/jwt/encrypt/pattern/ratelimit/resilience/meta/...）
 ├── z-util-{aop,ioc,proxy,cache,validation,bc}/          # 容器、切面、代理、缓存、校验、字节码+源码工具
 ├── z-util-parser/         # 聚合 POM → 8 个格式子模块
 ├── z-util-expr/           # 聚合 POM → 6 个表达式子模块（含 -sql / -obj）
