@@ -19,6 +19,20 @@ import java.util.Arrays;
  * IOTest类。
  */
 public class IOTest {
+
+    /**
+     * main方法。
+     * 从键盘读一行转成大写输出 —— 这段要占住 stdin 当输入源，放 @Test 里会把 surefire 挂死，
+     * 只能手工跑。
+     *
+     * @param args String[]类型参数
+     *
+     * @return static void类型返回值
+     */
+    public static void main(String[] args) {
+        transform(System.in, System.out);
+    }
+
     /**
      * transform方法。
      * * @param in InputStream类型参数
@@ -114,9 +128,6 @@ public class IOTest {
 
         System.out.println(out);
         System.out.println(Arrays.toString(out.toByteArray()));
-
-        // 从键盘读，输出到显示器
-        transform(System.in, System.out);
     }
 
     @Test

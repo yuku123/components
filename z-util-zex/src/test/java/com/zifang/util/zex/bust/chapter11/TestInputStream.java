@@ -10,6 +10,7 @@ package com.zifang.util.zex.bust.chapter11;
  * @version 1.0
  */
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.sound.sampled.*;
@@ -19,7 +20,11 @@ import java.io.IOException;
 
 /**
  * TestInputStream类。
+ *
+ * @Ignore 这两个用例要弹窗 + 放本机某个具体 wav，不是无头环境能跑的回归测试。
+ * 想玩还是走 main()。
  */
+@Ignore("需要 GUI + 本机音频文件，不能在 CI 跑")
 public class TestInputStream extends JFrame {
 
     /**
