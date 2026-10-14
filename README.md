@@ -46,7 +46,7 @@ IoC/AOP/代理、二进制序列化、监控、Office、图像、数学与 ML，
 | `z-util-office` | jar | 基于 POI / PDFBox 的 Word / Excel / PDF / PPT 工具 + 模板引擎 + 链式门面（详见模块 README） | `excel.ExcelUtils`（`readFirstSheet` / `readAllSheets` / `writeCell` / `writeRow`）、`ExcelTemplate`；`word.U` + `WordTemplate` + `WordExtractor`；`pdf.PdfUtil` / `PdfOperator` / `PdfExtractor`；`ppt.PptUtils` + `PptTemplate`；`core.RoundTripAssert` / `core.OfficeFormat` / `core.OfficePipeline`（2026-10-02 新增 builder：open→读→改→saveAs/toBytes） |
 | `z-util-media` | jar | 图像处理、验证码、GIF、二维码 | `CaptchaUtil`、`GifEncoder`/`GifBuilder`、`ColorUtil`、`graph/QRCode`（encoder + decoder） |
 | `z-util-dsl` | **pom 聚合** | 语言处理家族：`z-util-dsl-kernel`（自研词法/语法/AST + **运行时动态加载 `.g4`**）+ `z-util-expr`（6 引擎）+ `z-util-parser`（8 格式） | kernel：`g4.DynamicLexer`、`DynamicParser`、`G4FileParser`、`ASTFactory`、`ASTNode`、`token.Lexer` |
-| `z-util-wf` | **pom 聚合** | 内存内工作流家族：`z-util-wf-kernel`（DAG 模型 + BPMN 解析 + runtime + persistence + interfaces）+ `z-util-wf-executor`（`z-util-wf-executor-java` + `z-util-wf-py`） | kernel：`conponents.WorkFlowApplication` / `WorkFlowApplicationContext` / `Task`；`config.WorkflowNode` / `Connector` / `Engine`；`bpmn.Bpmn` / `BpmnDiagram` / `BpmnProcess` / `BpmnModelConverter` / `BpmnXmlParser`；`engine.runtime.WorkflowRuntimeEngine` / `GatewayEvaluator` / `ExecutionResult`；`engine.interfaces.EngineFactory`（自注册，无 reactor cycle）；`persistence.FileWorkflowPersistencePlugin`；`json.WorkflowConfigurationSerializer` |
+| `z-util-wf` | **pom 聚合** | 内存内工作流家族：`z-util-wf-kernel`（DAG 模型 + BPMN 解析 + runtime + persistence + interfaces）。`JavaEngine`/`PythonEngine` 两个占位实现与 `JavaHandle` 已降入 kernel 的 test 域（不发布、不挂 @Test），自注册静态块在 kernel 测试类路径上才真正触发 | kernel：`conponents.WorkFlowApplication` / `WorkFlowApplicationContext` / `Task`；`config.WorkflowNode` / `Connector` / `Engine`；`bpmn.Bpmn` / `BpmnDiagram` / `BpmnProcess` / `BpmnModelConverter` / `BpmnXmlParser`；`engine.runtime.WorkflowRuntimeEngine` / `GatewayEvaluator` / `ExecutionResult`；`engine.interfaces.EngineFactory`（自注册，无 reactor cycle）；`persistence.FileWorkflowPersistencePlugin`；`json.WorkflowConfigurationSerializer` |
 | `z-util-visualization` | jar | Swing 图表与算法可视化（包名历史拼写 `visuallization`） | `chart.*`、`swing.AlgoFrame`/`AlgoVisHelper`/`AlgoVisualizer`、`robot.*` |
 | `z-util-jdbc` | jar | 数据源注册 + 多方言动态查询 + 内存 SQL + 极简 ORM | `context.DataSourceRegistry`/`DatasourceContextManager`/`PoolSpec`；`dialect.Dialects`/`MySqlDialect`/`PostgresDialect`/`H2Dialect`；`query.Query`/`Criteria`/`QueryCompiler`/`SqlTemplate`/`DynamicQuery`；`memory.InMemoryTables`；`respository.CrudRepository`；`@Select`/`@Insert`/`@Update`/`@Delete` + `@Transactional`/`TransactionManager`；`plugin.MyBatisPageInterceptor`；`generater.JpaStratege`/`MybaitsStratige` |
 | `z-util-http` | jar | 注解式 HTTP 客户端 + curl 解析 + 简易 HTTP 服务 + SSE | `client.HttpExecutor`/`HttpClientFactory`/`HttpRequestInvocationHandler`（OkHttp）；`server.AllPathHttpServer`/`HttpServerBuilder`；`parser.curl.CurlParser`/`CurlBuilder`；`sse.SseParser`/`SseFrame`/`SseEvent` |
@@ -122,8 +122,7 @@ Object doc = mem.shape(spec);          // spec 就是 JSON 树；new ObjEngine(s
 | `z-util-serialize-core` | 线格式与编解码：`ZSerializer`/`ZDeserializer`/`FieldIndex`/`Header`/`IndexBuilder`/`Codec`/`CodecConfig`/`CodecRegistry` |
 | `z-util-serialize-codegen` | 注解处理器 `ZSerializeProcessor`：生成零反射的 Serializer/Deserializer（模块自身编译禁用注解处理，见 commit `4921635d`） |
 | `z-util-serialize-formats` | 互通转码器 `JsonTranscoder`（Jackson） |
-| `z-util-serialize-benchmarks` | 与 Java 原生 / Kryo / Protobuf / Avro / JSON 对比（`ZSerializeVsKryoBench`） |
-| `z-util-serialize-it` | 跨模块集成测试（`SimpleUser`） |
+| `z-util-serialize-it` | 跨模块集成测试（`GeneratedCodecTest`）；跑分工具 `ZSerializeVsKryoBench`（手搓 `main()` 计时，非 JMH）与它同住 test 域，kryo 已钉 `test` scope 不再外泄 |
 
 压缩实现目前只有 `GzipCompressor`（+ `AesGcmEncryptor`）；[`_doc/001_arch/wire-format.md`](_doc/001_arch/wire-format.md)
 里写的 zstd / lz4 仍是设计目标，代码里还没有对应类。
@@ -173,7 +172,7 @@ z-util/
 | Office | POI 5.5.1（+ `poi-ooxml-full`）、PDFBox 3.0.8 |
 | 字节码 | ASM 9.7（`z-util-bc` 内字面钉 + 根 DM 地板）、cglib 3.3.0、javassist 3.32.0-GA、javaparser 3.28.2、jol-core 0.17 |
 | 运维 | github-api 1.330（根 DM）、JGit 5.13.4 + gitlab4j-api 5.2.0（`z-util-devops` 内字面钉）、Docker CLI/HTTP、Nexus REST |
-| 模块内字面版本钉（现状） | 实测仍有 15 处非 `${revision}` 的第三方字面 `<version>`：pinyin4j 2.5.1（ch）、luaj-jse 3.0.1（expr-lua）、snakeyaml 2.2（parser-yaml）、mysql-connector-j 8.2.0 / javax.persistence-api 2.2 / mybatis 3.5.16 / h2 2.2.224（jdbc）、asm 9.7（proxy）、jgit 5.13.4 / gitlab4j-api 5.2.0（devops）、kryo 5.5.0 / jmh 1.37 ×2（serialize-benchmarks）、junit 4.13.2（serialize-it）；expr-groovy 走 `${groovy.version}` |
+| 模块内字面版本钉（现状） | 实测仍有 13 处非 `${revision}` 的第三方字面 `<version>`：pinyin4j 2.5.1（ch）、luaj-jse 3.0.1（expr-lua）、snakeyaml 2.2（parser-yaml）、mysql-connector-j 8.2.0 / javax.persistence-api 2.2 / mybatis 3.5.16 / h2 2.2.224（jdbc）、asm 9.7（proxy）、jgit 5.13.4 / gitlab4j-api 5.2.0（devops）、kryo 5.7.0（serialize-it，已钉 test scope）、junit 4.13.2（serialize-it）；expr-groovy 走 `${groovy.version}` |
 | Java EE 口径 | `javax.inject 1`、`javax.annotation 1.3.2`、`javax.servlet-api 3.1.0`、`validation 2.0.1.Final`、`javax.mail 1.6.2`（JAXB 已于 2026-10-13 全域退场，XML Bean 绑定走自研 `z-util-parser-xml`） |
 | 构建 | Maven + flatten-maven-plugin（CI-friendly `${revision}`）；`.env` / `.gnupg` 已被 `.gitignore` 排除 |
 
