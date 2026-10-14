@@ -10,12 +10,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>z-util :: wf (top-level aggregator: kernel + executor family)</name>
+    <name>z-util :: wf (top-level aggregator: engine-agnostic kernel)</name>
     <artifactId>z-util-wf</artifactId>
     <packaging>pom</packaging>
 
     <modules>
         <module>z-util-wf-kernel</module>
-        <module>z-util-wf-executor</module>
     </modules>
 </project>
