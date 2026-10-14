@@ -33,6 +33,20 @@ public class Register<K, V> {
     }
 
     /**
+     * 注册键值对，若该键已存在则不覆盖。
+     *
+     * @param key   键
+     * @param value 值
+     * @return 该键原先关联的值；原先没有关联值则返回 {@code null}，且本次写入生效
+     */
+    public V putIfAbsent(K key, V value) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+        return registry.putIfAbsent(key, value);
+    }
+
+    /**
      * 根据键获取值。
      *
      * @param key 键

@@ -1,9 +1,10 @@
 package com.zifang.util.core.pattern.cache;
 
+import com.zifang.util.core.pattern.register.Register;
+
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 /**
@@ -21,11 +22,15 @@ import java.util.function.Function;
  *   // 之后任何地方都可以：
  *   Cache<String, User> users = mgr.get("user", String.class, User.class);
  * }</pre>
+ * <p>
+ * 底层就是一张命名注册表，故存储交给 {@link Register}；白拿它「拒 null key」这条契约，
+ * 本类不再重复实现。用组合而非继承：本类的 {@code get(String)} 是带自身类型参数的泛型方法，
+ * 泛型方法无法覆写父类的 {@code get(K)}，继承会让调用点变成二义。
  */
 public class CacheManager {
 
     private static volatile CacheManager instance;
-    private final Map<String, Cache<?, ?>> caches = new ConcurrentHashMap<>();
+    private final Register<String, Object> caches = new Register<>();
 
     private CacheManager() {
     }
@@ -42,8 +47,8 @@ public class CacheManager {
     /**
      * 注册一个缓存实例。如果同名已存在，返回旧的实例（不覆盖）。
      */
+    @SuppressWarnings("unchecked")
     public <K, V> Cache<K, V> register(Cache<K, V> cache) {
-        @SuppressWarnings("unchecked")
         Cache<K, V> previous = (Cache<K, V>) caches.putIfAbsent(cache.getName(), cache);
         return previous == null ? cache : previous;
     }
@@ -61,9 +66,7 @@ public class CacheManager {
      */
     @SuppressWarnings("unchecked")
     public <K, V> Cache<K, V> get(String name, Class<K> keyType, Class<V> valueType) {
-        Cache<?, ?> c = caches.get(name);
-        if (c == null) return null;
-        return (Cache<K, V>) c;
+        return (Cache<K, V>) caches.get(name);
     }
 
     /**
@@ -71,26 +74,26 @@ public class CacheManager {
      */
     @SuppressWarnings("unchecked")
     public <K, V> Cache<K, V> getOrCreate(String name, Function<String, Cache<K, V>> builderSupplier) {
-        Cache<?, ?> existing = caches.get(name);
+        Cache<?, ?> existing = (Cache<?, ?>) caches.get(name);
         if (existing != null) return (Cache<K, V>) existing;
         synchronized (this) {
-            existing = caches.get(name);
+            existing = (Cache<?, ?>) caches.get(name);
             if (existing != null) return (Cache<K, V>) existing;
             Cache<K, V> fresh = builderSupplier.apply(name);
-            caches.put(name, fresh);
+            caches.register(name, fresh);
             return fresh;
         }
     }
 
     public boolean contains(String name) {
-        return caches.containsKey(name);
+        return caches.contains(name);
     }
 
     /**
      * 移除一个缓存（同时关闭它）。返回被移除的实例。
      */
     public Cache<?, ?> remove(String name) {
-        Cache<?, ?> c = caches.remove(name);
+        Cache<?, ?> c = (Cache<?, ?>) caches.unregister(name);
         if (c != null) c.shutdown();
         return c;
     }
@@ -99,10 +102,10 @@ public class CacheManager {
      * 清空所有缓存（每个缓存自身的清空 + 关闭）。
      */
     public void clearAll() {
-        for (Cache<?, ?> c : caches.values()) {
+        for (Map.Entry<String, Object> entry : caches.listAll()) {
             try {
-                c.invalidateAll();
-                c.shutdown();
+                ((Cache<?, ?>) entry.getValue()).invalidateAll();
+                ((Cache<?, ?>) entry.getValue()).shutdown();
             } catch (RuntimeException ignored) {
             }
         }
@@ -110,7 +113,11 @@ public class CacheManager {
     }
 
     public Map<String, Cache<?, ?>> snapshot() {
-        return Collections.unmodifiableMap(new LinkedHashMap<>(caches));
+        Map<String, Cache<?, ?>> copy = new LinkedHashMap<>();
+        for (Map.Entry<String, Object> entry : caches.listAll()) {
+            copy.put(entry.getKey(), (Cache<?, ?>) entry.getValue());
+        }
+        return Collections.unmodifiableMap(copy);
     }
 
     public int size() {

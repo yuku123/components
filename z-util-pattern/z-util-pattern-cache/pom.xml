@@ -16,6 +16,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.github.yuku123</groupId>
+            <artifactId>z-util-pattern-register</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>

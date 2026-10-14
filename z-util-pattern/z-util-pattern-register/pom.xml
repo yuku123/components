@@ -14,10 +14,9 @@
     <artifactId>z-util-pattern-register</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>io.github.yuku123</groupId>
-            <artifactId>z-util-core</artifactId>
-        </dependency>
+        <!-- 刻意零依赖：Register 只用 java.util。同理不能引 z-util-core ——
+             z-util-core 反过来依赖 pattern-cache，一旦 core → cache → register → core 就成环，
+             CacheManager 就没法继承 Register。 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>

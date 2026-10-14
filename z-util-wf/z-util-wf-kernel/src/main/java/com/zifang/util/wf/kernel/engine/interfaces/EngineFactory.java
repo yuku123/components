@@ -1,5 +1,6 @@
 package com.zifang.util.wf.kernel.engine.interfaces;
 
+import com.zifang.util.core.pattern.register.Register;
 import com.zifang.util.wf.kernel.config.Engine;
 
 import java.util.HashMap;
@@ -22,14 +23,17 @@ public class EngineFactory {
 
     /**
      * 已注册的引擎类型映射表（type -> engine class）。由各 executor 子模块自注册。
+     * 用 {@link Register} 而非裸 Map，好处是拿到「拒 null key」这条契约 ——
+     * 自注册表里一个 null type 会一路传播到 getEngine 才炸。
      */
-    private static final Map<String, Class<? extends AbstractEngine>> registeredEngineMap = new HashMap<>();
+    private static final Register<String, Class<? extends AbstractEngine>> registeredEngines =
+            new Register<>();
 
     /**
      * 注册一种引擎实现。重复注册后者覆盖前者。
      */
     public static void register(String type, Class<? extends AbstractEngine> clazz) {
-        registeredEngineMap.put(type, clazz);
+        registeredEngines.register(type, clazz);
     }
 
     /**
@@ -43,7 +47,7 @@ public class EngineFactory {
         if (engineCache.containsKey(type)) {
             return engineCache.get(type);
         }
-        Class<? extends AbstractEngine> clazz = registeredEngineMap.get(type);
+        Class<? extends AbstractEngine> clazz = registeredEngines.get(type);
         if (clazz == null) {
             return null;
         }

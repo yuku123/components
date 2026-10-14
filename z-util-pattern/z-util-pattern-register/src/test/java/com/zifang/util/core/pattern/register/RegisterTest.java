@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -38,5 +39,22 @@ class RegisterTest {
         Register<String, Integer> r = new Register<String, Integer>();
         assertFalse(r.contains("missing"));
         assertEquals(null, r.get("missing"));
+    }
+
+    @Test
+    @DisplayName("putIfAbsent 首次写入返 null, 重复写返旧值且不覆盖")
+    void putIfAbsentDoesNotOverwrite() {
+        Register<String, Integer> r = new Register<String, Integer>();
+        assertNull(r.putIfAbsent("k", 1));
+        assertEquals(1, r.get("k"));
+        assertEquals(1, r.putIfAbsent("k", 2));
+        assertEquals(1, r.get("k"), "putIfAbsent 不能覆盖既有值");
+    }
+
+    @Test
+    @DisplayName("putIfAbsent(null key) 同样必须立刻抛, 不能比其他入口宽松")
+    void putIfAbsentRejectsNullKey() {
+        Register<String, Integer> r = new Register<String, Integer>();
+        assertThrows(IllegalArgumentException.class, () -> r.putIfAbsent(null, 1));
     }
 }
