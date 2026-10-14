@@ -25,6 +25,15 @@
             <artifactId>z-util-serialize-codegen</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- kryo 仅供跑分工具 ZSerializeVsKryoBench 使用（手搓 main() 计时，非 JMH）。
+             钉 test scope：它原先挂在 z-util-serialize-benchmarks 的 compile 域，
+             等于把 Kryo 作为传递依赖塞进每个引该件的消费者。 -->
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
         <!-- junit:junit 直条已换（2026-10-01）：直挂 JUnit4 会让 surefire 去解析 surefire-junit4
              provider——本机没缓存、离线/证书受限环境直接卡死。改用全仓既定的 vintage-engine 路线
              （platform provider 各模块已缓存）：@Test/@Before 用例零改动，junit:junit 4.13.2

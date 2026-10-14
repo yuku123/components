@@ -18,7 +18,6 @@
         <module>z-util-serialize-core</module>
         <module>z-util-serialize-codegen</module>
         <module>z-util-serialize-formats</module>
-        <module>z-util-serialize-benchmarks</module>
         <module>z-util-serialize-it</module>
     </modules>
 
