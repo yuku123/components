@@ -49,7 +49,8 @@ public class Annotation {
     }
 
     public int contentSize() {
-        int n = 2;
+        // type_index(u2) + num_element_value_pairs(u2) + 每组「元素名 u2 + 元素值」
+        int n = 4;
         for (ElementNameValue pair : pairs) {
             n += 2 + 1 + pair.getValue().contentSize();
         }

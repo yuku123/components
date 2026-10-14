@@ -94,6 +94,57 @@ public class ElementValue {
         }
     }
 
+    /**
+     * 常量型元素值：B/C/D/F/I/J/S/Z/s 与 c 的负载都是一个常量池下标
+     *
+     * @param tag        tag 字符
+     * @param poolIndex  常量池下标
+     * @return ElementValue类型返回值
+     */
+    public static ElementValue constant(char tag, int poolIndex) {
+        ElementValue v = new ElementValue(new U1((byte) tag));
+        v.constValueIndex = new U2(poolIndex);
+        return v;
+    }
+
+    /**
+     * 枚举常量元素值（tag 'e'）
+     *
+     * @param typeNameUtf8Index  枚举类型描述符的 Utf8 下标，形如 Lcom/foo/Color;
+     * @param constNameUtf8Index 常量名的 Utf8 下标
+     * @return ElementValue类型返回值
+     */
+    public static ElementValue enumConstant(int typeNameUtf8Index, int constNameUtf8Index) {
+        ElementValue v = new ElementValue(new U1((byte) 'e'));
+        v.enumTypeNameIndex = new U2(typeNameUtf8Index);
+        v.enumConstNameIndex = new U2(constNameUtf8Index);
+        return v;
+    }
+
+    /**
+     * 嵌套注解元素值（tag '@'）
+     *
+     * @param nested 嵌套的注解
+     * @return ElementValue类型返回值
+     */
+    public static ElementValue annotation(Annotation nested) {
+        ElementValue v = new ElementValue(new U1((byte) '@'));
+        v.annotation = nested;
+        return v;
+    }
+
+    /**
+     * 数组元素值（tag '['）
+     *
+     * @param items 数组各项
+     * @return ElementValue类型返回值
+     */
+    public static ElementValue array(List<ElementValue> items) {
+        ElementValue v = new ElementValue(new U1((byte) '['));
+        v.arrayValues = new ArrayList<>(items);
+        return v;
+    }
+
     public U1 getTag() {
         return tag;
     }

@@ -456,4 +456,16 @@ public class ClassFile {
             attributes.add(a);
         }
     }
+
+    /**
+     * 摘掉一项类级属性
+     * <p>
+     * 删属性会留下常量池里的孤儿条目，JVM 不校验可达性，因此不用回填池。
+     *
+     * @param a 要摘掉的属性
+     * @return 是否摘掉了
+     */
+    public boolean removeAttribute(AbstractAttribute a) {
+        return attributes.remove(a);
+    }
 }

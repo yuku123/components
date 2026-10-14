@@ -62,9 +62,16 @@ public class ConstantPoolBuilder {
     private final Map<String, Integer> moduleIndex = new LinkedHashMap<>();
     private final Map<String, Integer> packageIndex = new LinkedHashMap<>();
 
+    /**
+     * 新条目追加后的常量池下标
+     * <p>
+     * 不变式是「list 下标 == 常量池下标 - 1」，所以下标等于追加后的长度，
+     * 不是长度再加一。
+     *
+     * @return int类型返回值
+     */
     private int nextIndex() {
-        // long/double 之后的空槽也要占位，保持「list 下标 == 常量池下标 - 1」不变式
-        return pool.size() + 1;
+        return pool.size();
     }
 
     private int add(AbstractConstantPool entry) {

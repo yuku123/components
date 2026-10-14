@@ -39,6 +39,26 @@ public class Code extends AbstractAttribute {
         this.poolList = poolList;
     }
 
+    /**
+     * 新建一个空的 Code 属性（新增方法体时用；指令与 max_stack/max_locals 随后填）
+     *
+     * @param attributeNameIndex 属性名在常量池的下标
+     * @param attributeLength    属性长度，写出时重算
+     * @param maxStack           操作数栈最大深度
+     * @param maxLocals          局部变量槽数
+     * @param poolList           常量池
+     */
+    public Code(U2 attributeNameIndex, U4 attributeLength, U2 maxStack, U2 maxLocals,
+                List<AbstractConstantPool> poolList) {
+        super(attributeNameIndex, attributeLength);
+        this.maxStack = maxStack;
+        this.maxLocals = maxLocals;
+        this.codeLength = new U4(0);
+        this.exceptionTableLength = new U2(0);
+        this.attributesCount = new U2(0);
+        this.poolList = poolList;
+    }
+
     @Override
     /**
      * read方法。
