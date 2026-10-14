@@ -4,6 +4,8 @@ import com.zifang.util.bc.bytecode.model.constantpool.AbstractConstantPool;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -49,5 +51,21 @@ public class InnerClassesAttribute extends AbstractAttribute {
 
     public List<InnerClassInfo> getEntries() {
         return Collections.unmodifiableList(entries);
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        out.writeShort(entries.size());
+        for (InnerClassInfo e : entries) {
+            e.innerClassInfoIndex.write(out);
+            e.outerClassInfoIndex.write(out);
+            e.innerNameIndex.write(out);
+            e.innerClassAccessFlags.write(out);
+        }
+    }
+
+    @Override
+    public int contentSize() {
+        return 2 + entries.size() * 8;
     }
 }

@@ -1,62 +1,71 @@
 package com.zifang.util.bc.bytecode.model.readtype;
 
+import java.io.DataOutput;
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
  * 无符号4字节数据类型
  * <p>
- * 用于从输入流中读取4字节的无符号整数，范围为0-4294967295。
- * JVM中用于表示float类型的位模式存储。
+ * JVM 中用于表示 magic、属性长度与 float 位模式。
  */
 public class U4 {
 
     public int value;
     public byte[] bytes;
 
-    /**
-     * U4方法。
-     * * @param value int类型参数
-     *
-     * @param bytes byte[]类型参数
-     */
     public U4(int value, byte[] bytes) {
         this.value = value;
         this.bytes = bytes;
     }
 
-    /**
-     * read方法。
-     * * @param inputStream InputStream类型参数
-     *
-     * @return static U4类型返回值
-     */
-    public static U4 read(InputStream inputStream) {
-        byte[] bytes = new byte[4];
-        try {
-            inputStream.read(bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int value = 0;
-        //4字节数据转成int类型数据需要做的位运算转换.
+    public U4(int value) {
+        this(value, null);
+    }
+
+    static U4 of(byte[] bytes) {
+        int v = 0;
         for (int i = 0; i < 4; i++) {
-            value <<= 8;
-            int temp = bytes[i] & 0xFF;
-            value = value | temp;        //想保持二进制补码的一致性。进行 & 运算； & 运算是: 两个为1则为1；
-            // | 运算：有一个为1 则为1；
+            v = (v << 8) | (bytes[i] & 0xFF);
         }
-        U4 u4 = new U4(value, bytes);
-        return u4;
+        return new U4(v, bytes);
+    }
+
+    public static U4 read(InputStream stream) {
+        return new ByteReader(stream).readU4();
     }
 
     /**
-     * getValue方法。
+     * 大端写出，不带长度前缀
      *
-     * @return int类型返回值
+     * @param out 输出流
+     * @throws IOException 写出失败
      */
+    public void write(DataOutput out) throws IOException {
+        out.writeInt(value);
+    }
+
     public int getValue() {
         return value;
     }
 
+    /**
+     * 按无符号语义返回 0-4294967295
+     *
+     * @return long类型返回值
+     */
+    public long longValue() {
+        return value & 0xFFFFFFFFL;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+        this.bytes = new byte[]{
+                (byte) (value >>> 24), (byte) (value >>> 16), (byte) (value >>> 8), (byte) value};
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(longValue());
+    }
 }

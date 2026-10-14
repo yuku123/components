@@ -1,16 +1,17 @@
 package com.zifang.util.bc.bytecode.model.constantpool;
 
-import com.zifang.util.bc.bytecode.model.readtype.U2;
+import com.zifang.util.bc.bytecode.model.readtype.ByteReader;
+import com.zifang.util.bc.bytecode.model.readtype.Mutf8;
 
+import java.io.DataOutput;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 
 /**
  * UTF-8编码的字符串常量
  * <p>
  * CONSTANT_Utf8_info用于存储字符串、类名、方法名等文本数据。
- * JVM规范定义的UTF-8编码与标准UTF-8略有不同。
+ * JVM规范定义的MUTF-8与标准UTF-8不同，编解码走 {@link Mutf8}。
  */
 public class Utf8Info extends AbstractConstantPool {
 
@@ -18,57 +19,64 @@ public class Utf8Info extends AbstractConstantPool {
     private byte[] bytes;
     private String bytesValue;
 
-    /**
-     * Utf8Info方法。
-     * * @param tag byte类型参数
-     */
     public Utf8Info(byte tag) {
         super(tag);
     }
 
-    @Override
     /**
-     * read方法。
-     *      * @param in InputStream类型参数
-     */
-    public void read(InputStream in) {
-        U2 u2 = U2.read(in);
-        this.length = u2.getValue();
-        this.bytes = new byte[this.length];
-        try {
-            in.read(bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //convertMUTF8(bytes);
-        this.bytesValue = getValue();
-    }
-
-
-    /**
-     * getValue方法。
+     * 以给定字符串构造常量池项，供写出层 intern 使用
      *
-     * @return String类型返回值
+     * @param value 字符串内容
      */
-    public String getValue() {
-        String ret = null;
-        try {
-            ret = new String(bytes, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return ret;
+    public Utf8Info(String value) {
+        super(CONSTANT_UTF8_INFO);
+        setValue(value);
     }
 
     @Override
+    public void read(InputStream in) {
+        byte[] lenBytes = new ByteReader(in).readFully(2);
+        this.length = (short) (((lenBytes[0] & 0xFF) << 8) | (lenBytes[1] & 0xFF));
+        this.bytes = new ByteReader(in).readFully(length & 0xFFFF);
+        this.bytesValue = Mutf8.decode(this.bytes, 0, this.bytes.length);
+    }
+
     /**
-     * toString方法。
-     * @return String类型返回值
+     * 写出 tag + length + MUTF-8 字节
+     *
+     * @param out 输出流
+     * @throws IOException 写出失败
      */
+    @Override
+    public void write(DataOutput out) throws IOException {
+        byte[] encoded = Mutf8.encode(getValue());
+        out.writeByte(getTag());
+        out.writeShort(encoded.length);
+        out.write(encoded);
+    }
+
+    public String getValue() {
+        return bytesValue;
+    }
+
+    /**
+     * 覆盖内容并同步刷新字节缓存
+     *
+     * @param value 新内容
+     */
+    public void setValue(String value) {
+        this.bytesValue = value;
+        this.bytes = Mutf8.encode(value);
+        this.length = (short) this.bytes.length;
+    }
+
+    @Override
     public String toString() {
-        return "Utf8Info{" +
-                "bytesValue='" + bytesValue + '\'' +
-                '}';
+        return "Utf8Info{bytesValue='" + bytesValue + "'}";
+    }
+
+    @Override
+    public int contentSize() {
+        return 3 + Mutf8.encode(getValue()).length;
     }
 }

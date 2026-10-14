@@ -2,11 +2,12 @@ package com.zifang.util.bc.bytecode.model.attribute;
 
 import com.zifang.util.bc.bytecode.model.constantpool.AbstractConstantPool;
 import com.zifang.util.bc.bytecode.model.constantpool.ClassInfo;
-import com.zifang.util.bc.bytecode.model.constantpool.ConstantClassInfo;
 import com.zifang.util.bc.bytecode.model.constantpool.Utf8Info;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * NestHost 属性（4.7.28）：嵌套类声明宿主类（Java 11+ 取代了 InnerClasses 用于 nestmate 反射）。
  */
-public class NestHostAttribute extends AbstractAttribute {
+public class NestHostAttribute extends AbstractAttribute implements PoolResolvable {
 
     private U2 hostClassIndex;
     private String hostClassInternalName;
@@ -29,6 +30,7 @@ public class NestHostAttribute extends AbstractAttribute {
         hostClassIndex = U2.read(inputStream);
     }
 
+    @Override
     public void resolve(List<AbstractConstantPool> poolList) {
         int idx = hostClassIndex.value - 1;
         if (idx < 0 || idx >= poolList.size()) {
@@ -38,8 +40,6 @@ public class NestHostAttribute extends AbstractAttribute {
         U2 nameIdx;
         if (p instanceof ClassInfo) {
             nameIdx = ((ClassInfo) p).getNameIndex();
-        } else if (p instanceof ConstantClassInfo) {
-            nameIdx = ((ConstantClassInfo) p).getStringIndex();
         } else {
             return;
         }
@@ -59,5 +59,15 @@ public class NestHostAttribute extends AbstractAttribute {
 
     public String getHostClassInternalName() {
         return hostClassInternalName;
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        hostClassIndex.write(out);
+    }
+
+    @Override
+    public int contentSize() {
+        return 2;
     }
 }

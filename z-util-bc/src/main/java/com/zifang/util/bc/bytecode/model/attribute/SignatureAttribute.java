@@ -5,6 +5,8 @@ import com.zifang.util.bc.bytecode.model.constantpool.Utf8Info;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
  * <p>
  * 解码后保留常量池 index 和文本（解析阶段直接用 poolList 把文本读出来）。
  */
-public class SignatureAttribute extends AbstractAttribute {
+public class SignatureAttribute extends AbstractAttribute implements PoolResolvable {
 
     private U2 signatureIndex;
     private String signatureText;
@@ -30,6 +32,7 @@ public class SignatureAttribute extends AbstractAttribute {
     /**
      * 解析属性文本：需要常量池支持（read 后单独调用）。
      */
+    @Override
     public void resolve(List<AbstractConstantPool> poolList) {
         if (signatureIndex == null) {
             return;
@@ -50,5 +53,15 @@ public class SignatureAttribute extends AbstractAttribute {
 
     public String getSignatureText() {
         return signatureText;
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        signatureIndex.write(out);
+    }
+
+    @Override
+    public int contentSize() {
+        return 2;
     }
 }

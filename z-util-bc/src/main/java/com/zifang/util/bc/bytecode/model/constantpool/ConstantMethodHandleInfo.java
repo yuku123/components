@@ -3,51 +3,55 @@ package com.zifang.util.bc.bytecode.model.constantpool;
 import com.zifang.util.bc.bytecode.model.readtype.U1;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * 方法句柄信息
+ * 方法句柄
  * <p>
- * CONSTANT_MethodHandle_info用于表示方法句柄，
- * 是JVM用于实现invokedynamic指令的关键数据结构。
+ * CONSTANT_MethodHandle_info（Java 7+）用于方法引用与方法调用点的绑定。
  */
 public class ConstantMethodHandleInfo extends AbstractConstantPool {
+
     private U1 referenceKind;
     private U2 referenceIndex;
 
-
-    /**
-     * ConstantMethodHandleInfo方法。
-     * * @param tag byte类型参数
-     */
     public ConstantMethodHandleInfo(byte tag) {
         super(tag);
     }
 
-    /**
-     * read方法。
-     * * @param inputStream InputStream类型参数
-     */
+    @Override
     public void read(InputStream inputStream) {
         this.referenceKind = U1.read(inputStream);
         this.referenceIndex = U2.read(inputStream);
     }
 
-    /**
-     * getReferenceKind方法。
-     *
-     * @return U1类型返回值
-     */
+    @Override
+    public void write(DataOutput out) throws IOException {
+        out.writeByte(getTag());
+        referenceKind.write(out);
+        referenceIndex.write(out);
+    }
+
+    @Override
+    public int contentSize() {
+        return 4;
+    }
+
     public U1 getReferenceKind() {
         return referenceKind;
     }
 
-    /**
-     * getReferenceIndex方法。
-     *
-     * @return U2类型返回值
-     */
+    public void setReferenceKind(U1 referenceKind) {
+        this.referenceKind = referenceKind;
+    }
+
     public U2 getReferenceIndex() {
         return referenceIndex;
+    }
+
+    public void setReferenceIndex(U2 referenceIndex) {
+        this.referenceIndex = referenceIndex;
     }
 }

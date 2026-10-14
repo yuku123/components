@@ -3,6 +3,8 @@ package com.zifang.util.bc.bytecode.model.attribute;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,5 +31,18 @@ public class NestMembersAttribute extends AbstractAttribute {
 
     public List<U2> getClassIndices() {
         return Collections.unmodifiableList(classIndices);
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        out.writeShort(classIndices.size());
+        for (U2 idx : classIndices) {
+            idx.write(out);
+        }
+    }
+
+    @Override
+    public int contentSize() {
+        return 2 + classIndices.size() * 2;
     }
 }

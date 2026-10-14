@@ -3,6 +3,8 @@ package com.zifang.util.bc.bytecode.model.attribute;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -58,5 +60,15 @@ public class ConstantValue extends AbstractAttribute {
      */
     public String toString() {
         return "ConstantValue{constantValueIndex=" + constantValueIndex.getValue() + "}";
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        constantValueIndex.write(out);
+    }
+
+    @Override
+    public int contentSize() {
+        return 2;
     }
 }

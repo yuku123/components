@@ -2,18 +2,19 @@ package com.zifang.util.bc.bytecode.model.attribute;
 
 import com.zifang.util.bc.bytecode.model.constantpool.AbstractConstantPool;
 import com.zifang.util.bc.bytecode.model.constantpool.ClassInfo;
-import com.zifang.util.bc.bytecode.model.constantpool.ConstantClassInfo;
 import com.zifang.util.bc.bytecode.model.constantpool.ConstantNameAndTypeInfo;
 import com.zifang.util.bc.bytecode.model.constantpool.Utf8Info;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * EnclosingMethod 属性（4.7.7）：局部类/匿名类的宿主方法定位（用于反射恢复外部实例）。
  */
-public class EnclosingMethodAttribute extends AbstractAttribute {
+public class EnclosingMethodAttribute extends AbstractAttribute implements PoolResolvable {
 
     private U2 classIndex;
     private U2 methodIndex;
@@ -31,6 +32,7 @@ public class EnclosingMethodAttribute extends AbstractAttribute {
         methodIndex = U2.read(inputStream);
     }
 
+    @Override
     public void resolve(List<AbstractConstantPool> poolList) {
         if (classIndex == null) {
             return;
@@ -43,8 +45,6 @@ public class EnclosingMethodAttribute extends AbstractAttribute {
         U2 nameIdx;
         if (p instanceof ClassInfo) {
             nameIdx = ((ClassInfo) p).getNameIndex();
-        } else if (p instanceof ConstantClassInfo) {
-            nameIdx = ((ConstantClassInfo) p).getStringIndex();
         } else {
             return;
         }
@@ -97,5 +97,16 @@ public class EnclosingMethodAttribute extends AbstractAttribute {
 
     public String getEnclosingMethodDescriptor() {
         return enclosingMethodDescriptor;
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        classIndex.write(out);
+        methodIndex.write(out);
+    }
+
+    @Override
+    public int contentSize() {
+        return 4;
     }
 }

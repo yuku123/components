@@ -252,7 +252,7 @@ public class ByteCodeResolver {
             case AbstractConstantPool.CONSTANT_CLASS_INFO:
                 return new ClassInfo(tag);
             case AbstractConstantPool.CONSTANT_STRING_INFO:
-                return new ConstantClassInfo(tag);
+                return new ConstantStringInfo(tag);
             case AbstractConstantPool.CONSTANT_FIELDREF_INFO:
                 return new FieldRefInfo(tag);
             case AbstractConstantPool.CONSTANT_METHODREF_INFO:
@@ -267,6 +267,12 @@ public class ByteCodeResolver {
                 return new ConstantMethodTypeInfo(tag);
             case AbstractConstantPool.CONSTANT_INVOKEDYNAMIC_INFO:
                 return new ConstantInvokeDynamicInfo(tag);
+            case AbstractConstantPool.CONSTANT_DYNAMIC_INFO:
+                return new ConstantDynamicInfo(tag);
+            case AbstractConstantPool.CONSTANT_MODULE_INFO:
+                return new ConstantModuleInfo(tag);
+            case AbstractConstantPool.CONSTANT_PACKAGE_INFO:
+                return new ConstantPackageInfo(tag);
             default:
                 throw new RuntimeException("未知的常量池类型: " + tag);
         }

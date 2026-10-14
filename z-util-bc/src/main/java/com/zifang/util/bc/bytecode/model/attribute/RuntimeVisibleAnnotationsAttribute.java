@@ -3,7 +3,9 @@ package com.zifang.util.bc.bytecode.model.attribute;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStream;
 
 /**
@@ -13,6 +15,7 @@ import java.io.InputStream;
  */
 public class RuntimeVisibleAnnotationsAttribute extends AbstractAttribute {
 
+    private int numAnnotations;
     private byte[] rawBody;
 
     public RuntimeVisibleAnnotationsAttribute(U2 attributeNameIndex, U4 attributeLength) {
@@ -21,7 +24,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AbstractAttribute {
 
     @Override
     public void read(InputStream inputStream) {
-        U2 numAnnotations = U2.read(inputStream);
+        numAnnotations = U2.read(inputStream).intValue();
         long remaining = (long) getAttributeLength().getValue() - 2;
         byte[] buf = new byte[(int) remaining];
         int r = 0;
@@ -41,10 +44,20 @@ public class RuntimeVisibleAnnotationsAttribute extends AbstractAttribute {
     }
 
     public int getNumAnnotations() {
-        return rawBody == null ? 0 : -1;
+        return numAnnotations;
     }
 
     public byte[] getRawBody() {
         return rawBody;
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        out.write(rawBody);
+    }
+
+    @Override
+    public int contentSize() {
+        return rawBody.length;
     }
 }

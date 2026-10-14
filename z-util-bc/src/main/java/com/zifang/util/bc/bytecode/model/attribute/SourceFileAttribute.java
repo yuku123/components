@@ -5,12 +5,14 @@ import com.zifang.util.bc.bytecode.model.constantpool.Utf8Info;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * SourceFile 属性（4.7.7）：记录 .class 对应的源文件名（javac 默认会加）。
  */
-public class SourceFileAttribute extends AbstractAttribute {
+public class SourceFileAttribute extends AbstractAttribute implements PoolResolvable {
 
     private U2 sourceFileIndex;
     private String sourceFileName;
@@ -24,6 +26,7 @@ public class SourceFileAttribute extends AbstractAttribute {
         sourceFileIndex = U2.read(inputStream);
     }
 
+    @Override
     public void resolve(List<AbstractConstantPool> poolList) {
         if (sourceFileIndex == null) {
             return;
@@ -44,5 +47,15 @@ public class SourceFileAttribute extends AbstractAttribute {
 
     public String getSourceFileName() {
         return sourceFileName;
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        sourceFileIndex.write(out);
+    }
+
+    @Override
+    public int contentSize() {
+        return 2;
     }
 }

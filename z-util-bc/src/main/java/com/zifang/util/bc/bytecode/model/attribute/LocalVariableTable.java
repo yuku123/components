@@ -3,6 +3,8 @@ package com.zifang.util.bc.bytecode.model.attribute;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -175,5 +177,22 @@ public class LocalVariableTable extends AbstractAttribute {
         public void setIndex(U2 index) {
             this.index = index;
         }
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        out.writeShort(localVariableTable.size());
+        for (LocalVariableInfo info : localVariableTable) {
+            info.getStartPc().write(out);
+            info.getLength().write(out);
+            info.getNameIndex().write(out);
+            info.getDescriptorIndex().write(out);
+            info.getIndex().write(out);
+        }
+    }
+
+    @Override
+    public int contentSize() {
+        return 2 + localVariableTable.size() * 10;
     }
 }

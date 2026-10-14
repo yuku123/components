@@ -1,12 +1,13 @@
 package com.zifang.util.bc.bytecode.model;
 
-import com.zifang.util.bc.bytecode.model.constantpool.AbstractConstantPool;
-import com.zifang.util.bc.bytecode.model.constantpool.ClassInfo;
-import com.zifang.util.bc.bytecode.model.constantpool.ConstantPoolInfo;
-import com.zifang.util.bc.bytecode.model.constantpool.Utf8Info;
 import com.zifang.util.bc.bytecode.model.attribute.AbstractAttribute;
+import com.zifang.util.bc.bytecode.model.attribute.AttributeNames;
+import com.zifang.util.bc.bytecode.model.constantpool.ConstantPoolInfo;
+import com.zifang.util.bc.bytecode.model.field.FieldInfo;
 import com.zifang.util.bc.bytecode.model.field.FieldTable;
+import com.zifang.util.bc.bytecode.model.inter.Interface;
 import com.zifang.util.bc.bytecode.model.inter.InterfaceIndex;
+import com.zifang.util.bc.bytecode.model.method.MethodInfo;
 import com.zifang.util.bc.bytecode.model.method.MethodTable;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
@@ -82,28 +83,145 @@ public class ClassFile {
      * @return 类名字符串
      */
     public String getClassName() {
-        if (poolInfo == null || poolInfo.getPoolList() == null || classIndex == null) {
+        return new ConstantPoolHelper(poolInfo == null ? null : poolInfo.getPoolList())
+                .classInternalName(classIndex == null ? 0 : classIndex.intValue());
+    }
+
+    /**
+     * 获取父类内部名
+     *
+     * @return String类型返回值；Object 或无父类时为 null
+     */
+    public String getSuperClassName() {
+        if (superClassIndex == null || superClassIndex.intValue() == 0) {
             return null;
         }
-        // classIndex 指向常量池中的 ClassInfo (tag=7)
-        int classInfoIndex = classIndex.value - 1;
-        if (classInfoIndex < 0 || classInfoIndex >= poolInfo.getPoolList().size()) {
-            return null;
+        return new ConstantPoolHelper(poolInfo.getPoolList())
+                .classInternalName(superClassIndex.intValue());
+    }
+
+    /**
+     * 获取实现的接口内部名列表
+     *
+     * @return ListString类型返回值
+     */
+    public List<String> getInterfaceNames() {
+        List<String> names = new ArrayList<>();
+        if (interfaceIndex == null) {
+            return names;
         }
-        AbstractConstantPool classInfo = poolInfo.getPoolList().get(classInfoIndex);
-        if (!(classInfo instanceof ClassInfo)) {
-            return null;
+        ConstantPoolHelper helper = new ConstantPoolHelper(poolInfo.getPoolList());
+        for (Interface iface : interfaceIndex.list) {
+            names.add(helper.classInternalName(iface.index.value));
         }
-        // ClassInfo.nameIndex 指向 Utf8Info
-        int utf8Index = ((ClassInfo) classInfo).getNameIndex().value - 1;
-        if (utf8Index < 0 || utf8Index >= poolInfo.getPoolList().size()) {
-            return null;
-        }
-        AbstractConstantPool utf8Pool = poolInfo.getPoolList().get(utf8Index);
-        if (utf8Pool instanceof Utf8Info) {
-            return ((Utf8Info) utf8Pool).getValue();
+        return names;
+    }
+
+    /**
+     * Java 主版本号
+     * <p>
+     * major 45=JDK1.1，49=Java5，52=Java8，55=Java11，61=Java17，65=Java21。
+     *
+     * @return int类型返回值
+     */
+    public int getJavaMajorVersion() {
+        return majorVersion == null ? 0 : majorVersion.intValue();
+    }
+
+    /**
+     * 是否为预览版 class（minor_version 固定为 0xFFFF）
+     *
+     * @return boolean类型返回值
+     */
+    public boolean isPreview() {
+        return minorVersion != null && minorVersion.intValue() == 0xFFFF;
+    }
+
+    /**
+     * 是否使用类型检查验证器（major ≥ 50 即必须有 StackMapTable）
+     *
+     * @return boolean类型返回值
+     */
+    public boolean requiresStackMapTable() {
+        return getJavaMajorVersion() >= 50;
+    }
+
+    /**
+     * 字段表
+     *
+     * @return ListFieldInfo类型返回值
+     */
+    public List<FieldInfo> getFields() {
+        return fieldInfo == null ? Collections.emptyList() : fieldInfo.getFields();
+    }
+
+    /**
+     * 方法表
+     *
+     * @return ListMethodInfo类型返回值
+     */
+    public List<MethodInfo> getMethods() {
+        return methodInfo == null ? Collections.emptyList() : methodInfo.getMethods();
+    }
+
+    /**
+     * 按方法名 + 描述符查找方法
+     *
+     * @param methodName       方法名
+     * @param methodDescriptor 方法描述符
+     * @return MethodInfo类型返回值
+     */
+    public MethodInfo findMethod(String methodName, String methodDescriptor) {
+        ConstantPoolHelper helper = new ConstantPoolHelper(poolInfo.getPoolList());
+        for (MethodInfo m : getMethods()) {
+            if (helper.utf8(m.getNameIndex().intValue()).equals(methodName)
+                    && helper.utf8(m.getDescriptorIndex().intValue()).equals(methodDescriptor)) {
+                return m;
+            }
         }
         return null;
+    }
+
+    /**
+     * 按方法名查找（描述符未知时的宽松匹配，重载方法只会命中第一个）
+     *
+     * @param methodName 方法名
+     * @return MethodInfo类型返回值
+     */
+    public MethodInfo findMethod(String methodName) {
+        ConstantPoolHelper helper = new ConstantPoolHelper(poolInfo.getPoolList());
+        for (MethodInfo m : getMethods()) {
+            if (helper.utf8(m.getNameIndex().intValue()).equals(methodName)) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 按字段名查找
+     *
+     * @param fieldName 字段名
+     * @return FieldInfo类型返回值
+     */
+    public FieldInfo findField(String fieldName) {
+        ConstantPoolHelper helper = new ConstantPoolHelper(poolInfo.getPoolList());
+        for (FieldInfo f : getFields()) {
+            if (helper.utf8(f.getNameIndex().intValue()).equals(fieldName)) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 按属性名查找类级属性
+     *
+     * @param attributeName 属性名
+     * @return AbstractAttribute类型返回值
+     */
+    public AbstractAttribute findAttribute(String attributeName) {
+        return AttributeNames.find(attributes, attributeName);
     }
 
     /**

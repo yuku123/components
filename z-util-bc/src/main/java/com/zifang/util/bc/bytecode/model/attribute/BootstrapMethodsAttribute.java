@@ -3,6 +3,8 @@ package com.zifang.util.bc.bytecode.model.attribute;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,5 +42,26 @@ public class BootstrapMethodsAttribute extends AbstractAttribute {
 
     public List<BootstrapMethod> getEntries() {
         return Collections.unmodifiableList(entries);
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        out.writeShort(entries.size());
+        for (BootstrapMethod bm : entries) {
+            bm.bootstrapMethodRef.write(out);
+            out.writeShort(bm.bootstrapArguments.size());
+            for (U2 arg : bm.bootstrapArguments) {
+                arg.write(out);
+            }
+        }
+    }
+
+    @Override
+    public int contentSize() {
+        int n = 2;
+        for (BootstrapMethod bm : entries) {
+            n += 4 + bm.bootstrapArguments.size() * 2;
+        }
+        return n;
     }
 }

@@ -2,80 +2,68 @@ package com.zifang.util.bc.bytecode.model.constantpool;
 
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
  * 方法引用信息
  * <p>
  * CONSTANT_Methodref_info用于表示类中声明的方法的符号引用。
- * 包含指向类信息的class_index和指向方法描述的name_index。
  */
 public class MethodRefInfo extends AbstractConstantPool {
-    private U2 classIndex;
-    private U2 nameIndex;
 
-    /**
-     * MethodRefInfo方法。
-     * * @param tag byte类型参数
-     */
+    private U2 classIndex;
+    private U2 descriptorIndex;
+
     public MethodRefInfo(byte tag) {
         super(tag);
     }
 
-
-    /**
-     * read方法。
-     * * @param inputStream InputStream类型参数
-     */
+    @Override
     public void read(InputStream inputStream) {
         this.classIndex = U2.read(inputStream);
-        this.nameIndex = U2.read(inputStream);
+        this.descriptorIndex = U2.read(inputStream);
     }
 
-    /**
-     * getClassIndex方法。
-     *
-     * @return U2类型返回值
-     */
+    @Override
+    public void write(DataOutput out) throws IOException {
+        out.writeByte(getTag());
+        classIndex.write(out);
+        descriptorIndex.write(out);
+    }
+
+    @Override
+    public int contentSize() {
+        return 5;
+    }
+
     public U2 getClassIndex() {
         return classIndex;
     }
 
-    /**
-     * setClassIndex方法。
-     * * @param classIndex U2类型参数
-     */
     public void setClassIndex(U2 classIndex) {
         this.classIndex = classIndex;
     }
 
     /**
-     * getNameIndex方法。
+     * 指向 CONSTANT_NameAndType_info 的索引
+     * <p>
+     * 字段名与方法名都在 NameAndType 里，本字段不是「名字」而是「名与描述符」的引用。
      *
      * @return U2类型返回值
      */
-    public U2 getNameIndex() {
-        return nameIndex;
+    public U2 getDescriptorIndex() {
+        return descriptorIndex;
     }
 
-    /**
-     * setNameIndex方法。
-     * * @param nameIndex U2类型参数
-     */
-    public void setNameIndex(U2 nameIndex) {
-        this.nameIndex = nameIndex;
+    public void setDescriptorIndex(U2 descriptorIndex) {
+        this.descriptorIndex = descriptorIndex;
     }
-
 
     @Override
-    /**
-     * toString方法。
-     * @return String类型返回值
-     */
     public String toString() {
-        return "MethodRefInfo{" +
-                "classIndex=" + classIndex.value +
-                ", nameIndex=" + nameIndex.value +
-                '}';
+        return "MethodRefInfo{classIndex=" + (classIndex == null ? 0 : classIndex.intValue())
+                + ", descriptorIndex=" + (descriptorIndex == null ? 0 : descriptorIndex.intValue()) + "}";
     }
 }

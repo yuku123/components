@@ -1,55 +1,54 @@
 package com.zifang.util.bc.bytecode.model.readtype;
 
+import java.io.DataOutput;
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
  * 无符号8字节数据类型
  * <p>
- * 用于从输入流中读取8字节的长整数数据。
- * JVM中用于表示long和double类型的位模式存储。
+ * JVM 中用于表示 long 与 double 的位模式存储。
  */
 public class U8 {
 
     private long value;
 
-    /**
-     * U8方法。
-     * * @param value long类型参数
-     */
     public U8(long value) {
         this.value = value;
     }
 
-    /**
-     * read方法。
-     * * @param inputStream InputStream类型参数
-     *
-     * @return static U8类型返回值
-     */
-    public static U8 read(InputStream inputStream) {
-        byte[] bytes = new byte[8];
-        try {
-            inputStream.read(bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        long value = 0;
+    static U8 of(byte[] bytes) {
+        long v = 0;
         for (int i = 0; i < 8; i++) {
-            value <<= 8;
-            value |= bytes[i] & 0xFF;
+            v = (v << 8) | (bytes[i] & 0xFFL);
         }
-        U8 u8 = new U8(value);
-        return u8;
+        return new U8(v);
+    }
+
+    public static U8 read(InputStream stream) {
+        return new ByteReader(stream).readU8();
     }
 
     /**
-     * getValue方法。
+     * 大端写出，不带长度前缀
      *
-     * @return long类型返回值
+     * @param out 输出流
+     * @throws IOException 写出失败
      */
+    public void write(DataOutput out) throws IOException {
+        out.writeLong(value);
+    }
+
     public long getValue() {
         return value;
     }
 
+    public void setValue(long value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
 }

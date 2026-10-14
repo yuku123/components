@@ -5,6 +5,8 @@ import com.zifang.util.bc.bytecode.model.readtype.U1;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -153,23 +155,42 @@ public class Code extends AbstractAttribute {
         return attributes;
     }
 
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        maxStack.write(out);
+        maxLocals.write(out);
+        out.writeInt(code.size());
+        for (U1 b : code) {
+            b.write(out);
+        }
+        out.writeShort(exceptionTable.size());
+        for (ExceptionInfo e : exceptionTable) {
+            e.writeBody(out);
+        }
+        out.writeShort(attributes.size());
+        for (AbstractAttribute a : attributes) {
+            a.write(out);
+        }
+    }
+
+    @Override
+    public int contentSize() {
+        int n = 2 + 2 + 4 + code.size() + 2 + exceptionTable.size() * 8 + 2;
+        for (AbstractAttribute a : attributes) {
+            n += 6 + a.contentSize();
+        }
+        return n;
+    }
+
     /**
      * 异常表项
      */
-    public class ExceptionInfo {
+    public static class ExceptionInfo {
         private U2 startPc;
         private U2 endPc;
         private U2 handlerPc;
         private U2 catchPc;
 
-        /**
-         * ExceptionInfo方法。
-         * * @param startPc U2类型参数
-         *
-         * @param endPc     U2类型参数
-         * @param handlerPc U2类型参数
-         * @param catchPc   U2类型参数
-         */
         public ExceptionInfo(U2 startPc, U2 endPc, U2 handlerPc, U2 catchPc) {
             this.startPc = startPc;
             this.endPc = endPc;
@@ -177,40 +198,43 @@ public class Code extends AbstractAttribute {
             this.catchPc = catchPc;
         }
 
-        /**
-         * getStartPc方法。
-         *
-         * @return U2类型返回值
-         */
+        void writeBody(DataOutput out) throws IOException {
+            startPc.write(out);
+            endPc.write(out);
+            handlerPc.write(out);
+            catchPc.write(out);
+        }
+
         public U2 getStartPc() {
             return startPc;
         }
 
-        /**
-         * getEndPc方法。
-         *
-         * @return U2类型返回值
-         */
+        public void setStartPc(U2 startPc) {
+            this.startPc = startPc;
+        }
+
         public U2 getEndPc() {
             return endPc;
         }
 
-        /**
-         * getHandlerPc方法。
-         *
-         * @return U2类型返回值
-         */
+        public void setEndPc(U2 endPc) {
+            this.endPc = endPc;
+        }
+
         public U2 getHandlerPc() {
             return handlerPc;
         }
 
-        /**
-         * getCatchPc方法。
-         *
-         * @return U2类型返回值
-         */
+        public void setHandlerPc(U2 handlerPc) {
+            this.handlerPc = handlerPc;
+        }
+
         public U2 getCatchPc() {
             return catchPc;
+        }
+
+        public void setCatchPc(U2 catchPc) {
+            this.catchPc = catchPc;
         }
     }
 }

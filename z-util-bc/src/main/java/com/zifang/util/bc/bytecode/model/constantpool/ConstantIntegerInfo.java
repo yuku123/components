@@ -2,6 +2,8 @@ package com.zifang.util.bc.bytecode.model.constantpool;
 
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -55,5 +57,16 @@ public class ConstantIntegerInfo extends AbstractConstantPool {
         return "ConstantIntegerInfo{" +
                 "value=" + bytes.value +
                 '}';
+    }
+
+    @Override
+    public void write(DataOutput out) throws IOException {
+        out.writeByte(getTag());
+        bytes.write(out);
+    }
+
+    @Override
+    public int contentSize() {
+        return 5;
     }
 }

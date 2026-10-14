@@ -4,7 +4,9 @@ import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutput;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStream;
 import java.util.List;
 
@@ -48,5 +50,15 @@ public class StackMapTableAttribute extends AbstractAttribute {
 
     public byte[] getRawBody() {
         return rawBody;
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        out.write(rawBody);
+    }
+
+    @Override
+    public int contentSize() {
+        return rawBody.length;
     }
 }

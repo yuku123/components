@@ -3,6 +3,8 @@ package com.zifang.util.bc.bytecode.model.attribute;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -111,5 +113,19 @@ public class LineNumberTable extends AbstractAttribute {
         public void setLineNumber(U2 lineNumber) {
             this.lineNumber = lineNumber;
         }
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        out.writeShort(lineNumberTable.size());
+        for (LineNumberInfo info : lineNumberTable) {
+            info.getStartPc().write(out);
+            info.getLineNumber().write(out);
+        }
+    }
+
+    @Override
+    public int contentSize() {
+        return 2 + lineNumberTable.size() * 4;
     }
 }

@@ -724,8 +724,8 @@ public class SrcCreator {
             return ((ConstantFloatInfo) pool).getBytes().getValue() + "f";
         } else if (pool instanceof ConstantDoubleInfo) {
             return String.valueOf(((ConstantDoubleInfo) pool).getBytes().getValue());
-        } else if (pool instanceof ConstantClassInfo) {
-            int stringIndex = ((ConstantClassInfo) pool).getStringIndex().value - 1;
+        } else if (pool instanceof ConstantStringInfo) {
+            int stringIndex = ((ConstantStringInfo) pool).getStringIndex().value - 1;
             if (stringIndex >= 0 && stringIndex < poolList.size()) {
                 AbstractConstantPool utf8Pool = poolList.get(stringIndex);
                 if (utf8Pool instanceof Utf8Info) {
@@ -748,7 +748,7 @@ public class SrcCreator {
             return null;
         }
         FieldRefInfo fieldRef = (FieldRefInfo) pool;
-        int nameAndTypeIndex = fieldRef.getNameIndex().value - 1;
+        int nameAndTypeIndex = fieldRef.getDescriptorIndex().value - 1;
         if (nameAndTypeIndex < 0 || nameAndTypeIndex >= poolList.size()) {
             return null;
         }
@@ -779,7 +779,7 @@ public class SrcCreator {
             return null;
         }
         MethodRefInfo methodRef = (MethodRefInfo) pool;
-        int nameAndTypeIndex = methodRef.getNameIndex().value - 1;
+        int nameAndTypeIndex = methodRef.getDescriptorIndex().value - 1;
         if (nameAndTypeIndex < 0 || nameAndTypeIndex >= poolList.size()) {
             return null;
         }
@@ -1036,13 +1036,10 @@ public class SrcCreator {
                 }
                 AbstractConstantPool p = codeAttr.getPoolList().get(i);
                 U2 nameIdx;
-                if (p instanceof ClassInfo) {
-                    nameIdx = ((ClassInfo) p).getNameIndex();
-                } else if (p instanceof ConstantClassInfo) {
-                    nameIdx = ((ConstantClassInfo) p).getStringIndex();
-                } else {
+                if (!(p instanceof ClassInfo)) {
                     return body;
                 }
+                nameIdx = ((ClassInfo) p).getNameIndex();
                 int ni = nameIdx.value - 1;
                 if (ni < 0 || ni >= codeAttr.getPoolList().size()) {
                     return body;

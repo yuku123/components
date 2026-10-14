@@ -3,6 +3,8 @@ package com.zifang.util.bc.bytecode.model.attribute;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 import com.zifang.util.bc.bytecode.model.readtype.U4;
 
+import java.io.DataOutput;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,5 +52,22 @@ public class LocalVariableTypeTableAttribute extends AbstractAttribute {
 
     public List<LocalVariableTypeInfo> getEntries() {
         return Collections.unmodifiableList(entries);
+    }
+
+    @Override
+    protected void writeBody(DataOutput out) throws IOException {
+        out.writeShort(entries.size());
+        for (LocalVariableTypeInfo e : entries) {
+            e.startPc.write(out);
+            e.length.write(out);
+            e.nameIndex.write(out);
+            e.signatureIndex.write(out);
+            e.slot.write(out);
+        }
+    }
+
+    @Override
+    public int contentSize() {
+        return 2 + entries.size() * 10;
     }
 }
