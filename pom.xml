@@ -78,7 +78,19 @@
              （javap -c 反汇编 Central 的 1.0.22：convertValue 开头只有 null / java-time /
              JsonObject 三个分支，无 Object.class 短路）。z-opc 经 z-boot 1.1.0 BOM 解析到
              z-util-parser-json 1.0.19，故须发此版并由 z-opc 抬版本才收口。 -->
-        <revision>1.0.23</revision>
+        <!-- 1.1.0：**首个破坏性版本**（减法 campaign 第一档，38 文件 / -3416 行 / 零测试受影响）。
+             删的都是已发布 public API，故不抬 patch 直上 minor：
+               ① z-util-core 的 com.zifang.util.core.schedule 整包（26 类 / 1781 行，Quartz 仿写，
+                  零生产引用、零测试，SchedulerManager 只往内存 map 塞 Job，没实现线程池/持久化）；
+               ② core.lang.ClassUtil（369 行，18 个 public 方法与 core.lang.reflect.ClassUtil
+                  方法集完全相同，后者在 1010 行里是超集，保留）；
+               ③ core.lang.SnowFlakeIdWorker + SnowFlakeIdUtil（346 行，零引用零测试；
+                  distribute 那份 sequence.SnowflakeIdWorker 有 134 行真测试且已登记 README，保留）；
+               ④ z-util-cli 的 BasicParser/PosixParser/GnuParser（作者自标 @Deprecated、零引用）
+                  连同只为它们存在的抽象基类 Parser，一并删除，DefaultParser 不经它。
+             全 foundation 37 个兄弟仓反查零引用（无 wildcard import），故无须同步改任何消费方。
+             中央件 1.0.x 已发布且不可覆盖，删 API 只能在更高版本落地，故 1.1.0 起。 -->
+        <revision>1.1.0</revision>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <!-- compile.version 自留：Maven 的标准键叫 maven.compiler.source/target，本仓不借那两个名字，
