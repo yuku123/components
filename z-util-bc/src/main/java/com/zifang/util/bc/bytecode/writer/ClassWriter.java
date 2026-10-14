@@ -31,10 +31,24 @@ public class ClassWriter {
      * @param classFile 待写出的类模型
      */
     public ClassWriter(ClassFile classFile) {
+        this(classFile, new ConstantPoolBuilder()
+                .seed(classFile.getPoolInfo().getPoolList(),
+                        new ConstantPoolHelper(classFile.getPoolInfo().getPoolList())));
+    }
+
+    /**
+     * 复用外部的常量池构造器
+     * <p>
+     * 帧计算可能需要往池里补类型项，它必须和写出用的是同一个池，
+     * 否则追加的下标与写出的池对不上，字节码直接不可校验。
+     *
+     * @param classFile   待写出的类模型
+     * @param poolBuilder 已经 seed 过原池的构造器
+     */
+    public ClassWriter(ClassFile classFile, ConstantPoolBuilder poolBuilder) {
         this.classFile = classFile;
         this.helper = new ConstantPoolHelper(classFile.getPoolInfo().getPoolList());
-        this.poolBuilder = new ConstantPoolBuilder()
-                .seed(classFile.getPoolInfo().getPoolList(), helper);
+        this.poolBuilder = poolBuilder;
     }
 
     /**

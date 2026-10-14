@@ -91,6 +91,36 @@ public class InstructionSequence {
     }
 
     /**
+     * 取某条 switch 指令的全部跳转目标（default + 各 case 的绝对偏移）
+     *
+     * @param insn switch 指令
+     * @return int[]类型返回值
+     */
+    public int[] switchTargets(Instruction insn) {
+        int pc = insn.getPc();
+        int aligned = insn.getOperandOffset();
+        List<Integer> targets = new ArrayList<>();
+        targets.add(pc + readInt(aligned));
+        if (insn.getOpcode() == Opcodes.TABLESWITCH) {
+            int low = readInt(aligned + 4);
+            int high = readInt(aligned + 8);
+            for (int i = 0; i <= high - low; i++) {
+                targets.add(pc + readInt(aligned + 12 + i * 4));
+            }
+        } else {
+            int npairs = readInt(aligned + 4);
+            for (int i = 0; i < npairs; i++) {
+                targets.add(pc + readInt(aligned + 8 + i * 8 + 4));
+            }
+        }
+        int[] result = new int[targets.size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = targets.get(i);
+        }
+        return result;
+    }
+
+    /**
      * 收集所有跳转目标（含 switch 的 default 与各 case）
      *
      * @return int[]类型返回值

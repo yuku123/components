@@ -190,6 +190,28 @@ public class ConstantPoolHelper {
         return nat == null ? null : utf8(nat.descriptorIndex);
     }
 
+    /**
+     * 按内部名反查 CONSTANT_Class_info 下标
+     * <p>
+     * 帧计算与反编译经常手里只有一个类型名（描述符里读出来的），需要拿到能写进栈帧的
+     * Class 下标。原池里有就复用，没有的由调用方走 {@code ConstantPoolBuilder} 追加。
+     *
+     * @param internalName 内部名或数组描述符
+     * @return Integer类型返回值，找不到返回 null
+     */
+    public Integer classIndexOf(String internalName) {
+        if (poolList == null || internalName == null) {
+            return null;
+        }
+        for (int i = 1; i <= poolList.size(); i++) {
+            AbstractConstantPool p = at(i);
+            if (p instanceof ClassInfo && internalName.equals(classInternalName(i))) {
+                return i;
+            }
+        }
+        return null;
+    }
+
     private U2Holder nameAndTypeOf(AbstractConstantPool p) {
         int descriptorIndex;
         if (p instanceof MethodRefInfo) {

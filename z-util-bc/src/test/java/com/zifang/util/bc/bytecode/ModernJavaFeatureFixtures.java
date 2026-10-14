@@ -23,12 +23,12 @@ import java.util.Map;
  * 类型注解 / 动态常量），手写字节码既繁琐又容易把测试写成对自身实现的复读。
  * 本模块自身按 Java 8 编译，因此 fixture 源码用字符串拼接而非文本块。
  */
-final class ModernJavaFeatureFixtures {
+public final class ModernJavaFeatureFixtures {
 
     private ModernJavaFeatureFixtures() {
     }
 
-    static Map<String, byte[]> compile(String className, String source) {
+    public static Map<String, byte[]> compile(String className, String source) {
         Map<String, BytesJavaFileObject> compiled;
         try {
             compiled = CFJavaCompiler.compile(className, source);
@@ -45,11 +45,11 @@ final class ModernJavaFeatureFixtures {
         return bytes;
     }
 
-    static byte[] compileOne(String className, String source) {
+    public static byte[] compileOne(String className, String source) {
         return compile(className, source).get(className);
     }
 
-    static Class<?> load(String className, String source) throws Exception {
+    public static Class<?> load(String className, String source) throws Exception {
         return new MapClassLoader(compile(className, source)).loadClass(className);
     }
 
@@ -64,7 +64,7 @@ final class ModernJavaFeatureFixtures {
      * @param options   额外 javac 选项
      * @return byte[]类型返回值
      */
-    static byte[] compileWithOptions(String className, String source, String... options) {
+    public static byte[] compileWithOptions(String className, String source, String... options) {
         Path outputDir = null;
         try {
             outputDir = Files.createTempDirectory("zutil-bc-fixture");

@@ -75,7 +75,7 @@ public class ModernAttributesTest {
             }
             for (AbstractAttribute a : code.getAttributes()) {
                 if (a instanceof StackMapTableAttribute) {
-                    assertNotNull("StackMapTable 字节应被消费", ((StackMapTableAttribute) a).getRawBody());
+                    assertNotNull("StackMapTable 帧表应被解析", ((StackMapTableAttribute) a).getFrames());
                     saw = true;
                 }
             }
