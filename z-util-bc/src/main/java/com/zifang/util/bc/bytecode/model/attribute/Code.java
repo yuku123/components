@@ -95,6 +95,16 @@ public class Code extends AbstractAttribute {
     }
 
     /**
+     * 替换指令字节，同时同步 code_length
+     *
+     * @param code 新的指令列表
+     */
+    public void setCode(List<U1> code) {
+        this.code = code;
+        this.codeLength = new U4(code.size());
+    }
+
+    /**
      * getCodeLength方法。
      *
      * @return U4类型返回值

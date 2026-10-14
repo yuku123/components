@@ -1,6 +1,8 @@
 package com.zifang.util.bc.bytecode.model.method;
 
+import com.zifang.util.bc.bytecode.model.ConstantPoolHelper;
 import com.zifang.util.bc.bytecode.model.attribute.AbstractAttribute;
+import com.zifang.util.bc.bytecode.model.constantpool.AbstractConstantPool;
 import com.zifang.util.bc.bytecode.model.readtype.U2;
 
 import java.util.List;
@@ -16,6 +18,7 @@ public class MethodInfo {
     private U2 descriptorIndex;
     private U2 attributesCount;
     private List<AbstractAttribute> attributes;
+    private final List<AbstractConstantPool> poolList;
 
     /**
      * MethodInfo方法。
@@ -25,14 +28,35 @@ public class MethodInfo {
      * @param descriptorIndex U2类型参数
      * @param attributesCount U2类型参数
      * @param attributes      ListAbstractAttribute类型参数
+     * @param poolList        常量池，用于把名称/描述符下标解析成文本
      */
     public MethodInfo(U2 accessFlags, U2 nameIndex, U2 descriptorIndex,
-                      U2 attributesCount, List<AbstractAttribute> attributes) {
+                      U2 attributesCount, List<AbstractAttribute> attributes,
+                      List<AbstractConstantPool> poolList) {
         this.accessFlags = accessFlags;
         this.nameIndex = nameIndex;
         this.descriptorIndex = descriptorIndex;
         this.attributesCount = attributesCount;
         this.attributes = attributes;
+        this.poolList = poolList;
+    }
+
+    /**
+     * 方法名（从常量池解析）
+     *
+     * @return String类型返回值
+     */
+    public String getName() {
+        return new ConstantPoolHelper(poolList).utf8(nameIndex.intValue());
+    }
+
+    /**
+     * 方法描述符（从常量池解析）
+     *
+     * @return String类型返回值
+     */
+    public String getDescriptor() {
+        return new ConstantPoolHelper(poolList).utf8(descriptorIndex.intValue());
     }
 
     /**

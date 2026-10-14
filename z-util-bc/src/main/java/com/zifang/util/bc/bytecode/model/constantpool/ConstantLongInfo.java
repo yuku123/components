@@ -41,6 +41,10 @@ public class ConstantLongInfo extends AbstractConstantPool {
         return bytes;
     }
 
+    public void setBytes(U8 bytes) {
+        this.bytes = bytes;
+    }
+
     @Override
     public void write(DataOutput out) throws IOException {
         out.writeByte(getTag());

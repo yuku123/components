@@ -52,7 +52,7 @@ public class FieldTable {
             }
         }
 
-        return new FieldInfo(accessFlags, nameIndex, descriptorIndex, attributesCount, attributes);
+        return new FieldInfo(accessFlags, nameIndex, descriptorIndex, attributesCount, attributes, poolList);
     }
 
     /**

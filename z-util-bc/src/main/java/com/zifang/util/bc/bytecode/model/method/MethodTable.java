@@ -55,7 +55,7 @@ public class MethodTable {
             }
         }
 
-        return new MethodInfo(accessFlags, nameIndex, descriptorIndex, attributesCount, attributes);
+        return new MethodInfo(accessFlags, nameIndex, descriptorIndex, attributesCount, attributes, poolList);
     }
 
     /**
