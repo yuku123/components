@@ -245,7 +245,7 @@ mvn clean install -pl z-util-core -am -DskipTests   # 单模块（含其上游�
 | 取数 → 内存 SQL → 对象整形 | `com.zifang.util.db.*` + `com.zifang.util.expr.sql.engine.VirtualTableEngine` + `com.zifang.util.expr.obj.ObjEngine` |
 | 进程内缓存 | `com.zifang.util.cache.CacheBuilder` → `LoadingCache` / `WTinyLfuCache` |
 | 分布式 ID | `com.zifang.util.distributes.sequence.SnowflakeIdWorker` / `UuidV7` / `NanoId` |
-| 二进制序列化 | `io.zifu.z.serialize.core.ZSerializer` / `ZDeserializer` + `@ZMessage` / `@ZField` |
+| 二进制序列化 | `com.zifang.util.serialize.core.ZSerializer` / `ZDeserializer` + `@ZMessage` / `@ZField` |
 | 声明式 HTTP 客户端 | `com.zifang.util.http.client.HttpExecutor` / `HttpRequestInvocationHandler` |
 | 指标与导出 | `com.zifang.util.monitor.JvmMonitor` / `MetricsRegistry` / `JsonExporter` |
 
