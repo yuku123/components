@@ -43,17 +43,8 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-
-        <!-- Jackson JSR310 模块：支持 java.time 序列化 (LocalDate/LocalDateTime/Instant) -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-        </dependency>
-
+        <!-- Jackson（databind + jsr310）已删（2026-10-15）：JsonMapperFactory 退场后
+             本模块零 Jackson 引用。JSON 能力走下方自研 z-util-parser-json。 -->
 
         <!-- javax.inject 整条已删（2026-10-01）：src 对 javax.inject 零引用；JSR-330 的唯一
              使用方是 z-util-ioc，它自己已显式声明。需要钉版的消费方仍可吃根 DM 那格锚点。 -->

@@ -19,10 +19,10 @@
             <artifactId>z-util-expr-el</artifactId>
             <version>${revision}</version>
         </dependency>
-        <!-- 仅测试用：证明 spec 就是一段普通 JSON（Jackson 解析出的 Map/List 树可直接执行） -->
+        <!-- 仅测试用：证明 spec 就是一段普通 JSON（JsonUtil 解析出的 Map/List 树可直接执行） -->
         <dependency>
             <groupId>io.github.yuku123</groupId>
-            <artifactId>z-util-core</artifactId>
+            <artifactId>z-util-parser-json</artifactId>
             <version>${revision}</version>
             <scope>test</scope>
         </dependency>

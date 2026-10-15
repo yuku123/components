@@ -116,9 +116,7 @@
         <guava.version>33.6.0-jre</guava.version>
         <cglib.version>3.3.0</cglib.version>
         <!-- gson.version 这一格不存在：全仓 pom 里没有一条 gson 依赖、0 个 java 文件 import com.google.gson。 -->
-        <!-- 2026-10-02 2.18.9→2.18.11：Dependabot 7 个 CVE 全打在 ≤2.18.10，
-             2.18.10 修 CVE-2026-68497/83557/19032，2.18.11 修 CVE-2026-89425/89407/91776/91777。 -->
-        <jackson.version>2.18.11</jackson.version>
+        <!-- jackson.version 与其 4 条 DM 已删（2026-10-15）：本仓全域零 Jackson，锚点失去消费方。 -->
         <okhttp.version>4.12.0</okhttp.version>
         <!-- netty 4.1.138.Final：2026-09-28「同坐标单版本」从 4.1.137 升上来对齐 CVE 口径。 -->
         <netty.version>4.1.138.Final</netty.version>
@@ -508,30 +506,8 @@
                 <scope>provided</scope>
             </dependency>
 
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-
-            <!-- 强制升级 transitive jackson-core 到修复版本（部分依赖会拉入旧版） -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-
-            <!-- Jackson JSR310 模块：支持 java.time (LocalDate / LocalDateTime / Instant) 序列化 -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jsr310</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
+            <!-- Jackson 四格 DM 已删（2026-10-15）：databind/core/annotations/jsr310 全部退场，
+                 连同「强制升级 transitive jackson-core」一并撤掉——本仓不再自己带 Jackson。 -->
 
             <!-- OkHttp HTTP 客户端（z-util-http / z-util-devops-{git,nexus} 均不写版本，吃这条） -->
             <dependency>
@@ -924,12 +900,6 @@
             </dependency>
             <!-- ⚠ z-util-zex 仍然刻意不列：它在默认 reactor 之外（sandbox profile），
                  中央上从来没有这个坐标，与上方 z-util-zex 那条注记同因。 -->
-
-            <!-- 明确**不**钉的一格（这一行漂移是认过账的）：
-                 com.fasterxml.jackson.module:jackson-module-jaxb-annotations 2.12.2 → 2.18.11。
-                 迁前它是 2.12.2，而本仓 jackson-databind/core/annotations 全在 2.18.11 —— 那才是错的组合；
-                 地板的 jackson-bom 按本仓自己的 ${jackson.version} 插值，把它抬进同族 ⇒ 接受。 -->
-
 
         </dependencies>
     </dependencyManagement>
