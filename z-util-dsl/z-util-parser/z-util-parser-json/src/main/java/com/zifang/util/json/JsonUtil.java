@@ -78,6 +78,14 @@ public class JsonUtil {
     private static final ThreadLocal<Boolean> LONG_AS_STRING_MODE =
             ThreadLocal.withInitial(() -> Boolean.FALSE);
 
+    /**
+     * 全局 null 剔除开关，仅对 POJO 字段与 Map 条目生效（集合/数组元素仍输出 null，与 Jackson
+     * {@code JsonInclude.Include.NON_NULL} 语义一致）。
+     * <p>用 {@link ThreadLocal} 隔离并发调用，{@link #toJsonExcludingNulls} 用完即复位。</p>
+     */
+    private static final ThreadLocal<Boolean> SKIP_NULL_MODE =
+            ThreadLocal.withInitial(() -> Boolean.FALSE);
+
     private static class FieldMeta {
         final Field field;
         final String jsonName;           // 序列化后的 JSON 属性名
@@ -205,6 +213,24 @@ public class JsonUtil {
             return toJson(value);
         } finally {
             LONG_AS_STRING_MODE.set(Boolean.FALSE);
+        }
+    }
+
+    /**
+     * 剔除 null 后序列化：POJO 中值为 null 的字段、以及 Map 中值为 null 的条目一律不输出。
+     * <p>
+     * 对应 Jackson 的 {@code JsonInclude.Include.NON_NULL}。集合与数组中的 null 元素仍然输出，
+     * 与 Jackson 该配置的语义一致（它只作用于 bean 属性与 map entry，不作用于数组元素）。
+     *
+     * @param value 待序列化对象
+     * @return JSON字符串；value为null时返回"null"
+     */
+    public static String toJsonExcludingNulls(Object value) {
+        SKIP_NULL_MODE.set(Boolean.TRUE);
+        try {
+            return toJson(value);
+        } finally {
+            SKIP_NULL_MODE.set(Boolean.FALSE);
         }
     }
 
@@ -719,12 +745,16 @@ public class JsonUtil {
 
     private static String solveMap(Map<?, ?> map) {
         if (map == null) return "null";
+        boolean skipNull = SKIP_NULL_MODE.get();
         StringBuilder sb = new StringBuilder("{");
-        int i = 0, size = map.size();
+        int i = 0;
         for (Map.Entry<?, ?> entry : map.entrySet()) {
+            Object v = entry.getValue();
+            if (skipNull && v == null) continue;
+            if (i > 0) sb.append(",");
             sb.append("\"").append(escapeString(String.valueOf(entry.getKey()))).append("\":");
-            sb.append(toJson(entry.getValue()));
-            if (++i < size) sb.append(",");
+            sb.append(toJson(v));
+            i++;
         }
         sb.append("}");
         return sb.toString();
@@ -763,6 +793,7 @@ public class JsonUtil {
             } catch (Exception e) {
                 value = null;
             }
+            if (value == null && SKIP_NULL_MODE.get()) continue;
             if (i > 0) sb.append(",");
             sb.append("\"").append(escapeString(meta.jsonName)).append("\":");
             if (value == null) {
