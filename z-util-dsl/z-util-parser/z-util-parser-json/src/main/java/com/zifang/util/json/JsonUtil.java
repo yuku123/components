@@ -870,10 +870,14 @@ public class JsonUtil {
     private static <T> T convertValue(Object parsed, java.lang.reflect.Type targetType) {
         if (parsed == null) return null;
 
-        // 目标类型就是 Object（Map<String,Object> 的值、Object 字段）时原样返回。
+        // 目标类型就是 Object（Map<String,Object> 的值、Object 字段）时返回摊平后的 plain 值。
         // 缺这一句，嵌套对象会掉进下面的 POJO 分支被 deserializePojo(Object.class) 重新造一遍，
         // 结果是一个内容全丢的空 Object —— Map<String,Object> 读嵌套结构时必踩。
-        if (targetType == Object.class) return (T) parsed;
+        //
+        // 这里必须 toPlainValue 而不能直接返回 parsed：直接返回会把嵌套容器原样留成
+        // JsonObject/JsonArray，于是 Map<String,Object> 里的嵌套值强转 Map 抛 ClassCastException。
+        // Jackson 的等价行为给的是 LinkedHashMap/ArrayList，迁 Jackson 时这个差异会变成静默回归。
+        if (targetType == Object.class) return (T) toPlainValue(parsed);
 
         // java.time（JSR-310）：与 toJson 的 java.time 分支配对，保证 ISO-8601 能读回来。
         // 缺这一分支时 parsed(String) 会一路落到末尾的 return (T) parsed，
