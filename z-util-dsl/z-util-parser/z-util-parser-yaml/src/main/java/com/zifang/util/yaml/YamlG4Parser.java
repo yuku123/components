@@ -1,6 +1,6 @@
 package com.zifang.util.yaml;
 
-import com.zifang.util.core.io.FileUtil;
+import com.zifang.util.core.io.IOUtil;
 import com.zifang.util.dsl.core.ASTNode;
 import com.zifang.util.yaml.exception.YamlParseException;
 import com.zifang.util.yaml.model.YamlArray;
@@ -123,8 +123,7 @@ public class YamlG4Parser {
         try {
             InputStream is = getClass().getClassLoader().getResourceAsStream(name);
             if (is == null) throw new YamlParseException("G4文件未找到: " + name);
-            byte[] bytes = FileUtil.readAllBytes(is);
-            is.close();
+            byte[] bytes = IOUtil.readBytes(is);
             return new String(bytes, StandardCharsets.UTF_8);
         } catch (YamlParseException e) {
             throw e;

@@ -1,5 +1,5 @@
 package com.zifang.util.wf.kernel.conponents;
-import com.zifang.util.core.io.FileUtil;
+import com.zifang.util.core.io.file.FileContentUtil;
 import com.zifang.util.json.JsonUtil;
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
@@ -300,7 +300,7 @@ public class WorkFlowApplicationContext {
     public void initialByLocalFilePath(String filePath) {
 
         try {
-            String json = FileUtil.getFileContent(filePath);
+            String json = FileContentUtil.readString(filePath);
             workflowConfiguration = JsonUtil.fromJson(json, WorkflowConfiguration.class);
         } catch (IOException e) {
             log.error("解析文件出现问题:" + this.filePath);

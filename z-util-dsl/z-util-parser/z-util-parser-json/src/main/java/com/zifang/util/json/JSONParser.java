@@ -135,7 +135,7 @@ public class JSONParser {
         }
     }
 
-    /** 等价于 FileUtil.readAllBytes，但避免反向依赖 z-util-core。 */
+    /** 等价于 IOUtil.readBytes，但避免反向依赖 z-util-core。 */
     private static byte[] readAllBytes(InputStream is) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] buf = new byte[4096];

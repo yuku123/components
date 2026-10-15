@@ -3,15 +3,17 @@ package com.zifang.util.core.io;
 import com.zifang.util.core.lang.StringUtil;
 
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.channels.WritableByteChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 
 /**
- * 流读写与 Channel 复制工具类
+ * 流与字节之间的搬运。
+ * <p>
+ * 只管「流 ↔ 字节/字符串」这一件事：读、拷贝、跳过、关闭。
+ * 落在文件系统上的读写归 {@code file/}，这里不碰 File 和 Path。
  */
 public class IOUtil {
 
@@ -29,11 +31,10 @@ public class IOUtil {
      * @throws IOException 读取异常
      */
     public static String readString(InputStream in, String charsetName) throws IOException {
-        FastByteArrayOutputStream out = readToBuffer(in);
-        if (StringUtil.isBlank(charsetName)) {
-            return out.toString();
-        }
-        return out.toString(charsetName);
+        byte[] bytes = readBytes(in);
+        Charset charset = StringUtil.isBlank(charsetName)
+                ? StandardCharsets.UTF_8 : Charset.forName(charsetName);
+        return new String(bytes, charset);
     }
 
     /**
@@ -48,31 +49,28 @@ public class IOUtil {
     }
 
     /**
-     * 读取输入流到缓冲区，读取完毕后关闭输入流
+     * 读取输入流的全部字节，读取完毕后关闭输入流
      *
      * @param in 输入流
-     * @return 包含读取数据的缓冲区
+     * @return 读到的字节
      * @throws IOException 读取异常
      */
-    public static FastByteArrayOutputStream readToBuffer(InputStream in) throws IOException {
-        return readToBuffer(in, true);
+    public static byte[] readBytes(InputStream in) throws IOException {
+        return readBytes(in, true);
     }
 
     /**
-     * 读取输入流到缓冲区
+     * 读取输入流的全部字节
      *
      * @param in      输入流
      * @param closeIn 读取完毕后是否关闭输入流
-     * @return 包含读取数据的缓冲区
+     * @return 读到的字节
      * @throws IOException 读取异常
      */
-    public static FastByteArrayOutputStream readToBuffer(InputStream in, boolean closeIn) throws IOException {
-        FastByteArrayOutputStream out;
-        if (in instanceof FileInputStream) {
-            out = new FastByteArrayOutputStream(in.available());
-        } else {
-            out = new FastByteArrayOutputStream();
-        }
+    public static byte[] readBytes(InputStream in, boolean closeIn) throws IOException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream(
+                in instanceof FileInputStream ? Math.max(in.available(), DEFAULT_BUFFER_SIZE)
+                        : DEFAULT_BUFFER_SIZE);
         try {
             copy(in, out);
         } finally {
@@ -80,7 +78,7 @@ public class IOUtil {
                 close(in);
             }
         }
-        return out;
+        return out.toByteArray();
     }
 
     /**
@@ -90,8 +88,8 @@ public class IOUtil {
      * @return 行列表
      * @throws IOException 读取异常
      */
-    public static java.util.List<String> readLines(Reader reader) throws IOException {
-        java.util.List<String> lines = new java.util.ArrayList<>();
+    public static List<String> readLines(Reader reader) throws IOException {
+        List<String> lines = new ArrayList<>();
         try (BufferedReader br = reader instanceof BufferedReader
                 ? (BufferedReader) reader
                 : new BufferedReader(reader)) {
@@ -111,7 +109,7 @@ public class IOUtil {
      * @param consumer 行处理器
      * @throws IOException 读取异常
      */
-    public static void readLines(InputStream in, Charset charset, java.util.function.Consumer<String> consumer) throws IOException {
+    public static void readLines(InputStream in, Charset charset, Consumer<String> consumer) throws IOException {
         try (BufferedReader br = new BufferedReader(
                 new InputStreamReader(in, charset == null ? StandardCharsets.UTF_8 : charset))) {
             String line;
@@ -156,55 +154,6 @@ public class IOUtil {
             count += n;
         }
         return count;
-    }
-
-    /**
-     * 利用 NIO Channel 复制数据（compact 方式）
-     * 适合大文件复制，零拷贝场景
-     *
-     * @param src  源 Channel
-     * @param dest 目标 Channel
-     * @throws IOException 复制异常
-     */
-    public static void channelCopy(ReadableByteChannel src, WritableByteChannel dest) throws IOException {
-        ByteBuffer buffer = ByteBuffer.allocateDirect(16 * 1024);
-        while (src.read(buffer) != -1) {
-            buffer.flip();
-            dest.write(buffer);
-            buffer.compact();
-        }
-        buffer.flip();
-        while (buffer.hasRemaining()) {
-            dest.write(buffer);
-        }
-    }
-
-    /**
-     * 利用 NIO Channel 复制数据（clear 方式）
-     * 确保每次读取前 buffer 已清空，适合小文件
-     *
-     * @param src  源 Channel
-     * @param dest 目标 Channel
-     * @throws IOException 复制异常
-     */
-    public static void channelCopyClear(ReadableByteChannel src, WritableByteChannel dest) throws IOException {
-        ByteBuffer buffer = ByteBuffer.allocateDirect(16 * 1024);
-        while (src.read(buffer) != -1) {
-            buffer.flip();
-            while (buffer.hasRemaining()) {
-                dest.write(buffer);
-            }
-            buffer.clear();
-        }
-    }
-
-    /**
-     * 从 stdin 复制到 stdout（演示用）
-     */
-    public static void channelCopyStdInToStdOut() throws IOException {
-        ReadableByteChannel src = Channels.newChannel(System.in);
-        WritableByteChannel dest = Channels.newChannel(System.out);
-        channelCopy(src, dest);
     }
 
     // -------------------- 跳过 --------------------

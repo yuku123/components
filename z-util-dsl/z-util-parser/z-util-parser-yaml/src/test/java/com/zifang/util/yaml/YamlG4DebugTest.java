@@ -33,7 +33,7 @@ public class YamlG4DebugTest {
         try {
             java.io.InputStream is = getClass().getClassLoader().getResourceAsStream("YamlParser.g4");
             if (is != null) {
-                byte[] bytes = com.zifang.util.core.io.FileUtil.readAllBytes(is);
+                byte[] bytes = com.zifang.util.core.io.IOUtil.readBytes(is);
                 is.close();
                 parserG4 = new String(bytes, java.nio.charset.StandardCharsets.UTF_8);
             }
@@ -65,7 +65,7 @@ public class YamlG4DebugTest {
         try {
             java.io.InputStream is = getClass().getClassLoader().getResourceAsStream("YamlLexer.g4");
             if (is != null) {
-                byte[] bytes = com.zifang.util.core.io.FileUtil.readAllBytes(is);
+                byte[] bytes = com.zifang.util.core.io.IOUtil.readBytes(is);
                 is.close();
                 lexerG4 = new String(bytes, java.nio.charset.StandardCharsets.UTF_8);
             }

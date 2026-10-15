@@ -790,7 +790,7 @@ public class ClassUtil {
     public static List<String> getClassNameByFile(String filePath, boolean childPackage) {
         List<String> myClassName = new ArrayList<>();
         List<File> files = new ArrayList<>();
-//        List<File> files = FileUtil.listFile(filePath, childPackage);
+//        List<File> files = FileDirUtil.listFiles(new File(filePath), childPackage);
         for (File file : files) {
             if (file.getName().endsWith(".class")) {
                 String childFilePath = file.getPath();

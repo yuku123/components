@@ -88,37 +88,36 @@ public class IOUtilTest {
         }
     }
 
-    // ==================== readToBuffer ====================
+    // ==================== readBytes ====================
 
     @Test
     /**
-     * testReadToBuffer方法。
+     * testReadBytes方法。
      */
-    public void testReadToBuffer() throws Exception {
+    public void testReadBytes() throws Exception {
         try (InputStream in = new ByteArrayInputStream(testData)) {
-            FastByteArrayOutputStream out = IOUtil.readToBuffer(in);
-            assertArrayEquals(testData, out.toByteArray());
+            assertArrayEquals(testData, IOUtil.readBytes(in));
         }
     }
 
     @Test
     /**
-     * testReadToBufferNotCloseInput方法。
+     * testReadBytesNotCloseInput方法。
      */
-    public void testReadToBufferNotCloseInput() throws Exception {
+    public void testReadBytesNotCloseInput() throws Exception {
         InputStream in = new ByteArrayInputStream(testData);
-        IOUtil.readToBuffer(in, false);
+        IOUtil.readBytes(in, false);
         assertNotNull(in.read()); // still open
         in.close();
     }
 
     @Test
     /**
-     * testReadToBufferClosesInputByDefault方法。
+     * testReadBytesClosesInputByDefault方法。
      */
-    public void testReadToBufferClosesInputByDefault() throws Exception {
+    public void testReadBytesClosesInputByDefault() throws Exception {
         InputStream in = new ByteArrayInputStream(testData);
-        IOUtil.readToBuffer(in);
+        IOUtil.readBytes(in);
         assertEquals(-1, in.read()); // already closed
     }
 
@@ -203,38 +202,6 @@ public class IOUtilTest {
              ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             int count = IOUtil.copy(in, out);
             assertEquals(0, count);
-        }
-    }
-
-    // ==================== channelCopy ====================
-
-    @Test
-    /**
-     * testChannelCopy方法。
-     */
-    public void testChannelCopy() throws Exception {
-        byte[] data = "channel test data".getBytes(StandardCharsets.UTF_8);
-        try (InputStream in = new ByteArrayInputStream(data);
-             ReadableByteChannel src = Channels.newChannel(in);
-             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-             WritableByteChannel dest = Channels.newChannel(baos)) {
-            IOUtil.channelCopy(src, dest);
-            assertArrayEquals(data, baos.toByteArray());
-        }
-    }
-
-    @Test
-    /**
-     * testChannelCopyClear方法。
-     */
-    public void testChannelCopyClear() throws Exception {
-        byte[] data = "channel clear test".getBytes(StandardCharsets.UTF_8);
-        try (InputStream in = new ByteArrayInputStream(data);
-             ReadableByteChannel src = Channels.newChannel(in);
-             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-             WritableByteChannel dest = Channels.newChannel(baos)) {
-            IOUtil.channelCopyClear(src, dest);
-            assertArrayEquals(data, baos.toByteArray());
         }
     }
 
@@ -329,17 +296,16 @@ public class IOUtilTest {
         out.write(data);
     }
 
-    // ==================== FastByteArrayOutputStream integration ====================
+    // ==================== readBytes 与文件输出集成 ====================
 
     @Test
     /**
-     * testReadToBufferAndWriteToFile方法。
+     * testReadBytesAndWriteToFile方法。
      */
-    public void testReadToBufferAndWriteToFile() throws Exception {
+    public void testReadBytesAndWriteToFile() throws Exception {
         try (FileOutputStream fos = new FileOutputStream(tempFile);
              InputStream in = new ByteArrayInputStream(testData)) {
-            FastByteArrayOutputStream buf = IOUtil.readToBuffer(in);
-            buf.writeTo(fos);
+            fos.write(IOUtil.readBytes(in));
         }
         byte[] readBack = java.nio.file.Files.readAllBytes(tempFile.toPath());
         assertArrayEquals(testData, readBack);
