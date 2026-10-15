@@ -5,6 +5,7 @@ import com.zifang.util.json.model.JsonObject;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,7 @@ import static org.junit.Assert.assertTrue;
  * parse(String) 与 toPlainValue(Object) 的契约。
  * <p>这两个方法是迁 Jackson 过程中补出来的：前者补通用解析入口（原先只有
  * parseObject/parseArray/parseToMap），后者补「容器摊平成 plain 结构」——
- * JsonObject 内部是 HashMap 不保序、toString() 又是缩进格式，
- * 需要紧凑单行或顺序敏感的场景必须先过这一层。</p>
+ * JsonObject 的 toString() 是缩进格式，需要紧凑单行的场景必须先过这一层。</p>
  */
 public class JsonUtilParseTest {
 
@@ -48,9 +48,8 @@ public class JsonUtilParseTest {
         // 值是 plain 的 List，内部也是 plain 的 Map
         List<?> a = (List<?>) m.get("a");
         assertEquals(Integer.valueOf(1), ((Map<?, ?>) a.get(0)).get("x"));
-        // 摊平后装进 LinkedHashMap：键序被固化下来（但注意 JsonObject 内部是 HashMap，
-        // 文档顺序在解析那一步就丢了，这里固化的是它的迭代序，不是原文顺序）
-        assertTrue(m instanceof LinkedHashMap);
+        // 摊平后装进 LinkedHashMap，键序即文档顺序
+        assertEquals(Arrays.asList("b", "a"), new ArrayList<>(m.keySet()));
     }
 
     @Test
@@ -59,8 +58,7 @@ public class JsonUtilParseTest {
         Object node = JsonUtil.parse("{\"tags\":[\"a\",\"b\"],\"n\":{\"k\":1}}");
         String json = JsonUtil.toJson(JsonUtil.toPlainValue(node));
         assertFalse("不该有换行", json.contains("\n"));
-        // 键序不作契约，只比对内容
-        assertEquals("{\"n\":{\"k\":1},\"tags\":[\"a\",\"b\"]}", json);
+        assertEquals("{\"tags\":[\"a\",\"b\"],\"n\":{\"k\":1}}", json);
     }
 
     @Test

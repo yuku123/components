@@ -129,10 +129,8 @@ public class JsonUtil {
      * 把 {@link JsonObject}/{@link JsonArray} 递归摊平成 plain 的 {@link LinkedHashMap}/{@link ArrayList}。
      * <p>解析器产出的是这两种容器，而 {@code JsonObject} 的 {@code toString()} 是缩进格式，
      * 直接把它交给 {@link #toJson} 会出多行空白；需要紧凑单行输出时必须先过这一层。</p>
-     * <p><b>注意不保文档顺序</b>：{@code JsonObject} 内部用 {@code HashMap} 存键，
-     * 文档里的键序在解析那一步就已丢失，本方法只是把 {@code HashMap} 的迭代序固化进
-     * {@code LinkedHashMap}，拿不回原始顺序。需要保序的场景应直接操作原文或改用
-     * 保持顺序的容器。</p>
+     * <p>保序：{@code JsonObject} 内部用 {@code LinkedHashMap}，键序即 JSON 文档里的顺序，
+     * 摊平后仍是文档顺序（嵌套层级同样保序）。</p>
      *
      * @param node 解析结果，或任意已知的 JSON 树节点
      * @return 摊平后的 plain 结构；非容器类型原样返回
@@ -180,7 +178,7 @@ public class JsonUtil {
      * @return 键值映射；解析失败时返回空Map
      */
     public static Map<String, Object> parseToMap(String json) {
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new LinkedHashMap<>();
         if (json == null || json.trim().isEmpty()) {
             return result;
         }

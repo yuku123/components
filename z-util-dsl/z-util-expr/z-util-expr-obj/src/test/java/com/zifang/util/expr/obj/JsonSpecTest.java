@@ -1,7 +1,6 @@
 package com.zifang.util.expr.obj;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zifang.util.core.json.JsonMapperFactory;
+import com.zifang.util.json.JsonUtil;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -27,7 +26,10 @@ import static org.junit.Assert.assertNull;
  */
 public class JsonSpecTest {
 
-    private static final ObjectMapper MAPPER = JsonMapperFactory.newDefault();
+    /** spec 就是一段普通 JSON：解析成 plain 的 Map/List 树后可直接交给 ObjEngine 执行。 */
+    private static Object parsePlain(String json) {
+        return JsonUtil.toPlainValue(JsonUtil.parse(json));
+    }
 
     private static final String SALES = "["
             + "{\"city\":\"杭州\",\"region\":\"华东\",\"amount\":120},"
@@ -48,7 +50,7 @@ public class JsonSpecTest {
     @SuppressWarnings("unchecked")
     public void jsonProgramShapesRowsIntoNestedDoc() throws Exception {
         List<Map<String, Object>> groups =
-                (List<Map<String, Object>>) new ObjEngine().shape(MAPPER.readValue(SPEC, Object.class));
+                (List<Map<String, Object>>) new ObjEngine().shape(parsePlain(SPEC));
         assertEquals(2, groups.size());
 
         // 分组顺序 = 组内首现顺序（上游 order 已把 300 提到最前），明细数组沿用 order 的结果
@@ -70,8 +72,8 @@ public class JsonSpecTest {
 
     @Test
     public void jsonProgramAndMapProgramAgree() throws Exception {
-        Object rows = MAPPER.readValue(SALES, Object.class);
-        Object fromJson = new ObjEngine().shape(MAPPER.readValue(SPEC, Object.class));
+        Object rows = parsePlain(SALES);
+        Object fromJson = new ObjEngine().shape(parsePlain(SPEC));
         Object fromMap = new ObjEngine().shape(program(
                 map("op", "order", "by", "amount desc"),
                 map("op", "group", "by", "region", "items", "lines",
@@ -84,9 +86,9 @@ public class JsonSpecTest {
 
     @Test
     public void bareJsonTemplateAppliedToIncomingRows() throws Exception {
-        Object rows = MAPPER.readValue(SALES, Object.class);
+        Object rows = parsePlain(SALES);
         Object out = new ObjEngine().shape(
-                MAPPER.readValue("{\"label\": \"${city}\", \"amount\": \"${amount}\"}", Object.class), rows);
+                parsePlain("{\"label\": \"${city}\", \"amount\": \"${amount}\"}"), rows);
         List<Map<String, Object>> list = asRows(out);
         assertEquals(3, list.size());
         assertEquals("杭州", list.get(0).get("label"));

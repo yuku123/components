@@ -4,14 +4,15 @@ import com.zifang.util.json.BeautifyJsonUtils;
 import com.zifang.util.json.exception.JsonTypeException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * JSON对象模型，表示一个JSON对象（键值对集合）。
  * <p>
- * 内部使用HashMap存储键值对，支持链式调用和类型安全的取值操作。
+ * 内部使用 LinkedHashMap 存储键值对，保持插入顺序（即 JSON 文档里的键序），
+ * 支持链式调用和类型安全的取值操作。
  *
  * @author zifang
  * @see JsonArray
@@ -22,7 +23,7 @@ import java.util.Map;
  */
 public class JsonObject {
 
-    private Map<String, Object> map = new HashMap<String, Object>();
+    private Map<String, Object> map = new LinkedHashMap<String, Object>();
 
     /**
      * 向JSON对象中添加一个键值对。
