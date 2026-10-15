@@ -227,6 +227,10 @@ public class JsonUtil {
             if (t instanceof Collection) return solveList((Collection<?>) t);
             if (t instanceof Map) return solveMap((Map<?, ?>) t);
             if (t.getClass().isArray()) return solveArray(t);
+            // 枚举输出 name() 字符串。缺这一支会掉进 solvePojo：name()/ordinal() 不是 bean
+            // getter，于是被当成无属性对象输出成 {"name":null,"ordinal":null} —— 看着像有值，
+            // 读回来却在 Enum.valueOf 上炸。Jackson 默认也是写 name，两边才对得上。
+            if (t instanceof Enum) return "\"" + escapeString(((Enum<?>) t).name()) + "\"";
             return solvePojo(t);
         } finally {
             if (isTopCall) {
@@ -637,6 +641,11 @@ public class JsonUtil {
         }
         if (value instanceof Collection || value.getClass().isArray()) {
             return parseArray(toJson(value));
+        }
+        // 枚举走 name 字符串。必须在这里单独短路：下面那行 parseObject(toJson(value)) 拿到的是
+        // "\"NAME\"" 这个 JSON 字符串标量，parseObject 会当对象解析并抛。
+        if (value instanceof Enum) {
+            return ((Enum<?>) value).name();
         }
         return parseObject(toJson(value));
     }
