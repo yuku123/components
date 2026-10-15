@@ -97,10 +97,10 @@
              repo1 的 z-util-core-1.1.0.jar 里仍有 JsonMapperFactory、其 pom 仍列 2 处
              fasterxml，且 z-util-parser-json-1.1.0 的 JsonUtil 无 toJsonExcludingNulls /
              parse / toPlainValue。发布 1.1.0 的尝试因此报 "Component ... already exists" 而 FAILED。 -->
-        <!-- 1.2.0：加 JsonCursor（Jackson 语义的容错只读树导航），给 fleet 迁
-             readTree+path()/asText() 那批测试用。纯新增 API 无破坏，但下游要钉到这一版才有，
-             故 minor 而非 patch。 -->
-        <revision>1.2.0</revision>
+        <!-- 1.2.1：Map<String,Object>/Object 目标的嵌套值改走 toPlainValue，绑成
+             LinkedHashMap/ArrayList 而不是 JsonObject/JsonArray，对齐 Jackson。
+             这是行为变更（原来强转会 CCE 的地方现在能过），下游要钉到这一版。 -->
+        <revision>1.2.1</revision>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <!-- compile.version 自留：Maven 的标准键叫 maven.compiler.source/target，本仓不借那两个名字，
