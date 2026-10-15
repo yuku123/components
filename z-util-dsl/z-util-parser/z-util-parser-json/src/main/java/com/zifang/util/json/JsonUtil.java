@@ -1309,9 +1309,23 @@ public class JsonUtil {
         if (json == null || json.isEmpty()) return json;
         StringBuilder sb = new StringBuilder();
         int depth = 0;
+        boolean inString = false;
+        boolean escaped = false;
         for (int i = 0; i < json.length(); i++) {
             char ch = json.charAt(i);
-            if (ch == '{' || ch == '[') {
+            // 字符串字面量整段原样拷贝。缺这一段会把值里的 ',' ':' '{' 当成结构符号重排：
+            // "cli:54353:1" 会被写成 "cli: 54353: 1"，落盘即数据损坏。
+            if (inString) {
+                sb.append(ch);
+                if (escaped) escaped = false;
+                else if (ch == '\\') escaped = true;
+                else if (ch == '"') inString = false;
+                continue;
+            }
+            if (ch == '"') {
+                inString = true;
+                sb.append(ch);
+            } else if (ch == '{' || ch == '[') {
                 sb.append(ch).append('\n');
                 depth++;
                 sb.append(indent(depth));

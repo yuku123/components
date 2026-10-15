@@ -100,7 +100,14 @@
         <!-- 1.2.1：Map<String,Object>/Object 目标的嵌套值改走 toPlainValue，绑成
              LinkedHashMap/ArrayList 而不是 JsonObject/JsonArray，对齐 Jackson。
              这是行为变更（原来强转会 CCE 的地方现在能过），下游要钉到这一版。 -->
-        <revision>1.2.2</revision>
+        <!-- 1.2.2：枚举序列化补分支 —— toJson 输出 name() 字符串（原来掉进 solvePojo 被写成
+             {"name":null,"ordinal":null}），normalizeValue 也单独短路（否则 parseObject 拿到
+             "\"NAME\"" 这个标量直接抛）。同样是行为变更，下游要钉到这一版。 -->
+        <!-- 1.2.3：修 toJsonPretty 的数据损坏。prettyPrint 原是纯文本重排缩进，不认 JSON 语法，
+             字符串值里的 ':' ',' '{' 会被当结构符号 —— z-bot 的 claim_token "cli:54353:1"
+             落盘成了 "cli: 54353: 1"。改成字符串字面量整段原样拷贝（带转义状态机）。
+             修的是错误输出，下游钉到这一版即可，无需改代码。 -->
+        <revision>1.2.3</revision>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <!-- compile.version 自留：Maven 的标准键叫 maven.compiler.source/target，本仓不借那两个名字，
