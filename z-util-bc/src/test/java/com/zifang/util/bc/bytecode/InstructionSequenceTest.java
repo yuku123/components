@@ -65,8 +65,8 @@ class InstructionSequenceTest {
         Instruction tableswitch = seq.at(pc);
 
         assertEquals(Opcodes.TABLESWITCH, tableswitch.getOpcode());
-        // 操作数 = 4(default) + 4(low/high) + 12(3 个 case)，起点为对齐后的 aligned
-        assertEquals(aligned + 20 - pc, tableswitch.getLength());
+        // 操作数 = 4(default) + 4(low) + 4(high) + 12(3 个 case)，起点为对齐后的 aligned
+        assertEquals(aligned + 24 - pc, tableswitch.getLength());
 
         // 尾部其余字节是 nop，这里只校验前两条的边界
         List<Instruction> all = seq.instructions();

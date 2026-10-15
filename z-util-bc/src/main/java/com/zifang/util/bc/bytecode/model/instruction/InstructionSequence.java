@@ -34,8 +34,13 @@ public class InstructionSequence {
     public List<Instruction> instructions() {
         List<Instruction> list = new ArrayList<>();
         int pc = 0;
-        while (pc < code.length) {
+        while (pc >= 0 && pc < code.length) {
             Instruction insn = at(pc);
+            if (insn.getOperandOffset() + insn.getOperandSize() > code.length
+                    || insn.getNextPc() <= pc) {
+                // 操作数越界或不再前进，说明指令流已经对不齐（畸形类文件），到此为止
+                break;
+            }
             list.add(insn);
             pc = insn.getNextPc();
         }
@@ -56,7 +61,7 @@ public class InstructionSequence {
             // tableswitch / lookupswitch：操作数起点对齐到 4 字节边界
             int aligned = (pc + 4) & ~3;
             operandOffset = aligned;
-            operandSize = switchOperandSize(aligned, opcode);
+            operandSize = aligned + 8 <= code.length ? switchOperandSize(aligned, opcode) : 0;
         } else if (operandSize == -2) {
             // wide：紧随其后的被修饰操作码决定是 u2 还是 u2+u4
             int widened = code[pc + 1] & 0xFF;
@@ -67,20 +72,25 @@ public class InstructionSequence {
                 operandOffset + operandSize);
     }
 
+    /**
+     * switch 操作数总长，按 JVMS §6.5 逐段累加：
+     * default s4 + (tableswitch: low s4 + high s4 + 每 case 一个 s4) /
+     * (lookupswitch: npairs s4 + 每 pair 两个 s4)。
+     * 段数来自类文件，畸形文件里可能远超剩余长度，一律夹到 code.length 以内。
+     *
+     * @param aligned 对齐后的操作数起点
+     * @param opcode  TABLESWITCH 或 LOOKUPSWITCH
+     * @return int类型返回值
+     */
     private int switchOperandSize(int aligned, int opcode) {
-        // default s4 恒占 4 字节，其后按指令类型展开
-        int n = 4;
         if (opcode == Opcodes.TABLESWITCH) {
-            n += 4;
-            int low = readInt(aligned + 4);
-            int high = readInt(aligned + 8);
-            n += (high - low + 1) * 4;
-        } else {
-            n += 4;
-            int npairs = readInt(aligned + 4);
-            n += npairs * 8;
+            long entries = (long) readInt(aligned + 8) - readInt(aligned + 4) + 1;
+            long budget = (code.length - aligned - 12) / 4L;
+            return 12 + (int) Math.max(0, Math.min(entries, budget)) * 4;
         }
-        return n;
+        long npairs = readInt(aligned + 4) & 0xFFFFFFFFL;
+        long budget = (code.length - aligned - 8) / 8L;
+        return 8 + (int) Math.max(0, Math.min(npairs, budget)) * 8;
     }
 
     private int readInt(int offset) {
@@ -102,14 +112,15 @@ public class InstructionSequence {
         List<Integer> targets = new ArrayList<>();
         targets.add(pc + readInt(aligned));
         if (insn.getOpcode() == Opcodes.TABLESWITCH) {
-            int low = readInt(aligned + 4);
-            int high = readInt(aligned + 8);
-            for (int i = 0; i <= high - low; i++) {
+            long entries = (long) readInt(aligned + 8) - readInt(aligned + 4) + 1;
+            int count = (int) Math.max(0, Math.min(entries, (code.length - aligned - 12) / 4));
+            for (int i = 0; i < count; i++) {
                 targets.add(pc + readInt(aligned + 12 + i * 4));
             }
         } else {
-            int npairs = readInt(aligned + 4);
-            for (int i = 0; i < npairs; i++) {
+            long npairs = readInt(aligned + 4) & 0xFFFFFFFFL;
+            int count = (int) Math.max(0, Math.min(npairs, (code.length - aligned - 8) / 8));
+            for (int i = 0; i < count; i++) {
                 targets.add(pc + readInt(aligned + 8 + i * 8 + 4));
             }
         }
@@ -127,29 +138,17 @@ public class InstructionSequence {
      */
     public int[] branchTargets() {
         List<Integer> targets = new ArrayList<>();
-        int pc = 0;
-        while (pc < code.length) {
-            Instruction insn = at(pc);
+        for (Instruction insn : instructions()) {
+            int pc = insn.getPc();
             if (Opcodes.isConditionalJump(insn.getOpcode())
                     || (insn.getOpcode() == Opcodes.GOTO || insn.getOpcode() == Opcodes.GOTO_W)) {
                 targets.add(pc + insn.branchTarget());
-            } else if (insn.getOpcode() == Opcodes.TABLESWITCH) {
-                int aligned = insn.getOperandOffset();
-                targets.add(pc + readInt(aligned));
-                int low = readInt(aligned + 4);
-                int high = readInt(aligned + 8);
-                for (int i = 0; i <= high - low; i++) {
-                    targets.add(pc + readInt(aligned + 12 + i * 4));
-                }
-            } else if (insn.getOpcode() == Opcodes.LOOKUPSWITCH) {
-                int aligned = insn.getOperandOffset();
-                targets.add(pc + readInt(aligned));
-                int npairs = readInt(aligned + 4);
-                for (int i = 0; i < npairs; i++) {
-                    targets.add(pc + readInt(aligned + 8 + i * 8 + 4));
+            } else if (insn.getOpcode() == Opcodes.TABLESWITCH
+                    || insn.getOpcode() == Opcodes.LOOKUPSWITCH) {
+                for (int target : switchTargets(insn)) {
+                    targets.add(target);
                 }
             }
-            pc = insn.getNextPc();
         }
         int[] result = new int[targets.size()];
         for (int i = 0; i < result.length; i++) {
