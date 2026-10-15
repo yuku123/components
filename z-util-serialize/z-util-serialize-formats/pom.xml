@@ -20,8 +20,8 @@
             <artifactId>z-util-serialize-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <groupId>io.github.yuku123</groupId>
+            <artifactId>z-util-parser-json</artifactId>
         </dependency>
     </dependencies>
 </project>
