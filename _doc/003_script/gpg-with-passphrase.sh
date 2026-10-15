@@ -26,8 +26,14 @@
 set -e
 
 # 1. 拿不到 passphrase 先 .env 自加载一次（z-util 仓根 .env）
+# 注意：仓内 .env 的键名是 GPG_PASSPHRASE，这里要的是 CENTRAL_GPG_PASSPHRASE，
+# 所以加载完必须补一次映射，否则下面第 41 行的判空一定命中。
+# maven.multiModuleProjectDirectory 是 maven 注入的环境变量，名字带点，
+# 不能写成 ${maven.multiModuleProjectDirectory:-}——dash/bash 都判 bad substitution，
+# 只能用 printenv 取。
 if [ -z "${CENTRAL_GPG_PASSPHRASE:-}" ]; then
-    for candidate in "$PWD/.env" "${maven.multiModuleProjectDirectory:-}/.env"; do
+    multi_module_dir="$(printenv maven.multiModuleProjectDirectory 2>/dev/null || true)"
+    for candidate in "$PWD/.env" "${multi_module_dir:-}/.env"; do
         if [ -f "$candidate" ]; then
             set -a
             # shellcheck disable=SC1090
@@ -36,6 +42,9 @@ if [ -z "${CENTRAL_GPG_PASSPHRASE:-}" ]; then
             break
         fi
     done
+    if [ -z "${CENTRAL_GPG_PASSPHRASE:-}" ] && [ -n "${GPG_PASSPHRASE:-}" ]; then
+        CENTRAL_GPG_PASSPHRASE="$GPG_PASSPHRASE"
+    fi
 fi
 
 if [ -z "${CENTRAL_GPG_PASSPHRASE:-}" ]; then
