@@ -58,7 +58,7 @@ public final class JsonTranscoder {
 
     /** 从 JSON 字符串解码消息。 */
     public static <T> T fromJson(String json, Class<T> messageClass) throws IOException {
-        return decodeFrom(toPlain(JsonUtil.parseObject(json)), messageClass);
+        return decodeFrom(JsonUtil.toPlainValue(JsonUtil.parseObject(json)), messageClass);
     }
 
     private static Object encode(Object message) {
@@ -185,14 +185,14 @@ public final class JsonTranscoder {
 
     private static Map<?, ?> asMap(Object n) {
         if (n instanceof Map) return (Map<?, ?>) n;
-        if (n instanceof JsonObject) return toPlain((JsonObject) n);
-        return null;
+        Object plain = n instanceof JsonObject ? JsonUtil.toPlainValue(n) : null;
+        return plain instanceof Map ? (Map<?, ?>) plain : null;
     }
 
     private static List<?> asList(Object n) {
         if (n instanceof List) return (List<?>) n;
-        if (n instanceof JsonArray) return toPlain((JsonArray) n);
-        return null;
+        Object plain = n instanceof JsonArray ? JsonUtil.toPlainValue(n) : null;
+        return plain instanceof List ? (List<?>) plain : null;
     }
 
     private static long asLong(Object n) {
@@ -226,32 +226,5 @@ public final class JsonTranscoder {
         if (n == null) return null;
         if (n instanceof String) return (String) n;
         return String.valueOf(n);
-    }
-
-    /**
-     * 把 {@link JsonObject}/{@link JsonArray} 递归转成 plain 的 LinkedHashMap/ArrayList。
-     * <p>解析器产出的是这两种容器，而 {@code JsonObject} 内部用 HashMap 且 toString 是缩进格式，
-     * 直接交给序列化器既丢顺序又出多行空白，故在此先摊平。</p>
-     */
-    private static Map<String, Object> toPlain(JsonObject o) {
-        Map<String, Object> m = new LinkedHashMap<>();
-        for (Map.Entry<String, Object> e : o.getAllKeyValue()) {
-            m.put(e.getKey(), unwrap(e.getValue()));
-        }
-        return m;
-    }
-
-    private static List<Object> toPlain(JsonArray a) {
-        List<Object> l = new ArrayList<>(a.size());
-        for (int i = 0; i < a.size(); i++) {
-            l.add(unwrap(a.get(i)));
-        }
-        return l;
-    }
-
-    private static Object unwrap(Object v) {
-        if (v instanceof JsonObject) return toPlain((JsonObject) v);
-        if (v instanceof JsonArray) return toPlain((JsonArray) v);
-        return v;
     }
 }

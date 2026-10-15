@@ -111,6 +111,51 @@ public class JsonUtil {
 
     // ==================== 解析入口 ====================
 
+    /**
+     * 解析为通用 Java 结构：对象给 {@link JsonObject}，数组给 {@link JsonArray}，
+     * 标量给对应的 String/Number/Boolean/null。
+     * <p>需要事先知道文档是对象还是数组时，用语义更明确的 {@link #parseObject(String)}
+     * 或 {@link #parseArray(String)}，它们在类型不符时会抛 {@code JsonTypeException}。</p>
+     *
+     * @param json JSON字符串
+     * @return 解析结果；json 为 null 或空白时返回 null
+     */
+    public static Object parse(String json) {
+        if (json == null || json.trim().isEmpty()) return null;
+        return PARSER.fromJSON(json.trim());
+    }
+
+    /**
+     * 把 {@link JsonObject}/{@link JsonArray} 递归摊平成 plain 的 {@link LinkedHashMap}/{@link ArrayList}。
+     * <p>解析器产出的是这两种容器，而 {@code JsonObject} 的 {@code toString()} 是缩进格式，
+     * 直接把它交给 {@link #toJson} 会出多行空白；需要紧凑单行输出时必须先过这一层。</p>
+     * <p><b>注意不保文档顺序</b>：{@code JsonObject} 内部用 {@code HashMap} 存键，
+     * 文档里的键序在解析那一步就已丢失，本方法只是把 {@code HashMap} 的迭代序固化进
+     * {@code LinkedHashMap}，拿不回原始顺序。需要保序的场景应直接操作原文或改用
+     * 保持顺序的容器。</p>
+     *
+     * @param node 解析结果，或任意已知的 JSON 树节点
+     * @return 摊平后的 plain 结构；非容器类型原样返回
+     */
+    public static Object toPlainValue(Object node) {
+        if (node instanceof JsonObject) {
+            Map<String, Object> m = new LinkedHashMap<>();
+            for (Map.Entry<String, Object> e : ((JsonObject) node).getAllKeyValue()) {
+                m.put(e.getKey(), toPlainValue(e.getValue()));
+            }
+            return m;
+        }
+        if (node instanceof JsonArray) {
+            JsonArray a = (JsonArray) node;
+            List<Object> l = new ArrayList<>(a.size());
+            for (int i = 0; i < a.size(); i++) {
+                l.add(toPlainValue(a.get(i)));
+            }
+            return l;
+        }
+        return node;
+    }
+
     public static JsonObject parseObject(String json) {
         if (json == null || json.trim().isEmpty()) return new JsonObject();
         Object parsed = PARSER.fromJSON(json.trim());
