@@ -100,7 +100,7 @@
         <!-- 1.2.1：Map<String,Object>/Object 目标的嵌套值改走 toPlainValue，绑成
              LinkedHashMap/ArrayList 而不是 JsonObject/JsonArray，对齐 Jackson。
              这是行为变更（原来强转会 CCE 的地方现在能过），下游要钉到这一版。 -->
-        <revision>1.2.1</revision>
+        <revision>1.2.2</revision>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <!-- compile.version 自留：Maven 的标准键叫 maven.compiler.source/target，本仓不借那两个名字，
