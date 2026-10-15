@@ -90,7 +90,14 @@
                   连同只为它们存在的抽象基类 Parser，一并删除，DefaultParser 不经它。
              全 foundation 37 个兄弟仓反查零引用（无 wildcard import），故无须同步改任何消费方。
              中央件 1.0.x 已发布且不可覆盖，删 API 只能在更高版本落地，故 1.1.0 起。 -->
-        <revision>1.1.0</revision>
+        <!-- 1.1.1：去 Jackson（全域零 fasterxml，连根 pom 的 ${jackson.version} 与 4 条 DM 一起撤）。
+             同样是破坏性：删了 public API `com.zifang.util.core.json.JsonMapperFactory`，
+             下游 56 处调用方须改用 JsonUtil；故不能复用已发布的 1.1.0 槽位。
+             已发布的 1.1.0（减法 campaign 第一档）经反查确认**不含**本轮：
+             repo1 的 z-util-core-1.1.0.jar 里仍有 JsonMapperFactory、其 pom 仍列 2 处
+             fasterxml，且 z-util-parser-json-1.1.0 的 JsonUtil 无 toJsonExcludingNulls /
+             parse / toPlainValue。发布 1.1.0 的尝试因此报 "Component ... already exists" 而 FAILED。 -->
+        <revision>1.1.1</revision>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <!-- compile.version 自留：Maven 的标准键叫 maven.compiler.source/target，本仓不借那两个名字，
