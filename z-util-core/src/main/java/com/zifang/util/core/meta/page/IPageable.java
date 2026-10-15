@@ -1,8 +1,6 @@
 package com.zifang.util.core.meta.page;
 
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.zifang.util.core.meta.KeepLongSerializer;
 import com.zifang.util.core.meta.SortField;
 
 import java.io.Serializable;
@@ -26,7 +24,6 @@ public interface IPageable<T> extends Serializable {
     /**
      * 计算当前分页偏移量
      */
-    @JsonSerialize(using = KeepLongSerializer.class)
     default long offset() {
         long current = getCurrent();
         if (current <= 1L) {
@@ -38,7 +35,6 @@ public interface IPageable<T> extends Serializable {
     /**
      * 当前分页总页数
      */
-    @JsonSerialize(using = KeepLongSerializer.class)
     default long getPages() {
         if (getSize() == 0) {
             return 0L;
@@ -76,7 +72,6 @@ public interface IPageable<T> extends Serializable {
      *
      * @return 总条数
      */
-    @JsonSerialize(using = KeepLongSerializer.class)
     long getTotal();
 
     /**
@@ -89,7 +84,6 @@ public interface IPageable<T> extends Serializable {
      *
      * @return 每页显示条数
      */
-    @JsonSerialize(using = KeepLongSerializer.class)
     long getSize();
 
     /**
@@ -102,7 +96,6 @@ public interface IPageable<T> extends Serializable {
      *
      * @return 当前页
      */
-    @JsonSerialize(using = KeepLongSerializer.class)
     long getCurrent();
 
     /**

@@ -1,8 +1,5 @@
 package com.zifang.util.core.meta.page;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.zifang.util.core.meta.KeepLongSerializer;
 import com.zifang.util.core.meta.SortField;
 
 import java.util.ArrayList;
@@ -21,7 +18,6 @@ public class Pageable<T> implements IPageable<T> {
     /**
      * 查询数据列表
      */
-    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     /**
      * Collections.emptyList方法。
      * @return List<T> records =类型返回值
@@ -31,24 +27,20 @@ public class Pageable<T> implements IPageable<T> {
     /**
      * 总数
      */
-    @JsonSerialize(using = KeepLongSerializer.class)
     protected long total = 0;
     /**
      * 每页显示条数，默认 10
      */
-    @JsonSerialize(using = KeepLongSerializer.class)
     protected long size = 10;
 
     /**
      * 当前页
      */
-    @JsonSerialize(using = KeepLongSerializer.class)
     protected long current = 1;
 
     /**
      * 排序字段信息
      */
-    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     /**
      * ArrayList<>方法。
      * @return List<SortField> orders = new类型返回值

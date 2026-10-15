@@ -1,8 +1,6 @@
 package com.zifang.util.core.meta.page;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zifang.util.core.meta.BaseRequest;
-import com.zifang.util.core.meta.KeepLongSerializer;
 import com.zifang.util.core.meta.SortField;
 
 import java.util.ArrayList;
@@ -15,10 +13,8 @@ import java.util.function.Predicate;
 public class PageRequest extends BaseRequest {
     private static final long serialVersionUID = -8059516751569851680L;
 
-    @JsonSerialize(using = KeepLongSerializer.class)
     private Long current = 1L;
 
-    @JsonSerialize(using = KeepLongSerializer.class)
     private Long size = 10L;
 
     private List<SortField> orders = new ArrayList<>();
