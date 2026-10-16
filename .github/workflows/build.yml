@@ -8,7 +8,6 @@
 #
 # 命令选型：
 #   - 不带 -Pcentral：central profile 会开启 gpg 签名与 javadoc 附件，CI 不需要
-#   - 不带 -P sandbox：z-util-zex 是练习代码（含 SocketTest001 等），默认不参与构建
 #   - 不加 -T   ：单线程日志可读，出错时上下文不会被并行交错打散
 #
 # ⚠️ 本 CI **抓不到被 @Ignore 掩盖的既有缺陷**：

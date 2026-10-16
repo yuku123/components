@@ -309,9 +309,7 @@
                  面值写法刻意用 `${revision}` 而不是 z-cache 那侧的 `${project.version}`：
                  本仓 flatten 是 `resolveCiFriendliesOnly`（见下面 build/plugins 的注释），它只展开
                  revision/sha1/changelist，**不会**展开 `${project.version}` ⇒ 后者会原样发进中央 pom，
-                 消费方按**它们自己的**版本去解析（z-boot README 记着同一形状的实测 404）。
-                 ⚠ z-util-zex 刻意不列：它在默认 reactor 之外（sandbox profile），中央上从来没有这个坐标，
-                 钉进发布态 umbrella 等于对外广告一个 repo1 上不存在的件。 -->
+                 消费方按**它们自己的**版本去解析（z-boot README 记着同一形状的实测 404）。 -->
             <dependency>
                 <groupId>io.github.yuku123</groupId>
                 <artifactId>z-util-office</artifactId>
@@ -935,8 +933,6 @@
                 <artifactId>z-util-pattern-visitor</artifactId>
                 <version>${revision}</version>
             </dependency>
-            <!-- ⚠ z-util-zex 仍然刻意不列：它在默认 reactor 之外（sandbox profile），
-                 中央上从来没有这个坐标，与上方 z-util-zex 那条注记同因。 -->
 
         </dependencies>
     </dependencyManagement>
@@ -1105,13 +1101,6 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>sandbox</id>
-            <modules>
-                <module>z-util-zex</module>
-            </modules>
-        </profile>
-
         <!-- ============================================================== -->
         <!-- `mvn deploy -Pcentral` 走 Maven Central（Sonatype Central Portal）-->
         <!-- 同时改写 distributionManagement、追加 gpg/javadoc/central-publishing -->

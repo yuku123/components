@@ -26,7 +26,7 @@ IoC/AOP/代理、二进制序列化、监控、Office、图像、数学与 ML，
 | **Maven 坐标** | 根聚合 `io.github.yuku123:z-util:${revision}`（`packaging=pom`）；子件 `io.github.yuku123:z-util-<module>:${revision}`。groupId 保持 `io.github.yuku123`（已发布坐标，Central 上 1.0.2~1.0.16 全系列），与 GitHub 组织归属解耦 |
 | **当前版本** | `1.0.16`（根 POM `<properties><revision>`，CI-friendly versions + flatten-maven-plugin `resolveCiFriendliesOnly`） |
 | **父项目** | **无**（2026-10-03 起本仓是一棵独立的 POM 树：根 POM 不写 `<parent>`，也不 import 任何外部 BOM，发布的根 pom 在 repo1 可被独立解析） |
-| **Maven Central** | 已发布：实测 `1.0.14` 下 **46 个构件的 `.pom` 全部 HTTP 200**（根 `z-util` + 45 个 reactor 模块）；唯一 404 是 `z-util-zex`（不进默认 reactor、不发布） |
+| **Maven Central** | 已发布：实测 `1.0.14` 下 **46 个构件的 `.pom` 全部 HTTP 200**（根 `z-util` + 45 个 reactor 模块）。 |
 | **模块数** | 根 POM `<modules>` 25 个条目；展开 `parser`(8) / `expr`(6) / `serialize`(6) 三个聚合件后共 **45 个模块 POM = 41 个 jar + 4 个 pom** |
 | **运行口径** | Java 8（`compile.version=8`，各模块 `maven.compiler.source/target=8`；产物可直接被 Spring Boot 2.7 系消费） |
 | **测试运行 JDK** | 全量 `mvn test` 需 JDK 9+，组织口径用 **JDK 17**（原因见「🧪 测试」） |
@@ -66,7 +66,6 @@ IoC/AOP/代理、二进制序列化、监控、Office、图像、数学与 ML，
 | `z-util-aop` | jar | `@Advise` / `Intercept` 拦截器 + `ProxyFactory`（零内部依赖） | `Advise`、`Intercept`、`ProxyFactory` |
 | `z-util-serialize` | **pom 聚合** | 跨语言、schema-first、零拷贝编解码（6 个子模块） | 见下表 |
 | `z-util-all` | **pom（umbrella）** | 只含 `<dependencyManagement>`，**没有任何 `<dependencies>`、不产出 jar** | 版本表覆盖 **25 个**模块（不是"全部模块"；2026-10-03 删除了已收编的 `z-util-proxy`，2026-10-13 增 `z-util-strategy` 与 `z-util-sensitive`） |
-| `z-util-zex` | jar（仅 `-Psandbox`） | 个人练习场：`bust`（《码出高效》章节）/`sort`/`leetcode`/`guava`/`interview`/`bytecode`/`disrupt` | 不在默认 reactor，Maven Central 实测 404 |
 
 ### `z-util-parser` 的 8 个子模块（`z-util-dsl` 子件，ANTLR `.g4` + 自研 `z-util-dsl-kernel` 动态解析）
 
@@ -144,7 +143,6 @@ z-util/
 ├── z-util-serialize/      # 聚合 POM → 6 个编解码子模块
 ├── z-util-{math,ml,workflow,office,media,visualization,monitor,devops,distribute,ch,cli}/
 ├── z-util-all/            # 只有 <dependencyManagement> 的 umbrella pom（不产出 jar）
-├── z-util-zex/            # 练习场：只在 -Psandbox 下构建，不发布
 ├── _doc/                  # 文档，见文末「文档目录」
 ├── .github/dependabot.yml # Maven + GitHub Actions 每周一自动升依赖（分组 apache-commons/jackson/log4j/spring/testing）
 └── LICENSE                # MIT
@@ -292,7 +290,6 @@ bash _doc/003_script/install-settings.sh               # 把 server id=central �
   （`maven-deploy-plugin` 在该 profile 下设 `skip=true`，避免重复 deploy）。
 - 脚本默认带 `-pl '!z-util-all'`，但实测 `z-util-all:1.0.14` 的 pom 在 repo1 可读（且是它唯一的已发布版本，
   `1.0.13` 为 404）—— 说明 1.0.14 这一批是由组织的批量发布通道把聚合件也一起推上去的，脚本那行排除参数只描述它自己那条路径。
-- `z-util-zex` 不在默认 reactor（只有 `-Psandbox` 才构建），实测中央 404：这是设计如此，它永远不该发布。
 
 完整流程与避坑清单见 [`_doc/006_release/RELEASE_TO_MAVEN_CENTRAL.md`](_doc/006_release/RELEASE_TO_MAVEN_CENTRAL.md)
 与 [`_doc/006_release/发布指引.md`](_doc/006_release/发布指引.md)。
