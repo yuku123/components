@@ -238,6 +238,8 @@ cmd_readme() {
   ✗ 不要跳过 javadoc 或 GPG 测试（Central 强制要求）
   ✗ 不要重发同名版本号（FAILED 残骸会占坐标）
   ✓ 用 -pl '!z-util-all' 跳过聚合 pom
+  ✓ z-util-serialize-it 由 central profile 的 excludeArtifacts 自动剔出 bundle
+    （1.2.7 起它 src/main 不存在、jar 只剩 META-INF），不要再往 -pl 里手工加它
   ✓ waitMaxTime=1800（30 分钟）防 mvn 提前放弃
   ✓ 每次都升版本号（z-util-all 等聚合 pom 引用具体版本号）
 

@@ -121,7 +121,7 @@ Object doc = mem.shape(spec);          // spec 就是 JSON 树；new ObjEngine(s
 | `z-util-serialize-core` | 线格式与编解码：`ZSerializer`/`ZDeserializer`/`FieldIndex`/`Header`/`IndexBuilder`/`Codec`/`CodecConfig`/`CodecRegistry` |
 | `z-util-serialize-codegen` | 注解处理器 `ZSerializeProcessor`：生成零反射的 Serializer/Deserializer（模块自身编译禁用注解处理，见 commit `4921635d`） |
 | `z-util-serialize-formats` | 互通转码器 `JsonTranscoder`（Jackson） |
-| `z-util-serialize-it` | 跨模块集成测试（`GeneratedCodecTest`）；跑分工具 `ZSerializeVsKryoBench`（手搓 `main()` 计时，非 JMH）与它同住 test 域，kryo 已钉 `test` scope 不再外泄 |
+| `z-util-serialize-it` | 跨模块集成测试（`GeneratedCodecTest`，靠注解处理器在 test 域跨 core/formats/codegen 生成 codec）；跑分工具 `ZSerializeVsKryoBench`（手搓 `main()` 计时，非 JMH）与它同住 test 域，kryo 已钉 `test` scope 不再外泄。**不对外发布**：1.2.7 把测试夹具挪进 `src/test` 后 `src/main` 整个不存在，jar 只剩 META-INF，1.2.8 起由 central profile 的 `excludeArtifacts` 退出发布包 |
 
 压缩实现目前只有 `GzipCompressor`（+ `AesGcmEncryptor`）；[`_doc/001_arch/wire-format.md`](_doc/001_arch/wire-format.md)
 里写的 zstd / lz4 仍是设计目标，代码里还没有对应类。

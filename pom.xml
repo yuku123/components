@@ -118,15 +118,24 @@
              1) z-util-serialize-it 的 SimpleUser（及其注解处理器生成的 SimpleUserCodec）
                 原本躺在 src/main，是测试夹具误随 jar 发布，现移入 src/test。该 jar 的这两个
                 class 消失 —— 零生产引用，但确属已发布内容的删除，下游钉到这一版即可。
+                这一改直接把该 jar 掏成了空壳，所以 1.2.8 起整件退出发布（见下面 1.2.8 第 2 条）。
              2) z-util-expr-js 的运行时 jar 里不再重复打 25 份 .java 源文件（源仍在 -sources.jar）。
              3) 全仓 javadoc.jar 剔掉 JDK 注入的 resource-files/（DejaVu 字体等），
                 308MB → 15MB，发布包 268MB → 约 27MB，不再撞 Cloudflare 100 秒上传上限。 -->
-        <!-- 1.2.8：z-util-pattern-validation 的包从 com.zifang.util.validation.*
-             归位到 com.zifang.util.core.pattern.validation.*，与其余 17 个 pattern 模块对齐。
-             这是破坏性变更（已发布的类换了包名），但全仓 + 整个 foundation 实测零外部引用：
-             只有该模块自己的 15 个文件提到旧包名，所以按「归位」而非「迁移」处理。
-             起因不是洁癖：这个包名不一致让按包名做的死码扫描反复漏掉它，
-             之前判它「零消费者」时靠的是全仓 grep 而不是包结构，结论差点就错了。 -->
+        <!-- 1.2.8：两件事，都属于「消费者拿到的东西变了」。
+             1) z-util-pattern-validation 的包从 com.zifang.util.validation.*
+                归位到 com.zifang.util.core.pattern.validation.*，与其余 17 个 pattern 模块对齐。
+                这是破坏性变更（已发布的类换了包名），但全仓 + 整个 foundation 实测零外部引用：
+                只有该模块自己的 15 个文件提到旧包名，所以按「归位」而非「迁移」处理。
+                起因不是洁癖：这个包名不一致让按包名做的死码扫描反复漏掉它，
+                之前判它「零消费者」时靠的是全仓 grep 而不是包结构，结论差点就错了。
+             2) z-util-serialize-it 整件退出发布（central profile 加 excludeArtifacts + 根 DM 删掉
+                它那一格）。中央现存的 1.2.6 是最后一个**有 class** 的版本（2026-10-16 实测从 repo1
+                解包：SimpleUser.class + SimpleUserCodec.class 两件），而 1.2.7 把这两个夹具挪进
+                src/test 之后，jar 只剩 META-INF 7 个条目 —— 再发就是往中央推三个空壳
+                （jar/sources/javadoc）。模块本身留在 reactor：GeneratedCodecTest 要靠注解处理器
+                在 test 域跨 core/formats/codegen/schema 生成 codec，这是全仓唯一一处跨模块 codegen
+                集成测试，删模块等于删测试。 -->
         <revision>1.2.8</revision>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
@@ -390,11 +399,13 @@
                 <artifactId>z-util-ioc</artifactId>
                 <version>${revision}</version>
             </dependency>
-            <dependency>
-                <groupId>io.github.yuku123</groupId>
-                <artifactId>z-util-serialize-it</artifactId>
-                <version>${revision}</version>
-            </dependency>
+            <!-- 2026-10-16 删 z-util-serialize-it 这条 DM：它不再发布（见下面 central profile 的
+                 excludeArtifacts），而这条 DM 会随 flatten 进发布的根 pom，等于对外广告一个
+                 中央上不再出现的坐标 —— 与 z-util-zex 当年「刻意不列」同因。
+                 上面「自家 reactor 的 jar 模块逐个钉 DM」这条规矩的口径同步收窄成
+                 **「凡对外发布的 jar 模块逐个钉 DM」**：防 fleet BOM 反向压版只在「会出现在
+                 消费者的依赖树里」时才起作用，serialize-it 是叶子测试模块、零消费者，
+                 不在任何树里。DM 集合 = 已发布集合，这个等式比多一条无害条目值钱。 -->
             <dependency>
                 <groupId>io.github.yuku123</groupId>
                 <artifactId>z-util-expr-el</artifactId>
@@ -1159,13 +1170,17 @@
                         </executions>
                     </plugin>
 
-                    <!-- 剔掉 javadoc.jar 里的 resource-files/，必须在 javadoc:jar 之后、
-                         maven-gpg-plugin:sign 之前（同一 verify 阶段内按声明顺序执行）。
-                         起因：JDK 自带 javadoc 工具会把 DejaVu 字体 + 搜索用 js/css 以
-                         resource-files/ 塞进每一份 apidocs，它不是本仓的文档内容，却占掉全仓
-                         javadoc 体积的 78%（2026-10-15 实测 61 个 javadoc jar 共 241MB / 308MB）。
-                         不剔则发布包 268MB，而 central.sonatype.com 前面的 Cloudflare 约 100 秒
-                         就掐断上传（实测 HTTP 524，148MB 处断）。剔后发布包约 27MB。
+                    <!-- 剔掉 javadoc.jar 里 JDK 自带的静态资产（DejaVu 字体 + 搜索用 js/css），
+                         必须在 javadoc:jar 之后、maven-gpg-plugin:sign 之前（同一 verify 阶段内
+                         按声明顺序执行）。
+                         起因：JDK 自带 javadoc 工具会把这套资产塞进每一份 apidocs，它不是本仓的
+                         文档内容，却占掉全仓 javadoc 体积的 78%（2026-10-15 实测 61 个 javadoc jar
+                         共 241MB / 308MB）。不剔则发布包 268MB，而 central.sonatype.com 前面的
+                         Cloudflare 约 100 秒就掐断上传（实测 HTTP 524，148MB 处断）。剔后约 27MB。
+                         ⚠ 这批资产的**目录名随 JDK 大版本变**：JDK 18+ 叫 resource-files/ +
+                         script-files/（就是那 241MB 的字体版本），Corretto 17 叫 resources/ +
+                         script-dir/ + legal/（合计才约 148KB/jar，没有字体）。所以这条剔除到底
+                         有没有活干，取决于发版那次用的是哪个 JDK —— 见下面 sh 的容错写法。
                          注意：javadoc:jar 这个 goal 并没有 excludes 参数，写了会被静默忽略。 -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -1180,15 +1195,24 @@
                                 </goals>
                                 <configuration>
                                     <target>
-                                        <!-- 聚合件（packaging=pom）根本不产 javadoc.jar，直接无条件
-                                             exec 会让 zip 以 exit 12 失败并打断发版。判存在交给 sh：
-                                             jar 不在就整体返回 0；jar 在而 zip 失败，退出码照常上抛，
-                                             不至于把真错误一起吞掉。（原先想用 Ant 的 <if>，但它在
-                                             ant-nodeps 里，antrun 默认不带这个包，会报
-                                             "failed to create task or type if"。） -->
+                                        <!-- 两件事，缺一不可：
+                                             1) 判 jar 存在：聚合件（packaging=pom）根本不产 javadoc.jar。
+                                             2) 容忍 zip 的 exit 12：zip -d 在「archive 里没有任何条目
+                                                匹配上 pattern」时也返回 12，不只是 jar 缺失才 12。
+                                             2026-10-17 实测撞上的就是第 2 条：Corretto 17.0.19 的 javadoc
+                                             吐的是 resources/ + script-dir/ + legal/（合计约 148KB，占 jar
+                                             185KB 的八成），根本没有 resource-files/；而中央上已发布的
+                                             1.2.6 javadoc jar 里躺的确实是 resource-files/(33 条) +
+                                             script-files/(6 条) + legal/ —— 那是 JDK 18+ 的目录布局
+                                             （DejaVu 字体那份重量级资产）。同一条发版命令换个 JDK 跑，
+                                             剔与不剔两种结果都合法，所以只能按「有就剔、没有就算过」写。
+                                             两个布局都列进同一次 zip -d：只要命中任一条目 zip 就返 0。
+                                             真错误（zip 自己崩）退出码照常上抛，不被 [ -eq 12 ] 吞掉。
+                                             （原先想用 Ant 的 <if>，但它在 ant-nodeps 里，antrun 默认
+                                             不带这个包，会报 "failed to create task or type if"。） -->
                                         <exec executable="sh" failonerror="true">
                                             <arg value="-c"/>
-                                            <arg value="test ! -f &quot;${project.build.directory}/${project.build.finalName}-javadoc.jar&quot; || zip -d &quot;${project.build.directory}/${project.build.finalName}-javadoc.jar&quot; 'resource-files/*'"/>
+                                            <arg value="jar=&quot;${project.build.directory}/${project.build.finalName}-javadoc.jar&quot;; test -f &quot;$jar&quot; || exit 0; zip -q -d &quot;$jar&quot; 'resource-files/*' 'script-files/*'; rc=$?; [ &quot;$rc&quot; -eq 0 ] || [ &quot;$rc&quot; -eq 12 ]"/>
                                         </exec>
                                     </target>
                                 </configuration>
@@ -1234,6 +1258,17 @@
                             <!-- waitMaxTime=1800s（30 分钟）：中央 Portal validation 可能慢 -->
                             <waitMaxTime>1800</waitMaxTime>
                             <waitPollingInterval>10</waitPollingInterval>
+                            <!-- z-util-serialize-it 不进发布包：它 2026-10-16 起 src/main 整个不存在
+                                 （SimpleUser/SimpleUserCodec 已归位到 src/test，见 1.2.7 注记），
+                                 jar 实测只剩 7 个条目、零 class —— META-INF/MANIFEST.MF + pom.xml +
+                                 pom.properties。中央要求 jar/sources/javadoc 三件齐全，那就发三个空壳
+                                 上去。它是纯 test 载体（GeneratedCodecTest 靠注解处理器在 test 域生成
+                                 三个 codec，跨 core/formats/codegen 三模块），模块必须留在 reactor，
+                                 但产物对消费者没有任何价值。excludeArtifacts 按 artifactId 匹配，
+                                 写在父级即对全 reactor 生效、只命中这一个模块。 -->
+                            <excludeArtifacts>
+                                <excludeArtifact>z-util-serialize-it</excludeArtifact>
+                            </excludeArtifacts>
                         </configuration>
                     </plugin>
                 </plugins>
