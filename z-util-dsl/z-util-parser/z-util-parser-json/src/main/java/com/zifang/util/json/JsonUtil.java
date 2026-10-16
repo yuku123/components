@@ -2,6 +2,7 @@ package com.zifang.util.json;
 
 import com.zifang.util.json.annotation.JsonDeserialize;
 import com.zifang.util.json.annotation.JsonSerialize;
+import com.zifang.util.json.annotation.JsonType;
 import com.zifang.util.json.define.TypeReference;
 import com.zifang.util.json.exception.JsonTypeException;
 import com.zifang.util.json.model.JsonArray;
@@ -40,7 +41,14 @@ import java.util.concurrent.ConcurrentHashMap;
  *   <li>{@code @JsonSerialize(format="yyyy-MM-dd")} — Date 字段格式化</li>
  *   <li>{@code @JsonSerialize(ignore=true)} — 序列化时忽略字段</li>
  *   <li>{@code @JsonSerialize(name="alias")} — 序列化时使用别名</li>
+ *   <li>{@code @JsonDeserialize(alias={"a","b"})} — 反序列化额外接受备选属性名</li>
+ *   <li>{@code @JsonDeserialize(ignore=true)} — 反序列化不回填该字段</li>
+ *   <li>{@code @JsonType}（类级）— naming（类级 snake/kebab 命名策略）、
+ *       nonNull（序列化跳过 null 字段）、exclude（类级忽略名单，双向）</li>
  * </ul>
+ * <p>反序列化天然容忍未知键（按字段驱动查找，多出来的键不报错）；目标类没有
+ * 无参构造器时走构造器绑定：取唯一的带参构造器按参数名（编译期 {@code -parameters}）
+ * 对上字段回填，约定「参数名 = 字段名」。
  *
  * @author zifang
  */
@@ -93,6 +101,7 @@ public class JsonUtil {
         final ValueSerializer serializer;
         final ValueDeserializer deserializer;
         final String dateFormat;         // 注解中的 format 值
+        final String[] aliases;          // 反序列化备选属性名（@JsonDeserialize.alias）
 
         FieldMeta(Field field,
                   String jsonName,
@@ -100,12 +109,23 @@ public class JsonUtil {
                   ValueSerializer serializer,
                   ValueDeserializer deserializer,
                   String dateFormat) {
+            this(field, jsonName, ignore, serializer, deserializer, dateFormat, new String[0]);
+        }
+
+        FieldMeta(Field field,
+                  String jsonName,
+                  boolean ignore,
+                  ValueSerializer serializer,
+                  ValueDeserializer deserializer,
+                  String dateFormat,
+                  String[] aliases) {
             this.field = field;
             this.jsonName = jsonName;
             this.ignore = ignore;
             this.serializer = serializer;
             this.deserializer = deserializer;
             this.dateFormat = dateFormat;
+            this.aliases = aliases;
         }
     }
 
@@ -831,6 +851,8 @@ public class JsonUtil {
         }
         try {
         List<FieldMeta> metas = getSerializeMetas(obj.getClass());
+        JsonType type = jsonTypeOf(obj.getClass());
+        boolean classNonNull = type != null && type.nonNull();
         StringBuilder sb = new StringBuilder("{");
         int i = 0;
         for (FieldMeta meta : metas) {
@@ -845,7 +867,7 @@ public class JsonUtil {
             } catch (Exception e) {
                 value = null;
             }
-            if (value == null && SKIP_NULL_MODE.get()) continue;
+            if (value == null && (SKIP_NULL_MODE.get() || classNonNull)) continue;
             if (i > 0) sb.append(",");
             sb.append("\"").append(escapeString(meta.jsonName)).append("\":");
             if (value == null) {
@@ -1084,13 +1106,28 @@ public class JsonUtil {
             // setAccessible 不能省：目标类可能是包私有（package-private 的嵌套类、
             // 包私有的 DTO），而 JsonUtil 在别的包里，不 setAccessible 直接 newInstance
             // 抛 IllegalAccessException。Jackson 走 canAccess/forceAccess 不会踩这条。
-            java.lang.reflect.Constructor<T> ctor = clazz.getDeclaredConstructor();
-            ctor.setAccessible(true);
-            T instance = ctor.newInstance();
             List<FieldMeta> metas = getDeserializeMetas(clazz);
+            T instance;
+            try {
+                java.lang.reflect.Constructor<T> ctor = clazz.getDeclaredConstructor();
+                ctor.setAccessible(true);
+                instance = ctor.newInstance();
+            } catch (NoSuchMethodException noNoArg) {
+                // 无参构造器不存在 → 构造器绑定：取唯一的带参构造器，按 -parameters
+                // 编译进字节码的真实参数名对上字段（构造器参数名=字段名是约定）。
+                // 多个带参构造器时无法确定该用哪个，宁可报错也不瞎猜。
+                instance = deserializeViaConstructor(obj, clazz, metas, bindings);
+            }
             for (FieldMeta meta : metas) {
+                if (meta.ignore) continue;
                 // 优先用注解 name 查找字段（支持别名）
                 Object rawValue = obj.get(meta.jsonName);
+                if (rawValue == null && meta.aliases.length > 0) {
+                    for (String alias : meta.aliases) {
+                        rawValue = obj.get(alias);
+                        if (rawValue != null) break;
+                    }
+                }
                 if (rawValue == null) continue;
                 // 关键：用 field.getGenericType() 而非 getType() — 这样 List<InputParam> 能保留泛型
                 // (FEATURE008 P1 修复 v5 2026-06-25)
@@ -1109,6 +1146,82 @@ public class JsonUtil {
         } catch (Exception e) {
             throw new RuntimeException("deserializePojo failed: " + clazz.getName(), e);
         }
+    }
+
+    /**
+     * 构造器绑定：目标类没有无参构造器时（不可变对象/record 风格），取**唯一**的
+     * 带参构造器按参数名回填。参数名来自编译期 {@code -parameters}（z-util 根 pom
+     * 已开），约定「构造器参数名 = 字段名」；参数对不上字段时退回「参数名即 JSON 属性名」。
+     * <p>缺参给默认值：引用类型 null、基本类型 0/false，与无参路径下字段缺省一致。
+     * 嵌套 List&lt;POJO&gt; 等泛型以字段声明为准（构造器泛型签名同样带，但字段是绑定权威）。</p>
+     */
+    @SuppressWarnings("unchecked")
+    private static <T> T deserializeViaConstructor(JsonObject obj, Class<T> clazz,
+                                                   List<FieldMeta> metas,
+                                                   Map<TypeVariable<?>, Type> bindings) throws Exception {
+        java.lang.reflect.Constructor<?>[] ctors = clazz.getDeclaredConstructors();
+        java.lang.reflect.Constructor<?> chosen = null;
+        for (java.lang.reflect.Constructor<?> c : ctors) {
+            if (c.getParameterTypes().length == 0) continue;
+            if (chosen != null) {
+                throw new IllegalStateException(
+                        "类 " + clazz.getName() + " 没有无参构造器且有多个带参构造器，"
+                                + "无法确定绑定目标；请补一个无参构造器或只保留一个带参构造器");
+            }
+            chosen = c;
+        }
+        if (chosen == null) {
+            throw new IllegalStateException("类 " + clazz.getName() + " 没有任何构造器可用");
+        }
+        chosen.setAccessible(true);
+
+        java.lang.reflect.Type[] genericTypes = chosen.getGenericParameterTypes();
+        Object[] args = new Object[genericTypes.length];
+        for (int i = 0; i < genericTypes.length; i++) {
+            String paramName = chosen.getParameters()[i].getName();
+            FieldMeta match = null;
+            for (FieldMeta meta : metas) {
+                if (meta.field.getName().equals(paramName) || meta.jsonName.equals(paramName)) {
+                    match = meta;
+                    break;
+                }
+            }
+            // 值的键：对上字段就用字段的 JSON 名（含别名），否则参数名本身就是键
+            String key = match != null ? match.jsonName : paramName;
+            Object rawValue = obj.get(key);
+            if (rawValue == null && match != null) {
+                for (String alias : match.aliases) {
+                    rawValue = obj.get(alias);
+                    if (rawValue != null) break;
+                }
+            }
+            Type targetType = match != null
+                    ? resolveType(match.field.getGenericType(), bindings)
+                    : resolveType(genericTypes[i], bindings);
+            if (rawValue == null) {
+                args[i] = genericTypes[i] instanceof Class && ((Class<?>) genericTypes[i]).isPrimitive()
+                        ? defaultValue((Class<?>) genericTypes[i]) : null;
+                continue;
+            }
+            if (match != null && match.deserializer != null) {
+                args[i] = deserializeWithDeserializer(
+                        rawValue, match.deserializer, match.dateFormat, match.field.getType());
+            } else {
+                args[i] = convertValue(rawValue, targetType);
+            }
+        }
+        return (T) chosen.newInstance(args);
+    }
+
+    private static Object defaultValue(Class<?> primitive) {
+        if (primitive == boolean.class) return Boolean.FALSE;
+        if (primitive == char.class) return Character.MIN_VALUE;
+        if (primitive == byte.class) return (byte) 0;
+        if (primitive == short.class) return (short) 0;
+        if (primitive == int.class) return 0;
+        if (primitive == long.class) return 0L;
+        if (primitive == float.class) return 0f;
+        return 0d;
     }
 
     /**
@@ -1211,8 +1324,13 @@ public class JsonUtil {
         List<FieldMeta> cached = serializeMetaCache.get(clazz);
         if (cached != null) return cached;
 
+        JsonType type = jsonTypeOf(clazz);
+        List<String> excludes = type == null
+                ? Collections.<String>emptyList() : Arrays.asList(type.exclude());
+
         List<FieldMeta> metas = new ArrayList<>();
         for (Field field : getAllFields(clazz)) {
+            if (excludes.contains(field.getName())) continue;
             JsonSerialize ann = field.getAnnotation(JsonSerialize.class);
             String jsonName;
             boolean ignore;
@@ -1229,7 +1347,8 @@ public class JsonUtil {
             }
 
             if (ann != null) {
-                jsonName = ann.name().isEmpty() ? field.getName() : ann.name();
+                jsonName = ann.name().isEmpty()
+                        ? applyNaming(field.getName(), type) : ann.name();
                 ignore = ann.ignore();
                 if (!ann.using().equals(JsonSerialize.NONE.class)) {
                     @SuppressWarnings("unchecked")
@@ -1238,7 +1357,7 @@ public class JsonUtil {
                 }
                 dateFormat = ann.format();
             } else {
-                jsonName = field.getName();
+                jsonName = applyNaming(field.getName(), type);
                 ignore = false;
             }
 
@@ -1253,15 +1372,25 @@ public class JsonUtil {
         List<FieldMeta> cached = deserializeMetaCache.get(clazz);
         if (cached != null) return cached;
 
+        JsonType type = jsonTypeOf(clazz);
+        List<String> excludes = type == null
+                ? Collections.<String>emptyList() : Arrays.asList(type.exclude());
+
         List<FieldMeta> metas = new ArrayList<>();
         for (Field field : getAllFields(clazz)) {
+            if (excludes.contains(field.getName())) continue;
             JsonDeserialize ann = field.getAnnotation(JsonDeserialize.class);
             String jsonName;
+            boolean ignore;
             ValueDeserializer deserializer = null;
             String dateFormat = "";
+            String[] aliases = new String[0];
 
             if (ann != null) {
-                jsonName = ann.name().isEmpty() ? field.getName() : ann.name();
+                jsonName = ann.name().isEmpty()
+                        ? applyNaming(field.getName(), type) : ann.name();
+                ignore = ann.ignore();
+                aliases = ann.alias();
                 if (!ann.using().equals(JsonDeserialize.NONE.class)) {
                     @SuppressWarnings("unchecked")
                     Class<? extends ValueDeserializer> deserClass = (Class<? extends ValueDeserializer>) ann.using();
@@ -1269,14 +1398,61 @@ public class JsonUtil {
                 }
                 dateFormat = ann.format();
             } else {
-                jsonName = field.getName();
+                jsonName = applyNaming(field.getName(), type);
+                ignore = false;
             }
 
-            metas.add(new FieldMeta(field, jsonName, false, null, deserializer, dateFormat));
+            metas.add(new FieldMeta(field, jsonName, ignore, null, deserializer, dateFormat, aliases));
         }
 
         deserializeMetaCache.put(clazz, metas);
         return metas;
+    }
+
+    // ==================== 类级绑定配置（@JsonType） ====================
+
+    private static final Map<Class<?>, JsonType> jsonTypeCache = new ConcurrentHashMap<>();
+
+    /** 取类级 {@link JsonType}，没有则 null；结果按类缓存。 */
+    private static JsonType jsonTypeOf(Class<?> clazz) {
+        JsonType cached = jsonTypeCache.get(clazz);
+        if (cached != null) return cached == ABSENT_JSON_TYPE ? null : cached;
+        JsonType found = clazz.getAnnotation(JsonType.class);
+        jsonTypeCache.put(clazz, found == null ? ABSENT_JSON_TYPE : found);
+        return found;
+    }
+
+    /** jsonTypeCache 的「没有注解」哨兵：ConcurrentHashMap 不收 null 值。 */
+    private static final JsonType ABSENT_JSON_TYPE = SentinelJsonType.INSTANCE;
+
+    /** 只为占住缓存槽位的哨兵，任何绑定路径都不该调用它的方法。 */
+    private enum SentinelJsonType implements JsonType {
+        INSTANCE;
+        @Override public Naming naming() { throw new IllegalStateException("sentinel"); }
+        @Override public boolean nonNull() { throw new IllegalStateException("sentinel"); }
+        @Override public String[] exclude() { throw new IllegalStateException("sentinel"); }
+        @Override public Class<? extends java.lang.annotation.Annotation> annotationType() { return JsonType.class; }
+    }
+
+    /** 字段名过类级命名策略；无策略（IDENTITY / 无注解）原样返回。 */
+    private static String applyNaming(String fieldName, JsonType type) {
+        if (type == null || type.naming() == JsonType.Naming.IDENTITY) return fieldName;
+        String sep = type.naming() == JsonType.Naming.KEBAB_CASE ? "-" : "_";
+        StringBuilder sb = new StringBuilder(fieldName.length() + 4);
+        for (int i = 0; i < fieldName.length(); i++) {
+            char c = fieldName.charAt(i);
+            if (Character.isUpperCase(c)) {
+                boolean prevIsLowerOrDigit = i > 0
+                        && (Character.isLowerCase(fieldName.charAt(i - 1)) || Character.isDigit(fieldName.charAt(i - 1)));
+                boolean nextIsLower = i + 1 < fieldName.length() && Character.isLowerCase(fieldName.charAt(i + 1));
+                // 大写缩写词中间不插分隔符（APIKey → api_key 而不是 a_p_i_key）
+                if ((prevIsLowerOrDigit || nextIsLower) && i > 0) sb.append(sep);
+                sb.append(Character.toLowerCase(c));
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
     }
 
     private static List<Field> getAllFields(Class<?> clazz) {
