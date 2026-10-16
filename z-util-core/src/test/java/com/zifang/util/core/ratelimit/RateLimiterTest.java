@@ -39,13 +39,17 @@ public class RateLimiterTest {
 
     @Test
     public void testTokenBucket_acquireMany() throws InterruptedException {
-        // 10 permits/s，桶容量 1：故意用低速率，确保 acquireMany 测试期间桶内令牌少
-        TokenBucketRateLimiter rl = new TokenBucketRateLimiter(10, 1);
-        // 等 200ms 让桶内历史令牌（如果残留）耗尽
-        Thread.sleep(200);
+        // 1 permits/s，桶容量 1：补一个令牌要 1000ms。
+        // 原来这里写的是 10 permits/s，补一个只要 100ms，而断言是「紧接着再取一次必须被拒」。
+        // 100ms 窗口和 CI 上的调度抖动同量级，机器一忙就会偶发补上令牌导致这条随机红
+        // （2026-10-16 实测：单独跑这个类，3 次里红 1 次）。把速率降到 1/s 是在不改变
+        // 「桶空时第二次取必须被拒」这个语义的前提下，把抖动余量放大一个数量级。
+        TokenBucketRateLimiter rl = new TokenBucketRateLimiter(1, 1);
+        // 等一个完整周期，让桶内历史令牌（如果残留）耗尽
+        Thread.sleep(1100);
         // 一次性取 1 个（桶容量 1）
         assertTrue(rl.tryAcquire(1).isAllowed());
-        // 立即再取 1 → 不够（10/s = 100ms/个）
+        // 立即再取 1 → 不够（1/s = 1000ms/个）
         assertFalse(rl.tryAcquire(1).isAllowed());
     }
 

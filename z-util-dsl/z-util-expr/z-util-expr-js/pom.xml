@@ -25,6 +25,12 @@
             </resource>
             <resource>
                 <directory>src/main/java</directory>
+                <!-- 同上：.java 由 maven-compiler-plugin 编译成 .class 进包，源文件本身不该
+                     再复制一份进运行时 JAR。缺这个 exclude 时 jar 里会同时躺着 25 个 .java
+                     （2026-10-15 从中央已发布的 1.2.6 jar 实测确认）。 -->
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
             </resource>
         </resources>
     </build>
