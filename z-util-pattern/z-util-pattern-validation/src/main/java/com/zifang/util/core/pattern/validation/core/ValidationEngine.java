@@ -1,7 +1,7 @@
-package com.zifang.util.validation.core;
+package com.zifang.util.core.pattern.validation.core;
 
-import com.zifang.util.validation.annotation.*;
-import com.zifang.util.validation.validator.*;
+import com.zifang.util.core.pattern.validation.annotation.*;
+import com.zifang.util.core.pattern.validation.validator.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

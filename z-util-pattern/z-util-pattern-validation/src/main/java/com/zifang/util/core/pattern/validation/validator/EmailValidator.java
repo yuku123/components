@@ -1,8 +1,8 @@
-package com.zifang.util.validation.validator;
+package com.zifang.util.core.pattern.validation.validator;
 
-import com.zifang.util.validation.annotation.Email;
-import com.zifang.util.validation.core.ValidateResult;
-import com.zifang.util.validation.core.Validator;
+import com.zifang.util.core.pattern.validation.annotation.Email;
+import com.zifang.util.core.pattern.validation.core.ValidateResult;
+import com.zifang.util.core.pattern.validation.core.Validator;
 
 import java.lang.reflect.Field;
 import java.util.regex.Pattern;

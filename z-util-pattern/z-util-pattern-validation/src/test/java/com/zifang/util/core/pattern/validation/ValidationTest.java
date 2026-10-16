@@ -1,8 +1,8 @@
-package com.zifang.util.validation;
+package com.zifang.util.core.pattern.validation;
 
-import com.zifang.util.validation.annotation.*;
-import com.zifang.util.validation.core.ValidateResult;
-import com.zifang.util.validation.core.ValidationEngine;
+import com.zifang.util.core.pattern.validation.annotation.*;
+import com.zifang.util.core.pattern.validation.core.ValidateResult;
+import com.zifang.util.core.pattern.validation.core.ValidationEngine;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -163,7 +163,7 @@ public class ValidationTest {
 
     // ==================== 多字段综合测试 ====================
 
-    @Test(expected = com.zifang.util.validation.core.ValidationException.class)
+    @Test(expected = com.zifang.util.core.pattern.validation.core.ValidationException.class)
     /**
      * testValidateAndThrow方法。
      */

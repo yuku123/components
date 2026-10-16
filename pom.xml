@@ -121,7 +121,13 @@
              2) z-util-expr-js 的运行时 jar 里不再重复打 25 份 .java 源文件（源仍在 -sources.jar）。
              3) 全仓 javadoc.jar 剔掉 JDK 注入的 resource-files/（DejaVu 字体等），
                 308MB → 15MB，发布包 268MB → 约 27MB，不再撞 Cloudflare 100 秒上传上限。 -->
-        <revision>1.2.7</revision>
+        <!-- 1.2.8：z-util-pattern-validation 的包从 com.zifang.util.validation.*
+             归位到 com.zifang.util.core.pattern.validation.*，与其余 17 个 pattern 模块对齐。
+             这是破坏性变更（已发布的类换了包名），但全仓 + 整个 foundation 实测零外部引用：
+             只有该模块自己的 15 个文件提到旧包名，所以按「归位」而非「迁移」处理。
+             起因不是洁癖：这个包名不一致让按包名做的死码扫描反复漏掉它，
+             之前判它「零消费者」时靠的是全仓 grep 而不是包结构，结论差点就错了。 -->
+        <revision>1.2.8</revision>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <!-- compile.version 自留：Maven 的标准键叫 maven.compiler.source/target，本仓不借那两个名字，

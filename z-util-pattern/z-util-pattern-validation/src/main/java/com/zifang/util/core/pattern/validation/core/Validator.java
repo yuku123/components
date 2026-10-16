@@ -1,4 +1,4 @@
-package com.zifang.util.validation.core;
+package com.zifang.util.core.pattern.validation.core;
 
 import java.lang.reflect.Field;
 

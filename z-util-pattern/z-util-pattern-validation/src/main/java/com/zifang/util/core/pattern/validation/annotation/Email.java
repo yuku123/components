@@ -1,4 +1,4 @@
-package com.zifang.util.validation.annotation;
+package com.zifang.util.core.pattern.validation.annotation;
 
 import java.lang.annotation.*;
 
