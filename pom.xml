@@ -107,7 +107,13 @@
              字符串值里的 ':' ',' '{' 会被当结构符号 —— z-bot 的 claim_token "cli:54353:1"
              落盘成了 "cli: 54353: 1"。改成字符串字面量整段原样拷贝（带转义状态机）。
              修的是错误输出，下游钉到这一版即可，无需改代码。 -->
-        <revision>1.2.3</revision>
+        <!-- 1.2.4：transient / static 字段不再参与序列化，对齐 Jackson 默认口径。
+             缺这一条不是少个字段的事：靠 transient 声明"这是运行时状态、别落盘"的类，
+             换成 JsonUtil 后运行时缓存会被写进配置文件，读回来还可能因缺无参构造器直接炸。
+             触发点是 z-bot 的 CronJob.parsed —— 它此前靠 @JsonSerialize(ignore=true) 临时兜住，
+             而全 fleet 已迁移的仓凡有 transient 字段的都在静默泄漏。
+             显式 @JsonSerialize 视为作者有意要它，照 Jackson 让注解盖过 transient。 -->
+        <revision>1.2.4</revision>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <!-- compile.version 自留：Maven 的标准键叫 maven.compiler.source/target，本仓不借那两个名字，

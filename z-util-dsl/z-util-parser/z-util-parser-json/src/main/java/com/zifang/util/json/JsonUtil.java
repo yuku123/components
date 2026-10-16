@@ -1214,6 +1214,15 @@ public class JsonUtil {
             ValueSerializer serializer = null;
             String dateFormat = "";
 
+            // transient 与 Jackson 默认口径对齐：靠 transient 声明"这是运行时状态、别落盘"。
+            // 不跳的后果不是少个字段，而是运行时缓存被写进配置文件，读回来还可能因缺无参
+            // 构造器直接炸（z-bot 的 CronJob.parsed 就踩过）。显式 @JsonSerialize 视为
+            // 作者有意要它，照 Jackson 的做法让注解盖过 transient。
+            if ((Modifier.isTransient(field.getModifiers()) || Modifier.isStatic(field.getModifiers()))
+                    && ann == null) {
+                continue;
+            }
+
             if (ann != null) {
                 jsonName = ann.name().isEmpty() ? field.getName() : ann.name();
                 ignore = ann.ignore();
