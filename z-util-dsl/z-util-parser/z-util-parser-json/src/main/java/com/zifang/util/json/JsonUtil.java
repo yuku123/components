@@ -41,6 +41,8 @@ import java.util.concurrent.ConcurrentHashMap;
  *   <li>{@code @JsonSerialize(format="yyyy-MM-dd")} — Date 字段格式化</li>
  *   <li>{@code @JsonSerialize(ignore=true)} — 序列化时忽略字段</li>
  *   <li>{@code @JsonSerialize(name="alias")} — 序列化时使用别名</li>
+ *   <li>{@code @JsonSerialize(nonNull=true)} — 仅该字段为 null 时不输出（逐字段，
+ *       同类其他字段的 null 照常保留；与类级 {@code @JsonType(nonNull=true)} 的区别就在这）</li>
  *   <li>{@code @JsonDeserialize(alias={"a","b"})} — 反序列化额外接受备选属性名</li>
  *   <li>{@code @JsonDeserialize(ignore=true)} — 反序列化不回填该字段</li>
  *   <li>{@code @JsonType}（类级）— naming（类级 snake/kebab 命名策略）、
@@ -102,6 +104,7 @@ public class JsonUtil {
         final ValueDeserializer deserializer;
         final String dateFormat;         // 注解中的 format 值
         final String[] aliases;          // 反序列化备选属性名（@JsonDeserialize.alias）
+        final boolean nonNull;           // 序列化时该字段为 null 则整个键不输出（@JsonSerialize.nonNull）
 
         FieldMeta(Field field,
                   String jsonName,
@@ -119,6 +122,17 @@ public class JsonUtil {
                   ValueDeserializer deserializer,
                   String dateFormat,
                   String[] aliases) {
+            this(field, jsonName, ignore, serializer, deserializer, dateFormat, aliases, false);
+        }
+
+        FieldMeta(Field field,
+                  String jsonName,
+                  boolean ignore,
+                  ValueSerializer serializer,
+                  ValueDeserializer deserializer,
+                  String dateFormat,
+                  String[] aliases,
+                  boolean nonNull) {
             this.field = field;
             this.jsonName = jsonName;
             this.ignore = ignore;
@@ -126,6 +140,7 @@ public class JsonUtil {
             this.deserializer = deserializer;
             this.dateFormat = dateFormat;
             this.aliases = aliases;
+            this.nonNull = nonNull;
         }
     }
 
@@ -867,7 +882,7 @@ public class JsonUtil {
             } catch (Exception e) {
                 value = null;
             }
-            if (value == null && (SKIP_NULL_MODE.get() || classNonNull)) continue;
+            if (value == null && (SKIP_NULL_MODE.get() || classNonNull || meta.nonNull)) continue;
             if (i > 0) sb.append(",");
             sb.append("\"").append(escapeString(meta.jsonName)).append("\":");
             if (value == null) {
@@ -1361,7 +1376,8 @@ public class JsonUtil {
                 ignore = false;
             }
 
-            metas.add(new FieldMeta(field, jsonName, ignore, serializer, null, dateFormat));
+            metas.add(new FieldMeta(field, jsonName, ignore, serializer, null, dateFormat,
+                    new String[0], ann != null && ann.nonNull()));
         }
 
         serializeMetaCache.put(clazz, metas);

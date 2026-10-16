@@ -113,7 +113,7 @@
              触发点是 z-bot 的 CronJob.parsed —— 它此前靠 @JsonSerialize(ignore=true) 临时兜住，
              而全 fleet 已迁移的仓凡有 transient 字段的都在静默泄漏。
              显式 @JsonSerialize 视为作者有意要它，照 Jackson 让注解盖过 transient。 -->
-        <revision>1.2.5</revision>
+        <revision>1.2.6</revision>
         <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
         <!-- compile.version 自留：Maven 的标准键叫 maven.compiler.source/target，本仓不借那两个名字，

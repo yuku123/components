@@ -33,6 +33,15 @@ public @interface JsonSerialize {
     String format() default "";
 
     /**
+     * 该字段为 null 时整个键不输出（等价 Jackson 的 {@code @JsonInclude(NON_NULL)}）。
+     *
+     * <p>类级 {@link JsonType#nonNull()} 是"这个类所有字段都这样"，
+     * 这里管的是"同类里只有这一个字段这样"——成功项不该带 error 键、
+     * 失败项才带，而同类的 documentId 等字段该保留 null 就保留。
+     */
+    boolean nonNull() default false;
+
+    /**
      * 空标记类，用于表示"不指定自定义序列化器"。
      */
     final class NONE {}
