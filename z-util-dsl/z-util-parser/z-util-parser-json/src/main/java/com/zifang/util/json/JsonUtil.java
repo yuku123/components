@@ -1081,7 +1081,12 @@ public class JsonUtil {
                 return enumValue;
             }
 
-            T instance = clazz.getDeclaredConstructor().newInstance();
+            // setAccessible 不能省：目标类可能是包私有（package-private 的嵌套类、
+            // 包私有的 DTO），而 JsonUtil 在别的包里，不 setAccessible 直接 newInstance
+            // 抛 IllegalAccessException。Jackson 走 canAccess/forceAccess 不会踩这条。
+            java.lang.reflect.Constructor<T> ctor = clazz.getDeclaredConstructor();
+            ctor.setAccessible(true);
+            T instance = ctor.newInstance();
             List<FieldMeta> metas = getDeserializeMetas(clazz);
             for (FieldMeta meta : metas) {
                 // 优先用注解 name 查找字段（支持别名）
