@@ -1,6 +1,6 @@
 # z-util
 
-> 一人公司基座的底层 Java 工具库 —— 45 个模块 · Java 8 口径 · 按需引用、按需升级。
+> 一人公司基座的底层 Java 工具库 —— 70 个模块 POM · Java 8 口径 · 按需引用、按需升级。
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.yuku123/z-util-core.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.yuku123/z-util-core)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -23,11 +23,11 @@ IoC/AOP/代理、二进制序列化、监控、Office、图像、数学与 ML，
 | 字段 | 值 |
 |------|-----|
 | **仓库** | `z-util`（org: z-opc-foundation 的基础库；远端为组织仓 `github.com:z-opc-foundation/z-util.git`） |
-| **Maven 坐标** | 根聚合 `io.github.yuku123:z-util:${revision}`（`packaging=pom`）；子件 `io.github.yuku123:z-util-<module>:${revision}`。groupId 保持 `io.github.yuku123`（已发布坐标，Central 上 1.0.2~1.0.16 全系列），与 GitHub 组织归属解耦 |
-| **当前版本** | `1.0.16`（根 POM `<properties><revision>`，CI-friendly versions + flatten-maven-plugin `resolveCiFriendliesOnly`） |
+| **Maven 坐标** | 根聚合 `io.github.yuku123:z-util:${revision}`（`packaging=pom`）；子件 `io.github.yuku123:z-util-<module>:${revision}`。groupId 保持 `io.github.yuku123`（已发布坐标，Central 上 1.0.2~1.2.8 全系列，2026-10-19 实测），与 GitHub 组织归属解耦 |
+| **当前版本** | `1.2.8`（根 POM `<properties><revision>`，CI-friendly versions + flatten-maven-plugin `resolveCiFriendliesOnly`；2026-10-19 按 pom 现读订正，此前 README 写的 1.0.16 已过期） |
 | **父项目** | **无**（2026-10-03 起本仓是一棵独立的 POM 树：根 POM 不写 `<parent>`，也不 import 任何外部 BOM，发布的根 pom 在 repo1 可被独立解析） |
 | **Maven Central** | 已发布：实测 `1.0.14` 下 **46 个构件的 `.pom` 全部 HTTP 200**（根 `z-util` + 45 个 reactor 模块）。 |
-| **模块数** | 根 POM `<modules>` 25 个条目；展开 `parser`(8) / `expr`(6) / `serialize`(6) 三个聚合件后共 **45 个模块 POM = 41 个 jar + 4 个 pom** |
+| **模块数** | 根 POM `<modules>` **26** 个条目；展开三个聚合件（`z-util-pattern` / `z-util-http` / `z-util-pattern` 等）后共 **70 个模块 POM = 62 个 jar + 8 个 pom**（2026-10-19 按 pom 现读订正） |
 | **运行口径** | Java 8（`compile.version=8`，各模块 `maven.compiler.source/target=8`；产物可直接被 Spring Boot 2.7 系消费） |
 | **测试运行 JDK** | 全量 `mvn test` 需 JDK 9+，组织口径用 **JDK 17**（原因见「🧪 测试」） |
 | **默认端口** | 无（这是库，不监听端口）。`z-util-http` 的 `AllPathHttpServer` 基于 JDK `com.sun.net.httpserver`，端口由调用方传入 |
@@ -37,7 +37,7 @@ IoC/AOP/代理、二进制序列化、监控、Office、图像、数学与 ML，
 
 ## 🧩 模块清单
 
-下表**逐条对齐**根 `pom.xml` 的 `<modules>`（22 条，按 POM 内声明顺序），职责取自各模块 POM 的 `<name>`。
+下表**逐条对齐**根 `pom.xml` 的 `<modules>`（**26** 条，按 POM 内声明顺序），职责取自各模块 POM 的 `<name>`。
 `z-util-dsl` / `z-util-serialize` / `z-util-devops` 是聚合 POM；`z-util-dsl` 家族收编了 `z-util-dsl-kernel`（原 `z-util-dsl` jar）+ `z-util-expr` + `z-util-parser`，子模块单列在下面子表。
 
 | 模块（`<module>` 顺序） | 类型 | 职责 | 关键入口（实测存在的类） |
@@ -148,10 +148,14 @@ z-util/
 └── LICENSE                # MIT
 ```
 
-内部依赖（各模块 POM 实测，不是画好看的图）：`aop` 与 `dsl` 是零内部依赖的叶子；
-`parser-json → dsl`；`core → parser-json, aop`；`cache/ioc → core, aop`（ioc 另加 proxy）；
-`proxy → core`；`expr-obj → expr-el, core`；`jdbc → core, proxy, expr-sql, expr-obj, distribute`。
-编译顺序由 Maven 保证，跨层引用（例如 `expr-*` 引 `jdbc`）会形成环，不要加。
+内部依赖（2026-10-19 用 XML 解析各模块 POM 的 `<dependencies>` 实测，不是画好看的图）：
+`dsl` / `proxy` / `bc` / `expr-el` / `pattern-composite` / `pattern-factory` / `pattern-register` 是零内部依赖的叶子；
+`parser-json → dsl-kernel`；`core → parser-json, pattern-cache, pattern-composite, pattern-factory`；
+`aop → bc, core`；`pattern-cache → pattern-register`；`ioc → aop, core`；
+`expr-obj → expr-el, parser-json`；`jdbc → aop, core, distribute, expr-obj, expr-sql, parser-json`；
+`http-core → parser-json`；`http-proxy → core, http-core, parser-json`。
+⚠️ 此前这份图里 `aop` 被写成叶子、`core` 被写成引 `aop`、`proxy` 被写成引 `core` —— 与 POM 实测逐条不符，已按实测重写。
+编译顺序由 Maven 保证；反向引用（例如 `expr-*` 引 `jdbc`）会形成环，不要加。
 
 ---
 
@@ -339,16 +343,17 @@ _Maintained by the z-opc-foundation organization._
 本项目文档统一收口在 `_doc/` 下：
 
 - [`_doc/001_arch/`](_doc/001_arch/) — 架构与发布文档：
+  - [`00-overview.md`](_doc/001_arch/00-overview.md) — 项目总览：模块架构、核心功能、上下游、目录结构
   - [`06-wire-format.md`](_doc/001_arch/06-wire-format.md) — Z-Serialize 线格式规范（header/varint/schemaId/压缩加密；zstd、lz4 尚未落地为代码）
   - [`01-pivot-handler.md`](_doc/001_arch/01-pivot-handler.md) — `engine.service.pivot` 的 `pivot` / `unpivot` 参数说明
   - [`02-resource-handler.md`](_doc/001_arch/02-resource-handler.md) — `engine.service.resourceHandler`：本地文件 / MySQL / 集群 / HDFS 读写与表映射
   - [`05-churn-target.md`](_doc/001_arch/05-churn-target.md) — `engine.service.target`：churn 的 target 生成
-  - [`01-release-to-maven-central.md`](_doc/006_release/01-release-to-maven-central.md) — 本仓发布到 Central 的操作手册
-  - [`02-release-guide.md`](_doc/006_release/02-release-guide.md) — 通用（任何多模块 Java 仓）Central 发布指引 + AI 避坑清单
-- `_doc/002_deploy/` — 目前为空目录（本仓是库，没有部署资产；空目录未被 git 跟踪，clone 后可能不存在）
 - [`_doc/003_script/`](_doc/003_script/) — 脚本：
   - [`deploy_maven_center.sh`](_doc/003_script/deploy_maven_center.sh) — 发布入口（`gpg-init` / `publish` / `verify` / `readme` / `help`；须在仓库根目录上下文运行，凭据取 `.env`）
   - [`install-settings.sh`](_doc/003_script/install-settings.sh) — 把 `<server id="central">` 写进 `~/.m2/settings.xml`
   - `11.1.sh` / `11.3.sh` / `11.4.sh` / `11.7.sh` / `11.8.sh` / `12.1.sh` / `12.4.sh` / `12.7.sh` / `13.1.sh` / [`loopDir.sh`](_doc/003_script/loopDir.sh) — Shell 学习笔记示例（多命令、echo、变量、算术、退出码、if、数值比较、case、循环、递归遍历目录），**不是运维脚本**，与构建无关
+- [`_doc/006_release/`](_doc/006_release/) — 发布文档：
+  - [`01-release-to-maven-central.md`](_doc/006_release/01-release-to-maven-central.md) — 本仓发布到 Central 的操作手册
+  - [`02-release-guide.md`](_doc/006_release/02-release-guide.md) — 通用（任何多模块 Java 仓）Central 发布指引 + AI 避坑清单
 
 各文档详细说明见各子目录。

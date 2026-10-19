@@ -173,7 +173,7 @@ headless macOS 上必撞「No pinentry」。pom 用 `<executable>` 显式接到�
 </plugin>
 ```
 
-wrapper（[`_doc/003_script/gpg-with-passphrase.sh`](../../003_script/gpg-with-passphrase.sh)）只把
+wrapper（[`_doc/003_script/gpg-with-passphrase.sh`](../003_script/gpg-with-passphrase.sh)）只把
 `${CENTRAL_GPG_PASSPHRASE}` 注进 `gpg --passphrase`，强制 `--batch --pinentry-mode loopback`；
 本身不存 secret，passphrase 由调用方按 [[../../008_组织规范/001_凭证管理规范]]（CEE-OPS-K01）走仓根 `.env`（已 `gitignore`）。
 **不要再退回 `/tmp/gpg-wrap/gpg` 临时拼 wrapper**——接手的人没法从 git history 看到，下次必撞。
