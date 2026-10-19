@@ -6,7 +6,7 @@
 #   publish    实际 mvn deploy -Pcentral（默认）
 #   verify     验证 Maven Central 上能否搜到 io.github.yuku123
 #   gpg-init   首次发布前生成 GPG 密钥并写 .env
-#   readme     打印发布指引摘要（指向 发布指引.md）
+#   readme     打印发布指引摘要（指向 ../006_release/02-release-guide.md）
 #   help       显示此帮助
 #
 # 用法：
@@ -21,7 +21,7 @@
 #   - GPG 密钥环用 GNUPGHOME=./.gnupg，不污染 ~/.gnupg
 #   - 默认 dry-run 不做任何事情，必须显式给子命令
 #
-# 通用指引：见同目录的 发布指引.md（任何 AI / 工程师都能从零开始）
+# 通用指引：见 ../006_release/02-release-guide.md（任何 AI / 工程师都能从零开始）
 #
 set -eo pipefail
 
@@ -245,8 +245,8 @@ cmd_readme() {
 
 【详细指引】
 
-  同目录的 发布指引.md（通用，AI / 工程师都能从零开始）
-  RELEASE_TO_MAVEN_CENTRAL.md（z-util 特定配置）
+  ../006_release/02-release-guide.md（通用，AI / 工程师都能从零开始）
+  ../006_release/01-release-to-maven-central.md（z-util 特定配置）
 
 ═══════════════════════════════════════════════════════════════
 EOF

@@ -7,7 +7,7 @@ import com.zifang.util.devops.git.github.http.GithubHttpClient;
  * GitHub 客户端单例持有者。
  *
  * <p>v0：客户端类型从原 github-api 的 {@code GitHub} 切换为自研 {@link GithubHttpClient}
- * （见 {@code _doc/001_arch/github-api-migration.md}）。测试用
+ * （见 {@code _doc/001_arch/07-roadmap.md}）。测试用
  * {@code assertNotNull(holder.getGithub())} 仍兼容。
  */
 public class GithubApiHolder {

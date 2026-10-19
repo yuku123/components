@@ -57,8 +57,8 @@ IoC/AOP/代理、二进制序列化、监控、Office、图像、数学与 ML，
 | `z-util-bc` | jar | 字节码 + 源码工具集（字节码模型/ASM 编织/内存编译；2026-10-02 收编 z-util-source 为源码面，compiler 孤岛死码随迁删除） | `bytecode.*` class 模型、`compile.CFJavaCompiler`/`MapClassLoader`、`weave.*`；`source.parser.SourceCodeParser`（javaparser）、`source.define.ByteCodeParser`/`ByteCodeGenerator`（契约）+ `parser.ByteCodeParserImpl`/`generator.ByteCodeGeneratorImpl`、`source.generator.JavaSourceGenerator` + `diff.ClassInfoDiffer`、`source.generator.info.ClassInfo`/`FieldInfo`/`MethodInfo`、`source.analyser.AnalysisContext` |
 | `z-util-distribute` | jar | 分布式 ID：Snowflake / Segment / NanoId / UUID v7 | `sequence.SnowflakeIdWorker`（`(workerId, datacenterId)` → `nextId()`）、`Sequence`、`SegmentIdGenerator`、`NanoId`（`new NanoId(size, alphabet).next()`）、`UuidV7.next()`/`fromMillis`/`toUuid`、`SystemClock` |
 | `z-util-ch` | jar | 中文工具：拼音/身份证/金额/星期 | `PinyinGeneratorUtil`、`IdcardUtil`、`MoneyUtil`、`NumberChineseUtil`、`WeekUtil` |
-| `z-util-strategy` | jar | 决策引擎（2026-10-13）：决策包快照 + 灰度分流 + 试运行影子 + 对照组 + 可解释 trace；规则是对象化条件表达，内部编译成 DSL 交给 `z-util-expr-sql` 求值 | `DecisionEngine`（current/candidate 双槽 + `AtomicReference` 原子切换）、`DecisionPackage`（不可变快照 + 版本 + `RunMode` DRAFT/TRIAL/ACTIVE）、`DecisionResult`（`decision` + `shadow` + `effectiveOutcome`）、`TrafficPolicy`（稳定哈希分流）、`ControlPolicy`（对照组放行）、`DecisionMetrics.InMemory`；`rule.Rule`/`Condition`/`Conditions`/`Effect`/`MatchSpec`/`RuleEvaluator`；`loader.DecisionPackageLoader`（Java builder + JSON/YAML，条件支持 DSL 文本与结构化两种写法）。设计见 `_doc/001_arch/strategy-engine.md` |
-| `z-util-sensitive` | jar | 敏感识别引擎（2026-10-13）：敏感词 DFA + PII 校验位 + 脱敏，零第三方依赖 | `SensitiveDetector`（词库热更新走 volatile 换引用）、`DfaMatcher`（构建后不可变、多线程共享）、`WordDictionary`/`WordEntry`、`SensitiveResult`（带区间，可 `mask`）、`MaskStyle`/`MaskUtil`；`pii.IdCardRule`（GB11643 校验位）/`BankCardRule`（Luhn）/`MobileRule`/`EmailRule`/`IpRule`/`UrlRule`。选型与不做什么见 `_doc/001_arch/sensitive-detect-engine.md` |
+| `z-util-strategy` | jar | 决策引擎（2026-10-13）：决策包快照 + 灰度分流 + 试运行影子 + 对照组 + 可解释 trace；规则是对象化条件表达，内部编译成 DSL 交给 `z-util-expr-sql` 求值 | `DecisionEngine`（current/candidate 双槽 + `AtomicReference` 原子切换）、`DecisionPackage`（不可变快照 + 版本 + `RunMode` DRAFT/TRIAL/ACTIVE）、`DecisionResult`（`decision` + `shadow` + `effectiveOutcome`）、`TrafficPolicy`（稳定哈希分流）、`ControlPolicy`（对照组放行）、`DecisionMetrics.InMemory`；`rule.Rule`/`Condition`/`Conditions`/`Effect`/`MatchSpec`/`RuleEvaluator`；`loader.DecisionPackageLoader`（Java builder + JSON/YAML，条件支持 DSL 文本与结构化两种写法）。设计见 `_doc/001_arch/04-strategy-engine.md` |
+| `z-util-sensitive` | jar | 敏感识别引擎（2026-10-13）：敏感词 DFA + PII 校验位 + 脱敏，零第三方依赖 | `SensitiveDetector`（词库热更新走 volatile 换引用）、`DfaMatcher`（构建后不可变、多线程共享）、`WordDictionary`/`WordEntry`、`SensitiveResult`（带区间，可 `mask`）、`MaskStyle`/`MaskUtil`；`pii.IdCardRule`（GB11643 校验位）/`BankCardRule`（Luhn）/`MobileRule`/`EmailRule`/`IpRule`/`UrlRule`。选型与不做什么见 `_doc/001_arch/03-sensitive-detect-engine.md` |
 | `z-util-cli` | jar | 命令行解析（Default）+ OptionGroup + HelpFormatter | `CLI`、`CommandLine`、`CommandLineParser`、`DefaultParser`、`help.HelpFormatter` |
 | `z-util-pattern` | **pom 聚合** | GoF + 行为模式 + 校验原语聚合件（`z-util-pattern-chain`/`-command`/`-composite`/`-event`/`-factory`/`-ioc`/`-memento`/`-pool`/`-register`/`-spi`/`-state`/`-stream`/`-strategy`/`-template`/`-visitor`/`-builder`/`-cache`/`-validation` 等子件各自成坐标） | validation 面：`annotation.NotNull`/`Length`/`Pattern`/`Range`/`Email` 与同名 `*Validator`（2026-10-02 自 `z-util-validation` 降级收编，零内部依赖） |
 | `z-util-pattern-cache` | jar | **进程内**缓存：TTL + LRU / W-TinyLFU + builder + 装饰器（2026-10-02 自 `z-util-cache` 收编进 pattern 家族） | `MemoryCache`、`WTinyLfuCache`、`BoundedCache`/`LruNode`、`LoadingCache`/`LoadingMemoryCache`/`CacheLoader`、`CacheBuilder`、`CacheManager`、`MeteredCache`、`TransactionalCache`、`CountMinSketch`、`Expiry`、`RemovalListener`（无 Redis/远端后端） |
@@ -123,7 +123,7 @@ Object doc = mem.shape(spec);          // spec 就是 JSON 树；new ObjEngine(s
 | `z-util-serialize-formats` | 互通转码器 `JsonTranscoder`（Jackson） |
 | `z-util-serialize-it` | 跨模块集成测试（`GeneratedCodecTest`，靠注解处理器在 test 域跨 core/formats/codegen 生成 codec）；跑分工具 `ZSerializeVsKryoBench`（手搓 `main()` 计时，非 JMH）与它同住 test 域，kryo 已钉 `test` scope 不再外泄。**不对外发布**：1.2.7 把测试夹具挪进 `src/test` 后 `src/main` 整个不存在，jar 只剩 META-INF，1.2.8 起由 central profile 的 `excludeArtifacts` 退出发布包 |
 
-压缩实现目前只有 `GzipCompressor`（+ `AesGcmEncryptor`）；[`_doc/001_arch/wire-format.md`](_doc/001_arch/wire-format.md)
+压缩实现目前只有 `GzipCompressor`（+ `AesGcmEncryptor`）；[`_doc/001_arch/06-wire-format.md`](_doc/001_arch/06-wire-format.md)
 里写的 zstd / lz4 仍是设计目标，代码里还没有对应类。
 
 ---
@@ -291,8 +291,8 @@ bash _doc/003_script/install-settings.sh               # 把 server id=central �
 - 脚本默认带 `-pl '!z-util-all'`，但实测 `z-util-all:1.0.14` 的 pom 在 repo1 可读（且是它唯一的已发布版本，
   `1.0.13` 为 404）—— 说明 1.0.14 这一批是由组织的批量发布通道把聚合件也一起推上去的，脚本那行排除参数只描述它自己那条路径。
 
-完整流程与避坑清单见 [`_doc/006_release/RELEASE_TO_MAVEN_CENTRAL.md`](_doc/006_release/RELEASE_TO_MAVEN_CENTRAL.md)
-与 [`_doc/006_release/发布指引.md`](_doc/006_release/发布指引.md)。
+完整流程与避坑清单见 [`_doc/006_release/01-release-to-maven-central.md`](_doc/006_release/01-release-to-maven-central.md)
+与 [`_doc/006_release/02-release-guide.md`](_doc/006_release/02-release-guide.md)。
 
 ---
 
@@ -339,12 +339,12 @@ _Maintained by the z-opc-foundation organization._
 本项目文档统一收口在 `_doc/` 下：
 
 - [`_doc/001_arch/`](_doc/001_arch/) — 架构与发布文档：
-  - [`wire-format.md`](_doc/001_arch/wire-format.md) — Z-Serialize 线格式规范（header/varint/schemaId/压缩加密；zstd、lz4 尚未落地为代码）
-  - [`pivot.md`](_doc/001_arch/pivot.md) — `engine.service.pivot` 的 `pivot` / `unpivot` 参数说明
-  - [`resource.md`](_doc/001_arch/resource.md) — `engine.service.resourceHandler`：本地文件 / MySQL / 集群 / HDFS 读写与表映射
-  - [`target.md`](_doc/001_arch/target.md) — `engine.service.target`：churn 的 target 生成
-  - [`RELEASE_TO_MAVEN_CENTRAL.md`](_doc/006_release/RELEASE_TO_MAVEN_CENTRAL.md) — 本仓发布到 Central 的操作手册
-  - [`发布指引.md`](_doc/006_release/发布指引.md) — 通用（任何多模块 Java 仓）Central 发布指引 + AI 避坑清单
+  - [`06-wire-format.md`](_doc/001_arch/06-wire-format.md) — Z-Serialize 线格式规范（header/varint/schemaId/压缩加密；zstd、lz4 尚未落地为代码）
+  - [`01-pivot-handler.md`](_doc/001_arch/01-pivot-handler.md) — `engine.service.pivot` 的 `pivot` / `unpivot` 参数说明
+  - [`02-resource-handler.md`](_doc/001_arch/02-resource-handler.md) — `engine.service.resourceHandler`：本地文件 / MySQL / 集群 / HDFS 读写与表映射
+  - [`05-churn-target.md`](_doc/001_arch/05-churn-target.md) — `engine.service.target`：churn 的 target 生成
+  - [`01-release-to-maven-central.md`](_doc/006_release/01-release-to-maven-central.md) — 本仓发布到 Central 的操作手册
+  - [`02-release-guide.md`](_doc/006_release/02-release-guide.md) — 通用（任何多模块 Java 仓）Central 发布指引 + AI 避坑清单
 - `_doc/002_deploy/` — 目前为空目录（本仓是库，没有部署资产；空目录未被 git 跟踪，clone 后可能不存在）
 - [`_doc/003_script/`](_doc/003_script/) — 脚本：
   - [`deploy_maven_center.sh`](_doc/003_script/deploy_maven_center.sh) — 发布入口（`gpg-init` / `publish` / `verify` / `readme` / `help`；须在仓库根目录上下文运行，凭据取 `.env`）

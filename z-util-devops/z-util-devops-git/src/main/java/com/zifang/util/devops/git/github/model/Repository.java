@@ -5,7 +5,7 @@ import com.zifang.util.json.model.JsonObject;
 /**
  * GitHub 仓库（v0 切片，仅覆盖已实跑端点所需字段）。
  *
- * <p>完整字段集见 {@code _doc/001_arch/github-api-migration.md}。
+ * <p>完整字段集见 {@code _doc/001_arch/07-roadmap.md}。
  */
 public class Repository {
 

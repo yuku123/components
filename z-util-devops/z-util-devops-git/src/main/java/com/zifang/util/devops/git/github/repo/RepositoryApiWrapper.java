@@ -16,7 +16,7 @@ import java.util.List;
  * GitHub Repository API 包装。
  *
  * <p>v0 切片 → 全量收口：11 个方法全部实跑 okhttp REST。续接进度见
- * {@code _doc/001_arch/github-api-migration.md} §repo。
+ * {@code _doc/001_arch/07-roadmap.md} §repo。
  */
 public class RepositoryApiWrapper {
 

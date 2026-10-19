@@ -33,7 +33,7 @@ mvn -Pcentral deploy -pl '!z-util-all' -DskipTests
 > KEY_ID、模块数、仓路径也已过期。下面保留的每条命令都是 1.0.23 那次实跑验证过的。
 > 再发新版请以本文当前内容为准，不要照搬旧段落里的脚本名。
 
-**完整通用流程、AI 助手避坑指南、GPG 配置、POM 元数据模板**等详见同目录的 [发布指引.md](./发布指引.md)。
+**完整通用流程、AI 助手避坑指南、GPG 配置、POM 元数据模板**等详见同目录的 [发布指引.md](./02-release-guide.md)。
 
 ---
 
@@ -78,8 +78,8 @@ z-util 相比典型 Java 项目有以下特殊点：
 └── _doc/
     ├── 003_script/gpg-with-passphrase.sh    # maven-gpg-plugin 的 passphrase 注入 wrapper
     └── 006_release/
-        ├── RELEASE_TO_MAVEN_CENTRAL.md      # 本文件（z-util 特定）
-        └── 发布指引.md                      # 通用发布指引（AI / 人类都能用）
+        ├── 01-release-to-maven-central.md   # 本文件（z-util 特定）
+        └── 02-release-guide.md              # 通用发布指引（AI / 人类都能用）
 ```
 
 > ⚠️ **`deploy_maven_center.sh` 已被删除，仓内不存在。** 早期版本本文所有
@@ -92,8 +92,8 @@ z-util 相比典型 Java 项目有以下特殊点：
 | `.env` | Central Token + GPG passphrase | ❌ gitignore |
 | `.gnupg/` | GPG 密钥环（公钥 + **私钥**，见「密钥环分家」） | ❌ gitignore |
 | `_doc/003_script/gpg-with-passphrase.sh` | maven-gpg-plugin 3.2.8 的 passphrase 注入 wrapper（pom 用 `<executable>` 接到这） | ✅ commit |
-| `RELEASE_TO_MAVEN_CENTRAL.md` | 本手册 | ✅ commit |
-| `发布指引.md` | 通用发布指引 | ✅ commit |
+| `01-release-to-maven-central.md` | 本手册 | ✅ commit |
+| `02-release-guide.md` | 通用发布指引 | ✅ commit |
 
 ---
 
@@ -434,4 +434,4 @@ curl -s -u "$U:$P" "https://central.sonatype.com/api/v1/publisher/deployments" \
 
 ---
 
-**详细通用流程与 AI 避坑指南**：见 [发布指引.md](./发布指引.md)
+**详细通用流程与 AI 避坑指南**：见 [发布指引.md](./02-release-guide.md)

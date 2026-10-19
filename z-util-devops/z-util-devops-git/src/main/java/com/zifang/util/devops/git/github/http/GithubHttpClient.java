@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * GitHub REST API 客户端（v0 自研骨架，替代 org.kohsuke.github-api）。
  *
- * <p>本类只暴露少量方法作 v0 切片；后续按 {@code _doc/001_arch/github-api-migration.md}
+ * <p>本类只暴露少量方法作 v0 切片；后续按 {@code _doc/001_arch/07-roadmap.md}
  * 续接清单补全。
  *
  * <p>迁移背景：github-api 引入的传递依赖树（commons-lang3 / okio / commons-codec / commons-io …）
